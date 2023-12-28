@@ -35,9 +35,9 @@ flutter:
 
 #---------- LOCAL ASSETS --------------#
   assets:
-    - assets/logos/
+    # - assets/logos/
     - assets/icons/
-    - assets/images/
+    # - assets/images/
 
 #--------- LOCAL FONTS ----------------#
   fonts:
