@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nu_go_app/utils/constants/colors.dart';
 import 'package:nu_go_app/utils/theme/custom_themes/app_bar_theme.dart';
 import 'package:nu_go_app/utils/theme/custom_themes/bottom_sheet_theme.dart';
 import 'package:nu_go_app/utils/theme/custom_themes/checkbox_theme.dart';
@@ -8,15 +9,14 @@ import 'package:nu_go_app/utils/theme/custom_themes/outlined_button_theme.dart';
 import 'package:nu_go_app/utils/theme/custom_themes/text_field_theme.dart';
 import 'package:nu_go_app/utils/theme/custom_themes/text_theme.dart';
 
-
-class NUGoTheme{
+class NUGoTheme {
   NUGoTheme._();
 
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     fontFamily: 'ClanPro',
     brightness: Brightness.light,
-    primaryColor:  Colors.blue,
+    primaryColor: NUBlue,
     textTheme: NUGoTextTheme.lightTextTheme,
     chipTheme: NUGoChipTheme.lightChipTheme,
     scaffoldBackgroundColor: Colors.white,
@@ -32,7 +32,7 @@ class NUGoTheme{
     useMaterial3: true,
     fontFamily: 'ClanPro',
     brightness: Brightness.dark,
-    primaryColor:  Colors.blue,
+    primaryColor: Colors.blue,
     textTheme: NUGoTextTheme.darkTextTheme,
     chipTheme: NUGoChipTheme.darkChipTheme,
     scaffoldBackgroundColor: Colors.black,
