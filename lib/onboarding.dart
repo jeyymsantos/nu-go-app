@@ -27,7 +27,7 @@ class _OnboardingState extends State<Onboarding> {
                 itemCount: contents.length,
                 itemBuilder: (context, i) {
                   return Padding(
-                    padding: const EdgeInsets.all(40.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: Column(
                       children: [
                         Image.asset(
@@ -57,6 +57,8 @@ class _OnboardingState extends State<Onboarding> {
               ),
             ),
             Container(
+              color: Colors.black,
+              height: 10,
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(
@@ -65,12 +67,21 @@ class _OnboardingState extends State<Onboarding> {
                   )),
             ),
             Container(
-              height: 60,
+              margin: EdgeInsets.only(top: 50),
+              padding: EdgeInsets.only(top: 50),
+              color: Colors.amber,
               width: double.infinity,
-              margin: const EdgeInsets.all(40),
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Text('Next'),
+              child: Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text('Next'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text('Next'),
+                  ),
+                ],
               ),
             ),
           ],
