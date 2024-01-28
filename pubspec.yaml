@@ -13,12 +13,14 @@ dependencies:
     sdk: flutter
 
 # Utility Packages
+  
 
 # Icons
   iconsax: ^0.0.8
   cupertino_icons: ^1.0.2
 
 # Product Specific
+  flutter_svg: ^2.0.9
 
 #------------ END OF PACKAGES ---------------- #
 
@@ -35,7 +37,8 @@ flutter:
 
 #---------- LOCAL ASSETS --------------#
   assets:
-    # - assets/logos/
+    - assets/images/
+    - assets/images/onboarding/
     - assets/icons/
     # - assets/images/
 
