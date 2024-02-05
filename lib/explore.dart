@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nu_go_app/navigationbar.dart';
 import 'package:nu_go_app/utils/constants/colors.dart';
 
 class Explore extends StatefulWidget {
@@ -9,10 +10,13 @@ class Explore extends StatefulWidget {
   State<Explore> createState() => _ExploreState();
 }
 
+int index = 0;
+
 class _ExploreState extends State<Explore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: const CustomNavigationBar(),
       body:SingleChildScrollView(
         child: SafeArea(
           child: Container(

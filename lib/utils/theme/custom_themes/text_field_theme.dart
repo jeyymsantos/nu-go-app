@@ -7,7 +7,7 @@ class NUGoTextFormFieldTheme {
     errorMaxLines: 3,
     prefixIconColor: Colors.grey,
     suffixIconColor: Colors.grey,
-    // constraints: const BoxConstraints.expand(height: 14.inputFieldHeight),
+    // constraints: const BoxConstraints.expand(height: 70),
     labelStyle: const TextStyle().copyWith(fontSize: 14, color: Colors.black),
     hintStyle: const TextStyle().copyWith(fontSize: 14, color: Colors.black),
     errorStyle: const TextStyle().copyWith(fontStyle: FontStyle.normal),
