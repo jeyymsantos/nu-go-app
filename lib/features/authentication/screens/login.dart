@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nu_go_app/features/authentication/screens/sign_up.dart';
 import 'package:nu_go_app/features/event/explore.dart';
 import 'package:nu_go_app/utils/constants/colors.dart';
 import 'package:nu_go_app/utils/constants/images.dart';
@@ -68,25 +69,9 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 30),
 
               // SIGN IN BUTTON
-              SizedBox(
+              const SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    side: const BorderSide(color: NUBlue),
-                  ),
-                  onPressed: () {
-                    // Navigate to explore.dart
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              const Explore()), // Assuming Explore is your explore.dart screen
-                    );
-                  },
-                  child: const Text(
-                    'Sign In',
-                  ),
-                ),
+                child: SignInButton(),
               ),
 
               const SizedBox(height: 20),
@@ -114,44 +99,13 @@ class LoginPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  foregroundColor: Colors.black,
-                  elevation: 5,
-                  padding: const EdgeInsets.all(12),
-                  shadowColor: Colors.black.withOpacity(0.1),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/icons/Office365.png', height: 30),
-                    const SizedBox(
-                        width: 8), // Adding spacing between image and text
-                    const Text(
-                      'Sign In with Microsoft 365',
-                      style: TextStyle(
-                        fontSize: 16, // You can adjust the font size as needed
-                        fontWeight: FontWeight
-                            .w500, // You can adjust the font weight as needed
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              const SignInWithMS365(),
               const SizedBox(height: 30),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Not Registered yet? "),
-                  Text(
-                    "Create an Account",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: NUBlue,
-                    ),
-                  ),
+                  SignUpButton(),
                 ],
               ),
             ],
@@ -159,5 +113,95 @@ class LoginPage extends StatelessWidget {
         ),
       ),
     ));
+  }
+}
+
+class SignUpButton extends StatelessWidget {
+  const SignUpButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        // Navigate to explore.dart
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  const SignUpPage()), // Assuming Explore is your explore.dart screen
+        );
+      },
+      child: const Text(
+        "Create an Account",
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: NUBlue,
+        ),
+      ),
+    );
+  }
+}
+
+class SignInWithMS365 extends StatelessWidget {
+  const SignInWithMS365({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {},
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        elevation: 5,
+        padding: const EdgeInsets.all(12),
+        shadowColor: Colors.black.withOpacity(0.1),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset('assets/icons/Office365.png', height: 30),
+          const SizedBox(width: 8), // Adding spacing between image and text
+          const Text(
+            'Sign In with Microsoft 365',
+            style: TextStyle(
+              fontSize: 16, // You can adjust the font size as needed
+              fontWeight:
+                  FontWeight.w500, // You can adjust the font weight as needed
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SignInButton extends StatelessWidget {
+  const SignInButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        side: const BorderSide(color: NUBlue),
+      ),
+      onPressed: () {
+        // Navigate to explore.dart
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  const Explore()), // Assuming Explore is your explore.dart screen
+        );
+      },
+      child: const Text(
+        'Sign In',
+      ),
+    );
   }
 }

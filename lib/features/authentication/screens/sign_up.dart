@@ -73,12 +73,9 @@ class SignUpPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 50),
-              SizedBox(
+              const SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Sign Up'),
-                ),
+                child: SignUpButton(),
               ),
               const SizedBox(height: 20),
               Row(
@@ -104,32 +101,7 @@ class SignUpPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  foregroundColor: Colors.black,
-                  elevation: 5,
-                  padding: const EdgeInsets.all(12),
-                  shadowColor: Colors.black.withOpacity(0.1),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/icons/Office365.png', height: 30),
-                    const SizedBox(
-                        width: 8), // Adding spacing between image and text
-                    const Text(
-                      'Sign Up with Microsoft 365',
-                      style: TextStyle(
-                        fontSize: 16, // You can adjust the font size as needed
-                        fontWeight: FontWeight
-                            .w500, // You can adjust the font weight as needed
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              const SignUpWithMS365(),
               const SizedBox(height: 20),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -141,19 +113,84 @@ class SignUpPage extends StatelessWidget {
                       fontSize: 12,
                     ),
                   ),
-                  Text(
-                    ' Sign In Account Here',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
-                    ),
-                  ),
+                  SignInButton(),
                 ],
               )
             ],
           ),
         ),
       )),
+    );
+  }
+}
+
+class SignInButton extends StatelessWidget {
+  const SignInButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pop(context);
+      },
+      child: const Text(
+        ' Sign In Account Here',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 12,
+        ),
+      ),
+    );
+  }
+}
+
+class SignUpWithMS365 extends StatelessWidget {
+  const SignUpWithMS365({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {},
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        elevation: 5,
+        padding: const EdgeInsets.all(12),
+        shadowColor: Colors.black.withOpacity(0.1),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset('assets/icons/Office365.png', height: 30),
+          const SizedBox(width: 8), // Adding spacing between image and text
+          const Text(
+            'Sign Up with Microsoft 365',
+            style: TextStyle(
+              fontSize: 16, // You can adjust the font size as needed
+              fontWeight:
+                  FontWeight.w500, // You can adjust the font weight as needed
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SignUpButton extends StatelessWidget {
+  const SignUpButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {},
+      child: const Text('Sign Up'),
     );
   }
 }
