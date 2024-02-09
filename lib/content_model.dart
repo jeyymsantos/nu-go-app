@@ -1,3 +1,5 @@
+import 'package:nu_go_app/utils/constants/images.dart';
+
 class OnboardingContent {
   int count;
   String image;
@@ -15,19 +17,19 @@ List<OnboardingContent> contents = [
   OnboardingContent(
       count: 1,
       title: 'Hassle Free Browsing',
-      image: 'assets/images/onboarding/onboard_one.png',
+      image: onboardOne,
       description:
           "Browse your departmentalized event without any restriction and hassle."),
   OnboardingContent(
       count: 2,
       title: "Quality Food",
-      image: 'assets/images/onboarding/onboard_two.png',
+      image: onboardTwo,
       description:
           "Browse your departmentalized event without any restriction and hassle."),
   OnboardingContent(
       count: 3,
       title: "Quality Food",
-      image: 'assets/images/onboarding/onboard_three.png',
+      image: onboardThree,
       description:
           "Browse your departmentalized event without any restriction and hassle."),
 ];

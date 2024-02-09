@@ -1,24 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:nu_go_app/utils/constants/colors.dart';
 
 class NUGoTextFormFieldTheme {
   NUGoTextFormFieldTheme._();
 
   static InputDecorationTheme lightInputDecorationTheme = InputDecorationTheme(
     errorMaxLines: 3,
-    prefixIconColor: Colors.grey,
-    suffixIconColor: Colors.grey,
-    // constraints: const BoxConstraints.expand(height: 70),
-    labelStyle: const TextStyle().copyWith(fontSize: 14, color: Colors.black),
-    hintStyle: const TextStyle().copyWith(fontSize: 14, color: Colors.black),
+    prefixIconColor: iconGray,
+    suffixIconColor: iconGray,
+    filled: true,
+    fillColor: fieldGray,
+
+    // constraints: const BoxConstraints.expand(height: 14.inputFieldHeight),
+    labelStyle: const TextStyle().copyWith(fontSize: 12, color: Colors.grey),
+    hintStyle: const TextStyle().copyWith(fontSize: 12, color: Colors.grey),
     errorStyle: const TextStyle().copyWith(fontStyle: FontStyle.normal),
-    floatingLabelStyle: const TextStyle().copyWith(color: Colors.black.withOpacity(0.8)),
+    floatingLabelStyle:
+        const TextStyle().copyWith(color: Colors.black.withOpacity(0.8)),
     border: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(14),
-      borderSide: const BorderSide(width: 1, color: Colors.grey),
+      borderSide: const BorderSide(width: 1, color: fieldGray),
     ),
     enabledBorder: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(14),
-      borderSide: const BorderSide(width: 1, color: Colors.grey),
+      borderSide: const BorderSide(width: 1, color: fieldGray),
     ),
     focusedBorder: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(14),
@@ -32,7 +37,6 @@ class NUGoTextFormFieldTheme {
       borderRadius: BorderRadius.circular(14),
       borderSide: const BorderSide(width: 12, color: Colors.orange),
     ),
-
   );
 
   static InputDecorationTheme darkInputDecorationTheme = InputDecorationTheme(
@@ -42,7 +46,8 @@ class NUGoTextFormFieldTheme {
     // constraints: const BoxConstraints.expand(height: 14.inputFieldHeight),
     labelStyle: const TextStyle().copyWith(fontSize: 14, color: Colors.white),
     hintStyle: const TextStyle().copyWith(fontSize: 14, color: Colors.white),
-    floatingLabelStyle: const TextStyle().copyWith(color: Colors.white.withOpacity(0.8)),
+    floatingLabelStyle:
+        const TextStyle().copyWith(color: Colors.white.withOpacity(0.8)),
     border: const OutlineInputBorder().copyWith(
       borderRadius: BorderRadius.circular(14),
       borderSide: const BorderSide(width: 1, color: Colors.grey),
@@ -63,8 +68,5 @@ class NUGoTextFormFieldTheme {
       borderRadius: BorderRadius.circular(14),
       borderSide: const BorderSide(width: 12, color: Colors.orange),
     ),
-
   );
- 
-
 }
