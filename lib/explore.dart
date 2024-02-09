@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nu_go_app/navigationbar.dart';
-import 'package:nu_go_app/utils/constants/colors.dart';
+// import 'package:nu_go_app/utils/constants/colors.dart';
 
 class Explore extends StatefulWidget {
   const Explore({super.key});

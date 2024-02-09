@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:nu_go_app/utils/constants/colors.dart';
 import 'package:nu_go_app/navigationbar.dart';
 
 class Dashboard extends StatefulWidget {
