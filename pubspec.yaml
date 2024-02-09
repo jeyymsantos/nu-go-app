@@ -13,11 +13,13 @@ dependencies:
     sdk: flutter
 
 # Utility Packages
-  
+  google_nav_bar: ^5.0.6
+  curved_navigation_bar: ^1.0.3
 
 # Icons
   iconsax: ^0.0.8
   cupertino_icons: ^1.0.2
+  
 
 # Product Specific
   flutter_svg: ^2.0.9

@@ -4,7 +4,6 @@ import 'package:nu_go_app/utils/constants/colors.dart';
 
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
-
   @override
   State<Onboarding> createState() => _OnboardingState();
 }
