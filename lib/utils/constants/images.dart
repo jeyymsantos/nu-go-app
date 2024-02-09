@@ -5,7 +5,7 @@ const String logo = "assets/icons/logo.png";
 
 // Onboarding
 const String onboardOne = "assets/images/onboarding/onboard_one.png";
-const String onboardTwo = "assets/images/onboarding/onboard_one.png";
+const String onboardTwo = "assets/images/onboarding/onboard_two.png";
 const String onboardThree = "assets/images/onboarding/onboard_three.png";
 
 // Login Signup
