@@ -39,6 +39,8 @@ class SignUpPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
+
+              /* NAMEEEEEEEEEEEEEEE */
               TextFormField(
                 style: const TextStyle(
                     color: Colors.black, fontWeight: FontWeight.normal),
@@ -48,6 +50,8 @@ class SignUpPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 12),
+
+              /* EMAIL ADDRESS */
               TextFormField(
                 style: const TextStyle(
                     color: Colors.black, fontWeight: FontWeight.normal),
@@ -57,6 +61,8 @@ class SignUpPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 12),
+
+              /* PASSWORD */
               TextFormField(
                 obscureText: true,
                 style: const TextStyle(
@@ -98,25 +104,30 @@ class SignUpPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    elevation: 1,
-                    backgroundColor: Colors.white70,
-                    side: const BorderSide(color: Colors.white),
-                  ),
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(ms365Logo, height: 30),
-                      const Text(
-                        'Sign Up with Microsoft 365',
-                        style: TextStyle(color: Colors.black),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.black,
+                  elevation: 5,
+                  padding: const EdgeInsets.all(12),
+                  shadowColor: Colors.black.withOpacity(0.1),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset('assets/icons/Office365.png', height: 30),
+                    const SizedBox(
+                        width: 8), // Adding spacing between image and text
+                    const Text(
+                      'Sign Up with Microsoft 365',
+                      style: TextStyle(
+                        fontSize: 16, // You can adjust the font size as needed
+                        fontWeight: FontWeight
+                            .w500, // You can adjust the font weight as needed
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 20),

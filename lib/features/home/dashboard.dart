@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nu_go_app/navigationbar.dart';
+import 'package:nu_go_app/features/common/navigationbar.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -12,7 +12,8 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: const CustomNavigationBar(), // Using the custom bottom navigation bar
+        bottomNavigationBar:
+            const CustomNavigationBar(), // Using the custom bottom navigation bar
 
         body: SingleChildScrollView(
           child: SafeArea(
@@ -501,10 +502,8 @@ class _DashboardState extends State<Dashboard> {
                       ],
                     ),
                   ),
-
                   const SizedBox(height: 40),
-
-                   Container(
+                  Container(
                     width: double.infinity,
                     height: 158,
                     clipBehavior: Clip.antiAlias,
@@ -528,7 +527,5 @@ class _DashboardState extends State<Dashboard> {
             ),
           ),
         ));
-  
-
   }
 }

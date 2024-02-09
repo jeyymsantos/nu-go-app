@@ -1,8 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:nu_go_app/dashboard.dart';
-import 'package:nu_go_app/explore.dart';
+import 'package:nu_go_app/features/home/dashboard.dart';
+import 'package:nu_go_app/features/event/explore.dart';
 import 'package:nu_go_app/utils/constants/colors.dart';
 
 class CustomNavigationBar extends StatefulWidget {
@@ -13,8 +12,7 @@ class CustomNavigationBar extends StatefulWidget {
 }
 
 class _CustomNavigationBarState extends State<CustomNavigationBar> {
-  
-int pageIndex = 0;
+  int pageIndex = 0;
 
   List<Widget> pages = [
     const Dashboard(),
@@ -22,34 +20,28 @@ int pageIndex = 0;
   ];
   @override
   Widget build(BuildContext context) {
-    
     return CurvedNavigationBar(
-    backgroundColor: NUGold,
-    color: NUBlue,
-    animationDuration: const Duration(milliseconds: 200),
-    
-        
-    items: const [
-      Icon(
-        Icons.home,
-        color: NUGold,
+      backgroundColor: NUGold,
+      color: NUBlue,
+      animationDuration: const Duration(milliseconds: 200),
+      items: const [
+        Icon(
+          Icons.home,
+          color: NUGold,
         ),
         Icon(
-        Icons.favorite,
-        color: NUGold,
+          Icons.favorite,
+          color: NUGold,
         ),
         Icon(
-        Icons.explore,
-        color: NUGold,
+          Icons.explore,
+          color: NUGold,
         ),
         Icon(
-        Icons.supervised_user_circle,
-        color: NUGold,
+          Icons.supervised_user_circle,
+          color: NUGold,
         ),
-         
-    ],
-         );
+      ],
+    );
   }
 }
-
-

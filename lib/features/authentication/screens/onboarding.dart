@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nu_go_app/content_model.dart';
+import 'package:nu_go_app/features/authentication/models/content_model.dart';
 import 'package:nu_go_app/utils/constants/colors.dart';
 
 class Onboarding extends StatefulWidget {
