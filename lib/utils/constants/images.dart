@@ -2,6 +2,7 @@
 const String icon = "assets/icons/icon.png";
 const String landingLogo = "assets/icons/landing_logo.png";
 const String logo = "assets/icons/logo.png";
+const String profile = "assets/icons/profile.png";
 
 // Onboarding
 const String onboardOne = "assets/images/onboarding/onboard_one.png";

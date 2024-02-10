@@ -23,6 +23,8 @@ dependencies:
 
 # Product Specific
   flutter_svg: ^2.0.9
+  firebase_core: ^2.25.4
+  firebase_auth: ^4.17.4
 
 #------------ END OF PACKAGES ---------------- #
 

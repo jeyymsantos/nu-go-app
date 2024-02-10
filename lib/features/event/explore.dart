@@ -16,6 +16,20 @@ class _ExploreState extends State<Explore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(actions: [
+          Row(
+            children: [
+              const Text(
+                'Explore',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500),
+              ),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.logout)),
+            ],
+          ),
+        ]),
         bottomNavigationBar: const CustomNavigationBar(),
         body: SingleChildScrollView(
           child: SafeArea(
@@ -26,13 +40,6 @@ class _ExploreState extends State<Explore> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 10),
-                  const Text(
-                    'Explore',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500),
-                  ),
                   const SizedBox(height: 20),
                   const TextField(
                     decoration: InputDecoration(

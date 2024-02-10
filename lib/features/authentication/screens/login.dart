@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nu_go_app/features/authentication/screens/sign_up.dart';
@@ -5,8 +6,12 @@ import 'package:nu_go_app/features/event/explore.dart';
 import 'package:nu_go_app/utils/constants/colors.dart';
 import 'package:nu_go_app/utils/constants/images.dart';
 
+// TextEditing Controllers
+final _emailController = TextEditingController();
+final _passwordController = TextEditingController();
+
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +49,7 @@ class LoginPage extends StatelessWidget {
 
               /* Email Address */
               TextFormField(
+                controller: _emailController,
                 decoration: const InputDecoration(
                   hintText: "Email Address",
                   prefixIcon: Icon(Icons.alternate_email_rounded),
@@ -55,6 +61,7 @@ class LoginPage extends StatelessWidget {
 
               /* Password */
               TextFormField(
+                controller: _passwordController,
                 obscureText: true,
                 style: const TextStyle(
                     color: Colors.black, fontWeight: FontWeight.normal),
@@ -184,6 +191,15 @@ class SignInButton extends StatelessWidget {
     super.key,
   });
 
+  // SignIn Method
+  void signUserIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: _emailController.text,
+      password: _passwordController.text,
+    );
+    _emailController.text = "jm";
+  }
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -191,13 +207,7 @@ class SignInButton extends StatelessWidget {
         side: const BorderSide(color: NUBlue),
       ),
       onPressed: () {
-        // Navigate to explore.dart
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-                  const Explore()), // Assuming Explore is your explore.dart screen
-        );
+        signUserIn();
       },
       child: const Text(
         'Sign In',

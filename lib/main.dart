@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:nu_go_app/features/authentication/controllers/auth_page.dart';
 import 'package:nu_go_app/features/authentication/screens/login.dart';
 import 'package:nu_go_app/features/authentication/screens/onboarding.dart';
-import 'package:nu_go_app/features/authentication/screens/sign_up.dart';
+import 'package:nu_go_app/features/home/profile.dart';
 import 'package:nu_go_app/utils/theme/theme.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -18,7 +25,8 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: NUGoTheme.lightTheme,
       darkTheme: NUGoTheme.darkTheme,
-      home: const LoginPage(),
+      // home: const AuthPage(),
+      home: const ProfilePage(),
     );
   }
 }
