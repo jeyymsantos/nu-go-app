@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nu_go_app/features/authentication/models/content_model.dart';
+import 'package:nu_go_app/features/authentication/screens/login.dart';
+import 'package:nu_go_app/features/authentication/screens/sign_up.dart';
 import 'package:nu_go_app/utils/constants/colors.dart';
 
 class Onboarding extends StatefulWidget {
@@ -108,7 +110,15 @@ class BottomContainer extends StatelessWidget {
                   backgroundColor: Colors.white,
                   side: const BorderSide(color: NUBlue),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  // Navigate to explore.dart
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            LoginPage()), // Assuming Explore is your explore.dart screen
+                  );
+                },
                 child: Text(
                   'Login',
                   style: TextStyle(
@@ -125,7 +135,15 @@ class BottomContainer extends StatelessWidget {
                   backgroundColor: NUGold,
                   side: const BorderSide(color: NUBlue),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  // Navigate to explore.dart
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            const SignUpPage()), // Assuming Explore is your explore.dart screen
+                  );
+                },
                 child: Text(
                   'Create an Account',
                   style: TextStyle(

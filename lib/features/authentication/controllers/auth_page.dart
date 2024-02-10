@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nu_go_app/features/authentication/screens/login.dart';
+import 'package:nu_go_app/features/authentication/screens/onboarding.dart';
 import 'package:nu_go_app/features/event/explore.dart';
+import 'package:nu_go_app/features/home/profile.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -14,11 +16,11 @@ class AuthPage extends StatelessWidget {
         builder: (context, snapshot) {
           // If Logged In
           if (snapshot.hasData) {
-            return const Explore();
+            return ProfilePage();
           }
           // NOT logged in
           else {
-            return LoginPage();
+            return const Onboarding();
           }
         },
       ),

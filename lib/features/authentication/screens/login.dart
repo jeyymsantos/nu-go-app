@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nu_go_app/features/authentication/screens/sign_up.dart';
-import 'package:nu_go_app/features/event/explore.dart';
+
 import 'package:nu_go_app/utils/constants/colors.dart';
 import 'package:nu_go_app/utils/constants/images.dart';
 
@@ -10,9 +10,14 @@ import 'package:nu_go_app/utils/constants/images.dart';
 final _emailController = TextEditingController();
 final _passwordController = TextEditingController();
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -192,12 +197,32 @@ class SignInButton extends StatelessWidget {
   });
 
   // SignIn Method
-  void signUserIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: _emailController.text,
-      password: _passwordController.text,
+  void signUserIn(context) async {
+    // show loading circle
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
     );
-    _emailController.text = "jm";
+
+    // try sign in
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+      } else if (e.code == 'wrong-password') {
+        print('tag: Wrong password buddy');
+      }
+    }
+
+    // pop the loading circle
+    Navigator.pop(context);
   }
 
   @override
@@ -207,7 +232,7 @@ class SignInButton extends StatelessWidget {
         side: const BorderSide(color: NUBlue),
       ),
       onPressed: () {
-        signUserIn();
+        signUserIn(context);
       },
       child: const Text(
         'Sign In',
