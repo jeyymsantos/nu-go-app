@@ -91,10 +91,12 @@ class _LoginPageState extends State<LoginPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    height: 1,
-                    width: 150,
-                    color: textGray,
+                  Expanded(
+                    child: Container(
+                      height: 1,
+                      width: 150,
+                      color: textGray,
+                    ),
                   ),
                   const Text(
                     'OR',
@@ -104,10 +106,12 @@ class _LoginPageState extends State<LoginPage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Container(
-                    width: 150,
-                    height: 1,
-                    color: textGray,
+                  Expanded(
+                    child: Container(
+                      width: 150,
+                      height: 1,
+                      color: textGray,
+                    ),
                   ),
                 ],
               ),
@@ -117,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Not Registered yet? "),
+                  Text("Not Regdsaistered yet? "),
                   SignUpButton(),
                 ],
               ),

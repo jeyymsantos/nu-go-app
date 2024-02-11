@@ -81,10 +81,12 @@ class SignUpPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    height: 1,
-                    width: 150,
-                    color: textGray,
+                  Expanded(
+                    child: Container(
+                      height: 1,
+                      width: 150,
+                      color: textGray,
+                    ),
                   ),
                   const Text(
                     'OR',
@@ -93,10 +95,12 @@ class SignUpPage extends StatelessWidget {
                         fontSize: 12,
                         fontWeight: FontWeight.bold),
                   ),
-                  Container(
-                    height: 1,
-                    width: 150,
-                    color: Colors.black,
+                  Expanded(
+                    child: Container(
+                      height: 1,
+                      width: 150,
+                      color: Colors.black,
+                    ),
                   ),
                 ],
               ),
