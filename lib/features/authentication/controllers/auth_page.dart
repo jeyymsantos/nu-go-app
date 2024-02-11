@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nu_go_app/features/authentication/screens/login.dart';
 import 'package:nu_go_app/features/authentication/screens/onboarding.dart';
-import 'package:nu_go_app/features/event/explore.dart';
 import 'package:nu_go_app/features/home/profile.dart';
 
 class AuthPage extends StatelessWidget {
@@ -20,7 +19,7 @@ class AuthPage extends StatelessWidget {
           }
           // NOT logged in
           else {
-            return const Onboarding();
+            return const LoginPage();
           }
         },
       ),

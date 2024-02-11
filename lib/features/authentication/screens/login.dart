@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nu_go_app/features/authentication/screens/sign_up.dart';
+import 'package:nu_go_app/features/common/alert-dialog-widget.dart';
 
 import 'package:nu_go_app/utils/constants/colors.dart';
 import 'package:nu_go_app/utils/constants/images.dart';
@@ -11,7 +12,7 @@ final _emailController = TextEditingController();
 final _passwordController = TextEditingController();
 
 class LoginPage extends StatefulWidget {
-  LoginPage({super.key});
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -214,15 +215,57 @@ class SignInButton extends StatelessWidget {
         email: _emailController.text,
         password: _passwordController.text,
       );
+
+      // pop the loading circle
+      Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-      } else if (e.code == 'wrong-password') {
-        print('tag: Wrong password buddy');
+      // pop the loading circle
+      Navigator.pop(context);
+      if (e.code == 'invalid-email') {
+        alert(
+          context,
+          'Invalid Email',
+          'Please make sure to input a valid email address.',
+        );
+      } else if (e.code == 'invalid-credential') {
+        alert(
+          context,
+          'Incorrect Email or Password',
+          'Email and Password does not match any user from our end. Please try again.',
+        );
+      } else {
+        alert(
+          context,
+          'No internet connection',
+          'Please make sure to connect on an available wifi or mobile data to login. \n\n(Error Code: ${e.code})',
+        );
       }
     }
+  }
 
-    // pop the loading circle
-    Navigator.pop(context);
+  // ALERT //
+  void alert(context, String title, String description) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return MyAlertDialog(
+          title: title,
+          description: description,
+        );
+      },
+    );
+  }
+
+  // WRONG PASSWORD MESSAGE //
+  void wrongPasswordMessage(context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const AlertDialog(
+          title: Text('Incorrect Password'),
+        );
+      },
+    );
   }
 
   @override
@@ -232,7 +275,20 @@ class SignInButton extends StatelessWidget {
         side: const BorderSide(color: NUBlue),
       ),
       onPressed: () {
-        signUserIn(context);
+        if (_emailController.text == "" || _passwordController.text == "") {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return const MyAlertDialog(
+                title: 'Login Failed',
+                description:
+                    'Make sure to complete all the fields and input your email & password correctly.',
+              );
+            },
+          );
+        } else {
+          signUserIn(context);
+        }
       },
       child: const Text(
         'Sign In',

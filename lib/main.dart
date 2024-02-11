@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: NUGoTheme.lightTheme,
       darkTheme: NUGoTheme.darkTheme,
-      home: const SplashPage(),
+      home: const AuthPage(),
     );
   }
 }
