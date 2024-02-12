@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nu_go_app/features/authentication/controllers/auth_page.dart';
-import 'package:nu_go_app/features/authentication/screens/login_or_register_page.dart';
 import 'package:nu_go_app/features/common/alert-dialog-widget.dart';
 import 'package:nu_go_app/features/home/edit_profile.dart';
 import 'package:nu_go_app/utils/constants/colors.dart';
@@ -21,11 +20,16 @@ class _ProfilePageState extends State<ProfilePage> {
   String about = "";
   String school = "";
   String program = "";
-  String? firstName;
+  String firstName = "";
   String middleName = "";
   String lastName = "";
   String email = "";
   String password = "";
+  bool active = true;
+
+  // Firebase
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   final myUser = FirebaseAuth.instance.currentUser!;
 
@@ -41,6 +45,51 @@ class _ProfilePageState extends State<ProfilePage> {
         MaterialPageRoute(
           builder: (context) => const AuthPage(),
         ));
+  }
+
+  void deactivateUser(context) async {
+    // show loading circle
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+
+    try {
+      // Get Current User
+      User? user = _auth.currentUser;
+
+      // Create User Document in Firestore
+      await _firestore.collection('users').doc(user?.uid).update({
+        'active': false,
+      });
+
+      Navigator.pop(context);
+
+      alertHome('Account Deactivation', 'Profile deactivated successfully!');
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      alert(
+        'Something went wrong',
+        'Sorry, something went wrong on your account deactivation. \n\n(Error Code: ${e.code})',
+      );
+    }
+  }
+
+  // ALERT //
+  void alertHome(String title, String description) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialogBackToHome(
+          title: title,
+          description: description,
+        );
+      },
+    );
   }
 
   _fetch() async {
@@ -59,6 +108,12 @@ class _ProfilePageState extends State<ProfilePage> {
         middleName = value.data()!['middle_name'] ?? "Not yet set";
         lastName = value.data()!['last_name'] ?? "Not yet set";
         email = value.data()!['email'] ?? "Not yet set";
+        active = value.data()!['active'] ?? true;
+
+        if (!active) {
+          alertHome('Account Deactivated',
+              'Sorry! Your account is deactivated and can only be reactivated through your school IT administrator. Email itro@nu-baliwag.edu.ph for assistance.');
+        }
 
         // alert('try', value.data()!['student_id'].toString());
       }).catchError((e) {
@@ -68,7 +123,7 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
-// ALERT //
+  // ALERT //
   void alert(String title, String description) {
     showDialog(
       context: context,
@@ -161,7 +216,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                                 EditProfilePage(
                                               studentID: studentID,
                                               about: about,
-                                              firstName: firstName!,
+                                              firstName: firstName,
                                               middleName: middleName,
                                               lastName: lastName,
                                               school: school,
@@ -319,6 +374,41 @@ class _ProfilePageState extends State<ProfilePage> {
                     ],
                   ),
                 ],
+              ),
+              const SizedBox(height: 20),
+              Center(
+                child: SizedBox(
+                  width: 200,
+                  child: TextButton(
+                    onPressed: () {
+                      deactivateUser(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.red,
+                      elevation: 5,
+                      padding: const EdgeInsets.all(12),
+                      shadowColor: Colors.black.withOpacity(0.1),
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(color: Colors.red, width: 1.5),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.edit_document),
+                        SizedBox(width: 8),
+                        Text(
+                          'Deactivate',
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
