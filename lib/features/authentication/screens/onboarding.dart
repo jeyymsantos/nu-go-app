@@ -115,8 +115,9 @@ class BottomContainer extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            LoginPage()), // Assuming Explore is your explore.dart screen
+                        builder: (context) => LoginPage(
+                              onTap: () {},
+                            )), // Assuming Explore is your explore.dart screen
                   );
                 },
                 child: Text(
@@ -140,8 +141,9 @@ class BottomContainer extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            const SignUpPage()), // Assuming Explore is your explore.dart screen
+                        builder: (context) => SignUpPage(
+                              onTap: () {},
+                            )), // Assuming Explore is your explore.dart screen
                   );
                 },
                 child: Text(

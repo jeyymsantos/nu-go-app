@@ -1,10 +1,25 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:nu_go_app/features/common/alert-dialog-widget.dart';
+import 'package:nu_go_app/features/home/edit_profile.dart';
 import 'package:nu_go_app/utils/constants/colors.dart';
 import 'package:nu_go_app/utils/constants/images.dart';
 
-class ProfilePage extends StatelessWidget {
-  ProfilePage({super.key});
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  // Fetching Information
+  String? firstName = "";
+  String? middleName = "";
+  String? lastName = "";
+  String? email = "";
+  String? password = "";
 
   final myUser = FirebaseAuth.instance.currentUser!;
 
@@ -15,6 +30,38 @@ class ProfilePage extends StatelessWidget {
 
   void signUserOut() {
     FirebaseAuth.instance.signOut();
+  }
+
+  _fetch() async {
+    final firebaseUser = FirebaseAuth.instance.currentUser;
+    if (firebaseUser != null) {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(firebaseUser.uid)
+          .get()
+          .then((value) {
+        firstName = value.data()!['first_name'];
+        middleName = value.data()!['middle_name'];
+        lastName = value.data()!['last_name'];
+        email = value.data()!['email'];
+      }).catchError((e) {
+        alert('Problem Occurred!',
+            'Sorry, we encountered a problem fetching your data. \n\nError Code: $e');
+      });
+    }
+  }
+
+// ALERT //
+  void alert(String title, String description) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return MyAlertDialog(
+          title: title,
+          description: description,
+        );
+      },
+    );
   }
 
   @override
@@ -51,13 +98,22 @@ class ProfilePage extends StatelessWidget {
                   const SizedBox(
                     height: 8,
                   ),
-                  Text(
-                    myUser.email.toString(),
-                    style: const TextStyle(
-                      fontSize: 22,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
-                    ),
+                  FutureBuilder(
+                    future: _fetch(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState != ConnectionState.done) {
+                        return const Text('Loading Data....');
+                      } else {
+                        return Text(
+                          "$firstName $lastName",
+                          style: const TextStyle(
+                            fontSize: 22,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        );
+                      }
+                    },
                   ),
                   const SizedBox(
                     height: 15,
@@ -95,33 +151,41 @@ class ProfilePage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 85.0),
-                child: TextButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: NUBlue,
-                    elevation: 5,
-                    padding: const EdgeInsets.all(12),
-                    shadowColor: Colors.black.withOpacity(0.1),
-                    shape: RoundedRectangleBorder(
-                      side: const BorderSide(color: NUBlue, width: 1.5),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.edit_document),
-                      SizedBox(width: 8),
-                      Text(
-                        'Edit Profile',
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
+              Center(
+                child: SizedBox(
+                  width: 200,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const EditProfilePage(),
+                          ));
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: NUBlue,
+                      elevation: 5,
+                      padding: const EdgeInsets.all(12),
+                      shadowColor: Colors.black.withOpacity(0.1),
+                      shape: RoundedRectangleBorder(
+                        side: const BorderSide(color: NUBlue, width: 1.5),
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                    ],
+                    ),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.edit_document),
+                        SizedBox(width: 8),
+                        Text(
+                          'Edit Profile',
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

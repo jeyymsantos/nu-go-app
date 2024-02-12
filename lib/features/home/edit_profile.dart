@@ -2,18 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nu_go_app/features/common/alert-dialog-widget.dart';
-import 'package:nu_go_app/utils/constants/colors.dart';
 import 'package:nu_go_app/utils/constants/images.dart';
 
-class SignUpPage extends StatefulWidget {
-  final Function()? onTap;
-  const SignUpPage({super.key, required this.onTap});
+class EditProfilePage extends StatefulWidget {
+  const EditProfilePage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<EditProfilePage> createState() => _EditProfilePageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _EditProfilePageState extends State<EditProfilePage> {
   // TextEditing Controllers
   final _firstNameController = TextEditingController();
   final _middleNameController = TextEditingController();
@@ -99,6 +97,18 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios_new),
+        ),
+        title: const Text(
+          'Edit Profile',
+          style: TextStyle(fontSize: 25),
+        ),
+      ),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.fromLTRB(25, 15, 25, 0),
@@ -106,27 +116,10 @@ class _SignUpPageState extends State<SignUpPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Sign Up Account',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const Text(
-                'Mabuhay, Nationalian! Register here at NU GO!',
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                  color: textGray,
-                ),
-              ),
-              const SizedBox(height: 30),
-              Center(
-                child: Image.asset(
-                  icon,
-                  height: 120,
+              const Center(
+                child: CircleAvatar(
+                  backgroundImage: AssetImage(profile),
+                  radius: 70,
                 ),
               ),
               const SizedBox(height: 20),
@@ -166,44 +159,6 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               ),
               const SizedBox(height: 12),
-
-              /* Email Address TextFormField */
-              TextFormField(
-                controller: _emailController,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.normal),
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.alternate_email),
-                  hintText: 'Email Address',
-                ),
-              ),
-              const SizedBox(height: 12),
-
-              /* Password TextFormField */
-              TextFormField(
-                controller: _passwordController,
-                obscureText: true,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.normal),
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.lock_outline),
-                  hintText: 'Password',
-                ),
-              ),
-              const SizedBox(height: 12),
-
-              /* Confirm Password TextFormField */
-              TextFormField(
-                controller: _confirmPasswordController,
-                obscureText: true,
-                style: const TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.normal),
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.lock_outline),
-                  hintText: 'Confirm Password',
-                ),
-              ),
-              const SizedBox(height: 20),
               SizedBox(
                 width: double.infinity,
 
@@ -227,118 +182,12 @@ class _SignUpPageState extends State<SignUpPage> {
                         signUserUp(context);
                       }
                     },
-                    child: const Text('Sign Up')),
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
-                    child: Container(
-                      height: 1,
-                      width: 150,
-                      color: textGray,
-                    ),
-                  ),
-                  const Text(
-                    'OR',
-                    style: TextStyle(
-                        color: textGray,
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: 1,
-                      width: 150,
-                      color: Colors.black,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              const SignUpWithMS365(),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Already have an account?',
-                    style: TextStyle(
-                      color: textGray,
-                      fontSize: 12,
-                    ),
-                  ),
-                  SignInButton(
-                    widget: widget,
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 100,
+                    child: const Text('Save')),
               ),
             ],
           ),
         ),
       )),
-    );
-  }
-}
-
-class SignInButton extends StatelessWidget {
-  const SignInButton({
-    super.key,
-    required this.widget,
-  });
-
-  final SignUpPage widget;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: widget.onTap,
-      child: const Text(
-        ' Sign In Account Here',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 12,
-        ),
-      ),
-    );
-  }
-}
-
-class SignUpWithMS365 extends StatelessWidget {
-  const SignUpWithMS365({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {},
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        elevation: 5,
-        padding: const EdgeInsets.all(12),
-        shadowColor: Colors.black.withOpacity(0.1),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset('assets/icons/Office365.png', height: 30),
-          const SizedBox(width: 8), // Adding spacing between image and text
-          const Text(
-            'Sign Up with Microsoft 365',
-            style: TextStyle(
-              fontSize: 16, // You can adjust the font size as needed
-              fontWeight:
-                  FontWeight.w500, // You can adjust the font weight as needed
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
