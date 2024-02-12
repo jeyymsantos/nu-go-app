@@ -13,12 +13,11 @@ class EditProfilePage extends StatefulWidget {
 
 class _EditProfilePageState extends State<EditProfilePage> {
   // TextEditing Controllers
+  final _studIDController = TextEditingController();
   final _firstNameController = TextEditingController();
   final _middleNameController = TextEditingController();
   final _lastNameController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
+  final _aboutMeController = TextEditingController();
 
   // Firebase
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -28,52 +27,46 @@ class _EditProfilePageState extends State<EditProfilePage> {
   String dropdownValue = "School of Business & Accountancy";
 
   // List of Items in Dropdown Menu
-  var schools = [
-    'School of Business & Accountancy',
-    'School of Education, Arts, & Sciences',
-    'School of Engineering, Architecture, and Technology',
-    'School of Tourism & Hospitality Management'
-  ];
+  final Map<String, List<String>> _schools = {
+    'School of Business & Accountancy': [
+      'BS Accountancy',
+      'BS Accounting Information Systems',
+      'BSBA Financial Management',
+      'BSBA Marketing Management',
+    ],
+    'School of Education, Arts, & Sciences': [
+      'BS Psychology',
+      'Bachelor in Physical Education',
+      'BA Economics',
+      'AB English & Language Studies',
+    ],
+    'School of Engineering, Architecture, and Technology': [
+      'BS Architecture',
+      'BS Civil Engineering',
+      'BS Computer Engineering',
+      'BS Information Technology'
+    ],
+    'School of Tourism & Hospitality Management': [
+      'BS Tourism Management',
+      'BS Hospitality Management',
+    ]
+  };
 
-  var sba = [
-    'BS Accountancy',
-    'BS Accounting Information Systems',
-    'BSBA Financial Management',
-    'BSBA Marketing Management',
-  ];
-
-  var seat = [
-    'BS Architecture',
-    'BS Civil Engineering',
-    'BS Computer Engineering',
-    'BS Information Technology'
-  ];
-
-  var seas = [
-    'BS Psychology',
-    'Bachelor in Physical Education',
-    'BA Economics',
-    'AB English & Language Studies',
-  ];
-
-  var sthm = [
-    'BS Tourism Management',
-    'BS Hospitality Management',
-  ];
+  String? _selectedKey = "School of Business & Accountancy";
+  String? _selectedItem;
 
   @override
   void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    _confirmPasswordController.dispose();
+    _studIDController.dispose();
     _firstNameController.dispose();
     _middleNameController.dispose();
     _lastNameController.dispose();
+    _aboutMeController.dispose();
 
     super.dispose();
   }
 
-  void signUserUp(context) async {
+  void editProfile(context) async {
     // show loading circle
     showDialog(
       context: context,
@@ -85,24 +78,23 @@ class _EditProfilePageState extends State<EditProfilePage> {
     );
 
     try {
-      await _auth.createUserWithEmailAndPassword(
-        email: _emailController.text,
-        password: _passwordController.text,
-      );
-
-      Navigator.pop(context);
-
       // Get Current User
       User? user = _auth.currentUser;
 
       // Create User Document in Firestore
       await _firestore.collection('users').doc(user?.uid).set({
+        'student_id': _studIDController.text.trim(),
         'first_name': _firstNameController.text.trim(),
         'middle_name': _middleNameController.text.trim(),
         'last_name': _lastNameController.text.trim(),
-        'email': _emailController.text.trim(),
-        'password': _passwordController.text.trim(),
+        'school': _selectedKey.toString().trim(),
+        'program': _selectedItem.toString().trim(),
+        'about': _aboutMeController.text.trim(),
       });
+
+      Navigator.pop(context);
+
+      alert('Edit Profile', 'Profile updated successfully!');
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       if (e.code == 'invalid-email') {
@@ -161,6 +153,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
               ),
               const SizedBox(height: 20),
 
+              /* Student ID TextFormField */
+              TextFormField(
+                controller: _studIDController,
+                style: const TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.normal),
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.inbox_outlined),
+                  hintText: 'Student ID',
+                ),
+              ),
+              const SizedBox(height: 12),
+
               /* First Name TextFormField */
               TextFormField(
                 controller: _firstNameController,
@@ -196,32 +200,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ),
               ),
               const SizedBox(height: 12),
-              SizedBox(
-                width: double.infinity,
 
-                // Sign Up Button
-                child: ElevatedButton(
-                    onPressed: () {
-                      if (_passwordController.text.isEmpty ||
-                          _confirmPasswordController.text.isEmpty ||
-                          _firstNameController.text.isEmpty ||
-                          _middleNameController.text.isEmpty ||
-                          _lastNameController.text.isEmpty ||
-                          _passwordController.text.isEmpty ||
-                          _confirmPasswordController.text.isEmpty) {
-                        alert('Missing Fields',
-                            'Make sure to provide information on all fields!');
-                      } else if (_passwordController.text !=
-                          _confirmPasswordController.text) {
-                        alert('Passwords don\'t match!',
-                            'Make sure that your passwords match!');
-                      } else {
-                        signUserUp(context);
-                      }
-                    },
-                    child: const Text('Save')),
-              ),
-              const SizedBox(height: 10),
+              // SCHOOL
               Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -236,25 +216,94 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton(
                     isExpanded: true,
-                    value: dropdownValue,
+                    value: _selectedKey,
                     icon: const Icon(Icons.keyboard_arrow_down),
-                    items: schools.map((String schools) {
+                    items: _schools.keys.map((String value) {
                       return DropdownMenuItem(
-                        value: schools,
-                        child: Text(
-                          schools,
-                          style: const TextStyle(fontSize: 12),
-                        ),
+                        value: value,
+                        child: Text(value),
                       );
                     }).toList(),
-                    onChanged: (school) {
+                    onChanged: (newValue) {
                       setState(() {
-                        dropdownValue = school!;
+                        _selectedKey = newValue;
+                        _selectedItem = null;
                       });
                     },
                   ),
                 ),
-              )
+              ),
+              const SizedBox(height: 10),
+
+              // PROGRAM
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20.0),
+                  border: Border.all(
+                      color: Colors.grey,
+                      style: BorderStyle.solid,
+                      width: 0.80),
+                ),
+                width: double.infinity,
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton(
+                    isExpanded: true,
+                    value: _selectedItem,
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    items: _schools[_selectedKey]!.map((String value) {
+                      return DropdownMenuItem(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (newValue) {
+                      setState(() {
+                        _selectedItem = newValue;
+                      });
+                    },
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+
+              /* About Me TextFormField */
+              TextFormField(
+                controller: _aboutMeController,
+                keyboardType: TextInputType.multiline,
+                minLines: 4, // <-- SEE HERE
+                maxLines: 4, // <-- SEE HERE
+                style: const TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.normal),
+                decoration: const InputDecoration(
+                  // prefixIcon: Icon(Icons.info),
+                  hintText: 'About Me',
+                ),
+              ),
+              const SizedBox(height: 20),
+              SizedBox(
+                width: double.infinity,
+                // Sign Up Button
+                child: ElevatedButton(
+                    onPressed: () {
+                      if (_studIDController.text.isEmpty ||
+                          _firstNameController.text.isEmpty ||
+                          _middleNameController.text.isEmpty ||
+                          _lastNameController.text.isEmpty ||
+                          _aboutMeController.text.isEmpty ||
+                          _selectedItem == null ||
+                          _selectedItem.toString().isEmpty ||
+                          _selectedKey.toString().isEmpty) {
+                        alert('Missing Fields',
+                            'Make sure to provide information on all fields!');
+                      } else {
+                        editProfile(context);
+                      }
+                    },
+                    child: const Text('Save')),
+              ),
+              const SizedBox(height: 10),
             ],
           ),
         ),
