@@ -24,6 +24,43 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  // Initial Selected Value
+  String dropdownValue = "School of Business & Accountancy";
+
+  // List of Items in Dropdown Menu
+  var schools = [
+    'School of Business & Accountancy',
+    'School of Education, Arts, & Sciences',
+    'School of Engineering, Architecture, and Technology',
+    'School of Tourism & Hospitality Management'
+  ];
+
+  var sba = [
+    'BS Accountancy',
+    'BS Accounting Information Systems',
+    'BSBA Financial Management',
+    'BSBA Marketing Management',
+  ];
+
+  var seat = [
+    'BS Architecture',
+    'BS Civil Engineering',
+    'BS Computer Engineering',
+    'BS Information Technology'
+  ];
+
+  var seas = [
+    'BS Psychology',
+    'Bachelor in Physical Education',
+    'BA Economics',
+    'AB English & Language Studies',
+  ];
+
+  var sthm = [
+    'BS Tourism Management',
+    'BS Hospitality Management',
+  ];
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -184,6 +221,40 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     },
                     child: const Text('Save')),
               ),
+              const SizedBox(height: 10),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20.0),
+                  border: Border.all(
+                      color: Colors.grey,
+                      style: BorderStyle.solid,
+                      width: 0.80),
+                ),
+                width: double.infinity,
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton(
+                    isExpanded: true,
+                    value: dropdownValue,
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    items: schools.map((String schools) {
+                      return DropdownMenuItem(
+                        value: schools,
+                        child: Text(
+                          schools,
+                          style: const TextStyle(fontSize: 12),
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (school) {
+                      setState(() {
+                        dropdownValue = school!;
+                      });
+                    },
+                  ),
+                ),
+              )
             ],
           ),
         ),
