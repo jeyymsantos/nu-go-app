@@ -2,10 +2,28 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nu_go_app/features/common/alert-dialog-widget.dart';
+import 'package:nu_go_app/features/home/profile.dart';
 import 'package:nu_go_app/utils/constants/images.dart';
 
 class EditProfilePage extends StatefulWidget {
-  const EditProfilePage({super.key});
+  // Fetching Information
+  final String studentID;
+  final String about;
+  final String school;
+  final String program;
+  final String firstName;
+  final String middleName;
+  final String lastName;
+
+  const EditProfilePage(
+      {super.key,
+      required this.studentID,
+      required this.about,
+      required this.firstName,
+      required this.middleName,
+      required this.lastName,
+      required this.school,
+      required this.program});
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
@@ -18,6 +36,24 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final _middleNameController = TextEditingController();
   final _lastNameController = TextEditingController();
   final _aboutMeController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _studIDController.text =
+        widget.studentID == "Not yet set" ? "" : widget.studentID;
+    _firstNameController.text =
+        widget.firstName == "Not yet set" ? "" : widget.firstName;
+    _middleNameController.text =
+        widget.middleName == "Not yet set" ? "" : widget.middleName;
+    _lastNameController.text =
+        widget.lastName == "Not yet set" ? "" : widget.lastName;
+    _selectedKey = widget.school == "Not yet set"
+        ? "School of Business & Accountancy"
+        : widget.school;
+    _selectedItem = widget.program == "Not yet set" ? null : widget.program;
+    _aboutMeController.text = widget.about == "Not yet set" ? "" : widget.about;
+  }
 
   // Firebase
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -62,7 +98,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
     _middleNameController.dispose();
     _lastNameController.dispose();
     _aboutMeController.dispose();
-
     super.dispose();
   }
 
@@ -82,7 +117,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       User? user = _auth.currentUser;
 
       // Create User Document in Firestore
-      await _firestore.collection('users').doc(user?.uid).set({
+      await _firestore.collection('users').doc(user?.uid).update({
         'student_id': _studIDController.text.trim(),
         'first_name': _firstNameController.text.trim(),
         'middle_name': _middleNameController.text.trim(),
@@ -129,7 +164,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProfilePage(),
+                ));
           },
           icon: const Icon(Icons.arrow_back_ios_new),
         ),

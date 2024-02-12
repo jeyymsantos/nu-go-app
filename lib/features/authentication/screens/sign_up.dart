@@ -67,6 +67,7 @@ class _SignUpPageState extends State<SignUpPage> {
         'last_name': _lastNameController.text.trim(),
         'email': _emailController.text.trim(),
         'password': _passwordController.text.trim(),
+        'active': true,
       });
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
