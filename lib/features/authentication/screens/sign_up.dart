@@ -1,9 +1,101 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:nu_go_app/features/common/alert-dialog-widget.dart';
 import 'package:nu_go_app/utils/constants/colors.dart';
 import 'package:nu_go_app/utils/constants/images.dart';
 
-class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+class SignUpPage extends StatefulWidget {
+  final Function()? onTap;
+  const SignUpPage({super.key, required this.onTap});
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  // TextEditing Controllers
+  final _firstNameController = TextEditingController();
+  final _middleNameController = TextEditingController();
+  final _lastNameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+
+  // Firebase
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    _firstNameController.dispose();
+    _middleNameController.dispose();
+    _lastNameController.dispose();
+
+    super.dispose();
+  }
+
+  void signUserUp(context) async {
+    // show loading circle
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+
+    try {
+      await _auth.createUserWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+
+      Navigator.pop(context);
+
+      // Get Current User
+      User? user = _auth.currentUser;
+
+      // Create User Document in Firestore
+      await _firestore.collection('users').doc(user?.uid).set({
+        'first_name': _firstNameController.text.trim(),
+        'middle_name': _middleNameController.text.trim(),
+        'last_name': _lastNameController.text.trim(),
+        'email': _emailController.text.trim(),
+        'password': _passwordController.text.trim(),
+        'active': true,
+      });
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      if (e.code == 'invalid-email') {
+        alert(
+          'Invalid Email',
+          'Please make sure to input a valid email address.',
+        );
+      } else {
+        alert(
+          'Something went wrong',
+          'Sorry, something went wrong on your account sign up. \n\n(Error Code: ${e.code})',
+        );
+      }
+    }
+  }
+
+  void alert(String title, String description) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return MyAlertDialog(
+          title: title,
+          description: description,
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,19 +132,45 @@ class SignUpPage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
 
-              /* NAMEEEEEEEEEEEEEEE */
+              /* First Name TextFormField */
               TextFormField(
+                controller: _firstNameController,
                 style: const TextStyle(
                     color: Colors.black, fontWeight: FontWeight.normal),
                 decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.person),
-                  hintText: 'Name',
+                  hintText: 'First Name',
                 ),
               ),
               const SizedBox(height: 12),
 
-              /* EMAIL ADDRESS */
+              /* Middle Name TextFormField */
               TextFormField(
+                controller: _middleNameController,
+                style: const TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.normal),
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.person),
+                  hintText: 'Middle Name',
+                ),
+              ),
+              const SizedBox(height: 12),
+
+              /* Last Name TextFormField */
+              TextFormField(
+                controller: _lastNameController,
+                style: const TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.normal),
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.person),
+                  hintText: 'Last Name',
+                ),
+              ),
+              const SizedBox(height: 12),
+
+              /* Email Address TextFormField */
+              TextFormField(
+                controller: _emailController,
                 style: const TextStyle(
                     color: Colors.black, fontWeight: FontWeight.normal),
                 decoration: const InputDecoration(
@@ -62,8 +180,9 @@ class SignUpPage extends StatelessWidget {
               ),
               const SizedBox(height: 12),
 
-              /* PASSWORD */
+              /* Password TextFormField */
               TextFormField(
+                controller: _passwordController,
                 obscureText: true,
                 style: const TextStyle(
                     color: Colors.black, fontWeight: FontWeight.normal),
@@ -72,19 +191,55 @@ class SignUpPage extends StatelessWidget {
                   hintText: 'Password',
                 ),
               ),
-              const SizedBox(height: 50),
-              const SizedBox(
+              const SizedBox(height: 12),
+
+              /* Confirm Password TextFormField */
+              TextFormField(
+                controller: _confirmPasswordController,
+                obscureText: true,
+                style: const TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.normal),
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.lock_outline),
+                  hintText: 'Confirm Password',
+                ),
+              ),
+              const SizedBox(height: 20),
+              SizedBox(
                 width: double.infinity,
-                child: SignUpButton(),
+
+                // Sign Up Button
+                child: ElevatedButton(
+                    onPressed: () {
+                      if (_passwordController.text.isEmpty ||
+                          _confirmPasswordController.text.isEmpty ||
+                          _firstNameController.text.isEmpty ||
+                          _middleNameController.text.isEmpty ||
+                          _lastNameController.text.isEmpty ||
+                          _passwordController.text.isEmpty ||
+                          _confirmPasswordController.text.isEmpty) {
+                        alert('Missing Fields',
+                            'Make sure to provide information on all fields!');
+                      } else if (_passwordController.text !=
+                          _confirmPasswordController.text) {
+                        alert('Passwords don\'t match!',
+                            'Make sure that your passwords match!');
+                      } else {
+                        signUserUp(context);
+                      }
+                    },
+                    child: const Text('Sign Up')),
               ),
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    height: 1,
-                    width: 150,
-                    color: textGray,
+                  Expanded(
+                    child: Container(
+                      height: 1,
+                      width: 150,
+                      color: textGray,
+                    ),
                   ),
                   const Text(
                     'OR',
@@ -93,29 +248,36 @@ class SignUpPage extends StatelessWidget {
                         fontSize: 12,
                         fontWeight: FontWeight.bold),
                   ),
-                  Container(
-                    height: 1,
-                    width: 150,
-                    color: Colors.black,
+                  Expanded(
+                    child: Container(
+                      height: 1,
+                      width: 150,
+                      color: Colors.black,
+                    ),
                   ),
                 ],
               ),
               const SizedBox(height: 20),
               const SignUpWithMS365(),
               const SizedBox(height: 20),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'Already have an account?',
                     style: TextStyle(
                       color: textGray,
                       fontSize: 12,
                     ),
                   ),
-                  SignInButton(),
+                  SignInButton(
+                    widget: widget,
+                  ),
                 ],
-              )
+              ),
+              const SizedBox(
+                height: 100,
+              ),
             ],
           ),
         ),
@@ -127,14 +289,15 @@ class SignUpPage extends StatelessWidget {
 class SignInButton extends StatelessWidget {
   const SignInButton({
     super.key,
+    required this.widget,
   });
+
+  final SignUpPage widget;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.pop(context);
-      },
+      onTap: widget.onTap,
       child: const Text(
         ' Sign In Account Here',
         style: TextStyle(
@@ -177,20 +340,6 @@ class SignUpWithMS365 extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class SignUpButton extends StatelessWidget {
-  const SignUpButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {},
-      child: const Text('Sign Up'),
     );
   }
 }

@@ -1,17 +1,89 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nu_go_app/features/authentication/screens/sign_up.dart';
-import 'package:nu_go_app/features/event/explore.dart';
+import 'package:nu_go_app/features/common/alert-dialog-widget.dart';
+
 import 'package:nu_go_app/utils/constants/colors.dart';
 import 'package:nu_go_app/utils/constants/images.dart';
 
-// TextEditing Controllers
-final _emailController = TextEditingController();
-final _passwordController = TextEditingController();
+class LoginPage extends StatefulWidget {
+  final Function()? onTap;
+  const LoginPage({super.key, required this.onTap});
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  // TextEditing Controllers
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  // SignIn Method
+  void signUserIn(context) async {
+    // show loading circle
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+
+    // try sign in
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+
+      // pop the loading circle
+      Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      // pop the loading circle
+      Navigator.pop(context);
+      if (e.code == 'invalid-email') {
+        alert(
+          context,
+          'Invalid Email',
+          'Please make sure to input a valid email address.',
+        );
+      } else if (e.code == 'invalid-credential') {
+        alert(
+          context,
+          'Incorrect Email or Password',
+          'Email and Password does not match any user from our end. Please try again.',
+        );
+      } else {
+        alert(
+          context,
+          'No internet connection',
+          'Please make sure to connect on an available wifi or mobile data to login. \n\n(Error Code: ${e.code})',
+        );
+      }
+    }
+  }
+
+  // ALERT //
+  void alert(context, String title, String description) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return MyAlertDialog(
+          title: title,
+          description: description,
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +119,9 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
 
-              /* Email Address */
+              /* Email Address TextField */
               TextFormField(
+                keyboardType: TextInputType.emailAddress,
                 controller: _emailController,
                 decoration: const InputDecoration(
                   hintText: "Email Address",
@@ -59,7 +132,7 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 12),
 
-              /* Password */
+              /* Password TextFormField */
               TextFormField(
                 controller: _passwordController,
                 obscureText: true,
@@ -75,20 +148,45 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 30),
 
-              // SIGN IN BUTTON
-              const SizedBox(
+              // Sign In Button
+              SizedBox(
                 width: double.infinity,
-                child: SignInButton(),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    side: const BorderSide(color: NUBlue),
+                  ),
+                  onPressed: () {
+                    if (_emailController.text == "" ||
+                        _passwordController.text == "") {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return const MyAlertDialog(
+                            title: 'Login Failed',
+                            description:
+                                'Make sure to complete all the fields and input your email & password correctly.',
+                          );
+                        },
+                      );
+                    } else {
+                      signUserIn(context);
+                    }
+                  },
+                  child: const Text(
+                    'Sign In',
+                  ),
+                ),
               ),
-
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    height: 1,
-                    width: 150,
-                    color: textGray,
+                  Expanded(
+                    child: Container(
+                      height: 1,
+                      width: 150,
+                      color: textGray,
+                    ),
                   ),
                   const Text(
                     'OR',
@@ -98,21 +196,23 @@ class LoginPage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Container(
-                    width: 150,
-                    height: 1,
-                    color: textGray,
+                  Expanded(
+                    child: Container(
+                      width: 150,
+                      height: 1,
+                      color: textGray,
+                    ),
                   ),
                 ],
               ),
               const SizedBox(height: 20),
               const SignInWithMS365(),
               const SizedBox(height: 30),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Not Registered yet? "),
-                  SignUpButton(),
+                  const Text("Not Registered yet? "),
+                  GoToCreateAccount(widget: widget),
                 ],
               ),
             ],
@@ -123,23 +223,18 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class SignUpButton extends StatelessWidget {
-  const SignUpButton({
+class GoToCreateAccount extends StatelessWidget {
+  const GoToCreateAccount({
     super.key,
+    required this.widget,
   });
+
+  final LoginPage widget;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // Navigate to explore.dart
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-                  const SignUpPage()), // Assuming Explore is your explore.dart screen
-        );
-      },
+      onTap: widget.onTap,
       child: const Text(
         "Create an Account",
         style: TextStyle(
@@ -181,36 +276,6 @@ class SignInWithMS365 extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class SignInButton extends StatelessWidget {
-  const SignInButton({
-    super.key,
-  });
-
-  // SignIn Method
-  void signUserIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: _emailController.text,
-      password: _passwordController.text,
-    );
-    _emailController.text = "jm";
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        side: const BorderSide(color: NUBlue),
-      ),
-      onPressed: () {
-        signUserIn();
-      },
-      child: const Text(
-        'Sign In',
       ),
     );
   }

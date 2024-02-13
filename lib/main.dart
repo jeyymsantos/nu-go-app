@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nu_go_app/features/authentication/controllers/auth_page.dart';
-import 'package:nu_go_app/features/authentication/screens/login.dart';
-import 'package:nu_go_app/features/authentication/screens/onboarding.dart';
-import 'package:nu_go_app/features/home/profile.dart';
 import 'package:nu_go_app/utils/theme/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -25,8 +22,10 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: NUGoTheme.lightTheme,
       darkTheme: NUGoTheme.darkTheme,
-      // home: const AuthPage(),
-      home: const ProfilePage(),
+      home: const AuthPage(),
+      // home: EditProfilePage(
+      //   onTap: () {},
+      // )
     );
   }
 }
@@ -48,7 +47,7 @@ class _SplashPageState extends State<SplashPage> {
   Future<void> _navigateToHome() async {
     await Future.delayed(const Duration(seconds: 2), () {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const Onboarding()));
+          context, MaterialPageRoute(builder: (context) => const AuthPage()));
     });
   }
 
