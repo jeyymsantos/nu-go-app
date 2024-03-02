@@ -72,34 +72,32 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const NavBarPage() : const OnboardingUsersWidget(),
+          appStateNotifier.loggedIn ? const NavBarPage() : const AuthSignInWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => appStateNotifier.loggedIn
-              ? const NavBarPage()
-              : const OnboardingUsersWidget(),
+          builder: (context, _) =>
+              appStateNotifier.loggedIn ? const NavBarPage() : const AuthSignInWidget(),
         ),
         FFRoute(
-          name: 'Dashboard',
-          path: '/dashboard',
+          name: 'admin_dashboard',
+          path: '/adminDashboard',
           requireAuth: true,
           builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'Dashboard')
-              : const DashboardWidget(),
+              ? const NavBarPage(initialPage: 'admin_dashboard')
+              : const AdminDashboardWidget(),
         ),
         FFRoute(
-          name: 'ourteam',
-          path: '/ourteam',
+          name: 'our_team',
+          path: '/ourTeam',
           requireAuth: true,
-          builder: (context, params) => const OurteamWidget(),
+          builder: (context, params) => const OurTeamWidget(),
         ),
         FFRoute(
-          name: 'SignIn_Auth',
-          path: '/signInAuth',
-          requireAuth: true,
-          builder: (context, params) => const SignInAuthWidget(),
+          name: 'auth_sign_in',
+          path: '/authSignIn',
+          builder: (context, params) => const AuthSignInWidget(),
         ),
         FFRoute(
           name: 'about',
@@ -111,22 +109,23 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'privacyStatement',
+          name: 'privacy_statement',
           path: '/privacyStatement',
           requireAuth: true,
           builder: (context, params) => const PrivacyStatementWidget(),
         ),
         FFRoute(
-          name: 'SignUp_Auth',
-          path: '/signUpAuth',
-          requireAuth: true,
-          builder: (context, params) => const SignUpAuthWidget(),
+          name: 'auth_sign_up',
+          path: '/authSignUp',
+          builder: (context, params) => const AuthSignUpWidget(),
         ),
         FFRoute(
-          name: 'Verify_Auth',
-          path: '/verifyAuth',
+          name: 'auth_verify_phone',
+          path: '/authVerifyPhone',
           requireAuth: true,
-          builder: (context, params) => const VerifyAuthWidget(),
+          builder: (context, params) => AuthVerifyPhoneWidget(
+            email: params.getParam('email', ParamType.String),
+          ),
         ),
         FFRoute(
           name: 'terms',
@@ -135,17 +134,121 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const TermsWidget(),
         ),
         FFRoute(
-          name: 'Onboarding_Users',
-          path: '/onboardingUsers',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'Onboarding_Users')
-              : const OnboardingUsersWidget(),
+          name: 'onboard_one',
+          path: '/onboardOne',
+          requireAuth: true,
+          builder: (context, params) => const OnboardOneWidget(),
         ),
         FFRoute(
-          name: 'theTeam',
-          path: '/theTeam',
+          name: 'onboard_two',
+          path: '/onboardTwo',
           requireAuth: true,
-          builder: (context, params) => const TheTeamWidget(),
+          builder: (context, params) => OnboardTwoWidget(
+            firstName: params.getParam('firstName', ParamType.String),
+            middleName: params.getParam('middleName', ParamType.String),
+            lastName: params.getParam('lastName', ParamType.String),
+            suffixName: params.getParam('suffixName', ParamType.String),
+            civilStatus: params.getParam('civilStatus', ParamType.String),
+            sex: params.getParam('sex', ParamType.String),
+            phoneNumber: params.getParam('phoneNumber', ParamType.String),
+            birthDate: params.getParam('birthDate', ParamType.DateTime),
+            citizenship: params.getParam('citizenship', ParamType.String),
+            religion: params.getParam('religion', ParamType.String),
+            houseNumber: params.getParam('houseNumber', ParamType.String),
+            streetName: params.getParam('streetName', ParamType.String),
+            barangay: params.getParam('barangay', ParamType.String),
+            municipality: params.getParam('municipality', ParamType.String),
+            province: params.getParam('province', ParamType.String),
+          ),
+        ),
+        FFRoute(
+          name: 'onboard_three',
+          path: '/onboardThree',
+          requireAuth: true,
+          builder: (context, params) => OnboardThreeWidget(
+            firstName: params.getParam('firstName', ParamType.String),
+            middleName: params.getParam('middleName', ParamType.String),
+            lastName: params.getParam('lastName', ParamType.String),
+            suffixName: params.getParam('suffixName', ParamType.String),
+            civilStatus: params.getParam('civilStatus', ParamType.String),
+            sex: params.getParam('sex', ParamType.String),
+            phoneNumber: params.getParam('phoneNumber', ParamType.String),
+            birthdate: params.getParam('birthdate', ParamType.DateTime),
+            citizenship: params.getParam('citizenship', ParamType.String),
+            religion: params.getParam('religion', ParamType.String),
+            houseNumber: params.getParam('houseNumber', ParamType.String),
+            streetName: params.getParam('streetName', ParamType.String),
+            barangay: params.getParam('barangay', ParamType.String),
+            municipality: params.getParam('municipality', ParamType.String),
+            province: params.getParam('province', ParamType.String),
+            studentID: params.getParam('studentID', ParamType.String),
+            school: params.getParam('school', ParamType.String),
+            department: params.getParam('department', ParamType.String),
+            section: params.getParam('section', ParamType.String),
+          ),
+        ),
+        FFRoute(
+          name: 'auth_verify_email',
+          path: '/authVerifyEmail',
+          requireAuth: true,
+          builder: (context, params) => AuthVerifyEmailWidget(
+            email: params.getParam('email', ParamType.String),
+          ),
+        ),
+        FFRoute(
+          name: 'admin_explore',
+          path: '/adminExplore',
+          requireAuth: true,
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'admin_explore')
+              : const AdminExploreWidget(),
+        ),
+        FFRoute(
+          name: 'auth_forgot_password',
+          path: '/authForgotPassword',
+          builder: (context, params) => const AuthForgotPasswordWidget(),
+        ),
+        FFRoute(
+          name: 'admin_file_maintenance',
+          path: '/adminFileMaintenance',
+          requireAuth: true,
+          builder: (context, params) => const AdminFileMaintenanceWidget(),
+        ),
+        FFRoute(
+          name: 'maintenance_school',
+          path: '/maintenanceSchool',
+          requireAuth: true,
+          builder: (context, params) => const MaintenanceSchoolWidget(),
+        ),
+        FFRoute(
+          name: 'maintenance_user_roles',
+          path: '/maintenanceUserRoles',
+          requireAuth: true,
+          builder: (context, params) => const MaintenanceUserRolesWidget(),
+        ),
+        FFRoute(
+          name: 'view_users',
+          path: '/viewUsers',
+          requireAuth: true,
+          builder: (context, params) => const ViewUsersWidget(),
+        ),
+        FFRoute(
+          name: 'view_user_roles',
+          path: '/viewUserRoles',
+          requireAuth: true,
+          builder: (context, params) => const ViewUserRolesWidget(),
+        ),
+        FFRoute(
+          name: 'maintenance_users',
+          path: '/maintenanceUsers',
+          requireAuth: true,
+          builder: (context, params) => const MaintenanceUsersWidget(),
+        ),
+        FFRoute(
+          name: 'view_school',
+          path: '/viewSchool',
+          requireAuth: true,
+          builder: (context, params) => const ViewSchoolWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -264,6 +367,7 @@ class FFParameters {
     String paramName,
     ParamType type, [
     bool isList = false,
+    List<String>? collectionNamePath,
   ]) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -277,11 +381,8 @@ class FFParameters {
       return param;
     }
     // Return serialized value.
-    return deserializeParam<T>(
-      param,
-      type,
-      isList,
-    );
+    return deserializeParam<T>(param, type, isList,
+        collectionNamePath: collectionNamePath);
   }
 }
 
@@ -314,11 +415,12 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.location);
-            return '/onboardingUsers';
+            return '/authSignIn';
           }
           return null;
         },
         pageBuilder: (context, state) {
+          fixStatusBarOniOS16AndBelow(context);
           final ffParams = FFParameters(state, asyncParams);
           final page = ffParams.hasFutures
               ? FutureBuilder(
@@ -331,7 +433,7 @@ class FFRoute {
                   color: Colors.transparent,
                   child: Image.asset(
                     'assets/images/SC_-_Student.png',
-                    fit: BoxFit.contain,
+                    fit: BoxFit.cover,
                   ),
                 )
               : page;

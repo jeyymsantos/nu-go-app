@@ -8,7 +8,8 @@ import 'auth/firebase_auth/auth_util.dart';
 import 'backend/firebase/firebase_config.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
 
@@ -39,6 +40,8 @@ class _MyAppState extends State<MyApp> {
   late AppStateNotifier _appStateNotifier;
   late GoRouter _router;
 
+  final authUserSub = authenticatedUserStream.listen((_) {});
+
   @override
   void initState() {
     super.initState();
@@ -49,9 +52,16 @@ class _MyAppState extends State<MyApp> {
       ..listen((user) => _appStateNotifier.update(user));
     jwtTokenStream.listen((_) {});
     Future.delayed(
-      const Duration(milliseconds: 3000),
+      const Duration(milliseconds: 2000),
       () => _appStateNotifier.stopShowingSplashImage(),
     );
+  }
+
+  @override
+  void dispose() {
+    authUserSub.cancel();
+
+    super.dispose();
   }
 
   void setThemeMode(ThemeMode mode) => setState(() {
@@ -100,7 +110,7 @@ class NavBarPage extends StatefulWidget {
 
 /// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
-  String _currentPageName = 'Dashboard';
+  String _currentPageName = 'admin_dashboard';
   late Widget? _currentPage;
 
   @override
@@ -113,40 +123,84 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'Dashboard': const DashboardWidget(),
-      'Onboarding_Users': const OnboardingUsersWidget(),
+      'admin_dashboard': const AdminDashboardWidget(),
+      'admin_explore': const AdminExploreWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
+    final MediaQueryData queryData = MediaQuery.of(context);
+
     return Scaffold(
-      body: _currentPage ?? tabs[_currentPageName],
-      bottomNavigationBar: GNav(
-        selectedIndex: currentIndex,
-        onTabChange: (i) => setState(() {
+      body: MediaQuery(
+          data: queryData
+              .removeViewInsets(removeBottom: true)
+              .removeViewPadding(removeBottom: true),
+          child: _currentPage ?? tabs[_currentPageName]!),
+      extendBody: true,
+      bottomNavigationBar: FloatingNavbar(
+        currentIndex: currentIndex,
+        onTap: (i) => setState(() {
           _currentPage = null;
           _currentPageName = tabs.keys.toList()[i];
         }),
         backgroundColor: FlutterFlowTheme.of(context).primary,
-        color: const Color(0x8A000000),
-        activeColor: FlutterFlowTheme.of(context).alternate,
-        tabBackgroundColor: FlutterFlowTheme.of(context).primary,
-        tabBorderRadius: 100.0,
-        tabMargin: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-        padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
-        gap: 6.0,
-        mainAxisAlignment: MainAxisAlignment.center,
-        duration: const Duration(milliseconds: 300),
-        haptic: false,
-        tabs: const [
-          GButton(
-            icon: Icons.dashboard_rounded,
-            text: 'Home',
-            iconSize: 24.0,
+        selectedItemColor: FlutterFlowTheme.of(context).secondaryBackground,
+        unselectedItemColor: FlutterFlowTheme.of(context).primaryBackground,
+        selectedBackgroundColor: const Color(0xCC6271D6),
+        borderRadius: 8.0,
+        itemBorderRadius: 8.0,
+        margin: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 5.0),
+        width: double.infinity,
+        elevation: 10.0,
+        items: [
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.dashboard_rounded,
+                  color: currentIndex == 0
+                      ? FlutterFlowTheme.of(context).secondaryBackground
+                      : FlutterFlowTheme.of(context).primaryBackground,
+                  size: 24.0,
+                ),
+                Text(
+                  'Dashboard',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 0
+                        ? FlutterFlowTheme.of(context).secondaryBackground
+                        : FlutterFlowTheme.of(context).primaryBackground,
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
+            ),
           ),
-          GButton(
-            icon: Icons.dashboard_rounded,
-            text: 'Home',
-            iconSize: 24.0,
+          FloatingNavbarItem(
+            customWidget: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  FontAwesomeIcons.binoculars,
+                  color: currentIndex == 1
+                      ? FlutterFlowTheme.of(context).secondaryBackground
+                      : FlutterFlowTheme.of(context).primaryBackground,
+                  size: 24.0,
+                ),
+                Text(
+                  'Explore',
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: currentIndex == 1
+                        ? FlutterFlowTheme.of(context).secondaryBackground
+                        : FlutterFlowTheme.of(context).primaryBackground,
+                    fontSize: 11.0,
+                  ),
+                ),
+              ],
+            ),
           )
         ],
       ),
