@@ -3,14 +3,16 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 
 class UsersRecord extends FirestoreRecord {
   UsersRecord._(
-    super.reference,
-    super.data,
-  ) {
+    DocumentReference reference,
+    Map<String, dynamic> data,
+  ) : super(reference, data) {
     _initializeFields();
   }
 
@@ -85,9 +87,55 @@ class UsersRecord extends FirestoreRecord {
   bool hasOnboarding() => _onboarding != null;
 
   // "student" field.
-  StudentStruct? _student;
-  StudentStruct get student => _student ?? StudentStruct();
+  SchoolProgramDetailsStruct? _student;
+  SchoolProgramDetailsStruct get student =>
+      _student ?? SchoolProgramDetailsStruct();
   bool hasStudent() => _student != null;
+
+  // "email_type" field.
+  String? _emailType;
+  String get emailType => _emailType ?? '';
+  bool hasEmailType() => _emailType != null;
+
+  // "settings" field.
+  UserSettingsStruct? _settings;
+  UserSettingsStruct get settings => _settings ?? UserSettingsStruct();
+  bool hasSettings() => _settings != null;
+
+  // "orgs_member" field.
+  List<DocumentReference>? _orgsMember;
+  List<DocumentReference> get orgsMember => _orgsMember ?? const [];
+  bool hasOrgsMember() => _orgsMember != null;
+
+  // "role" field.
+  String? _role;
+  String get role => _role ?? '';
+  bool hasRole() => _role != null;
+
+  // "id_number" field.
+  String? _idNumber;
+  String get idNumber => _idNumber ?? '';
+  bool hasIdNumber() => _idNumber != null;
+
+  // "bio_note" field.
+  String? _bioNote;
+  String get bioNote => _bioNote ?? '';
+  bool hasBioNote() => _bioNote != null;
+
+  // "last_notification_read_time" field.
+  DateTime? _lastNotificationReadTime;
+  DateTime? get lastNotificationReadTime => _lastNotificationReadTime;
+  bool hasLastNotificationReadTime() => _lastNotificationReadTime != null;
+
+  // "nfc_tag" field.
+  String? _nfcTag;
+  String get nfcTag => _nfcTag ?? '';
+  bool hasNfcTag() => _nfcTag != null;
+
+  // "nfc_e_signature" field.
+  String? _nfcESignature;
+  String get nfcESignature => _nfcESignature ?? '';
+  bool hasNfcESignature() => _nfcESignature != null;
 
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
@@ -104,7 +152,17 @@ class UsersRecord extends FirestoreRecord {
     _displayName = snapshotData['display_name'] as String?;
     _name = NameStruct.maybeFromMap(snapshotData['name']);
     _onboarding = snapshotData['onboarding'] as bool?;
-    _student = StudentStruct.maybeFromMap(snapshotData['student']);
+    _student = SchoolProgramDetailsStruct.maybeFromMap(snapshotData['student']);
+    _emailType = snapshotData['email_type'] as String?;
+    _settings = UserSettingsStruct.maybeFromMap(snapshotData['settings']);
+    _orgsMember = getDataList(snapshotData['orgs_member']);
+    _role = snapshotData['role'] as String?;
+    _idNumber = snapshotData['id_number'] as String?;
+    _bioNote = snapshotData['bio_note'] as String?;
+    _lastNotificationReadTime =
+        snapshotData['last_notification_read_time'] as DateTime?;
+    _nfcTag = snapshotData['nfc_tag'] as String?;
+    _nfcESignature = snapshotData['nfc_e_signature'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -155,7 +213,15 @@ Map<String, dynamic> createUsersRecordData({
   String? displayName,
   NameStruct? name,
   bool? onboarding,
-  StudentStruct? student,
+  SchoolProgramDetailsStruct? student,
+  String? emailType,
+  UserSettingsStruct? settings,
+  String? role,
+  String? idNumber,
+  String? bioNote,
+  DateTime? lastNotificationReadTime,
+  String? nfcTag,
+  String? nfcESignature,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -173,7 +239,15 @@ Map<String, dynamic> createUsersRecordData({
       'display_name': displayName,
       'name': NameStruct().toMap(),
       'onboarding': onboarding,
-      'student': StudentStruct().toMap(),
+      'student': SchoolProgramDetailsStruct().toMap(),
+      'email_type': emailType,
+      'settings': UserSettingsStruct().toMap(),
+      'role': role,
+      'id_number': idNumber,
+      'bio_note': bioNote,
+      'last_notification_read_time': lastNotificationReadTime,
+      'nfc_tag': nfcTag,
+      'nfc_e_signature': nfcESignature,
     }.withoutNulls,
   );
 
@@ -184,7 +258,10 @@ Map<String, dynamic> createUsersRecordData({
   addNameStructData(firestoreData, name, 'name');
 
   // Handle nested data for "student" field.
-  addStudentStructData(firestoreData, student, 'student');
+  addSchoolProgramDetailsStructData(firestoreData, student, 'student');
+
+  // Handle nested data for "settings" field.
+  addUserSettingsStructData(firestoreData, settings, 'settings');
 
   return firestoreData;
 }
@@ -194,6 +271,7 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
 
   @override
   bool equals(UsersRecord? e1, UsersRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.email == e2?.email &&
         e1?.photoUrl == e2?.photoUrl &&
         e1?.uid == e2?.uid &&
@@ -208,7 +286,16 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.displayName == e2?.displayName &&
         e1?.name == e2?.name &&
         e1?.onboarding == e2?.onboarding &&
-        e1?.student == e2?.student;
+        e1?.student == e2?.student &&
+        e1?.emailType == e2?.emailType &&
+        e1?.settings == e2?.settings &&
+        listEquality.equals(e1?.orgsMember, e2?.orgsMember) &&
+        e1?.role == e2?.role &&
+        e1?.idNumber == e2?.idNumber &&
+        e1?.bioNote == e2?.bioNote &&
+        e1?.lastNotificationReadTime == e2?.lastNotificationReadTime &&
+        e1?.nfcTag == e2?.nfcTag &&
+        e1?.nfcESignature == e2?.nfcESignature;
   }
 
   @override
@@ -227,7 +314,16 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.displayName,
         e?.name,
         e?.onboarding,
-        e?.student
+        e?.student,
+        e?.emailType,
+        e?.settings,
+        e?.orgsMember,
+        e?.role,
+        e?.idNumber,
+        e?.bioNote,
+        e?.lastNotificationReadTime,
+        e?.nfcTag,
+        e?.nfcESignature
       ]);
 
   @override

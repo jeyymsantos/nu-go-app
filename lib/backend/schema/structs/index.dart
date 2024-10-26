@@ -1,5 +1,24 @@
 export '/backend/schema/util/schema_util.dart';
 
+export 'calendar_struct.dart';
+export 'calendar_day_struct.dart';
+export 'chart_data_struct.dart';
+export 'chart_data_circular_bar_struct.dart';
+export 'chart_data_semi_doughnut_struct.dart';
+export 'chart_data_spline_chart_struct.dart';
 export 'address_struct.dart';
+export 'approval_set_struct.dart';
+export 'approval_signatory_struct.dart';
+export 'budget_list_struct.dart';
+export 'event_details_struct.dart';
+export 'event_program_struct.dart';
+export 'event_settings_struct.dart';
 export 'name_struct.dart';
-export 'student_struct.dart';
+export 'office_heads_struct.dart';
+export 'orders_struct.dart';
+export 'org_application_struct.dart';
+export 'org_signatory_struct.dart';
+export 'resources_struct.dart';
+export 'school_program_details_struct.dart';
+export 'signatories_struct.dart';
+export 'user_settings_struct.dart';

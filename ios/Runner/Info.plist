@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>NUGo Application</string>
+	<string>NU GO</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>NUGo Application</string>
+	<string>NU GO</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 
@@ -37,10 +37,10 @@
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>nugoapplication.com</string>
+        <string>nugo.com</string>
         <key>CFBundleURLSchemes</key>
         <array>
-        <string>nugoapplication</string>
+        <string>nugo</string>
         </array>
         </dict>
     </array>
@@ -54,10 +54,18 @@
 	<true/>
 
 	<key>NSCameraUsageDescription</key>
-    <string>In order to take a picture or video, this app requires permission to access the camera.</string>
+    <string>In order to scan for barcodes and QR codes, this app requires permission to access the camera.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
     <string>In order to upload data, this app requires permission to access the photo library.</string>
-
+	<key>PermissionGroupNotification</key>
+    <string>In order to send notifications to your device, this app requires permission to your notifications</string>
+	<key>NSCalendarsUsageDescription</key>
+    <string>In order to access and add events to calendar, this app requires permission to your calendar.</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>fetch</string>
+        <string>remote-notification</string>
+    </array>
 
 
 	<key>UILaunchStoryboardName</key>

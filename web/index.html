@@ -19,26 +19,33 @@
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="NUGo Application">
+  <meta name="apple-mobile-web-app-title" content="NU GO">
 
   
 
   <meta name="robots" content="noindex" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="icon" href="Transparent_Logo.png" sizes="any"/>
+  
 
   <!-- Open Graph & SEO tags -->
-  <meta property="og:title" content="NUGo Application" />
-  <meta property="og:description" content="Built with FlutterFlow." />
-  <meta property="og:image" content="https://storage.googleapis.com/flutterflow-prod-hosting/og_splash_gradient.png" /> 
-  <meta name="twitter:title" content="NUGo Application" />
-  <meta name="twitter:description" content="Built with FlutterFlow." />
-  <meta name="twitter:image" content="https://storage.googleapis.com/flutterflow-prod-hosting/og_splash_gradient.png" />
+  <meta property="og:title" content="NU GO - Event Management System for NU Baliwag" />
+  <meta property="og:description" content="NU GO, developed by Team SYN3RGY as a capstone project for the National University - Baliwag, aims to provide an intuitive platform to organize and monitor events happening within the campus.
+
+It also aims to give platform for its students to easily discover recognized student councils and organizations within the university." />
+  <meta property="og:image" content="/assets/assets/images/nugo-logo.png" /> 
+  <meta name="twitter:title" content="NU GO - Event Management System for NU Baliwag" />
+  <meta name="twitter:description" content="NU GO, developed by Team SYN3RGY as a capstone project for the National University - Baliwag, aims to provide an intuitive platform to organize and monitor events happening within the campus.
+
+It also aims to give platform for its students to easily discover recognized student councils and organizations within the university." />
+  <meta name="twitter:image" content="/assets/assets/images/nugo-logo.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <title> NUGo Application </title>
-  <meta name="description" content="Built with FlutterFlow." />
+  <title> NU GO - Event Management System for NU Baliwag </title>
+  <meta name="description" content="NU GO, developed by Team SYN3RGY as a capstone project for the National University - Baliwag, aims to provide an intuitive platform to organize and monitor events happening within the campus.
+
+It also aims to give platform for its students to easily discover recognized student councils and organizations within the university." />
     
 
   <!-- Status Bar color in Safari browser (iOS) and PWA -->
@@ -46,36 +53,16 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#f1f4f8">
 
   <link rel="manifest" href="manifest.json">
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = null;
-  </script>
-  <!-- This script adds the flutter initialization JS code -->
-  <script src="flutter.js" defer></script>
+  
 </head>
 <body>
   
-  
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEOI4SFIQm-OSl-sDrP7jBPDh6Z1wr35c"></script>
   
   
   
   <script>
-    window.addEventListener('load', function (ev) {
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
-        entrypointUrl: 'main.dart.js',
-        serviceWorker: {
-          serviceWorkerUrl: 'flutter_service_worker.js?v=',
-          serviceWorkerVersion: serviceWorkerVersion,
-        },
-        onEntrypointLoaded: async function(engineInitializer) {
-          // Initialize the Flutter engine
-          let appRunner = await engineInitializer.initializeEngine({});
-          // Run the app
-          await appRunner.runApp();
-        }
-      });
-    });
+    {{flutter_bootstrap_js}}
   </script>
 </body>
 </html>

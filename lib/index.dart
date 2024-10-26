@@ -1,38 +1,306 @@
 // Export pages
-export '/users/admin/admin_dashboard/admin_dashboard_widget.dart'
-    show AdminDashboardWidget;
-export '/static/our_team/our_team_widget.dart' show OurTeamWidget;
-export '/auth/auth_sign_in/auth_sign_in_widget.dart' show AuthSignInWidget;
-export '/static/about/about_widget.dart' show AboutWidget;
-export '/static/privacy_statement/privacy_statement_widget.dart'
+export '/users/super_admin/super_admin_dashboard/super_admin_dashboard_widget.dart'
+    show SuperAdminDashboardWidget;
+export '/modules/about_app/our_team/our_team_widget.dart' show OurTeamWidget;
+export '/modules/authentication/core/auth_sign_in/auth_sign_in_widget.dart'
+    show AuthSignInWidget;
+export '/modules/about_app/about_app/about_app_widget.dart' show AboutAppWidget;
+export '/modules/about_app/privacy_statement/privacy_statement_widget.dart'
     show PrivacyStatementWidget;
-export '/auth/auth_sign_up/auth_sign_up_widget.dart' show AuthSignUpWidget;
-export '/auth/auth_verify_phone/auth_verify_phone_widget.dart'
+export '/modules/authentication/core/auth_sign_up/auth_sign_up_widget.dart'
+    show AuthSignUpWidget;
+export '/modules/authentication/verifications/auth_verify_phone/auth_verify_phone_widget.dart'
     show AuthVerifyPhoneWidget;
-export '/static/terms/terms_widget.dart' show TermsWidget;
-export '/auth/onboard/onboard_one/onboard_one_widget.dart'
+export '/modules/about_app/terms/terms_widget.dart' show TermsWidget;
+export '/modules/authentication/onboard/onboard_one/onboard_one_widget.dart'
     show OnboardOneWidget;
-export '/auth/onboard/onboard_two/onboard_two_widget.dart'
+export '/modules/authentication/onboard/onboard_two/onboard_two_widget.dart'
     show OnboardTwoWidget;
-export '/auth/onboard/onboard_three/onboard_three_widget.dart'
+export '/modules/authentication/onboard/onboard_three/onboard_three_widget.dart'
     show OnboardThreeWidget;
-export '/auth/auth_verify_email/auth_verify_email_widget.dart'
+export '/modules/authentication/verifications/auth_verify_email/auth_verify_email_widget.dart'
     show AuthVerifyEmailWidget;
-export '/users/admin/admin_explore/admin_explore_widget.dart'
-    show AdminExploreWidget;
-export '/auth/auth_forgot_password/auth_forgot_password_widget.dart'
+export '/modules/authentication/core/auth_forgot_password/auth_forgot_password_widget.dart'
     show AuthForgotPasswordWidget;
-export '/users/admin/admin_file_maintenance/admin_file_maintenance_widget.dart'
-    show AdminFileMaintenanceWidget;
-export '/users/admin/file_maintenance/file_school/maintenance_school/maintenance_school_widget.dart'
+export '/users/super_admin/super_admin_file_maintenance/super_admin_file_maintenance_widget.dart'
+    show SuperAdminFileMaintenanceWidget;
+export '/modules/file_maintenance/file_school/maintenance_school/maintenance_school_widget.dart'
     show MaintenanceSchoolWidget;
-export '/users/admin/file_maintenance/file_user_roles/maintenance_user_roles/maintenance_user_roles_widget.dart'
+export '/modules/file_maintenance/file_user_roles/maintenance_user_roles/maintenance_user_roles_widget.dart'
     show MaintenanceUserRolesWidget;
-export '/users/admin/file_maintenance/file_users/view_users/view_users_widget.dart'
+export '/modules/file_maintenance/file_users/view_users/view_users_widget.dart'
     show ViewUsersWidget;
-export '/users/admin/file_maintenance/file_user_roles/view_user_roles/view_user_roles_widget.dart'
+export '/modules/file_maintenance/file_user_roles/view_user_roles/view_user_roles_widget.dart'
     show ViewUserRolesWidget;
-export '/users/admin/file_maintenance/file_users/maintenance_users/maintenance_users_widget.dart'
+export '/modules/file_maintenance/file_users/maintenance_users/maintenance_users_widget.dart'
     show MaintenanceUsersWidget;
-export '/users/admin/file_maintenance/file_school/view_school/view_school_widget.dart'
+export '/modules/file_maintenance/file_school/view_school/view_school_widget.dart'
     show ViewSchoolWidget;
+export '/users/general/dashboard/dashboard_widget.dart' show DashboardWidget;
+export '/modules/file_maintenance/file_facilities/dashboard_facility/dashboard_facility_widget.dart'
+    show DashboardFacilityWidget;
+export '/modules/file_maintenance/file_programs/maintenance_programs/maintenance_programs_widget.dart'
+    show MaintenanceProgramsWidget;
+export '/modules/file_maintenance/file_programs/view_programs/view_programs_widget.dart'
+    show ViewProgramsWidget;
+export '/modules/file_maintenance/file_organizations/maintenance_organizations/maintenance_organizations_widget.dart'
+    show MaintenanceOrganizationsWidget;
+export '/modules/file_maintenance/file_organizations/view_organizations/view_organizations_widget.dart'
+    show ViewOrganizationsWidget;
+export '/modules/file_maintenance/file_office/view_office/view_office_widget.dart'
+    show ViewOfficeWidget;
+export '/modules/file_maintenance/file_office/maintenance_office/maintenance_office_widget.dart'
+    show MaintenanceOfficeWidget;
+export '/modules/file_maintenance/file_facilities/view_facility_type/view_facility_type_widget.dart'
+    show ViewFacilityTypeWidget;
+export '/modules/file_maintenance/file_facilities/maintenance_facility_type/maintenance_facility_type_widget.dart'
+    show MaintenanceFacilityTypeWidget;
+export '/modules/file_maintenance/file_facilities/view_rooms/view_rooms_widget.dart'
+    show ViewRoomsWidget;
+export '/modules/file_maintenance/file_facilities/maintenance_rooms/maintenance_rooms_widget.dart'
+    show MaintenanceRoomsWidget;
+export '/modules/file_maintenance/file_equipment/view_equipment/view_equipment_widget.dart'
+    show ViewEquipmentWidget;
+export '/modules/file_maintenance/file_equipment/maintenance_equipment/maintenance_equipment_widget.dart'
+    show MaintenanceEquipmentWidget;
+export '/users/general/menu/settings/change_password/change_password_widget.dart'
+    show ChangePasswordWidget;
+export '/users/rsco/event_management/event_management/event_management_widget.dart'
+    show EventManagementWidget;
+export '/users/rsco/rsco_dashboard/rsco_dashboard_widget.dart'
+    show RscoDashboardWidget;
+export '/users/general/events/event_profile/event_profile_widget.dart'
+    show EventProfileWidget;
+export '/drafts/ticket_verifier/ticket_verifier_widget.dart'
+    show TicketVerifierWidget;
+export '/users/general/tab_organization/org_profile/org_profile_widget.dart'
+    show OrgProfileWidget;
+export '/users/general/notification/notification_widget.dart'
+    show NotificationWidget;
+export '/users/school_admins/approval_orgs/approval_org_applications/approval_org_applications_widget.dart'
+    show ApprovalOrgApplicationsWidget;
+export '/modules/authentication/auth_redirect/auth_redirect_widget.dart'
+    show AuthRedirectWidget;
+export '/users/general/menu/menu_widget.dart' show MenuWidget;
+export '/users/general/menu/profile/profile_widget.dart' show ProfileWidget;
+export '/users/general/menu/settings/settings_widget.dart' show SettingsWidget;
+export '/users/general/menu/my_organizations/my_organizations_widget.dart'
+    show MyOrganizationsWidget;
+export '/users/rsco/org_application/org_application_status/org_application_status_widget.dart'
+    show OrgApplicationStatusWidget;
+export '/users/general/menu/resources/resources_list/resources_list_widget.dart'
+    show ResourcesListWidget;
+export '/users/general/menu/resources/resource_viewer/resource_viewer_widget.dart'
+    show ResourceViewerWidget;
+export '/users/super_admin/admin_menu/admin_resources/admin_resources_widget.dart'
+    show AdminResourcesWidget;
+export '/users/school_admins/approval_orgs/admin_manage_orgs/admin_manage_orgs_widget.dart'
+    show AdminManageOrgsWidget;
+export '/users/rsco/org_application/org_revision/org_revision_widget.dart'
+    show OrgRevisionWidget;
+export '/users/school_admins/fmo/a_fmo_dashboard/a_fmo_dashboard_widget.dart'
+    show AFmoDashboardWidget;
+export '/users/rsco/event_management/event_proposal/event_proposal_status/event_proposal_status_widget.dart'
+    show EventProposalStatusWidget;
+export '/users/school_admins/approval_event/approval_event_proposal/approval_event_proposal_widget.dart'
+    show ApprovalEventProposalWidget;
+export '/users/school_admins/approval_event/admin_manage_event/admin_manage_event_widget.dart'
+    show AdminManageEventWidget;
+export '/users/rsco/event_management/event_proposal_revision/event_proposal_revision_widget.dart'
+    show EventProposalRevisionWidget;
+export '/drafts/calendar_trial/calendar_trial_widget.dart'
+    show CalendarTrialWidget;
+export '/modules/authentication/verifications/auth_verify_role/auth_verify_role_widget.dart'
+    show AuthVerifyRoleWidget;
+export '/users/school_admins/fmo/a_calendar/a_calendar_widget.dart'
+    show ACalendarWidget;
+export '/users/rsco/event_management/event_proposal/step_by_step/event_proposal_step_1/event_proposal_step1_widget.dart'
+    show EventProposalStep1Widget;
+export '/users/super_admin/admin_notif_send/admin_notif_send_widget.dart'
+    show AdminNotifSendWidget;
+export '/users/rsco/event_management/event_proposal/step_by_step/event_proposal_step_2/event_proposal_step2_widget.dart'
+    show EventProposalStep2Widget;
+export '/users/rsco/event_management/event_proposal/step_by_step/event_proposal_step_4_draft/event_proposal_step4_draft_widget.dart'
+    show EventProposalStep4DraftWidget;
+export '/users/school_admins/fmo/form_and_reservations/form_and_reservations_widget.dart'
+    show FormAndReservationsWidget;
+export '/users/school_admins/fmo/b_form_and_reservations_gatepass/b_form_and_reservations_gatepass_widget.dart'
+    show BFormAndReservationsGatepassWidget;
+export '/users/school_admins/fmo/b_form_facility_reservation/b_form_facility_reservation_widget.dart'
+    show BFormFacilityReservationWidget;
+export '/users/rsco/event_management/event_proposal/step_by_step/event_proposal_step_3/event_proposal_step3_widget.dart'
+    show EventProposalStep3Widget;
+export '/users/rsco/event_management/event_proposal/step_by_step/event_proposal_step_2_inside_facility/event_proposal_step2_inside_facility_widget.dart'
+    show EventProposalStep2InsideFacilityWidget;
+export '/users/rsco/event_management/event_proposal/step_by_step/event_proposal_step_2_outside_location/event_proposal_step2_outside_location_widget.dart'
+    show EventProposalStep2OutsideLocationWidget;
+export '/users/rsco/event_management/event_profile/event_profile_dashboard/event_profile_dashboard_widget.dart'
+    show EventProfileDashboardWidget;
+export '/users/rsco/event_management/event_profile/event_guests/event_guests_all/event_guests_all_widget.dart'
+    show EventGuestsAllWidget;
+export '/users/rsco/event_management/event_profile/event_check_in_out/event_check_in_out/event_check_in_out_widget.dart'
+    show EventCheckInOutWidget;
+export '/users/rsco/event_management/event_profile/event_profile_insights/event_profile_insights_widget.dart'
+    show EventProfileInsightsWidget;
+export '/users/general/menu/nu_services/web_viewer/web_viewer_widget.dart'
+    show WebViewerWidget;
+export '/users/super_admin/admin_notifications/admin_notif_menu/admin_notif_menu_widget.dart'
+    show AdminNotifMenuWidget;
+export '/users/general/menu/feedback/feedback/feedback_widget.dart'
+    show FeedbackWidget;
+export '/users/super_admin/admin_feedback/admin_feedback/admin_feedback_widget.dart'
+    show AdminFeedbackWidget;
+export '/users/super_admin/admin_feedback/admin_feedback_view/admin_feedback_view_widget.dart'
+    show AdminFeedbackViewWidget;
+export '/drafts/approval_org_application_copy/approval_org_application_copy_widget.dart'
+    show ApprovalOrgApplicationCopyWidget;
+export '/users/super_admin/admin_content/admin_content_menu/admin_content_menu_widget.dart'
+    show AdminContentMenuWidget;
+export '/users/general/event_search/event_search_widget.dart'
+    show EventSearchWidget;
+export '/users/super_admin/admin_content/admin_content_create/admin_content_create_widget.dart'
+    show AdminContentCreateWidget;
+export '/users/general/explore_organization/explore_organization_widget.dart'
+    show ExploreOrganizationWidget;
+export '/users/general/content/content_see_all/content_see_all_widget.dart'
+    show ContentSeeAllWidget;
+export '/users/general/content/content_view/content_view_widget.dart'
+    show ContentViewWidget;
+export '/users/super_admin/admin_content/admin_content_view/admin_content_view_widget.dart'
+    show AdminContentViewWidget;
+export '/drafts/user_feedback_copy/user_feedback_copy_widget.dart'
+    show UserFeedbackCopyWidget;
+export '/users/super_admin/admin_logs/admin_logs/admin_logs_widget.dart'
+    show AdminLogsWidget;
+export '/users/super_admin/admin_content/admin_content_edit/admin_content_edit_widget.dart'
+    show AdminContentEditWidget;
+export '/users/rsco/event_management/event_proposal/event_proposal_create_original/event_proposal_create_original_widget.dart'
+    show EventProposalCreateOriginalWidget;
+export '/users/super_admin/admin_approval/dynamic/admin_approval_manage/admin_approval_manage_widget.dart'
+    show AdminApprovalManageWidget;
+export '/modules/authentication/verifications/auth_ongoing_maintenance/auth_ongoing_maintenance_widget.dart'
+    show AuthOngoingMaintenanceWidget;
+export '/modules/authentication/verifications/auth_ongoing_update/auth_ongoing_update_widget.dart'
+    show AuthOngoingUpdateWidget;
+export '/users/super_admin/admin_maintenance/admin_maintenance/admin_maintenance_widget.dart'
+    show AdminMaintenanceWidget;
+export '/users/general/menu/profile/user_cards/user_cards_widget.dart'
+    show UserCardsWidget;
+export '/users/super_admin/admin_approval/dynamic/admin_approval_assign/admin_approval_assign_widget.dart'
+    show AdminApprovalAssignWidget;
+export '/users/general/menu/nu_services/services_list/services_list_widget.dart'
+    show ServicesListWidget;
+export '/users/rsco/org_management/members/org_members_pending/org_members_pending_widget.dart'
+    show OrgMembersPendingWidget;
+export '/drafts/student_top_up/student_top_up_widget.dart'
+    show StudentTopUpWidget;
+export '/users/general/menu/profile/step_1_nfc_setup/step1_nfc_setup_widget.dart'
+    show Step1NfcSetupWidget;
+export '/users/rsco/org_application/org_application/org_application_widget.dart'
+    show OrgApplicationWidget;
+export '/users/rsco/event_management/event_profile/event_profile_feeback/event_profile_feeback_widget.dart'
+    show EventProfileFeebackWidget;
+export '/users/rsco/org_management/org_edit/org_edit_widget.dart'
+    show OrgEditWidget;
+export '/users/rsco/org_management/org_form_management/org_form_management_widget.dart'
+    show OrgFormManagementWidget;
+export '/users/rsco/org_management/org_reports/org_reports_widget.dart'
+    show OrgReportsWidget;
+export '/users/super_admin/admin_approval/dynamic/admin_approval_offices_menu/admin_approval_offices_menu_widget.dart'
+    show AdminApprovalOfficesMenuWidget;
+export '/users/super_admin/admin_approval/dynamic/admin_approval_offices_create/admin_approval_offices_create_widget.dart'
+    show AdminApprovalOfficesCreateWidget;
+export '/users/super_admin/admin_approval/dynamic/admin_approval_offices_update/admin_approval_offices_update_widget.dart'
+    show AdminApprovalOfficesUpdateWidget;
+export '/users/super_admin/admin_approval/static/admin_approval_assign_static/admin_approval_assign_static_widget.dart'
+    show AdminApprovalAssignStaticWidget;
+export '/users/super_admin/admin_approval/static/admin_approval_offices_update_static/admin_approval_offices_update_static_widget.dart'
+    show AdminApprovalOfficesUpdateStaticWidget;
+export '/users/general/menu/profile/user_i_d/user_i_d_widget.dart'
+    show UserIDWidget;
+export '/users/general/menu/profile/step_2_signature_setup/step2_signature_setup_widget.dart'
+    show Step2SignatureSetupWidget;
+export '/users/rsco/org_application/org_application_detailed_status/org_application_detailed_status_widget.dart'
+    show OrgApplicationDetailedStatusWidget;
+export '/users/super_admin/admin_logs/admin_logs_delete/admin_logs_delete_widget.dart'
+    show AdminLogsDeleteWidget;
+export '/users/rsco/org_management/members/org_members_members/org_members_members_widget.dart'
+    show OrgMembersMembersWidget;
+export '/users/rsco/org_management/members/org_members_officers/org_members_officers_widget.dart'
+    show OrgMembersOfficersWidget;
+export '/drafts/approval_org_application/approval_org_application_widget.dart'
+    show ApprovalOrgApplicationWidget;
+export '/modules/about_app/f_a_qs/f_a_qs_widget.dart' show FAQsWidget;
+export '/modules/file_maintenance/file_users/nfc/admin_nfc_setup/admin_nfc_setup_widget.dart'
+    show AdminNfcSetupWidget;
+export '/modules/file_maintenance/file_users/nfc/admin_signature_setup/admin_signature_setup_widget.dart'
+    show AdminSignatureSetupWidget;
+export '/users/general/menu/profile/step_3_verify_user_info/step3_verify_user_info_widget.dart'
+    show Step3VerifyUserInfoWidget;
+export '/modules/authentication/auth_loading/auth_loading_widget.dart'
+    show AuthLoadingWidget;
+export '/modules/file_maintenance/file_users/view_users_faculty/view_users_faculty_widget.dart'
+    show ViewUsersFacultyWidget;
+export '/users/rsco/event_management/event_proposal/event_proposal_detailed_status/event_proposal_detailed_status_widget.dart'
+    show EventProposalDetailedStatusWidget;
+export '/users/school_admins/fmo/calendar_version2/calendar_version2_widget.dart'
+    show CalendarVersion2Widget;
+export '/drafts/event_profile_test/event_profile_test_widget.dart'
+    show EventProfileTestWidget;
+export '/users/general/menu/feedback/photo_viewer/photo_viewer_widget.dart'
+    show PhotoViewerWidget;
+export '/users/super_admin/admin_menu/admin_menu/admin_menu_widget.dart'
+    show AdminMenuWidget;
+export '/drafts/ad_draft/ad_draft_widget.dart' show AdDraftWidget;
+export '/users/rsco/org_management/org_satisfaction/org_satisfaction_widget.dart'
+    show OrgSatisfactionWidget;
+export '/drafts/sample_caard/sample_caard_widget.dart' show SampleCaardWidget;
+export '/drafts/tickets_copy/tickets_copy_widget.dart' show TicketsCopyWidget;
+export '/users/general/tickets/tickets_widget.dart' show TicketsWidget;
+export '/users/rsco/event_management/event_profile/event_guests/event_guests_going/event_guests_going_widget.dart'
+    show EventGuestsGoingWidget;
+export '/users/rsco/event_management/event_profile/event_guests/event_guests_pending/event_guests_pending_widget.dart'
+    show EventGuestsPendingWidget;
+export '/users/rsco/event_management/event_profile/event_check_in_out/event_checked_in/event_checked_in_widget.dart'
+    show EventCheckedInWidget;
+export '/users/rsco/event_management/event_profile/event_guests/event_guests_all_original/event_guests_all_original_widget.dart'
+    show EventGuestsAllOriginalWidget;
+export '/users/rsco/event_management/event_profile/event_check_in_out/event_checked_out/event_checked_out_widget.dart'
+    show EventCheckedOutWidget;
+export '/users/rsco/rsco_dashboard_orig/rsco_dashboard_orig_widget.dart'
+    show RscoDashboardOrigWidget;
+export '/modules/authentication/auth_logout/auth_logout_widget.dart'
+    show AuthLogoutWidget;
+export '/modules/marketplace/user/dashboard_marketplace/dashboard_marketplace_widget.dart'
+    show DashboardMarketplaceWidget;
+export '/modules/marketplace/user/product_details_marketplace/product_details_marketplace_widget.dart'
+    show ProductDetailsMarketplaceWidget;
+export '/modules/marketplace/admin/add_product_marketplace/add_product_marketplace_widget.dart'
+    show AddProductMarketplaceWidget;
+export '/modules/marketplace/user/order_tracker_marketplace/order_tracker_marketplace_widget.dart'
+    show OrderTrackerMarketplaceWidget;
+export '/modules/marketplace/user/cart_marketplace/cart_marketplace_widget.dart'
+    show CartMarketplaceWidget;
+export '/modules/marketplace/user/purchase_marketplace/purchase_marketplace_widget.dart'
+    show PurchaseMarketplaceWidget;
+export '/modules/marketplace/admin/inventory_marketplace/inventory_marketplace_widget.dart'
+    show InventoryMarketplaceWidget;
+export '/modules/marketplace/admin/update_product_marketplace/update_product_marketplace_widget.dart'
+    show UpdateProductMarketplaceWidget;
+export '/drafts/password_checker/password_checker_widget.dart'
+    show PasswordCheckerWidget;
+export '/users/general/menu/user_profile_admin_view/user_profile_admin_view_widget.dart'
+    show UserProfileAdminViewWidget;
+export '/users/rsco/event_management/event_profile/event_edit/event_edit_widget.dart'
+    show EventEditWidget;
+export '/modules/marketplace/admin/dashboard_admin_marketplace/dashboard_admin_marketplace_widget.dart'
+    show DashboardAdminMarketplaceWidget;
+export '/drafts/ticket_design2/ticket_design2_widget.dart'
+    show TicketDesign2Widget;
+export '/modules/marketplace/user/my_orders_marketplace/my_orders_marketplace_widget.dart'
+    show MyOrdersMarketplaceWidget;
+export '/modules/marketplace/admin/my_pending_orders_admin_marketplace/my_pending_orders_admin_marketplace_widget.dart'
+    show MyPendingOrdersAdminMarketplaceWidget;
+export '/modules/marketplace/admin/update/update_widget.dart' show UpdateWidget;
+export '/modules/marketplace/admin/order_view_admin/order_view_admin_widget.dart'
+    show OrderViewAdminWidget;

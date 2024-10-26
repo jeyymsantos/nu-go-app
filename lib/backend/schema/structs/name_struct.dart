@@ -3,7 +3,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
 
+import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 class NameStruct extends FFFirebaseStruct {
@@ -23,24 +25,28 @@ class NameStruct extends FFFirebaseStruct {
   String? _firstName;
   String get firstName => _firstName ?? '';
   set firstName(String? val) => _firstName = val;
+
   bool hasFirstName() => _firstName != null;
 
   // "middle_name" field.
   String? _middleName;
   String get middleName => _middleName ?? '';
   set middleName(String? val) => _middleName = val;
+
   bool hasMiddleName() => _middleName != null;
 
   // "last_name" field.
   String? _lastName;
   String get lastName => _lastName ?? '';
   set lastName(String? val) => _lastName = val;
+
   bool hasLastName() => _lastName != null;
 
   // "suffix_name" field.
   String? _suffixName;
   String get suffixName => _suffixName ?? '';
   set suffixName(String? val) => _suffixName = val;
+
   bool hasSuffixName() => _suffixName != null;
 
   static NameStruct fromMap(Map<String, dynamic> data) => NameStruct(

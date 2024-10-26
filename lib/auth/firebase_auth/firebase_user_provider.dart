@@ -1,14 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 
 import '../base_auth_user_provider.dart';
 
 export '../base_auth_user_provider.dart';
 
-class NUGoApplicationFirebaseUser extends BaseAuthUser {
-  NUGoApplicationFirebaseUser(this.user);
+class NuGoFirebaseUser extends BaseAuthUser {
+  NuGoFirebaseUser(this.user);
   User? user;
-  @override
   bool get loggedIn => user != null;
 
   @override
@@ -54,19 +55,20 @@ class NUGoApplicationFirebaseUser extends BaseAuthUser {
 
   static BaseAuthUser fromUserCredential(UserCredential userCredential) =>
       fromFirebaseUser(userCredential.user);
-  static BaseAuthUser fromFirebaseUser(User? user) =>
-      NUGoApplicationFirebaseUser(user);
+  static BaseAuthUser fromFirebaseUser(User? user) => NuGoFirebaseUser(user);
 }
 
-Stream<BaseAuthUser> nUGoApplicationFirebaseUserStream() =>
-    FirebaseAuth.instance
+Stream<BaseAuthUser> nuGoFirebaseUserStream() => FirebaseAuth.instance
         .authStateChanges()
         .debounce((user) => user == null && !loggedIn
             ? TimerStream(true, const Duration(seconds: 1))
             : Stream.value(user))
         .map<BaseAuthUser>(
       (user) {
-        currentUser = NUGoApplicationFirebaseUser(user);
+        currentUser = NuGoFirebaseUser(user);
+        if (!kIsWeb) {
+          FirebaseCrashlytics.instance.setUserIdentifier(user?.uid ?? '');
+        }
         return currentUser!;
       },
     );

@@ -1,4 +1,4 @@
-# NUGo Application
+# NU GO
 
 A new Flutter project.
 

@@ -35,6 +35,17 @@ abstract class FlutterFlowTheme {
   late Color primaryBtnText;
   late Color lineColor;
   late Color backgroundComponents;
+  late Color backPanel;
+  late Color panelText;
+  late Color buttonVisit;
+  late Color backPanelText;
+  late Color tabBarUnselected;
+  late Color tabBarSelected;
+  late Color tabBarBorder;
+  late Color changeButton;
+  late Color textBoxBorder;
+  late Color pulsatingLine;
+  late Color formsPanel;
 
   @Deprecated('Use displaySmallFamily instead')
   String get title1Family => displaySmallFamily;
@@ -112,21 +123,32 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color tertiary = const Color(0xFF1A1A1A);
   late Color alternate = const Color(0xFFD2E0EF);
   late Color primaryText = const Color(0xFF000000);
-  late Color secondaryText = const Color(0xFFB7B7B7);
+  late Color secondaryText = const Color(0xFF868686);
   late Color primaryBackground = const Color(0xFFFFFFFF);
-  late Color secondaryBackground = const Color(0xFFF7F7F7);
-  late Color accent1 = const Color(0xFF35408E);
+  late Color secondaryBackground = const Color(0xFFF5F5F5);
+  late Color accent1 = const Color(0xFFBBC6FF);
   late Color accent2 = const Color(0xFFFFD41C);
   late Color accent3 = const Color(0xFF1A1A1A);
   late Color accent4 = const Color(0xFF595959);
-  late Color success = const Color(0xFF249689);
+  late Color success = const Color(0xFF00BE40);
   late Color warning = const Color(0xFFF9CF58);
   late Color error = const Color(0xFFFF5963);
   late Color info = const Color(0xFFFFFFFF);
 
-  late Color primaryBtnText = const Color(0xFFFFFFFF);
-  late Color lineColor = const Color(0xFFE0E3E7);
-  late Color backgroundComponents = const Color(0xFF1D2428);
+  late Color primaryBtnText = Color(0xFFFFFFFF);
+  late Color lineColor = Color(0xFFE0E3E7);
+  late Color backgroundComponents = Color(0xFF1D2428);
+  late Color backPanel = Color(0xFFECEEF3);
+  late Color panelText = Color(0xFF717171);
+  late Color buttonVisit = Color(0xFFFFA41C);
+  late Color backPanelText = Color(0xFFFEFEFE);
+  late Color tabBarUnselected = Color(0xFFF3F4F8);
+  late Color tabBarSelected = Color(0xFFFFFFFF);
+  late Color tabBarBorder = Color(0xFFE0E3E8);
+  late Color changeButton = Color(0xFFD0CFCF);
+  late Color textBoxBorder = Color(0xFFD1D1D1);
+  late Color pulsatingLine = Color(0xFFEBEBEB);
+  late Color formsPanel = Color(0xFFD8DBF4);
 }
 
 abstract class Typography {
@@ -167,107 +189,107 @@ class ThemeTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'Clan Pro';
-  TextStyle get displayLarge => TextStyle(
-        fontFamily: 'Clan Pro',
+  String get displayLargeFamily => 'Montserrat';
+  TextStyle get displayLarge => GoogleFonts.getFont(
+        'Montserrat',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 64.0,
       );
-  String get displayMediumFamily => 'Clan Pro';
-  TextStyle get displayMedium => TextStyle(
-        fontFamily: 'Clan Pro',
+  String get displayMediumFamily => 'Montserrat';
+  TextStyle get displayMedium => GoogleFonts.getFont(
+        'Montserrat',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 44.0,
       );
-  String get displaySmallFamily => 'Clan Pro';
-  TextStyle get displaySmall => TextStyle(
-        fontFamily: 'Clan Pro',
+  String get displaySmallFamily => 'Montserrat';
+  TextStyle get displaySmall => GoogleFonts.getFont(
+        'Montserrat',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 36.0,
       );
-  String get headlineLargeFamily => 'Clan Pro';
-  TextStyle get headlineLarge => TextStyle(
-        fontFamily: 'Clan Pro',
+  String get headlineLargeFamily => 'Montserrat';
+  TextStyle get headlineLarge => GoogleFonts.getFont(
+        'Montserrat',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 32.0,
       );
-  String get headlineMediumFamily => 'Clan Pro';
-  TextStyle get headlineMedium => TextStyle(
-        fontFamily: 'Clan Pro',
+  String get headlineMediumFamily => 'Montserrat';
+  TextStyle get headlineMedium => GoogleFonts.getFont(
+        'Montserrat',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 24.0,
       );
-  String get headlineSmallFamily => 'Clan Pro';
-  TextStyle get headlineSmall => TextStyle(
-        fontFamily: 'Clan Pro',
+  String get headlineSmallFamily => 'Montserrat';
+  TextStyle get headlineSmall => GoogleFonts.getFont(
+        'Montserrat',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 24.0,
       );
-  String get titleLargeFamily => 'Clan Pro';
-  TextStyle get titleLarge => TextStyle(
-        fontFamily: 'Clan Pro',
+  String get titleLargeFamily => 'Montserrat';
+  TextStyle get titleLarge => GoogleFonts.getFont(
+        'Montserrat',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 22.0,
       );
-  String get titleMediumFamily => 'Clan Pro';
-  TextStyle get titleMedium => TextStyle(
-        fontFamily: 'Clan Pro',
+  String get titleMediumFamily => 'Montserrat';
+  TextStyle get titleMedium => GoogleFonts.getFont(
+        'Montserrat',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 18.0,
       );
-  String get titleSmallFamily => 'Clan Pro';
-  TextStyle get titleSmall => TextStyle(
-        fontFamily: 'Clan Pro',
+  String get titleSmallFamily => 'Montserrat';
+  TextStyle get titleSmall => GoogleFonts.getFont(
+        'Montserrat',
         color: theme.info,
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
-  String get labelLargeFamily => 'Clan Pro';
-  TextStyle get labelLarge => TextStyle(
-        fontFamily: 'Clan Pro',
+  String get labelLargeFamily => 'Montserrat';
+  TextStyle get labelLarge => GoogleFonts.getFont(
+        'Montserrat',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get labelMediumFamily => 'Clan Pro';
-  TextStyle get labelMedium => TextStyle(
-        fontFamily: 'Clan Pro',
+  String get labelMediumFamily => 'Montserrat';
+  TextStyle get labelMedium => GoogleFonts.getFont(
+        'Montserrat',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get labelSmallFamily => 'Clan Pro';
-  TextStyle get labelSmall => TextStyle(
-        fontFamily: 'Clan Pro',
+  String get labelSmallFamily => 'Montserrat';
+  TextStyle get labelSmall => GoogleFonts.getFont(
+        'Montserrat',
         color: theme.secondaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
       );
-  String get bodyLargeFamily => 'Clan Pro';
-  TextStyle get bodyLarge => TextStyle(
-        fontFamily: 'Clan Pro',
+  String get bodyLargeFamily => 'Montserrat';
+  TextStyle get bodyLarge => GoogleFonts.getFont(
+        'Montserrat',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get bodyMediumFamily => 'Clan Pro';
-  TextStyle get bodyMedium => TextStyle(
-        fontFamily: 'Clan Pro',
+  String get bodyMediumFamily => 'Montserrat';
+  TextStyle get bodyMedium => GoogleFonts.getFont(
+        'Montserrat',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get bodySmallFamily => 'Clan Pro';
-  TextStyle get bodySmall => TextStyle(
-        fontFamily: 'Clan Pro',
+  String get bodySmallFamily => 'Montserrat';
+  TextStyle get bodySmall => GoogleFonts.getFont(
+        'Montserrat',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
@@ -285,6 +307,7 @@ extension TextStyleHelper on TextStyle {
     bool useGoogleFonts = true,
     TextDecoration? decoration,
     double? lineHeight,
+    List<Shadow>? shadows,
   }) =>
       useGoogleFonts
           ? GoogleFonts.getFont(
@@ -296,6 +319,7 @@ extension TextStyleHelper on TextStyle {
               fontStyle: fontStyle ?? this.fontStyle,
               decoration: decoration,
               height: lineHeight,
+              shadows: shadows,
             )
           : copyWith(
               fontFamily: fontFamily,
@@ -306,5 +330,6 @@ extension TextStyleHelper on TextStyle {
               fontStyle: fontStyle,
               decoration: decoration,
               height: lineHeight,
+              shadows: shadows,
             );
 }
