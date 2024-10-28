@@ -4,18 +4,12 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/modules/marketplace/user/component/item_card_marketplace/item_card_marketplace_widget.dart';
-import 'dart:math';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'dashboard_admin_marketplace_model.dart';
@@ -167,14 +161,14 @@ class _DashboardAdminMarketplaceWidgetState
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               25.0, 10.0, 25.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 5.0, 0.0),
                                 child: ClipOval(
                                   child: Container(
@@ -189,12 +183,12 @@ class _DashboardAdminMarketplaceWidgetState
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(2.0),
+                                      padding: const EdgeInsets.all(2.0),
                                       child: ClipOval(
                                         child: Container(
                                           width: 45.0,
                                           height: 45.0,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             shape: BoxShape.circle,
                                           ),
                                           child: AuthUserStreamWidget(
@@ -215,7 +209,7 @@ class _DashboardAdminMarketplaceWidgetState
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -253,7 +247,7 @@ class _DashboardAdminMarketplaceWidgetState
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   2.0, 0.0, 0.0, 0.0),
                                           child: Icon(
                                             FFIcons.kverify5,
@@ -272,13 +266,13 @@ class _DashboardAdminMarketplaceWidgetState
                               animationsMap['rowOnPageLoadAnimation1']!),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 10.0, 0.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 10.0, 20.0, 10.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -287,16 +281,16 @@ class _DashboardAdminMarketplaceWidgetState
                                       child: Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(
-                                          color: Color(0xFFEFFFEC),
+                                          color: const Color(0xFFEFFFEC),
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           border: Border.all(
-                                            color: Color(0xFF60B859),
+                                            color: const Color(0xFF60B859),
                                             width: 0.5,
                                           ),
                                         ),
                                         child: Padding(
-                                          padding: EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             crossAxisAlignment:
@@ -304,17 +298,17 @@ class _DashboardAdminMarketplaceWidgetState
                                             children: [
                                               Container(
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xFF7BBA76),
+                                                  color: const Color(0xFF7BBA76),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           8.0),
                                                   border: Border.all(
-                                                    color: Color(0xFFAFF0AE),
+                                                    color: const Color(0xFFAFF0AE),
                                                     width: 3.0,
                                                   ),
                                                 ),
                                                 child: Padding(
-                                                  padding: EdgeInsets.all(5.0),
+                                                  padding: const EdgeInsets.all(5.0),
                                                   child: Icon(
                                                     FFIcons.kpeople5,
                                                     color: FlutterFlowTheme.of(
@@ -326,7 +320,7 @@ class _DashboardAdminMarketplaceWidgetState
                                               ),
                                               Flexible(
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           5.0, 0.0, 0.0, 0.0),
                                                   child: Column(
@@ -419,16 +413,16 @@ class _DashboardAdminMarketplaceWidgetState
                                       child: Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(
-                                          color: Color(0xFFFFF7EC),
+                                          color: const Color(0xFFFFF7EC),
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           border: Border.all(
-                                            color: Color(0xFFFFBB97),
+                                            color: const Color(0xFFFFBB97),
                                             width: 0.5,
                                           ),
                                         ),
                                         child: Padding(
-                                          padding: EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             crossAxisAlignment:
@@ -436,17 +430,17 @@ class _DashboardAdminMarketplaceWidgetState
                                             children: [
                                               Container(
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xFFEE8E4A),
+                                                  color: const Color(0xFFEE8E4A),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           8.0),
                                                   border: Border.all(
-                                                    color: Color(0xFFEEC37C),
+                                                    color: const Color(0xFFEEC37C),
                                                     width: 3.0,
                                                   ),
                                                 ),
                                                 child: Padding(
-                                                  padding: EdgeInsets.all(5.0),
+                                                  padding: const EdgeInsets.all(5.0),
                                                   child: Icon(
                                                     FFIcons.kheartEdit1,
                                                     color: FlutterFlowTheme.of(
@@ -458,7 +452,7 @@ class _DashboardAdminMarketplaceWidgetState
                                               ),
                                               Flexible(
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           5.0, 0.0, 0.0, 0.0),
                                                   child: Column(
@@ -547,12 +541,12 @@ class _DashboardAdminMarketplaceWidgetState
                                         ),
                                       ),
                                     ),
-                                  ].divide(SizedBox(width: 10.0)),
+                                  ].divide(const SizedBox(width: 10.0)),
                                 ).animateOnPageLoad(
                                     animationsMap['rowOnPageLoadAnimation2']!),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 20.0, 10.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -561,7 +555,7 @@ class _DashboardAdminMarketplaceWidgetState
                                       child: Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(
-                                          color: Color(0xFFFFE3E4),
+                                          color: const Color(0xFFFFE3E4),
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           border: Border.all(
@@ -571,7 +565,7 @@ class _DashboardAdminMarketplaceWidgetState
                                           ),
                                         ),
                                         child: Padding(
-                                          padding: EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             crossAxisAlignment:
@@ -586,12 +580,12 @@ class _DashboardAdminMarketplaceWidgetState
                                                       BorderRadius.circular(
                                                           8.0),
                                                   border: Border.all(
-                                                    color: Color(0xFFECA0A4),
+                                                    color: const Color(0xFFECA0A4),
                                                     width: 3.0,
                                                   ),
                                                 ),
                                                 child: Padding(
-                                                  padding: EdgeInsets.all(5.0),
+                                                  padding: const EdgeInsets.all(5.0),
                                                   child: Icon(
                                                     FFIcons.kpeople5,
                                                     color: FlutterFlowTheme.of(
@@ -603,7 +597,7 @@ class _DashboardAdminMarketplaceWidgetState
                                               ),
                                               Flexible(
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           5.0, 0.0, 0.0, 0.0),
                                                   child: Column(
@@ -695,7 +689,7 @@ class _DashboardAdminMarketplaceWidgetState
                                       child: Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(
-                                          color: Color(0xFFD8DCFF),
+                                          color: const Color(0xFFD8DCFF),
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           border: Border.all(
@@ -705,7 +699,7 @@ class _DashboardAdminMarketplaceWidgetState
                                           ),
                                         ),
                                         child: Padding(
-                                          padding: EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             crossAxisAlignment:
@@ -720,12 +714,12 @@ class _DashboardAdminMarketplaceWidgetState
                                                       BorderRadius.circular(
                                                           8.0),
                                                   border: Border.all(
-                                                    color: Color(0xFF94A3FF),
+                                                    color: const Color(0xFF94A3FF),
                                                     width: 3.0,
                                                   ),
                                                 ),
                                                 child: Padding(
-                                                  padding: EdgeInsets.all(5.0),
+                                                  padding: const EdgeInsets.all(5.0),
                                                   child: Icon(
                                                     FFIcons.kheartEdit1,
                                                     color: FlutterFlowTheme.of(
@@ -737,7 +731,7 @@ class _DashboardAdminMarketplaceWidgetState
                                               ),
                                               Flexible(
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           5.0, 0.0, 0.0, 0.0),
                                                   child: Column(
@@ -792,7 +786,7 @@ class _DashboardAdminMarketplaceWidgetState
                                         ),
                                       ),
                                     ),
-                                  ].divide(SizedBox(width: 10.0)),
+                                  ].divide(const SizedBox(width: 10.0)),
                                 ).animateOnPageLoad(
                                     animationsMap['rowOnPageLoadAnimation3']!),
                               ),
@@ -800,7 +794,7 @@ class _DashboardAdminMarketplaceWidgetState
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               25.0, 10.0, 25.0, 20.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -832,7 +826,7 @@ class _DashboardAdminMarketplaceWidgetState
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 0.0, 0.0),
                                       child: Text(
                                         'Orders',
@@ -876,7 +870,7 @@ class _DashboardAdminMarketplaceWidgetState
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 0.0, 0.0),
                                       child: Text(
                                         'Add Products',
@@ -909,14 +903,14 @@ class _DashboardAdminMarketplaceWidgetState
                                     builder: (alertDialogContext) {
                                       return WebViewAware(
                                         child: AlertDialog(
-                                          title: Text('Feature Coming Soon!'),
-                                          content: Text(
+                                          title: const Text('Feature Coming Soon!'),
+                                          content: const Text(
                                               'We are working out on making the app better by implementing a refined inventory management.'),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(
                                                   alertDialogContext),
-                                              child: Text('Ok'),
+                                              child: const Text('Ok'),
                                             ),
                                           ],
                                         ),
@@ -937,7 +931,7 @@ class _DashboardAdminMarketplaceWidgetState
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 0.0, 0.0),
                                       child: Text(
                                         'Inventory',
@@ -969,7 +963,7 @@ class _DashboardAdminMarketplaceWidgetState
                                   context.pushNamed(
                                     'dashboard_marketplace',
                                     extra: <String, dynamic>{
-                                      kTransitionInfoKey: TransitionInfo(
+                                      kTransitionInfoKey: const TransitionInfo(
                                         hasTransition: true,
                                         transitionType: PageTransitionType.fade,
                                         duration: Duration(milliseconds: 0),
@@ -990,7 +984,7 @@ class _DashboardAdminMarketplaceWidgetState
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 0.0, 0.0),
                                       child: Text(
                                         'Buyer Mode',
@@ -1013,13 +1007,13 @@ class _DashboardAdminMarketplaceWidgetState
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 10.0, 0.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 20.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -1057,7 +1051,7 @@ class _DashboardAdminMarketplaceWidgetState
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           20.0, 0.0, 5.0, 0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -1103,7 +1097,7 @@ class _DashboardAdminMarketplaceWidgetState
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           5.0, 0.0, 5.0, 0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -1149,7 +1143,7 @@ class _DashboardAdminMarketplaceWidgetState
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           5.0, 0.0, 20.0, 0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -1203,7 +1197,7 @@ class _DashboardAdminMarketplaceWidgetState
                               animationsMap['columnOnPageLoadAnimation']!),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 20.0, 20.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -1224,7 +1218,7 @@ class _DashboardAdminMarketplaceWidgetState
                         ),
                         Flexible(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 10.0, 0.0, 10.0, 0.0),
                             child: StreamBuilder<List<ProductsRecord>>(
                               stream: queryProductsRecord(
@@ -1253,7 +1247,7 @@ class _DashboardAdminMarketplaceWidgetState
                                 return MasonryGridView.builder(
                                   physics: const NeverScrollableScrollPhysics(),
                                   gridDelegate:
-                                      SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                      const SliverSimpleGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
                                   ),
                                   crossAxisSpacing: 20.0,

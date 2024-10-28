@@ -3,10 +3,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:provider/provider.dart';
 import 'congratulations_dialog_box_model.dart';
 export 'congratulations_dialog_box_model.dart';
 
@@ -15,7 +12,7 @@ class CongratulationsDialogBoxWidget extends StatefulWidget {
     super.key,
     String? congratsDialogTitle,
     required this.congratsDialogMeesage,
-  }) : this.congratsDialogTitle = congratsDialogTitle ?? 'Congratulations';
+  }) : congratsDialogTitle = congratsDialogTitle ?? 'Congratulations';
 
   final String congratsDialogTitle;
   final String? congratsDialogMeesage;
@@ -53,7 +50,7 @@ class _CongratulationsDialogBoxWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(20.0),
       child: Container(
         width: double.infinity,
         height: 342.0,
@@ -79,7 +76,7 @@ class _CongratulationsDialogBoxWidgetState
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -92,10 +89,10 @@ class _CongratulationsDialogBoxWidgetState
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                     child: Text(
                       valueOrDefault<String>(
-                        widget!.congratsDialogTitle,
+                        widget.congratsDialogTitle,
                         'Congratulations!',
                       ),
                       textAlign: TextAlign.center,
@@ -110,10 +107,10 @@ class _CongratulationsDialogBoxWidgetState
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                     child: Text(
                       valueOrDefault<String>(
-                        widget!.congratsDialogMeesage,
+                        widget.congratsDialogMeesage,
                         'You have succesfully applied for this organization. Kindly wait for the approval.',
                       ),
                       textAlign: TextAlign.center,
@@ -128,7 +125,7 @@ class _CongratulationsDialogBoxWidgetState
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         logFirebaseEvent(
@@ -140,10 +137,10 @@ class _CongratulationsDialogBoxWidgetState
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(

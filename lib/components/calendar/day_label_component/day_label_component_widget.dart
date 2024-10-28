@@ -1,9 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'day_label_component_model.dart';
 export 'day_label_component_model.dart';
 
@@ -49,10 +46,10 @@ class _DayLabelComponentWidgetState extends State<DayLabelComponentWidget> {
     return Container(
       width: 24.0,
       height: 24.0,
-      decoration: BoxDecoration(),
-      alignment: AlignmentDirectional(0.0, 0.0),
+      decoration: const BoxDecoration(),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Text(
-        widget!.day!,
+        widget.day!,
         style: FlutterFlowTheme.of(context).bodyMedium.override(
               fontFamily: 'Montserrat',
               color: FlutterFlowTheme.of(context).primary,

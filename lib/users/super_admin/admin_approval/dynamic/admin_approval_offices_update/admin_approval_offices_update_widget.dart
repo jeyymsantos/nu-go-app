@@ -1,6 +1,5 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
+import '/components/dialog_box/confirm_password_dialog/confirm_password_dialog_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -9,11 +8,9 @@ import '/users/super_admin/admin_approval/components/editing_of_office_approver/
 import '/users/super_admin/admin_approval/components/list_of_office_approver/list_of_office_approver_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'admin_approval_offices_update_model.dart';
@@ -54,8 +51,8 @@ class _AdminApprovalOfficesUpdateWidgetState
       logFirebaseEvent('ADMIN_APPROVAL_OFFICES_UPDATE_admin_appr');
       logFirebaseEvent('admin_approval_offices_update_update_app');
       FFAppState().signatorySet =
-          widget!.signatorySet!.toList().cast<ApprovalSignatoryStruct>();
-      FFAppState().signatoryChecker = widget!.signatorySet!
+          widget.signatorySet!.toList().cast<ApprovalSignatoryStruct>();
+      FFAppState().signatoryChecker = widget.signatorySet!
           .map((e) => e.approvalRole)
           .toList()
           .toList()
@@ -64,7 +61,7 @@ class _AdminApprovalOfficesUpdateWidgetState
     });
 
     _model.approvalSetNameTextController ??=
-        TextEditingController(text: widget!.name);
+        TextEditingController(text: widget.name);
     _model.approvalSetNameFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -147,7 +144,7 @@ class _AdminApprovalOfficesUpdateWidgetState
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,7 +152,7 @@ class _AdminApprovalOfficesUpdateWidgetState
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: TitleHeaderComponentWidget(
+                      child: const TitleHeaderComponentWidget(
                         titleText: 'Update Approval Set',
                       ),
                     ),
@@ -165,20 +162,20 @@ class _AdminApprovalOfficesUpdateWidgetState
                         autovalidateMode: AutovalidateMode.disabled,
                         child: Container(
                           height: MediaQuery.sizeOf(context).height * 1.0,
-                          decoration: BoxDecoration(),
+                          decoration: const BoxDecoration(),
                           child: SingleChildScrollView(
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 20.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 30.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -186,7 +183,7 @@ class _AdminApprovalOfficesUpdateWidgetState
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 15.0, 0.0, 0.0),
                                               child: TextFormField(
@@ -297,7 +294,7 @@ class _AdminApprovalOfficesUpdateWidgetState
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(5.0, 5.0, 0.0, 0.0),
                                               child: Text(
                                                 'This is what you will call your approval set that can be assigned to an approval module.',
@@ -320,7 +317,7 @@ class _AdminApprovalOfficesUpdateWidgetState
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 5.0),
                                         child: Text(
                                           'Approvers',
@@ -335,7 +332,7 @@ class _AdminApprovalOfficesUpdateWidgetState
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 5.0),
                                         child: Text(
                                           'To rearrange the order of the set approvers, simply hold and drag the panel to your desired position.',
@@ -356,7 +353,7 @@ class _AdminApprovalOfficesUpdateWidgetState
                                           false)
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 20.0, 0.0, 0.0),
                                           child: Text(
                                             'No approvers added yet.',
@@ -374,7 +371,7 @@ class _AdminApprovalOfficesUpdateWidgetState
                                           ),
                                         ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 20.0, 0.0, 0.0),
                                         child: Builder(
                                           builder: (context) {
@@ -395,13 +392,12 @@ class _AdminApprovalOfficesUpdateWidgetState
                                                         listOfApproversIndex];
                                                 return Container(
                                                   key: ValueKey(
-                                                      "ListView_9k9witq9" +
-                                                          '_' +
+                                                      "ListView_9k9witq9" '_' +
                                                           listOfApproversIndex
                                                               .toString()),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 5.0),
                                                     child: Container(
@@ -420,7 +416,7 @@ class _AdminApprovalOfficesUpdateWidgetState
                                                         ),
                                                       ),
                                                       child: Padding(
-                                                        padding: EdgeInsets.all(
+                                                        padding: const EdgeInsets.all(
                                                             10.0),
                                                         child: Row(
                                                           mainAxisSize:
@@ -432,7 +428,7 @@ class _AdminApprovalOfficesUpdateWidgetState
                                                             Flexible(
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             5.0,
                                                                             0.0,
@@ -490,7 +486,7 @@ class _AdminApprovalOfficesUpdateWidgetState
                                                                       .max,
                                                               children: [
                                                                 Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -634,122 +630,160 @@ class _AdminApprovalOfficesUpdateWidgetState
                                               .signatorySet
                                               .isNotEmpty) ==
                                           true)
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 15.0, 0.0, 50.0),
-                                          child: FFButtonWidget(
-                                            onPressed: () async {
-                                              logFirebaseEvent(
-                                                  'ADMIN_APPROVAL_OFFICES_UPDATE_Save_ON_TA');
-                                              logFirebaseEvent(
-                                                  'Save_validate_form');
-                                              if (_model.formKey.currentState ==
-                                                      null ||
-                                                  !_model.formKey.currentState!
-                                                      .validate()) {
-                                                return;
-                                              }
-                                              logFirebaseEvent(
-                                                  'Save_alert_dialog');
-                                              var confirmDialogResponse =
-                                                  await showDialog<bool>(
-                                                        context: context,
-                                                        builder:
-                                                            (alertDialogContext) {
-                                                          return WebViewAware(
-                                                            child: AlertDialog(
-                                                              title: Text(
-                                                                  'Update Approval Set'),
-                                                              content: Text(
-                                                                  'Are you sure you want to update this approval set?'),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext,
-                                                                          false),
-                                                                  child: Text(
-                                                                      'Cancel'),
-                                                                ),
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext,
-                                                                          true),
-                                                                  child: Text(
-                                                                      'Confirm'),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          );
-                                                        },
-                                                      ) ??
-                                                      false;
-                                              if (confirmDialogResponse) {
-                                                if ((FFAppState()
-                                                        .signatorySet
-                                                        .isNotEmpty) ==
-                                                    true) {
-                                                  logFirebaseEvent(
-                                                      'Save_backend_call');
+                                        Builder(
+                                          builder: (context) => Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 15.0, 0.0, 50.0),
+                                            child: FFButtonWidget(
+                                              onPressed: () async {
+                                                logFirebaseEvent(
+                                                    'ADMIN_APPROVAL_OFFICES_UPDATE_Save_ON_TA');
+                                                var shouldSetState = false;
+                                                logFirebaseEvent(
+                                                    'Save_validate_form');
+                                                if (_model.formKey
+                                                            .currentState ==
+                                                        null ||
+                                                    !_model
+                                                        .formKey.currentState!
+                                                        .validate()) {
+                                                  return;
+                                                }
+                                                logFirebaseEvent(
+                                                    'Save_alert_dialog');
+                                                await showDialog(
+                                                  context: context,
+                                                  builder: (dialogContext) {
+                                                    return Dialog(
+                                                      elevation: 0,
+                                                      insetPadding:
+                                                          EdgeInsets.zero,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                      child: WebViewAware(
+                                                        child: GestureDetector(
+                                                          onTap: () =>
+                                                              FocusScope.of(
+                                                                      dialogContext)
+                                                                  .unfocus(),
+                                                          child:
+                                                              const ConfirmPasswordDialogWidget(),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                ).then((value) => safeSetState(
+                                                    () =>
+                                                        _model.confirmPassword =
+                                                            value));
 
-                                                  await widget!
-                                                      .approvalSetReference!
-                                                      .update({
-                                                    ...createApprovalSetsRecordData(
-                                                      name: _model
+                                                shouldSetState = true;
+                                                if (_model.confirmPassword!) {
+                                                  if ((FFAppState()
+                                                          .signatorySet
+                                                          .isNotEmpty) ==
+                                                      true) {
+                                                    logFirebaseEvent(
+                                                        'Save_backend_call');
+
+                                                    await widget
+                                                        .approvalSetReference!
+                                                        .update({
+                                                      ...createApprovalSetsRecordData(
+                                                        name: _model
+                                                            .approvalSetNameTextController
+                                                            .text,
+                                                      ),
+                                                      ...mapToFirestore(
+                                                        {
+                                                          'signatories':
+                                                              getApprovalSignatoryListFirestoreData(
+                                                            FFAppState()
+                                                                .signatorySet,
+                                                          ),
+                                                        },
+                                                      ),
+                                                    });
+                                                    logFirebaseEvent(
+                                                        'Save_action_block');
+                                                    await action_blocks.logs(
+                                                      context,
+                                                      type: 'updated',
+                                                      module: 'approval',
+                                                      doneToName: _model
                                                           .approvalSetNameTextController
                                                           .text,
-                                                    ),
-                                                    ...mapToFirestore(
-                                                      {
-                                                        'signatories':
-                                                            getApprovalSignatoryListFirestoreData(
-                                                          FFAppState()
-                                                              .signatorySet,
-                                                        ),
+                                                    );
+                                                    logFirebaseEvent(
+                                                        'Save_alert_dialog');
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return WebViewAware(
+                                                          child: AlertDialog(
+                                                            title: const Text(
+                                                                'Approval Set Updated'),
+                                                            content: const Text(
+                                                                'Your approval set has been updated. You may now assign it to your preferred module or form.'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    const Text('Ok'),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        );
                                                       },
-                                                    ),
-                                                  });
-                                                  logFirebaseEvent(
-                                                      'Save_action_block');
-                                                  await action_blocks.logs(
-                                                    context,
-                                                    type: 'updated',
-                                                    module: 'approval',
-                                                    doneToName: _model
-                                                        .approvalSetNameTextController
-                                                        .text,
-                                                  );
-                                                  logFirebaseEvent(
-                                                      'Save_alert_dialog');
-                                                  await showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (alertDialogContext) {
-                                                      return WebViewAware(
-                                                        child: AlertDialog(
-                                                          title: Text(
-                                                              'Approval Set Updated'),
-                                                          content: Text(
-                                                              'Your approval set has been updated. You may now assign it to your preferred module or form.'),
-                                                          actions: [
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext),
-                                                              child: Text('Ok'),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      );
-                                                    },
-                                                  );
-                                                  logFirebaseEvent(
-                                                      'Save_navigate_back');
-                                                  context.safePop();
-                                                  return;
+                                                    );
+                                                    logFirebaseEvent(
+                                                        'Save_navigate_back');
+                                                    context.safePop();
+                                                    if (shouldSetState) {
+                                                      safeSetState(() {});
+                                                    }
+                                                    return;
+                                                  } else {
+                                                    logFirebaseEvent(
+                                                        'Save_alert_dialog');
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return WebViewAware(
+                                                          child: AlertDialog(
+                                                            title: const Text(
+                                                                'Approval List Needed'),
+                                                            content: const Text(
+                                                                'Please input atleast one approver to proceed.'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    const Text('Ok'),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
+                                                    if (shouldSetState) {
+                                                      safeSetState(() {});
+                                                    }
+                                                    return;
+                                                  }
                                                 } else {
                                                   logFirebaseEvent(
                                                       'Save_alert_dialog');
@@ -759,84 +793,67 @@ class _AdminApprovalOfficesUpdateWidgetState
                                                         (alertDialogContext) {
                                                       return WebViewAware(
                                                         child: AlertDialog(
-                                                          title: Text(
-                                                              'Approval List Needed'),
-                                                          content: Text(
-                                                              'Please input atleast one approver to proceed.'),
+                                                          title: const Text(
+                                                              'Approval Set Cancelled'),
+                                                          content: const Text(
+                                                              'This approval set has been cancelled.'),
                                                           actions: [
                                                             TextButton(
                                                               onPressed: () =>
                                                                   Navigator.pop(
                                                                       alertDialogContext),
-                                                              child: Text('Ok'),
+                                                              child: const Text('Ok'),
                                                             ),
                                                           ],
                                                         ),
                                                       );
                                                     },
                                                   );
+                                                  logFirebaseEvent(
+                                                      'Save_navigate_back');
+                                                  context.safePop();
+                                                  if (shouldSetState) {
+                                                    safeSetState(() {});
+                                                  }
                                                   return;
                                                 }
-                                              } else {
-                                                logFirebaseEvent(
-                                                    'Save_alert_dialog');
-                                                await showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return WebViewAware(
-                                                      child: AlertDialog(
-                                                        title: Text(
-                                                            'Approval Set Cancelled'),
-                                                        content: Text(
-                                                            'This approval set has been cancelled.'),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext),
-                                                            child: Text('Ok'),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    );
-                                                  },
-                                                );
-                                                logFirebaseEvent(
-                                                    'Save_navigate_back');
-                                                context.safePop();
-                                                return;
-                                              }
-                                            },
-                                            text: 'Update',
-                                            options: FFButtonOptions(
-                                              width: double.infinity,
-                                              height: 40.0,
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            'Montserrat',
-                                                        color: Colors.white,
-                                                        fontSize: 13.0,
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                              elevation: 3.0,
-                                              borderSide: BorderSide(
-                                                color: Colors.transparent,
-                                                width: 1.0,
+
+                                                if (shouldSetState) {
+                                                  safeSetState(() {});
+                                                }
+                                              },
+                                              text: 'Update',
+                                              options: FFButtonOptions(
+                                                width: double.infinity,
+                                                height: 40.0,
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 0.0, 24.0, 0.0),
+                                                iconPadding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Montserrat',
+                                                          color: Colors.white,
+                                                          fontSize: 13.0,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                elevation: 3.0,
+                                                borderSide: const BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
                                               ),
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
                                             ),
                                           ),
                                         ),

@@ -1,11 +1,7 @@
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'photo_viewer_model.dart';
 export 'photo_viewer_model.dart';
 
@@ -58,12 +54,12 @@ class _PhotoViewerWidgetState extends State<PhotoViewerWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
                   child: TitleHeaderComponentWidget(
-                    titleText: widget!.photoName!,
+                    titleText: widget.photoName!,
                   ),
                 ),
               ),
@@ -75,7 +71,7 @@ class _PhotoViewerWidgetState extends State<PhotoViewerWidget> {
                     fit: BoxFit.contain,
                     image: Image.network(
                       valueOrDefault<String>(
-                        widget!.photoLink,
+                        widget.photoLink,
                         'https://national-u.edu.ph/wp-content/uploads/2020/07/NU_Globe-768x994.jpg',
                       ),
                     ).image,

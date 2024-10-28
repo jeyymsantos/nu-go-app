@@ -4,17 +4,12 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'dart:math';
 import '/custom_code/widgets/index.dart' as custom_widgets;
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'org_reports_model.dart';
@@ -104,11 +99,11 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: TitleHeaderComponentWidget(
+                      child: const TitleHeaderComponentWidget(
                         titleText: 'Organization Reports',
                       ),
                     ),
@@ -119,14 +114,14 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 30.0, 0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       20.0, 0.0, 20.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -138,7 +133,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                         children: [
                                           Flexible(
                                             child: Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   -1.0, 0.0),
                                               child: Text(
                                                 'Membership',
@@ -159,7 +154,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                         ],
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 20.0, 0.0, 10.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -168,17 +163,17 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                               child: Container(
                                                 width: double.infinity,
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xFFEFFFEC),
+                                                  color: const Color(0xFFEFFFEC),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           8.0),
                                                   border: Border.all(
-                                                    color: Color(0xFF60B859),
+                                                    color: const Color(0xFF60B859),
                                                     width: 0.5,
                                                   ),
                                                 ),
                                                 child: Padding(
-                                                  padding: EdgeInsets.all(5.0),
+                                                  padding: const EdgeInsets.all(5.0),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -190,20 +185,20 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                                         decoration:
                                                             BoxDecoration(
                                                           color:
-                                                              Color(0xFF7BBA76),
+                                                              const Color(0xFF7BBA76),
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(
                                                                       8.0),
                                                           border: Border.all(
-                                                            color: Color(
+                                                            color: const Color(
                                                                 0xFFAFF0AE),
                                                             width: 3.0,
                                                           ),
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsets.all(
+                                                              const EdgeInsets.all(
                                                                   4.0),
                                                           child: Icon(
                                                             FFIcons.kuserTick,
@@ -217,7 +212,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                                       Flexible(
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       5.0,
                                                                       0.0,
@@ -278,17 +273,17 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                               child: Container(
                                                 width: double.infinity,
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xFFFFF7EC),
+                                                  color: const Color(0xFFFFF7EC),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           8.0),
                                                   border: Border.all(
-                                                    color: Color(0xFFFFBB97),
+                                                    color: const Color(0xFFFFBB97),
                                                     width: 0.5,
                                                   ),
                                                 ),
                                                 child: Padding(
-                                                  padding: EdgeInsets.all(5.0),
+                                                  padding: const EdgeInsets.all(5.0),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -300,20 +295,20 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                                         decoration:
                                                             BoxDecoration(
                                                           color:
-                                                              Color(0xFFEE8E4A),
+                                                              const Color(0xFFEE8E4A),
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(
                                                                       8.0),
                                                           border: Border.all(
-                                                            color: Color(
+                                                            color: const Color(
                                                                 0xFFEEC37C),
                                                             width: 3.0,
                                                           ),
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsets.all(
+                                                              const EdgeInsets.all(
                                                                   4.0),
                                                           child: Icon(
                                                             FFIcons.kuserAdd,
@@ -327,7 +322,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                                       Flexible(
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       5.0,
                                                                       0.0,
@@ -388,17 +383,17 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                               child: Container(
                                                 width: double.infinity,
                                                 decoration: BoxDecoration(
-                                                  color: Color(0xFFFFECEC),
+                                                  color: const Color(0xFFFFECEC),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           8.0),
                                                   border: Border.all(
-                                                    color: Color(0xFFFF9797),
+                                                    color: const Color(0xFFFF9797),
                                                     width: 0.5,
                                                   ),
                                                 ),
                                                 child: Padding(
-                                                  padding: EdgeInsets.all(5.0),
+                                                  padding: const EdgeInsets.all(5.0),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -417,14 +412,14 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                                                   .circular(
                                                                       8.0),
                                                           border: Border.all(
-                                                            color: Color(
+                                                            color: const Color(
                                                                 0xFFEE9CA0),
                                                             width: 3.0,
                                                           ),
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsets.all(
+                                                              const EdgeInsets.all(
                                                                   4.0),
                                                           child: Icon(
                                                             FFIcons.kuserRemove,
@@ -438,7 +433,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                                       Flexible(
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       5.0,
                                                                       0.0,
@@ -495,7 +490,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                                 ),
                                               ),
                                             ),
-                                          ].divide(SizedBox(width: 5.0)),
+                                          ].divide(const SizedBox(width: 5.0)),
                                         ).animateOnPageLoad(animationsMap[
                                             'rowOnPageLoadAnimation']!),
                                       ),
@@ -506,7 +501,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 30.0, 20.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -517,7 +512,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           2.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         'Growing Population',
@@ -540,13 +535,13 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                   ],
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
                                     height: 250.0,
-                                    decoration: BoxDecoration(),
-                                    child: Container(
+                                    decoration: const BoxDecoration(),
+                                    child: SizedBox(
                                       width: double.infinity,
                                       height: double.infinity,
                                       child: custom_widgets.SplineChart(
@@ -562,7 +557,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 30.0, 20.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -573,7 +568,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           2.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         'Student Active Participation',
@@ -596,13 +591,13 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                   ],
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
                                     height: 250.0,
-                                    decoration: BoxDecoration(),
-                                    child: Container(
+                                    decoration: const BoxDecoration(),
+                                    child: SizedBox(
                                       width: double.infinity,
                                       height: double.infinity,
                                       child: custom_widgets.DoughnutChart(
@@ -623,7 +618,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 30.0, 20.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -634,7 +629,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           2.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         'Event Release',
@@ -657,13 +652,13 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                   ],
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
                                     height: 250.0,
-                                    decoration: BoxDecoration(),
-                                    child: Container(
+                                    decoration: const BoxDecoration(),
+                                    child: SizedBox(
                                       width: double.infinity,
                                       height: double.infinity,
                                       child: custom_widgets.PieChart(
@@ -682,7 +677,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 30.0, 20.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -693,7 +688,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           2.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         'Organization Population',
@@ -716,13 +711,13 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                   ],
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
                                     height: 250.0,
-                                    decoration: BoxDecoration(),
-                                    child: Container(
+                                    decoration: const BoxDecoration(),
+                                    child: SizedBox(
                                       width: double.infinity,
                                       height: double.infinity,
                                       child: custom_widgets.CircularBar(
@@ -738,7 +733,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 30.0, 20.0, 30.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -749,7 +744,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           2.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         'Members Satisfaction',
@@ -772,7 +767,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                   ],
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 15.0, 0.0, 0.0),
                                   child: Text(
                                     '4.8',
@@ -816,13 +811,13 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                               letterSpacing: 0.0,
                                             ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: '363',
                                         style: TextStyle(
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: ' member\'s satisfaction',
                                         style: TextStyle(),
                                       )
@@ -836,7 +831,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 2.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -851,7 +846,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 5.0, 0.0),
                                             child: Icon(
                                               FFIcons.kfilter,
@@ -867,7 +862,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                                 FormFieldController<String>(
                                               _model.dropDownValue ??= 'All',
                                             ),
-                                            options: [
+                                            options: const [
                                               'All',
                                               'ITE211',
                                               'ITE212',
@@ -903,7 +898,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                             borderWidth: 0.5,
                                             borderRadius: 4.0,
                                             margin:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     5.0, 0.0, 3.0, 0.0),
                                             hidesUnderline: true,
                                             isOverButton: false,
@@ -916,7 +911,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 15.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -926,7 +921,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                         children: [
                                           Container(
                                             width: 100.0,
-                                            decoration: BoxDecoration(),
+                                            decoration: const BoxDecoration(),
                                             child: Text(
                                               'Excellent',
                                               style:
@@ -945,17 +940,17 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                               lineHeight: 10.0,
                                               animation: true,
                                               animateFromLastPercent: true,
-                                              progressColor: Color(0xFF7DBF75),
+                                              progressColor: const Color(0xFF7DBF75),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .lineColor,
-                                              barRadius: Radius.circular(20.0),
+                                              barRadius: const Radius.circular(20.0),
                                               padding: EdgeInsets.zero,
                                             ),
                                           ),
                                           Container(
                                             width: 40.0,
-                                            decoration: BoxDecoration(),
+                                            decoration: const BoxDecoration(),
                                             child: Text(
                                               '42',
                                               textAlign: TextAlign.end,
@@ -976,7 +971,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                         children: [
                                           Container(
                                             width: 100.0,
-                                            decoration: BoxDecoration(),
+                                            decoration: const BoxDecoration(),
                                             child: Text(
                                               'Good',
                                               style:
@@ -995,17 +990,17 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                               lineHeight: 10.0,
                                               animation: true,
                                               animateFromLastPercent: true,
-                                              progressColor: Color(0xFF36B693),
+                                              progressColor: const Color(0xFF36B693),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .lineColor,
-                                              barRadius: Radius.circular(20.0),
+                                              barRadius: const Radius.circular(20.0),
                                               padding: EdgeInsets.zero,
                                             ),
                                           ),
                                           Container(
                                             width: 40.0,
-                                            decoration: BoxDecoration(),
+                                            decoration: const BoxDecoration(),
                                             child: Text(
                                               '18',
                                               textAlign: TextAlign.end,
@@ -1026,7 +1021,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                         children: [
                                           Container(
                                             width: 100.0,
-                                            decoration: BoxDecoration(),
+                                            decoration: const BoxDecoration(),
                                             child: Text(
                                               'Average',
                                               style:
@@ -1045,17 +1040,17 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                               lineHeight: 10.0,
                                               animation: true,
                                               animateFromLastPercent: true,
-                                              progressColor: Color(0xFFE7BB62),
+                                              progressColor: const Color(0xFFE7BB62),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .lineColor,
-                                              barRadius: Radius.circular(20.0),
+                                              barRadius: const Radius.circular(20.0),
                                               padding: EdgeInsets.zero,
                                             ),
                                           ),
                                           Container(
                                             width: 40.0,
-                                            decoration: BoxDecoration(),
+                                            decoration: const BoxDecoration(),
                                             child: Text(
                                               '21',
                                               textAlign: TextAlign.end,
@@ -1076,7 +1071,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                         children: [
                                           Container(
                                             width: 100.0,
-                                            decoration: BoxDecoration(),
+                                            decoration: const BoxDecoration(),
                                             child: Text(
                                               'Avg Below',
                                               style:
@@ -1095,17 +1090,17 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                               lineHeight: 10.0,
                                               animation: true,
                                               animateFromLastPercent: true,
-                                              progressColor: Color(0xFFFF9157),
+                                              progressColor: const Color(0xFFFF9157),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .lineColor,
-                                              barRadius: Radius.circular(20.0),
+                                              barRadius: const Radius.circular(20.0),
                                               padding: EdgeInsets.zero,
                                             ),
                                           ),
                                           Container(
                                             width: 40.0,
-                                            decoration: BoxDecoration(),
+                                            decoration: const BoxDecoration(),
                                             child: Text(
                                               '12',
                                               textAlign: TextAlign.end,
@@ -1126,7 +1121,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                         children: [
                                           Container(
                                             width: 100.0,
-                                            decoration: BoxDecoration(),
+                                            decoration: const BoxDecoration(),
                                             child: Text(
                                               'Poor',
                                               style:
@@ -1145,17 +1140,17 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                               lineHeight: 10.0,
                                               animation: true,
                                               animateFromLastPercent: true,
-                                              progressColor: Color(0xFFDA6B6B),
+                                              progressColor: const Color(0xFFDA6B6B),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .lineColor,
-                                              barRadius: Radius.circular(20.0),
+                                              barRadius: const Radius.circular(20.0),
                                               padding: EdgeInsets.zero,
                                             ),
                                           ),
                                           Container(
                                             width: 40.0,
-                                            decoration: BoxDecoration(),
+                                            decoration: const BoxDecoration(),
                                             child: Text(
                                               '7',
                                               textAlign: TextAlign.end,
@@ -1171,7 +1166,7 @@ class _OrgReportsWidgetState extends State<OrgReportsWidget>
                                           ),
                                         ],
                                       ),
-                                    ].divide(SizedBox(height: 5.0)),
+                                    ].divide(const SizedBox(height: 5.0)),
                                   ),
                                 ),
                               ],

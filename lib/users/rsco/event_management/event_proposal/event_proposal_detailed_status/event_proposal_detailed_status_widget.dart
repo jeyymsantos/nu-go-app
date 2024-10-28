@@ -1,22 +1,14 @@
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/widgets/approver_circle_head/approver_circle_head_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import '/flutter_flow/random_data_util.dart' as random_data;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 import 'event_proposal_detailed_status_model.dart';
 export 'event_proposal_detailed_status_model.dart';
 
@@ -101,7 +93,7 @@ class _EventProposalDetailedStatusWidgetState
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<EventsRecord>(
-      stream: EventsRecord.getDocument(widget!.eventRef!),
+      stream: EventsRecord.getDocument(widget.eventRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -131,7 +123,7 @@ class _EventProposalDetailedStatusWidgetState
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,7 +131,7 @@ class _EventProposalDetailedStatusWidgetState
                       wrapWithModel(
                         model: _model.titleHeaderComponentModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: TitleHeaderComponentWidget(
+                        child: const TitleHeaderComponentWidget(
                           titleText: 'Proposal Tracker',
                         ),
                       ),
@@ -158,7 +150,7 @@ class _EventProposalDetailedStatusWidgetState
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.all(2.0),
+                                  padding: const EdgeInsets.all(2.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
@@ -218,7 +210,7 @@ class _EventProposalDetailedStatusWidgetState
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 10.0),
                                 child: FutureBuilder<OrganizationsRecord>(
                                   future: OrganizationsRecord.getDocumentOnce(
@@ -263,7 +255,7 @@ class _EventProposalDetailedStatusWidgetState
                                         ),
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           child: Text(
                                             columnOrganizationsRecord
                                                 .organizationName,
@@ -291,7 +283,7 @@ class _EventProposalDetailedStatusWidgetState
                           ).animateOnPageLoad(
                               animationsMap['columnOnPageLoadAnimation1']!),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 0.0),
                             child: SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
@@ -305,10 +297,10 @@ class _EventProposalDetailedStatusWidgetState
                                     children: [
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, -1.0),
+                                            const AlignmentDirectional(0.0, -1.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 9.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
@@ -349,13 +341,13 @@ class _EventProposalDetailedStatusWidgetState
                                                   ),
                                                 ),
                                                 child: Padding(
-                                                  padding: EdgeInsets.all(6.0),
+                                                  padding: const EdgeInsets.all(6.0),
                                                   child: Container(
                                                     width: 1.0,
                                                     height: 1.0,
                                                     clipBehavior:
                                                         Clip.antiAlias,
-                                                    decoration: BoxDecoration(
+                                                    decoration: const BoxDecoration(
                                                       shape: BoxShape.circle,
                                                     ),
                                                     child: Image.asset(
@@ -389,7 +381,7 @@ class _EventProposalDetailedStatusWidgetState
                                       ),
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Text(
                                           'Submitted',
                                           textAlign: TextAlign.center,
@@ -405,13 +397,13 @@ class _EventProposalDetailedStatusWidgetState
                                       ),
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Container(
                                           width: 105.0,
-                                          decoration: BoxDecoration(),
+                                          decoration: const BoxDecoration(),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 5.0),
                                             child: Text(
                                               valueOrDefault<String>(
@@ -448,7 +440,7 @@ class _EventProposalDetailedStatusWidgetState
                                   ),
                                   Container(
                                     height: 160.0,
-                                    decoration: BoxDecoration(),
+                                    decoration: const BoxDecoration(),
                                     child: Builder(
                                       builder: (context) {
                                         final approvalStatus =
@@ -586,10 +578,10 @@ class _EventProposalDetailedStatusWidgetState
                                     children: [
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, -1.0),
+                                            const AlignmentDirectional(0.0, -1.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 9.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
@@ -681,13 +673,13 @@ class _EventProposalDetailedStatusWidgetState
                                                   ),
                                                 ),
                                                 child: Padding(
-                                                  padding: EdgeInsets.all(6.0),
+                                                  padding: const EdgeInsets.all(6.0),
                                                   child: Container(
                                                     width: 1.0,
                                                     height: 1.0,
                                                     clipBehavior:
                                                         Clip.antiAlias,
-                                                    decoration: BoxDecoration(
+                                                    decoration: const BoxDecoration(
                                                       shape: BoxShape.circle,
                                                     ),
                                                     child: Image.asset(
@@ -712,7 +704,7 @@ class _EventProposalDetailedStatusWidgetState
                                       ),
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Text(
                                           valueOrDefault<String>(
                                             eventProposalDetailedStatusEventsRecord
@@ -732,10 +724,10 @@ class _EventProposalDetailedStatusWidgetState
                                       ),
                                       Container(
                                         width: 105.0,
-                                        decoration: BoxDecoration(),
+                                        decoration: const BoxDecoration(),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 5.0),
                                           child: Text(
                                             () {
@@ -792,7 +784,7 @@ class _EventProposalDetailedStatusWidgetState
                       children: [
                         StreamBuilder<List<EventApplicationRecord>>(
                           stream: queryEventApplicationRecord(
-                            parent: widget!.eventRef,
+                            parent: widget.eventRef,
                             queryBuilder: (eventApplicationRecord) =>
                                 eventApplicationRecord.orderBy('timestamp',
                                     descending: true),
@@ -827,7 +819,7 @@ class _EventProposalDetailedStatusWidgetState
                                     listViewEventApplicationRecordList[
                                         listViewIndex];
                                 return Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       20.0, 0.0, 20.0, 0.0),
                                   child: FutureBuilder<UsersRecord>(
                                     future: UsersRecord.getDocumentOnce(
@@ -904,14 +896,14 @@ class _EventProposalDetailedStatusWidgetState
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsets.all(1.0),
+                                                            const EdgeInsets.all(1.0),
                                                         child: Container(
                                                           width: 30.0,
                                                           height: 30.0,
                                                           clipBehavior:
                                                               Clip.antiAlias,
                                                           decoration:
-                                                              BoxDecoration(
+                                                              const BoxDecoration(
                                                             shape:
                                                                 BoxShape.circle,
                                                           ),
@@ -929,7 +921,7 @@ class _EventProposalDetailedStatusWidgetState
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   10.0,
                                                                   0.0,
@@ -985,7 +977,7 @@ class _EventProposalDetailedStatusWidgetState
                                                 ),
                                                 Align(
                                                   alignment:
-                                                      AlignmentDirectional(
+                                                      const AlignmentDirectional(
                                                           0.0, -1.0),
                                                   child: Text(
                                                     dateTimeFormat(
@@ -1014,10 +1006,10 @@ class _EventProposalDetailedStatusWidgetState
                                               ],
                                             ),
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         16.0, 0.0, 0.0, 0.0),
                                                 child: Container(
@@ -1025,7 +1017,7 @@ class _EventProposalDetailedStatusWidgetState
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryBackground,
-                                                    boxShadow: [
+                                                    boxShadow: const [
                                                       BoxShadow(
                                                         blurRadius: 0.0,
                                                         color:
@@ -1047,7 +1039,7 @@ class _EventProposalDetailedStatusWidgetState
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(25.0, 0.0,
                                                                 0.0, 15.0),
                                                     child: Column(
@@ -1062,11 +1054,11 @@ class _EventProposalDetailedStatusWidgetState
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   -1.0, 0.0),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         4.0,
@@ -1104,13 +1096,10 @@ class _EventProposalDetailedStatusWidgetState
                                                           children: [
                                                             if (listViewEventApplicationRecord
                                                                         .feedback !=
-                                                                    null &&
-                                                                listViewEventApplicationRecord
-                                                                        .feedback !=
                                                                     '')
                                                               Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             5.0,
@@ -1128,7 +1117,7 @@ class _EventProposalDetailedStatusWidgetState
                                                                           .start,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           5.0,
@@ -1161,7 +1150,7 @@ class _EventProposalDetailedStatusWidgetState
                                                                         child:
                                                                             Padding(
                                                                           padding:
-                                                                              EdgeInsets.all(3.0),
+                                                                              const EdgeInsets.all(3.0),
                                                                           child:
                                                                               Column(
                                                                             mainAxisSize:
@@ -1169,7 +1158,7 @@ class _EventProposalDetailedStatusWidgetState
                                                                             crossAxisAlignment:
                                                                                 CrossAxisAlignment.start,
                                                                             children: [
-                                                                              if (listViewEventApplicationRecord.feedback != null && listViewEventApplicationRecord.feedback != '')
+                                                                              if (listViewEventApplicationRecord.feedback != '')
                                                                                 Text(
                                                                                   '\"${listViewEventApplicationRecord.feedback}\"',
                                                                                   textAlign: TextAlign.justify,
@@ -1208,7 +1197,7 @@ class _EventProposalDetailedStatusWidgetState
                           },
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 0.0),
                           child: Container(
                             decoration: BoxDecoration(
@@ -1238,12 +1227,12 @@ class _EventProposalDetailedStatusWidgetState
                                             ),
                                           ),
                                           child: Padding(
-                                            padding: EdgeInsets.all(1.0),
+                                            padding: const EdgeInsets.all(1.0),
                                             child: Container(
                                               width: 30.0,
                                               height: 30.0,
                                               clipBehavior: Clip.antiAlias,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                 shape: BoxShape.circle,
                                               ),
                                               child: Image.asset(
@@ -1255,7 +1244,7 @@ class _EventProposalDetailedStatusWidgetState
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 0.0, 0.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -1298,7 +1287,7 @@ class _EventProposalDetailedStatusWidgetState
                                     ),
                                     Align(
                                       alignment:
-                                          AlignmentDirectional(0.0, -1.0),
+                                          const AlignmentDirectional(0.0, -1.0),
                                       child: Text(
                                         valueOrDefault<String>(
                                           dateTimeFormat(
@@ -1325,9 +1314,9 @@ class _EventProposalDetailedStatusWidgetState
                                   ],
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         15.0, 0.0, 0.0, 0.0),
                                     child: Container(
                                       decoration: BoxDecoration(
@@ -1339,7 +1328,7 @@ class _EventProposalDetailedStatusWidgetState
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             25.0, 0.0, 0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
@@ -1349,10 +1338,10 @@ class _EventProposalDetailedStatusWidgetState
                                               CrossAxisAlignment.start,
                                           children: [
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   -1.0, 0.0),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 5.0, 0.0, 10.0),
                                                 child: Text(

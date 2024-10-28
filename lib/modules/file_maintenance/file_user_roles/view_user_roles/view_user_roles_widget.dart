@@ -5,8 +5,6 @@ import '/components/widgets/title_header_component/title_header_component_widget
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -14,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
@@ -222,14 +219,14 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: TitleHeaderComponentWidget(
+                      child: const TitleHeaderComponentWidget(
                         titleText: 'File Maintenance',
                       ),
                     ),
@@ -241,7 +238,7 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 5.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -259,7 +256,7 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                           ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 0.0, 0.0),
                                       child: Text(
                                         'A specific role that a user can have while using the application.',
@@ -292,19 +289,18 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 10.0, 0.0),
                                 child: TextFormField(
                                   controller: _model.textController,
                                   focusNode: _model.textFieldFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.textController',
-                                    Duration(milliseconds: 200),
+                                    const Duration(milliseconds: 200),
                                     () async {
                                       logFirebaseEvent(
                                           'VIEW_USER_ROLES_TextField_c0460l10_ON_TE');
-                                      if (_model.textController.text != null &&
-                                          _model.textController.text != '') {
+                                      if (_model.textController.text != '') {
                                         logFirebaseEvent(
                                             'TextField_simple_search');
                                         safeSetState(() {
@@ -315,7 +311,7 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                                   (record) =>
                                                       TextSearchItem.fromTerms(
                                                           record,
-                                                          [record.roleName!]),
+                                                          [record.roleName]),
                                                 )
                                                 .toList(),
                                           )
@@ -323,7 +319,6 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                                   _model.textController.text)
                                               .map((r) => r.object)
                                               .toList();
-                                          ;
                                         });
                                         logFirebaseEvent(
                                             'TextField_update_app_state');
@@ -394,8 +389,6 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                               logFirebaseEvent(
                                                   'VIEW_USER_ROLES_TextField_c0460l10_ON_TE');
                                               if (_model.textController.text !=
-                                                      null &&
-                                                  _model.textController.text !=
                                                       '') {
                                                 logFirebaseEvent(
                                                     'TextField_simple_search');
@@ -408,7 +401,7 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                                               TextSearchItem
                                                                   .fromTerms(
                                                                       record, [
-                                                            record.roleName!
+                                                            record.roleName
                                                           ]),
                                                         )
                                                         .toList(),
@@ -418,7 +411,6 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                                               .text)
                                                           .map((r) => r.object)
                                                           .toList();
-                                                  ;
                                                 });
                                                 logFirebaseEvent(
                                                     'TextField_update_app_state');
@@ -435,7 +427,7 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
 
                                               safeSetState(() {});
                                             },
-                                            child: Icon(
+                                            child: const Icon(
                                               Icons.clear,
                                               size: 20.0,
                                             ),
@@ -477,7 +469,7 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                 width: 50.0,
                                 height: 50.0,
                                 clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                 ),
                                 child: Image.asset(
@@ -493,21 +485,21 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                     Expanded(
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               if (!FFAppState().searchActive)
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 50.0),
                                   child: Builder(
                                     builder: (context) {
                                       final rolesSearch =
                                           viewUserRolesRolesRecordList.toList();
                                       if (rolesSearch.isEmpty) {
-                                        return EmptyListWidget(
+                                        return const EmptyListWidget(
                                           emptyWhat: 'roles',
                                         );
                                       }
@@ -524,7 +516,7 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                               rolesSearch[rolesSearchIndex];
                                           return Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -573,7 +565,7 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                                                     child:
                                                                         Padding(
                                                                       padding:
-                                                                          EdgeInsets.all(
+                                                                          const EdgeInsets.all(
                                                                               5.0),
                                                                       child: Image
                                                                           .asset(
@@ -655,11 +647,11 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -733,7 +725,7 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                                                       extra: <String,
                                                                           dynamic>{
                                                                         kTransitionInfoKey:
-                                                                            TransitionInfo(
+                                                                            const TransitionInfo(
                                                                           hasTransition:
                                                                               true,
                                                                           transitionType:
@@ -775,11 +767,11 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -808,16 +800,16 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                                                               builder: (alertDialogContext) {
                                                                                 return WebViewAware(
                                                                                   child: AlertDialog(
-                                                                                    title: Text('Delete Role'),
-                                                                                    content: Text('Are you sure you want to delete this role?'),
+                                                                                    title: const Text('Delete Role'),
+                                                                                    content: const Text('Are you sure you want to delete this role?'),
                                                                                     actions: [
                                                                                       TextButton(
                                                                                         onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                        child: Text('Cancel'),
+                                                                                        child: const Text('Cancel'),
                                                                                       ),
                                                                                       TextButton(
                                                                                         onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                        child: Text('Confirm'),
+                                                                                        child: const Text('Confirm'),
                                                                                       ),
                                                                                     ],
                                                                                   ),
@@ -853,12 +845,12 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                                                           return WebViewAware(
                                                                             child:
                                                                                 AlertDialog(
-                                                                              title: Text('Deleted Role'),
-                                                                              content: Text('Role has been successfully deleted.'),
+                                                                              title: const Text('Deleted Role'),
+                                                                              content: const Text('Role has been successfully deleted.'),
                                                                               actions: [
                                                                                 TextButton(
                                                                                   onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: Text('Okay'),
+                                                                                  child: const Text('Okay'),
                                                                                 ),
                                                                               ],
                                                                             ),
@@ -911,7 +903,7 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                 ),
                               if (FFAppState().searchActive)
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 50.0),
                                   child: Builder(
                                     builder: (context) {
@@ -935,7 +927,7 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                               rolesSearch[rolesSearchIndex];
                                           return Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -984,7 +976,7 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                                                     child:
                                                                         Padding(
                                                                       padding:
-                                                                          EdgeInsets.all(
+                                                                          const EdgeInsets.all(
                                                                               5.0),
                                                                       child: Image
                                                                           .asset(
@@ -1066,11 +1058,11 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1144,7 +1136,7 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                                                       extra: <String,
                                                                           dynamic>{
                                                                         kTransitionInfoKey:
-                                                                            TransitionInfo(
+                                                                            const TransitionInfo(
                                                                           hasTransition:
                                                                               true,
                                                                           transitionType:
@@ -1186,11 +1178,11 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1219,16 +1211,16 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                                                               builder: (alertDialogContext) {
                                                                                 return WebViewAware(
                                                                                   child: AlertDialog(
-                                                                                    title: Text('Delete Role'),
-                                                                                    content: Text('Are you sure you want to delete this role?'),
+                                                                                    title: const Text('Delete Role'),
+                                                                                    content: const Text('Are you sure you want to delete this role?'),
                                                                                     actions: [
                                                                                       TextButton(
                                                                                         onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                        child: Text('Cancel'),
+                                                                                        child: const Text('Cancel'),
                                                                                       ),
                                                                                       TextButton(
                                                                                         onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                        child: Text('Confirm'),
+                                                                                        child: const Text('Confirm'),
                                                                                       ),
                                                                                     ],
                                                                                   ),
@@ -1264,12 +1256,12 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                                                           return WebViewAware(
                                                                             child:
                                                                                 AlertDialog(
-                                                                              title: Text('Deleted Role'),
-                                                                              content: Text('Role has been successfully deleted.'),
+                                                                              title: const Text('Deleted Role'),
+                                                                              content: const Text('Role has been successfully deleted.'),
                                                                               actions: [
                                                                                 TextButton(
                                                                                   onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: Text('Okay'),
+                                                                                  child: const Text('Okay'),
                                                                                 ),
                                                                               ],
                                                                             ),

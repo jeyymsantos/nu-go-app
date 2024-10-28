@@ -1,6 +1,4 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/dialog_box/confirm_dialog_box/confirm_dialog_box_widget.dart';
 import '/components/dialog_box/congratulations_dialog_box/congratulations_dialog_box_widget.dart';
 import '/components/dialog_box/failed_dialog_box/failed_dialog_box_widget.dart';
@@ -9,12 +7,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'bottom_sheet_update_cart_model.dart';
 export 'bottom_sheet_update_cart_model.dart';
@@ -56,7 +50,7 @@ class _BottomSheetUpdateCartWidgetState
     _model = createModel(context, () => BottomSheetUpdateCartModel());
 
     _model.quantityTextController ??=
-        TextEditingController(text: widget!.quantity?.toString());
+        TextEditingController(text: widget.quantity?.toString());
     _model.quantityFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -77,7 +71,7 @@ class _BottomSheetUpdateCartWidgetState
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(20.0),
@@ -88,7 +82,7 @@ class _BottomSheetUpdateCartWidgetState
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
               child: Container(
                 width: 80.0,
                 height: 10.0,
@@ -99,17 +93,17 @@ class _BottomSheetUpdateCartWidgetState
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 12.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 12.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 1.0, 1.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 1.0, 1.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12.0),
                       child: Image.network(
                         valueOrDefault<String>(
-                          widget!.product?.image,
+                          widget.product?.image,
                           'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FNUGo%20Logo.png?alt=media&token=c16de93e-c20d-4bd1-90f0-e3d2c07fe740',
                         ),
                         width: 70.0,
@@ -122,7 +116,7 @@ class _BottomSheetUpdateCartWidgetState
                     flex: 3,
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 4.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 4.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -130,7 +124,7 @@ class _BottomSheetUpdateCartWidgetState
                         children: [
                           Text(
                             valueOrDefault<String>(
-                              widget!.product?.name,
+                              widget.product?.name,
                               'NU Bag',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -144,7 +138,7 @@ class _BottomSheetUpdateCartWidgetState
                           Text(
                             valueOrDefault<String>(
                               formatNumber(
-                                widget!.product?.price,
+                                widget.product?.price,
                                 formatType: FormatType.decimal,
                                 decimalType: DecimalType.periodDecimal,
                                 currency: '₱',
@@ -169,7 +163,7 @@ class _BottomSheetUpdateCartWidgetState
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -178,7 +172,7 @@ class _BottomSheetUpdateCartWidgetState
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                         child: Text(
                           'Quantity',
                           style:
@@ -272,7 +266,7 @@ class _BottomSheetUpdateCartWidgetState
                               ],
                             ),
                           ),
-                        ].divide(SizedBox(width: 16.0)),
+                        ].divide(const SizedBox(width: 16.0)),
                       ),
                     ],
                   ),
@@ -281,12 +275,12 @@ class _BottomSheetUpdateCartWidgetState
             ),
             Builder(
               builder: (context) => Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 10.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 10.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     logFirebaseEvent(
                         'BOTTOM_SHEET_UPDATE_CART_UPDATE_ORDER_BT');
-                    var _shouldSetState = false;
+                    var shouldSetState = false;
                     logFirebaseEvent('Button_validate_form');
                     if (_model.formKey.currentState == null ||
                         !_model.formKey.currentState!.validate()) {
@@ -294,7 +288,7 @@ class _BottomSheetUpdateCartWidgetState
                     }
                     if (functions.convertToDouble(
                             _model.quantityTextController.text) >
-                        widget!.product!.stock.toDouble()) {
+                        widget.product!.stock.toDouble()) {
                       logFirebaseEvent('Button_alert_dialog');
                       await showDialog(
                         context: context,
@@ -303,9 +297,9 @@ class _BottomSheetUpdateCartWidgetState
                             elevation: 0,
                             insetPadding: EdgeInsets.zero,
                             backgroundColor: Colors.transparent,
-                            alignment: AlignmentDirectional(0.0, 0.0)
+                            alignment: const AlignmentDirectional(0.0, 0.0)
                                 .resolve(Directionality.of(context)),
-                            child: WebViewAware(
+                            child: const WebViewAware(
                               child: FailedDialogBoxWidget(
                                 failedDialogTitle: 'Quantity Exceeded',
                                 failedDialogMeesage:
@@ -316,7 +310,7 @@ class _BottomSheetUpdateCartWidgetState
                         },
                       );
 
-                      if (_shouldSetState) safeSetState(() {});
+                      if (shouldSetState) safeSetState(() {});
                       return;
                     } else if (functions.convertToDouble(
                             _model.quantityTextController.text) <=
@@ -329,9 +323,9 @@ class _BottomSheetUpdateCartWidgetState
                             elevation: 0,
                             insetPadding: EdgeInsets.zero,
                             backgroundColor: Colors.transparent,
-                            alignment: AlignmentDirectional(0.0, 0.0)
+                            alignment: const AlignmentDirectional(0.0, 0.0)
                                 .resolve(Directionality.of(context)),
-                            child: WebViewAware(
+                            child: const WebViewAware(
                               child: FailedDialogBoxWidget(
                                 failedDialogTitle: 'Invalid Quantity',
                                 failedDialogMeesage:
@@ -342,7 +336,7 @@ class _BottomSheetUpdateCartWidgetState
                         },
                       );
 
-                      if (_shouldSetState) safeSetState(() {});
+                      if (shouldSetState) safeSetState(() {});
                       return;
                     } else {
                       logFirebaseEvent('Button_alert_dialog');
@@ -353,9 +347,9 @@ class _BottomSheetUpdateCartWidgetState
                             elevation: 0,
                             insetPadding: EdgeInsets.zero,
                             backgroundColor: Colors.transparent,
-                            alignment: AlignmentDirectional(0.0, 0.0)
+                            alignment: const AlignmentDirectional(0.0, 0.0)
                                 .resolve(Directionality.of(context)),
-                            child: WebViewAware(
+                            child: const WebViewAware(
                               child: ConfirmDialogBoxWidget(
                                 confirmDialogTitle: 'Update Item',
                                 confirmDialogMeesage:
@@ -367,40 +361,40 @@ class _BottomSheetUpdateCartWidgetState
                       ).then((value) =>
                           safeSetState(() => _model.confirmDialog = value));
 
-                      _shouldSetState = true;
+                      shouldSetState = true;
                       if (_model.confirmDialog!) {
                         logFirebaseEvent('Button_backend_call');
 
-                        await widget!.order!.reference.update({
+                        await widget.order!.reference.update({
                           ...mapToFirestore(
                             {
                               'products': FieldValue.arrayRemove([
                                 getOrdersFirestoreData(
                                   updateOrdersStruct(
-                                    widget!.productType,
+                                    widget.productType,
                                     clearUnsetFields: false,
                                   ),
                                   true,
                                 )
                               ]),
                               'total_price':
-                                  FieldValue.increment(-(widget!.subTotal!)),
+                                  FieldValue.increment(-(widget.subTotal!)),
                               'updated_at': FieldValue.serverTimestamp(),
                             },
                           ),
                         });
                         logFirebaseEvent('Button_backend_call');
 
-                        await widget!.order!.reference.update({
+                        await widget.order!.reference.update({
                           ...mapToFirestore(
                             {
                               'products': FieldValue.arrayUnion([
                                 getOrdersFirestoreData(
                                   createOrdersStruct(
-                                    product: widget!.product?.reference,
+                                    product: widget.product?.reference,
                                     quantity: int.tryParse(
                                         _model.quantityTextController.text),
-                                    subTotal: widget!.product!.price *
+                                    subTotal: widget.product!.price *
                                         double.parse(
                                             _model.quantityTextController.text),
                                     clearUnsetFields: false,
@@ -409,7 +403,7 @@ class _BottomSheetUpdateCartWidgetState
                                 )
                               ]),
                               'total_price': FieldValue.increment(
-                                  widget!.product!.price *
+                                  widget.product!.price *
                                       double.parse(
                                           _model.quantityTextController.text)),
                               'updated_at': FieldValue.serverTimestamp(),
@@ -424,9 +418,9 @@ class _BottomSheetUpdateCartWidgetState
                               elevation: 0,
                               insetPadding: EdgeInsets.zero,
                               backgroundColor: Colors.transparent,
-                              alignment: AlignmentDirectional(0.0, 0.0)
+                              alignment: const AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
-                              child: WebViewAware(
+                              child: const WebViewAware(
                                 child: CongratulationsDialogBoxWidget(
                                   congratsDialogTitle: 'Item Updated',
                                   congratsDialogMeesage:
@@ -439,7 +433,7 @@ class _BottomSheetUpdateCartWidgetState
 
                         logFirebaseEvent('Button_navigate_back');
                         context.safePop();
-                        if (_shouldSetState) safeSetState(() {});
+                        if (shouldSetState) safeSetState(() {});
                         return;
                       } else {
                         logFirebaseEvent('Button_alert_dialog');
@@ -450,9 +444,9 @@ class _BottomSheetUpdateCartWidgetState
                               elevation: 0,
                               insetPadding: EdgeInsets.zero,
                               backgroundColor: Colors.transparent,
-                              alignment: AlignmentDirectional(0.0, 0.0)
+                              alignment: const AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
-                              child: WebViewAware(
+                              child: const WebViewAware(
                                 child: InformationDialogBoxWidget(
                                   infoDialogTitle: 'Action Cancelled',
                                   infoDialogMeesage:
@@ -465,15 +459,15 @@ class _BottomSheetUpdateCartWidgetState
 
                         logFirebaseEvent('Button_navigate_back');
                         context.safePop();
-                        if (_shouldSetState) safeSetState(() {});
+                        if (shouldSetState) safeSetState(() {});
                         return;
                       }
                     }
 
-                    if (_shouldSetState) safeSetState(() {});
+                    if (shouldSetState) safeSetState(() {});
                   },
                   text: 'Update Order',
-                  icon: Icon(
+                  icon: const Icon(
                     FFIcons.kbag,
                     size: 15.0,
                   ),
@@ -481,9 +475,9 @@ class _BottomSheetUpdateCartWidgetState
                     width: double.infinity,
                     height: 40.0,
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Montserrat',
@@ -492,7 +486,7 @@ class _BottomSheetUpdateCartWidgetState
                           letterSpacing: 0.0,
                         ),
                     elevation: 3.0,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),

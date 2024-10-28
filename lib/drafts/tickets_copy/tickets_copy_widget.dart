@@ -5,13 +5,10 @@ import '/components/widgets/user_nav_bar_component/user_nav_bar_component_widget
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:styled_divider/styled_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'tickets_copy_model.dart';
 export 'tickets_copy_model.dart';
 
@@ -90,7 +87,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
               child: Stack(
                 children: [
                   Align(
-                    alignment: AlignmentDirectional(0.0, -1.0),
+                    alignment: const AlignmentDirectional(0.0, -1.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -99,10 +96,10 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                         wrapWithModel(
                           model: _model.userHeaderComponentModel,
                           updateCallback: () => safeSetState(() {}),
-                          child: UserHeaderComponentWidget(),
+                          child: const UserHeaderComponentWidget(),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 10.0, 20.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -133,7 +130,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                         ),
                         Flexible(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 20.0, 20.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -142,7 +139,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                   child: Column(
                                     children: [
                                       Align(
-                                        alignment: Alignment(0.0, 0),
+                                        alignment: const Alignment(0.0, 0),
                                         child: FlutterFlowButtonTabBar(
                                           useToggleButtonStyle: true,
                                           labelStyle:
@@ -184,9 +181,9 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                           borderRadius: 9.0,
                                           elevation: 0.0,
                                           buttonMargin:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
-                                          tabs: [
+                                          tabs: const [
                                             Tab(
                                               text: 'Upcoming',
                                             ),
@@ -205,7 +202,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                           controller: _model.tabBarController,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 10.0, 0.0, 0.0),
                                               child: Builder(
@@ -229,7 +226,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                               upcomingTicketsIndex];
                                                       return Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -317,7 +314,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                                         snapshot
                                                                             .data!;
 
-                                                                    return Container(
+                                                                    return SizedBox(
                                                                       height:
                                                                           110.0,
                                                                       child:
@@ -336,7 +333,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                                                 children: [
                                                                                   Expanded(
                                                                                     child: Padding(
-                                                                                      padding: EdgeInsets.all(5.0),
+                                                                                      padding: const EdgeInsets.all(5.0),
                                                                                       child: Container(
                                                                                         height: 100.0,
                                                                                         decoration: BoxDecoration(
@@ -344,7 +341,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                                                           borderRadius: BorderRadius.circular(0.0),
                                                                                         ),
                                                                                         child: Padding(
-                                                                                          padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                                                                                           child: Column(
                                                                                             mainAxisSize: MainAxisSize.min,
                                                                                             mainAxisAlignment: MainAxisAlignment.center,
@@ -399,7 +396,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                                                                                 ),
                                                                                                               ),
                                                                                                               Align(
-                                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
+                                                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
                                                                                                                 child: Text(
                                                                                                                   dateTimeFormat(
                                                                                                                     "dd",
@@ -424,16 +421,16 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                                                                   ),
                                                                                                   Flexible(
                                                                                                     child: Align(
-                                                                                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                                                                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                                                                                       child: Padding(
-                                                                                                        padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
                                                                                                         child: Column(
                                                                                                           mainAxisSize: MainAxisSize.max,
                                                                                                           mainAxisAlignment: MainAxisAlignment.end,
                                                                                                           crossAxisAlignment: CrossAxisAlignment.start,
                                                                                                           children: [
                                                                                                             Align(
-                                                                                                              alignment: AlignmentDirectional(-1.0, -1.0),
+                                                                                                              alignment: const AlignmentDirectional(-1.0, -1.0),
                                                                                                               child: Text(
                                                                                                                 valueOrDefault<String>(
                                                                                                                   containerEventsRecord.eventName,
@@ -452,7 +449,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                                                                               ),
                                                                                                             ),
                                                                                                             Align(
-                                                                                                              alignment: AlignmentDirectional(-1.0, -1.0),
+                                                                                                              alignment: const AlignmentDirectional(-1.0, -1.0),
                                                                                                               child: Text(
                                                                                                                 valueOrDefault<String>(
                                                                                                                   stackOrganizationsRecord.organizationName,
@@ -475,9 +472,9 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                                                                 ],
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: AlignmentDirectional(1.0, 1.0),
+                                                                                                alignment: const AlignmentDirectional(1.0, 1.0),
                                                                                                 child: Padding(
-                                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                                                                                                   child: Container(
                                                                                                     decoration: BoxDecoration(
                                                                                                       color: () {
@@ -492,11 +489,11 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                                                                       borderRadius: BorderRadius.circular(18.0),
                                                                                                     ),
                                                                                                     child: Padding(
-                                                                                                      padding: EdgeInsetsDirectional.fromSTEB(5.0, 3.0, 5.0, 3.0),
+                                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(5.0, 3.0, 5.0, 3.0),
                                                                                                       child: Container(
-                                                                                                        decoration: BoxDecoration(),
+                                                                                                        decoration: const BoxDecoration(),
                                                                                                         child: Padding(
-                                                                                                          padding: EdgeInsets.all(4.0),
+                                                                                                          padding: const EdgeInsets.all(4.0),
                                                                                                           child: Text(
                                                                                                             upcomingTicketsItem.ticketStatus,
                                                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -573,7 +570,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                                                 false,
                                                                           ))
                                                                             Align(
-                                                                              alignment: AlignmentDirectional(0.32, -1.17),
+                                                                              alignment: const AlignmentDirectional(0.32, -1.17),
                                                                               child: Container(
                                                                                 width: 20.0,
                                                                                 height: 20.0,
@@ -598,7 +595,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                                                 false,
                                                                           ))
                                                                             Align(
-                                                                              alignment: AlignmentDirectional(0.32, 1.22),
+                                                                              alignment: const AlignmentDirectional(0.32, 1.22),
                                                                               child: Container(
                                                                                 width: 20.0,
                                                                                 height: 20.0,
@@ -619,7 +616,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                                                 false,
                                                                           ))
                                                                             Align(
-                                                                              alignment: AlignmentDirectional(0.77, -1.22),
+                                                                              alignment: const AlignmentDirectional(0.77, -1.22),
                                                                               child: Container(
                                                                                 width: 20.0,
                                                                                 height: 20.0,
@@ -640,7 +637,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                                                 false,
                                                                           ))
                                                                             Align(
-                                                                              alignment: AlignmentDirectional(0.77, 1.22),
+                                                                              alignment: const AlignmentDirectional(0.77, 1.22),
                                                                               child: Container(
                                                                                 width: 20.0,
                                                                                 height: 20.0,
@@ -670,7 +667,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 10.0, 0.0, 0.0),
                                               child: ListView(
@@ -695,7 +692,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                           width: 0.5,
                                                         ),
                                                       ),
-                                                      child: Container(
+                                                      child: SizedBox(
                                                         height: 100.0,
                                                         child: Stack(
                                                           children: [
@@ -721,7 +718,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                                       child:
                                                                           Padding(
                                                                         padding:
-                                                                            EdgeInsets.all(5.0),
+                                                                            const EdgeInsets.all(5.0),
                                                                         child:
                                                                             Container(
                                                                           height:
@@ -735,7 +732,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                                           ),
                                                                           child:
                                                                               Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
                                                                                 10.0,
                                                                                 10.0,
                                                                                 10.0,
@@ -777,16 +774,16 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                                                     ),
                                                                                     Flexible(
                                                                                       child: Align(
-                                                                                        alignment: AlignmentDirectional(0.0, 0.0),
+                                                                                        alignment: const AlignmentDirectional(0.0, 0.0),
                                                                                         child: Padding(
-                                                                                          padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
                                                                                           child: Column(
                                                                                             mainAxisSize: MainAxisSize.max,
                                                                                             mainAxisAlignment: MainAxisAlignment.end,
                                                                                             crossAxisAlignment: CrossAxisAlignment.start,
                                                                                             children: [
                                                                                               Align(
-                                                                                                alignment: AlignmentDirectional(-1.0, -1.0),
+                                                                                                alignment: const AlignmentDirectional(-1.0, -1.0),
                                                                                                 child: Text(
                                                                                                   'Kasadyahan 2024 Univers Week',
                                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -799,7 +796,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: AlignmentDirectional(-1.0, -1.0),
+                                                                                                alignment: const AlignmentDirectional(-1.0, -1.0),
                                                                                                 child: Text(
                                                                                                   '8 Waves Resort | 8:00AM',
                                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -812,7 +809,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                                                                 ),
                                                                                               ),
                                                                                               Align(
-                                                                                                alignment: AlignmentDirectional(-1.0, -1.0),
+                                                                                                alignment: const AlignmentDirectional(-1.0, -1.0),
                                                                                                 child: Text(
                                                                                                   '3 weeks to go',
                                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -870,7 +867,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                                               BorderRadius.circular(0.0),
                                                                         ),
                                                                         child:
-                                                                            Container(
+                                                                            const SizedBox(
                                                                           width:
                                                                               200.0,
                                                                           height:
@@ -900,7 +897,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                             ))
                                                               Align(
                                                                 alignment:
-                                                                    AlignmentDirectional(
+                                                                    const AlignmentDirectional(
                                                                         0.32,
                                                                         -1.17),
                                                                 child:
@@ -935,7 +932,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                             ))
                                                               Align(
                                                                 alignment:
-                                                                    AlignmentDirectional(
+                                                                    const AlignmentDirectional(
                                                                         0.32,
                                                                         1.22),
                                                                 child:
@@ -967,7 +964,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                             ))
                                                               Align(
                                                                 alignment:
-                                                                    AlignmentDirectional(
+                                                                    const AlignmentDirectional(
                                                                         0.77,
                                                                         -1.22),
                                                                 child:
@@ -999,7 +996,7 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                                                             ))
                                                               Align(
                                                                 alignment:
-                                                                    AlignmentDirectional(
+                                                                    const AlignmentDirectional(
                                                                         0.77,
                                                                         1.22),
                                                                 child:
@@ -1047,11 +1044,11 @@ class _TicketsCopyWidgetState extends State<TicketsCopyWidget>
                     ),
                   ),
                   Align(
-                    alignment: AlignmentDirectional(0.0, 1.0),
+                    alignment: const AlignmentDirectional(0.0, 1.0),
                     child: wrapWithModel(
                       model: _model.userNavBarComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: UserNavBarComponentWidget(
+                      child: const UserNavBarComponentWidget(
                         selectedPageIndex: 3,
                       ),
                     ),

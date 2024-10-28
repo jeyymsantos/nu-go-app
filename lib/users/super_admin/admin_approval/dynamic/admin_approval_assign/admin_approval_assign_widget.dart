@@ -2,11 +2,8 @@ import '/backend/backend.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'admin_approval_assign_model.dart';
 export 'admin_approval_assign_model.dart';
@@ -75,9 +72,9 @@ class _AdminApprovalAssignWidgetState extends State<AdminApprovalAssignWidget> {
             body: SafeArea(
               top: true,
               child: Align(
-                alignment: AlignmentDirectional(0.0, -1.0),
+                alignment: const AlignmentDirectional(0.0, -1.0),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -86,7 +83,7 @@ class _AdminApprovalAssignWidgetState extends State<AdminApprovalAssignWidget> {
                       wrapWithModel(
                         model: _model.titleHeaderComponentModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: TitleHeaderComponentWidget(
+                        child: const TitleHeaderComponentWidget(
                           titleText: 'Assign Approval Set',
                         ),
                       ),
@@ -94,7 +91,7 @@ class _AdminApprovalAssignWidgetState extends State<AdminApprovalAssignWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 2.0, 0.0, 0.0),
                             child: SingleChildScrollView(
                               child: Column(
@@ -102,7 +99,7 @@ class _AdminApprovalAssignWidgetState extends State<AdminApprovalAssignWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 5.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
@@ -113,10 +110,10 @@ class _AdminApprovalAssignWidgetState extends State<AdminApprovalAssignWidget> {
                                       children: [
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
+                                              const AlignmentDirectional(-1.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 5.0),
                                             child: Text(
                                               'Organizations',
@@ -173,7 +170,7 @@ class _AdminApprovalAssignWidgetState extends State<AdminApprovalAssignWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 20.0,
                                                                 10.0,

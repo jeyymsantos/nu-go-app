@@ -2,14 +2,10 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'auth_redirect_model.dart';
@@ -63,7 +59,7 @@ class _AuthRedirectWidgetState extends State<AuthRedirectWidget> {
             context.goNamed(
               'super_admin_dashboard',
               extra: <String, dynamic>{
-                kTransitionInfoKey: TransitionInfo(
+                kTransitionInfoKey: const TransitionInfo(
                   hasTransition: true,
                   transitionType: PageTransitionType.fade,
                   duration: Duration(milliseconds: 0),
@@ -79,7 +75,7 @@ class _AuthRedirectWidgetState extends State<AuthRedirectWidget> {
             context.pushNamed(
               'auth_verify_role',
               extra: <String, dynamic>{
-                kTransitionInfoKey: TransitionInfo(
+                kTransitionInfoKey: const TransitionInfo(
                   hasTransition: true,
                   transitionType: PageTransitionType.fade,
                   duration: Duration(milliseconds: 0),
@@ -98,7 +94,7 @@ class _AuthRedirectWidgetState extends State<AuthRedirectWidget> {
               context.goNamed(
                 'auth_ongoing_maintenance',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: TransitionInfo(
+                  kTransitionInfoKey: const TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -113,7 +109,7 @@ class _AuthRedirectWidgetState extends State<AuthRedirectWidget> {
               context.goNamed(
                 'dashboard',
                 extra: <String, dynamic>{
-                  kTransitionInfoKey: TransitionInfo(
+                  kTransitionInfoKey: const TransitionInfo(
                     hasTransition: true,
                     transitionType: PageTransitionType.fade,
                     duration: Duration(milliseconds: 0),
@@ -130,7 +126,7 @@ class _AuthRedirectWidgetState extends State<AuthRedirectWidget> {
           context.goNamed(
             'onboard_one',
             extra: <String, dynamic>{
-              kTransitionInfoKey: TransitionInfo(
+              kTransitionInfoKey: const TransitionInfo(
                 hasTransition: true,
                 transitionType: PageTransitionType.fade,
                 duration: Duration(milliseconds: 0),
@@ -146,7 +142,7 @@ class _AuthRedirectWidgetState extends State<AuthRedirectWidget> {
         context.goNamed(
           'auth_verify_email',
           extra: <String, dynamic>{
-            kTransitionInfoKey: TransitionInfo(
+            kTransitionInfoKey: const TransitionInfo(
               hasTransition: true,
               transitionType: PageTransitionType.fade,
               duration: Duration(milliseconds: 0),
@@ -200,9 +196,9 @@ class _AuthRedirectWidgetState extends State<AuthRedirectWidget> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             0.0, 0.0, 0.0, 100.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
@@ -216,7 +212,7 @@ class _AuthRedirectWidgetState extends State<AuthRedirectWidget> {
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0.0, 1.0),
+                      alignment: const AlignmentDirectional(0.0, 1.0),
                       child: Lottie.asset(
                         'assets/jsons/rOCKET.json',
                         width: 1060.0,

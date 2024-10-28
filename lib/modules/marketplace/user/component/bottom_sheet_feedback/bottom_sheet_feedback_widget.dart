@@ -1,13 +1,9 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'bottom_sheet_feedback_model.dart';
 export 'bottom_sheet_feedback_model.dart';
 
@@ -51,7 +47,7 @@ class _BottomSheetFeedbackWidgetState extends State<BottomSheetFeedbackWidget> {
     return Container(
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
           topLeft: Radius.circular(20.0),
@@ -62,7 +58,7 @@ class _BottomSheetFeedbackWidgetState extends State<BottomSheetFeedbackWidget> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
             child: Container(
               width: 80.0,
               height: 10.0,
@@ -73,7 +69,7 @@ class _BottomSheetFeedbackWidgetState extends State<BottomSheetFeedbackWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
             child: Text(
               'Happy with your last Purchase?',
               style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -85,7 +81,7 @@ class _BottomSheetFeedbackWidgetState extends State<BottomSheetFeedbackWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
             child: RatingBar.builder(
               onRatingUpdate: (newValue) =>
                   safeSetState(() => _model.ratingBarValue = newValue),
@@ -102,12 +98,12 @@ class _BottomSheetFeedbackWidgetState extends State<BottomSheetFeedbackWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(20.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 1.0, 1.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 1.0, 1.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.network(
@@ -121,7 +117,7 @@ class _BottomSheetFeedbackWidgetState extends State<BottomSheetFeedbackWidget> {
                 Expanded(
                   flex: 3,
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 4.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 4.0, 0.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -137,12 +133,12 @@ class _BottomSheetFeedbackWidgetState extends State<BottomSheetFeedbackWidget> {
                                   ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 4.0, 0.0, 0.0),
                           child: RichText(
                             textScaler: MediaQuery.of(context).textScaler,
                             text: TextSpan(
-                              children: [
+                              children: const [
                                 TextSpan(
                                   text: 'Size: ',
                                   style: TextStyle(),
@@ -166,7 +162,7 @@ class _BottomSheetFeedbackWidgetState extends State<BottomSheetFeedbackWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
                   child: Text(
                     'Php299.00',
                     textAlign: TextAlign.end,
@@ -181,7 +177,7 @@ class _BottomSheetFeedbackWidgetState extends State<BottomSheetFeedbackWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -190,7 +186,7 @@ class _BottomSheetFeedbackWidgetState extends State<BottomSheetFeedbackWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                       child: Text(
                         'Feedback',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -283,7 +279,7 @@ class _BottomSheetFeedbackWidgetState extends State<BottomSheetFeedbackWidget> {
                             ],
                           ),
                         ),
-                      ].divide(SizedBox(width: 16.0)),
+                      ].divide(const SizedBox(width: 16.0)),
                     ),
                   ],
                 ),
@@ -291,7 +287,7 @@ class _BottomSheetFeedbackWidgetState extends State<BottomSheetFeedbackWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -300,7 +296,7 @@ class _BottomSheetFeedbackWidgetState extends State<BottomSheetFeedbackWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                       child: Text(
                         'Add Image',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -326,7 +322,7 @@ class _BottomSheetFeedbackWidgetState extends State<BottomSheetFeedbackWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -348,7 +344,7 @@ class _BottomSheetFeedbackWidgetState extends State<BottomSheetFeedbackWidget> {
                               fit: BoxFit.cover,
                             ),
                           ),
-                        ].divide(SizedBox(width: 10.0)),
+                        ].divide(const SizedBox(width: 10.0)),
                       ),
                     ),
                   ],
@@ -357,21 +353,21 @@ class _BottomSheetFeedbackWidgetState extends State<BottomSheetFeedbackWidget> {
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 10.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 10.0),
             child: FFButtonWidget(
               onPressed: () {
                 print('Button pressed ...');
               },
               text: 'Send Feedback',
-              icon: Icon(
+              icon: const Icon(
                 FFIcons.kstar14,
                 size: 15.0,
               ),
               options: FFButtonOptions(
                 width: double.infinity,
                 height: 40.0,
-                padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).primary,
                 textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                       fontFamily: 'Montserrat',
@@ -380,7 +376,7 @@ class _BottomSheetFeedbackWidgetState extends State<BottomSheetFeedbackWidget> {
                       letterSpacing: 0.0,
                     ),
                 elevation: 3.0,
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.transparent,
                   width: 1.0,
                 ),

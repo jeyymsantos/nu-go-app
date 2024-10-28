@@ -8,20 +8,14 @@ import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/users/general/menu/profile/change_bio/change_bio_widget.dart';
-import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'profile_model.dart';
@@ -89,11 +83,11 @@ class _ProfileWidgetState extends State<ProfileWidget>
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: TitleHeaderComponentWidget(
+                  child: const TitleHeaderComponentWidget(
                     titleText: 'Personal Information',
                   ),
                 ),
@@ -111,7 +105,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                             Container(
                               width: 100.0,
                               height: 100.0,
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: Stack(
                                 children: [
                                   ClipOval(
@@ -127,12 +121,12 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(4.0),
+                                        padding: const EdgeInsets.all(4.0),
                                         child: ClipOval(
                                           child: Container(
                                             width: 45.0,
                                             height: 45.0,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
                                             ),
                                             child: AuthUserStreamWidget(
@@ -198,11 +192,11 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     ),
                                   ),
                                   if (!valueOrDefault<bool>(
-                                    currentUserDocument?.settings?.isVerified,
+                                    currentUserDocument?.settings.isVerified,
                                     true,
                                   ))
                                     Align(
-                                      alignment: AlignmentDirectional(1.0, 1.0),
+                                      alignment: const AlignmentDirectional(1.0, 1.0),
                                       child: AuthUserStreamWidget(
                                         builder: (context) =>
                                             FlutterFlowIconButton(
@@ -294,9 +288,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               }
                                             }
 
-                                            if (_model.uploadedFileUrl !=
-                                                    null &&
-                                                _model.uploadedFileUrl != '') {
+                                            if (_model.uploadedFileUrl != '') {
                                               logFirebaseEvent(
                                                   'IconButton_backend_call');
 
@@ -320,16 +312,16 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                 builder: (alertDialogContext) {
                                                   return WebViewAware(
                                                     child: AlertDialog(
-                                                      title: Text(
+                                                      title: const Text(
                                                           'Profile Picture'),
-                                                      content: Text(
+                                                      content: const Text(
                                                           'Your profile picture has been updated!'),
                                                       actions: [
                                                         TextButton(
                                                           onPressed: () =>
                                                               Navigator.pop(
                                                                   alertDialogContext),
-                                                          child: Text('Ok'),
+                                                          child: const Text('Ok'),
                                                         ),
                                                       ],
                                                     ),
@@ -349,7 +341,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -364,7 +356,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           AuthUserStreamWidget(
                                             builder: (context) => Text(
                                               valueOrDefault<String>(
-                                                '${currentUserDocument?.student?.honorifics != null && currentUserDocument?.student?.honorifics != '' ? '${currentUserDocument?.student?.honorifics} ' : ''}${currentUserDocument?.name?.firstName} ${currentUserDocument?.name?.middleName} ${currentUserDocument?.name?.lastName} ${currentUserDocument?.name?.suffixName}',
+                                                '${currentUserDocument?.student.honorifics != null && currentUserDocument?.student.honorifics != '' ? '${currentUserDocument?.student.honorifics} ' : ''}${currentUserDocument?.name.firstName} ${currentUserDocument?.name.middleName} ${currentUserDocument?.name.lastName} ${currentUserDocument?.name.suffixName}',
                                                 'User Name',
                                               ),
                                               textAlign: TextAlign.center,
@@ -382,7 +374,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           Flexible(
                                             child: AlignedTooltip(
                                               content: Padding(
-                                                padding: EdgeInsets.all(4.0),
+                                                padding: const EdgeInsets.all(4.0),
                                                 child: Text(
                                                   'Profile Details have been already verified.',
                                                   style: FlutterFlowTheme.of(
@@ -407,19 +399,19 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               tailBaseWidth: 24.0,
                                               tailLength: 12.0,
                                               waitDuration:
-                                                  Duration(milliseconds: 100),
+                                                  const Duration(milliseconds: 100),
                                               showDuration:
-                                                  Duration(milliseconds: 1500),
+                                                  const Duration(milliseconds: 1500),
                                               triggerMode:
                                                   TooltipTriggerMode.tap,
                                               child: Visibility(
                                                 visible: valueOrDefault<bool>(
                                                   currentUserDocument
-                                                      ?.settings?.isVerified,
+                                                      ?.settings.isVerified,
                                                   false,
                                                 ),
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           2.0, 0.0, 0.0, 0.0),
                                                   child: AuthUserStreamWidget(
@@ -457,7 +449,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             20.0, 10.0, 20.0, 0.0),
                                         child: AuthUserStreamWidget(
                                           builder: (context) => Text(
@@ -483,7 +475,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             20.0, 10.0, 20.0, 0.0),
                                         child: InkWell(
                                           splashColor: Colors.transparent,
@@ -551,7 +543,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 10.0, 20.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -569,7 +561,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 6.0, 0.0, 6.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -585,7 +577,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         builder: (context, snapshot) {
                                           // Customize what your widget looks like when it's loading.
                                           if (!snapshot.hasData) {
-                                            return Center(
+                                            return const Center(
                                               child: SizedBox(
                                                 width: 26.0,
                                                 height: 26.0,
@@ -645,67 +637,62 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 6.0, 0.0, 6.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Text(
-                                        '0',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Montserrat',
-                                              fontSize: 21.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
+                                      FutureBuilder<int>(
+                                        future: queryEventAttendeesRecordCount(
+                                          queryBuilder:
+                                              (eventAttendeesRecord) =>
+                                                  eventAttendeesRecord
+                                                      .where(
+                                                        'ticket_user',
+                                                        isEqualTo:
+                                                            currentUserReference,
+                                                      )
+                                                      .where(
+                                                        'ticket_status',
+                                                        isEqualTo: 'Approved',
+                                                      ),
+                                        ),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child: SpinKitChasingDots(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  size: 50.0,
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          int textCount = snapshot.data!;
+
+                                          return Text(
+                                            valueOrDefault<String>(
+                                              textCount.toString(),
+                                              '0',
                                             ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Montserrat',
+                                                  fontSize: 21.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          );
+                                        },
                                       ),
                                       Text(
                                         'Joined Events',
-                                        textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Montserrat',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              fontSize: 9.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  width: 1.0,
-                                  height: 40.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 6.0, 0.0, 6.0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        '0',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Montserrat',
-                                              fontSize: 21.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                      ),
-                                      Text(
-                                        'GO Coins',
                                         textAlign: TextAlign.center,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
@@ -737,13 +724,13 @@ class _ProfileWidgetState extends State<ProfileWidget>
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             AlignedTooltip(
                               content: Padding(
-                                padding: EdgeInsets.all(4.0),
+                                padding: const EdgeInsets.all(4.0),
                                 child: Text(
                                   'Make sure that you have your ID with you.',
                                   style: FlutterFlowTheme.of(context)
@@ -762,15 +749,12 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               elevation: 4.0,
                               tailBaseWidth: 24.0,
                               tailLength: 12.0,
-                              waitDuration: Duration(milliseconds: 100),
-                              showDuration: Duration(milliseconds: 1500),
+                              waitDuration: const Duration(milliseconds: 100),
+                              showDuration: const Duration(milliseconds: 1500),
                               triggerMode: TooltipTriggerMode.longPress,
                               child: Visibility(
                                 visible: valueOrDefault<bool>(
-                                  valueOrDefault(currentUserDocument?.nfcTag,
-                                              '') ==
-                                          null ||
-                                      valueOrDefault(
+                                  valueOrDefault(
                                               currentUserDocument?.nfcTag,
                                               '') ==
                                           '',
@@ -797,7 +781,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                             BorderRadius.circular(24.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -805,7 +789,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Text(
                                                 'Setup your ID',
@@ -841,11 +825,11 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   10.0, 0.0, 0.0, 0.0),
                               child: AlignedTooltip(
                                 content: Padding(
-                                  padding: EdgeInsets.all(4.0),
+                                  padding: const EdgeInsets.all(4.0),
                                   child: Text(
                                     'Make sure that you have your ID with you.',
                                     style: FlutterFlowTheme.of(context)
@@ -864,15 +848,11 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                 elevation: 4.0,
                                 tailBaseWidth: 24.0,
                                 tailLength: 12.0,
-                                waitDuration: Duration(milliseconds: 100),
-                                showDuration: Duration(milliseconds: 1500),
+                                waitDuration: const Duration(milliseconds: 100),
+                                showDuration: const Duration(milliseconds: 1500),
                                 triggerMode: TooltipTriggerMode.longPress,
                                 child: Visibility(
                                   visible: valueOrDefault(
-                                              currentUserDocument?.nfcTag,
-                                              '') !=
-                                          null &&
-                                      valueOrDefault(
                                               currentUserDocument?.nfcTag,
                                               '') !=
                                           '',
@@ -904,7 +884,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                               }.withoutNulls,
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
-                                                    TransitionInfo(
+                                                    const TransitionInfo(
                                                   hasTransition: true,
                                                   transitionType:
                                                       PageTransitionType.fade,
@@ -927,7 +907,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   backgroundColor:
                                                       Colors.transparent,
                                                   alignment:
-                                                      AlignmentDirectional(
+                                                      const AlignmentDirectional(
                                                               0.0, 0.0)
                                                           .resolve(
                                                               Directionality.of(
@@ -939,7 +919,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                   dialogContext)
                                                               .unfocus(),
                                                       child:
-                                                          InformationDialogBoxWidget(
+                                                          const InformationDialogBoxWidget(
                                                         infoDialogTitle:
                                                             'Unverified Account',
                                                         infoDialogMeesage:
@@ -963,7 +943,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           ),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 5.0, 10.0, 5.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -971,7 +951,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 5.0, 0.0),
                                                   child: Text(
@@ -1013,7 +993,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 10.0, 20.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -1021,9 +1001,9 @@ class _ProfileWidgetState extends State<ProfileWidget>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Align(
-                              alignment: AlignmentDirectional(-1.0, 0.0),
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 15.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -1060,9 +1040,9 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               ),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(-1.0, 0.0),
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 15.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -1100,7 +1080,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                         AlignedTooltip(
                                           content: Padding(
-                                            padding: EdgeInsets.all(4.0),
+                                            padding: const EdgeInsets.all(4.0),
                                             child: Text(
                                               'You are verified!',
                                               style:
@@ -1126,9 +1106,9 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           tailBaseWidth: 24.0,
                                           tailLength: 12.0,
                                           waitDuration:
-                                              Duration(milliseconds: 100),
+                                              const Duration(milliseconds: 100),
                                           showDuration:
-                                              Duration(milliseconds: 1500),
+                                              const Duration(milliseconds: 1500),
                                           triggerMode: TooltipTriggerMode.tap,
                                           child: Visibility(
                                             visible: valueOrDefault<bool>(
@@ -1136,16 +1116,11 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                           currentUserDocument
                                                               ?.nfcTag,
                                                           '') !=
-                                                      null &&
-                                                  valueOrDefault(
-                                                          currentUserDocument
-                                                              ?.nfcTag,
-                                                          '') !=
                                                       '',
                                               false,
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(5.0, 0.0, 0.0, 0.0),
                                               child: AuthUserStreamWidget(
                                                 builder: (context) => Icon(
@@ -1178,9 +1153,9 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         currentUserDocument?.role, '') ==
                                     'Program Chair'))
                               Align(
-                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 15.0),
                                   child: AuthUserStreamWidget(
                                     builder: (context) => Column(
@@ -1209,7 +1184,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           builder: (context, snapshot) {
                                             // Customize what your widget looks like when it's loading.
                                             if (!snapshot.hasData) {
-                                              return Center(
+                                              return const Center(
                                                 child: SizedBox(
                                                   width: 16.0,
                                                   height: 16.0,
@@ -1264,7 +1239,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         currentUserDocument?.role, '') ==
                                     'Program Chair'))
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 10.0),
                                 child: AuthUserStreamWidget(
                                   builder: (context) => Column(
@@ -1287,7 +1262,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                       ),
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                            const AlignmentDirectional(-1.0, 0.0),
                                         child: FutureBuilder<SchoolsRecord>(
                                           future: SchoolsRecord.getDocumentOnce(
                                               currentUserDocument!
@@ -1295,7 +1270,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                           builder: (context, snapshot) {
                                             // Customize what your widget looks like when it's loading.
                                             if (!snapshot.hasData) {
-                                              return Center(
+                                              return const Center(
                                                 child: SizedBox(
                                                   width: 16.0,
                                                   height: 16.0,
@@ -1335,9 +1310,9 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                 ),
                               ),
                             Align(
-                              alignment: AlignmentDirectional(-1.0, 0.0),
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 10.0),
                                 child: Text(
                                   'Basic Information',
@@ -1352,7 +1327,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 15.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
@@ -1371,7 +1346,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                   ),
                                   Align(
-                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    alignment: const AlignmentDirectional(-1.0, 0.0),
                                     child: AuthUserStreamWidget(
                                       builder: (context) => Text(
                                         valueOrDefault(
@@ -1392,7 +1367,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 15.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -1411,7 +1386,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                   ),
                                   Align(
-                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    alignment: const AlignmentDirectional(-1.0, 0.0),
                                     child: AuthUserStreamWidget(
                                       builder: (context) => Text(
                                         dateTimeFormat(
@@ -1436,7 +1411,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 15.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
@@ -1455,10 +1430,10 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                         ),
                                   ),
                                   Align(
-                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    alignment: const AlignmentDirectional(-1.0, 0.0),
                                     child: AuthUserStreamWidget(
                                       builder: (context) => Text(
-                                        '${currentUserDocument?.address?.houseNumber}, ${currentUserDocument?.address?.street}, ${FFAppState().address.barangay}, ${FFAppState().address.city}, ${FFAppState().address.province}',
+                                        '${currentUserDocument?.address.houseNumber}, ${currentUserDocument?.address.street}, ${FFAppState().address.barangay}, ${FFAppState().address.city}, ${FFAppState().address.province}',
                                         textAlign: TextAlign.start,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
@@ -1478,11 +1453,11 @@ class _ProfileWidgetState extends State<ProfileWidget>
                         ),
                       ),
                       if (valueOrDefault<bool>(
-                        currentUserDocument?.settings?.isVerified,
+                        currentUserDocument?.settings.isVerified,
                         true,
                       ))
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 30.0, 0.0, 50.0),
                           child: AuthUserStreamWidget(
                             builder: (context) => Text(

@@ -1,9 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'card_with_user_photo_description_model.dart';
 export 'card_with_user_photo_description_model.dart';
 
@@ -56,7 +53,7 @@ class _CardWithUserPhotoDescriptionWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -72,7 +69,7 @@ class _CardWithUserPhotoDescriptionWidgetState
                 ),
               ),
               child: Padding(
-                padding: EdgeInsets.all(5.0),
+                padding: const EdgeInsets.all(5.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -81,22 +78,22 @@ class _CardWithUserPhotoDescriptionWidgetState
                     Flexible(
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Padding(
-                              padding: EdgeInsets.all(5.0),
+                              padding: const EdgeInsets.all(5.0),
                               child: Container(
                                 width: 60.0,
                                 height: 60.0,
                                 clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                 ),
                                 child: Image.network(
                                   valueOrDefault<String>(
-                                    widget!.img,
+                                    widget.img,
                                     'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png',
                                   ),
                                   fit: BoxFit.contain,
@@ -111,7 +108,7 @@ class _CardWithUserPhotoDescriptionWidgetState
                                 children: [
                                   Text(
                                     valueOrDefault<String>(
-                                      widget!.userName,
+                                      widget.userName,
                                       'Hello',
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -129,7 +126,7 @@ class _CardWithUserPhotoDescriptionWidgetState
                                       Text(
                                         dateTimeFormat(
                                           "relative",
-                                          widget!.datetime,
+                                          widget.datetime,
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
                                         ),
@@ -143,14 +140,14 @@ class _CardWithUserPhotoDescriptionWidgetState
                                             ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 0.0, 0.0),
                                         child: Icon(
                                           Icons.circle,
                                           color: valueOrDefault<Color>(
-                                            (widget!.status == null ||
-                                                        widget!.status == '') ||
-                                                    (widget!.status ==
+                                            (widget.status == null ||
+                                                        widget.status == '') ||
+                                                    (widget.status ==
                                                         'Pending')
                                                 ? FlutterFlowTheme.of(context)
                                                     .warning
@@ -165,11 +162,11 @@ class _CardWithUserPhotoDescriptionWidgetState
                                     ],
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
-                                        widget!.type,
+                                        widget.type,
                                         'Type',
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -193,9 +190,9 @@ class _CardWithUserPhotoDescriptionWidgetState
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 10.0, 0.0),
                             child: Icon(
                               Icons.navigate_next,

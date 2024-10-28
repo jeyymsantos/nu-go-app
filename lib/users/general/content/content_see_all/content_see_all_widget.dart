@@ -2,15 +2,11 @@ import '/backend/backend.dart';
 import '/components/widgets/search_not_found_list/search_not_found_list_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'content_see_all_model.dart';
 export 'content_see_all_model.dart';
@@ -89,7 +85,7 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 15.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 15.0, 20.0, 0.0),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -103,13 +99,13 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
                                 FlutterFlowTheme.of(context).primaryBackground,
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 10.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 10.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -148,7 +144,7 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
                                       focusNode: _model.textFieldFocusNode,
                                       onChanged: (_) => EasyDebounce.debounce(
                                         '_model.textController',
-                                        Duration(milliseconds: 2000),
+                                        const Duration(milliseconds: 2000),
                                         () async {
                                           logFirebaseEvent(
                                               'CONTENT_SEE_ALL_TextField_z960czqv_ON_TE');
@@ -161,8 +157,8 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
                                                   .map(
                                                     (record) => TextSearchItem
                                                         .fromTerms(record, [
-                                                      record.title!,
-                                                      record.author!
+                                                      record.title,
+                                                      record.author
                                                     ]),
                                                   )
                                                   .toList(),
@@ -171,7 +167,6 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
                                                         .textController.text)
                                                     .map((r) => r.object)
                                                     .toList();
-                                            ;
                                           });
                                           logFirebaseEvent(
                                               'TextField_update_page_state');
@@ -199,7 +194,7 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
                                         focusedBorder: InputBorder.none,
                                         errorBorder: InputBorder.none,
                                         focusedErrorBorder: InputBorder.none,
-                                        prefixIcon: Icon(
+                                        prefixIcon: const Icon(
                                           Icons.search_sharp,
                                         ),
                                       ),
@@ -225,7 +220,7 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
                           children: [
                             if (!_model.searchActive)
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 20.0, 0.0, 0.0),
                                 child: Builder(
                                   builder: (context) {
@@ -243,10 +238,10 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
                                             allContent[allContentIndex];
                                         return Align(
                                           alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
+                                              const AlignmentDirectional(-1.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 15.0),
                                             child: Container(
                                               decoration: BoxDecoration(
@@ -257,7 +252,7 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
                                                     BorderRadius.circular(5.0),
                                               ),
                                               child: Padding(
-                                                padding: EdgeInsets.all(10.0),
+                                                padding: const EdgeInsets.all(10.0),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -343,7 +338,7 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -363,7 +358,7 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
                                                                               .max,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               10.0,
@@ -377,7 +372,7 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
                                                                             clipBehavior:
                                                                                 Clip.antiAlias,
                                                                             decoration:
-                                                                                BoxDecoration(
+                                                                                const BoxDecoration(
                                                                               shape: BoxShape.circle,
                                                                             ),
                                                                             child:
@@ -436,7 +431,7 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
                                                                                 1.0,
                                                                           ),
                                                                     ),
-                                                                    TextSpan(
+                                                                    const TextSpan(
                                                                       text:
                                                                           '  ',
                                                                       style:
@@ -452,7 +447,7 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
                                                                             FFLocalizations.of(context).languageCode,
                                                                       ),
                                                                       style:
-                                                                          TextStyle(
+                                                                          const TextStyle(
                                                                         fontWeight:
                                                                             FontWeight.normal,
                                                                         fontSize:
@@ -482,11 +477,11 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
                                                               ),
                                                               Align(
                                                                 alignment:
-                                                                    AlignmentDirectional(
+                                                                    const AlignmentDirectional(
                                                                         -1.0,
                                                                         0.0),
                                                                 child: Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           15.0,
@@ -511,7 +506,7 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
                                                                                 letterSpacing: 0.0,
                                                                               ),
                                                                         ),
-                                                                        TextSpan(
+                                                                        const TextSpan(
                                                                           text:
                                                                               '  ',
                                                                           style:
@@ -553,7 +548,7 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         10.0,
@@ -585,7 +580,7 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   10.0,
@@ -615,7 +610,7 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
                               ),
                             if (_model.searchActive)
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 20.0, 0.0, 0.0),
                                 child: Builder(
                                   builder: (context) {
@@ -640,7 +635,7 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
                                                 searchedContentIndex];
                                         return Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 15.0),
                                           child: Container(
                                             decoration: BoxDecoration(
@@ -720,7 +715,7 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
                                                       Flexible(
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       10.0,
                                                                       0.0,
@@ -762,11 +757,11 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
                                                               ),
                                                               Align(
                                                                 alignment:
-                                                                    AlignmentDirectional(
+                                                                    const AlignmentDirectional(
                                                                         -1.0,
                                                                         0.0),
                                                                 child: Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           15.0,
@@ -822,7 +817,7 @@ class _ContentSeeAllWidgetState extends State<ContentSeeAllWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 0.0),
                                                   child: Container(

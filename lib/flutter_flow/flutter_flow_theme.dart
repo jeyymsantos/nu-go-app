@@ -135,20 +135,20 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color error = const Color(0xFFFF5963);
   late Color info = const Color(0xFFFFFFFF);
 
-  late Color primaryBtnText = Color(0xFFFFFFFF);
-  late Color lineColor = Color(0xFFE0E3E7);
-  late Color backgroundComponents = Color(0xFF1D2428);
-  late Color backPanel = Color(0xFFECEEF3);
-  late Color panelText = Color(0xFF717171);
-  late Color buttonVisit = Color(0xFFFFA41C);
-  late Color backPanelText = Color(0xFFFEFEFE);
-  late Color tabBarUnselected = Color(0xFFF3F4F8);
-  late Color tabBarSelected = Color(0xFFFFFFFF);
-  late Color tabBarBorder = Color(0xFFE0E3E8);
-  late Color changeButton = Color(0xFFD0CFCF);
-  late Color textBoxBorder = Color(0xFFD1D1D1);
-  late Color pulsatingLine = Color(0xFFEBEBEB);
-  late Color formsPanel = Color(0xFFD8DBF4);
+  late Color primaryBtnText = const Color(0xFFFFFFFF);
+  late Color lineColor = const Color(0xFFE0E3E7);
+  late Color backgroundComponents = const Color(0xFF1D2428);
+  late Color backPanel = const Color(0xFFECEEF3);
+  late Color panelText = const Color(0xFF717171);
+  late Color buttonVisit = const Color(0xFFFFA41C);
+  late Color backPanelText = const Color(0xFFFEFEFE);
+  late Color tabBarUnselected = const Color(0xFFF3F4F8);
+  late Color tabBarSelected = const Color(0xFFFFFFFF);
+  late Color tabBarBorder = const Color(0xFFE0E3E8);
+  late Color changeButton = const Color(0xFFD0CFCF);
+  late Color textBoxBorder = const Color(0xFFD1D1D1);
+  late Color pulsatingLine = const Color(0xFFEBEBEB);
+  late Color formsPanel = const Color(0xFFD8DBF4);
 }
 
 abstract class Typography {

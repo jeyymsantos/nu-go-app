@@ -1,18 +1,6 @@
-import '/auth/firebase_auth/auth_util.dart';
-import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
-import '/components/modals/email_verification/email_verification_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:async';
 import 'auth_sign_in_widget.dart' show AuthSignInWidget;
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
 class AuthSignInModel extends FlutterFlowModel<AuthSignInWidget> {
   ///  State fields for stateful widgets in this page.

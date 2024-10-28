@@ -1,23 +1,17 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'serialization_util.dart';
 import '../backend.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
-import '../../index.dart';
-import '../../main.dart';
 
 final _handledMessageIds = <String?>{};
 
 class PushNotificationsHandler extends StatefulWidget {
-  const PushNotificationsHandler({Key? key, required this.child})
-      : super(key: key);
+  const PushNotificationsHandler({super.key, required this.child});
 
   final Widget child;
 
@@ -103,7 +97,7 @@ class ParameterData {
       );
 
   static Future<ParameterData> Function(Map<String, dynamic>) none() =>
-      (data) async => ParameterData();
+      (data) async => const ParameterData();
 }
 
 final parametersBuilderMap =
@@ -437,7 +431,6 @@ final parametersBuilderMap =
           'pageLink': getParameter<String>(data, 'pageLink'),
         },
       ),
-  'admin_notif_menu': ParameterData.none(),
   'feedback': ParameterData.none(),
   'admin_feedback': ParameterData.none(),
   'admin_feedback_view': (data) async => ParameterData(
@@ -507,7 +500,14 @@ final parametersBuilderMap =
   'student_top_up': ParameterData.none(),
   'step_1_nfc_setup': ParameterData.none(),
   'org_application': ParameterData.none(),
-  'event_profile_feeback': ParameterData.none(),
+  'event_feeback': (data) async => ParameterData(
+        allParams: {
+          'event': await getDocumentParameter<EventsRecord>(
+              data, 'event', EventsRecord.fromSnapshot),
+          'eventAttendee': await getDocumentParameter<EventAttendeesRecord>(
+              data, 'eventAttendee', EventAttendeesRecord.fromSnapshot),
+        },
+      ),
   'org_edit': (data) async => ParameterData(
         allParams: {
           'orgdoc': await getDocumentParameter<OrganizationsRecord>(
@@ -673,7 +673,12 @@ final parametersBuilderMap =
   'inventory_marketplace': ParameterData.none(),
   'updateProduct_marketplace': ParameterData.none(),
   'PasswordChecker': ParameterData.none(),
-  'user_profile_admin_view': ParameterData.none(),
+  'view_user': (data) async => ParameterData(
+        allParams: {
+          'userDoc': await getDocumentParameter<UsersRecord>(
+              data, 'userDoc', UsersRecord.fromSnapshot),
+        },
+      ),
   'event_edit': (data) async => ParameterData(
         allParams: {
           'eventDoc': await getDocumentParameter<EventsRecord>(
@@ -689,6 +694,12 @@ final parametersBuilderMap =
         allParams: {
           'order': await getDocumentParameter<OrdersRecord>(
               data, 'order', OrdersRecord.fromSnapshot),
+        },
+      ),
+  'view_userid_admin': (data) async => ParameterData(
+        allParams: {
+          'userDoc': await getDocumentParameter<UsersRecord>(
+              data, 'userDoc', UsersRecord.fromSnapshot),
         },
       ),
 };

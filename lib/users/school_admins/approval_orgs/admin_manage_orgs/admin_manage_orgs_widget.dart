@@ -5,16 +5,11 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'admin_manage_orgs_model.dart';
 export 'admin_manage_orgs_model.dart';
 
@@ -118,7 +113,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
           child: Stack(
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -127,7 +122,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: TitleHeaderComponentWidget(
+                      child: const TitleHeaderComponentWidget(
                         titleText: 'Manage Organizations',
                       ),
                     ),
@@ -158,7 +153,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                           return Column(
                             children: [
                               Align(
-                                alignment: Alignment(0.0, 0),
+                                alignment: const Alignment(0.0, 0),
                                 child: FlutterFlowButtonTabBar(
                                   useToggleButtonStyle: true,
                                   labelStyle: FlutterFlowTheme.of(context)
@@ -195,9 +190,9 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                   borderWidth: 2.0,
                                   borderRadius: 9.0,
                                   elevation: 0.0,
-                                  buttonMargin: EdgeInsetsDirectional.fromSTEB(
+                                  buttonMargin: const EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
-                                  tabs: [
+                                  tabs: const [
                                     Tab(
                                       text: 'Pending',
                                     ),
@@ -222,757 +217,730 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                 child: TabBarView(
                                   controller: _model.tabBarController,
                                   children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 5.0, 0.0, 0.0),
-                                      child: Builder(
-                                        builder: (context) {
-                                          final pendingOrgs = tabBarOrganizationsRecordList
-                                              .where((e) =>
-                                                  (functions.getUserIndex(
-                                                          e.currentApprovalSignatory
-                                                              .map((e) => e
-                                                                  .approvalUser)
-                                                              .withoutNulls
-                                                              .toList(),
-                                                          currentUserReference!) !=
-                                                      -1) &&
-                                                  ((e
-                                                              .currentApprovalSignatory[functions.getUserIndex(
-                                                                  e.currentApprovalSignatory
-                                                                      .map((e) => e
-                                                                          .approvalUser)
-                                                                      .withoutNulls
-                                                                      .toList(),
-                                                                  currentUserReference!)]
-                                                              .approvalStatus ==
-                                                          'Pending') ||
-                                                      (e.status ==
-                                                          'Revision')) &&
-                                                  ((e.status != 'Declined') && (e.status != 'Cancelled')))
-                                              .toList();
+                                    KeepAliveWidgetWrapper(
+                                      builder: (context) => Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 5.0, 0.0, 0.0),
+                                        child: Builder(
+                                          builder: (context) {
+                                            final pendingOrgs = tabBarOrganizationsRecordList
+                                                .where((e) =>
+                                                    (functions.getUserIndex(
+                                                            e.currentApprovalSignatory
+                                                                .map((e) => e
+                                                                    .approvalUser)
+                                                                .withoutNulls
+                                                                .toList(),
+                                                            currentUserReference!) !=
+                                                        -1) &&
+                                                    ((e
+                                                                .currentApprovalSignatory[functions.getUserIndex(
+                                                                    e.currentApprovalSignatory
+                                                                        .map((e) => e
+                                                                            .approvalUser)
+                                                                        .withoutNulls
+                                                                        .toList(),
+                                                                    currentUserReference!)]
+                                                                .approvalStatus ==
+                                                            'Pending') ||
+                                                        (e.status ==
+                                                            'Revision')) &&
+                                                    ((e.status != 'Declined') && (e.status != 'Cancelled')))
+                                                .toList();
 
-                                          return ListView.builder(
-                                            padding: EdgeInsets.zero,
-                                            scrollDirection: Axis.vertical,
-                                            itemCount: pendingOrgs.length,
-                                            itemBuilder:
-                                                (context, pendingOrgsIndex) {
-                                              final pendingOrgsItem =
-                                                  pendingOrgs[pendingOrgsIndex];
-                                              return Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 10.0, 0.0, 0.0),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Expanded(
-                                                      child: InkWell(
-                                                        splashColor:
-                                                            Colors.transparent,
-                                                        focusColor:
-                                                            Colors.transparent,
-                                                        hoverColor:
-                                                            Colors.transparent,
-                                                        highlightColor:
-                                                            Colors.transparent,
-                                                        onTap: () async {
-                                                          logFirebaseEvent(
-                                                              'ADMIN_MANAGE_ORGS_Container_mrps5ddf_ON_');
-                                                          logFirebaseEvent(
-                                                              'Container_navigate_to');
+                                            return ListView.builder(
+                                              padding: EdgeInsets.zero,
+                                              scrollDirection: Axis.vertical,
+                                              itemCount: pendingOrgs.length,
+                                              itemBuilder:
+                                                  (context, pendingOrgsIndex) {
+                                                final pendingOrgsItem =
+                                                    pendingOrgs[
+                                                        pendingOrgsIndex];
+                                                return Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 10.0, 0.0, 0.0),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            logFirebaseEvent(
+                                                                'ADMIN_MANAGE_ORGS_Container_mrps5ddf_ON_');
+                                                            logFirebaseEvent(
+                                                                'Container_navigate_to');
 
-                                                          context.pushNamed(
-                                                            'approval_org_applications',
-                                                            queryParameters: {
-                                                              'orgRef':
-                                                                  serializeParam(
-                                                                pendingOrgsItem
-                                                                    .reference,
-                                                                ParamType
-                                                                    .DocumentReference,
-                                                              ),
-                                                            }.withoutNulls,
-                                                            extra: <String,
-                                                                dynamic>{
-                                                              kTransitionInfoKey:
-                                                                  TransitionInfo(
-                                                                hasTransition:
-                                                                    true,
-                                                                transitionType:
-                                                                    PageTransitionType
-                                                                        .fade,
-                                                                duration: Duration(
-                                                                    milliseconds:
-                                                                        0),
-                                                              ),
-                                                            },
-                                                          );
-                                                        },
-                                                        child: Container(
-                                                          width: 100.0,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryBackground,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        6.0),
-                                                            border: Border.all(
+                                                            context.pushNamed(
+                                                              'approval_org_applications',
+                                                              queryParameters: {
+                                                                'orgRef':
+                                                                    serializeParam(
+                                                                  pendingOrgsItem
+                                                                      .reference,
+                                                                  ParamType
+                                                                      .DocumentReference,
+                                                                ),
+                                                              }.withoutNulls,
+                                                              extra: <String,
+                                                                  dynamic>{
+                                                                kTransitionInfoKey:
+                                                                    const TransitionInfo(
+                                                                  hasTransition:
+                                                                      true,
+                                                                  transitionType:
+                                                                      PageTransitionType
+                                                                          .fade,
+                                                                  duration: Duration(
+                                                                      milliseconds:
+                                                                          0),
+                                                                ),
+                                                              },
+                                                            );
+                                                          },
+                                                          child: Container(
+                                                            width: 100.0,
+                                                            decoration:
+                                                                BoxDecoration(
                                                               color: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .alternate,
-                                                              width: 1.0,
+                                                                  .primaryBackground,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          6.0),
+                                                              border:
+                                                                  Border.all(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                width: 1.0,
+                                                              ),
                                                             ),
-                                                          ),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    3.0),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                Expanded(
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .min,
-                                                                    children: [
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            5.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            ClipOval(
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                50.0,
-                                                                            height:
-                                                                                50.0,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              shape: BoxShape.circle,
-                                                                              border: Border.all(
-                                                                                color: FlutterFlowTheme.of(context).lineColor,
-                                                                                width: 0.5,
-                                                                              ),
-                                                                            ),
-                                                                            child:
-                                                                                Image.network(
-                                                                              valueOrDefault<String>(
-                                                                                pendingOrgsItem.logo,
-                                                                                'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2Fnu_cover.jpg?alt=media&token=c0448910-d37d-456d-804c-ae8c875ac08f',
-                                                                              ),
-                                                                              width: double.infinity,
-                                                                              height: double.infinity,
-                                                                              fit: BoxFit.cover,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      Expanded(
-                                                                        child:
-                                                                            Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(3.0),
+                                                              child: Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Expanded(
+                                                                    child: Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .min,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               5.0,
                                                                               0.0),
                                                                           child:
-                                                                              Column(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.center,
-                                                                            crossAxisAlignment:
-                                                                                CrossAxisAlignment.start,
-                                                                            children: [
-                                                                              SelectionArea(
-                                                                                  child: AutoSizeText(
-                                                                                valueOrDefault<String>(
-                                                                                  pendingOrgsItem.organizationName,
-                                                                                  'Google Developer Student Clubs NU Baliwag',
-                                                                                ),
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      fontSize: 15.0,
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FontWeight.w500,
-                                                                                    ),
-                                                                              )),
-                                                                              SelectionArea(
-                                                                                  child: AutoSizeText(
-                                                                                pendingOrgsItem.type,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      fontSize: 12.0,
-                                                                                      letterSpacing: 0.0,
-                                                                                    ),
-                                                                              )),
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                                                                                child: SelectionArea(
-                                                                                    child: AutoSizeText(
-                                                                                  '${pendingOrgsItem.status} | ${dateTimeFormat(
-                                                                                    "relative",
-                                                                                    pendingOrgsItem.statusLastUpdated,
-                                                                                    locale: FFLocalizations.of(context).languageCode,
-                                                                                  )}',
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        fontFamily: 'Montserrat',
-                                                                                        fontSize: 12.0,
-                                                                                        letterSpacing: 0.0,
-                                                                                      ),
-                                                                                )),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                                Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Align(
-                                                                      alignment:
-                                                                          AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            10.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Icon(
-                                                                          Icons
-                                                                              .navigate_next,
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).secondaryText,
-                                                                          size:
-                                                                              24.0,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ).animateOnPageLoad(
-                                                          animationsMap[
-                                                              'containerOnPageLoadAnimation1']!),
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 5.0, 0.0, 0.0),
-                                      child: Builder(
-                                        builder: (context) {
-                                          final approvedOrgs = tabBarOrganizationsRecordList
-                                              .where((e) =>
-                                                  (e.status != 'Declined') &&
-                                                  (functions.getUserIndex(
-                                                          e.currentApprovalSignatory
-                                                              .map((e) => e
-                                                                  .approvalUser)
-                                                              .withoutNulls
-                                                              .toList(),
-                                                          currentUserReference!) !=
-                                                      -1) &&
-                                                  (functions.getUserIndex(
-                                                          e.currentApprovalSignatory
-                                                              .map((e) => e
-                                                                  .approvalUser)
-                                                              .withoutNulls
-                                                              .toList(),
-                                                          currentUserReference!) <
-                                                      e.currentApprovalStep))
-                                              .toList();
-
-                                          return ListView.builder(
-                                            padding: EdgeInsets.zero,
-                                            scrollDirection: Axis.vertical,
-                                            itemCount: approvedOrgs.length,
-                                            itemBuilder:
-                                                (context, approvedOrgsIndex) {
-                                              final approvedOrgsItem =
-                                                  approvedOrgs[
-                                                      approvedOrgsIndex];
-                                              return Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 10.0, 0.0, 0.0),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Expanded(
-                                                      child: InkWell(
-                                                        splashColor:
-                                                            Colors.transparent,
-                                                        focusColor:
-                                                            Colors.transparent,
-                                                        hoverColor:
-                                                            Colors.transparent,
-                                                        highlightColor:
-                                                            Colors.transparent,
-                                                        onTap: () async {
-                                                          logFirebaseEvent(
-                                                              'ADMIN_MANAGE_ORGS_Container_jbvcyz2l_ON_');
-                                                          logFirebaseEvent(
-                                                              'Container_navigate_to');
-
-                                                          context.pushNamed(
-                                                            'approval_org_applications',
-                                                            queryParameters: {
-                                                              'orgRef':
-                                                                  serializeParam(
-                                                                approvedOrgsItem
-                                                                    .reference,
-                                                                ParamType
-                                                                    .DocumentReference,
-                                                              ),
-                                                            }.withoutNulls,
-                                                            extra: <String,
-                                                                dynamic>{
-                                                              kTransitionInfoKey:
-                                                                  TransitionInfo(
-                                                                hasTransition:
-                                                                    true,
-                                                                transitionType:
-                                                                    PageTransitionType
-                                                                        .fade,
-                                                                duration: Duration(
-                                                                    milliseconds:
-                                                                        0),
-                                                              ),
-                                                            },
-                                                          );
-                                                        },
-                                                        child: Container(
-                                                          width: 100.0,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryBackground,
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        6.0),
-                                                            border: Border.all(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .alternate,
-                                                              width: 1.0,
-                                                            ),
-                                                          ),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    3.0),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                Expanded(
-                                                                  child: Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .min,
-                                                                    children: [
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            5.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            ClipOval(
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                50.0,
-                                                                            height:
-                                                                                50.0,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              shape: BoxShape.circle,
-                                                                              border: Border.all(
-                                                                                color: FlutterFlowTheme.of(context).lineColor,
-                                                                                width: 0.5,
-                                                                              ),
-                                                                            ),
+                                                                              ClipOval(
                                                                             child:
-                                                                                Image.network(
-                                                                              valueOrDefault<String>(
-                                                                                approvedOrgsItem.logo,
-                                                                                'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2Fnu_cover.jpg?alt=media&token=c0448910-d37d-456d-804c-ae8c875ac08f',
-                                                                              ),
+                                                                                Container(
                                                                               width: 50.0,
-                                                                              height: 100.0,
-                                                                              fit: BoxFit.cover,
+                                                                              height: 50.0,
+                                                                              decoration: BoxDecoration(
+                                                                                shape: BoxShape.circle,
+                                                                                border: Border.all(
+                                                                                  color: FlutterFlowTheme.of(context).lineColor,
+                                                                                  width: 0.5,
+                                                                                ),
+                                                                              ),
+                                                                              child: Image.network(
+                                                                                valueOrDefault<String>(
+                                                                                  pendingOrgsItem.logo,
+                                                                                  'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2Fnu_cover.jpg?alt=media&token=c0448910-d37d-456d-804c-ae8c875ac08f',
+                                                                                ),
+                                                                                width: double.infinity,
+                                                                                height: double.infinity,
+                                                                                fit: BoxFit.cover,
+                                                                              ),
                                                                             ),
                                                                           ),
                                                                         ),
-                                                                      ),
-                                                                      Flexible(
-                                                                        child:
-                                                                            Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0.0,
-                                                                              0.0,
-                                                                              5.0,
-                                                                              0.0),
+                                                                        Expanded(
                                                                           child:
-                                                                              Column(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.center,
-                                                                            crossAxisAlignment:
-                                                                                CrossAxisAlignment.start,
-                                                                            children: [
-                                                                              SelectionArea(
-                                                                                  child: AutoSizeText(
-                                                                                valueOrDefault<String>(
-                                                                                  approvedOrgsItem.organizationName,
-                                                                                  'Google Developer Student Clubs NU Baliwag',
-                                                                                ),
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      fontSize: 15.0,
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FontWeight.w500,
-                                                                                    ),
-                                                                              )),
-                                                                              SelectionArea(
-                                                                                  child: AutoSizeText(
-                                                                                approvedOrgsItem.type,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      fontSize: 12.0,
-                                                                                      letterSpacing: 0.0,
-                                                                                    ),
-                                                                              )),
                                                                               Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                                                                                child: SelectionArea(
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                                0.0,
+                                                                                0.0,
+                                                                                5.0,
+                                                                                0.0),
+                                                                            child:
+                                                                                Column(
+                                                                              mainAxisSize: MainAxisSize.max,
+                                                                              mainAxisAlignment: MainAxisAlignment.center,
+                                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                                              children: [
+                                                                                SelectionArea(
                                                                                     child: AutoSizeText(
-                                                                                  dateTimeFormat(
-                                                                                    "relative",
-                                                                                    approvedOrgsItem.statusLastUpdated!,
-                                                                                    locale: FFLocalizations.of(context).languageCode,
+                                                                                  valueOrDefault<String>(
+                                                                                    pendingOrgsItem.organizationName,
+                                                                                    'Google Developer Student Clubs NU Baliwag',
                                                                                   ),
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                         fontFamily: 'Montserrat',
+                                                                                        fontSize: 15.0,
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FontWeight.w500,
+                                                                                      ),
+                                                                                )),
+                                                                                SelectionArea(
+                                                                                    child: AutoSizeText(
+                                                                                  pendingOrgsItem.type,
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Montserrat',
                                                                                         fontSize: 12.0,
                                                                                         letterSpacing: 0.0,
                                                                                       ),
                                                                                 )),
-                                                                              ),
-                                                                            ],
+                                                                                Padding(
+                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                                                                                  child: SelectionArea(
+                                                                                      child: AutoSizeText(
+                                                                                    '${pendingOrgsItem.status} | ${dateTimeFormat(
+                                                                                      "relative",
+                                                                                      pendingOrgsItem.statusLastUpdated,
+                                                                                      locale: FFLocalizations.of(context).languageCode,
+                                                                                    )}',
+                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                          fontFamily: 'Montserrat',
+                                                                                          fontSize: 12.0,
+                                                                                          letterSpacing: 0.0,
+                                                                                        ),
+                                                                                  )),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                  Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      Align(
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              10.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Icon(
+                                                                            Icons.navigate_next,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryText,
+                                                                            size:
+                                                                                24.0,
                                                                           ),
                                                                         ),
                                                                       ),
                                                                     ],
                                                                   ),
-                                                                ),
-                                                                Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Align(
-                                                                      alignment:
-                                                                          AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            10.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Icon(
-                                                                          Icons
-                                                                              .navigate_next,
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).secondaryText,
-                                                                          size:
-                                                                              24.0,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ],
+                                                                ],
+                                                              ),
                                                             ),
                                                           ),
-                                                        ),
-                                                      ).animateOnPageLoad(
-                                                          animationsMap[
-                                                              'containerOnPageLoadAnimation2']!),
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                          );
-                                        },
+                                                        ).animateOnPageLoad(
+                                                            animationsMap[
+                                                                'containerOnPageLoadAnimation1']!),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 5.0, 0.0, 0.0),
-                                      child: Builder(
-                                        builder: (context) {
-                                          final declinedOrgs = tabBarOrganizationsRecordList
-                                              .where((e) =>
-                                                  ((e.status == 'Declined') ||
-                                                      (e.status ==
-                                                          'Cancelled')) &&
-                                                  (functions.getUserIndex(
-                                                          e.currentApprovalSignatory
-                                                              .map((e) => e
-                                                                  .approvalUser)
-                                                              .withoutNulls
-                                                              .toList(),
-                                                          currentUserReference!) !=
-                                                      -1))
-                                              .toList();
+                                    KeepAliveWidgetWrapper(
+                                      builder: (context) => Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 5.0, 0.0, 0.0),
+                                        child: Builder(
+                                          builder: (context) {
+                                            final approvedOrgs = tabBarOrganizationsRecordList
+                                                .where((e) =>
+                                                    (e.status != 'Declined') &&
+                                                    (functions.getUserIndex(
+                                                            e.currentApprovalSignatory
+                                                                .map((e) => e
+                                                                    .approvalUser)
+                                                                .withoutNulls
+                                                                .toList(),
+                                                            currentUserReference!) !=
+                                                        -1) &&
+                                                    (functions.getUserIndex(
+                                                            e.currentApprovalSignatory
+                                                                .map((e) => e
+                                                                    .approvalUser)
+                                                                .withoutNulls
+                                                                .toList(),
+                                                            currentUserReference!) <
+                                                        e.currentApprovalStep))
+                                                .toList();
 
-                                          return ListView.separated(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 10.0),
-                                            scrollDirection: Axis.vertical,
-                                            itemCount: declinedOrgs.length,
-                                            separatorBuilder: (_, __) =>
-                                                SizedBox(height: 10.0),
-                                            itemBuilder:
-                                                (context, declinedOrgsIndex) {
-                                              final declinedOrgsItem =
-                                                  declinedOrgs[
-                                                      declinedOrgsIndex];
-                                              return InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  logFirebaseEvent(
-                                                      'ADMIN_MANAGE_ORGS_Container_tim2zj9t_ON_');
-                                                  logFirebaseEvent(
-                                                      'Container_navigate_to');
+                                            return ListView.builder(
+                                              padding: EdgeInsets.zero,
+                                              scrollDirection: Axis.vertical,
+                                              itemCount: approvedOrgs.length,
+                                              itemBuilder:
+                                                  (context, approvedOrgsIndex) {
+                                                final approvedOrgsItem =
+                                                    approvedOrgs[
+                                                        approvedOrgsIndex];
+                                                return Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 10.0, 0.0, 0.0),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            logFirebaseEvent(
+                                                                'ADMIN_MANAGE_ORGS_Container_jbvcyz2l_ON_');
+                                                            logFirebaseEvent(
+                                                                'Container_navigate_to');
 
-                                                  context.pushNamed(
-                                                    'approval_org_applications',
-                                                    queryParameters: {
-                                                      'orgRef': serializeParam(
-                                                        declinedOrgsItem
-                                                            .reference,
-                                                        ParamType
-                                                            .DocumentReference,
-                                                      ),
-                                                    }.withoutNulls,
-                                                    extra: <String, dynamic>{
-                                                      kTransitionInfoKey:
-                                                          TransitionInfo(
-                                                        hasTransition: true,
-                                                        transitionType:
-                                                            PageTransitionType
-                                                                .fade,
-                                                        duration: Duration(
-                                                            milliseconds: 0),
-                                                      ),
-                                                    },
-                                                  );
-                                                },
-                                                child: Container(
-                                                  width: double.infinity,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryBackground,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            6.0),
-                                                    border: Border.all(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
-                                                      width: 1.0,
-                                                    ),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsets.all(3.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Flexible(
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .min,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            5.0,
-                                                                            0.0),
-                                                                child: ClipOval(
-                                                                  child:
-                                                                      Container(
-                                                                    width: 50.0,
-                                                                    height:
-                                                                        50.0,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      shape: BoxShape
-                                                                          .circle,
-                                                                      border:
-                                                                          Border
-                                                                              .all(
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .lineColor,
-                                                                        width:
-                                                                            0.5,
-                                                                      ),
-                                                                    ),
-                                                                    child: Image
-                                                                        .network(
-                                                                      valueOrDefault<
-                                                                          String>(
-                                                                        declinedOrgsItem
-                                                                            .logo,
-                                                                        'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2Fnu_cover.jpg?alt=media&token=c0448910-d37d-456d-804c-ae8c875ac08f',
-                                                                      ),
-                                                                      width: double
-                                                                          .infinity,
-                                                                      height: double
-                                                                          .infinity,
-                                                                      fit: BoxFit
-                                                                          .cover,
+                                                            context.pushNamed(
+                                                              'approval_org_applications',
+                                                              queryParameters: {
+                                                                'orgRef':
+                                                                    serializeParam(
+                                                                  approvedOrgsItem
+                                                                      .reference,
+                                                                  ParamType
+                                                                      .DocumentReference,
+                                                                ),
+                                                              }.withoutNulls,
+                                                              extra: <String,
+                                                                  dynamic>{
+                                                                kTransitionInfoKey:
+                                                                    const TransitionInfo(
+                                                                  hasTransition:
+                                                                      true,
+                                                                  transitionType:
+                                                                      PageTransitionType
+                                                                          .fade,
+                                                                  duration: Duration(
+                                                                      milliseconds:
+                                                                          0),
+                                                                ),
+                                                              },
+                                                            );
+                                                          },
+                                                          child: Container(
+                                                            width: 100.0,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryBackground,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          6.0),
+                                                              border:
+                                                                  Border.all(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                width: 1.0,
+                                                              ),
+                                                            ),
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(3.0),
+                                                              child: Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Expanded(
+                                                                    child: Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .min,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              5.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              ClipOval(
+                                                                            child:
+                                                                                Container(
+                                                                              width: 50.0,
+                                                                              height: 50.0,
+                                                                              decoration: BoxDecoration(
+                                                                                shape: BoxShape.circle,
+                                                                                border: Border.all(
+                                                                                  color: FlutterFlowTheme.of(context).lineColor,
+                                                                                  width: 0.5,
+                                                                                ),
+                                                                              ),
+                                                                              child: Image.network(
+                                                                                valueOrDefault<String>(
+                                                                                  approvedOrgsItem.logo,
+                                                                                  'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2Fnu_cover.jpg?alt=media&token=c0448910-d37d-456d-804c-ae8c875ac08f',
+                                                                                ),
+                                                                                width: 50.0,
+                                                                                height: 100.0,
+                                                                                fit: BoxFit.cover,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        Flexible(
+                                                                          child:
+                                                                              Padding(
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                                0.0,
+                                                                                0.0,
+                                                                                5.0,
+                                                                                0.0),
+                                                                            child:
+                                                                                Column(
+                                                                              mainAxisSize: MainAxisSize.max,
+                                                                              mainAxisAlignment: MainAxisAlignment.center,
+                                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                                              children: [
+                                                                                SelectionArea(
+                                                                                    child: AutoSizeText(
+                                                                                  valueOrDefault<String>(
+                                                                                    approvedOrgsItem.organizationName,
+                                                                                    'Google Developer Student Clubs NU Baliwag',
+                                                                                  ),
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Montserrat',
+                                                                                        fontSize: 15.0,
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FontWeight.w500,
+                                                                                      ),
+                                                                                )),
+                                                                                SelectionArea(
+                                                                                    child: AutoSizeText(
+                                                                                  approvedOrgsItem.type,
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Montserrat',
+                                                                                        fontSize: 12.0,
+                                                                                        letterSpacing: 0.0,
+                                                                                      ),
+                                                                                )),
+                                                                                Padding(
+                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                                                                                  child: SelectionArea(
+                                                                                      child: AutoSizeText(
+                                                                                    dateTimeFormat(
+                                                                                      "relative",
+                                                                                      approvedOrgsItem.statusLastUpdated!,
+                                                                                      locale: FFLocalizations.of(context).languageCode,
+                                                                                    ),
+                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                          fontFamily: 'Montserrat',
+                                                                                          fontSize: 12.0,
+                                                                                          letterSpacing: 0.0,
+                                                                                        ),
+                                                                                  )),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
                                                                     ),
                                                                   ),
-                                                                ),
+                                                                  Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      Align(
+                                                                        alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              10.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Icon(
+                                                                            Icons.navigate_next,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryText,
+                                                                            size:
+                                                                                24.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ],
                                                               ),
-                                                              Flexible(
-                                                                child: Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                            ),
+                                                          ),
+                                                        ).animateOnPageLoad(
+                                                            animationsMap[
+                                                                'containerOnPageLoadAnimation2']!),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                    KeepAliveWidgetWrapper(
+                                      builder: (context) => Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 5.0, 0.0, 0.0),
+                                        child: Builder(
+                                          builder: (context) {
+                                            final declinedOrgs = tabBarOrganizationsRecordList
+                                                .where((e) =>
+                                                    ((e.status == 'Declined') ||
+                                                        (e.status ==
+                                                            'Cancelled')) &&
+                                                    (functions.getUserIndex(
+                                                            e.currentApprovalSignatory
+                                                                .map((e) => e
+                                                                    .approvalUser)
+                                                                .withoutNulls
+                                                                .toList(),
+                                                            currentUserReference!) !=
+                                                        -1))
+                                                .toList();
+
+                                            return ListView.separated(
+                                              padding: const EdgeInsets.symmetric(
+                                                  vertical: 10.0),
+                                              scrollDirection: Axis.vertical,
+                                              itemCount: declinedOrgs.length,
+                                              separatorBuilder: (_, __) =>
+                                                  const SizedBox(height: 10.0),
+                                              itemBuilder:
+                                                  (context, declinedOrgsIndex) {
+                                                final declinedOrgsItem =
+                                                    declinedOrgs[
+                                                        declinedOrgsIndex];
+                                                return InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    logFirebaseEvent(
+                                                        'ADMIN_MANAGE_ORGS_Container_tim2zj9t_ON_');
+                                                    logFirebaseEvent(
+                                                        'Container_navigate_to');
+
+                                                    context.pushNamed(
+                                                      'approval_org_applications',
+                                                      queryParameters: {
+                                                        'orgRef':
+                                                            serializeParam(
+                                                          declinedOrgsItem
+                                                              .reference,
+                                                          ParamType
+                                                              .DocumentReference,
+                                                        ),
+                                                      }.withoutNulls,
+                                                      extra: <String, dynamic>{
+                                                        kTransitionInfoKey:
+                                                            const TransitionInfo(
+                                                          hasTransition: true,
+                                                          transitionType:
+                                                              PageTransitionType
+                                                                  .fade,
+                                                          duration: Duration(
+                                                              milliseconds: 0),
+                                                        ),
+                                                      },
+                                                    );
+                                                  },
+                                                  child: Container(
+                                                    width: double.infinity,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              6.0),
+                                                      border: Border.all(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        width: 1.0,
+                                                      ),
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(3.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Flexible(
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .min,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           5.0,
                                                                           0.0),
-                                                                  child: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .min,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    children: [
-                                                                      SelectionArea(
-                                                                          child:
-                                                                              AutoSizeText(
+                                                                  child:
+                                                                      ClipOval(
+                                                                    child:
+                                                                        Container(
+                                                                      width:
+                                                                          50.0,
+                                                                      height:
+                                                                          50.0,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        shape: BoxShape
+                                                                            .circle,
+                                                                        border:
+                                                                            Border.all(
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).lineColor,
+                                                                          width:
+                                                                              0.5,
+                                                                        ),
+                                                                      ),
+                                                                      child: Image
+                                                                          .network(
                                                                         valueOrDefault<
                                                                             String>(
                                                                           declinedOrgsItem
-                                                                              .organizationName,
-                                                                          'Google Developer Student Clubs NU Baliwag',
+                                                                              .logo,
+                                                                          'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2Fnu_cover.jpg?alt=media&token=c0448910-d37d-456d-804c-ae8c875ac08f',
                                                                         ),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Montserrat',
-                                                                              fontSize: 15.0,
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FontWeight.w500,
-                                                                            ),
-                                                                      )),
-                                                                      SelectionArea(
-                                                                          child:
-                                                                              AutoSizeText(
-                                                                        declinedOrgsItem
-                                                                            .type,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Montserrat',
-                                                                              fontSize: 12.0,
-                                                                              letterSpacing: 0.0,
-                                                                            ),
-                                                                      )),
+                                                                        width: double
+                                                                            .infinity,
+                                                                        height:
+                                                                            double.infinity,
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                Flexible(
+                                                                  child:
                                                                       Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                    padding: const EdgeInsetsDirectional
+                                                                        .fromSTEB(
                                                                             0.0,
-                                                                            10.0,
                                                                             0.0,
+                                                                            5.0,
                                                                             0.0),
-                                                                        child: SelectionArea(
-                                                                            child: AutoSizeText(
-                                                                          dateTimeFormat(
-                                                                            "relative",
-                                                                            declinedOrgsItem.statusLastUpdated!,
-                                                                            locale:
-                                                                                FFLocalizations.of(context).languageCode,
+                                                                    child:
+                                                                        Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .min,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .center,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      children: [
+                                                                        SelectionArea(
+                                                                            child:
+                                                                                AutoSizeText(
+                                                                          valueOrDefault<
+                                                                              String>(
+                                                                            declinedOrgsItem.organizationName,
+                                                                            'Google Developer Student Clubs NU Baliwag',
                                                                           ),
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .override(
+                                                                                fontFamily: 'Montserrat',
+                                                                                fontSize: 15.0,
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FontWeight.w500,
+                                                                              ),
+                                                                        )),
+                                                                        SelectionArea(
+                                                                            child:
+                                                                                AutoSizeText(
+                                                                          declinedOrgsItem
+                                                                              .type,
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .override(
@@ -981,51 +949,72 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                                                 letterSpacing: 0.0,
                                                                               ),
                                                                         )),
-                                                                      ),
-                                                                    ],
+                                                                        Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              10.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          child: SelectionArea(
+                                                                              child: AutoSizeText(
+                                                                            dateTimeFormat(
+                                                                              "relative",
+                                                                              declinedOrgsItem.statusLastUpdated!,
+                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                            ),
+                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                  fontFamily: 'Montserrat',
+                                                                                  fontSize: 12.0,
+                                                                                  letterSpacing: 0.0,
+                                                                                ),
+                                                                          )),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            children: [
+                                                              Align(
+                                                                alignment:
+                                                                    const AlignmentDirectional(
+                                                                        0.0,
+                                                                        0.0),
+                                                                child: Padding(
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .navigate_next,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    size: 24.0,
                                                                   ),
                                                                 ),
                                                               ),
                                                             ],
                                                           ),
-                                                        ),
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          children: [
-                                                            Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      0.0, 0.0),
-                                                              child: Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            10.0,
-                                                                            0.0),
-                                                                child: Icon(
-                                                                  Icons
-                                                                      .navigate_next,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  size: 24.0,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ],
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                              ).animateOnPageLoad(animationsMap[
-                                                  'containerOnPageLoadAnimation3']!);
-                                            },
-                                          );
-                                        },
+                                                ).animateOnPageLoad(animationsMap[
+                                                    'containerOnPageLoadAnimation3']!);
+                                              },
+                                            );
+                                          },
+                                        ),
                                       ),
                                     ),
                                   ],

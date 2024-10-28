@@ -5,9 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'event_proposal_step4_draft_model.dart';
 export 'event_proposal_step4_draft_model.dart';
 
@@ -52,7 +49,7 @@ class _EventProposalStep4DraftWidgetState
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,18 +57,18 @@ class _EventProposalStep4DraftWidgetState
                 wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: TitleHeaderComponentWidget(
+                  child: const TitleHeaderComponentWidget(
                     titleText: 'Create Proposal',
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 10.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -81,7 +78,7 @@ class _EventProposalStep4DraftWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 10.0, 0.0),
                                     child: Text(
                                       'Step 4',
@@ -111,7 +108,7 @@ class _EventProposalStep4DraftWidgetState
                                 ],
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: Text(
                                   'Let\'s you provide the details for any necessary approvals, including assets, documents, and permissions you will need.',
@@ -127,7 +124,7 @@ class _EventProposalStep4DraftWidgetState
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -148,7 +145,7 @@ class _EventProposalStep4DraftWidgetState
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 0.0, 0.0),
                                         child: Container(
                                           width: double.infinity,
@@ -164,7 +161,7 @@ class _EventProposalStep4DraftWidgetState
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 0.0, 0.0),
                                         child: Container(
                                           width: double.infinity,
@@ -180,7 +177,7 @@ class _EventProposalStep4DraftWidgetState
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 0.0, 0.0),
                                         child: Container(
                                           width: double.infinity,
@@ -216,14 +213,14 @@ class _EventProposalStep4DraftWidgetState
                 Expanded(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 20.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 20.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -241,7 +238,7 @@ class _EventProposalStep4DraftWidgetState
                                       ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       10.0, 10.0, 0.0, 0.0),
                                   child: FlutterFlowRadioButton(
                                     options: ['Yes', 'No'].toList(),
@@ -264,7 +261,7 @@ class _EventProposalStep4DraftWidgetState
                                               fontSize: 12.0,
                                               letterSpacing: 0.0,
                                             ),
-                                    textPadding: EdgeInsetsDirectional.fromSTEB(
+                                    textPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 20.0, 0.0),
                                     buttonPosition: RadioButtonPosition.left,
                                     direction: Axis.horizontal,
@@ -280,7 +277,7 @@ class _EventProposalStep4DraftWidgetState
                                 ),
                                 if (_model.supplierRbValue == 'Yes')
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -315,7 +312,7 @@ class _EventProposalStep4DraftWidgetState
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 10.0, 0.0),
                                               child: Icon(
@@ -350,7 +347,7 @@ class _EventProposalStep4DraftWidgetState
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -368,7 +365,7 @@ class _EventProposalStep4DraftWidgetState
                                       ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       10.0, 10.0, 0.0, 0.0),
                                   child: FlutterFlowRadioButton(
                                     options: ['Yes', 'No'].toList(),
@@ -391,7 +388,7 @@ class _EventProposalStep4DraftWidgetState
                                               fontSize: 12.0,
                                               letterSpacing: 0.0,
                                             ),
-                                    textPadding: EdgeInsetsDirectional.fromSTEB(
+                                    textPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 20.0, 0.0),
                                     buttonPosition: RadioButtonPosition.left,
                                     direction: Axis.horizontal,
@@ -407,7 +404,7 @@ class _EventProposalStep4DraftWidgetState
                                 ),
                                 if (_model.transportvehicleRbValue == 'Yes')
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: Container(
                                       width: double.infinity,
@@ -429,7 +426,7 @@ class _EventProposalStep4DraftWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               FFIcons.kwarning2,
@@ -461,7 +458,7 @@ class _EventProposalStep4DraftWidgetState
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -479,7 +476,7 @@ class _EventProposalStep4DraftWidgetState
                                       ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       10.0, 10.0, 0.0, 0.0),
                                   child: FlutterFlowRadioButton(
                                     options: ['Yes', 'No'].toList(),
@@ -502,7 +499,7 @@ class _EventProposalStep4DraftWidgetState
                                               fontSize: 12.0,
                                               letterSpacing: 0.0,
                                             ),
-                                    textPadding: EdgeInsetsDirectional.fromSTEB(
+                                    textPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 20.0, 0.0),
                                     buttonPosition: RadioButtonPosition.left,
                                     direction: Axis.horizontal,
@@ -518,7 +515,7 @@ class _EventProposalStep4DraftWidgetState
                                 ),
                                 if (_model.assetrtansferRbValue == 'Yes')
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: Container(
                                       width: double.infinity,
@@ -540,7 +537,7 @@ class _EventProposalStep4DraftWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               FFIcons.kwarning2,
@@ -572,7 +569,7 @@ class _EventProposalStep4DraftWidgetState
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -590,7 +587,7 @@ class _EventProposalStep4DraftWidgetState
                                       ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       10.0, 10.0, 0.0, 0.0),
                                   child: FlutterFlowRadioButton(
                                     options: ['Yes', 'No'].toList(),
@@ -613,7 +610,7 @@ class _EventProposalStep4DraftWidgetState
                                               fontSize: 12.0,
                                               letterSpacing: 0.0,
                                             ),
-                                    textPadding: EdgeInsetsDirectional.fromSTEB(
+                                    textPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 20.0, 0.0),
                                     buttonPosition: RadioButtonPosition.left,
                                     direction: Axis.horizontal,
@@ -629,7 +626,7 @@ class _EventProposalStep4DraftWidgetState
                                 ),
                                 if (_model.joborderRbValue == 'Yes')
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: Container(
                                       width: double.infinity,
@@ -651,7 +648,7 @@ class _EventProposalStep4DraftWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               FFIcons.kwarning2,
@@ -683,7 +680,7 @@ class _EventProposalStep4DraftWidgetState
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 20.0, 0.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () {
@@ -693,9 +690,9 @@ class _EventProposalStep4DraftWidgetState
                               options: FFButtonOptions(
                                 width: double.infinity,
                                 height: 40.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     24.0, 0.0, 24.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -707,7 +704,7 @@ class _EventProposalStep4DraftWidgetState
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),

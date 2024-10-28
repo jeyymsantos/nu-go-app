@@ -5,8 +5,6 @@ import '/custom_code/actions/index.dart' as actions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'password_checker_model.dart';
 export 'password_checker_model.dart';
@@ -84,31 +82,31 @@ class _PasswordCheckerWidgetState extends State<PasswordCheckerWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 2.0,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Container(
-                  decoration: BoxDecoration(),
+                  decoration: const BoxDecoration(),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
-                    child: Container(
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                    child: SizedBox(
                       width: 200.0,
                       child: TextFormField(
                         controller: _model.textController,
                         focusNode: _model.textFieldFocusNode,
                         onChanged: (_) => EasyDebounce.debounce(
                           '_model.textController',
-                          Duration(milliseconds: 2000),
+                          const Duration(milliseconds: 2000),
                           () async {
                             logFirebaseEvent(
                                 'PASSWORD_CHECKER_TextField_71mf0mpn_ON_T');
@@ -145,7 +143,7 @@ class _PasswordCheckerWidgetState extends State<PasswordCheckerWidget> {
                                 letterSpacing: 0.0,
                               ),
                           enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Color(0x00000000),
                               width: 0.5,
                             ),
@@ -193,7 +191,7 @@ class _PasswordCheckerWidgetState extends State<PasswordCheckerWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                       child: Text(
                         'Atleast one (1) uppercase letter',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -207,7 +205,7 @@ class _PasswordCheckerWidgetState extends State<PasswordCheckerWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                       child: Text(
                         'Atleast one (1) lowercase letter',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -221,7 +219,7 @@ class _PasswordCheckerWidgetState extends State<PasswordCheckerWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                       child: Text(
                         'Atleast one (1) number',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -235,7 +233,7 @@ class _PasswordCheckerWidgetState extends State<PasswordCheckerWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                       child: Text(
                         'Atleast one (1) special character',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -249,7 +247,7 @@ class _PasswordCheckerWidgetState extends State<PasswordCheckerWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                       child: Text(
                         'Atleast eight (8) characters',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -264,7 +262,7 @@ class _PasswordCheckerWidgetState extends State<PasswordCheckerWidget> {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: ((FFAppState().hasUppercase == false) ||
                             (FFAppState().hasLowercase == false) ||
@@ -279,9 +277,9 @@ class _PasswordCheckerWidgetState extends State<PasswordCheckerWidget> {
                     options: FFButtonOptions(
                       height: 50.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
@@ -291,7 +289,7 @@ class _PasswordCheckerWidgetState extends State<PasswordCheckerWidget> {
                                 letterSpacing: 0.0,
                               ),
                       elevation: 3.0,
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.transparent,
                         width: 1.0,
                       ),

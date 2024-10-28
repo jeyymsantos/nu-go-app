@@ -1,9 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'sort_logs_model.dart';
 export 'sort_logs_model.dart';
 
@@ -59,12 +56,12 @@ class _SortLogsWidgetState extends State<SortLogsWidget> {
             child: Container(
               decoration: BoxDecoration(
                 color: _model.sortType == 1
-                    ? Color(0xFFE1E1E1)
+                    ? const Color(0xFFE1E1E1)
                     : FlutterFlowTheme.of(context).tabBarUnselected,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -76,7 +73,7 @@ class _SortLogsWidgetState extends State<SortLogsWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'Admin Level',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -105,12 +102,12 @@ class _SortLogsWidgetState extends State<SortLogsWidget> {
             child: Container(
               decoration: BoxDecoration(
                 color: _model.sortType == 2
-                    ? Color(0xFFE1E1E1)
+                    ? const Color(0xFFE1E1E1)
                     : FlutterFlowTheme.of(context).tabBarUnselected,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -122,7 +119,7 @@ class _SortLogsWidgetState extends State<SortLogsWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'Approver Level',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -151,12 +148,12 @@ class _SortLogsWidgetState extends State<SortLogsWidget> {
             child: Container(
               decoration: BoxDecoration(
                 color: _model.sortType == 3
-                    ? Color(0xFFE1E1E1)
+                    ? const Color(0xFFE1E1E1)
                     : FlutterFlowTheme.of(context).tabBarUnselected,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -168,7 +165,7 @@ class _SortLogsWidgetState extends State<SortLogsWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'Officer Level',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -197,12 +194,12 @@ class _SortLogsWidgetState extends State<SortLogsWidget> {
             child: Container(
               decoration: BoxDecoration(
                 color: _model.sortType == 4
-                    ? Color(0xFFE1E1E1)
+                    ? const Color(0xFFE1E1E1)
                     : FlutterFlowTheme.of(context).tabBarUnselected,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -214,7 +211,7 @@ class _SortLogsWidgetState extends State<SortLogsWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'Faculty Level',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -243,12 +240,12 @@ class _SortLogsWidgetState extends State<SortLogsWidget> {
             child: Container(
               decoration: BoxDecoration(
                 color: _model.sortType == 5
-                    ? Color(0xFFE1E1E1)
+                    ? const Color(0xFFE1E1E1)
                     : FlutterFlowTheme.of(context).tabBarUnselected,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -260,7 +257,7 @@ class _SortLogsWidgetState extends State<SortLogsWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'Student Level',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -275,7 +272,7 @@ class _SortLogsWidgetState extends State<SortLogsWidget> {
               ),
             ),
           ),
-        ].divide(SizedBox(width: 10.0)),
+        ].divide(const SizedBox(width: 10.0)),
       ),
     );
   }

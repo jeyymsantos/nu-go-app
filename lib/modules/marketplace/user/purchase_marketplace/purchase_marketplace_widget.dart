@@ -8,11 +8,9 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_web_view.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'purchase_marketplace_model.dart';
@@ -76,11 +74,11 @@ class _PurchaseMarketplaceWidgetState extends State<PurchaseMarketplaceWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: TitleHeaderComponentWidget(
+                  child: const TitleHeaderComponentWidget(
                     titleText: 'Confirm Order',
                   ),
                 ),
@@ -93,7 +91,7 @@ class _PurchaseMarketplaceWidgetState extends State<PurchaseMarketplaceWidget> {
                     Expanded(
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                         child: StreamBuilder<DefaultsRecord>(
                           stream: DefaultsRecord.getDocument(
                               FFAppState().defaultID!),
@@ -138,7 +136,7 @@ class _PurchaseMarketplaceWidgetState extends State<PurchaseMarketplaceWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 29.0, 20.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 29.0, 20.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -148,7 +146,7 @@ class _PurchaseMarketplaceWidgetState extends State<PurchaseMarketplaceWidget> {
                         onPressed: () async {
                           logFirebaseEvent(
                               'PURCHASE_MARKETPLACE_COMPLETE_ORDER_BTN_');
-                          var _shouldSetState = false;
+                          var shouldSetState = false;
                           logFirebaseEvent('Button_alert_dialog');
                           await showDialog(
                             context: context,
@@ -157,13 +155,13 @@ class _PurchaseMarketplaceWidgetState extends State<PurchaseMarketplaceWidget> {
                                 elevation: 0,
                                 insetPadding: EdgeInsets.zero,
                                 backgroundColor: Colors.transparent,
-                                alignment: AlignmentDirectional(0.0, 0.0)
+                                alignment: const AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
                                 child: WebViewAware(
                                   child: GestureDetector(
                                     onTap: () =>
                                         FocusScope.of(dialogContext).unfocus(),
-                                    child: ConfirmDialogBoxWidget(
+                                    child: const ConfirmDialogBoxWidget(
                                       confirmDialogTitle: 'Complete Order',
                                       confirmDialogMeesage:
                                           'Are you sure you want to complete your order?',
@@ -175,11 +173,11 @@ class _PurchaseMarketplaceWidgetState extends State<PurchaseMarketplaceWidget> {
                           ).then((value) =>
                               safeSetState(() => _model.confirmDialog = value));
 
-                          _shouldSetState = true;
+                          shouldSetState = true;
                           if (_model.confirmDialog!) {
                             logFirebaseEvent('Button_backend_call');
 
-                            await widget!.order!.reference.update({
+                            await widget.order!.reference.update({
                               ...createOrdersRecordData(
                                 status: 'For Claiming',
                               ),
@@ -191,22 +189,22 @@ class _PurchaseMarketplaceWidgetState extends State<PurchaseMarketplaceWidget> {
                               ),
                             });
                             while (FFAppState().index <
-                                widget!.order!.products.length) {
+                                widget.order!.products.length) {
                               logFirebaseEvent('Button_backend_call');
                               _model.productDoc =
-                                  await ProductsRecord.getDocumentOnce(widget!
+                                  await ProductsRecord.getDocumentOnce(widget
                                       .order!
                                       .products[FFAppState().index]
                                       .product!);
-                              _shouldSetState = true;
+                              shouldSetState = true;
                               logFirebaseEvent('Button_backend_call');
 
-                              await widget!
+                              await widget
                                   .order!.products[FFAppState().index].product!
                                   .update({
                                 ...createProductsRecordData(
                                   stock: _model.productDoc!.stock -
-                                      widget!
+                                      widget
                                           .order!
                                           .products[FFAppState().index]
                                           .quantity,
@@ -219,19 +217,19 @@ class _PurchaseMarketplaceWidgetState extends State<PurchaseMarketplaceWidget> {
                               });
                               logFirebaseEvent('Button_backend_call');
 
-                              await ProductInventoryRecord.createDoc(widget!
+                              await ProductInventoryRecord.createDoc(widget
                                       .order!
                                       .products[FFAppState().index]
                                       .product!)
                                   .set({
                                 ...createProductInventoryRecordData(
                                   type: 'Sold',
-                                  quantityChange: (widget!
-                                          .order?.products?[FFAppState().index])
+                                  quantityChange: (widget
+                                          .order?.products[FFAppState().index])
                                       ?.quantity,
                                   previousStock: _model.productDoc?.stock,
                                   newStock: _model.productDoc!.stock -
-                                      widget!
+                                      widget
                                           .order!
                                           .products[FFAppState().index]
                                           .quantity,
@@ -255,13 +253,13 @@ class _PurchaseMarketplaceWidgetState extends State<PurchaseMarketplaceWidget> {
                                   elevation: 0,
                                   insetPadding: EdgeInsets.zero,
                                   backgroundColor: Colors.transparent,
-                                  alignment: AlignmentDirectional(0.0, 0.0)
+                                  alignment: const AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
                                   child: WebViewAware(
                                     child: GestureDetector(
                                       onTap: () => FocusScope.of(dialogContext)
                                           .unfocus(),
-                                      child: CongratulationsDialogBoxWidget(
+                                      child: const CongratulationsDialogBoxWidget(
                                         congratsDialogTitle: 'Order Processed',
                                         congratsDialogMeesage:
                                             'Your order has been processed. You may now claim your item on Bulldogs Exchange.',
@@ -274,7 +272,7 @@ class _PurchaseMarketplaceWidgetState extends State<PurchaseMarketplaceWidget> {
 
                             logFirebaseEvent('Button_navigate_back');
                             context.safePop();
-                            if (_shouldSetState) safeSetState(() {});
+                            if (shouldSetState) safeSetState(() {});
                             return;
                           } else {
                             logFirebaseEvent('Button_alert_dialog');
@@ -285,13 +283,13 @@ class _PurchaseMarketplaceWidgetState extends State<PurchaseMarketplaceWidget> {
                                   elevation: 0,
                                   insetPadding: EdgeInsets.zero,
                                   backgroundColor: Colors.transparent,
-                                  alignment: AlignmentDirectional(0.0, 0.0)
+                                  alignment: const AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
                                   child: WebViewAware(
                                     child: GestureDetector(
                                       onTap: () => FocusScope.of(dialogContext)
                                           .unfocus(),
-                                      child: InformationDialogBoxWidget(
+                                      child: const InformationDialogBoxWidget(
                                         infoDialogTitle: 'Action Cancelled',
                                         infoDialogMeesage:
                                             'Your action has been cancelled.',
@@ -304,18 +302,18 @@ class _PurchaseMarketplaceWidgetState extends State<PurchaseMarketplaceWidget> {
 
                             logFirebaseEvent('Button_navigate_back');
                             context.safePop();
-                            if (_shouldSetState) safeSetState(() {});
+                            if (shouldSetState) safeSetState(() {});
                             return;
                           }
 
-                          if (_shouldSetState) safeSetState(() {});
+                          if (shouldSetState) safeSetState(() {});
                         },
                         text: 'Complete Order',
                         options: FFButtonOptions(
                           height: 40.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:

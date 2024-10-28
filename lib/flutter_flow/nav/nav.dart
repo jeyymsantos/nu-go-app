@@ -1,24 +1,15 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:go_router/go_router.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
 import '/backend/push_notifications/push_notifications_handler.dart'
     show PushNotificationsHandler;
 import '/index.dart';
-import '/main.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/lat_lng.dart';
-import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -83,47 +74,47 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? AuthRedirectWidget() : AuthSignInWidget(),
+          appStateNotifier.loggedIn ? const AuthRedirectWidget() : const AuthSignInWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
-              ? AuthRedirectWidget()
-              : AuthSignInWidget(),
+              ? const AuthRedirectWidget()
+              : const AuthSignInWidget(),
         ),
         FFRoute(
           name: 'super_admin_dashboard',
           path: '/superAdminDashboard',
           requireAuth: true,
-          builder: (context, params) => SuperAdminDashboardWidget(),
+          builder: (context, params) => const SuperAdminDashboardWidget(),
         ),
         FFRoute(
           name: 'our_team',
           path: '/ourTeam',
           requireAuth: true,
-          builder: (context, params) => OurTeamWidget(),
+          builder: (context, params) => const OurTeamWidget(),
         ),
         FFRoute(
           name: 'auth_sign_in',
           path: '/authSignIn',
-          builder: (context, params) => AuthSignInWidget(),
+          builder: (context, params) => const AuthSignInWidget(),
         ),
         FFRoute(
           name: 'about_app',
           path: '/aboutApp',
           requireAuth: true,
-          builder: (context, params) => AboutAppWidget(),
+          builder: (context, params) => const AboutAppWidget(),
         ),
         FFRoute(
           name: 'privacy_statement',
           path: '/privacyStatement',
-          builder: (context, params) => PrivacyStatementWidget(),
+          builder: (context, params) => const PrivacyStatementWidget(),
         ),
         FFRoute(
           name: 'auth_sign_up',
           path: '/authSignUp',
-          builder: (context, params) => AuthSignUpWidget(),
+          builder: (context, params) => const AuthSignUpWidget(),
         ),
         FFRoute(
           name: 'auth_verify_phone',
@@ -139,13 +130,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'terms',
           path: '/terms',
-          builder: (context, params) => TermsWidget(),
+          builder: (context, params) => const TermsWidget(),
         ),
         FFRoute(
           name: 'onboard_one',
           path: '/onboardOne',
           requireAuth: true,
-          builder: (context, params) => OnboardOneWidget(),
+          builder: (context, params) => const OnboardOneWidget(),
         ),
         FFRoute(
           name: 'onboard_two',
@@ -312,7 +303,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'auth_verify_email',
           path: '/authVerifyEmail',
-          builder: (context, params) => AuthVerifyEmailWidget(),
+          builder: (context, params) => const AuthVerifyEmailWidget(),
         ),
         FFRoute(
           name: 'auth_forgot_password',
@@ -328,7 +319,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'super_admin_file_maintenance',
           path: '/superAdminFileMaintenance',
           requireAuth: true,
-          builder: (context, params) => SuperAdminFileMaintenanceWidget(),
+          builder: (context, params) => const SuperAdminFileMaintenanceWidget(),
         ),
         FFRoute(
           name: 'maintenance_school',
@@ -404,13 +395,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'view_users',
           path: '/viewUsers',
           requireAuth: true,
-          builder: (context, params) => ViewUsersWidget(),
+          builder: (context, params) => const ViewUsersWidget(),
         ),
         FFRoute(
           name: 'view_user_roles',
           path: '/viewUserRoles',
           requireAuth: true,
-          builder: (context, params) => ViewUserRolesWidget(),
+          builder: (context, params) => const ViewUserRolesWidget(),
         ),
         FFRoute(
           name: 'maintenance_users',
@@ -430,19 +421,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'view_school',
           path: '/viewSchool',
           requireAuth: true,
-          builder: (context, params) => ViewSchoolWidget(),
+          builder: (context, params) => const ViewSchoolWidget(),
         ),
         FFRoute(
           name: 'dashboard',
           path: '/dashboard',
           requireAuth: true,
-          builder: (context, params) => DashboardWidget(),
+          builder: (context, params) => const DashboardWidget(),
         ),
         FFRoute(
           name: 'dashboard_facility',
           path: '/dashboardFacility',
           requireAuth: true,
-          builder: (context, params) => DashboardFacilityWidget(),
+          builder: (context, params) => const DashboardFacilityWidget(),
         ),
         FFRoute(
           name: 'maintenance_programs',
@@ -489,7 +480,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'view_programs',
           path: '/viewPrograms',
           requireAuth: true,
-          builder: (context, params) => ViewProgramsWidget(),
+          builder: (context, params) => const ViewProgramsWidget(),
         ),
         FFRoute(
           name: 'maintenance_organizations',
@@ -552,13 +543,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'view_organizations',
           path: '/viewOrganizations',
           requireAuth: true,
-          builder: (context, params) => ViewOrganizationsWidget(),
+          builder: (context, params) => const ViewOrganizationsWidget(),
         ),
         FFRoute(
           name: 'view_office',
           path: '/viewOffice',
           requireAuth: true,
-          builder: (context, params) => ViewOfficeWidget(),
+          builder: (context, params) => const ViewOfficeWidget(),
         ),
         FFRoute(
           name: 'maintenance_office',
@@ -599,7 +590,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'view_facility_type',
           path: '/viewFacilityType',
           requireAuth: true,
-          builder: (context, params) => ViewFacilityTypeWidget(),
+          builder: (context, params) => const ViewFacilityTypeWidget(),
         ),
         FFRoute(
           name: 'maintenance_facility_type',
@@ -634,7 +625,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'view_rooms',
           path: '/viewRooms',
           requireAuth: true,
-          builder: (context, params) => ViewRoomsWidget(),
+          builder: (context, params) => const ViewRoomsWidget(),
         ),
         FFRoute(
           name: 'maintenance_rooms',
@@ -681,7 +672,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'view_equipment',
           path: '/viewEquipment',
           requireAuth: true,
-          builder: (context, params) => ViewEquipmentWidget(),
+          builder: (context, params) => const ViewEquipmentWidget(),
         ),
         FFRoute(
           name: 'maintenance_equipment',
@@ -726,7 +717,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'change_password',
           path: '/changePassword',
           requireAuth: true,
-          builder: (context, params) => ChangePasswordWidget(),
+          builder: (context, params) => const ChangePasswordWidget(),
         ),
         FFRoute(
           name: 'event_management',
@@ -771,7 +762,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'ticket_verifier',
           path: '/ticketVerifier',
           requireAuth: true,
-          builder: (context, params) => TicketVerifierWidget(),
+          builder: (context, params) => const TicketVerifierWidget(),
         ),
         FFRoute(
           name: 'org_profile',
@@ -790,7 +781,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'notification',
           path: '/notification',
           requireAuth: true,
-          builder: (context, params) => NotificationWidget(),
+          builder: (context, params) => const NotificationWidget(),
         ),
         FFRoute(
           name: 'approval_org_applications',
@@ -808,31 +799,31 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'auth_redirect',
           path: '/authRedirect',
           requireAuth: true,
-          builder: (context, params) => AuthRedirectWidget(),
+          builder: (context, params) => const AuthRedirectWidget(),
         ),
         FFRoute(
           name: 'menu',
           path: '/menu',
           requireAuth: true,
-          builder: (context, params) => MenuWidget(),
+          builder: (context, params) => const MenuWidget(),
         ),
         FFRoute(
           name: 'profile',
           path: '/profile',
           requireAuth: true,
-          builder: (context, params) => ProfileWidget(),
+          builder: (context, params) => const ProfileWidget(),
         ),
         FFRoute(
           name: 'settings',
           path: '/settings',
           requireAuth: true,
-          builder: (context, params) => SettingsWidget(),
+          builder: (context, params) => const SettingsWidget(),
         ),
         FFRoute(
           name: 'my_organizations',
           path: '/myOrganizations',
           requireAuth: true,
-          builder: (context, params) => MyOrganizationsWidget(),
+          builder: (context, params) => const MyOrganizationsWidget(),
         ),
         FFRoute(
           name: 'org_application_status',
@@ -851,7 +842,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'resources_list',
           path: '/resourcesList',
           requireAuth: true,
-          builder: (context, params) => ResourcesListWidget(),
+          builder: (context, params) => const ResourcesListWidget(),
         ),
         FFRoute(
           name: 'resource_viewer',
@@ -872,13 +863,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'admin_resources',
           path: '/adminResources',
           requireAuth: true,
-          builder: (context, params) => AdminResourcesWidget(),
+          builder: (context, params) => const AdminResourcesWidget(),
         ),
         FFRoute(
           name: 'admin_manage_orgs',
           path: '/adminManageOrgs',
           requireAuth: true,
-          builder: (context, params) => AdminManageOrgsWidget(),
+          builder: (context, params) => const AdminManageOrgsWidget(),
         ),
         FFRoute(
           name: 'org_revision',
@@ -897,7 +888,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'a_fmo_dashboard',
           path: '/aFmoDashboard',
           requireAuth: true,
-          builder: (context, params) => AFmoDashboardWidget(),
+          builder: (context, params) => const AFmoDashboardWidget(),
         ),
         FFRoute(
           name: 'event_proposal_status',
@@ -929,7 +920,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'admin_manage_event',
           path: '/adminManageEvent',
           requireAuth: true,
-          builder: (context, params) => AdminManageEventWidget(),
+          builder: (context, params) => const AdminManageEventWidget(),
         ),
         FFRoute(
           name: 'event_proposal_revision',
@@ -949,19 +940,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'calendar_trial',
           path: '/calendarTrial',
           requireAuth: true,
-          builder: (context, params) => CalendarTrialWidget(),
+          builder: (context, params) => const CalendarTrialWidget(),
         ),
         FFRoute(
           name: 'auth_verify_role',
           path: '/authVerifyRole',
           requireAuth: true,
-          builder: (context, params) => AuthVerifyRoleWidget(),
+          builder: (context, params) => const AuthVerifyRoleWidget(),
         ),
         FFRoute(
           name: 'a_calendar',
           path: '/aCalendar',
           requireAuth: true,
-          builder: (context, params) => ACalendarWidget(),
+          builder: (context, params) => const ACalendarWidget(),
         ),
         FFRoute(
           name: 'event_proposal_step_1',
@@ -980,7 +971,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'admin_notif_send',
           path: '/adminNotifSend',
           requireAuth: true,
-          builder: (context, params) => AdminNotifSendWidget(),
+          builder: (context, params) => const AdminNotifSendWidget(),
         ),
         FFRoute(
           name: 'event_proposal_step_2',
@@ -1019,25 +1010,25 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'event_proposal_step_4_draft',
           path: '/eventProposalStep4Draft',
           requireAuth: true,
-          builder: (context, params) => EventProposalStep4DraftWidget(),
+          builder: (context, params) => const EventProposalStep4DraftWidget(),
         ),
         FFRoute(
           name: 'form_and_reservations',
           path: '/formAndReservations',
           requireAuth: true,
-          builder: (context, params) => FormAndReservationsWidget(),
+          builder: (context, params) => const FormAndReservationsWidget(),
         ),
         FFRoute(
           name: 'b_form_and_reservations_gatepass',
           path: '/bFormAndReservationsGatepass',
           requireAuth: true,
-          builder: (context, params) => BFormAndReservationsGatepassWidget(),
+          builder: (context, params) => const BFormAndReservationsGatepassWidget(),
         ),
         FFRoute(
           name: 'b_form_facility_reservation',
           path: '/bFormFacilityReservation',
           requireAuth: true,
-          builder: (context, params) => BFormFacilityReservationWidget(),
+          builder: (context, params) => const BFormFacilityReservationWidget(),
         ),
         FFRoute(
           name: 'event_proposal_step_3',
@@ -1228,22 +1219,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'admin_notif_menu',
-          path: '/adminNotifMenu',
-          requireAuth: true,
-          builder: (context, params) => AdminNotifMenuWidget(),
-        ),
-        FFRoute(
           name: 'feedback',
           path: '/feedback',
           requireAuth: true,
-          builder: (context, params) => FeedbackWidget(),
+          builder: (context, params) => const FeedbackWidget(),
         ),
         FFRoute(
           name: 'admin_feedback',
           path: '/adminFeedback',
           requireAuth: true,
-          builder: (context, params) => AdminFeedbackWidget(),
+          builder: (context, params) => const AdminFeedbackWidget(),
         ),
         FFRoute(
           name: 'admin_feedback_view',
@@ -1283,7 +1268,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'admin_content_menu',
           path: '/adminContentMenu',
           requireAuth: true,
-          builder: (context, params) => AdminContentMenuWidget(),
+          builder: (context, params) => const AdminContentMenuWidget(),
         ),
         FFRoute(
           name: 'event_search',
@@ -1300,19 +1285,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'admin_content_create',
           path: '/adminContentCreate',
           requireAuth: true,
-          builder: (context, params) => AdminContentCreateWidget(),
+          builder: (context, params) => const AdminContentCreateWidget(),
         ),
         FFRoute(
           name: 'explore_organization',
           path: '/exploreOrganization',
           requireAuth: true,
-          builder: (context, params) => ExploreOrganizationWidget(),
+          builder: (context, params) => const ExploreOrganizationWidget(),
         ),
         FFRoute(
           name: 'content_see_all',
           path: '/contentSeeAll',
           requireAuth: true,
-          builder: (context, params) => ContentSeeAllWidget(),
+          builder: (context, params) => const ContentSeeAllWidget(),
         ),
         FFRoute(
           name: 'content_view',
@@ -1353,19 +1338,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'admin_content_view',
           path: '/adminContentView',
           requireAuth: true,
-          builder: (context, params) => AdminContentViewWidget(),
+          builder: (context, params) => const AdminContentViewWidget(),
         ),
         FFRoute(
           name: 'user_feedbackCopy',
           path: '/userFeedbackCopy',
           requireAuth: true,
-          builder: (context, params) => UserFeedbackCopyWidget(),
+          builder: (context, params) => const UserFeedbackCopyWidget(),
         ),
         FFRoute(
           name: 'admin_logs',
           path: '/adminLogs',
           requireAuth: true,
-          builder: (context, params) => AdminLogsWidget(),
+          builder: (context, params) => const AdminLogsWidget(),
         ),
         FFRoute(
           name: 'admin_content_edit',
@@ -1417,43 +1402,43 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'admin_approval_manage',
           path: '/adminApprovalManage',
           requireAuth: true,
-          builder: (context, params) => AdminApprovalManageWidget(),
+          builder: (context, params) => const AdminApprovalManageWidget(),
         ),
         FFRoute(
           name: 'auth_ongoing_maintenance',
           path: '/authOngoingMaintenance',
           requireAuth: true,
-          builder: (context, params) => AuthOngoingMaintenanceWidget(),
+          builder: (context, params) => const AuthOngoingMaintenanceWidget(),
         ),
         FFRoute(
           name: 'auth_ongoing_update',
           path: '/authOngoingUpdate',
           requireAuth: true,
-          builder: (context, params) => AuthOngoingUpdateWidget(),
+          builder: (context, params) => const AuthOngoingUpdateWidget(),
         ),
         FFRoute(
           name: 'admin_maintenance',
           path: '/adminMaintenance',
           requireAuth: true,
-          builder: (context, params) => AdminMaintenanceWidget(),
+          builder: (context, params) => const AdminMaintenanceWidget(),
         ),
         FFRoute(
           name: 'user_cards',
           path: '/userCards',
           requireAuth: true,
-          builder: (context, params) => UserCardsWidget(),
+          builder: (context, params) => const UserCardsWidget(),
         ),
         FFRoute(
           name: 'admin_approval_assign',
           path: '/adminApprovalAssign',
           requireAuth: true,
-          builder: (context, params) => AdminApprovalAssignWidget(),
+          builder: (context, params) => const AdminApprovalAssignWidget(),
         ),
         FFRoute(
           name: 'services_list',
           path: '/servicesList',
           requireAuth: true,
-          builder: (context, params) => ServicesListWidget(),
+          builder: (context, params) => const ServicesListWidget(),
         ),
         FFRoute(
           name: 'org_members_pending',
@@ -1474,25 +1459,39 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'student_top_up',
           path: '/studentTopUp',
           requireAuth: true,
-          builder: (context, params) => StudentTopUpWidget(),
+          builder: (context, params) => const StudentTopUpWidget(),
         ),
         FFRoute(
           name: 'step_1_nfc_setup',
           path: '/step1NfcSetup',
           requireAuth: true,
-          builder: (context, params) => Step1NfcSetupWidget(),
+          builder: (context, params) => const Step1NfcSetupWidget(),
         ),
         FFRoute(
           name: 'org_application',
           path: '/orgApplication',
           requireAuth: true,
-          builder: (context, params) => OrgApplicationWidget(),
+          builder: (context, params) => const OrgApplicationWidget(),
         ),
         FFRoute(
-          name: 'event_profile_feeback',
-          path: '/eventProfileFeeback',
+          name: 'event_feeback',
+          path: '/eventFeeback',
           requireAuth: true,
-          builder: (context, params) => EventProfileFeebackWidget(),
+          asyncParams: {
+            'event': getDoc(['events'], EventsRecord.fromSnapshot),
+            'eventAttendee': getDoc(['events', 'event_attendees'],
+                EventAttendeesRecord.fromSnapshot),
+          },
+          builder: (context, params) => EventFeebackWidget(
+            event: params.getParam(
+              'event',
+              ParamType.Document,
+            ),
+            eventAttendee: params.getParam(
+              'eventAttendee',
+              ParamType.Document,
+            ),
+          ),
         ),
         FFRoute(
           name: 'org_edit',
@@ -1513,25 +1512,25 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'org_form_management',
           path: '/orgFormManagement',
           requireAuth: true,
-          builder: (context, params) => OrgFormManagementWidget(),
+          builder: (context, params) => const OrgFormManagementWidget(),
         ),
         FFRoute(
           name: 'org_reports',
           path: '/orgReports',
           requireAuth: true,
-          builder: (context, params) => OrgReportsWidget(),
+          builder: (context, params) => const OrgReportsWidget(),
         ),
         FFRoute(
           name: 'admin_approval_offices_menu',
           path: '/adminApprovalOfficesMenu',
           requireAuth: true,
-          builder: (context, params) => AdminApprovalOfficesMenuWidget(),
+          builder: (context, params) => const AdminApprovalOfficesMenuWidget(),
         ),
         FFRoute(
           name: 'admin_approval_offices_create',
           path: '/adminApprovalOfficesCreate',
           requireAuth: true,
-          builder: (context, params) => AdminApprovalOfficesCreateWidget(),
+          builder: (context, params) => const AdminApprovalOfficesCreateWidget(),
         ),
         FFRoute(
           name: 'admin_approval_offices_update',
@@ -1560,7 +1559,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'admin_approval_assign_static',
           path: '/adminApprovalAssignStatic',
           requireAuth: true,
-          builder: (context, params) => AdminApprovalAssignStaticWidget(),
+          builder: (context, params) => const AdminApprovalAssignStaticWidget(),
         ),
         FFRoute(
           name: 'admin_approval_offices_update_static',
@@ -1600,7 +1599,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'step_2_signature_setup',
           path: '/step2SignatureSetup',
           requireAuth: true,
-          builder: (context, params) => Step2SignatureSetupWidget(),
+          builder: (context, params) => const Step2SignatureSetupWidget(),
         ),
         FFRoute(
           name: 'org_application_detailed_status',
@@ -1619,7 +1618,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'admin_logs_delete',
           path: '/adminLogsDelete',
           requireAuth: true,
-          builder: (context, params) => AdminLogsDeleteWidget(),
+          builder: (context, params) => const AdminLogsDeleteWidget(),
         ),
         FFRoute(
           name: 'org_members_members',
@@ -1682,7 +1681,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'FAQs',
           path: '/fAQs',
           requireAuth: true,
-          builder: (context, params) => FAQsWidget(),
+          builder: (context, params) => const FAQsWidget(),
         ),
         FFRoute(
           name: 'admin_nfc_setup',
@@ -1744,7 +1743,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'view_users_faculty',
           path: '/viewUsersFaculty',
           requireAuth: true,
-          builder: (context, params) => ViewUsersFacultyWidget(),
+          builder: (context, params) => const ViewUsersFacultyWidget(),
         ),
         FFRoute(
           name: 'event_proposal_detailed_status',
@@ -1763,13 +1762,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'calendar_version2',
           path: '/calendarVersion2',
           requireAuth: true,
-          builder: (context, params) => CalendarVersion2Widget(),
+          builder: (context, params) => const CalendarVersion2Widget(),
         ),
         FFRoute(
           name: 'event_profile_test',
           path: '/eventProfileTest',
           requireAuth: true,
-          builder: (context, params) => EventProfileTestWidget(),
+          builder: (context, params) => const EventProfileTestWidget(),
         ),
         FFRoute(
           name: 'photo_viewer',
@@ -1790,13 +1789,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'admin_menu',
           path: '/adminMenu',
           requireAuth: true,
-          builder: (context, params) => AdminMenuWidget(),
+          builder: (context, params) => const AdminMenuWidget(),
         ),
         FFRoute(
           name: 'ad_draft',
           path: '/adDraft',
           requireAuth: true,
-          builder: (context, params) => AdDraftWidget(),
+          builder: (context, params) => const AdDraftWidget(),
         ),
         FFRoute(
           name: 'org_satisfaction',
@@ -1817,19 +1816,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'SampleCaard',
           path: '/sampleCaard',
           requireAuth: true,
-          builder: (context, params) => SampleCaardWidget(),
+          builder: (context, params) => const SampleCaardWidget(),
         ),
         FFRoute(
           name: 'ticketsCopy',
           path: '/ticketsCopy',
           requireAuth: true,
-          builder: (context, params) => TicketsCopyWidget(),
+          builder: (context, params) => const TicketsCopyWidget(),
         ),
         FFRoute(
           name: 'tickets',
           path: '/tickets',
           requireAuth: true,
-          builder: (context, params) => TicketsWidget(),
+          builder: (context, params) => const TicketsWidget(),
         ),
         FFRoute(
           name: 'event_guests_going',
@@ -1917,13 +1916,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'auth_logout',
           path: '/authLogout',
-          builder: (context, params) => AuthLogoutWidget(),
+          builder: (context, params) => const AuthLogoutWidget(),
         ),
         FFRoute(
           name: 'dashboard_marketplace',
           path: '/dashboardMarketplace',
           requireAuth: true,
-          builder: (context, params) => DashboardMarketplaceWidget(),
+          builder: (context, params) => const DashboardMarketplaceWidget(),
         ),
         FFRoute(
           name: 'productDetails_marketplace',
@@ -1943,7 +1942,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'addProduct_marketplace',
           path: '/addProductMarketplace',
           requireAuth: true,
-          builder: (context, params) => AddProductMarketplaceWidget(),
+          builder: (context, params) => const AddProductMarketplaceWidget(),
         ),
         FFRoute(
           name: 'orderTracker_marketplace',
@@ -1968,7 +1967,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'cart_marketplace',
           path: '/cartMarketplace',
           requireAuth: true,
-          builder: (context, params) => CartMarketplaceWidget(),
+          builder: (context, params) => const CartMarketplaceWidget(),
         ),
         FFRoute(
           name: 'purchase_marketplace',
@@ -1988,25 +1987,33 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'inventory_marketplace',
           path: '/inventoryMarketplace',
           requireAuth: true,
-          builder: (context, params) => InventoryMarketplaceWidget(),
+          builder: (context, params) => const InventoryMarketplaceWidget(),
         ),
         FFRoute(
           name: 'updateProduct_marketplace',
           path: '/updateProductMarketplace',
           requireAuth: true,
-          builder: (context, params) => UpdateProductMarketplaceWidget(),
+          builder: (context, params) => const UpdateProductMarketplaceWidget(),
         ),
         FFRoute(
           name: 'PasswordChecker',
           path: '/passwordChecker',
           requireAuth: true,
-          builder: (context, params) => PasswordCheckerWidget(),
+          builder: (context, params) => const PasswordCheckerWidget(),
         ),
         FFRoute(
-          name: 'user_profile_admin_view',
-          path: '/userProfileAdminView',
+          name: 'view_user',
+          path: '/viewUser',
           requireAuth: true,
-          builder: (context, params) => UserProfileAdminViewWidget(),
+          asyncParams: {
+            'userDoc': getDoc(['users'], UsersRecord.fromSnapshot),
+          },
+          builder: (context, params) => ViewUserWidget(
+            userDoc: params.getParam(
+              'userDoc',
+              ParamType.Document,
+            ),
+          ),
         ),
         FFRoute(
           name: 'event_edit',
@@ -2026,31 +2033,31 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'dashboard_admin_marketplace',
           path: '/dashboardAdminMarketplace',
           requireAuth: true,
-          builder: (context, params) => DashboardAdminMarketplaceWidget(),
+          builder: (context, params) => const DashboardAdminMarketplaceWidget(),
         ),
         FFRoute(
           name: 'ticket_design2',
           path: '/ticketDesign2',
           requireAuth: true,
-          builder: (context, params) => TicketDesign2Widget(),
+          builder: (context, params) => const TicketDesign2Widget(),
         ),
         FFRoute(
           name: 'myOrders_marketplace',
           path: '/myOrdersMarketplace',
           requireAuth: true,
-          builder: (context, params) => MyOrdersMarketplaceWidget(),
+          builder: (context, params) => const MyOrdersMarketplaceWidget(),
         ),
         FFRoute(
           name: 'myPendingOrders_admin_marketplace',
           path: '/myPendingOrdersAdminMarketplace',
           requireAuth: true,
-          builder: (context, params) => MyPendingOrdersAdminMarketplaceWidget(),
+          builder: (context, params) => const MyPendingOrdersAdminMarketplaceWidget(),
         ),
         FFRoute(
           name: 'update',
           path: '/update',
           requireAuth: true,
-          builder: (context, params) => UpdateWidget(),
+          builder: (context, params) => const UpdateWidget(),
         ),
         FFRoute(
           name: 'orderView_admin',
@@ -2062,6 +2069,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => OrderViewAdminWidget(
             order: params.getParam(
               'order',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'view_userid_admin',
+          path: '/viewUseridAdmin',
+          requireAuth: true,
+          asyncParams: {
+            'userDoc': getDoc(['users'], UsersRecord.fromSnapshot),
+          },
+          builder: (context, params) => ViewUseridAdminWidget(
+            userDoc: params.getParam(
+              'userDoc',
               ParamType.Document,
             ),
           ),
@@ -2300,7 +2321,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => TransitionInfo(
+  static TransitionInfo appDefault() => const TransitionInfo(
         hasTransition: true,
         transitionType: PageTransitionType.fade,
         duration: Duration(milliseconds: 0),

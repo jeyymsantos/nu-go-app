@@ -9,12 +9,9 @@ import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'package:styled_divider/styled_divider.dart';
 import 'package:barcode_widget/barcode_widget.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'event_check_ticket_copy_model.dart';
 export 'event_check_ticket_copy_model.dart';
@@ -62,7 +59,7 @@ class _EventCheckTicketCopyWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(20.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -74,9 +71,9 @@ class _EventCheckTicketCopyWidgetState
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Align(
-              alignment: AlignmentDirectional(1.0, -1.0),
+              alignment: const AlignmentDirectional(1.0, -1.0),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -100,7 +97,7 @@ class _EventCheckTicketCopyWidgetState
               mainAxisSize: MainAxisSize.max,
               children: [
                 Align(
-                  alignment: AlignmentDirectional(0.0, 0.0),
+                  alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
@@ -110,10 +107,10 @@ class _EventCheckTicketCopyWidgetState
                       ),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.all(5.0),
+                      padding: const EdgeInsets.all(5.0),
                       child: BarcodeWidget(
                         data: valueOrDefault<String>(
-                          widget!.attendeeDoc?.ticketCode,
+                          widget.attendeeDoc?.ticketCode,
                           'SampleCode',
                         ),
                         barcode: Barcode.qrCode(),
@@ -121,7 +118,7 @@ class _EventCheckTicketCopyWidgetState
                         height: 200.0,
                         color: FlutterFlowTheme.of(context).primaryText,
                         backgroundColor: Colors.transparent,
-                        errorBuilder: (_context, _error) => SizedBox(
+                        errorBuilder: (context, error) => const SizedBox(
                           width: 200.0,
                           height: 200.0,
                         ),
@@ -131,13 +128,13 @@ class _EventCheckTicketCopyWidgetState
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(0.0, 0.0),
+                  alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
                     child: Text(
                       valueOrDefault<String>(
-                        widget!.eventDoc?.eventName,
+                        widget.eventDoc?.eventName,
                         'FFDC Extended Manila: Build Next-Gen Apps with FlutterFlow 5.0',
                       ),
                       textAlign: TextAlign.center,
@@ -157,21 +154,21 @@ class _EventCheckTicketCopyWidgetState
                   lineStyle: DividerLineStyle.dashed,
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 2.5, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Align(
-                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Text(
                                   'Name',
                                   textAlign: TextAlign.start,
@@ -188,7 +185,7 @@ class _EventCheckTicketCopyWidgetState
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: AuthUserStreamWidget(
                                   builder: (context) => Text(
                                     currentUserDisplayName,
@@ -212,14 +209,14 @@ class _EventCheckTicketCopyWidgetState
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               2.5, 0.0, 0.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Align(
-                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Text(
                                   'Student ID',
                                   textAlign: TextAlign.start,
@@ -236,7 +233,7 @@ class _EventCheckTicketCopyWidgetState
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: AuthUserStreamWidget(
                                   builder: (context) => Text(
                                     valueOrDefault(
@@ -268,9 +265,9 @@ class _EventCheckTicketCopyWidgetState
                   lineStyle: DividerLineStyle.dashed,
                 ),
                 Align(
-                  alignment: AlignmentDirectional(0.0, 0.0),
+                  alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 5.0),
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
@@ -278,7 +275,7 @@ class _EventCheckTicketCopyWidgetState
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 10.0, 0.0, 0.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -288,18 +285,18 @@ class _EventCheckTicketCopyWidgetState
                               onTap: () async {
                                 logFirebaseEvent(
                                     'EVENT_CHECK_TICKET_COPY_Container_s2hfnt');
-                                if (widget!.eventDoc!.settings.isCampus) {
+                                if (widget.eventDoc!.settings.isCampus) {
                                   logFirebaseEvent('Container_backend_call');
                                   _model.facilityOutput =
                                       await RoomsRecord.getDocumentOnce(
-                                          widget!.eventDoc!.facility!);
+                                          widget.eventDoc!.facility!);
                                   logFirebaseEvent('Container_custom_action');
                                   _model.campusOutput =
                                       await actions.addEventToCalendar(
-                                    widget!.eventDoc!.eventName,
-                                    widget!.eventDoc!.objectives,
-                                    widget!.eventDoc!.startDate!,
-                                    widget!.eventDoc!.endTime!,
+                                    widget.eventDoc!.eventName,
+                                    widget.eventDoc!.objectives,
+                                    widget.eventDoc!.startDate!,
+                                    widget.eventDoc!.endTime!,
                                     '${_model.facilityOutput?.roomName}, NU Baliwag, SM Baliwag Complex, Brgy. Pagala, City of Baliwag, Bulacan, Philippines',
                                   );
                                   logFirebaseEvent('Container_alert_dialog');
@@ -308,29 +305,29 @@ class _EventCheckTicketCopyWidgetState
                                     builder: (alertDialogContext) {
                                       return WebViewAware(
                                         child: AlertDialog(
-                                          title: Text('Hmm'),
+                                          title: const Text('Hmm'),
                                           content: Text(_model.campusOutput!),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(
                                                   alertDialogContext),
-                                              child: Text('Ok'),
+                                              child: const Text('Ok'),
                                             ),
                                           ],
                                         ),
                                       );
                                     },
                                   );
-                                } else if (widget!
+                                } else if (widget
                                     .eventDoc!.settings.isOnline) {
                                   logFirebaseEvent('Container_custom_action');
                                   _model.onlineOutput =
                                       await actions.addEventToCalendar(
-                                    widget!.eventDoc!.eventName,
-                                    widget!.eventDoc!.objectives,
-                                    widget!.eventDoc!.startDate!,
-                                    widget!.eventDoc!.endTime!,
-                                    widget!
+                                    widget.eventDoc!.eventName,
+                                    widget.eventDoc!.objectives,
+                                    widget.eventDoc!.startDate!,
+                                    widget.eventDoc!.endTime!,
+                                    widget
                                         .eventDoc!.otherDetails.onlinePlatform,
                                   );
                                   logFirebaseEvent('Container_alert_dialog');
@@ -339,13 +336,13 @@ class _EventCheckTicketCopyWidgetState
                                     builder: (alertDialogContext) {
                                       return WebViewAware(
                                         child: AlertDialog(
-                                          title: Text('Hmm'),
+                                          title: const Text('Hmm'),
                                           content: Text(_model.onlineOutput!),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(
                                                   alertDialogContext),
-                                              child: Text('Ok'),
+                                              child: const Text('Ok'),
                                             ),
                                           ],
                                         ),
@@ -356,16 +353,16 @@ class _EventCheckTicketCopyWidgetState
                                   logFirebaseEvent('Container_custom_action');
                                   _model.outsideOutput =
                                       await actions.getAddressFromLatLng(
-                                    widget!.eventDoc!.otherDetails
+                                    widget.eventDoc!.otherDetails
                                         .outsideLocation!,
                                   );
                                   logFirebaseEvent('Container_custom_action');
                                   _model.addressOutput =
                                       await actions.addEventToCalendar(
-                                    widget!.eventDoc!.eventName,
-                                    widget!.eventDoc!.objectives,
-                                    widget!.eventDoc!.startDate!,
-                                    widget!.eventDoc!.endTime!,
+                                    widget.eventDoc!.eventName,
+                                    widget.eventDoc!.objectives,
+                                    widget.eventDoc!.startDate!,
+                                    widget.eventDoc!.endTime!,
                                     _model.outsideOutput!,
                                   );
                                   logFirebaseEvent('Container_alert_dialog');
@@ -374,13 +371,13 @@ class _EventCheckTicketCopyWidgetState
                                     builder: (alertDialogContext) {
                                       return WebViewAware(
                                         child: AlertDialog(
-                                          title: Text('Hmm'),
+                                          title: const Text('Hmm'),
                                           content: Text(_model.addressOutput!),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(
                                                   alertDialogContext),
-                                              child: Text('Ok'),
+                                              child: const Text('Ok'),
                                             ),
                                           ],
                                         ),
@@ -401,12 +398,12 @@ class _EventCheckTicketCopyWidgetState
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.all(5.0),
+                                  padding: const EdgeInsets.all(5.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 5.0, 0.0),
                                         child: Icon(
                                           FFIcons.kvideoAdd,
@@ -440,12 +437,12 @@ class _EventCheckTicketCopyWidgetState
                               ),
                             ),
                             child: Padding(
-                              padding: EdgeInsets.all(5.0),
+                              padding: const EdgeInsets.all(5.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 5.0, 0.0),
                                     child: Icon(
                                       FFIcons.kmessages,
@@ -469,7 +466,7 @@ class _EventCheckTicketCopyWidgetState
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 10.0, 0.0),
                             child: Container(
                               decoration: BoxDecoration(
@@ -480,12 +477,12 @@ class _EventCheckTicketCopyWidgetState
                                 ),
                               ),
                               child: Padding(
-                                padding: EdgeInsets.all(5.0),
+                                padding: const EdgeInsets.all(5.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 5.0, 0.0),
                                       child: Icon(
                                         FFIcons.ksend24,
@@ -509,7 +506,7 @@ class _EventCheckTicketCopyWidgetState
                               ),
                             ),
                           ),
-                        ].divide(SizedBox(width: 10.0)),
+                        ].divide(const SizedBox(width: 10.0)),
                       ),
                     ),
                   ),
@@ -520,15 +517,15 @@ class _EventCheckTicketCopyWidgetState
                   lineStyle: DividerLineStyle.dashed,
                 ),
                 Align(
-                  alignment: AlignmentDirectional(0.0, 0.0),
+                  alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 10.0),
+                        const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 10.0),
                     child: RichText(
                       textScaler: MediaQuery.of(context).textScaler,
                       text: TextSpan(
                         children: [
-                          TextSpan(
+                          const TextSpan(
                             text:
                                 'No longer able to attend? Notify the host by ',
                             style: TextStyle(),
@@ -544,7 +541,7 @@ class _EventCheckTicketCopyWidgetState
                               ..onTap = () async {
                                 logFirebaseEvent(
                                     'EVENT_CHECK_TICKET_COPY_RichTextSpan_cgl');
-                                var _shouldSetState = false;
+                                var shouldSetState = false;
                                 logFirebaseEvent('RichTextSpan_alert_dialog');
                                 await showDialog(
                                   context: context,
@@ -553,9 +550,9 @@ class _EventCheckTicketCopyWidgetState
                                       elevation: 0,
                                       insetPadding: EdgeInsets.zero,
                                       backgroundColor: Colors.transparent,
-                                      alignment: AlignmentDirectional(0.0, 0.0)
+                                      alignment: const AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
-                                      child: WebViewAware(
+                                      child: const WebViewAware(
                                         child: ConfirmDialogBoxWidget(
                                           confirmDialogTitle:
                                               'Cancel Registration',
@@ -568,7 +565,7 @@ class _EventCheckTicketCopyWidgetState
                                 ).then((value) => safeSetState(
                                     () => _model.confirmDialog = value));
 
-                                _shouldSetState = true;
+                                shouldSetState = true;
                                 if (_model.confirmDialog!) {
                                   logFirebaseEvent('RichTextSpan_action_block');
                                   await action_blocks.triggerAppNotification(
@@ -576,8 +573,8 @@ class _EventCheckTicketCopyWidgetState
                                     type: 'user',
                                     title: 'Event Participation Cancelled',
                                     message:
-                                        'You have cancelled your event participation to ${widget!.eventDoc?.eventName}. You may still try to re-join by submitting a join event request again on the event\'s profile.',
-                                    user: widget!.attendeeDoc?.ticketUser,
+                                        'You have cancelled your event participation to ${widget.eventDoc?.eventName}. You may still try to re-join by submitting a join event request again on the event\'s profile.',
+                                    user: widget.attendeeDoc?.ticketUser,
                                   );
                                   logFirebaseEvent(
                                       'RichTextSpan_trigger_push_notification');
@@ -585,10 +582,10 @@ class _EventCheckTicketCopyWidgetState
                                     notificationTitle:
                                         'Event Participation Cancelled',
                                     notificationText:
-                                        'You have cancelled your event participation to ${widget!.eventDoc?.eventName}.',
+                                        'You have cancelled your event participation to ${widget.eventDoc?.eventName}.',
                                     notificationSound: 'default',
                                     userRefs: [
-                                      widget!.attendeeDoc!.ticketUser!
+                                      widget.attendeeDoc!.ticketUser!
                                     ],
                                     initialPageName: 'auth_redirect',
                                     parameterData: {},
@@ -599,11 +596,11 @@ class _EventCheckTicketCopyWidgetState
                                     type: 'cancelled',
                                     module: 'event',
                                     doneToName:
-                                        'the event participation for ${widget!.eventDoc?.eventName}',
-                                    doneTo: widget!.attendeeDoc?.ticketUser,
+                                        'the event participation for ${widget.eventDoc?.eventName}',
+                                    doneTo: widget.attendeeDoc?.ticketUser,
                                   );
                                   logFirebaseEvent('RichTextSpan_backend_call');
-                                  await widget!.attendeeDoc!.reference.delete();
+                                  await widget.attendeeDoc!.reference.delete();
                                   logFirebaseEvent('RichTextSpan_alert_dialog');
                                   await showDialog(
                                     context: context,
@@ -613,10 +610,10 @@ class _EventCheckTicketCopyWidgetState
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0)
+                                            const AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                        child: WebViewAware(
+                                        child: const WebViewAware(
                                           child: CongratulationsDialogBoxWidget(
                                             congratsDialogTitle:
                                                 'Event Participation Cancelled',
@@ -631,14 +628,14 @@ class _EventCheckTicketCopyWidgetState
                                   logFirebaseEvent(
                                       'RichTextSpan_close_dialog_drawer_etc');
                                   Navigator.pop(context);
-                                  if (_shouldSetState) safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
                                   return;
                                 } else {
-                                  if (_shouldSetState) safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
                                   return;
                                 }
 
-                                if (_shouldSetState) safeSetState(() {});
+                                if (shouldSetState) safeSetState(() {});
                               },
                           )
                         ],

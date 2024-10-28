@@ -2,9 +2,6 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'notif_item_model.dart';
 export 'notif_item_model.dart';
 
@@ -59,15 +56,15 @@ class _NotifItemWidgetState extends State<NotifItemWidget> {
         borderRadius: BorderRadius.circular(5.0),
       ),
       child: Padding(
-        padding: EdgeInsets.all(5.0),
+        padding: const EdgeInsets.all(5.0),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Align(
-              alignment: AlignmentDirectional(0.0, -1.0),
+              alignment: const AlignmentDirectional(0.0, -1.0),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                 child: Container(
                   width: 35.0,
                   height: 35.0,
@@ -79,9 +76,9 @@ class _NotifItemWidgetState extends State<NotifItemWidget> {
                     ),
                   ),
                   child: Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
                     child: Padding(
-                      padding: EdgeInsets.all(2.0),
+                      padding: const EdgeInsets.all(2.0),
                       child: ClipOval(
                         child: Container(
                           width: 34.0,
@@ -91,7 +88,7 @@ class _NotifItemWidgetState extends State<NotifItemWidget> {
                               fit: BoxFit.cover,
                               image: Image.network(
                                 valueOrDefault<String>(
-                                  widget!.iconImage,
+                                  widget.iconImage,
                                   'https://img.freepik.com/free-photo/close-up-young-person-barbeque_23-2149271990.jpg',
                                 ),
                               ).image,
@@ -116,7 +113,7 @@ class _NotifItemWidgetState extends State<NotifItemWidget> {
                     children: [
                       Expanded(
                         child: Text(
-                          widget!.title!,
+                          widget.title!,
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Montserrat',
@@ -129,7 +126,7 @@ class _NotifItemWidgetState extends State<NotifItemWidget> {
                       Text(
                         dateTimeFormat(
                           "relative",
-                          widget!.time,
+                          widget.time,
                           locale: FFLocalizations.of(context).languageCode,
                         ),
                         style: FlutterFlowTheme.of(context).labelSmall.override(
@@ -140,16 +137,16 @@ class _NotifItemWidgetState extends State<NotifItemWidget> {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 20.0, 0.0),
                             child: Text(
-                              widget!.message!,
+                              widget.message!,
                               textAlign: TextAlign.start,
                               style: FlutterFlowTheme.of(context)
                                   .labelSmall
@@ -160,10 +157,10 @@ class _NotifItemWidgetState extends State<NotifItemWidget> {
                             ),
                           ),
                         ),
-                        if (widget!.time! >
+                        if (widget.time! >
                             currentUserDocument!.lastNotificationReadTime!)
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 10.0, 0.0),
                             child: AuthUserStreamWidget(
                               builder: (context) => Container(

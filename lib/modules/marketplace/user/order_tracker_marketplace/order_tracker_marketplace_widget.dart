@@ -2,11 +2,7 @@ import '/backend/backend.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'order_tracker_marketplace_model.dart';
 export 'order_tracker_marketplace_model.dart';
 
@@ -61,11 +57,11 @@ class _OrderTrackerMarketplaceWidgetState
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.viewOrderModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: TitleHeaderComponentWidget(
+                  child: const TitleHeaderComponentWidget(
                     titleText: 'Tracker of Order',
                   ),
                 ),
@@ -76,7 +72,7 @@ class _OrderTrackerMarketplaceWidgetState
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         child: Container(
                           width: MediaQuery.sizeOf(context).width * 1.0,
@@ -90,14 +86,14 @@ class _OrderTrackerMarketplaceWidgetState
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 20.0, 20.0, 20.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
                                   valueOrDefault<String>(
-                                    widget!.product?.name,
+                                    widget.product?.name,
                                     'The Product Name',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -110,16 +106,16 @@ class _OrderTrackerMarketplaceWidgetState
                                         fontWeight: FontWeight.bold,
                                       ),
                                 ),
-                              ].divide(SizedBox(height: 16.0)),
+                              ].divide(const SizedBox(height: 16.0)),
                             ),
                           ),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         child: ListView(
-                          padding: EdgeInsets.fromLTRB(
+                          padding: const EdgeInsets.fromLTRB(
                             0,
                             16.0,
                             0,
@@ -129,13 +125,13 @@ class _OrderTrackerMarketplaceWidgetState
                           shrinkWrap: true,
                           scrollDirection: Axis.vertical,
                           children: [
-                            if (widget!.order?.orderReceived != null)
+                            if (widget.order?.orderReceived != null)
                               Container(
                                 width: double.infinity,
-                                constraints: BoxConstraints(
+                                constraints: const BoxConstraints(
                                   maxWidth: 570.0,
                                 ),
-                                decoration: BoxDecoration(),
+                                decoration: const BoxDecoration(),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -160,7 +156,7 @@ class _OrderTrackerMarketplaceWidgetState
                                             ),
                                           ),
                                           child: Padding(
-                                            padding: EdgeInsets.all(2.0),
+                                            padding: const EdgeInsets.all(2.0),
                                             child: Container(
                                               decoration: BoxDecoration(
                                                 color:
@@ -181,7 +177,7 @@ class _OrderTrackerMarketplaceWidgetState
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'Completed',
@@ -199,7 +195,7 @@ class _OrderTrackerMarketplaceWidgetState
                                         Text(
                                           dateTimeFormat(
                                             "relative",
-                                            widget!.order!.orderReceived!,
+                                            widget.order!.orderReceived!,
                                             locale: FFLocalizations.of(context)
                                                 .languageCode,
                                           ),
@@ -213,7 +209,7 @@ class _OrderTrackerMarketplaceWidgetState
                                       ],
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           18.0, 0.0, 0.0, 0.0),
                                       child: Container(
                                         width: double.infinity,
@@ -226,7 +222,7 @@ class _OrderTrackerMarketplaceWidgetState
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
-                                              offset: Offset(
+                                              offset: const Offset(
                                                 -2.0,
                                                 0.0,
                                               ),
@@ -235,7 +231,7 @@ class _OrderTrackerMarketplaceWidgetState
                                         ),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   26.0, 0.0, 0.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -253,7 +249,7 @@ class _OrderTrackerMarketplaceWidgetState
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                            ].addToEnd(SizedBox(height: 12.0)),
+                                            ].addToEnd(const SizedBox(height: 12.0)),
                                           ),
                                         ),
                                       ),
@@ -261,13 +257,13 @@ class _OrderTrackerMarketplaceWidgetState
                                   ],
                                 ),
                               ),
-                            if (widget!.order?.orderForClaiming != null)
+                            if (widget.order?.orderForClaiming != null)
                               Container(
                                 width: double.infinity,
-                                constraints: BoxConstraints(
+                                constraints: const BoxConstraints(
                                   maxWidth: 570.0,
                                 ),
-                                decoration: BoxDecoration(),
+                                decoration: const BoxDecoration(),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -292,7 +288,7 @@ class _OrderTrackerMarketplaceWidgetState
                                             ),
                                           ),
                                           child: Padding(
-                                            padding: EdgeInsets.all(2.0),
+                                            padding: const EdgeInsets.all(2.0),
                                             child: Container(
                                               decoration: BoxDecoration(
                                                 color:
@@ -313,7 +309,7 @@ class _OrderTrackerMarketplaceWidgetState
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     12.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               'For Claiming',
@@ -331,7 +327,7 @@ class _OrderTrackerMarketplaceWidgetState
                                         Text(
                                           dateTimeFormat(
                                             "relative",
-                                            widget!.order!.orderForClaiming!,
+                                            widget.order!.orderForClaiming!,
                                             locale: FFLocalizations.of(context)
                                                 .languageCode,
                                           ),
@@ -345,7 +341,7 @@ class _OrderTrackerMarketplaceWidgetState
                                       ],
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           18.0, 0.0, 0.0, 0.0),
                                       child: Container(
                                         width: double.infinity,
@@ -358,7 +354,7 @@ class _OrderTrackerMarketplaceWidgetState
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
-                                              offset: Offset(
+                                              offset: const Offset(
                                                 -2.0,
                                                 0.0,
                                               ),
@@ -367,7 +363,7 @@ class _OrderTrackerMarketplaceWidgetState
                                         ),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   26.0, 0.0, 0.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -385,7 +381,7 @@ class _OrderTrackerMarketplaceWidgetState
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                            ].addToEnd(SizedBox(height: 12.0)),
+                                            ].addToEnd(const SizedBox(height: 12.0)),
                                           ),
                                         ),
                                       ),
@@ -395,10 +391,10 @@ class _OrderTrackerMarketplaceWidgetState
                               ),
                             Container(
                               width: double.infinity,
-                              constraints: BoxConstraints(
+                              constraints: const BoxConstraints(
                                 maxWidth: 570.0,
                               ),
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -422,7 +418,7 @@ class _OrderTrackerMarketplaceWidgetState
                                           ),
                                         ),
                                         child: Padding(
-                                          padding: EdgeInsets.all(2.0),
+                                          padding: const EdgeInsets.all(2.0),
                                           child: Container(
                                             decoration: BoxDecoration(
                                               color:
@@ -443,7 +439,7 @@ class _OrderTrackerMarketplaceWidgetState
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   12.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'Order Processed',
@@ -460,7 +456,7 @@ class _OrderTrackerMarketplaceWidgetState
                                       Text(
                                         dateTimeFormat(
                                           "relative",
-                                          widget!.order!.orderPlaced!,
+                                          widget.order!.orderPlaced!,
                                           locale: FFLocalizations.of(context)
                                               .languageCode,
                                         ),
@@ -474,7 +470,7 @@ class _OrderTrackerMarketplaceWidgetState
                                     ],
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         18.0, 0.0, 0.0, 0.0),
                                     child: Container(
                                       width: double.infinity,
@@ -486,7 +482,7 @@ class _OrderTrackerMarketplaceWidgetState
                                             blurRadius: 0.0,
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
-                                            offset: Offset(
+                                            offset: const Offset(
                                               -2.0,
                                               0.0,
                                             ),
@@ -494,7 +490,7 @@ class _OrderTrackerMarketplaceWidgetState
                                         ],
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             26.0, 0.0, 0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -512,7 +508,7 @@ class _OrderTrackerMarketplaceWidgetState
                                                         letterSpacing: 0.0,
                                                       ),
                                             ),
-                                          ].addToEnd(SizedBox(height: 12.0)),
+                                          ].addToEnd(const SizedBox(height: 12.0)),
                                         ),
                                       ),
                                     ),
@@ -522,7 +518,7 @@ class _OrderTrackerMarketplaceWidgetState
                             ),
                             Container(
                               width: double.infinity,
-                              constraints: BoxConstraints(
+                              constraints: const BoxConstraints(
                                 maxWidth: 570.0,
                               ),
                               decoration: BoxDecoration(
@@ -531,7 +527,7 @@ class _OrderTrackerMarketplaceWidgetState
                                     blurRadius: 0.0,
                                     color: FlutterFlowTheme.of(context)
                                         .primaryBackground,
-                                    offset: Offset(
+                                    offset: const Offset(
                                       0.0,
                                       1.0,
                                     ),
@@ -539,7 +535,7 @@ class _OrderTrackerMarketplaceWidgetState
                                 ],
                               ),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 8.0, 8.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -560,7 +556,7 @@ class _OrderTrackerMarketplaceWidgetState
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(2.0),
+                                        padding: const EdgeInsets.all(2.0),
                                         child: Container(
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
@@ -578,7 +574,7 @@ class _OrderTrackerMarketplaceWidgetState
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             12.0, 0.0, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -599,7 +595,7 @@ class _OrderTrackerMarketplaceWidgetState
                                             Text(
                                               dateTimeFormat(
                                                 "relative",
-                                                widget!.order!.orderPlaced!,
+                                                widget.order!.orderPlaced!,
                                                 locale:
                                                     FFLocalizations.of(context)
                                                         .languageCode,
@@ -621,7 +617,7 @@ class _OrderTrackerMarketplaceWidgetState
                                 ),
                               ),
                             ),
-                          ].divide(SizedBox(height: 0.0)),
+                          ].divide(const SizedBox(height: 0.0)),
                         ),
                       ),
                     ],

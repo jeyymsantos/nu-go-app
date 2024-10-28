@@ -1,4 +1,3 @@
-import '/backend/schema/structs/index.dart';
 import '/components/calendar/day_label_component/day_label_component_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -7,9 +6,6 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'calendar_component_model.dart';
 export 'calendar_component_model.dart';
 
@@ -48,11 +44,11 @@ class _CalendarComponentWidgetState extends State<CalendarComponentWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       logFirebaseEvent('CALENDAR_COMPONENT_CalendarComponent_ON_');
       logFirebaseEvent('CalendarComponent_update_component_state');
-      _model.inputDate = widget!.inputDate;
+      _model.inputDate = widget.inputDate;
       safeSetState(() {});
-      if (widget!.initialSelectedDate != null) {
+      if (widget.initialSelectedDate != null) {
         logFirebaseEvent('CalendarComponent_update_component_state');
-        _model.selectedDate = widget!.initialSelectedDate;
+        _model.selectedDate = widget.initialSelectedDate;
         safeSetState(() {});
       }
     });
@@ -119,11 +115,11 @@ class _CalendarComponentWidgetState extends State<CalendarComponentWidget> {
                             fontWeight: FontWeight.w600,
                           ),
                     ),
-                  ].divide(SizedBox(width: 4.0)),
+                  ].divide(const SizedBox(width: 4.0)),
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.0, 0.0),
+                alignment: const AlignmentDirectional(0.0, 0.0),
                 child: FlutterFlowIconButton(
                   borderColor: FlutterFlowTheme.of(context).primaryBackground,
                   borderRadius: 26.0,
@@ -140,80 +136,80 @@ class _CalendarComponentWidgetState extends State<CalendarComponentWidget> {
                   },
                 ),
               ),
-            ].addToStart(SizedBox(width: 24.0)).addToEnd(SizedBox(width: 24.0)),
+            ].addToStart(const SizedBox(width: 24.0)).addToEnd(const SizedBox(width: 24.0)),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 10.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 10.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Align(
-                  alignment: AlignmentDirectional(1.0, -1.0),
+                  alignment: const AlignmentDirectional(1.0, -1.0),
                   child: wrapWithModel(
                     model: _model.dayLabelComponentModel1,
                     updateCallback: () => safeSetState(() {}),
-                    child: DayLabelComponentWidget(
+                    child: const DayLabelComponentWidget(
                       day: 'Mon',
                     ),
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(1.0, -1.0),
+                  alignment: const AlignmentDirectional(1.0, -1.0),
                   child: wrapWithModel(
                     model: _model.dayLabelComponentModel2,
                     updateCallback: () => safeSetState(() {}),
-                    child: DayLabelComponentWidget(
+                    child: const DayLabelComponentWidget(
                       day: 'Tue',
                     ),
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(1.0, -1.0),
+                  alignment: const AlignmentDirectional(1.0, -1.0),
                   child: wrapWithModel(
                     model: _model.dayLabelComponentModel3,
                     updateCallback: () => safeSetState(() {}),
-                    child: DayLabelComponentWidget(
+                    child: const DayLabelComponentWidget(
                       day: 'Wed',
                     ),
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(1.0, -1.0),
+                  alignment: const AlignmentDirectional(1.0, -1.0),
                   child: wrapWithModel(
                     model: _model.dayLabelComponentModel4,
                     updateCallback: () => safeSetState(() {}),
-                    child: DayLabelComponentWidget(
+                    child: const DayLabelComponentWidget(
                       day: 'Thu',
                     ),
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(1.0, -1.0),
+                  alignment: const AlignmentDirectional(1.0, -1.0),
                   child: wrapWithModel(
                     model: _model.dayLabelComponentModel5,
                     updateCallback: () => safeSetState(() {}),
-                    child: DayLabelComponentWidget(
+                    child: const DayLabelComponentWidget(
                       day: 'Fri',
                     ),
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(1.0, -1.0),
+                  alignment: const AlignmentDirectional(1.0, -1.0),
                   child: wrapWithModel(
                     model: _model.dayLabelComponentModel6,
                     updateCallback: () => safeSetState(() {}),
-                    child: DayLabelComponentWidget(
+                    child: const DayLabelComponentWidget(
                       day: 'Sat',
                     ),
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(1.0, -1.0),
+                  alignment: const AlignmentDirectional(1.0, -1.0),
                   child: wrapWithModel(
                     model: _model.dayLabelComponentModel7,
                     updateCallback: () => safeSetState(() {}),
-                    child: DayLabelComponentWidget(
+                    child: const DayLabelComponentWidget(
                       day: 'Sun',
                     ),
                   ),
@@ -223,9 +219,9 @@ class _CalendarComponentWidgetState extends State<CalendarComponentWidget> {
           ),
           Container(
             height: 202.0,
-            decoration: BoxDecoration(),
+            decoration: const BoxDecoration(),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
               child: Builder(
                 builder: (context) {
                   final calendar = functions
@@ -234,7 +230,7 @@ class _CalendarComponentWidgetState extends State<CalendarComponentWidget> {
 
                   return GridView.builder(
                     padding: EdgeInsets.zero,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 7,
                       crossAxisSpacing: 18.0,
                       mainAxisSpacing: 12.0,
@@ -279,9 +275,9 @@ class _CalendarComponentWidgetState extends State<CalendarComponentWidget> {
                                           .languageCode,
                                     )
                                 ? FlutterFlowTheme.of(context).primary
-                                : Color(0x00000000),
+                                : const Color(0x00000000),
                           ),
-                          alignment: AlignmentDirectional(0.0, 0.0),
+                          alignment: const AlignmentDirectional(0.0, 0.0),
                           child: Text(
                             dateTimeFormat(
                               "d",
@@ -310,15 +306,15 @@ class _CalendarComponentWidgetState extends State<CalendarComponentWidget> {
           ),
           Container(
             height: 40.0,
-            decoration: BoxDecoration(),
+            decoration: const BoxDecoration(),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
                     child: Transform.rotate(
                       angle: 180.0 * (math.pi / 180),
                       child: FlutterFlowIconButton(
@@ -337,7 +333,7 @@ class _CalendarComponentWidgetState extends State<CalendarComponentWidget> {
                     ),
                   ),
                   Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
                     child: FlutterFlowIconButton(
                       borderColor: Colors.transparent,
                       borderRadius: 26.0,
@@ -357,7 +353,7 @@ class _CalendarComponentWidgetState extends State<CalendarComponentWidget> {
               ),
             ),
           ),
-        ].addToStart(SizedBox(height: 16.0)),
+        ].addToStart(const SizedBox(height: 16.0)),
       ),
     );
   }

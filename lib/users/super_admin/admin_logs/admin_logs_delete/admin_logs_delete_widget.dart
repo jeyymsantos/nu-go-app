@@ -8,14 +8,10 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'admin_logs_delete_model.dart';
@@ -98,11 +94,11 @@ class _AdminLogsDeleteWidgetState extends State<AdminLogsDeleteWidget>
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: TitleHeaderComponentWidget(
+                  child: const TitleHeaderComponentWidget(
                     titleText: 'Audit Logs',
                   ),
                 ),
@@ -112,11 +108,11 @@ class _AdminLogsDeleteWidgetState extends State<AdminLogsDeleteWidget>
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: wrapWithModel(
                       model: _model.subtitleHeaderModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: SubtitleHeaderWidget(
+                      child: const SubtitleHeaderWidget(
                         mainTitle: 'Logs',
                         subText:
                             'View any changes or updates made by the users within the application.',
@@ -125,20 +121,20 @@ class _AdminLogsDeleteWidgetState extends State<AdminLogsDeleteWidget>
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 5.0, 0.0, 0.0),
                             child: TextFormField(
                               controller: _model.contentSearchTextController,
                               focusNode: _model.contentSearchFocusNode,
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.contentSearchTextController',
-                                Duration(milliseconds: 200),
+                                const Duration(milliseconds: 200),
                                 () => safeSetState(() {}),
                               ),
                               autofocus: false,
@@ -195,7 +191,7 @@ class _AdminLogsDeleteWidgetState extends State<AdminLogsDeleteWidget>
                                               ?.clear();
                                           safeSetState(() {});
                                         },
-                                        child: Icon(
+                                        child: const Icon(
                                           Icons.clear,
                                           size: 20.0,
                                         ),
@@ -237,18 +233,18 @@ class _AdminLogsDeleteWidgetState extends State<AdminLogsDeleteWidget>
                   if (_model.filterLevel == true)
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 0.0),
                       child: wrapWithModel(
                         model: _model.sortLogsModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: SortLogsWidget(),
+                        child: const SortLogsWidget(),
                       ),
                     ),
                 ],
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                   child: RefreshIndicator(
                     color: FlutterFlowTheme.of(context).primary,
                     onRefresh: () async {},
@@ -259,7 +255,7 @@ class _AdminLogsDeleteWidgetState extends State<AdminLogsDeleteWidget>
                         children: [
                           if (!FFAppState().searchActive)
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 50.0),
                               child: StreamBuilder<List<ActivityLogsRecord>>(
                                 stream: FFAppState().activityLogs(
@@ -300,7 +296,7 @@ class _AdminLogsDeleteWidgetState extends State<AdminLogsDeleteWidget>
                                       itemCount:
                                           listViewActivityLogsRecordList.length,
                                       separatorBuilder: (_, __) =>
-                                          SizedBox(height: 10.0),
+                                          const SizedBox(height: 10.0),
                                       itemBuilder: (context, listViewIndex) {
                                         final listViewActivityLogsRecord =
                                             listViewActivityLogsRecordList[
@@ -310,7 +306,7 @@ class _AdminLogsDeleteWidgetState extends State<AdminLogsDeleteWidget>
                                           children: [
                                             Expanded(
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         20.0, 0.0, 20.0, 0.0),
                                                 child: Container(
@@ -344,7 +340,7 @@ class _AdminLogsDeleteWidgetState extends State<AdminLogsDeleteWidget>
                                                                 (context) =>
                                                                     Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -379,7 +375,7 @@ class _AdminLogsDeleteWidgetState extends State<AdminLogsDeleteWidget>
                                                                         backgroundColor:
                                                                             Colors.transparent,
                                                                         alignment:
-                                                                            AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                            const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                         child:
                                                                             WebViewAware(
                                                                           child:
@@ -387,7 +383,7 @@ class _AdminLogsDeleteWidgetState extends State<AdminLogsDeleteWidget>
                                                                             onTap: () =>
                                                                                 FocusScope.of(dialogContext).unfocus(),
                                                                             child:
-                                                                                ConfirmDialogBoxWidget(
+                                                                                const ConfirmDialogBoxWidget(
                                                                               confirmDialogTitle: 'Delete Log',
                                                                               confirmDialogMeesage: 'Are you sure you want to delete this log? You wont be able to undo this change.',
                                                                             ),
@@ -422,13 +418,13 @@ class _AdminLogsDeleteWidgetState extends State<AdminLogsDeleteWidget>
                                                                           backgroundColor:
                                                                               Colors.transparent,
                                                                           alignment:
-                                                                              AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                           child:
                                                                               WebViewAware(
                                                                             child:
                                                                                 GestureDetector(
                                                                               onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                              child: InformationDialogBoxWidget(
+                                                                              child: const InformationDialogBoxWidget(
                                                                                 infoDialogTitle: 'Log Deleted',
                                                                                 infoDialogMeesage: 'You have successfully deleted this log. You may now see the latest log again.',
                                                                               ),
@@ -453,13 +449,13 @@ class _AdminLogsDeleteWidgetState extends State<AdminLogsDeleteWidget>
                                                                           backgroundColor:
                                                                               Colors.transparent,
                                                                           alignment:
-                                                                              AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                           child:
                                                                               WebViewAware(
                                                                             child:
                                                                                 GestureDetector(
                                                                               onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                              child: InformationDialogBoxWidget(
+                                                                              child: const InformationDialogBoxWidget(
                                                                                 infoDialogTitle: 'Action Cancelled',
                                                                                 infoDialogMeesage: 'You have cancelled the action. No changes have been made.',
                                                                               ),
@@ -488,7 +484,7 @@ class _AdminLogsDeleteWidgetState extends State<AdminLogsDeleteWidget>
                                                       Flexible(
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,

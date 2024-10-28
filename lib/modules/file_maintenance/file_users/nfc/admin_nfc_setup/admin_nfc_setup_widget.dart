@@ -1,18 +1,16 @@
 import '/backend/backend.dart';
+import '/components/dialog_box/failed_dialog_box/failed_dialog_box_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import '/custom_code/actions/index.dart' as actions;
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'admin_nfc_setup_model.dart';
 export 'admin_nfc_setup_model.dart';
 
@@ -93,18 +91,18 @@ class _AdminNfcSetupWidgetState extends State<AdminNfcSetupWidget>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: TitleHeaderComponentWidget(
+                  child: const TitleHeaderComponentWidget(
                     titleText: 'Setup Student ID',
                   ),
                 ),
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
                   child: SingleChildScrollView(
                     primary: false,
                     child: Column(
@@ -114,12 +112,12 @@ class _AdminNfcSetupWidgetState extends State<AdminNfcSetupWidget>
                       children: [
                         if (FFAppState().scannedNFCTag == ' ')
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 0.0),
                             child: Container(
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 20.0, 0.0, 20.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -134,7 +132,7 @@ class _AdminNfcSetupWidgetState extends State<AdminNfcSetupWidget>
                                     ),
                                     Flexible(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           valueOrDefault<String>(
@@ -161,26 +159,26 @@ class _AdminNfcSetupWidgetState extends State<AdminNfcSetupWidget>
                         if (FFAppState().scannedNFCresult ==
                             'School ID has been detected!')
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 40.0, 0.0, 40.0, 0.0),
                             child: Container(
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 20.0, 0.0, 20.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Icon(
+                                    const Icon(
                                       Icons.check_circle,
                                       color: Color(0xFF0FA741),
                                       size: 24.0,
                                     ),
                                     Flexible(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           'The school ID has been detected and may now be saved to the user\'s account.',
@@ -209,7 +207,7 @@ class _AdminNfcSetupWidgetState extends State<AdminNfcSetupWidget>
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 30.0, 20.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -240,7 +238,7 @@ class _AdminNfcSetupWidgetState extends State<AdminNfcSetupWidget>
                                                   BorderRadius.circular(6.0),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 5.0, 12.0, 5.0),
                                               child: Row(
@@ -250,7 +248,7 @@ class _AdminNfcSetupWidgetState extends State<AdminNfcSetupWidget>
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 4.0, 0.0),
                                                     child: Icon(
@@ -283,7 +281,7 @@ class _AdminNfcSetupWidgetState extends State<AdminNfcSetupWidget>
                                         ],
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 0.0, 0.0),
                                         child: RichText(
                                           textScaler:
@@ -292,10 +290,10 @@ class _AdminNfcSetupWidgetState extends State<AdminNfcSetupWidget>
                                             children: [
                                               TextSpan(
                                                 text: valueOrDefault<String>(
-                                                  widget!.userDoc?.idNumber,
+                                                  widget.userDoc?.idNumber,
                                                   'ID Number',
                                                 ),
-                                                style: TextStyle(),
+                                                style: const TextStyle(),
                                               )
                                             ],
                                             style: FlutterFlowTheme.of(context)
@@ -312,11 +310,11 @@ class _AdminNfcSetupWidgetState extends State<AdminNfcSetupWidget>
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(height: 10.0)),
+                            ].divide(const SizedBox(height: 10.0)),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 10.0, 20.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -347,7 +345,7 @@ class _AdminNfcSetupWidgetState extends State<AdminNfcSetupWidget>
                                                   BorderRadius.circular(6.0),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 5.0, 12.0, 5.0),
                                               child: Row(
@@ -357,7 +355,7 @@ class _AdminNfcSetupWidgetState extends State<AdminNfcSetupWidget>
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 4.0, 0.0),
                                                     child: Icon(
@@ -392,7 +390,7 @@ class _AdminNfcSetupWidgetState extends State<AdminNfcSetupWidget>
                                       Flexible(
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 0.0, 0.0, 0.0),
                                           child: RichText(
                                             textScaler: MediaQuery.of(context)
@@ -405,7 +403,7 @@ class _AdminNfcSetupWidgetState extends State<AdminNfcSetupWidget>
                                                         .scannedNFCresult,
                                                     'No ID scanned',
                                                   ),
-                                                  style: TextStyle(),
+                                                  style: const TextStyle(),
                                                 )
                                               ],
                                               style:
@@ -425,11 +423,32 @@ class _AdminNfcSetupWidgetState extends State<AdminNfcSetupWidget>
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(height: 10.0)),
+                            ].divide(const SizedBox(height: 10.0)),
                           ),
                         ),
+                        if (isiOS)
+                          Flexible(
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 5.0, 20.0, 0.0),
+                              child: Text(
+                                'Please be advised that iOS devices do not support NU Baliwag\'s NFC card due to compatibility issues. To get verified, reach out to the developers.',
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Montserrat',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      fontSize: 11.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                              ),
+                            ),
+                          ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 20.0, 20.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -460,15 +479,15 @@ class _AdminNfcSetupWidgetState extends State<AdminNfcSetupWidget>
                                         : 'Scan Again',
                                     'Scan',
                                   ),
-                                  icon: Icon(
+                                  icon: const Icon(
                                     FFIcons.kscan,
                                     size: 15.0,
                                   ),
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -485,52 +504,117 @@ class _AdminNfcSetupWidgetState extends State<AdminNfcSetupWidget>
                               ),
                               if (FFAppState().scannedNFCTag != ' ')
                                 Expanded(
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      logFirebaseEvent(
-                                          'ADMIN_NFC_SETUP_PAGE_NEXT_BTN_ON_TAP');
-                                      logFirebaseEvent('Button_navigate_to');
-                                      if (Navigator.of(context).canPop()) {
-                                        context.pop();
-                                      }
-                                      context.pushNamed(
-                                        'admin_signature_setup',
-                                        queryParameters: {
-                                          'userDoc': serializeParam(
-                                            widget!.userDoc,
-                                            ParamType.Document,
+                                  child: Builder(
+                                    builder: (context) => FFButtonWidget(
+                                      onPressed: () async {
+                                        logFirebaseEvent(
+                                            'ADMIN_NFC_SETUP_PAGE_NEXT_BTN_ON_TAP');
+                                        var shouldSetState = false;
+                                        logFirebaseEvent(
+                                            'Button_firestore_query');
+                                        _model.nfcCount =
+                                            await queryUsersRecordCount(
+                                          queryBuilder: (usersRecord) =>
+                                              usersRecord.where(
+                                            'nfc_tag',
+                                            isEqualTo:
+                                                FFAppState().scannedNFCTag,
                                           ),
-                                        }.withoutNulls,
-                                        extra: <String, dynamic>{
-                                          'userDoc': widget!.userDoc,
-                                        },
-                                      );
-                                    },
-                                    text: 'Next',
-                                    options: FFButtonOptions(
-                                      height: 40.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 0.0, 16.0, 0.0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Montserrat',
-                                            color: Colors.white,
-                                            letterSpacing: 0.0,
-                                          ),
-                                      elevation: 0.0,
-                                      borderRadius: BorderRadius.circular(10.0),
+                                        );
+                                        shouldSetState = true;
+                                        if (_model.nfcCount == 0) {
+                                          logFirebaseEvent(
+                                              'Button_navigate_to');
+                                          if (Navigator.of(context).canPop()) {
+                                            context.pop();
+                                          }
+                                          context.pushNamed(
+                                            'admin_signature_setup',
+                                            queryParameters: {
+                                              'userDoc': serializeParam(
+                                                widget.userDoc,
+                                                ParamType.Document,
+                                              ),
+                                            }.withoutNulls,
+                                            extra: <String, dynamic>{
+                                              'userDoc': widget.userDoc,
+                                            },
+                                          );
+
+                                          if (shouldSetState) {
+                                            safeSetState(() {});
+                                          }
+                                          return;
+                                        } else {
+                                          logFirebaseEvent(
+                                              'Button_alert_dialog');
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: const AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => FocusScope.of(
+                                                            dialogContext)
+                                                        .unfocus(),
+                                                    child:
+                                                        const FailedDialogBoxWidget(
+                                                      failedDialogTitle:
+                                                          'School ID already used!',
+                                                      failedDialogMeesage:
+                                                          'This school ID has already been used by another user.',
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          );
+
+                                          if (shouldSetState) {
+                                            safeSetState(() {});
+                                          }
+                                          return;
+                                        }
+
+                                        if (shouldSetState) {
+                                          safeSetState(() {});
+                                        }
+                                      },
+                                      text: 'Next',
+                                      options: FFButtonOptions(
+                                        height: 40.0,
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 0.0, 16.0, 0.0),
+                                        iconPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Montserrat',
+                                              color: Colors.white,
+                                              letterSpacing: 0.0,
+                                            ),
+                                        elevation: 0.0,
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                      ),
                                     ),
                                   ),
                                 ),
                             ]
-                                .divide(SizedBox(width: 5.0))
-                                .around(SizedBox(width: 5.0)),
+                                .divide(const SizedBox(width: 5.0))
+                                .around(const SizedBox(width: 5.0)),
                           ),
                         ),
                       ],

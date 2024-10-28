@@ -1,14 +1,9 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:provider/provider.dart';
 import 'auth_loading_model.dart';
 export 'auth_loading_model.dart';
 
@@ -49,7 +44,7 @@ class _AuthLoadingWidgetState extends State<AuthLoadingWidget> {
         context.goNamed(
           'super_admin_dashboard',
           extra: <String, dynamic>{
-            kTransitionInfoKey: TransitionInfo(
+            kTransitionInfoKey: const TransitionInfo(
               hasTransition: true,
               transitionType: PageTransitionType.fade,
               duration: Duration(milliseconds: 0),
@@ -64,7 +59,7 @@ class _AuthLoadingWidgetState extends State<AuthLoadingWidget> {
         context.pushNamed(
           'auth_verify_role',
           extra: <String, dynamic>{
-            kTransitionInfoKey: TransitionInfo(
+            kTransitionInfoKey: const TransitionInfo(
               hasTransition: true,
               transitionType: PageTransitionType.fade,
               duration: Duration(milliseconds: 0),
@@ -74,19 +69,19 @@ class _AuthLoadingWidgetState extends State<AuthLoadingWidget> {
 
         return;
       } else {
-        if (widget!.fromEvent == true) {
+        if (widget.fromEvent == true) {
           logFirebaseEvent('auth_loading_navigate_to');
 
           context.goNamed(
             'rsco_dashboard',
             queryParameters: {
               'org': serializeParam(
-                widget!.orgRef,
+                widget.orgRef,
                 ParamType.DocumentReference,
               ),
             }.withoutNulls,
             extra: <String, dynamic>{
-              kTransitionInfoKey: TransitionInfo(
+              kTransitionInfoKey: const TransitionInfo(
                 hasTransition: true,
                 transitionType: PageTransitionType.fade,
                 duration: Duration(milliseconds: 0),
@@ -99,7 +94,7 @@ class _AuthLoadingWidgetState extends State<AuthLoadingWidget> {
           context.goNamed(
             'dashboard',
             extra: <String, dynamic>{
-              kTransitionInfoKey: TransitionInfo(
+              kTransitionInfoKey: const TransitionInfo(
                 hasTransition: true,
                 transitionType: PageTransitionType.fade,
                 duration: Duration(milliseconds: 0),
@@ -152,9 +147,9 @@ class _AuthLoadingWidgetState extends State<AuthLoadingWidget> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             0.0, 0.0, 0.0, 100.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
@@ -168,7 +163,7 @@ class _AuthLoadingWidgetState extends State<AuthLoadingWidget> {
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0.0, 1.0),
+                      alignment: const AlignmentDirectional(0.0, 1.0),
                       child: Lottie.asset(
                         'assets/jsons/rOCKET.json',
                         width: 1060.0,

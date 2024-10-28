@@ -4,15 +4,10 @@ import '/components/widgets/title_header_component/title_header_component_widget
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'admin_approval_assign_static_model.dart';
 export 'admin_approval_assign_static_model.dart';
 
@@ -116,11 +111,11 @@ class _AdminApprovalAssignStaticWidgetState
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: TitleHeaderComponentWidget(
+                      child: const TitleHeaderComponentWidget(
                         titleText: 'Manage Approval Sets',
                       ),
                     ),
@@ -129,12 +124,12 @@ class _AdminApprovalAssignStaticWidgetState
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         child: wrapWithModel(
                           model: _model.subtitleHeaderModel,
                           updateCallback: () => safeSetState(() {}),
-                          child: SubtitleHeaderWidget(
+                          child: const SubtitleHeaderWidget(
                             mainTitle: 'Approval Sets',
                             subText: 'Manage and edit approval sets',
                           ),
@@ -148,7 +143,7 @@ class _AdminApprovalAssignStaticWidgetState
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 50.0),
                             child: Builder(
                               builder: (context) {
@@ -166,14 +161,14 @@ class _AdminApprovalAssignStaticWidgetState
                                     final allApprovalSetsItem =
                                         allApprovalSets[allApprovalSetsIndex];
                                     return Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Expanded(
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       20.0, 0.0, 20.0, 0.0),
                                               child: Container(
@@ -204,7 +199,7 @@ class _AdminApprovalAssignStaticWidgetState
                                                     Expanded(
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     10.0,
                                                                     0.0,
@@ -223,7 +218,7 @@ class _AdminApprovalAssignStaticWidgetState
                                                             Flexible(
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -241,7 +236,7 @@ class _AdminApprovalAssignStaticWidgetState
                                                                           .start,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           10.0,
                                                                           0.0,
@@ -280,11 +275,11 @@ class _AdminApprovalAssignStaticWidgetState
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              AlignmentDirectional(
+                                                              const AlignmentDirectional(
                                                                   0.0, 0.0),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -338,7 +333,7 @@ class _AdminApprovalAssignStaticWidgetState
                                                                   extra: <String,
                                                                       dynamic>{
                                                                     kTransitionInfoKey:
-                                                                        TransitionInfo(
+                                                                        const TransitionInfo(
                                                                       hasTransition:
                                                                           true,
                                                                       transitionType:

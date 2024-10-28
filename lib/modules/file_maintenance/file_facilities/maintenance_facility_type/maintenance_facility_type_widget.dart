@@ -5,11 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'maintenance_facility_type_model.dart';
 export 'maintenance_facility_type_model.dart';
@@ -22,7 +18,7 @@ class MaintenanceFacilityTypeWidget extends StatefulWidget {
     this.facilityNickname,
     this.facilityDescription,
     this.facilityReference,
-  }) : this.isNew = isNew ?? false;
+  }) : isNew = isNew ?? false;
 
   final bool isNew;
   final String? facilityName;
@@ -49,15 +45,15 @@ class _MaintenanceFacilityTypeWidgetState
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'maintenance_facility_type'});
     _model.facilityNameFieldTextController ??=
-        TextEditingController(text: widget!.isNew ? '' : widget!.facilityName);
+        TextEditingController(text: widget.isNew ? '' : widget.facilityName);
     _model.facilityNameFieldFocusNode ??= FocusNode();
 
     _model.facilityNicknameFieldTextController ??= TextEditingController(
-        text: widget!.isNew ? '' : widget!.facilityNickname);
+        text: widget.isNew ? '' : widget.facilityNickname);
     _model.facilityNicknameFieldFocusNode ??= FocusNode();
 
     _model.facilityDescriptionTextController ??= TextEditingController(
-        text: widget!.isNew ? '' : widget!.facilityDescription);
+        text: widget.isNew ? '' : widget.facilityDescription);
     _model.facilityDescriptionFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -80,7 +76,7 @@ class _MaintenanceFacilityTypeWidgetState
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,7 +84,7 @@ class _MaintenanceFacilityTypeWidgetState
                 wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: TitleHeaderComponentWidget(
+                  child: const TitleHeaderComponentWidget(
                     titleText: 'File Maintenance',
                   ),
                 ),
@@ -100,7 +96,7 @@ class _MaintenanceFacilityTypeWidgetState
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -118,7 +114,7 @@ class _MaintenanceFacilityTypeWidgetState
                                       ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 0.0, 0.0),
                                   child: Text(
                                     'A specific role that a user can have while using the application.',
@@ -151,12 +147,12 @@ class _MaintenanceFacilityTypeWidgetState
                 Flexible(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 30.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 30.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Container(
+                          SizedBox(
                             width: double.infinity,
                             child: Form(
                               key: _model.formKey,
@@ -165,7 +161,7 @@ class _MaintenanceFacilityTypeWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller: _model
@@ -238,7 +234,7 @@ class _MaintenanceFacilityTypeWidgetState
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller: _model
@@ -311,7 +307,7 @@ class _MaintenanceFacilityTypeWidgetState
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller: _model
@@ -386,7 +382,7 @@ class _MaintenanceFacilityTypeWidgetState
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
@@ -407,12 +403,12 @@ class _MaintenanceFacilityTypeWidgetState
                                                       (alertDialogContext) {
                                                     return WebViewAware(
                                                       child: AlertDialog(
-                                                        title: Text(widget!
+                                                        title: Text(widget
                                                                     .isNew ==
                                                                 true
                                                             ? 'Save Facility Type'
                                                             : 'Update Facility Type'),
-                                                        content: Text(widget!
+                                                        content: Text(widget
                                                                     .isNew ==
                                                                 true
                                                             ? 'Are you sure you want to save a new facility type?'
@@ -424,7 +420,7 @@ class _MaintenanceFacilityTypeWidgetState
                                                                     alertDialogContext,
                                                                     false),
                                                             child:
-                                                                Text('Cancel'),
+                                                                const Text('Cancel'),
                                                           ),
                                                           TextButton(
                                                             onPressed: () =>
@@ -432,7 +428,7 @@ class _MaintenanceFacilityTypeWidgetState
                                                                     alertDialogContext,
                                                                     true),
                                                             child: Text(
-                                                                widget!.isNew ==
+                                                                widget.isNew ==
                                                                         true
                                                                     ? 'Save'
                                                                     : 'Update'),
@@ -444,7 +440,7 @@ class _MaintenanceFacilityTypeWidgetState
                                                 ) ??
                                                 false;
                                         if (confirmDialogResponse) {
-                                          if (widget!.isNew == true) {
+                                          if (widget.isNew == true) {
                                             logFirebaseEvent(
                                                 'Save_backend_call');
 
@@ -486,7 +482,7 @@ class _MaintenanceFacilityTypeWidgetState
                                             logFirebaseEvent(
                                                 'Save_backend_call');
 
-                                            await widget!.facilityReference!
+                                            await widget.facilityReference!
                                                 .update(
                                                     createFacilityTypesRecordData(
                                               facilityName: _model
@@ -517,10 +513,10 @@ class _MaintenanceFacilityTypeWidgetState
                                             builder: (alertDialogContext) {
                                               return WebViewAware(
                                                 child: AlertDialog(
-                                                  title: Text(widget!.isNew
+                                                  title: Text(widget.isNew
                                                       ? 'New Role Created'
                                                       : 'Existing Role Updated'),
-                                                  content: Text(widget!.isNew
+                                                  content: Text(widget.isNew
                                                       ? 'You have successfully saved a new role!'
                                                       : 'You have successfully updated an existing role!'),
                                                   actions: [
@@ -528,7 +524,7 @@ class _MaintenanceFacilityTypeWidgetState
                                                       onPressed: () =>
                                                           Navigator.pop(
                                                               alertDialogContext),
-                                                      child: Text('Okay'),
+                                                      child: const Text('Okay'),
                                                     ),
                                                   ],
                                                 ),
@@ -543,15 +539,15 @@ class _MaintenanceFacilityTypeWidgetState
                                               return WebViewAware(
                                                 child: AlertDialog(
                                                   title:
-                                                      Text('Action Cancelled'),
-                                                  content: Text(
+                                                      const Text('Action Cancelled'),
+                                                  content: const Text(
                                                       'This action has been cancelled.'),
                                                   actions: [
                                                     TextButton(
                                                       onPressed: () =>
                                                           Navigator.pop(
                                                               alertDialogContext),
-                                                      child: Text('Ok'),
+                                                      child: const Text('Ok'),
                                                     ),
                                                   ],
                                                 ),
@@ -563,14 +559,14 @@ class _MaintenanceFacilityTypeWidgetState
                                         logFirebaseEvent('Save_navigate_back');
                                         context.safePop();
                                       },
-                                      text: widget!.isNew ? 'Save' : 'Update',
+                                      text: widget.isNew ? 'Save' : 'Update',
                                       options: FFButtonOptions(
                                         width: double.infinity,
                                         height: 40.0,
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             24.0, 0.0, 24.0, 0.0),
                                         iconPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
+                                            const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
@@ -583,7 +579,7 @@ class _MaintenanceFacilityTypeWidgetState
                                               letterSpacing: 0.0,
                                             ),
                                         elevation: 3.0,
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,
                                         ),

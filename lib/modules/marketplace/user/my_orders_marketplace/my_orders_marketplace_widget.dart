@@ -1,16 +1,11 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:styled_divider/styled_divider.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'my_orders_marketplace_model.dart';
 export 'my_orders_marketplace_model.dart';
 
@@ -80,17 +75,17 @@ class _MyOrdersMarketplaceWidgetState extends State<MyOrdersMarketplaceWidget> {
           body: SafeArea(
             top: true,
             child: Align(
-              alignment: AlignmentDirectional(0.0, -1.0),
+              alignment: const AlignmentDirectional(0.0, -1.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: TitleHeaderComponentWidget(
+                      child: const TitleHeaderComponentWidget(
                         titleText: 'My Orders',
                       ),
                     ),
@@ -102,7 +97,7 @@ class _MyOrdersMarketplaceWidgetState extends State<MyOrdersMarketplaceWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 16.0, 16.0, 24.0),
                             child: Wrap(
                               spacing: 16.0,
@@ -115,7 +110,7 @@ class _MyOrdersMarketplaceWidgetState extends State<MyOrdersMarketplaceWidget> {
                               clipBehavior: Clip.none,
                               children: [
                                 Container(
-                                  constraints: BoxConstraints(
+                                  constraints: const BoxConstraints(
                                     maxWidth: 750.0,
                                   ),
                                   decoration: BoxDecoration(
@@ -129,7 +124,7 @@ class _MyOrdersMarketplaceWidgetState extends State<MyOrdersMarketplaceWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(16.0),
+                                    padding: const EdgeInsets.all(16.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
@@ -146,7 +141,7 @@ class _MyOrdersMarketplaceWidgetState extends State<MyOrdersMarketplaceWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 4.0, 0.0, 12.0),
                                           child: Text(
                                             'Below are the orders you made.',
@@ -228,7 +223,7 @@ class _MyOrdersMarketplaceWidgetState extends State<MyOrdersMarketplaceWidget> {
                                                                       .max,
                                                               children: [
                                                                 Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -315,7 +310,7 @@ class _MyOrdersMarketplaceWidgetState extends State<MyOrdersMarketplaceWidget> {
                                                                         child:
                                                                             Padding(
                                                                           padding:
-                                                                              EdgeInsets.all(5.0),
+                                                                              const EdgeInsets.all(5.0),
                                                                           child:
                                                                               Row(
                                                                             mainAxisSize:
@@ -327,12 +322,12 @@ class _MyOrdersMarketplaceWidgetState extends State<MyOrdersMarketplaceWidget> {
                                                                             children: [
                                                                               Expanded(
                                                                                 child: Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                                                                                   child: Row(
                                                                                     mainAxisSize: MainAxisSize.min,
                                                                                     children: [
                                                                                       Padding(
-                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                         child: Container(
                                                                                           decoration: BoxDecoration(
                                                                                             borderRadius: BorderRadius.circular(5.0),
@@ -342,7 +337,7 @@ class _MyOrdersMarketplaceWidgetState extends State<MyOrdersMarketplaceWidget> {
                                                                                             ),
                                                                                           ),
                                                                                           child: Padding(
-                                                                                            padding: EdgeInsets.all(2.0),
+                                                                                            padding: const EdgeInsets.all(2.0),
                                                                                             child: Image.network(
                                                                                               itemProductsRecord.image,
                                                                                               width: 40.0,
@@ -353,7 +348,7 @@ class _MyOrdersMarketplaceWidgetState extends State<MyOrdersMarketplaceWidget> {
                                                                                       ),
                                                                                       Flexible(
                                                                                         child: Padding(
-                                                                                          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                           child: Column(
                                                                                             mainAxisSize: MainAxisSize.max,
                                                                                             mainAxisAlignment: MainAxisAlignment.center,
@@ -419,7 +414,7 @@ class _MyOrdersMarketplaceWidgetState extends State<MyOrdersMarketplaceWidget> {
                                                                                                             decimalType: DecimalType.periodDecimal,
                                                                                                             currency: '₱',
                                                                                                           ),
-                                                                                                          style: TextStyle(),
+                                                                                                          style: const TextStyle(),
                                                                                                         )
                                                                                                       ],
                                                                                                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -439,9 +434,9 @@ class _MyOrdersMarketplaceWidgetState extends State<MyOrdersMarketplaceWidget> {
                                                                                 ),
                                                                               ),
                                                                               Align(
-                                                                                alignment: AlignmentDirectional(0.0, 0.0),
+                                                                                alignment: const AlignmentDirectional(0.0, 0.0),
                                                                                 child: Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                                                                                   child: Icon(
                                                                                     Icons.visibility_outlined,
                                                                                     color: FlutterFlowTheme.of(context).primary,

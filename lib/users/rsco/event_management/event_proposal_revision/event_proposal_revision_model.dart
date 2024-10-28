@@ -1,41 +1,11 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/backend/firebase_storage/storage.dart';
-import '/backend/schema/structs/index.dart';
-import '/components/dialog_box/confirm_dialog_box/confirm_dialog_box_widget.dart';
-import '/components/dialog_box/congratulations_dialog_box/congratulations_dialog_box_widget.dart';
-import '/components/dialog_box/failed_dialog_box/failed_dialog_box_widget.dart';
-import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
-import '/components/widgets/rules_on_using_school_facilities/rules_on_using_school_facilities_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
-import '/flutter_flow/flutter_flow_button_tabbar.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_google_map.dart';
-import '/flutter_flow/flutter_flow_place_picker.dart';
-import '/flutter_flow/flutter_flow_radio_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/place.dart';
-import '/flutter_flow/upload_data.dart';
 import '/users/rsco/event_management/event_proposal/components/platform_choice/platform_choice_widget.dart';
-import 'dart:io';
-import '/actions/actions.dart' as action_blocks;
-import '/custom_code/actions/index.dart' as actions;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'event_proposal_revision_widget.dart' show EventProposalRevisionWidget;
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
 class EventProposalRevisionModel
     extends FlutterFlowModel<EventProposalRevisionWidget> {
@@ -84,7 +54,7 @@ class EventProposalRevisionModel
   LatLng? googleMapsCenter;
   final googleMapsController = Completer<GoogleMapController>();
   // State field(s) for PlacePicker widget.
-  FFPlace placePickerValue = FFPlace();
+  FFPlace placePickerValue = const FFPlace();
   bool isDataUploading = false;
   FFUploadedFile uploadedLocalFile =
       FFUploadedFile(bytes: Uint8List.fromList([]));

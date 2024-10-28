@@ -4,12 +4,7 @@ import '/components/widgets/user_nav_bar_component/user_nav_bar_component_widget
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 import 'a_fmo_dashboard_model.dart';
 export 'a_fmo_dashboard_model.dart';
 
@@ -54,9 +49,9 @@ class _AFmoDashboardWidgetState extends State<AFmoDashboardWidget> {
           child: Stack(
             children: [
               Align(
-                alignment: AlignmentDirectional(0.0, -1.0),
+                alignment: const AlignmentDirectional(0.0, -1.0),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -66,10 +61,10 @@ class _AFmoDashboardWidgetState extends State<AFmoDashboardWidget> {
                         wrapWithModel(
                           model: _model.userHeaderComponentModel,
                           updateCallback: () => safeSetState(() {}),
-                          child: UserHeaderComponentWidget(),
+                          child: const UserHeaderComponentWidget(),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 10.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -97,14 +92,14 @@ class _AFmoDashboardWidgetState extends State<AFmoDashboardWidget> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         10.0, 0.0, 0.0, 0.0),
                                     child: AuthUserStreamWidget(
                                       builder: (context) => Container(
                                         width: 50.0,
                                         height: 50.0,
                                         clipBehavior: Clip.antiAlias,
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
                                         child: Image.network(
@@ -119,7 +114,7 @@ class _AFmoDashboardWidgetState extends State<AFmoDashboardWidget> {
                                   ),
                                   Flexible(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           10.0, 0.0, 0.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -132,7 +127,7 @@ class _AFmoDashboardWidgetState extends State<AFmoDashboardWidget> {
                                             builder: (context) => Text(
                                               valueOrDefault<String>(
                                                 currentUserDocument
-                                                    ?.name?.firstName,
+                                                    ?.name.firstName,
                                                 'User',
                                               ),
                                               style: FlutterFlowTheme.of(
@@ -166,9 +161,9 @@ class _AFmoDashboardWidgetState extends State<AFmoDashboardWidget> {
                             ),
                             Expanded(
                               child: Align(
-                                alignment: AlignmentDirectional(1.0, 0.0),
+                                alignment: const AlignmentDirectional(1.0, 0.0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       10.0, 0.0, 0.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -187,7 +182,7 @@ class _AFmoDashboardWidgetState extends State<AFmoDashboardWidget> {
                                             image: Image.asset(
                                               'assets/images/Illustrations1-Dashboard.png',
                                               fit: BoxFit.contain,
-                                              alignment: Alignment(0.0, 0.0),
+                                              alignment: const Alignment(0.0, 0.0),
                                             ),
                                             allowRotation: true,
                                             tag: 'imageTag1',
@@ -207,7 +202,7 @@ class _AFmoDashboardWidgetState extends State<AFmoDashboardWidget> {
                                           width: 100.0,
                                           height: 73.0,
                                           fit: BoxFit.contain,
-                                          alignment: Alignment(0.0, 0.0),
+                                          alignment: const Alignment(0.0, 0.0),
                                         ),
                                       ),
                                     ),
@@ -218,7 +213,7 @@ class _AFmoDashboardWidgetState extends State<AFmoDashboardWidget> {
                           ],
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 10.0, 0.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -271,7 +266,7 @@ class _AFmoDashboardWidgetState extends State<AFmoDashboardWidget> {
                                                       Expanded(
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsets.all(
+                                                              const EdgeInsets.all(
                                                                   5.0),
                                                           child: Image.asset(
                                                             'assets/images/Rooms.png',
@@ -337,11 +332,11 @@ class _AFmoDashboardWidgetState extends State<AFmoDashboardWidget> {
                                               children: [
                                                 Align(
                                                   alignment:
-                                                      AlignmentDirectional(
+                                                      const AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 10.0, 0.0),
                                                     child: Icon(
@@ -411,7 +406,7 @@ class _AFmoDashboardWidgetState extends State<AFmoDashboardWidget> {
                                                       Expanded(
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsets.all(
+                                                              const EdgeInsets.all(
                                                                   5.0),
                                                           child: Image.asset(
                                                             'assets/images/Rooms.png',
@@ -477,11 +472,11 @@ class _AFmoDashboardWidgetState extends State<AFmoDashboardWidget> {
                                               children: [
                                                 Align(
                                                   alignment:
-                                                      AlignmentDirectional(
+                                                      const AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 10.0, 0.0),
                                                     child: Icon(
@@ -551,7 +546,7 @@ class _AFmoDashboardWidgetState extends State<AFmoDashboardWidget> {
                                                       Expanded(
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsets.all(
+                                                              const EdgeInsets.all(
                                                                   5.0),
                                                           child: Image.asset(
                                                             'assets/images/Rooms.png',
@@ -617,11 +612,11 @@ class _AFmoDashboardWidgetState extends State<AFmoDashboardWidget> {
                                               children: [
                                                 Align(
                                                   alignment:
-                                                      AlignmentDirectional(
+                                                      const AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 10.0, 0.0),
                                                     child: Icon(
@@ -644,8 +639,8 @@ class _AFmoDashboardWidgetState extends State<AFmoDashboardWidget> {
                                 ),
                               ),
                             ]
-                                .divide(SizedBox(height: 10.0))
-                                .around(SizedBox(height: 10.0)),
+                                .divide(const SizedBox(height: 10.0))
+                                .around(const SizedBox(height: 10.0)),
                           ),
                         ),
                       ],
@@ -654,11 +649,11 @@ class _AFmoDashboardWidgetState extends State<AFmoDashboardWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0.0, 1.0),
+                alignment: const AlignmentDirectional(0.0, 1.0),
                 child: wrapWithModel(
                   model: _model.userNavBarComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: UserNavBarComponentWidget(
+                  child: const UserNavBarComponentWidget(
                     selectedPageIndex: 1,
                   ),
                 ),

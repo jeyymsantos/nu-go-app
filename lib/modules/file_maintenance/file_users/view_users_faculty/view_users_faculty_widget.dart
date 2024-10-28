@@ -5,15 +5,12 @@ import '/components/widgets/title_header_component/title_header_component_widget
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
@@ -61,8 +58,8 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -73,8 +70,8 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -97,8 +94,8 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -109,8 +106,8 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -179,14 +176,14 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: TitleHeaderComponentWidget(
+                      child: const TitleHeaderComponentWidget(
                         titleText: 'File Maintenance',
                       ),
                     ),
@@ -198,7 +195,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 5.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -216,7 +213,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                           ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 0.0, 0.0),
                                       child: Text(
                                         'Uses that has set their access level.',
@@ -249,21 +246,18 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: TextFormField(
                                   controller: _model.searchFieldTextController,
                                   focusNode: _model.searchFieldFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.searchFieldTextController',
-                                    Duration(milliseconds: 200),
+                                    const Duration(milliseconds: 200),
                                     () async {
                                       logFirebaseEvent(
                                           'VIEW_USERS_FACULTY_search_field_ON_TEXTF');
                                       if (_model.searchFieldTextController
-                                                  .text !=
-                                              null &&
-                                          _model.searchFieldTextController
                                                   .text !=
                                               '') {
                                         logFirebaseEvent(
@@ -276,7 +270,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                   (record) =>
                                                       TextSearchItem.fromTerms(
                                                           record, [
-                                                    record.displayName!
+                                                    record.displayName
                                                   ]),
                                                 )
                                                 .toList(),
@@ -286,7 +280,6 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                       .text)
                                                   .map((r) => r.object)
                                                   .toList();
-                                          ;
                                         });
                                         logFirebaseEvent(
                                             'search_field_update_app_state');
@@ -361,9 +354,6 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                   'VIEW_USERS_FACULTY_search_field_ON_TEXTF');
                                               if (_model.searchFieldTextController
                                                           .text !=
-                                                      null &&
-                                                  _model.searchFieldTextController
-                                                          .text !=
                                                       '') {
                                                 logFirebaseEvent(
                                                     'search_field_simple_search');
@@ -376,7 +366,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                               TextSearchItem
                                                                   .fromTerms(
                                                                       record, [
-                                                            record.displayName!
+                                                            record.displayName
                                                           ]),
                                                         )
                                                         .toList(),
@@ -386,7 +376,6 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                               .text)
                                                           .map((r) => r.object)
                                                           .toList();
-                                                  ;
                                                 });
                                                 logFirebaseEvent(
                                                     'search_field_update_app_state');
@@ -403,7 +392,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
 
                                               safeSetState(() {});
                                             },
-                                            child: Icon(
+                                            child: const Icon(
                                               Icons.clear,
                                               size: 20.0,
                                             ),
@@ -429,7 +418,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                     Expanded(
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -441,7 +430,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                         viewUsersFacultyUsersRecordList
                                             .toList();
                                     if (userSearch.isEmpty) {
-                                      return EmptyListWidget(
+                                      return const EmptyListWidget(
                                         emptyWhat: 'users',
                                       );
                                     }
@@ -457,7 +446,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                             userSearch[userSearchIndex];
                                         return Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 10.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -492,117 +481,146 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                             .start,
                                                     children: [
                                                       Expanded(
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          children: [
-                                                            Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10.0,
-                                                                          0.0,
-                                                                          10.0,
-                                                                          0.0),
-                                                                  child:
-                                                                      Container(
-                                                                    width: 55.0,
-                                                                    height:
-                                                                        55.0,
-                                                                    clipBehavior:
-                                                                        Clip.antiAlias,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      shape: BoxShape
-                                                                          .circle,
-                                                                    ),
-                                                                    child: Image
-                                                                        .network(
-                                                                      valueOrDefault<
-                                                                          String>(
-                                                                        userSearchItem
-                                                                            .photoUrl,
-                                                                        'https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp',
-                                                                      ),
-                                                                      fit: BoxFit
-                                                                          .cover,
-                                                                    ),
-                                                                  ),
+                                                        child: InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            logFirebaseEvent(
+                                                                'VIEW_USERS_FACULTY_Row_by9q00d0_ON_TAP');
+                                                            logFirebaseEvent(
+                                                                'Row_navigate_to');
+
+                                                            context.pushNamed(
+                                                              'view_user',
+                                                              queryParameters: {
+                                                                'userDoc':
+                                                                    serializeParam(
+                                                                  userSearchItem,
+                                                                  ParamType
+                                                                      .Document,
                                                                 ),
-                                                              ],
-                                                            ),
-                                                            Flexible(
-                                                              child: Column(
+                                                              }.withoutNulls,
+                                                              extra: <String,
+                                                                  dynamic>{
+                                                                'userDoc':
+                                                                    userSearchItem,
+                                                              },
+                                                            );
+                                                          },
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            children: [
+                                                              Column(
                                                                 mainAxisSize:
                                                                     MainAxisSize
                                                                         .max,
                                                                 mainAxisAlignment:
                                                                     MainAxisAlignment
                                                                         .center,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
                                                                 children: [
-                                                                  Text(
-                                                                    '${userSearchItem.name.firstName} ${userSearchItem.name.lastName}',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Montserrat',
-                                                                          fontSize:
-                                                                              15.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.w500,
+                                                                  Padding(
+                                                                    padding: const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            10.0,
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0),
+                                                                    child:
+                                                                        Container(
+                                                                      width:
+                                                                          55.0,
+                                                                      height:
+                                                                          55.0,
+                                                                      clipBehavior:
+                                                                          Clip.antiAlias,
+                                                                      decoration:
+                                                                          const BoxDecoration(
+                                                                        shape: BoxShape
+                                                                            .circle,
+                                                                      ),
+                                                                      child: Image
+                                                                          .network(
+                                                                        valueOrDefault<
+                                                                            String>(
+                                                                          userSearchItem
+                                                                              .photoUrl,
+                                                                          'https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp',
                                                                         ),
-                                                                  ),
-                                                                  Flexible(
-                                                                    child: Text(
-                                                                      'Roles: ${userSearchItem.role != null && userSearchItem.role != '' ? userSearchItem.role : ''}${(userSearchItem.role != null && userSearchItem.role != '') && (userSearchItem.settings.isSuperAdmin == true) ? ', ' : ''}${userSearchItem.settings.isSuperAdmin == true ? 'Super Admin' : ''}${(userSearchItem.role == null || userSearchItem.role == '') && (userSearchItem.settings.isSuperAdmin == false) ? 'N/A' : ''}',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Montserrat',
-                                                                            fontSize:
-                                                                                11.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                          ),
-                                                                    ),
-                                                                  ),
-                                                                  Flexible(
-                                                                    child: Text(
-                                                                      userSearchItem
-                                                                          .email,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Montserrat',
-                                                                            fontSize:
-                                                                                11.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                          ),
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                 ],
                                                               ),
-                                                            ),
-                                                          ],
+                                                              Flexible(
+                                                                child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Text(
+                                                                      '${userSearchItem.name.firstName} ${userSearchItem.name.lastName}',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Montserrat',
+                                                                            fontSize:
+                                                                                15.0,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontWeight:
+                                                                                FontWeight.w500,
+                                                                          ),
+                                                                    ),
+                                                                    Flexible(
+                                                                      child:
+                                                                          Text(
+                                                                        'Roles: ${userSearchItem.role != '' ? userSearchItem.role : ''}${(userSearchItem.role != '') && (userSearchItem.settings.isSuperAdmin == true) ? ', ' : ''}${userSearchItem.settings.isSuperAdmin == true ? 'Super Admin' : ''}${(userSearchItem.role == '') && (userSearchItem.settings.isSuperAdmin == false) ? 'N/A' : ''}',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              fontSize: 11.0,
+                                                                              letterSpacing: 0.0,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                    Flexible(
+                                                                      child:
+                                                                          Text(
+                                                                        userSearchItem
+                                                                            .email,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              fontSize: 11.0,
+                                                                              letterSpacing: 0.0,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
                                                         ),
                                                       ),
                                                       Row(
@@ -611,11 +629,11 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                         children: [
                                                           Align(
                                                             alignment:
-                                                                AlignmentDirectional(
+                                                                const AlignmentDirectional(
                                                                     0.0, 0.0),
                                                             child: Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -685,11 +703,11 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                           ),
                                                           Align(
                                                             alignment:
-                                                                AlignmentDirectional(
+                                                                const AlignmentDirectional(
                                                                     0.0, 0.0),
                                                             child: Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -720,16 +738,16 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                                                 (alertDialogContext) {
                                                                               return WebViewAware(
                                                                                 child: AlertDialog(
-                                                                                  title: Text('Delete User'),
-                                                                                  content: Text('Are you sure you want to delete this user? This action cannot be undone.'),
+                                                                                  title: const Text('Delete User'),
+                                                                                  content: const Text('Are you sure you want to delete this user? This action cannot be undone.'),
                                                                                   actions: [
                                                                                     TextButton(
                                                                                       onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                      child: Text('Cancel'),
+                                                                                      child: const Text('Cancel'),
                                                                                     ),
                                                                                     TextButton(
                                                                                       onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                      child: Text('Confirm'),
+                                                                                      child: const Text('Confirm'),
                                                                                     ),
                                                                                   ],
                                                                                 ),
@@ -767,13 +785,13 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                                           child:
                                                                               AlertDialog(
                                                                             title:
-                                                                                Text('Deleted User'),
+                                                                                const Text('Deleted User'),
                                                                             content:
-                                                                                Text('User has been successfully deleted.'),
+                                                                                const Text('User has been successfully deleted.'),
                                                                             actions: [
                                                                               TextButton(
                                                                                 onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                child: Text('Okay'),
+                                                                                child: const Text('Okay'),
                                                                               ),
                                                                             ],
                                                                           ),
@@ -826,7 +844,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                 ),
                               if (FFAppState().searchActive)
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 30.0, 0.0, 0.0),
                                   child: Builder(
                                     builder: (context) {
@@ -851,7 +869,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                               userSearchy[userSearchyIndex];
                                           return Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -886,99 +904,141 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                               .start,
                                                       children: [
                                                         Expanded(
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .min,
-                                                            children: [
-                                                              Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                children: [
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            10.0,
-                                                                            0.0,
-                                                                            10.0,
-                                                                            0.0),
-                                                                    child:
-                                                                        Container(
-                                                                      width:
-                                                                          55.0,
-                                                                      height:
-                                                                          55.0,
-                                                                      clipBehavior:
-                                                                          Clip.antiAlias,
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        shape: BoxShape
-                                                                            .circle,
-                                                                      ),
-                                                                      child: Image
-                                                                          .network(
-                                                                        valueOrDefault<
-                                                                            String>(
-                                                                          userSearchyItem
-                                                                              .photoUrl,
-                                                                          'https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp',
-                                                                        ),
-                                                                        fit: BoxFit
-                                                                            .cover,
-                                                                      ),
-                                                                    ),
+                                                          child: InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              logFirebaseEvent(
+                                                                  'VIEW_USERS_FACULTY_Row_mmnfdyvl_ON_TAP');
+                                                              logFirebaseEvent(
+                                                                  'Row_navigate_to');
+
+                                                              context.pushNamed(
+                                                                'view_user',
+                                                                queryParameters:
+                                                                    {
+                                                                  'userDoc':
+                                                                      serializeParam(
+                                                                    userSearchyItem,
+                                                                    ParamType
+                                                                        .Document,
                                                                   ),
-                                                                ],
-                                                              ),
-                                                              Flexible(
-                                                                child: Column(
+                                                                }.withoutNulls,
+                                                                extra: <String,
+                                                                    dynamic>{
+                                                                  'userDoc':
+                                                                      userSearchyItem,
+                                                                },
+                                                              );
+                                                            },
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .min,
+                                                              children: [
+                                                                Column(
                                                                   mainAxisSize:
                                                                       MainAxisSize
                                                                           .max,
                                                                   mainAxisAlignment:
                                                                       MainAxisAlignment
                                                                           .center,
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
                                                                   children: [
-                                                                    Text(
-                                                                      '${userSearchyItem.name.firstName} ${userSearchyItem.name.lastName}',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Montserrat',
-                                                                            fontSize:
-                                                                                15.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FontWeight.w500,
-                                                                          ),
-                                                                    ),
-                                                                    Flexible(
+                                                                    Padding(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          10.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
                                                                       child:
-                                                                          Text(
-                                                                        'Roles: ${userSearchyItem.role != null && userSearchyItem.role != '' ? userSearchyItem.role : ''}${(userSearchyItem.role != null && userSearchyItem.role != '') && (userSearchyItem.settings.isSuperAdmin == true) ? ', ' : ''}${userSearchyItem.settings.isSuperAdmin == true ? 'Super Admin' : ''}${(userSearchyItem.role == null || userSearchyItem.role == '') && (userSearchyItem.settings.isSuperAdmin == false) ? 'N/A' : ''}',
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Montserrat',
-                                                                              fontSize: 11.0,
-                                                                              letterSpacing: 0.0,
-                                                                            ),
+                                                                          Container(
+                                                                        width:
+                                                                            55.0,
+                                                                        height:
+                                                                            55.0,
+                                                                        clipBehavior:
+                                                                            Clip.antiAlias,
+                                                                        decoration:
+                                                                            const BoxDecoration(
+                                                                          shape:
+                                                                              BoxShape.circle,
+                                                                        ),
+                                                                        child: Image
+                                                                            .network(
+                                                                          valueOrDefault<
+                                                                              String>(
+                                                                            userSearchyItem.photoUrl,
+                                                                            'https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp',
+                                                                          ),
+                                                                          fit: BoxFit
+                                                                              .cover,
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   ],
                                                                 ),
-                                                              ),
-                                                            ],
+                                                                Flexible(
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .center,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Text(
+                                                                        '${userSearchyItem.name.firstName} ${userSearchyItem.name.lastName}',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              fontSize: 15.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.w500,
+                                                                            ),
+                                                                      ),
+                                                                      Flexible(
+                                                                        child:
+                                                                            Text(
+                                                                          'Roles: ${userSearchyItem.role != '' ? userSearchyItem.role : ''}${(userSearchyItem.role != '') && (userSearchyItem.settings.isSuperAdmin == true) ? ', ' : ''}${userSearchyItem.settings.isSuperAdmin == true ? 'Super Admin' : ''}${(userSearchyItem.role == '') && (userSearchyItem.settings.isSuperAdmin == false) ? 'N/A' : ''}',
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .override(
+                                                                                fontFamily: 'Montserrat',
+                                                                                fontSize: 11.0,
+                                                                                letterSpacing: 0.0,
+                                                                              ),
+                                                                        ),
+                                                                      ),
+                                                                      Flexible(
+                                                                        child:
+                                                                            Text(
+                                                                          userSearchyItem
+                                                                              .email,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .override(
+                                                                                fontFamily: 'Montserrat',
+                                                                                fontSize: 11.0,
+                                                                                letterSpacing: 0.0,
+                                                                              ),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
                                                           ),
                                                         ),
                                                         Row(
@@ -987,11 +1047,11 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1063,11 +1123,11 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1096,16 +1156,16 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                                               builder: (alertDialogContext) {
                                                                                 return WebViewAware(
                                                                                   child: AlertDialog(
-                                                                                    title: Text('Delete User'),
-                                                                                    content: Text('Are you sure you want to delete this user? This action cannot be undone.'),
+                                                                                    title: const Text('Delete User'),
+                                                                                    content: const Text('Are you sure you want to delete this user? This action cannot be undone.'),
                                                                                     actions: [
                                                                                       TextButton(
                                                                                         onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                        child: Text('Cancel'),
+                                                                                        child: const Text('Cancel'),
                                                                                       ),
                                                                                       TextButton(
                                                                                         onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                        child: Text('Confirm'),
+                                                                                        child: const Text('Confirm'),
                                                                                       ),
                                                                                     ],
                                                                                   ),
@@ -1141,12 +1201,12 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                                           return WebViewAware(
                                                                             child:
                                                                                 AlertDialog(
-                                                                              title: Text('Deleted User'),
-                                                                              content: Text('User has been successfully deleted.'),
+                                                                              title: const Text('Deleted User'),
+                                                                              content: const Text('User has been successfully deleted.'),
                                                                               actions: [
                                                                                 TextButton(
                                                                                   onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: Text('Okay'),
+                                                                                  child: const Text('Okay'),
                                                                                 ),
                                                                               ],
                                                                             ),

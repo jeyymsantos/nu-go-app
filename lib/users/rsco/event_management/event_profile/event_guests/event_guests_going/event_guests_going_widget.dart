@@ -5,13 +5,10 @@ import '/components/dialog_box/congratulations_dialog_box/congratulations_dialog
 import '/components/widgets/empty_list/empty_list_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/users/rsco/event_management/event_profile/components/side_bar_event_profile/side_bar_event_profile_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'event_guests_going_model.dart';
 export 'event_guests_going_model.dart';
@@ -54,7 +51,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
   Widget build(BuildContext context) {
     return StreamBuilder<List<EventAttendeesRecord>>(
       stream: queryEventAttendeesRecord(
-        parent: widget!.eventDoc?.reference,
+        parent: widget.eventDoc?.reference,
         queryBuilder: (eventAttendeesRecord) => eventAttendeesRecord.where(
           'ticket_status',
           isEqualTo: 'Approved',
@@ -85,7 +82,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            drawer: Container(
+            drawer: SizedBox(
               width: 250.0,
               child: Drawer(
                 elevation: 16.0,
@@ -94,7 +91,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                     model: _model.sideBarEventProfileModel,
                     updateCallback: () => safeSetState(() {}),
                     child: SideBarEventProfileWidget(
-                      eventDoc: widget!.eventDoc!,
+                      eventDoc: widget.eventDoc!,
                     ),
                   ),
                 ),
@@ -106,32 +103,32 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Align(
-                      alignment: AlignmentDirectional(0.0, -1.0),
+                      alignment: const AlignmentDirectional(0.0, -1.0),
                       child: Container(
                         width: double.infinity,
                         height: 170.0,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primary,
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             bottomLeft: Radius.circular(30.0),
                             bottomRight: Radius.circular(30.0),
                             topLeft: Radius.circular(0.0),
                             topRight: Radius.circular(0.0),
                           ),
                         ),
-                        child: Container(
+                        child: SizedBox(
                           height: 190.0,
                           child: Stack(
-                            alignment: AlignmentDirectional(0.0, -1.0),
+                            alignment: const AlignmentDirectional(0.0, -1.0),
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 20.0, 20.0, 20.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 30.0, 0.0, 20.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -163,7 +160,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                     ),
                                     Align(
                                       alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
+                                          const AlignmentDirectional(-1.0, 0.0),
                                       child: Text(
                                         'Going Guests',
                                         style: FlutterFlowTheme.of(context)
@@ -181,7 +178,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                     ),
                                     Align(
                                       alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
+                                          const AlignmentDirectional(-1.0, 0.0),
                                       child: Text(
                                         'Manage your Guests',
                                         style: FlutterFlowTheme.of(context)
@@ -201,9 +198,9 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(0.0, 1.25),
+                                alignment: const AlignmentDirectional(0.0, 1.25),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       30.0, 0.0, 30.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -225,12 +222,12 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                             'event_profile_insights',
                                             queryParameters: {
                                               'eventDoc': serializeParam(
-                                                widget!.eventDoc,
+                                                widget.eventDoc,
                                                 ParamType.Document,
                                               ),
                                             }.withoutNulls,
                                             extra: <String, dynamic>{
-                                              'eventDoc': widget!.eventDoc,
+                                              'eventDoc': widget.eventDoc,
                                             },
                                           );
                                         },
@@ -243,7 +240,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                           ),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 5.0, 10.0, 5.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -251,7 +248,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 5.0, 0.0),
                                                   child: Icon(
@@ -296,24 +293,24 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                             'event_check_in_out',
                                             queryParameters: {
                                               'eventDoc': serializeParam(
-                                                widget!.eventDoc,
+                                                widget.eventDoc,
                                                 ParamType.Document,
                                               ),
                                             }.withoutNulls,
                                             extra: <String, dynamic>{
-                                              'eventDoc': widget!.eventDoc,
+                                              'eventDoc': widget.eventDoc,
                                             },
                                           );
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
-                                            color: Color(0xFFF99F58),
+                                            color: const Color(0xFFF99F58),
                                             borderRadius:
                                                 BorderRadius.circular(20.0),
                                           ),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 5.0, 10.0, 5.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -321,7 +318,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 5.0, 0.0),
                                                   child: Icon(
@@ -366,24 +363,24 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                             'event_profile_dashboard',
                                             queryParameters: {
                                               'eventDoc': serializeParam(
-                                                widget!.eventDoc,
+                                                widget.eventDoc,
                                                 ParamType.Document,
                                               ),
                                             }.withoutNulls,
                                             extra: <String, dynamic>{
-                                              'eventDoc': widget!.eventDoc,
+                                              'eventDoc': widget.eventDoc,
                                             },
                                           );
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
-                                            color: Color(0xFF599AFF),
+                                            color: const Color(0xFF599AFF),
                                             borderRadius:
                                                 BorderRadius.circular(20.0),
                                           ),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 5.0, 10.0, 5.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -391,7 +388,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 5.0, 0.0),
                                                   child: Icon(
@@ -433,20 +430,20 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                     Flexible(
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Flexible(
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           20.0, 0.0, 20.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -457,7 +454,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     -1.0, 0.0),
                                                 child: Text(
                                                   'Guest List',
@@ -481,7 +478,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 30.0),
                                         child: SingleChildScrollView(
                                           child: Column(
@@ -497,7 +494,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                               desc: true)
                                                           .toList();
                                                   if (goingGuests.isEmpty) {
-                                                    return EmptyListWidget(
+                                                    return const EmptyListWidget(
                                                       emptyWhat: 'guests',
                                                     );
                                                   }
@@ -511,7 +508,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                     itemCount:
                                                         goingGuests.length,
                                                     separatorBuilder: (_, __) =>
-                                                        SizedBox(height: 5.0),
+                                                        const SizedBox(height: 5.0),
                                                     itemBuilder: (context,
                                                         goingGuestsIndex) {
                                                       final goingGuestsItem =
@@ -519,7 +516,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                               goingGuestsIndex];
                                                       return Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     20.0,
                                                                     0.0,
@@ -574,7 +571,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                               ),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             5.0,
@@ -595,7 +592,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
                                                                                 5.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -605,7 +602,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                                               width: 30.0,
                                                                               height: 30.0,
                                                                               clipBehavior: Clip.antiAlias,
-                                                                              decoration: BoxDecoration(
+                                                                              decoration: const BoxDecoration(
                                                                                 shape: BoxShape.circle,
                                                                               ),
                                                                               child: Image.network(
@@ -620,7 +617,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                                           Flexible(
                                                                             child:
                                                                                 Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                                                                              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                                                                               child: FutureBuilder<ProgramsRecord>(
                                                                                 future: ProgramsRecord.getDocumentOnce(containerUsersRecord.student.program!),
                                                                                 builder: (context, snapshot) {
@@ -681,7 +678,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 5.0,
@@ -693,7 +690,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                                                 borderRadius: BorderRadius.circular(5.0),
                                                                               ),
                                                                               child: Padding(
-                                                                                padding: EdgeInsets.all(5.0),
+                                                                                padding: const EdgeInsets.all(5.0),
                                                                                 child: Text(
                                                                                   'Going',
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -717,7 +714,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 5.0,
@@ -729,7 +726,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                                                 borderRadius: BorderRadius.circular(5.0),
                                                                               ),
                                                                               child: Padding(
-                                                                                padding: EdgeInsets.all(5.0),
+                                                                                padding: const EdgeInsets.all(5.0),
                                                                                 child: Text(
                                                                                   'Cancelled',
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -749,7 +746,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                                       builder:
                                                                           (context) =>
                                                                               Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             5.0,
                                                                             10.0,
@@ -767,7 +764,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                                           onTap:
                                                                               () async {
                                                                             logFirebaseEvent('EVENT_GUESTS_GOING_Row_qgg7uame_ON_TAP');
-                                                                            var _shouldSetState =
+                                                                            var shouldSetState =
                                                                                 false;
                                                                             logFirebaseEvent('Row_alert_dialog');
                                                                             await showDialog(
@@ -777,11 +774,11 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                                                   elevation: 0,
                                                                                   insetPadding: EdgeInsets.zero,
                                                                                   backgroundColor: Colors.transparent,
-                                                                                  alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                  alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                                   child: WebViewAware(
                                                                                     child: GestureDetector(
                                                                                       onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                      child: ConfirmDialogBoxWidget(
+                                                                                      child: const ConfirmDialogBoxWidget(
                                                                                         confirmDialogTitle: 'Revoke Ticket',
                                                                                         confirmDialogMeesage: 'Are you sure you want to revoke member from joining the event? They may still re-apply and still needs approval.',
                                                                                       ),
@@ -792,7 +789,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                                             ).then((value) =>
                                                                                 safeSetState(() => _model.declineConfirmDialogCopy = value));
 
-                                                                            _shouldSetState =
+                                                                            shouldSetState =
                                                                                 true;
                                                                             if (_model.declineConfirmDialogCopy!) {
                                                                               logFirebaseEvent('Row_action_block');
@@ -800,13 +797,13 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                                                 context,
                                                                                 type: 'user',
                                                                                 title: 'Event Ticket Revoked',
-                                                                                message: 'The organization has revoked your ticket to join ${widget!.eventDoc?.eventName}. You may still try to re-apply by submitting a join event request again on the event\'s profile.',
+                                                                                message: 'The organization has revoked your ticket to join ${widget.eventDoc?.eventName}. You may still try to re-apply by submitting a join event request again on the event\'s profile.',
                                                                                 user: containerUsersRecord.reference,
                                                                               );
                                                                               logFirebaseEvent('Row_trigger_push_notification');
                                                                               triggerPushNotification(
                                                                                 notificationTitle: 'Event Ticket Revoked',
-                                                                                notificationText: 'The organization has revoked your ticket to join ${widget!.eventDoc?.eventName}.',
+                                                                                notificationText: 'The organization has revoked your ticket to join ${widget.eventDoc?.eventName}.',
                                                                                 notificationSound: 'default',
                                                                                 userRefs: [
                                                                                   containerUsersRecord.reference
@@ -819,7 +816,7 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                                                 context,
                                                                                 type: 'revoked',
                                                                                 module: 'event',
-                                                                                doneToName: 'the event ticket for ${widget!.eventDoc?.eventName}',
+                                                                                doneToName: 'the event ticket for ${widget.eventDoc?.eventName}',
                                                                                 doneTo: containerUsersRecord.reference,
                                                                               );
                                                                               logFirebaseEvent('Row_backend_call');
@@ -832,11 +829,11 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                                                     elevation: 0,
                                                                                     insetPadding: EdgeInsets.zero,
                                                                                     backgroundColor: Colors.transparent,
-                                                                                    alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                    alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                                     child: WebViewAware(
                                                                                       child: GestureDetector(
                                                                                         onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                        child: CongratulationsDialogBoxWidget(
+                                                                                        child: const CongratulationsDialogBoxWidget(
                                                                                           congratsDialogTitle: 'Event Ticket Revoked',
                                                                                           congratsDialogMeesage: 'The ticket has been revoked and won\'t be able to be used on your event.',
                                                                                         ),
@@ -846,17 +843,20 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                                                                                 },
                                                                               );
 
-                                                                              if (_shouldSetState)
+                                                                              if (shouldSetState) {
                                                                                 safeSetState(() {});
+                                                                              }
                                                                               return;
                                                                             } else {
-                                                                              if (_shouldSetState)
+                                                                              if (shouldSetState) {
                                                                                 safeSetState(() {});
+                                                                              }
                                                                               return;
                                                                             }
 
-                                                                            if (_shouldSetState)
+                                                                            if (shouldSetState) {
                                                                               safeSetState(() {});
+                                                                            }
                                                                           },
                                                                           child:
                                                                               Row(
@@ -909,9 +909,9 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                   ],
                 ),
                 Align(
-                  alignment: AlignmentDirectional(1.0, 1.0),
+                  alignment: const AlignmentDirectional(1.0, 1.0),
                   child: Padding(
-                    padding: EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(20.0),
                     child: Container(
                       width: 50.0,
                       height: 50.0,
@@ -933,12 +933,12 @@ class _EventGuestsGoingWidgetState extends State<EventGuestsGoingWidget> {
                             'event_check_in_out',
                             queryParameters: {
                               'eventDoc': serializeParam(
-                                widget!.eventDoc,
+                                widget.eventDoc,
                                 ParamType.Document,
                               ),
                             }.withoutNulls,
                             extra: <String, dynamic>{
-                              'eventDoc': widget!.eventDoc,
+                              'eventDoc': widget.eventDoc,
                             },
                           );
                         },

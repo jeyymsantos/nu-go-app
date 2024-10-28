@@ -1,9 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'org_type_model.dart';
 export 'org_type_model.dart';
 
@@ -59,19 +56,19 @@ class _OrgTypeWidgetState extends State<OrgTypeWidget> {
             child: Container(
               decoration: BoxDecoration(
                 color: _model.orgType == 1
-                    ? Color(0xFFE1E1E1)
+                    ? const Color(0xFFE1E1E1)
                     : FlutterFlowTheme.of(context).tabBarUnselected,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: Image.asset(
@@ -108,19 +105,19 @@ class _OrgTypeWidgetState extends State<OrgTypeWidget> {
             child: Container(
               decoration: BoxDecoration(
                 color: _model.orgType == 2
-                    ? Color(0xFFE1E1E1)
+                    ? const Color(0xFFE1E1E1)
                     : FlutterFlowTheme.of(context).tabBarUnselected,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: Image.asset(
@@ -157,19 +154,19 @@ class _OrgTypeWidgetState extends State<OrgTypeWidget> {
             child: Container(
               decoration: BoxDecoration(
                 color: _model.orgType == 3
-                    ? Color(0xFFE1E1E1)
+                    ? const Color(0xFFE1E1E1)
                     : FlutterFlowTheme.of(context).tabBarUnselected,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: Image.asset(
@@ -206,19 +203,19 @@ class _OrgTypeWidgetState extends State<OrgTypeWidget> {
             child: Container(
               decoration: BoxDecoration(
                 color: _model.orgType == 4
-                    ? Color(0xFFE1E1E1)
+                    ? const Color(0xFFE1E1E1)
                     : FlutterFlowTheme.of(context).secondaryBackground,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: Image.asset(
@@ -241,7 +238,7 @@ class _OrgTypeWidgetState extends State<OrgTypeWidget> {
               ),
             ),
           ),
-        ].divide(SizedBox(width: 10.0)),
+        ].divide(const SizedBox(width: 10.0)),
       ),
     );
   }

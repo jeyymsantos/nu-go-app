@@ -6,17 +6,10 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'dart:math';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'event_proposal_step1_model.dart';
 export 'event_proposal_step1_model.dart';
@@ -61,7 +54,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 1400.0.ms,
-            color: Color(0xFF35408E),
+            color: const Color(0xFF35408E),
             angle: 0.576,
           ),
         ],
@@ -88,7 +81,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,18 +89,18 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                 wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: TitleHeaderComponentWidget(
+                  child: const TitleHeaderComponentWidget(
                     titleText: 'Create Proposal',
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 10.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -117,7 +110,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 10.0, 0.0),
                                     child: Text(
                                       'Step 1',
@@ -147,7 +140,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                 ],
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: Text(
                                   'Let\'s analyze your event information by filling out this short form, and we\'ll make creating your event proposal easy for you.',
@@ -163,7 +156,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -185,7 +178,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 0.0, 0.0),
                                         child: Container(
                                           width: double.infinity,
@@ -201,7 +194,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 0.0, 0.0),
                                         child: Container(
                                           width: double.infinity,
@@ -217,7 +210,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 0.0, 0.0),
                                         child: Container(
                                           width: double.infinity,
@@ -259,7 +252,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                           key: _model.formKey,
                           autovalidateMode: AutovalidateMode.disabled,
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 30.0, 0.0, 20.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -281,7 +274,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                           ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           15.0, 0.0, 0.0, 5.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -292,7 +285,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 5.0),
                                                 child: Text(
@@ -311,7 +304,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         2.0, 10.0, 0.0, 5.0),
                                                 child: Text(
@@ -357,7 +350,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                                             'EVENT_PROPOSAL_STEP_1_start_date_ON_TAP');
                                                         logFirebaseEvent(
                                                             'start_date_date_time_picker');
-                                                        final _datePicked1Date =
+                                                        final datePicked1Date =
                                                             await showDatePicker(
                                                           context: context,
                                                           initialDate: functions
@@ -420,10 +413,10 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                                         );
 
                                                         TimeOfDay?
-                                                            _datePicked1Time;
-                                                        if (_datePicked1Date !=
+                                                            datePicked1Time;
+                                                        if (datePicked1Date !=
                                                             null) {
-                                                          _datePicked1Time =
+                                                          datePicked1Time =
                                                               await showTimePicker(
                                                             context: context,
                                                             initialTime: TimeOfDay
@@ -483,22 +476,22 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                                           );
                                                         }
 
-                                                        if (_datePicked1Date !=
+                                                        if (datePicked1Date !=
                                                                 null &&
-                                                            _datePicked1Time !=
+                                                            datePicked1Time !=
                                                                 null) {
                                                           safeSetState(() {
                                                             _model.datePicked1 =
                                                                 DateTime(
-                                                              _datePicked1Date
+                                                              datePicked1Date
                                                                   .year,
-                                                              _datePicked1Date
+                                                              datePicked1Date
                                                                   .month,
-                                                              _datePicked1Date
+                                                              datePicked1Date
                                                                   .day,
-                                                              _datePicked1Time!
+                                                              datePicked1Time!
                                                                   .hour,
-                                                              _datePicked1Time
+                                                              datePicked1Time
                                                                   .minute,
                                                             );
                                                           });
@@ -540,7 +533,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                                                 Flexible(
                                                                   child:
                                                                       Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             10.0,
                                                                             0.0,
@@ -572,7 +565,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                                                 Flexible(
                                                                   child:
                                                                       Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             10.0,
                                                                             0.0,
@@ -602,7 +595,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                                                   ),
                                                                 ),
                                                                 Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -632,7 +625,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 5.0),
                                                 child: Text(
@@ -651,7 +644,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         2.0, 10.0, 0.0, 5.0),
                                                 child: Text(
@@ -697,23 +690,15 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                                             'EVENT_PROPOSAL_STEP_1_end_date_ON_TAP');
                                                         logFirebaseEvent(
                                                             'end_date_date_time_picker');
-                                                        final _datePicked2Date =
+                                                        final datePicked2Date =
                                                             await showDatePicker(
                                                           context: context,
                                                           initialDate: ((_model
-                                                                          .datePicked1 !=
-                                                                      null
-                                                                  ? _model
-                                                                      .datePicked1
-                                                                  : functions
+                                                                      .datePicked1 ?? functions
                                                                       .validateEventStartDate()) ??
                                                               DateTime.now()),
                                                           firstDate: ((_model
-                                                                          .datePicked1 !=
-                                                                      null
-                                                                  ? _model
-                                                                      .datePicked1
-                                                                  : functions
+                                                                      .datePicked1 ?? functions
                                                                       .validateEventStartDate()) ??
                                                               DateTime(1900)),
                                                           lastDate:
@@ -771,18 +756,15 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                                         );
 
                                                         TimeOfDay?
-                                                            _datePicked2Time;
-                                                        if (_datePicked2Date !=
+                                                            datePicked2Time;
+                                                        if (datePicked2Date !=
                                                             null) {
-                                                          _datePicked2Time =
+                                                          datePicked2Time =
                                                               await showTimePicker(
                                                             context: context,
                                                             initialTime: TimeOfDay.fromDateTime(
-                                                                ((_model.datePicked1 !=
-                                                                            null
-                                                                        ? _model
-                                                                            .datePicked1
-                                                                        : functions
+                                                                ((_model
+                                                                            .datePicked1 ?? functions
                                                                             .validateEventStartDate()) ??
                                                                     DateTime
                                                                         .now())),
@@ -839,22 +821,22 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                                           );
                                                         }
 
-                                                        if (_datePicked2Date !=
+                                                        if (datePicked2Date !=
                                                                 null &&
-                                                            _datePicked2Time !=
+                                                            datePicked2Time !=
                                                                 null) {
                                                           safeSetState(() {
                                                             _model.datePicked2 =
                                                                 DateTime(
-                                                              _datePicked2Date
+                                                              datePicked2Date
                                                                   .year,
-                                                              _datePicked2Date
+                                                              datePicked2Date
                                                                   .month,
-                                                              _datePicked2Date
+                                                              datePicked2Date
                                                                   .day,
-                                                              _datePicked2Time!
+                                                              datePicked2Time!
                                                                   .hour,
-                                                              _datePicked2Time
+                                                              datePicked2Time
                                                                   .minute,
                                                             );
                                                           });
@@ -896,7 +878,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                                                 Flexible(
                                                                   child:
                                                                       Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             10.0,
                                                                             0.0,
@@ -928,7 +910,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                                                 Flexible(
                                                                   child:
                                                                       Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             10.0,
                                                                             0.0,
@@ -958,7 +940,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                                                   ),
                                                                 ),
                                                                 Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -988,7 +970,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           15.0, 0.0, 0.0, 10.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -1010,7 +992,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 2.0, 0.0, 0.0),
                                             child: InkWell(
                                               splashColor: Colors.transparent,
@@ -1039,7 +1021,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                                           padding: MediaQuery
                                                               .viewInsetsOf(
                                                                   context),
-                                                          child: Container(
+                                                          child: const SizedBox(
                                                             height: 437.0,
                                                             child:
                                                                 RulesOnUsingSchoolFacilitiesWidget(),
@@ -1079,7 +1061,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                   ],
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 15.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -1098,7 +1080,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                             ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 10.0, 0.0, 0.0),
                                         child: FlutterFlowRadioButton(
                                           options: ['Online', 'Face-to-Face']
@@ -1125,7 +1107,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                                     letterSpacing: 0.0,
                                                   ),
                                           textPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 20.0, 0.0),
                                           buttonPosition:
                                               RadioButtonPosition.left,
@@ -1147,7 +1129,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                           'Face-to-Face')
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 15.0, 0.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -1155,7 +1137,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         15.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -1174,7 +1156,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         10.0, 10.0, 0.0, 0.0),
                                                 child: FlutterFlowRadioButton(
@@ -1209,7 +1191,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                                             letterSpacing: 0.0,
                                                           ),
                                                   textPadding:
-                                                      EdgeInsetsDirectional
+                                                      const EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               5.0, 0.0),
                                                   buttonPosition:
@@ -1237,7 +1219,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 15.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -1256,7 +1238,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                             ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             15.0, 10.0, 0.0, 0.0),
                                         child: TextFormField(
                                           controller:
@@ -1344,7 +1326,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 20.0, 0.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
@@ -1369,7 +1351,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                               ),
                                             ),
                                             duration:
-                                                Duration(milliseconds: 4000),
+                                                const Duration(milliseconds: 4000),
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
                                                     .error,
@@ -1390,7 +1372,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                               ),
                                             ),
                                             duration:
-                                                Duration(milliseconds: 4000),
+                                                const Duration(milliseconds: 4000),
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
                                                     .error,
@@ -1412,7 +1394,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                               ),
                                             ),
                                             duration:
-                                                Duration(milliseconds: 4000),
+                                                const Duration(milliseconds: 4000),
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
                                                     .error,
@@ -1450,7 +1432,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                               ParamType.DateTime,
                                             ),
                                             'orgRef': serializeParam(
-                                              widget!.orgRef,
+                                              widget.orgRef,
                                               ParamType.DocumentReference,
                                             ),
                                           }.withoutNulls,
@@ -1485,7 +1467,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                               ParamType.DateTime,
                                             ),
                                             'orgRef': serializeParam(
-                                              widget!.orgRef,
+                                              widget.orgRef,
                                               ParamType.DocumentReference,
                                             ),
                                           }.withoutNulls,
@@ -1519,7 +1501,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                               ParamType.DateTime,
                                             ),
                                             'orgRef': serializeParam(
-                                              widget!.orgRef,
+                                              widget.orgRef,
                                               ParamType.DocumentReference,
                                             ),
                                           }.withoutNulls,
@@ -1530,10 +1512,10 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                     options: FFButtonOptions(
                                       width: double.infinity,
                                       height: 40.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           24.0, 0.0, 24.0, 0.0),
                                       iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color:
                                           FlutterFlowTheme.of(context).primary,
@@ -1546,7 +1528,7 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                             letterSpacing: 0.0,
                                           ),
                                       elevation: 3.0,
-                                      borderSide: BorderSide(
+                                      borderSide: const BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,
                                       ),

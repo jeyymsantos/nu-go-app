@@ -3,12 +3,9 @@ import '/backend/schema/structs/index.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'a_calendar_model.dart';
 export 'a_calendar_model.dart';
@@ -72,16 +69,16 @@ class _ACalendarWidgetState extends State<ACalendarWidget> {
         body: SafeArea(
           top: true,
           child: Align(
-            alignment: AlignmentDirectional(0.0, 0.0),
+            alignment: const AlignmentDirectional(0.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                   child: wrapWithModel(
                     model: _model.titleHeaderComponentModel,
                     updateCallback: () => safeSetState(() {}),
-                    child: TitleHeaderComponentWidget(
+                    child: const TitleHeaderComponentWidget(
                       titleText: 'Calendar',
                     ),
                   ),
@@ -89,10 +86,10 @@ class _ACalendarWidgetState extends State<ACalendarWidget> {
                 Expanded(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: Container(
-                      decoration: BoxDecoration(),
-                      child: Container(
+                      decoration: const BoxDecoration(),
+                      child: SizedBox(
                         width: double.infinity,
                         height: 300.0,
                         child: custom_widgets.CalendarWidgetSyncfusion(

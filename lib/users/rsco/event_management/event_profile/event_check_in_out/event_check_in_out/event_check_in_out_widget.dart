@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/push_notifications/push_notifications_util.dart';
 import '/components/dialog_box/congratulations_dialog_box/congratulations_dialog_box_widget.dart';
@@ -10,13 +9,12 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/users/rsco/event_management/event_profile/components/side_bar_event_profile/side_bar_event_profile_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
-import 'package:cloud_firestore/cloud_firestore.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'event_check_in_out_model.dart';
@@ -71,7 +69,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
 
     return StreamBuilder<List<EventAttendeesRecord>>(
       stream: queryEventAttendeesRecord(
-        parent: widget!.eventDoc?.reference,
+        parent: widget.eventDoc?.reference,
         queryBuilder: (eventAttendeesRecord) => eventAttendeesRecord
             .where(
               'ticket_status',
@@ -104,7 +102,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            drawer: Container(
+            drawer: SizedBox(
               width: 250.0,
               child: Drawer(
                 elevation: 16.0,
@@ -113,7 +111,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                     model: _model.sideBarEventProfileModel,
                     updateCallback: () => safeSetState(() {}),
                     child: SideBarEventProfileWidget(
-                      eventDoc: widget!.eventDoc!,
+                      eventDoc: widget.eventDoc!,
                     ),
                   ),
                 ),
@@ -124,32 +122,32 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Align(
-                  alignment: AlignmentDirectional(0.0, -1.0),
+                  alignment: const AlignmentDirectional(0.0, -1.0),
                   child: Container(
                     width: double.infinity,
                     height: 170.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primary,
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(30.0),
                         bottomRight: Radius.circular(30.0),
                         topLeft: Radius.circular(0.0),
                         topRight: Radius.circular(0.0),
                       ),
                     ),
-                    child: Container(
+                    child: SizedBox(
                       height: 190.0,
                       child: Stack(
-                        alignment: AlignmentDirectional(0.0, -1.0),
+                        alignment: const AlignmentDirectional(0.0, -1.0),
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 20.0, 20.0, 20.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 30.0, 0.0, 20.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -179,7 +177,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
                                     'Check In & Out',
                                     style: FlutterFlowTheme.of(context)
@@ -195,7 +193,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
                                     'Scan Ticket or Tap School ID',
                                     style: FlutterFlowTheme.of(context)
@@ -214,9 +212,9 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(0.0, 1.25),
+                            alignment: const AlignmentDirectional(0.0, 1.25),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   30.0, 0.0, 30.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -237,12 +235,12 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                         'event_profile_insights',
                                         queryParameters: {
                                           'eventDoc': serializeParam(
-                                            widget!.eventDoc,
+                                            widget.eventDoc,
                                             ParamType.Document,
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          'eventDoc': widget!.eventDoc,
+                                          'eventDoc': widget.eventDoc,
                                         },
                                       );
                                     },
@@ -254,7 +252,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                             BorderRadius.circular(20.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -262,7 +260,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Icon(
                                                 Icons.insights_sharp,
@@ -304,23 +302,23 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                         'event_profile_dashboard',
                                         queryParameters: {
                                           'eventDoc': serializeParam(
-                                            widget!.eventDoc,
+                                            widget.eventDoc,
                                             ParamType.Document,
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          'eventDoc': widget!.eventDoc,
+                                          'eventDoc': widget.eventDoc,
                                         },
                                       );
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFF99F58),
+                                        color: const Color(0xFFF99F58),
                                         borderRadius:
                                             BorderRadius.circular(20.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -328,7 +326,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Icon(
                                                 FFIcons.khome,
@@ -370,23 +368,23 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                         'event_guests_all',
                                         queryParameters: {
                                           'eventDoc': serializeParam(
-                                            widget!.eventDoc,
+                                            widget.eventDoc,
                                             ParamType.Document,
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          'eventDoc': widget!.eventDoc,
+                                          'eventDoc': widget.eventDoc,
                                         },
                                       );
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: Color(0xFF599AFF),
+                                        color: const Color(0xFF599AFF),
                                         borderRadius:
                                             BorderRadius.circular(20.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -394,7 +392,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Icon(
                                                 FFIcons.kuserTag,
@@ -437,7 +435,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 30.0, 20.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -458,12 +456,12 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                       'event_guests_going',
                                       queryParameters: {
                                         'eventDoc': serializeParam(
-                                          widget!.eventDoc,
+                                          widget.eventDoc,
                                           ParamType.Document,
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        'eventDoc': widget!.eventDoc,
+                                        'eventDoc': widget.eventDoc,
                                       },
                                     );
                                   },
@@ -474,7 +472,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                       borderRadius: BorderRadius.circular(6.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(5.0),
+                                      padding: const EdgeInsets.all(5.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment:
@@ -482,7 +480,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               FFIcons.kpet,
@@ -555,12 +553,12 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                       'event_checked_in',
                                       queryParameters: {
                                         'eventDoc': serializeParam(
-                                          widget!.eventDoc,
+                                          widget.eventDoc,
                                           ParamType.Document,
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        'eventDoc': widget!.eventDoc,
+                                        'eventDoc': widget.eventDoc,
                                       },
                                     );
                                   },
@@ -571,7 +569,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                       borderRadius: BorderRadius.circular(6.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(5.0),
+                                      padding: const EdgeInsets.all(5.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment:
@@ -579,7 +577,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               FFIcons.kmagicStar4,
@@ -652,12 +650,12 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                       'event_checked_out',
                                       queryParameters: {
                                         'eventDoc': serializeParam(
-                                          widget!.eventDoc,
+                                          widget.eventDoc,
                                           ParamType.Document,
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        'eventDoc': widget!.eventDoc,
+                                        'eventDoc': widget.eventDoc,
                                       },
                                     );
                                   },
@@ -668,7 +666,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                       borderRadius: BorderRadius.circular(6.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(5.0),
+                                      padding: const EdgeInsets.all(5.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment:
@@ -676,7 +674,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               Icons.exit_to_app,
@@ -734,886 +732,1030 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 10.0)),
+                            ].divide(const SizedBox(width: 10.0)),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 20.0, 0.0, 0.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Transform.scale(
-                                scaleX: 1.0,
-                                scaleY: 1.0,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.asset(
-                                    'assets/images/Tap_ID_4.gif',
-                                    width: double.infinity,
-                                    height: 250.0,
-                                    fit: BoxFit.contain,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              20.0, 10.0, 20.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Expanded(
-                                child: Builder(
-                                  builder: (context) => FFButtonWidget(
-                                    onPressed: () async {
-                                      logFirebaseEvent(
-                                          'EVENT_CHECK_IN_OUT_SCAN_TICKET_BTN_ON_TA');
-                                      var _shouldSetState = false;
-                                      logFirebaseEvent(
-                                          'Button_update_app_state');
-                                      FFAppState().scannedNFCTag = ' ';
-                                      FFAppState().scannedNFCresult = ' ';
-                                      safeSetState(() {});
-                                      logFirebaseEvent(
-                                          'Button_scan_barcode_q_r_code');
-                                      _model.scannedQR =
-                                          await FlutterBarcodeScanner
-                                              .scanBarcode(
-                                        '#C62828', // scanning line color
-                                        'Cancel', // cancel button text
-                                        true, // whether to show the flash icon
-                                        ScanMode.QR,
-                                      );
-
-                                      _shouldSetState = true;
-                                      logFirebaseEvent(
-                                          'Button_update_page_state');
-                                      _model.scannedQRcode = _model.scannedQR!;
-                                      safeSetState(() {});
-                                      logFirebaseEvent(
-                                          'Button_firestore_query');
-                                      _model.qrOutput =
-                                          await queryEventAttendeesRecordOnce(
-                                        parent: widget!.eventDoc?.reference,
-                                        queryBuilder: (eventAttendeesRecord) =>
-                                            eventAttendeesRecord.where(
-                                          'ticket_code',
-                                          isEqualTo: _model.scannedQRcode,
-                                        ),
-                                        singleRecord: true,
-                                      ).then((s) => s.firstOrNull);
-                                      _shouldSetState = true;
-                                      if (_model.qrOutput?.ticketCode != null &&
-                                          _model.qrOutput?.ticketCode != '') {
-                                        if ((_model.qrOutput?.ticketCheckIn !=
-                                                null) &&
-                                            (_model.qrOutput?.ticketCheckOut !=
-                                                null)) {
-                                          logFirebaseEvent(
-                                              'Button_alert_dialog');
-                                          await showDialog(
-                                            context: context,
-                                            builder: (dialogContext) {
-                                              return Dialog(
-                                                elevation: 0,
-                                                insetPadding: EdgeInsets.zero,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                alignment: AlignmentDirectional(
-                                                        0.0, 0.0)
-                                                    .resolve(Directionality.of(
-                                                        context)),
-                                                child: WebViewAware(
-                                                  child: GestureDetector(
-                                                    onTap: () => FocusScope.of(
-                                                            dialogContext)
-                                                        .unfocus(),
-                                                    child:
-                                                        FailedDialogBoxWidget(
-                                                      failedDialogTitle:
-                                                          'Already Checked Out',
-                                                      failedDialogMeesage:
-                                                          'The owner of this ticket has already checked out. You can only check in and out once in the event.',
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                          );
-
-                                          if (_shouldSetState)
-                                            safeSetState(() {});
-                                          return;
-                                        } else if (_model
-                                                .qrOutput?.ticketCheckIn ==
-                                            null) {
-                                          logFirebaseEvent(
-                                              'Button_backend_call');
-
-                                          await _model.qrOutput!.reference
-                                              .update({
-                                            ...mapToFirestore(
-                                              {
-                                                'ticket_check_in': FieldValue
-                                                    .serverTimestamp(),
-                                                'ticket_updated_on': FieldValue
-                                                    .serverTimestamp(),
-                                              },
-                                            ),
-                                          });
-                                          logFirebaseEvent(
-                                              'Button_action_block');
-                                          await action_blocks
-                                              .triggerAppNotification(
-                                            context,
-                                            type: 'user',
-                                            title: 'Event Check In',
-                                            message:
-                                                'You are now checked in for ${widget!.eventDoc?.eventName}.',
-                                            user: _model.qrOutput?.ticketUser,
-                                          );
-                                          logFirebaseEvent(
-                                              'Button_trigger_push_notification');
-                                          triggerPushNotification(
-                                            notificationTitle: 'Event Check In',
-                                            notificationText:
-                                                'You are now checked in for ${widget!.eventDoc?.eventName}.',
-                                            notificationSound: 'default',
-                                            userRefs: [
-                                              _model.qrOutput!.ticketUser!
-                                            ],
-                                            initialPageName: 'auth_redirect',
-                                            parameterData: {},
-                                          );
-                                          logFirebaseEvent(
-                                              'Button_action_block');
-                                          await action_blocks.logs(
-                                            context,
-                                            type: 'check in',
-                                            module: 'event',
-                                            doneToName:
-                                                'the event \"${widget!.eventDoc?.eventName}\".',
-                                            doneTo: _model.qrOutput?.ticketUser,
-                                          );
-                                          logFirebaseEvent(
-                                              'Button_alert_dialog');
-                                          await showDialog(
-                                            context: context,
-                                            builder: (dialogContext) {
-                                              return Dialog(
-                                                elevation: 0,
-                                                insetPadding: EdgeInsets.zero,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                alignment: AlignmentDirectional(
-                                                        0.0, 0.0)
-                                                    .resolve(Directionality.of(
-                                                        context)),
-                                                child: WebViewAware(
-                                                  child: GestureDetector(
-                                                    onTap: () => FocusScope.of(
-                                                            dialogContext)
-                                                        .unfocus(),
-                                                    child:
-                                                        CongratulationsDialogBoxWidget(
-                                                      congratsDialogTitle:
-                                                          'Check In Successful',
-                                                      congratsDialogMeesage:
-                                                          'The check in for this user has been successful.',
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                          );
-
-                                          if (_shouldSetState)
-                                            safeSetState(() {});
-                                          return;
-                                        } else if (_model
-                                                .qrOutput?.ticketCheckOut ==
-                                            null) {
-                                          logFirebaseEvent(
-                                              'Button_backend_call');
-
-                                          await _model.qrOutput!.reference
-                                              .update({
-                                            ...mapToFirestore(
-                                              {
-                                                'ticket_updated_on': FieldValue
-                                                    .serverTimestamp(),
-                                                'ticket_check_out': FieldValue
-                                                    .serverTimestamp(),
-                                              },
-                                            ),
-                                          });
-                                          logFirebaseEvent(
-                                              'Button_action_block');
-                                          await action_blocks
-                                              .triggerAppNotification(
-                                            context,
-                                            type: 'user',
-                                            title: 'Event Check Out',
-                                            message:
-                                                'You have checked out for ${widget!.eventDoc?.eventName}.',
-                                            user: _model.qrOutput?.ticketUser,
-                                          );
-                                          logFirebaseEvent(
-                                              'Button_trigger_push_notification');
-                                          triggerPushNotification(
-                                            notificationTitle:
-                                                'Event Check Out',
-                                            notificationText:
-                                                'You have checked out for ${widget!.eventDoc?.eventName}.',
-                                            notificationSound: 'default',
-                                            userRefs: [
-                                              _model.qrOutput!.ticketUser!
-                                            ],
-                                            initialPageName: 'auth_redirect',
-                                            parameterData: {},
-                                          );
-                                          logFirebaseEvent(
-                                              'Button_action_block');
-                                          await action_blocks.logs(
-                                            context,
-                                            type: 'check out',
-                                            module: 'event',
-                                            doneToName:
-                                                'the event \"${widget!.eventDoc?.eventName}\".',
-                                            doneTo: _model.qrOutput?.ticketUser,
-                                          );
-                                          logFirebaseEvent(
-                                              'Button_alert_dialog');
-                                          await showDialog(
-                                            context: context,
-                                            builder: (dialogContext) {
-                                              return Dialog(
-                                                elevation: 0,
-                                                insetPadding: EdgeInsets.zero,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                alignment: AlignmentDirectional(
-                                                        0.0, 0.0)
-                                                    .resolve(Directionality.of(
-                                                        context)),
-                                                child: WebViewAware(
-                                                  child: GestureDetector(
-                                                    onTap: () => FocusScope.of(
-                                                            dialogContext)
-                                                        .unfocus(),
-                                                    child:
-                                                        CongratulationsDialogBoxWidget(
-                                                      congratsDialogTitle:
-                                                          'Check Out Successful',
-                                                      congratsDialogMeesage:
-                                                          'The check out for this user has been successful.',
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                          );
-
-                                          if (_shouldSetState)
-                                            safeSetState(() {});
-                                          return;
-                                        } else {
-                                          logFirebaseEvent(
-                                              'Button_alert_dialog');
-                                          await showDialog(
-                                            context: context,
-                                            builder: (dialogContext) {
-                                              return Dialog(
-                                                elevation: 0,
-                                                insetPadding: EdgeInsets.zero,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                alignment: AlignmentDirectional(
-                                                        0.0, 0.0)
-                                                    .resolve(Directionality.of(
-                                                        context)),
-                                                child: WebViewAware(
-                                                  child: GestureDetector(
-                                                    onTap: () => FocusScope.of(
-                                                            dialogContext)
-                                                        .unfocus(),
-                                                    child:
-                                                        FailedDialogBoxWidget(
-                                                      failedDialogTitle:
-                                                          'Error Occurred',
-                                                      failedDialogMeesage:
-                                                          'There was a problem encountered while scanning your ticket. Please try again later.',
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                          );
-
-                                          if (_shouldSetState)
-                                            safeSetState(() {});
-                                          return;
-                                        }
-                                      } else {
-                                        logFirebaseEvent('Button_alert_dialog');
-                                        await showDialog(
-                                          context: context,
-                                          builder: (dialogContext) {
-                                            return Dialog(
-                                              elevation: 0,
-                                              insetPadding: EdgeInsets.zero,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              alignment:
-                                                  AlignmentDirectional(0.0, 0.0)
-                                                      .resolve(
-                                                          Directionality.of(
-                                                              context)),
-                                              child: WebViewAware(
-                                                child: GestureDetector(
-                                                  onTap: () => FocusScope.of(
-                                                          dialogContext)
-                                                      .unfocus(),
-                                                  child: FailedDialogBoxWidget(
-                                                    failedDialogTitle:
-                                                        'Invalid Ticket',
-                                                    failedDialogMeesage:
-                                                        'Your QR code is not valid for this event. Make sure that you are registered and has a valid ticket',
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        );
-
-                                        if (_shouldSetState)
-                                          safeSetState(() {});
-                                        return;
-                                      }
-
-                                      if (_shouldSetState) safeSetState(() {});
-                                    },
-                                    text: 'Scan Ticket',
-                                    icon: Icon(
-                                      FFIcons.kticket,
-                                      size: 15.0,
-                                    ),
-                                    options: FFButtonOptions(
-                                      height: 40.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 0.0, 16.0, 0.0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Montserrat',
-                                            color: Colors.white,
-                                            fontSize: 13.0,
-                                            letterSpacing: 0.0,
-                                          ),
-                                      elevation: 0.0,
-                                      borderRadius: BorderRadius.circular(10.0),
+                        if (functions.checkEventStatus(
+                                widget.eventDoc!.startDate!,
+                                widget.eventDoc!.endTime!,
+                                getCurrentTimestamp) !=
+                            'concluded')
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 20.0, 0.0, 0.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Transform.scale(
+                                  scaleX: 1.0,
+                                  scaleY: 1.0,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Image.asset(
+                                      'assets/images/Tap_ID_4.gif',
+                                      width: double.infinity,
+                                      height: 250.0,
+                                      fit: BoxFit.contain,
                                     ),
                                   ),
                                 ),
-                              ),
-                              Expanded(
-                                child: Builder(
-                                  builder: (context) => FFButtonWidget(
-                                    onPressed: () async {
-                                      logFirebaseEvent(
-                                          'EVENT_CHECK_IN_OUT_TAP_SCHOOL_I_D_BTN_ON');
-                                      var _shouldSetState = false;
-                                      logFirebaseEvent(
-                                          'Button_update_app_state');
-                                      FFAppState().scannedNFCTag = ' ';
-                                      FFAppState().scannedNFCresult = ' ';
-                                      safeSetState(() {});
-                                      logFirebaseEvent(
-                                          'Button_update_page_state');
-                                      _model.scannedQRcode = '';
-                                      safeSetState(() {});
-                                      logFirebaseEvent('Button_custom_action');
-                                      await actions.scanNFC();
-                                      if (FFAppState().scannedNFCresult ==
-                                          'School ID has been detected!') {
-                                        logFirebaseEvent(
-                                            'Button_firestore_query');
-                                        _model.userOutput =
-                                            await queryUsersRecordOnce(
-                                          queryBuilder: (usersRecord) =>
-                                              usersRecord.where(
-                                            'nfc_tag',
-                                            isEqualTo:
-                                                FFAppState().scannedNFCTag,
-                                          ),
-                                          singleRecord: true,
-                                        ).then((s) => s.firstOrNull);
-                                        _shouldSetState = true;
-                                        if (_model.userOutput?.email != null &&
-                                            _model.userOutput?.email != '') {
-                                          logFirebaseEvent(
-                                              'Button_firestore_query');
-                                          _model.attendeeOutput =
-                                              await queryEventAttendeesRecordOnce(
-                                            parent: widget!.eventDoc?.reference,
-                                            queryBuilder:
-                                                (eventAttendeesRecord) =>
-                                                    eventAttendeesRecord.where(
-                                              'ticket_user',
-                                              isEqualTo:
-                                                  _model.userOutput?.reference,
-                                            ),
-                                            singleRecord: true,
-                                          ).then((s) => s.firstOrNull);
-                                          _shouldSetState = true;
-                                          if (_model.attendeeOutput
-                                                      ?.ticketCode !=
-                                                  null &&
-                                              _model.attendeeOutput
-                                                      ?.ticketCode !=
-                                                  '') {
-                                            if ((_model.attendeeOutput
-                                                        ?.ticketCheckIn !=
-                                                    null) &&
-                                                (_model.attendeeOutput
-                                                        ?.ticketCheckOut !=
-                                                    null)) {
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      20.0, 10.0, 20.0, 0.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: Builder(
+                                          builder: (context) => FFButtonWidget(
+                                            onPressed: () async {
                                               logFirebaseEvent(
-                                                  'Button_alert_dialog');
-                                              await showDialog(
-                                                context: context,
-                                                builder: (dialogContext) {
-                                                  return Dialog(
-                                                    elevation: 0,
-                                                    insetPadding:
-                                                        EdgeInsets.zero,
-                                                    backgroundColor:
-                                                        Colors.transparent,
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                                0.0, 0.0)
-                                                            .resolve(
-                                                                Directionality.of(
-                                                                    context)),
-                                                    child: WebViewAware(
-                                                      child: GestureDetector(
-                                                        onTap: () =>
-                                                            FocusScope.of(
-                                                                    dialogContext)
-                                                                .unfocus(),
-                                                        child:
-                                                            FailedDialogBoxWidget(
-                                                          failedDialogTitle:
-                                                              'Already Checked Out',
-                                                          failedDialogMeesage:
-                                                              'The owner of this ticket has already checked out. You can only check in and out once in the event.',
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              );
-
-                                              if (_shouldSetState)
-                                                safeSetState(() {});
-                                              return;
-                                            } else if (_model.attendeeOutput
-                                                    ?.ticketCheckIn ==
-                                                null) {
+                                                  'EVENT_CHECK_IN_OUT_SCAN_TICKET_BTN_ON_TA');
+                                              var shouldSetState = false;
                                               logFirebaseEvent(
-                                                  'Button_backend_call');
-
-                                              await _model
-                                                  .attendeeOutput!.reference
-                                                  .update({
-                                                ...mapToFirestore(
-                                                  {
-                                                    'ticket_check_in':
-                                                        FieldValue
-                                                            .serverTimestamp(),
-                                                    'ticket_updated_on':
-                                                        FieldValue
-                                                            .serverTimestamp(),
-                                                  },
-                                                ),
-                                              });
-                                              logFirebaseEvent(
-                                                  'Button_action_block');
-                                              await action_blocks
-                                                  .triggerAppNotification(
-                                                context,
-                                                type: 'user',
-                                                title: 'Event Check In',
-                                                message:
-                                                    'You are now checked in for ${widget!.eventDoc?.eventName}.',
-                                                user: _model
-                                                    .attendeeOutput?.ticketUser,
-                                              );
-                                              logFirebaseEvent(
-                                                  'Button_trigger_push_notification');
-                                              triggerPushNotification(
-                                                notificationTitle:
-                                                    'Event Check In',
-                                                notificationText:
-                                                    'You are now checked in for ${widget!.eventDoc?.eventName}.',
-                                                notificationSound: 'default',
-                                                userRefs: [
-                                                  _model.attendeeOutput!
-                                                      .ticketUser!
-                                                ],
-                                                initialPageName:
-                                                    'auth_redirect',
-                                                parameterData: {},
-                                              );
-                                              logFirebaseEvent(
-                                                  'Button_action_block');
-                                              await action_blocks.logs(
-                                                context,
-                                                type: 'check in',
-                                                module: 'event',
-                                                doneToName:
-                                                    'the event \"${widget!.eventDoc?.eventName}\".',
-                                                doneTo: _model
-                                                    .attendeeOutput?.ticketUser,
-                                              );
-                                              logFirebaseEvent(
-                                                  'Button_alert_dialog');
-                                              await showDialog(
-                                                context: context,
-                                                builder: (dialogContext) {
-                                                  return Dialog(
-                                                    elevation: 0,
-                                                    insetPadding:
-                                                        EdgeInsets.zero,
-                                                    backgroundColor:
-                                                        Colors.transparent,
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                                0.0, 0.0)
-                                                            .resolve(
-                                                                Directionality.of(
-                                                                    context)),
-                                                    child: WebViewAware(
-                                                      child: GestureDetector(
-                                                        onTap: () =>
-                                                            FocusScope.of(
-                                                                    dialogContext)
-                                                                .unfocus(),
-                                                        child:
-                                                            CongratulationsDialogBoxWidget(
-                                                          congratsDialogTitle:
-                                                              'Check In Successful',
-                                                          congratsDialogMeesage:
-                                                              'The check in for this user has been successful.',
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              );
-
-                                              if (_shouldSetState)
-                                                safeSetState(() {});
-                                              return;
-                                            } else if (_model.attendeeOutput
-                                                    ?.ticketCheckOut ==
-                                                null) {
-                                              logFirebaseEvent(
-                                                  'Button_backend_call');
-
-                                              await _model
-                                                  .attendeeOutput!.reference
-                                                  .update({
-                                                ...mapToFirestore(
-                                                  {
-                                                    'ticket_updated_on':
-                                                        FieldValue
-                                                            .serverTimestamp(),
-                                                    'ticket_check_out':
-                                                        FieldValue
-                                                            .serverTimestamp(),
-                                                  },
-                                                ),
-                                              });
-                                              logFirebaseEvent(
-                                                  'Button_action_block');
-                                              await action_blocks
-                                                  .triggerAppNotification(
-                                                context,
-                                                type: 'user',
-                                                title: 'Event Check Out',
-                                                message:
-                                                    'You have checked out for ${widget!.eventDoc?.eventName}.',
-                                                user: _model
-                                                    .attendeeOutput?.ticketUser,
-                                              );
-                                              logFirebaseEvent(
-                                                  'Button_trigger_push_notification');
-                                              triggerPushNotification(
-                                                notificationTitle:
-                                                    'Event Check Out',
-                                                notificationText:
-                                                    'You have checked out for ${widget!.eventDoc?.eventName}.',
-                                                notificationSound: 'default',
-                                                userRefs: [
-                                                  _model.attendeeOutput!
-                                                      .ticketUser!
-                                                ],
-                                                initialPageName:
-                                                    'auth_redirect',
-                                                parameterData: {},
-                                              );
-                                              logFirebaseEvent(
-                                                  'Button_action_block');
-                                              await action_blocks.logs(
-                                                context,
-                                                type: 'check out',
-                                                module: 'event',
-                                                doneToName:
-                                                    'the event \"${widget!.eventDoc?.eventName}\".',
-                                                doneTo: _model
-                                                    .attendeeOutput?.ticketUser,
-                                              );
-                                              logFirebaseEvent(
-                                                  'Button_alert_dialog');
-                                              await showDialog(
-                                                context: context,
-                                                builder: (dialogContext) {
-                                                  return Dialog(
-                                                    elevation: 0,
-                                                    insetPadding:
-                                                        EdgeInsets.zero,
-                                                    backgroundColor:
-                                                        Colors.transparent,
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                                0.0, 0.0)
-                                                            .resolve(
-                                                                Directionality.of(
-                                                                    context)),
-                                                    child: WebViewAware(
-                                                      child: GestureDetector(
-                                                        onTap: () =>
-                                                            FocusScope.of(
-                                                                    dialogContext)
-                                                                .unfocus(),
-                                                        child:
-                                                            CongratulationsDialogBoxWidget(
-                                                          congratsDialogTitle:
-                                                              'Check Out Successful',
-                                                          congratsDialogMeesage:
-                                                              'The check out for this user has been successful.',
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              );
-
-                                              if (_shouldSetState)
-                                                safeSetState(() {});
-                                              return;
-                                            } else {
-                                              logFirebaseEvent(
-                                                  'Button_alert_dialog');
-                                              await showDialog(
-                                                context: context,
-                                                builder: (dialogContext) {
-                                                  return Dialog(
-                                                    elevation: 0,
-                                                    insetPadding:
-                                                        EdgeInsets.zero,
-                                                    backgroundColor:
-                                                        Colors.transparent,
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                                0.0, 0.0)
-                                                            .resolve(
-                                                                Directionality.of(
-                                                                    context)),
-                                                    child: WebViewAware(
-                                                      child: GestureDetector(
-                                                        onTap: () =>
-                                                            FocusScope.of(
-                                                                    dialogContext)
-                                                                .unfocus(),
-                                                        child:
-                                                            FailedDialogBoxWidget(
-                                                          failedDialogTitle:
-                                                              'Error Occurred',
-                                                          failedDialogMeesage:
-                                                              'There was a problem encountered while detecting your school ID. Please try again later.',
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              );
-
-                                              if (_shouldSetState)
-                                                safeSetState(() {});
-                                              return;
-                                            }
-                                          } else {
-                                            logFirebaseEvent(
-                                                'Button_alert_dialog');
-                                            await showDialog(
-                                              context: context,
-                                              builder: (dialogContext) {
-                                                return Dialog(
-                                                  elevation: 0,
-                                                  insetPadding: EdgeInsets.zero,
-                                                  backgroundColor:
-                                                      Colors.transparent,
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                              0.0, 0.0)
-                                                          .resolve(
-                                                              Directionality.of(
-                                                                  context)),
-                                                  child: WebViewAware(
-                                                    child: GestureDetector(
-                                                      onTap: () =>
-                                                          FocusScope.of(
-                                                                  dialogContext)
-                                                              .unfocus(),
-                                                      child:
-                                                          FailedDialogBoxWidget(
-                                                        failedDialogTitle:
-                                                            'User Not Registered',
-                                                        failedDialogMeesage:
-                                                            'The user is not registered in the event.',
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            );
-
-                                            if (_shouldSetState)
+                                                  'Button_update_app_state');
+                                              FFAppState().scannedNFCTag = ' ';
+                                              FFAppState().scannedNFCresult =
+                                                  ' ';
                                               safeSetState(() {});
-                                            return;
-                                          }
-                                        } else {
-                                          logFirebaseEvent(
-                                              'Button_alert_dialog');
-                                          await showDialog(
-                                            context: context,
-                                            builder: (dialogContext) {
-                                              return Dialog(
-                                                elevation: 0,
-                                                insetPadding: EdgeInsets.zero,
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                                alignment: AlignmentDirectional(
-                                                        0.0, 0.0)
-                                                    .resolve(Directionality.of(
-                                                        context)),
-                                                child: WebViewAware(
-                                                  child: GestureDetector(
-                                                    onTap: () => FocusScope.of(
-                                                            dialogContext)
-                                                        .unfocus(),
-                                                    child:
-                                                        FailedDialogBoxWidget(
-                                                      failedDialogTitle:
-                                                          'User Not Found',
-                                                      failedDialogMeesage:
-                                                          'The school ID is not registered in NU GO. Make sure that you have setup your school ID on your account.',
-                                                    ),
-                                                  ),
-                                                ),
+                                              logFirebaseEvent(
+                                                  'Button_scan_barcode_q_r_code');
+                                              _model.scannedQR =
+                                                  await FlutterBarcodeScanner
+                                                      .scanBarcode(
+                                                '#C62828', // scanning line color
+                                                'Cancel', // cancel button text
+                                                true, // whether to show the flash icon
+                                                ScanMode.QR,
                                               );
-                                            },
-                                          );
 
-                                          if (_shouldSetState)
-                                            safeSetState(() {});
-                                          return;
-                                        }
-                                      } else {
-                                        logFirebaseEvent('Button_alert_dialog');
-                                        await showDialog(
-                                          context: context,
-                                          builder: (dialogContext) {
-                                            return Dialog(
-                                              elevation: 0,
-                                              insetPadding: EdgeInsets.zero,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              alignment:
-                                                  AlignmentDirectional(0.0, 0.0)
-                                                      .resolve(
-                                                          Directionality.of(
-                                                              context)),
-                                              child: WebViewAware(
-                                                child: GestureDetector(
-                                                  onTap: () => FocusScope.of(
-                                                          dialogContext)
-                                                      .unfocus(),
-                                                  child: FailedDialogBoxWidget(
-                                                    failedDialogTitle:
-                                                        'Error Occurred',
-                                                    failedDialogMeesage:
-                                                        FFAppState()
-                                                            .scannedNFCresult,
-                                                  ),
+                                              shouldSetState = true;
+                                              logFirebaseEvent(
+                                                  'Button_update_page_state');
+                                              _model.scannedQRcode =
+                                                  _model.scannedQR;
+                                              safeSetState(() {});
+                                              logFirebaseEvent(
+                                                  'Button_firestore_query');
+                                              _model.qrOutput =
+                                                  await queryEventAttendeesRecordOnce(
+                                                parent:
+                                                    widget.eventDoc?.reference,
+                                                queryBuilder:
+                                                    (eventAttendeesRecord) =>
+                                                        eventAttendeesRecord
+                                                            .where(
+                                                  'ticket_code',
+                                                  isEqualTo:
+                                                      _model.scannedQRcode,
                                                 ),
-                                              ),
-                                            );
-                                          },
-                                        );
+                                                singleRecord: true,
+                                              ).then((s) => s.firstOrNull);
+                                              shouldSetState = true;
+                                              if (_model.qrOutput?.ticketCode !=
+                                                      null &&
+                                                  _model.qrOutput?.ticketCode !=
+                                                      '') {
+                                                if ((_model.qrOutput
+                                                            ?.ticketCheckIn !=
+                                                        null) &&
+                                                    (_model.qrOutput
+                                                            ?.ticketCheckOut !=
+                                                        null)) {
+                                                  logFirebaseEvent(
+                                                      'Button_alert_dialog');
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder: (dialogContext) {
+                                                      return Dialog(
+                                                        elevation: 0,
+                                                        insetPadding:
+                                                            EdgeInsets.zero,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                        child: WebViewAware(
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () =>
+                                                                FocusScope.of(
+                                                                        dialogContext)
+                                                                    .unfocus(),
+                                                            child:
+                                                                const FailedDialogBoxWidget(
+                                                              failedDialogTitle:
+                                                                  'Already Checked Out',
+                                                              failedDialogMeesage:
+                                                                  'The owner of this ticket has already checked out. You can only check in and out once in the event.',
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
 
-                                        if (_shouldSetState)
-                                          safeSetState(() {});
-                                        return;
-                                      }
+                                                  if (shouldSetState) {
+                                                    safeSetState(() {});
+                                                  }
+                                                  return;
+                                                } else if (_model.qrOutput
+                                                        ?.ticketCheckIn ==
+                                                    null) {
+                                                  logFirebaseEvent(
+                                                      'Button_backend_call');
 
-                                      if (_shouldSetState) safeSetState(() {});
-                                    },
-                                    text: 'Tap School ID',
-                                    icon: Icon(
-                                      FFIcons.kscan,
-                                      size: 15.0,
-                                    ),
-                                    options: FFButtonOptions(
-                                      height: 40.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 0.0, 16.0, 0.0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Montserrat',
-                                            color: Colors.white,
-                                            fontSize: 13.0,
-                                            letterSpacing: 0.0,
+                                                  await _model
+                                                      .qrOutput!.reference
+                                                      .update({
+                                                    ...mapToFirestore(
+                                                      {
+                                                        'ticket_check_in':
+                                                            FieldValue
+                                                                .serverTimestamp(),
+                                                        'ticket_updated_on':
+                                                            FieldValue
+                                                                .serverTimestamp(),
+                                                      },
+                                                    ),
+                                                  });
+                                                  logFirebaseEvent(
+                                                      'Button_action_block');
+                                                  await action_blocks
+                                                      .triggerAppNotification(
+                                                    context,
+                                                    type: 'user',
+                                                    title: 'Event Check In',
+                                                    message:
+                                                        'You are now checked in for ${widget.eventDoc?.eventName}.',
+                                                    user: _model
+                                                        .qrOutput?.ticketUser,
+                                                  );
+                                                  logFirebaseEvent(
+                                                      'Button_trigger_push_notification');
+                                                  triggerPushNotification(
+                                                    notificationTitle:
+                                                        'Event Check In',
+                                                    notificationText:
+                                                        'You are now checked in for ${widget.eventDoc?.eventName}.',
+                                                    notificationSound:
+                                                        'default',
+                                                    userRefs: [
+                                                      _model
+                                                          .qrOutput!.ticketUser!
+                                                    ],
+                                                    initialPageName:
+                                                        'auth_redirect',
+                                                    parameterData: {},
+                                                  );
+                                                  logFirebaseEvent(
+                                                      'Button_action_block');
+                                                  await action_blocks.logs(
+                                                    context,
+                                                    type: 'check in',
+                                                    module: 'event',
+                                                    doneToName:
+                                                        'the event \"${widget.eventDoc?.eventName}\".',
+                                                    doneTo: _model
+                                                        .qrOutput?.ticketUser,
+                                                  );
+                                                  logFirebaseEvent(
+                                                      'Button_alert_dialog');
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder: (dialogContext) {
+                                                      return Dialog(
+                                                        elevation: 0,
+                                                        insetPadding:
+                                                            EdgeInsets.zero,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                        child: WebViewAware(
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () =>
+                                                                FocusScope.of(
+                                                                        dialogContext)
+                                                                    .unfocus(),
+                                                            child:
+                                                                const CongratulationsDialogBoxWidget(
+                                                              congratsDialogTitle:
+                                                                  'Check In Successful',
+                                                              congratsDialogMeesage:
+                                                                  'The check in for this user has been successful.',
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+
+                                                  if (shouldSetState) {
+                                                    safeSetState(() {});
+                                                  }
+                                                  return;
+                                                } else if (_model.qrOutput
+                                                        ?.ticketCheckOut ==
+                                                    null) {
+                                                  logFirebaseEvent(
+                                                      'Button_backend_call');
+
+                                                  await _model
+                                                      .qrOutput!.reference
+                                                      .update({
+                                                    ...mapToFirestore(
+                                                      {
+                                                        'ticket_updated_on':
+                                                            FieldValue
+                                                                .serverTimestamp(),
+                                                        'ticket_check_out':
+                                                            FieldValue
+                                                                .serverTimestamp(),
+                                                      },
+                                                    ),
+                                                  });
+                                                  logFirebaseEvent(
+                                                      'Button_action_block');
+                                                  await action_blocks
+                                                      .triggerAppNotification(
+                                                    context,
+                                                    type: 'user',
+                                                    title: 'Event Check Out',
+                                                    message:
+                                                        'You have checked out for ${widget.eventDoc?.eventName}.',
+                                                    user: _model
+                                                        .qrOutput?.ticketUser,
+                                                  );
+                                                  logFirebaseEvent(
+                                                      'Button_trigger_push_notification');
+                                                  triggerPushNotification(
+                                                    notificationTitle:
+                                                        'Event Check Out',
+                                                    notificationText:
+                                                        'You have checked out for ${widget.eventDoc?.eventName}.',
+                                                    notificationSound:
+                                                        'default',
+                                                    userRefs: [
+                                                      _model
+                                                          .qrOutput!.ticketUser!
+                                                    ],
+                                                    initialPageName:
+                                                        'auth_redirect',
+                                                    parameterData: {},
+                                                  );
+                                                  logFirebaseEvent(
+                                                      'Button_action_block');
+                                                  await action_blocks.logs(
+                                                    context,
+                                                    type: 'check out',
+                                                    module: 'event',
+                                                    doneToName:
+                                                        'the event \"${widget.eventDoc?.eventName}\".',
+                                                    doneTo: _model
+                                                        .qrOutput?.ticketUser,
+                                                  );
+                                                  logFirebaseEvent(
+                                                      'Button_alert_dialog');
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder: (dialogContext) {
+                                                      return Dialog(
+                                                        elevation: 0,
+                                                        insetPadding:
+                                                            EdgeInsets.zero,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                        child: WebViewAware(
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () =>
+                                                                FocusScope.of(
+                                                                        dialogContext)
+                                                                    .unfocus(),
+                                                            child:
+                                                                const CongratulationsDialogBoxWidget(
+                                                              congratsDialogTitle:
+                                                                  'Check Out Successful',
+                                                              congratsDialogMeesage:
+                                                                  'The check out for this user has been successful.',
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+
+                                                  if (shouldSetState) {
+                                                    safeSetState(() {});
+                                                  }
+                                                  return;
+                                                } else {
+                                                  logFirebaseEvent(
+                                                      'Button_alert_dialog');
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder: (dialogContext) {
+                                                      return Dialog(
+                                                        elevation: 0,
+                                                        insetPadding:
+                                                            EdgeInsets.zero,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                        child: WebViewAware(
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () =>
+                                                                FocusScope.of(
+                                                                        dialogContext)
+                                                                    .unfocus(),
+                                                            child:
+                                                                const FailedDialogBoxWidget(
+                                                              failedDialogTitle:
+                                                                  'Error Occurred',
+                                                              failedDialogMeesage:
+                                                                  'There was a problem encountered while scanning your ticket. Please try again later.',
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+
+                                                  if (shouldSetState) {
+                                                    safeSetState(() {});
+                                                  }
+                                                  return;
+                                                }
+                                              } else {
+                                                logFirebaseEvent(
+                                                    'Button_alert_dialog');
+                                                await showDialog(
+                                                  context: context,
+                                                  builder: (dialogContext) {
+                                                    return Dialog(
+                                                      elevation: 0,
+                                                      insetPadding:
+                                                          EdgeInsets.zero,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                      child: WebViewAware(
+                                                        child: GestureDetector(
+                                                          onTap: () =>
+                                                              FocusScope.of(
+                                                                      dialogContext)
+                                                                  .unfocus(),
+                                                          child:
+                                                              const FailedDialogBoxWidget(
+                                                            failedDialogTitle:
+                                                                'Invalid Ticket',
+                                                            failedDialogMeesage:
+                                                                'Your QR code is not valid for this event. Make sure that you are registered and has a valid ticket',
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+
+                                                if (shouldSetState) {
+                                                  safeSetState(() {});
+                                                }
+                                                return;
+                                              }
+
+                                              if (shouldSetState) {
+                                                safeSetState(() {});
+                                              }
+                                            },
+                                            text: 'Scan Ticket',
+                                            icon: const Icon(
+                                              FFIcons.kticket,
+                                              size: 15.0,
+                                            ),
+                                            options: FFButtonOptions(
+                                              height: 40.0,
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      16.0, 0.0, 16.0, 0.0),
+                                              iconPadding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        color: Colors.white,
+                                                        fontSize: 13.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                              elevation: 0.0,
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            ),
                                           ),
-                                      elevation: 0.0,
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Builder(
+                                          builder: (context) => FFButtonWidget(
+                                            onPressed: () async {
+                                              logFirebaseEvent(
+                                                  'EVENT_CHECK_IN_OUT_TAP_SCHOOL_I_D_BTN_ON');
+                                              var shouldSetState = false;
+                                              logFirebaseEvent(
+                                                  'Button_update_app_state');
+                                              FFAppState().scannedNFCTag = ' ';
+                                              FFAppState().scannedNFCresult =
+                                                  ' ';
+                                              safeSetState(() {});
+                                              logFirebaseEvent(
+                                                  'Button_update_page_state');
+                                              _model.scannedQRcode = '';
+                                              safeSetState(() {});
+                                              logFirebaseEvent(
+                                                  'Button_custom_action');
+                                              await actions.scanNFC();
+                                              if (FFAppState()
+                                                      .scannedNFCresult ==
+                                                  'School ID has been detected!') {
+                                                logFirebaseEvent(
+                                                    'Button_firestore_query');
+                                                _model.userOutput =
+                                                    await queryUsersRecordOnce(
+                                                  queryBuilder: (usersRecord) =>
+                                                      usersRecord.where(
+                                                    'nfc_tag',
+                                                    isEqualTo: FFAppState()
+                                                        .scannedNFCTag,
+                                                  ),
+                                                  singleRecord: true,
+                                                ).then((s) => s.firstOrNull);
+                                                shouldSetState = true;
+                                                if (_model.userOutput?.email !=
+                                                        null &&
+                                                    _model.userOutput?.email !=
+                                                        '') {
+                                                  logFirebaseEvent(
+                                                      'Button_firestore_query');
+                                                  _model.attendeeOutput =
+                                                      await queryEventAttendeesRecordOnce(
+                                                    parent: widget
+                                                        .eventDoc?.reference,
+                                                    queryBuilder:
+                                                        (eventAttendeesRecord) =>
+                                                            eventAttendeesRecord
+                                                                .where(
+                                                      'ticket_user',
+                                                      isEqualTo: _model
+                                                          .userOutput
+                                                          ?.reference,
+                                                    ),
+                                                    singleRecord: true,
+                                                  ).then((s) => s.firstOrNull);
+                                                  shouldSetState = true;
+                                                  if (_model.attendeeOutput
+                                                              ?.ticketCode !=
+                                                          null &&
+                                                      _model.attendeeOutput
+                                                              ?.ticketCode !=
+                                                          '') {
+                                                    if ((_model.attendeeOutput
+                                                                ?.ticketCheckIn !=
+                                                            null) &&
+                                                        (_model.attendeeOutput
+                                                                ?.ticketCheckOut !=
+                                                            null)) {
+                                                      logFirebaseEvent(
+                                                          'Button_alert_dialog');
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (dialogContext) {
+                                                          return Dialog(
+                                                            elevation: 0,
+                                                            insetPadding:
+                                                                EdgeInsets.zero,
+                                                            backgroundColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            alignment: const AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                            child: WebViewAware(
+                                                              child:
+                                                                  GestureDetector(
+                                                                onTap: () =>
+                                                                    FocusScope.of(
+                                                                            dialogContext)
+                                                                        .unfocus(),
+                                                                child:
+                                                                    const FailedDialogBoxWidget(
+                                                                  failedDialogTitle:
+                                                                      'Already Checked Out',
+                                                                  failedDialogMeesage:
+                                                                      'The owner of this ticket has already checked out. You can only check in and out once in the event.',
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      );
+
+                                                      if (shouldSetState) {
+                                                        safeSetState(() {});
+                                                      }
+                                                      return;
+                                                    } else if (_model
+                                                            .attendeeOutput
+                                                            ?.ticketCheckIn ==
+                                                        null) {
+                                                      logFirebaseEvent(
+                                                          'Button_backend_call');
+
+                                                      await _model
+                                                          .attendeeOutput!
+                                                          .reference
+                                                          .update({
+                                                        ...mapToFirestore(
+                                                          {
+                                                            'ticket_check_in':
+                                                                FieldValue
+                                                                    .serverTimestamp(),
+                                                            'ticket_updated_on':
+                                                                FieldValue
+                                                                    .serverTimestamp(),
+                                                          },
+                                                        ),
+                                                      });
+                                                      logFirebaseEvent(
+                                                          'Button_action_block');
+                                                      await action_blocks
+                                                          .triggerAppNotification(
+                                                        context,
+                                                        type: 'user',
+                                                        title: 'Event Check In',
+                                                        message:
+                                                            'You are now checked in for ${widget.eventDoc?.eventName}.',
+                                                        user: _model
+                                                            .attendeeOutput
+                                                            ?.ticketUser,
+                                                      );
+                                                      logFirebaseEvent(
+                                                          'Button_trigger_push_notification');
+                                                      triggerPushNotification(
+                                                        notificationTitle:
+                                                            'Event Check In',
+                                                        notificationText:
+                                                            'You are now checked in for ${widget.eventDoc?.eventName}.',
+                                                        notificationSound:
+                                                            'default',
+                                                        userRefs: [
+                                                          _model.attendeeOutput!
+                                                              .ticketUser!
+                                                        ],
+                                                        initialPageName:
+                                                            'auth_redirect',
+                                                        parameterData: {},
+                                                      );
+                                                      logFirebaseEvent(
+                                                          'Button_action_block');
+                                                      await action_blocks.logs(
+                                                        context,
+                                                        type: 'check in',
+                                                        module: 'event',
+                                                        doneToName:
+                                                            'the event \"${widget.eventDoc?.eventName}\".',
+                                                        doneTo: _model
+                                                            .attendeeOutput
+                                                            ?.ticketUser,
+                                                      );
+                                                      logFirebaseEvent(
+                                                          'Button_alert_dialog');
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (dialogContext) {
+                                                          return Dialog(
+                                                            elevation: 0,
+                                                            insetPadding:
+                                                                EdgeInsets.zero,
+                                                            backgroundColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            alignment: const AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                            child: WebViewAware(
+                                                              child:
+                                                                  GestureDetector(
+                                                                onTap: () =>
+                                                                    FocusScope.of(
+                                                                            dialogContext)
+                                                                        .unfocus(),
+                                                                child:
+                                                                    const CongratulationsDialogBoxWidget(
+                                                                  congratsDialogTitle:
+                                                                      'Check In Successful',
+                                                                  congratsDialogMeesage:
+                                                                      'The check in for this user has been successful.',
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      );
+
+                                                      if (shouldSetState) {
+                                                        safeSetState(() {});
+                                                      }
+                                                      return;
+                                                    } else if (_model
+                                                            .attendeeOutput
+                                                            ?.ticketCheckOut ==
+                                                        null) {
+                                                      logFirebaseEvent(
+                                                          'Button_backend_call');
+
+                                                      await _model
+                                                          .attendeeOutput!
+                                                          .reference
+                                                          .update({
+                                                        ...mapToFirestore(
+                                                          {
+                                                            'ticket_updated_on':
+                                                                FieldValue
+                                                                    .serverTimestamp(),
+                                                            'ticket_check_out':
+                                                                FieldValue
+                                                                    .serverTimestamp(),
+                                                          },
+                                                        ),
+                                                      });
+                                                      logFirebaseEvent(
+                                                          'Button_action_block');
+                                                      await action_blocks
+                                                          .triggerAppNotification(
+                                                        context,
+                                                        type: 'user',
+                                                        title:
+                                                            'Event Check Out',
+                                                        message:
+                                                            'You have checked out for ${widget.eventDoc?.eventName}.',
+                                                        user: _model
+                                                            .attendeeOutput
+                                                            ?.ticketUser,
+                                                      );
+                                                      logFirebaseEvent(
+                                                          'Button_trigger_push_notification');
+                                                      triggerPushNotification(
+                                                        notificationTitle:
+                                                            'Event Check Out',
+                                                        notificationText:
+                                                            'You have checked out for ${widget.eventDoc?.eventName}.',
+                                                        notificationSound:
+                                                            'default',
+                                                        userRefs: [
+                                                          _model.attendeeOutput!
+                                                              .ticketUser!
+                                                        ],
+                                                        initialPageName:
+                                                            'auth_redirect',
+                                                        parameterData: {},
+                                                      );
+                                                      logFirebaseEvent(
+                                                          'Button_action_block');
+                                                      await action_blocks.logs(
+                                                        context,
+                                                        type: 'check out',
+                                                        module: 'event',
+                                                        doneToName:
+                                                            'the event \"${widget.eventDoc?.eventName}\".',
+                                                        doneTo: _model
+                                                            .attendeeOutput
+                                                            ?.ticketUser,
+                                                      );
+                                                      logFirebaseEvent(
+                                                          'Button_alert_dialog');
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (dialogContext) {
+                                                          return Dialog(
+                                                            elevation: 0,
+                                                            insetPadding:
+                                                                EdgeInsets.zero,
+                                                            backgroundColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            alignment: const AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                            child: WebViewAware(
+                                                              child:
+                                                                  GestureDetector(
+                                                                onTap: () =>
+                                                                    FocusScope.of(
+                                                                            dialogContext)
+                                                                        .unfocus(),
+                                                                child:
+                                                                    const CongratulationsDialogBoxWidget(
+                                                                  congratsDialogTitle:
+                                                                      'Check Out Successful',
+                                                                  congratsDialogMeesage:
+                                                                      'The check out for this user has been successful.',
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      );
+
+                                                      if (shouldSetState) {
+                                                        safeSetState(() {});
+                                                      }
+                                                      return;
+                                                    } else {
+                                                      logFirebaseEvent(
+                                                          'Button_alert_dialog');
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (dialogContext) {
+                                                          return Dialog(
+                                                            elevation: 0,
+                                                            insetPadding:
+                                                                EdgeInsets.zero,
+                                                            backgroundColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            alignment: const AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                            child: WebViewAware(
+                                                              child:
+                                                                  GestureDetector(
+                                                                onTap: () =>
+                                                                    FocusScope.of(
+                                                                            dialogContext)
+                                                                        .unfocus(),
+                                                                child:
+                                                                    const FailedDialogBoxWidget(
+                                                                  failedDialogTitle:
+                                                                      'Error Occurred',
+                                                                  failedDialogMeesage:
+                                                                      'There was a problem encountered while detecting your school ID. Please try again later.',
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        },
+                                                      );
+
+                                                      if (shouldSetState) {
+                                                        safeSetState(() {});
+                                                      }
+                                                      return;
+                                                    }
+                                                  } else {
+                                                    logFirebaseEvent(
+                                                        'Button_alert_dialog');
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder: (dialogContext) {
+                                                        return Dialog(
+                                                          elevation: 0,
+                                                          insetPadding:
+                                                              EdgeInsets.zero,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          alignment: const AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                          child: WebViewAware(
+                                                            child:
+                                                                GestureDetector(
+                                                              onTap: () =>
+                                                                  FocusScope.of(
+                                                                          dialogContext)
+                                                                      .unfocus(),
+                                                              child:
+                                                                  const FailedDialogBoxWidget(
+                                                                failedDialogTitle:
+                                                                    'User Not Registered',
+                                                                failedDialogMeesage:
+                                                                    'The user is not registered in the event.',
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
+
+                                                    if (shouldSetState) {
+                                                      safeSetState(() {});
+                                                    }
+                                                    return;
+                                                  }
+                                                } else {
+                                                  logFirebaseEvent(
+                                                      'Button_alert_dialog');
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder: (dialogContext) {
+                                                      return Dialog(
+                                                        elevation: 0,
+                                                        insetPadding:
+                                                            EdgeInsets.zero,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                        child: WebViewAware(
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () =>
+                                                                FocusScope.of(
+                                                                        dialogContext)
+                                                                    .unfocus(),
+                                                            child:
+                                                                const FailedDialogBoxWidget(
+                                                              failedDialogTitle:
+                                                                  'User Not Found',
+                                                              failedDialogMeesage:
+                                                                  'The school ID is not registered in NU GO. Make sure that you have setup your school ID on your account.',
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+
+                                                  if (shouldSetState) {
+                                                    safeSetState(() {});
+                                                  }
+                                                  return;
+                                                }
+                                              } else {
+                                                logFirebaseEvent(
+                                                    'Button_alert_dialog');
+                                                await showDialog(
+                                                  context: context,
+                                                  builder: (dialogContext) {
+                                                    return Dialog(
+                                                      elevation: 0,
+                                                      insetPadding:
+                                                          EdgeInsets.zero,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                      child: WebViewAware(
+                                                        child: GestureDetector(
+                                                          onTap: () =>
+                                                              FocusScope.of(
+                                                                      dialogContext)
+                                                                  .unfocus(),
+                                                          child:
+                                                              FailedDialogBoxWidget(
+                                                            failedDialogTitle:
+                                                                'Error Occurred',
+                                                            failedDialogMeesage:
+                                                                FFAppState()
+                                                                    .scannedNFCresult,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+
+                                                if (shouldSetState) {
+                                                  safeSetState(() {});
+                                                }
+                                                return;
+                                              }
+
+                                              if (shouldSetState) {
+                                                safeSetState(() {});
+                                              }
+                                            },
+                                            text: 'Tap School ID',
+                                            icon: const Icon(
+                                              FFIcons.kscan,
+                                              size: 15.0,
+                                            ),
+                                            options: FFButtonOptions(
+                                              height: 40.0,
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      16.0, 0.0, 16.0, 0.0),
+                                              iconPadding: const EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              textStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        color: Colors.white,
+                                                        fontSize: 13.0,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                              elevation: 0.0,
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ]
+                                        .divide(const SizedBox(width: 5.0))
+                                        .around(const SizedBox(width: 5.0)),
                                   ),
                                 ),
-                              ),
-                            ]
-                                .divide(SizedBox(width: 5.0))
-                                .around(SizedBox(width: 5.0)),
+                              ],
+                            ),
                           ),
-                        ),
+                        if (functions.checkEventStatus(
+                                widget.eventDoc!.startDate!,
+                                widget.eventDoc!.endTime!,
+                                getCurrentTimestamp) ==
+                            'concluded')
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                20.0, 20.0, 20.0, 0.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(
+                                  'The event has already concluded. You are not allowed to check-in nor check-out any attendees anymore.',
+                                  textAlign: TextAlign.center,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Montserrat',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ],
+                            ),
+                          ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 15.0, 0.0, 30.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -1630,7 +1772,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                           .take(5)
                                           .toList();
                                   if (allGuests.isEmpty) {
-                                    return EmptyListWidget(
+                                    return const EmptyListWidget(
                                       emptyWhat: 'check ins',
                                     );
                                   }
@@ -1642,12 +1784,12 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                     scrollDirection: Axis.vertical,
                                     itemCount: allGuests.length,
                                     separatorBuilder: (_, __) =>
-                                        SizedBox(height: 10.0),
+                                        const SizedBox(height: 10.0),
                                     itemBuilder: (context, allGuestsIndex) {
                                       final allGuestsItem =
                                           allGuests[allGuestsIndex];
                                       return Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             20.0, 0.0, 20.0, 0.0),
                                         child: FutureBuilder<UsersRecord>(
                                           future: UsersRecord.getDocumentOnce(
@@ -1687,7 +1829,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 5.0, 0.0, 5.0),
                                                 child: Row(
@@ -1700,7 +1842,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                     Flexible(
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1712,7 +1854,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -1724,7 +1866,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                                 clipBehavior: Clip
                                                                     .antiAlias,
                                                                 decoration:
-                                                                    BoxDecoration(
+                                                                    const BoxDecoration(
                                                                   shape: BoxShape
                                                                       .circle,
                                                                 ),
@@ -1744,7 +1886,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                             Flexible(
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             5.0,
                                                                             0.0,
@@ -1838,7 +1980,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -1857,7 +1999,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                               ),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsets
+                                                                    const EdgeInsets
                                                                         .all(
                                                                             5.0),
                                                                 child: Text(
@@ -1895,7 +2037,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -1914,7 +2056,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                               ),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsets
+                                                                    const EdgeInsets
                                                                         .all(
                                                                             5.0),
                                                                 child: Text(
@@ -1946,7 +2088,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,

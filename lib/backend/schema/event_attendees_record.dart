@@ -3,16 +3,15 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 class EventAttendeesRecord extends FirestoreRecord {
   EventAttendeesRecord._(
-    DocumentReference reference,
-    Map<String, dynamic> data,
-  ) : super(reference, data) {
+    super.reference,
+    super.data,
+  ) {
     _initializeFields();
   }
 
@@ -56,6 +55,21 @@ class EventAttendeesRecord extends FirestoreRecord {
   DateTime? get ticketCheckOut => _ticketCheckOut;
   bool hasTicketCheckOut() => _ticketCheckOut != null;
 
+  // "ticket_feedback" field.
+  String? _ticketFeedback;
+  String get ticketFeedback => _ticketFeedback ?? '';
+  bool hasTicketFeedback() => _ticketFeedback != null;
+
+  // "ticket_feedback_timestamp" field.
+  DateTime? _ticketFeedbackTimestamp;
+  DateTime? get ticketFeedbackTimestamp => _ticketFeedbackTimestamp;
+  bool hasTicketFeedbackTimestamp() => _ticketFeedbackTimestamp != null;
+
+  // "ticket_feedback_rating" field.
+  double? _ticketFeedbackRating;
+  double get ticketFeedbackRating => _ticketFeedbackRating ?? 0.0;
+  bool hasTicketFeedbackRating() => _ticketFeedbackRating != null;
+
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
@@ -68,6 +82,11 @@ class EventAttendeesRecord extends FirestoreRecord {
         snapshotData['ticket_approved_by'] as DocumentReference?;
     _ticketCheckIn = snapshotData['ticket_check_in'] as DateTime?;
     _ticketCheckOut = snapshotData['ticket_check_out'] as DateTime?;
+    _ticketFeedback = snapshotData['ticket_feedback'] as String?;
+    _ticketFeedbackTimestamp =
+        snapshotData['ticket_feedback_timestamp'] as DateTime?;
+    _ticketFeedbackRating =
+        castToType<double>(snapshotData['ticket_feedback_rating']);
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -118,6 +137,9 @@ Map<String, dynamic> createEventAttendeesRecordData({
   DocumentReference? ticketApprovedBy,
   DateTime? ticketCheckIn,
   DateTime? ticketCheckOut,
+  String? ticketFeedback,
+  DateTime? ticketFeedbackTimestamp,
+  double? ticketFeedbackRating,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -129,6 +151,9 @@ Map<String, dynamic> createEventAttendeesRecordData({
       'ticket_approved_by': ticketApprovedBy,
       'ticket_check_in': ticketCheckIn,
       'ticket_check_out': ticketCheckOut,
+      'ticket_feedback': ticketFeedback,
+      'ticket_feedback_timestamp': ticketFeedbackTimestamp,
+      'ticket_feedback_rating': ticketFeedbackRating,
     }.withoutNulls,
   );
 
@@ -148,7 +173,10 @@ class EventAttendeesRecordDocumentEquality
         e1?.ticketCreatedOn == e2?.ticketCreatedOn &&
         e1?.ticketApprovedBy == e2?.ticketApprovedBy &&
         e1?.ticketCheckIn == e2?.ticketCheckIn &&
-        e1?.ticketCheckOut == e2?.ticketCheckOut;
+        e1?.ticketCheckOut == e2?.ticketCheckOut &&
+        e1?.ticketFeedback == e2?.ticketFeedback &&
+        e1?.ticketFeedbackTimestamp == e2?.ticketFeedbackTimestamp &&
+        e1?.ticketFeedbackRating == e2?.ticketFeedbackRating;
   }
 
   @override
@@ -160,7 +188,10 @@ class EventAttendeesRecordDocumentEquality
         e?.ticketCreatedOn,
         e?.ticketApprovedBy,
         e?.ticketCheckIn,
-        e?.ticketCheckOut
+        e?.ticketCheckOut,
+        e?.ticketFeedback,
+        e?.ticketFeedbackTimestamp,
+        e?.ticketFeedbackRating
       ]);
 
   @override

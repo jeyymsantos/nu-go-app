@@ -1,16 +1,13 @@
 import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/users/rsco/event_management/event_profile/components/side_bar_event_profile/side_bar_event_profile_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'event_profile_dashboard_model.dart';
 export 'event_profile_dashboard_model.dart';
@@ -44,11 +41,11 @@ class _EventProfileDashboardWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       logFirebaseEvent('EVENT_PROFILE_DASHBOARD_event_profile_da');
-      if ((widget!.eventDoc?.settings?.isOnline == false) &&
-          (widget!.eventDoc?.settings?.isCampus == false)) {
+      if ((widget.eventDoc?.settings.isOnline == false) &&
+          (widget.eventDoc?.settings.isCampus == false)) {
         logFirebaseEvent('event_profile_dashboard_custom_action');
         _model.givenAddress = await actions.getAddressFromLatLng(
-          widget!.eventDoc!.otherDetails.outsideLocation!,
+          widget.eventDoc!.otherDetails.outsideLocation!,
         );
         logFirebaseEvent('event_profile_dashboard_update_page_stat');
         _model.address = _model.givenAddress;
@@ -73,7 +70,7 @@ class _EventProfileDashboardWidgetState
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        drawer: Container(
+        drawer: SizedBox(
           width: 250.0,
           child: Drawer(
             elevation: 16.0,
@@ -82,7 +79,7 @@ class _EventProfileDashboardWidgetState
                 model: _model.sideBarEventProfileModel,
                 updateCallback: () => safeSetState(() {}),
                 child: SideBarEventProfileWidget(
-                  eventDoc: widget!.eventDoc!,
+                  eventDoc: widget.eventDoc!,
                 ),
               ),
             ),
@@ -94,32 +91,32 @@ class _EventProfileDashboardWidgetState
               mainAxisSize: MainAxisSize.max,
               children: [
                 Align(
-                  alignment: AlignmentDirectional(0.0, -1.0),
+                  alignment: const AlignmentDirectional(0.0, -1.0),
                   child: Container(
                     width: double.infinity,
                     height: 170.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primary,
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(30.0),
                         bottomRight: Radius.circular(30.0),
                         topLeft: Radius.circular(0.0),
                         topRight: Radius.circular(0.0),
                       ),
                     ),
-                    child: Container(
+                    child: SizedBox(
                       height: 170.0,
                       child: Stack(
-                        alignment: AlignmentDirectional(0.0, -1.0),
+                        alignment: const AlignmentDirectional(0.0, -1.0),
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 20.0, 20.0, 20.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 30.0, 0.0, 20.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -149,7 +146,7 @@ class _EventProfileDashboardWidgetState
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
                                     'Event Dashboard',
                                     style: FlutterFlowTheme.of(context)
@@ -165,7 +162,7 @@ class _EventProfileDashboardWidgetState
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
                                     'How\'s your event going?',
                                     style: FlutterFlowTheme.of(context)
@@ -184,9 +181,9 @@ class _EventProfileDashboardWidgetState
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(0.0, 1.25),
+                            alignment: const AlignmentDirectional(0.0, 1.25),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   30.0, 0.0, 30.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -207,12 +204,12 @@ class _EventProfileDashboardWidgetState
                                         'event_profile_insights',
                                         queryParameters: {
                                           'eventDoc': serializeParam(
-                                            widget!.eventDoc,
+                                            widget.eventDoc,
                                             ParamType.Document,
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          'eventDoc': widget!.eventDoc,
+                                          'eventDoc': widget.eventDoc,
                                         },
                                       );
                                     },
@@ -224,7 +221,7 @@ class _EventProfileDashboardWidgetState
                                             BorderRadius.circular(20.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -232,7 +229,7 @@ class _EventProfileDashboardWidgetState
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Icon(
                                                 Icons.insights_sharp,
@@ -274,23 +271,23 @@ class _EventProfileDashboardWidgetState
                                         'event_check_in_out',
                                         queryParameters: {
                                           'eventDoc': serializeParam(
-                                            widget!.eventDoc,
+                                            widget.eventDoc,
                                             ParamType.Document,
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          'eventDoc': widget!.eventDoc,
+                                          'eventDoc': widget.eventDoc,
                                         },
                                       );
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFF99F58),
+                                        color: const Color(0xFFF99F58),
                                         borderRadius:
                                             BorderRadius.circular(20.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -298,7 +295,7 @@ class _EventProfileDashboardWidgetState
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Icon(
                                                 FFIcons.kscan4,
@@ -340,23 +337,23 @@ class _EventProfileDashboardWidgetState
                                         'event_guests_all',
                                         queryParameters: {
                                           'eventDoc': serializeParam(
-                                            widget!.eventDoc,
+                                            widget.eventDoc,
                                             ParamType.Document,
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          'eventDoc': widget!.eventDoc,
+                                          'eventDoc': widget.eventDoc,
                                         },
                                       );
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: Color(0xFF599AFF),
+                                        color: const Color(0xFF599AFF),
                                         borderRadius:
                                             BorderRadius.circular(20.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -364,7 +361,7 @@ class _EventProfileDashboardWidgetState
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Icon(
                                                 FFIcons.kuserTag,
@@ -404,32 +401,71 @@ class _EventProfileDashboardWidgetState
                 Expanded(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  child: Image.network(
-                                    valueOrDefault<String>(
-                                      widget!.eventDoc?.coverPhoto,
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    logFirebaseEvent(
+                                        'EVENT_PROFILE_DASHBOARD_Image_b1lfkg4s_O');
+                                    logFirebaseEvent('Image_expand_image');
+                                    await Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.fade,
+                                        child: FlutterFlowExpandedImageView(
+                                          image: Image.network(
+                                            valueOrDefault<String>(
+                                              widget.eventDoc?.coverPhoto,
+                                              'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2Fnu_cover.jpg?alt=media&token=c0448910-d37d-456d-804c-ae8c875ac08f',
+                                            ),
+                                            fit: BoxFit.contain,
+                                          ),
+                                          allowRotation: false,
+                                          tag: valueOrDefault<String>(
+                                            widget.eventDoc?.coverPhoto,
+                                            'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2Fnu_cover.jpg?alt=media&token=c0448910-d37d-456d-804c-ae8c875ac08f',
+                                          ),
+                                          useHeroAnimation: true,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: Hero(
+                                    tag: valueOrDefault<String>(
+                                      widget.eventDoc?.coverPhoto,
                                       'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2Fnu_cover.jpg?alt=media&token=c0448910-d37d-456d-804c-ae8c875ac08f',
                                     ),
-                                    width: double.infinity,
-                                    height: 132.0,
-                                    fit: BoxFit.cover,
+                                    transitionOnUserGestures: true,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      child: Image.network(
+                                        valueOrDefault<String>(
+                                          widget.eventDoc?.coverPhoto,
+                                          'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2Fnu_cover.jpg?alt=media&token=c0448910-d37d-456d-804c-ae8c875ac08f',
+                                        ),
+                                        width: double.infinity,
+                                        height: 132.0,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 20.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -439,10 +475,10 @@ class _EventProfileDashboardWidgetState
                                       Flexible(
                                         child: Align(
                                           alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
+                                              const AlignmentDirectional(-1.0, 0.0),
                                           child: Text(
                                             valueOrDefault<String>(
-                                              widget!.eventDoc?.eventName,
+                                              widget.eventDoc?.eventName,
                                               'NU Baliwag Architecture Department Assembly',
                                             ),
                                             style: FlutterFlowTheme.of(context)
@@ -462,15 +498,15 @@ class _EventProfileDashboardWidgetState
                                             CrossAxisAlignment.start,
                                         children: [
                                           if (functions.checkEventStatus(
-                                                  widget!.eventDoc!.startDate!,
-                                                  widget!.eventDoc!.endTime!,
+                                                  widget.eventDoc!.startDate!,
+                                                  widget.eventDoc!.endTime!,
                                                   getCurrentTimestamp) ==
                                               'before')
                                             Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 5.0, 0.0),
                                                   child: Icon(
@@ -498,20 +534,20 @@ class _EventProfileDashboardWidgetState
                                               ],
                                             ),
                                           if (functions.checkEventStatus(
-                                                  widget!.eventDoc!.startDate!,
-                                                  widget!.eventDoc!.endTime!,
+                                                  widget.eventDoc!.startDate!,
+                                                  widget.eventDoc!.endTime!,
                                                   getCurrentTimestamp) ==
                                               'concluded')
                                             Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 5.0, 0.0),
                                                   child: Icon(
                                                     Icons.check_circle,
-                                                    color: widget!.eventDoc
+                                                    color: widget.eventDoc
                                                                 ?.status !=
                                                             'Approved'
                                                         ? FlutterFlowTheme.of(
@@ -540,15 +576,15 @@ class _EventProfileDashboardWidgetState
                                               ],
                                             ),
                                           if (functions.checkEventStatus(
-                                                  widget!.eventDoc!.startDate!,
-                                                  widget!.eventDoc!.endTime!,
+                                                  widget.eventDoc!.startDate!,
+                                                  widget.eventDoc!.endTime!,
                                                   getCurrentTimestamp) ==
                                               'on-going')
                                             Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 5.0, 0.0),
                                                   child: Icon(
@@ -581,7 +617,7 @@ class _EventProfileDashboardWidgetState
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 20.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -598,7 +634,7 @@ class _EventProfileDashboardWidgetState
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 2.0, 0.0),
                                                   child: Icon(
@@ -621,7 +657,7 @@ class _EventProfileDashboardWidgetState
                                                         valueOrDefault<String>(
                                                           dateTimeFormat(
                                                             "MMMMEEEEd",
-                                                            widget!.eventDoc
+                                                            widget.eventDoc
                                                                 ?.startDate,
                                                             locale: FFLocalizations
                                                                     .of(context)
@@ -656,7 +692,7 @@ class _EventProfileDashboardWidgetState
                                                                       String>(
                                                                 dateTimeFormat(
                                                                   "jm",
-                                                                  widget!
+                                                                  widget
                                                                       .eventDoc
                                                                       ?.startDate,
                                                                   locale: FFLocalizations.of(
@@ -677,7 +713,7 @@ class _EventProfileDashboardWidgetState
                                                                         0.0,
                                                                   ),
                                                             ),
-                                                            TextSpan(
+                                                            const TextSpan(
                                                               text: '-',
                                                               style:
                                                                   TextStyle(),
@@ -688,7 +724,7 @@ class _EventProfileDashboardWidgetState
                                                                       String>(
                                                                 dateTimeFormat(
                                                                   "jm",
-                                                                  widget!
+                                                                  widget
                                                                       .eventDoc
                                                                       ?.endTime,
                                                                   locale: FFLocalizations.of(
@@ -698,7 +734,7 @@ class _EventProfileDashboardWidgetState
                                                                 '5:00 PM',
                                                               ),
                                                               style:
-                                                                  TextStyle(),
+                                                                  const TextStyle(),
                                                             )
                                                           ],
                                                           style: FlutterFlowTheme
@@ -718,13 +754,13 @@ class _EventProfileDashboardWidgetState
                                                 ),
                                               ],
                                             ),
-                                            if (widget!.eventDoc?.settings
-                                                    ?.isCampus ==
+                                            if (widget.eventDoc?.settings
+                                                    .isCampus ==
                                                 true)
                                               FutureBuilder<RoomsRecord>(
                                                 future:
                                                     RoomsRecord.getDocumentOnce(
-                                                        widget!.eventDoc!
+                                                        widget.eventDoc!
                                                             .facility!),
                                                 builder: (context, snapshot) {
                                                   // Customize what your widget looks like when it's loading.
@@ -753,7 +789,7 @@ class _EventProfileDashboardWidgetState
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -814,18 +850,18 @@ class _EventProfileDashboardWidgetState
                                                   );
                                                 },
                                               ),
-                                            if ((widget!.eventDoc?.settings
-                                                        ?.isCampus ==
+                                            if ((widget.eventDoc?.settings
+                                                        .isCampus ==
                                                     false) &&
-                                                (widget!.eventDoc?.settings
-                                                        ?.isOnline ==
+                                                (widget.eventDoc?.settings
+                                                        .isOnline ==
                                                     false))
                                               Row(
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 2.0, 0.0),
                                                     child: Icon(
@@ -883,18 +919,18 @@ class _EventProfileDashboardWidgetState
                                                   ),
                                                 ],
                                               ),
-                                            if ((widget!.eventDoc?.settings
-                                                        ?.isCampus ==
+                                            if ((widget.eventDoc?.settings
+                                                        .isCampus ==
                                                     false) &&
-                                                (widget!.eventDoc?.settings
-                                                        ?.isOnline ==
+                                                (widget.eventDoc?.settings
+                                                        .isOnline ==
                                                     false))
                                               Row(
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 2.0, 0.0),
                                                     child: Icon(
@@ -917,10 +953,10 @@ class _EventProfileDashboardWidgetState
                                                         Text(
                                                           valueOrDefault<
                                                               String>(
-                                                            widget!
+                                                            widget
                                                                 .eventDoc
                                                                 ?.otherDetails
-                                                                ?.onlinePlatform,
+                                                                .onlinePlatform,
                                                             'Microsoft Teams',
                                                           ),
                                                           style: FlutterFlowTheme
@@ -942,7 +978,7 @@ class _EventProfileDashboardWidgetState
                                                   ),
                                                 ],
                                               ),
-                                          ].divide(SizedBox(height: 10.0)),
+                                          ].divide(const SizedBox(height: 10.0)),
                                         ),
                                       ),
                                       Flexible(
@@ -955,7 +991,7 @@ class _EventProfileDashboardWidgetState
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 2.0, 0.0),
                                                   child: Icon(
@@ -974,21 +1010,66 @@ class _EventProfileDashboardWidgetState
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
-                                                      Text(
-                                                        '341+',
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  'Montserrat',
-                                                              fontSize: 10.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
+                                                      FutureBuilder<int>(
+                                                        future:
+                                                            queryEventAttendeesRecordCount(
+                                                          parent: widget
+                                                              .eventDoc
+                                                              ?.reference,
+                                                          queryBuilder:
+                                                              (eventAttendeesRecord) =>
+                                                                  eventAttendeesRecord
+                                                                      .where(
+                                                            'ticket_status',
+                                                            isEqualTo:
+                                                                'Approved',
+                                                          ),
+                                                        ),
+                                                        builder: (context,
+                                                            snapshot) {
+                                                          // Customize what your widget looks like when it's loading.
+                                                          if (!snapshot
+                                                              .hasData) {
+                                                            return Center(
+                                                              child: SizedBox(
+                                                                width: 50.0,
+                                                                height: 50.0,
+                                                                child:
+                                                                    SpinKitChasingDots(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                  size: 50.0,
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                          int textCount =
+                                                              snapshot.data!;
+
+                                                          return Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              textCount
+                                                                  .toString(),
+                                                              '0',
                                                             ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Montserrat',
+                                                                  fontSize:
+                                                                      10.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
+                                                          );
+                                                        },
                                                       ),
                                                       Text(
                                                         'Registered Guest',
@@ -1011,7 +1092,7 @@ class _EventProfileDashboardWidgetState
                                             ),
                                             FutureBuilder<OrganizationsRecord>(
                                               future: OrganizationsRecord
-                                                  .getDocumentOnce(widget!
+                                                  .getDocumentOnce(widget
                                                       .eventDoc!.orgReference!),
                                               builder: (context, snapshot) {
                                                 // Customize what your widget looks like when it's loading.
@@ -1040,7 +1121,7 @@ class _EventProfileDashboardWidgetState
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1092,14 +1173,14 @@ class _EventProfileDashboardWidgetState
                                                 );
                                               },
                                             ),
-                                          ].divide(SizedBox(height: 10.0)),
+                                          ].divide(const SizedBox(height: 10.0)),
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 20.0, 0.0, 20.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -1108,7 +1189,7 @@ class _EventProfileDashboardWidgetState
                                     children: [
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                            const AlignmentDirectional(-1.0, 0.0),
                                         child: Text(
                                           'About Event',
                                           style: FlutterFlowTheme.of(context)
@@ -1123,14 +1204,14 @@ class _EventProfileDashboardWidgetState
                                       ),
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                            const AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: Text(
                                             valueOrDefault<String>(
-                                              widget!.eventDoc?.objectives,
+                                              widget.eventDoc?.objectives,
                                               'ArkiNalians, we would like to hear from you!Now that our first event for this fiscal year has ended, we would appreciate it if you could create a brief feedback on how we performed, on how you would like us to perform, or what you guys would want us to improve in our setting.Just scan the QR code below to help us grow and understand how we can make everyone\'s experiences better.Note that your feedback will be kept confidential and your personal information will not be linked with any of your response. So, please feel free to share your insights with us!#AbanteUAPSA#UAPSANUB#UAPSA',
                                             ),
                                             textAlign: TextAlign.justify,
@@ -1159,9 +1240,9 @@ class _EventProfileDashboardWidgetState
               ],
             ),
             Align(
-              alignment: AlignmentDirectional(1.0, 1.0),
+              alignment: const AlignmentDirectional(1.0, 1.0),
               child: Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(20.0),
                 child: Container(
                   width: 50.0,
                   height: 50.0,
@@ -1183,12 +1264,12 @@ class _EventProfileDashboardWidgetState
                         'event_check_in_out',
                         queryParameters: {
                           'eventDoc': serializeParam(
-                            widget!.eventDoc,
+                            widget.eventDoc,
                             ParamType.Document,
                           ),
                         }.withoutNulls,
                         extra: <String, dynamic>{
-                          'eventDoc': widget!.eventDoc,
+                          'eventDoc': widget.eventDoc,
                         },
                       );
                     },

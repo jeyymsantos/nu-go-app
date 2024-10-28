@@ -5,8 +5,6 @@ import '/components/widgets/title_header_component/title_header_component_widget
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -14,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
@@ -173,14 +170,14 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: TitleHeaderComponentWidget(
+                      child: const TitleHeaderComponentWidget(
                         titleText: 'File Maintenance',
                       ),
                     ),
@@ -192,7 +189,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 5.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -210,7 +207,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                           ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 0.0, 0.0),
                                       child: Text(
                                         'Monitor, track and view the list of rooms available in the campus.',
@@ -244,7 +241,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 10.0, 0.0),
                                 child: TextFormField(
                                   controller:
@@ -252,14 +249,11 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                   focusNode: _model.facilitySearchFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.facilitySearchTextController',
-                                    Duration(milliseconds: 200),
+                                    const Duration(milliseconds: 200),
                                     () async {
                                       logFirebaseEvent(
                                           'VIEW_ROOMS_facility_search_ON_TEXTFIELD_');
                                       if (_model.facilitySearchTextController
-                                                  .text !=
-                                              null &&
-                                          _model.facilitySearchTextController
                                                   .text !=
                                               '') {
                                         logFirebaseEvent(
@@ -272,7 +266,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                   (record) =>
                                                       TextSearchItem.fromTerms(
                                                           record,
-                                                          [record.roomName!]),
+                                                          [record.roomName]),
                                                 )
                                                 .toList(),
                                           )
@@ -281,7 +275,6 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                   .text)
                                               .map((r) => r.object)
                                               .toList();
-                                          ;
                                         });
                                         logFirebaseEvent(
                                             'facility_search_update_app_state');
@@ -357,9 +350,6 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                   'VIEW_ROOMS_facility_search_ON_TEXTFIELD_');
                                               if (_model.facilitySearchTextController
                                                           .text !=
-                                                      null &&
-                                                  _model.facilitySearchTextController
-                                                          .text !=
                                                       '') {
                                                 logFirebaseEvent(
                                                     'facility_search_simple_search');
@@ -372,7 +362,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                               TextSearchItem
                                                                   .fromTerms(
                                                                       record, [
-                                                            record.roomName!
+                                                            record.roomName
                                                           ]),
                                                         )
                                                         .toList(),
@@ -382,7 +372,6 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                               .text)
                                                           .map((r) => r.object)
                                                           .toList();
-                                                  ;
                                                 });
                                                 logFirebaseEvent(
                                                     'facility_search_update_app_state');
@@ -399,7 +388,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
 
                                               safeSetState(() {});
                                             },
-                                            child: Icon(
+                                            child: const Icon(
                                               Icons.clear,
                                               size: 20.0,
                                             ),
@@ -442,7 +431,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                 width: 50.0,
                                 height: 50.0,
                                 clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                 ),
                                 child: Image.asset(
@@ -458,21 +447,21 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                     Expanded(
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               if (!FFAppState().searchActive)
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 50.0),
                                   child: Builder(
                                     builder: (context) {
                                       final roomSearch =
                                           viewRoomsRoomsRecordList.toList();
                                       if (roomSearch.isEmpty) {
-                                        return EmptyListWidget(
+                                        return const EmptyListWidget(
                                           emptyWhat: 'rooms',
                                         );
                                       }
@@ -489,7 +478,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                               roomSearch[roomSearchIndex];
                                           return Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -538,7 +527,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                                     child:
                                                                         Padding(
                                                                       padding:
-                                                                          EdgeInsets.all(
+                                                                          const EdgeInsets.all(
                                                                               5.0),
                                                                       child: Image
                                                                           .asset(
@@ -621,11 +610,11 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -707,7 +696,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                                       extra: <String,
                                                                           dynamic>{
                                                                         kTransitionInfoKey:
-                                                                            TransitionInfo(
+                                                                            const TransitionInfo(
                                                                           hasTransition:
                                                                               true,
                                                                           transitionType:
@@ -747,11 +736,11 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -780,16 +769,16 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                                               builder: (alertDialogContext) {
                                                                                 return WebViewAware(
                                                                                   child: AlertDialog(
-                                                                                    title: Text('Delete Room'),
-                                                                                    content: Text('Are you sure you want to delete this room?'),
+                                                                                    title: const Text('Delete Room'),
+                                                                                    content: const Text('Are you sure you want to delete this room?'),
                                                                                     actions: [
                                                                                       TextButton(
                                                                                         onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                        child: Text('Cancel'),
+                                                                                        child: const Text('Cancel'),
                                                                                       ),
                                                                                       TextButton(
                                                                                         onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                        child: Text('Confirm'),
+                                                                                        child: const Text('Confirm'),
                                                                                       ),
                                                                                     ],
                                                                                   ),
@@ -825,12 +814,12 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                                           return WebViewAware(
                                                                             child:
                                                                                 AlertDialog(
-                                                                              title: Text('Deleted Room'),
-                                                                              content: Text('Room has been successfully deleted.'),
+                                                                              title: const Text('Deleted Room'),
+                                                                              content: const Text('Room has been successfully deleted.'),
                                                                               actions: [
                                                                                 TextButton(
                                                                                   onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: Text('Okay'),
+                                                                                  child: const Text('Okay'),
                                                                                 ),
                                                                               ],
                                                                             ),
@@ -883,7 +872,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                 ),
                               if (FFAppState().searchActive)
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 50.0),
                                   child: Builder(
                                     builder: (context) {
@@ -909,7 +898,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                               roomySearch[roomySearchIndex];
                                           return Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -958,7 +947,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                                     child:
                                                                         Padding(
                                                                       padding:
-                                                                          EdgeInsets.all(
+                                                                          const EdgeInsets.all(
                                                                               5.0),
                                                                       child: Image
                                                                           .asset(
@@ -1041,11 +1030,11 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1127,7 +1116,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                                       extra: <String,
                                                                           dynamic>{
                                                                         kTransitionInfoKey:
-                                                                            TransitionInfo(
+                                                                            const TransitionInfo(
                                                                           hasTransition:
                                                                               true,
                                                                           transitionType:
@@ -1167,11 +1156,11 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1200,16 +1189,16 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                                               builder: (alertDialogContext) {
                                                                                 return WebViewAware(
                                                                                   child: AlertDialog(
-                                                                                    title: Text('Delete Room'),
-                                                                                    content: Text('Are you sure you want to delete this room?'),
+                                                                                    title: const Text('Delete Room'),
+                                                                                    content: const Text('Are you sure you want to delete this room?'),
                                                                                     actions: [
                                                                                       TextButton(
                                                                                         onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                        child: Text('Cancel'),
+                                                                                        child: const Text('Cancel'),
                                                                                       ),
                                                                                       TextButton(
                                                                                         onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                        child: Text('Confirm'),
+                                                                                        child: const Text('Confirm'),
                                                                                       ),
                                                                                     ],
                                                                                   ),
@@ -1245,12 +1234,12 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                                           return WebViewAware(
                                                                             child:
                                                                                 AlertDialog(
-                                                                              title: Text('Deleted Room'),
-                                                                              content: Text('Room has been successfully deleted.'),
+                                                                              title: const Text('Deleted Room'),
+                                                                              content: const Text('Room has been successfully deleted.'),
                                                                               actions: [
                                                                                 TextButton(
                                                                                   onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: Text('Okay'),
+                                                                                  child: const Text('Okay'),
                                                                                 ),
                                                                               ],
                                                                             ),

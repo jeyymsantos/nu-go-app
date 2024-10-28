@@ -1,9 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'rules_on_using_school_facilities_model.dart';
 export 'rules_on_using_school_facilities_model.dart';
 
@@ -46,7 +43,7 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
       width: double.infinity,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
           topLeft: Radius.circular(15.0),
@@ -58,15 +55,15 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Align(
-            alignment: AlignmentDirectional(0.0, -1.0),
+            alignment: const AlignmentDirectional(0.0, -1.0),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
                     child: InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
@@ -93,7 +90,7 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(10.0, 20.0, 10.0, 15.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(10.0, 20.0, 10.0, 15.0),
             child: Text(
               'Rules in using School Facilities',
               style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -105,7 +102,7 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 10.0, 20.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 10.0, 20.0),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -116,7 +113,7 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 2.0, 0.0, 0.0),
                           child: Icon(
                             Icons.navigate_next_rounded,
@@ -126,7 +123,7 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                         ),
                         Flexible(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 10.0, 10.0),
                             child: Text(
                               'The venue shall be used only for the purpose stated in the application form.',
@@ -142,14 +139,14 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 10.0)),
+                      ].divide(const SizedBox(width: 10.0)),
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 2.0, 0.0, 0.0),
                           child: Icon(
                             Icons.navigate_next_rounded,
@@ -159,7 +156,7 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                         ),
                         Flexible(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 10.0, 10.0),
                             child: Text(
                               'All decorations must be arranged/setup in coordination with the Physical Facilities or with his authorized representative.',
@@ -175,14 +172,14 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 10.0)),
+                      ].divide(const SizedBox(width: 10.0)),
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 2.0, 0.0, 0.0),
                           child: Icon(
                             Icons.navigate_next_rounded,
@@ -192,7 +189,7 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                         ),
                         Flexible(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 10.0, 10.0),
                             child: Text(
                               'The organization/department must see to it that the facility is not filled beyond its capacity.',
@@ -208,14 +205,14 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 10.0)),
+                      ].divide(const SizedBox(width: 10.0)),
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 2.0, 0.0, 0.0),
                           child: Icon(
                             Icons.navigate_next_rounded,
@@ -225,7 +222,7 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                         ),
                         Flexible(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 10.0, 10.0),
                             child: Text(
                               'The organization/department must assume the responsibility of preparing the place. Removal of decorations, posters and any related items and cleaning the facility are likewise the responsibilities of the organization/department.',
@@ -241,14 +238,14 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 10.0)),
+                      ].divide(const SizedBox(width: 10.0)),
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 2.0, 0.0, 0.0),
                           child: Icon(
                             Icons.navigate_next_rounded,
@@ -258,7 +255,7 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                         ),
                         Flexible(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 10.0, 10.0),
                             child: Text(
                               'Bringing of alcoholic beverages and drugs are strictly prohibited.',
@@ -274,14 +271,14 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 10.0)),
+                      ].divide(const SizedBox(width: 10.0)),
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 2.0, 0.0, 0.0),
                           child: Icon(
                             Icons.navigate_next_sharp,
@@ -291,7 +288,7 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                         ),
                         Flexible(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 10.0, 10.0),
                             child: Text(
                               'Persons under influence of alcohol/drug are not allowed within the premises.',
@@ -307,14 +304,14 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 10.0)),
+                      ].divide(const SizedBox(width: 10.0)),
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 2.0, 0.0, 0.0),
                           child: Icon(
                             Icons.navigate_next_rounded,
@@ -324,7 +321,7 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                         ),
                         Flexible(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 10.0, 10.0),
                             child: Text(
                               'The organization/department must peacefully vacate the facility after the reserved date and time.',
@@ -340,14 +337,14 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 10.0)),
+                      ].divide(const SizedBox(width: 10.0)),
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 2.0, 0.0, 0.0),
                           child: Icon(
                             Icons.navigate_next_rounded,
@@ -357,7 +354,7 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                         ),
                         Flexible(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 10.0, 10.0),
                             child: Text(
                               'The organization must observe cleanliness and orderliness within and after the duration of the activity.',
@@ -373,14 +370,14 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 10.0)),
+                      ].divide(const SizedBox(width: 10.0)),
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 2.0, 0.0, 0.0),
                           child: Icon(
                             Icons.navigate_next_rounded,
@@ -390,7 +387,7 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                         ),
                         Flexible(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 10.0, 10.0),
                             child: Text(
                               'Any Damage or loss of property will be the responsibility of the applying officer.',
@@ -406,14 +403,14 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 10.0)),
+                      ].divide(const SizedBox(width: 10.0)),
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 2.0, 0.0, 0.0),
                           child: Icon(
                             Icons.navigate_next_rounded,
@@ -423,7 +420,7 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                         ),
                         Flexible(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 10.0, 10.0),
                             child: Text(
                               'Manpower augmentation (Janitor & Electrician) will be charged to applying officer.',
@@ -439,14 +436,14 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 10.0)),
+                      ].divide(const SizedBox(width: 10.0)),
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 2.0, 0.0, 0.0),
                           child: Icon(
                             Icons.navigate_next_rounded,
@@ -456,7 +453,7 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                         ),
                         Flexible(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 10.0, 10.0),
                             child: Text(
                               'Final coordination with the Physical Facilities Office three or four days before the scheduled activity is a must.',
@@ -472,7 +469,7 @@ class _RulesOnUsingSchoolFacilitiesWidgetState
                             ),
                           ),
                         ),
-                      ].divide(SizedBox(width: 10.0)),
+                      ].divide(const SizedBox(width: 10.0)),
                     ),
                   ],
                 ),

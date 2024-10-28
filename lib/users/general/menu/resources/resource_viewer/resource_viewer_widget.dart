@@ -1,12 +1,8 @@
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'resource_viewer_model.dart';
 export 'resource_viewer_model.dart';
 
@@ -59,26 +55,26 @@ class _ResourceViewerWidgetState extends State<ResourceViewerWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
                   child: TitleHeaderComponentWidget(
-                    titleText: widget!.resourceName!,
+                    titleText: widget.resourceName!,
                   ),
                 ),
               ),
               Container(
                 width: double.infinity,
                 height: MediaQuery.sizeOf(context).height * 0.85,
-                decoration: BoxDecoration(),
-                child: Container(
+                decoration: const BoxDecoration(),
+                child: SizedBox(
                   width: double.infinity,
                   height: double.infinity,
                   child: custom_widgets.FlutterPDFViewer(
                     width: double.infinity,
                     height: double.infinity,
-                    url: widget!.resourceFile!,
+                    url: widget.resourceFile!,
                   ),
                 ),
               ),

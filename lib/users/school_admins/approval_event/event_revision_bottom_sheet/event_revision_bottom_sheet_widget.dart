@@ -9,9 +9,6 @@ import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'event_revision_bottom_sheet_model.dart';
 export 'event_revision_bottom_sheet_model.dart';
@@ -62,7 +59,7 @@ class _EventRevisionBottomSheetWidgetState
     return Container(
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
           topLeft: Radius.circular(20.0),
@@ -73,7 +70,7 @@ class _EventRevisionBottomSheetWidgetState
         mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
             child: Container(
               width: 80.0,
               height: 10.0,
@@ -87,13 +84,13 @@ class _EventRevisionBottomSheetWidgetState
             key: _model.formKey,
             autovalidateMode: AutovalidateMode.disabled,
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                     child: Text(
                       'By placing them under revision, you\'re essentially pausing their progress and requiring them to fulfill certain criteria to proceed with their proposal. \n\nAt this time, kindly write down the reasons for their event proposal\'s revision.',
                       textAlign: TextAlign.justify,
@@ -104,7 +101,7 @@ class _EventRevisionBottomSheetWidgetState
                     ),
                   ),
                   Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
                     child: TextFormField(
                       controller: _model.revisionMessageTextController,
                       focusNode: _model.revisionMessageFocusNode,
@@ -167,7 +164,7 @@ class _EventRevisionBottomSheetWidgetState
                   Builder(
                     builder: (context) => Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           logFirebaseEvent(
@@ -185,9 +182,9 @@ class _EventRevisionBottomSheetWidgetState
                                 elevation: 0,
                                 insetPadding: EdgeInsets.zero,
                                 backgroundColor: Colors.transparent,
-                                alignment: AlignmentDirectional(0.0, 0.0)
+                                alignment: const AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
-                                child: WebViewAware(
+                                child: const WebViewAware(
                                   child: ConfirmDialogBoxWidget(
                                     confirmDialogTitle: 'Needs Revision',
                                     confirmDialogMeesage:
@@ -209,9 +206,9 @@ class _EventRevisionBottomSheetWidgetState
                                   elevation: 0,
                                   insetPadding: EdgeInsets.zero,
                                   backgroundColor: Colors.transparent,
-                                  alignment: AlignmentDirectional(0.0, 0.0)
+                                  alignment: const AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
-                                  child: WebViewAware(
+                                  child: const WebViewAware(
                                     child: InformationDialogBoxWidget(
                                       infoDialogTitle: 'Needs Revision',
                                       infoDialogMeesage:
@@ -227,18 +224,18 @@ class _EventRevisionBottomSheetWidgetState
                               context,
                               reviseWhat: 'event',
                               approvalList:
-                                  widget!.eventDoc?.currentApprovalSignatory,
+                                  widget.eventDoc?.currentApprovalSignatory,
                               approvalStep: functions.getUserIndex(
-                                  widget!.eventDoc!.currentApprovalSignatory
+                                  widget.eventDoc!.currentApprovalSignatory
                                       .map((e) => e.approvalUser)
                                       .withoutNulls
                                       .toList(),
                                   currentUserReference!),
-                              reviseEventRef: widget!.eventDoc?.reference,
+                              reviseEventRef: widget.eventDoc?.reference,
                               reviseFeedback:
                                   _model.revisionMessageTextController.text,
-                              reviseToWho: widget!.eventDoc?.eventOrganizer,
-                              reviseName: widget!.eventDoc?.eventName,
+                              reviseToWho: widget.eventDoc?.eventOrganizer,
+                              reviseName: widget.eventDoc?.eventName,
                             );
                           } else {
                             logFirebaseEvent('Button_alert_dialog');
@@ -249,9 +246,9 @@ class _EventRevisionBottomSheetWidgetState
                                   elevation: 0,
                                   insetPadding: EdgeInsets.zero,
                                   backgroundColor: Colors.transparent,
-                                  alignment: AlignmentDirectional(0.0, 0.0)
+                                  alignment: const AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
-                                  child: WebViewAware(
+                                  child: const WebViewAware(
                                     child: InformationDialogBoxWidget(
                                       infoDialogTitle: 'Action Cancelled',
                                       infoDialogMeesage:
@@ -273,16 +270,16 @@ class _EventRevisionBottomSheetWidgetState
                           safeSetState(() {});
                         },
                         text: 'Revision Status',
-                        icon: Icon(
+                        icon: const Icon(
                           FFIcons.kpause5,
                           size: 15.0,
                         ),
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 30.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).accent2,
                           textStyle: FlutterFlowTheme.of(context)
@@ -294,7 +291,7 @@ class _EventRevisionBottomSheetWidgetState
                                 letterSpacing: 0.0,
                               ),
                           elevation: 3.0,
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),

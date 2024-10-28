@@ -3,15 +3,9 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/modules/marketplace/user/component/bottom_sheetadd_stock/bottom_sheetadd_stock_widget.dart';
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'inventory_marketplace_model.dart';
 export 'inventory_marketplace_model.dart';
@@ -94,11 +88,11 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: TitleHeaderComponentWidget(
+                  child: const TitleHeaderComponentWidget(
                     titleText: 'Inventory',
                   ),
                 ),
@@ -108,7 +102,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -131,15 +125,15 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                 child: Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
-                                    color: Color(0xFFEFFFEC),
+                                    color: const Color(0xFFEFFFEC),
                                     borderRadius: BorderRadius.circular(8.0),
                                     border: Border.all(
-                                      color: Color(0xFF60B859),
+                                      color: const Color(0xFF60B859),
                                       width: 0.5,
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
@@ -147,16 +141,16 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                       children: [
                                         Container(
                                           decoration: BoxDecoration(
-                                            color: Color(0xFF7BBA76),
+                                            color: const Color(0xFF7BBA76),
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                             border: Border.all(
-                                              color: Color(0xFFAFF0AE),
+                                              color: const Color(0xFFAFF0AE),
                                               width: 3.0,
                                             ),
                                           ),
                                           child: Padding(
-                                            padding: EdgeInsets.all(5.0),
+                                            padding: const EdgeInsets.all(5.0),
                                             child: Icon(
                                               FFIcons.kbox4,
                                               color:
@@ -169,7 +163,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                         Flexible(
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     5.0, 0.0, 0.0, 0.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -230,15 +224,15 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                 child: Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
-                                    color: Color(0xFFFFF7EC),
+                                    color: const Color(0xFFFFF7EC),
                                     borderRadius: BorderRadius.circular(8.0),
                                     border: Border.all(
-                                      color: Color(0xFFFFBB97),
+                                      color: const Color(0xFFFFBB97),
                                       width: 0.5,
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
@@ -246,16 +240,16 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                       children: [
                                         Container(
                                           decoration: BoxDecoration(
-                                            color: Color(0xFFEE8E4A),
+                                            color: const Color(0xFFEE8E4A),
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                             border: Border.all(
-                                              color: Color(0xFFEEC37C),
+                                              color: const Color(0xFFEEC37C),
                                               width: 3.0,
                                             ),
                                           ),
                                           child: Padding(
-                                            padding: EdgeInsets.all(5.0),
+                                            padding: const EdgeInsets.all(5.0),
                                             child: Icon(
                                               FFIcons.kbagHappy,
                                               color:
@@ -268,7 +262,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                         Flexible(
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     5.0, 0.0, 0.0, 0.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -313,7 +307,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                 ),
                               ),
                             ),
-                          ].divide(SizedBox(width: 10.0)),
+                          ].divide(const SizedBox(width: 10.0)),
                         ).animateOnPageLoad(
                             animationsMap['rowOnPageLoadAnimation1']!),
                         Row(
@@ -335,7 +329,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                 child: Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
-                                    color: Color(0x88FFC0C5),
+                                    color: const Color(0x88FFC0C5),
                                     borderRadius: BorderRadius.circular(8.0),
                                     border: Border.all(
                                       color: FlutterFlowTheme.of(context).error,
@@ -343,7 +337,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
@@ -356,12 +350,12 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                             border: Border.all(
-                                              color: Color(0xFFFFC0C5),
+                                              color: const Color(0xFFFFC0C5),
                                               width: 3.0,
                                             ),
                                           ),
                                           child: Padding(
-                                            padding: EdgeInsets.all(5.0),
+                                            padding: const EdgeInsets.all(5.0),
                                             child: Icon(
                                               FFIcons.kcoin,
                                               color:
@@ -374,7 +368,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                         Flexible(
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     5.0, 0.0, 0.0, 0.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -435,7 +429,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                 child: Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
-                                    color: Color(0x5696A1EE),
+                                    color: const Color(0x5696A1EE),
                                     borderRadius: BorderRadius.circular(8.0),
                                     border: Border.all(
                                       color:
@@ -444,7 +438,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
@@ -457,12 +451,12 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                             border: Border.all(
-                                              color: Color(0xFF9BA3DF),
+                                              color: const Color(0xFF9BA3DF),
                                               width: 3.0,
                                             ),
                                           ),
                                           child: Padding(
-                                            padding: EdgeInsets.all(5.0),
+                                            padding: const EdgeInsets.all(5.0),
                                             child: Icon(
                                               FFIcons.kmoneySend,
                                               color:
@@ -475,7 +469,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                         Flexible(
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     5.0, 0.0, 0.0, 0.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -520,10 +514,10 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                 ),
                               ),
                             ),
-                          ].divide(SizedBox(width: 10.0)),
+                          ].divide(const SizedBox(width: 10.0)),
                         ).animateOnPageLoad(
                             animationsMap['rowOnPageLoadAnimation2']!),
-                      ].divide(SizedBox(height: 10.0)),
+                      ].divide(const SizedBox(height: 10.0)),
                     ),
                   ),
                 ],
@@ -531,11 +525,11 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
               Expanded(
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
+                      const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
                   child: Column(
                     children: [
                       Align(
-                        alignment: Alignment(0.0, 0),
+                        alignment: const Alignment(0.0, 0),
                         child: FlutterFlowButtonTabBar(
                           useToggleButtonStyle: true,
                           labelStyle:
@@ -565,9 +559,9 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                           borderWidth: 1.0,
                           borderRadius: 9.0,
                           elevation: 0.0,
-                          buttonMargin: EdgeInsetsDirectional.fromSTEB(
+                          buttonMargin: const EdgeInsetsDirectional.fromSTEB(
                               8.0, 0.0, 8.0, 0.0),
-                          tabs: [
+                          tabs: const [
                             Tab(
                               text: 'Available',
                             ),
@@ -598,14 +592,14 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                           children: [
                             KeepAliveWidgetWrapper(
                               builder: (context) => Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     5.0, 10.0, 5.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Align(
                                       alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
+                                          const AlignmentDirectional(-1.0, 0.0),
                                       child: Text(
                                         'Complete List of Available Products',
                                         style: FlutterFlowTheme.of(context)
@@ -620,9 +614,9 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                     ),
                                     Align(
                                       alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
+                                          const AlignmentDirectional(-1.0, 0.0),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 10.0),
                                         child: Text(
                                           'Products that are available and consumable',
@@ -671,7 +665,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                                           .viewInsetsOf(
                                                               context),
                                                       child:
-                                                          BottomSheetaddStockWidget(),
+                                                          const BottomSheetaddStockWidget(),
                                                     ),
                                                   ),
                                                 );
@@ -695,7 +689,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                               ),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsets.all(5.0),
+                                              padding: const EdgeInsets.all(5.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
@@ -707,7 +701,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                                   Expanded(
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -719,7 +713,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -742,7 +736,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                                               ),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsets
+                                                                    const EdgeInsets
                                                                         .all(
                                                                             2.0),
                                                                 child: Image
@@ -834,11 +828,11 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        AlignmentDirectional(
+                                                        const AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -859,7 +853,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                             ),
                                           ),
                                         ),
-                                      ].divide(SizedBox(height: 10.0)),
+                                      ].divide(const SizedBox(height: 10.0)),
                                     ),
                                   ],
                                 ),
@@ -867,14 +861,14 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                             ),
                             KeepAliveWidgetWrapper(
                               builder: (context) => Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     5.0, 10.0, 5.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Align(
                                       alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
+                                          const AlignmentDirectional(-1.0, 0.0),
                                       child: Text(
                                         'Complete List of Near Sold Out Products',
                                         style: FlutterFlowTheme.of(context)
@@ -889,9 +883,9 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                     ),
                                     Align(
                                       alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
+                                          const AlignmentDirectional(-1.0, 0.0),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 10.0),
                                         child: Text(
                                           'Products that is near to the standard count of stocks',
@@ -929,7 +923,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                             ),
                                           ),
                                           child: Padding(
-                                            padding: EdgeInsets.all(5.0),
+                                            padding: const EdgeInsets.all(5.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -941,7 +935,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 5.0, 0.0),
                                                     child: Row(
@@ -950,7 +944,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -973,7 +967,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                                             ),
                                                             child: Padding(
                                                               padding:
-                                                                  EdgeInsets
+                                                                  const EdgeInsets
                                                                       .all(2.0),
                                                               child:
                                                                   Image.network(
@@ -1065,11 +1059,11 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                                 ),
                                                 Align(
                                                   alignment:
-                                                      AlignmentDirectional(
+                                                      const AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 5.0, 0.0),
                                                     child: Icon(
@@ -1086,7 +1080,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                             ),
                                           ),
                                         ),
-                                      ].divide(SizedBox(height: 10.0)),
+                                      ].divide(const SizedBox(height: 10.0)),
                                     ),
                                   ],
                                 ),
@@ -1094,14 +1088,14 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                             ),
                             KeepAliveWidgetWrapper(
                               builder: (context) => Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     5.0, 10.0, 5.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Align(
                                       alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
+                                          const AlignmentDirectional(-1.0, 0.0),
                                       child: Text(
                                         'Complete List of Sold Out Products',
                                         style: FlutterFlowTheme.of(context)
@@ -1115,9 +1109,9 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                     ),
                                     Align(
                                       alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
+                                          const AlignmentDirectional(-1.0, 0.0),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 10.0),
                                         child: Text(
                                           'Products that are not available and not consumable',
@@ -1155,7 +1149,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                             ),
                                           ),
                                           child: Padding(
-                                            padding: EdgeInsets.all(5.0),
+                                            padding: const EdgeInsets.all(5.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -1167,7 +1161,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 5.0, 0.0),
                                                     child: Row(
@@ -1176,7 +1170,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -1199,7 +1193,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                                             ),
                                                             child: Padding(
                                                               padding:
-                                                                  EdgeInsets
+                                                                  const EdgeInsets
                                                                       .all(2.0),
                                                               child:
                                                                   Image.network(
@@ -1291,11 +1285,11 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                                 ),
                                                 Align(
                                                   alignment:
-                                                      AlignmentDirectional(
+                                                      const AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 5.0, 0.0),
                                                     child: Icon(
@@ -1312,7 +1306,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                             ),
                                           ),
                                         ),
-                                      ].divide(SizedBox(height: 10.0)),
+                                      ].divide(const SizedBox(height: 10.0)),
                                     ),
                                   ],
                                 ),
@@ -1323,14 +1317,14 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         5.0, 10.0, 5.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
+                                              const AlignmentDirectional(-1.0, 0.0),
                                           child: Text(
                                             'Complete List of Returned Products',
                                             style: FlutterFlowTheme.of(context)
@@ -1344,10 +1338,10 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                         ),
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
+                                              const AlignmentDirectional(-1.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 10.0),
                                             child: Text(
                                               'Products that returned by the customer',
@@ -1388,7 +1382,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: EdgeInsets.all(5.0),
+                                                padding: const EdgeInsets.all(5.0),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -1401,7 +1395,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                                     Expanded(
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1413,7 +1407,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1436,7 +1430,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                                                 ),
                                                                 child: Padding(
                                                                   padding:
-                                                                      EdgeInsets
+                                                                      const EdgeInsets
                                                                           .all(
                                                                               2.0),
                                                                   child: Image
@@ -1518,11 +1512,11 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                                     ),
                                                     Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1541,7 +1535,7 @@ class _InventoryMarketplaceWidgetState extends State<InventoryMarketplaceWidget>
                                                 ),
                                               ),
                                             ),
-                                          ].divide(SizedBox(height: 10.0)),
+                                          ].divide(const SizedBox(height: 10.0)),
                                         ),
                                       ],
                                     ),

@@ -2,13 +2,7 @@ import '/components/widgets/title_header_component/title_header_component_widget
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 import 'content_view_model.dart';
 export 'content_view_model.dart';
 
@@ -71,12 +65,12 @@ class _ContentViewWidgetState extends State<ContentViewWidget> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
                   child: TitleHeaderComponentWidget(
-                    titleText: widget!.type!,
+                    titleText: widget.type!,
                   ),
                 ),
               ),
@@ -86,11 +80,11 @@ class _ContentViewWidgetState extends State<ContentViewWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 20.0),
                         child: Container(
                           width: double.infinity,
-                          decoration: BoxDecoration(),
+                          decoration: const BoxDecoration(),
                           child: InkWell(
                             splashColor: Colors.transparent,
                             focusColor: Colors.transparent,
@@ -107,14 +101,14 @@ class _ContentViewWidgetState extends State<ContentViewWidget> {
                                   child: FlutterFlowExpandedImageView(
                                     image: Image.network(
                                       valueOrDefault<String>(
-                                        widget!.photo,
+                                        widget.photo,
                                         'https://scontent.fmnl3-1.fna.fbcdn.net/v/t39.30808-6/453490364_892270432935095_970724940809919706_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeFvYbi4G_02oC63eWIchGmMQayY4qTaybtBrJjipNrJu7B_zieKd4MsMVpitNXr4WrFuee2tgbnDSLQE-_hFjXh&_nc_ohc=CVz7AfbyNXYQ7kNvgGAodz7&_nc_ht=scontent.fmnl3-1.fna&oh=00_AYCXHWnAyeM-piVlDY1iMu9hk5RqxUb9YxHvuq5sF1criw&oe=66CEA4CE',
                                       ),
                                       fit: BoxFit.contain,
                                     ),
                                     allowRotation: false,
                                     tag: valueOrDefault<String>(
-                                      widget!.photo,
+                                      widget.photo,
                                       'https://scontent.fmnl3-1.fna.fbcdn.net/v/t39.30808-6/453490364_892270432935095_970724940809919706_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeFvYbi4G_02oC63eWIchGmMQayY4qTaybtBrJjipNrJu7B_zieKd4MsMVpitNXr4WrFuee2tgbnDSLQE-_hFjXh&_nc_ohc=CVz7AfbyNXYQ7kNvgGAodz7&_nc_ht=scontent.fmnl3-1.fna&oh=00_AYCXHWnAyeM-piVlDY1iMu9hk5RqxUb9YxHvuq5sF1criw&oe=66CEA4CE',
                                     ),
                                     useHeroAnimation: true,
@@ -124,7 +118,7 @@ class _ContentViewWidgetState extends State<ContentViewWidget> {
                             },
                             child: Hero(
                               tag: valueOrDefault<String>(
-                                widget!.photo,
+                                widget.photo,
                                 'https://scontent.fmnl3-1.fna.fbcdn.net/v/t39.30808-6/453490364_892270432935095_970724940809919706_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeFvYbi4G_02oC63eWIchGmMQayY4qTaybtBrJjipNrJu7B_zieKd4MsMVpitNXr4WrFuee2tgbnDSLQE-_hFjXh&_nc_ohc=CVz7AfbyNXYQ7kNvgGAodz7&_nc_ht=scontent.fmnl3-1.fna&oh=00_AYCXHWnAyeM-piVlDY1iMu9hk5RqxUb9YxHvuq5sF1criw&oe=66CEA4CE',
                               ),
                               transitionOnUserGestures: true,
@@ -132,7 +126,7 @@ class _ContentViewWidgetState extends State<ContentViewWidget> {
                                 borderRadius: BorderRadius.circular(8.0),
                                 child: Image.network(
                                   valueOrDefault<String>(
-                                    widget!.photo,
+                                    widget.photo,
                                     'https://scontent.fmnl3-1.fna.fbcdn.net/v/t39.30808-6/453490364_892270432935095_970724940809919706_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeFvYbi4G_02oC63eWIchGmMQayY4qTaybtBrJjipNrJu7B_zieKd4MsMVpitNXr4WrFuee2tgbnDSLQE-_hFjXh&_nc_ohc=CVz7AfbyNXYQ7kNvgGAodz7&_nc_ht=scontent.fmnl3-1.fna&oh=00_AYCXHWnAyeM-piVlDY1iMu9hk5RqxUb9YxHvuq5sF1criw&oe=66CEA4CE',
                                   ),
                                   width: double.infinity,
@@ -146,20 +140,20 @@ class _ContentViewWidgetState extends State<ContentViewWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 20.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Align(
-                              alignment: AlignmentDirectional(-1.0, 0.0),
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: RichText(
                                 textScaler: MediaQuery.of(context).textScaler,
                                 text: TextSpan(
                                   children: [
                                     TextSpan(
                                       text: valueOrDefault<String>(
-                                        widget!.title,
+                                        widget.title,
                                         'Title',
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -183,7 +177,7 @@ class _ContentViewWidgetState extends State<ContentViewWidget> {
                                     TextSpan(
                                       text: dateTimeFormat(
                                         "relative",
-                                        widget!.postedWhen,
+                                        widget.postedWhen,
                                         locale: FFLocalizations.of(context)
                                             .languageCode,
                                       ),
@@ -210,9 +204,9 @@ class _ContentViewWidgetState extends State<ContentViewWidget> {
                               ),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(-1.0, 0.0),
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 20.0, 0.0, 0.0),
                                 child: RichText(
                                   textScaler: MediaQuery.of(context).textScaler,
@@ -220,7 +214,7 @@ class _ContentViewWidgetState extends State<ContentViewWidget> {
                                     children: [
                                       TextSpan(
                                         text: valueOrDefault<String>(
-                                          widget!.author,
+                                          widget.author,
                                           'Author',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -234,16 +228,16 @@ class _ContentViewWidgetState extends State<ContentViewWidget> {
                                               fontWeight: FontWeight.bold,
                                             ),
                                       ),
-                                      TextSpan(
+                                      const TextSpan(
                                         text: ' - ',
                                         style: TextStyle(),
                                       ),
                                       TextSpan(
                                         text: valueOrDefault<String>(
-                                          widget!.content,
+                                          widget.content,
                                           'content',
                                         ),
-                                        style: TextStyle(),
+                                        style: const TextStyle(),
                                       )
                                     ],
                                     style: FlutterFlowTheme.of(context)

@@ -5,18 +5,13 @@ import '/components/widgets/title_header_component/title_header_component_widget
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/users/general/component/notif_item/notif_item_widget.dart';
-import 'dart:math';
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:styled_divider/styled_divider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'notification_model.dart';
 export 'notification_model.dart';
 
@@ -153,11 +148,11 @@ class _NotificationWidgetState extends State<NotificationWidget>
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: TitleHeaderComponentWidget(
+                      child: const TitleHeaderComponentWidget(
                         titleText: 'Notifications',
                       ),
                     ),
@@ -168,7 +163,7 @@ class _NotificationWidgetState extends State<NotificationWidget>
                         final allNotif =
                             notificationNotificationsRecordList.toList();
                         if (allNotif.isEmpty) {
-                          return EmptyNotificationWidget();
+                          return const EmptyNotificationWidget();
                         }
 
                         return ListView.builder(
@@ -183,7 +178,7 @@ class _NotificationWidgetState extends State<NotificationWidget>
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       10.0, 0.0, 10.0, 0.0),
                                   child: FutureBuilder<UsersRecord>(
                                     future: UsersRecord.getDocumentOnce(

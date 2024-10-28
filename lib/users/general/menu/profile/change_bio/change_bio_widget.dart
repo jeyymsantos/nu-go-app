@@ -7,12 +7,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'change_bio_model.dart';
 export 'change_bio_model.dart';
@@ -44,7 +40,7 @@ class _ChangeBioWidgetState extends State<ChangeBioWidget> {
     _model = createModel(context, () => ChangeBioModel());
 
     _model.bioMessageTextController ??=
-        TextEditingController(text: widget!.existingBio);
+        TextEditingController(text: widget.existingBio);
     _model.bioMessageFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -62,7 +58,7 @@ class _ChangeBioWidgetState extends State<ChangeBioWidget> {
     return Container(
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
           topLeft: Radius.circular(20.0),
@@ -70,12 +66,12 @@ class _ChangeBioWidgetState extends State<ChangeBioWidget> {
         ),
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
               child: Container(
                 width: 80.0,
                 height: 10.0,
@@ -89,13 +85,13 @@ class _ChangeBioWidgetState extends State<ChangeBioWidget> {
               key: _model.formKey,
               autovalidateMode: AutovalidateMode.disabled,
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                       child: Text(
                         'Edit Bio',
                         textAlign: TextAlign.justify,
@@ -106,7 +102,7 @@ class _ChangeBioWidgetState extends State<ChangeBioWidget> {
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: TextFormField(
                         controller: _model.bioMessageTextController,
                         focusNode: _model.bioMessageFocusNode,
@@ -170,7 +166,7 @@ class _ChangeBioWidgetState extends State<ChangeBioWidget> {
                     Builder(
                       builder: (context) => Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 0.0),
                         child: FFButtonWidget(
                           onPressed: () async {
                             logFirebaseEvent(
@@ -188,9 +184,9 @@ class _ChangeBioWidgetState extends State<ChangeBioWidget> {
                                   elevation: 0,
                                   insetPadding: EdgeInsets.zero,
                                   backgroundColor: Colors.transparent,
-                                  alignment: AlignmentDirectional(0.0, 0.0)
+                                  alignment: const AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
-                                  child: WebViewAware(
+                                  child: const WebViewAware(
                                     child: ConfirmDialogBoxWidget(
                                       confirmDialogTitle: 'Change Bio',
                                       confirmDialogMeesage:
@@ -212,9 +208,9 @@ class _ChangeBioWidgetState extends State<ChangeBioWidget> {
                                     elevation: 0,
                                     insetPadding: EdgeInsets.zero,
                                     backgroundColor: Colors.transparent,
-                                    alignment: AlignmentDirectional(0.0, 0.0)
+                                    alignment: const AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
-                                    child: WebViewAware(
+                                    child: const WebViewAware(
                                       child: CongratulationsDialogBoxWidget(
                                         congratsDialogTitle: 'Bio Updated!',
                                         congratsDialogMeesage:
@@ -247,9 +243,9 @@ class _ChangeBioWidgetState extends State<ChangeBioWidget> {
                                     elevation: 0,
                                     insetPadding: EdgeInsets.zero,
                                     backgroundColor: Colors.transparent,
-                                    alignment: AlignmentDirectional(0.0, 0.0)
+                                    alignment: const AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
-                                    child: WebViewAware(
+                                    child: const WebViewAware(
                                       child: InformationDialogBoxWidget(
                                         infoDialogTitle: 'Action Cancelled',
                                         infoDialogMeesage:
@@ -264,7 +260,7 @@ class _ChangeBioWidgetState extends State<ChangeBioWidget> {
                             logFirebaseEvent('Button_reset_form_fields');
                             safeSetState(() {
                               _model.bioMessageTextController?.text =
-                                  widget!.existingBio!;
+                                  widget.existingBio!;
                             });
                             logFirebaseEvent('Button_bottom_sheet');
                             Navigator.pop(context);
@@ -272,16 +268,16 @@ class _ChangeBioWidgetState extends State<ChangeBioWidget> {
                             safeSetState(() {});
                           },
                           text: 'Update Bio',
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.check,
                             size: 15.0,
                           ),
                           options: FFButtonOptions(
                             width: double.infinity,
                             height: 30.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -293,7 +289,7 @@ class _ChangeBioWidgetState extends State<ChangeBioWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),

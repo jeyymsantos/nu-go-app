@@ -1,11 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:provider/provider.dart';
 import 'auth_ongoing_update_model.dart';
 export 'auth_ongoing_update_model.dart';
 
@@ -53,9 +49,9 @@ class _AuthOngoingUpdateWidgetState extends State<AuthOngoingUpdateWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Align(
-                alignment: AlignmentDirectional(0.0, -1.0),
+                alignment: const AlignmentDirectional(0.0, -1.0),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 2.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 2.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.asset(
@@ -70,7 +66,7 @@ class _AuthOngoingUpdateWidgetState extends State<AuthOngoingUpdateWidget> {
               Expanded(
                 child: Padding(
                   padding:
-                      EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 100.0),
+                      const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 100.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -84,7 +80,7 @@ class _AuthOngoingUpdateWidgetState extends State<AuthOngoingUpdateWidget> {
                         animate: true,
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Text(
                           'Update to the Latest Version',
                           textAlign: TextAlign.center,
@@ -99,9 +95,9 @@ class _AuthOngoingUpdateWidgetState extends State<AuthOngoingUpdateWidget> {
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
+                        alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               10.0, 10.0, 10.0, 0.0),
                           child: Text(
                             'For a better app experience, please download and install the latest version of NU GO. \n\nA more enhanced version is now available for our Nationalians. 💛💙',

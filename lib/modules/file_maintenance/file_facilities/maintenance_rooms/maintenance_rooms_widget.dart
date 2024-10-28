@@ -8,12 +8,9 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'maintenance_rooms_model.dart';
 export 'maintenance_rooms_model.dart';
@@ -28,7 +25,7 @@ class MaintenanceRoomsWidget extends StatefulWidget {
     this.roomFacilityType,
     this.roomRef,
     this.roomMaxCapacity,
-  }) : this.isNew = isNew ?? false;
+  }) : isNew = isNew ?? false;
 
   final bool isNew;
   final String? roomNumber;
@@ -55,15 +52,15 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'maintenance_rooms'});
     _model.roomNumberFieldTextController ??=
-        TextEditingController(text: widget!.isNew ? '' : widget!.roomNumber);
+        TextEditingController(text: widget.isNew ? '' : widget.roomNumber);
     _model.roomNumberFieldFocusNode ??= FocusNode();
 
     _model.roomNameFieldTextController ??=
-        TextEditingController(text: widget!.isNew ? '' : widget!.roomName);
+        TextEditingController(text: widget.isNew ? '' : widget.roomName);
     _model.roomNameFieldFocusNode ??= FocusNode();
 
     _model.roomMaxCapacityFieldTextController ??= TextEditingController(
-        text: widget!.isNew ? '' : widget!.roomMaxCapacity?.toString());
+        text: widget.isNew ? '' : widget.roomMaxCapacity?.toString());
     _model.roomMaxCapacityFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -86,7 +83,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,7 +91,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                 wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: TitleHeaderComponentWidget(
+                  child: const TitleHeaderComponentWidget(
                     titleText: 'File Maintenance',
                   ),
                 ),
@@ -106,7 +103,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -124,7 +121,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                       ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 0.0, 0.0),
                                   child: Text(
                                     'Monitor, track and view the list of rooms available in the campus.',
@@ -157,12 +154,12 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                 Flexible(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 30.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 30.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Container(
+                          SizedBox(
                             width: double.infinity,
                             child: Form(
                               key: _model.formKey,
@@ -171,7 +168,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller:
@@ -245,7 +242,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller:
@@ -317,7 +314,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller: _model
@@ -399,7 +396,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: StreamBuilder<List<OfficeRecord>>(
                                       stream: queryOfficeRecord(
@@ -431,7 +428,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                                   .roomDesignationDropdownValueController ??=
                                               FormFieldController<String>(
                                             _model.roomDesignationDropdownValue ??=
-                                                widget!.roomDesignation?.id,
+                                                widget.roomDesignation?.id,
                                           ),
                                           options: List<String>.from(
                                               roomDesignationDropdownOfficeRecordList
@@ -488,7 +485,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                           borderWidth: 0.5,
                                           borderRadius: 8.0,
                                           margin:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 4.0, 16.0, 4.0),
                                           hidesUnderline: true,
                                           isOverButton: true,
@@ -499,7 +496,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: StreamBuilder<
                                         List<FacilityTypesRecord>>(
@@ -533,7 +530,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                                   .facilityTypeDropdownValueController ??=
                                               FormFieldController<String>(
                                             _model.facilityTypeDropdownValue ??=
-                                                widget!.roomFacilityType?.id,
+                                                widget.roomFacilityType?.id,
                                           ),
                                           options: List<String>.from(
                                               facilityTypeDropdownFacilityTypesRecordList
@@ -590,7 +587,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                           borderWidth: 0.5,
                                           borderRadius: 8.0,
                                           margin:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 4.0, 16.0, 4.0),
                                           hidesUnderline: true,
                                           isOverButton: true,
@@ -601,7 +598,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
@@ -642,12 +639,12 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                                       (alertDialogContext) {
                                                     return WebViewAware(
                                                       child: AlertDialog(
-                                                        title: Text(widget!
+                                                        title: Text(widget
                                                                     .isNew ==
                                                                 true
                                                             ? 'Save Room'
                                                             : 'Update Room'),
-                                                        content: Text(widget!
+                                                        content: Text(widget
                                                                     .isNew ==
                                                                 true
                                                             ? 'Are you sure you want to save a new room?'
@@ -659,7 +656,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                                                     alertDialogContext,
                                                                     false),
                                                             child:
-                                                                Text('Cancel'),
+                                                                const Text('Cancel'),
                                                           ),
                                                           TextButton(
                                                             onPressed: () =>
@@ -667,7 +664,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                                                     alertDialogContext,
                                                                     true),
                                                             child: Text(
-                                                                widget!.isNew ==
+                                                                widget.isNew ==
                                                                         true
                                                                     ? 'Save'
                                                                     : 'Update'),
@@ -679,7 +676,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                                 ) ??
                                                 false;
                                         if (confirmDialogResponse) {
-                                          if (widget!.isNew == true) {
+                                          if (widget.isNew == true) {
                                             logFirebaseEvent(
                                                 'Save_backend_call');
 
@@ -727,7 +724,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                             logFirebaseEvent(
                                                 'Save_backend_call');
 
-                                            await widget!.roomRef!
+                                            await widget.roomRef!
                                                 .update(createRoomsRecordData(
                                               roomNumber: int.tryParse(_model
                                                   .roomNumberFieldTextController
@@ -764,10 +761,10 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                             builder: (alertDialogContext) {
                                               return WebViewAware(
                                                 child: AlertDialog(
-                                                  title: Text(widget!.isNew
+                                                  title: Text(widget.isNew
                                                       ? 'New Room Created'
                                                       : 'Existing Room Updated'),
-                                                  content: Text(widget!.isNew
+                                                  content: Text(widget.isNew
                                                       ? 'You have successfully saved a new room!'
                                                       : 'You have successfully updated an existing room!'),
                                                   actions: [
@@ -775,7 +772,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                                       onPressed: () =>
                                                           Navigator.pop(
                                                               alertDialogContext),
-                                                      child: Text('Okay'),
+                                                      child: const Text('Okay'),
                                                     ),
                                                   ],
                                                 ),
@@ -790,15 +787,15 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                               return WebViewAware(
                                                 child: AlertDialog(
                                                   title:
-                                                      Text('Action Cancelled'),
-                                                  content: Text(
+                                                      const Text('Action Cancelled'),
+                                                  content: const Text(
                                                       'This action has been cancelled.'),
                                                   actions: [
                                                     TextButton(
                                                       onPressed: () =>
                                                           Navigator.pop(
                                                               alertDialogContext),
-                                                      child: Text('Ok'),
+                                                      child: const Text('Ok'),
                                                     ),
                                                   ],
                                                 ),
@@ -812,14 +809,14 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
 
                                         safeSetState(() {});
                                       },
-                                      text: widget!.isNew ? 'Save' : 'Update',
+                                      text: widget.isNew ? 'Save' : 'Update',
                                       options: FFButtonOptions(
                                         width: double.infinity,
                                         height: 40.0,
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             24.0, 0.0, 24.0, 0.0),
                                         iconPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
+                                            const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
@@ -832,7 +829,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                               letterSpacing: 0.0,
                                             ),
                                         elevation: 3.0,
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,
                                         ),

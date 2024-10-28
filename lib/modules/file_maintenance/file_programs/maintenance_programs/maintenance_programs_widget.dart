@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -8,11 +7,8 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'maintenance_programs_model.dart';
 export 'maintenance_programs_model.dart';
@@ -27,7 +23,7 @@ class MaintenanceProgramsWidget extends StatefulWidget {
     this.programDescription,
     this.programRef,
     this.schoolUnder,
-  }) : this.isNew = isNew ?? false;
+  }) : isNew = isNew ?? false;
 
   final bool isNew;
   final String? programName;
@@ -55,15 +51,15 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'maintenance_programs'});
     _model.programNameFieldTextController ??=
-        TextEditingController(text: widget!.programName);
+        TextEditingController(text: widget.programName);
     _model.programNameFieldFocusNode ??= FocusNode();
 
     _model.programNicknameFieldTextController ??=
-        TextEditingController(text: widget!.programNickname);
+        TextEditingController(text: widget.programNickname);
     _model.programNicknameFieldFocusNode ??= FocusNode();
 
     _model.schoolDescriptionTextController ??=
-        TextEditingController(text: widget!.programDescription);
+        TextEditingController(text: widget.programDescription);
     _model.schoolDescriptionFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -86,7 +82,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,7 +90,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                 wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: TitleHeaderComponentWidget(
+                  child: const TitleHeaderComponentWidget(
                     titleText: 'File Maintenance',
                   ),
                 ),
@@ -106,7 +102,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -124,7 +120,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                       ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 0.0, 0.0),
                                   child: Text(
                                     'The cources offered, and the main ground of academic organizations.',
@@ -157,12 +153,12 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                 Flexible(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 30.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 30.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Container(
+                          SizedBox(
                             width: double.infinity,
                             child: Form(
                               key: _model.formKey,
@@ -200,7 +196,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                                 .schoolAssignedDropdownValueController ??=
                                             FormFieldController<String>(
                                           _model.schoolAssignedDropdownValue ??=
-                                              widget!.schoolUnder?.id,
+                                              widget.schoolUnder?.id,
                                         ),
                                         options: List<String>.from(
                                             schoolAssignedDropdownSchoolsRecordList
@@ -253,7 +249,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                                 .textBoxBorder,
                                         borderWidth: 0.5,
                                         borderRadius: 8.0,
-                                        margin: EdgeInsetsDirectional.fromSTEB(
+                                        margin: const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 4.0, 16.0, 4.0),
                                         hidesUnderline: true,
                                         isOverButton: true,
@@ -263,7 +259,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                     },
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller:
@@ -336,7 +332,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller: _model
@@ -409,7 +405,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: StreamBuilder<List<UsersRecord>>(
                                       stream: queryUsersRecord(
@@ -446,7 +442,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                                   .programChairDropdownValueController ??=
                                               FormFieldController<String>(
                                             _model.programChairDropdownValue ??=
-                                                widget!.programChair?.id,
+                                                widget.programChair?.id,
                                           ),
                                           options: List<String>.from(
                                               programChairDropdownUsersRecordList
@@ -503,7 +499,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                           borderWidth: 0.5,
                                           borderRadius: 8.0,
                                           margin:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 4.0, 16.0, 4.0),
                                           hidesUnderline: true,
                                           isOverButton: true,
@@ -514,7 +510,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller: _model
@@ -588,7 +584,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
@@ -616,7 +612,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                                 ),
                                               ),
                                               duration:
-                                                  Duration(milliseconds: 4000),
+                                                  const Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .error,
@@ -638,7 +634,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                                 ),
                                               ),
                                               duration:
-                                                  Duration(milliseconds: 4000),
+                                                  const Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .error,
@@ -664,12 +660,12 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                                       (alertDialogContext) {
                                                     return WebViewAware(
                                                       child: AlertDialog(
-                                                        title: Text(widget!
+                                                        title: Text(widget
                                                                     .isNew ==
                                                                 true
                                                             ? 'Save Program'
                                                             : 'Update Program'),
-                                                        content: Text(widget!
+                                                        content: Text(widget
                                                                     .isNew ==
                                                                 true
                                                             ? 'Are you sure you want to save a new program?'
@@ -681,7 +677,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                                                     alertDialogContext,
                                                                     false),
                                                             child:
-                                                                Text('Cancel'),
+                                                                const Text('Cancel'),
                                                           ),
                                                           TextButton(
                                                             onPressed: () =>
@@ -689,7 +685,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                                                     alertDialogContext,
                                                                     true),
                                                             child: Text(
-                                                                widget!.isNew ==
+                                                                widget.isNew ==
                                                                         true
                                                                     ? 'Save'
                                                                     : 'Update'),
@@ -701,7 +697,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                                 ) ??
                                                 false;
                                         if (confirmDialogResponse) {
-                                          if (widget!.isNew == true) {
+                                          if (widget.isNew == true) {
                                             logFirebaseEvent(
                                                 'Save_backend_call');
 
@@ -736,7 +732,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                             logFirebaseEvent(
                                                 'Save_backend_call');
 
-                                            await widget!.programRef!.update(
+                                            await widget.programRef!.update(
                                                 createProgramsRecordData(
                                               programName: _model
                                                   .programNameFieldTextController
@@ -770,10 +766,10 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                             builder: (alertDialogContext) {
                                               return WebViewAware(
                                                 child: AlertDialog(
-                                                  title: Text(widget!.isNew
+                                                  title: Text(widget.isNew
                                                       ? 'New Program Created'
                                                       : 'Existing Program Updated'),
-                                                  content: Text(widget!.isNew
+                                                  content: Text(widget.isNew
                                                       ? 'You have successfully saved a new program!'
                                                       : 'You have successfully updated an existing program!'),
                                                   actions: [
@@ -781,7 +777,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                                       onPressed: () =>
                                                           Navigator.pop(
                                                               alertDialogContext),
-                                                      child: Text('Okay'),
+                                                      child: const Text('Okay'),
                                                     ),
                                                   ],
                                                 ),
@@ -796,15 +792,15 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                               return WebViewAware(
                                                 child: AlertDialog(
                                                   title:
-                                                      Text('Action Cancelled'),
-                                                  content: Text(
+                                                      const Text('Action Cancelled'),
+                                                  content: const Text(
                                                       'This action has been cancelled.'),
                                                   actions: [
                                                     TextButton(
                                                       onPressed: () =>
                                                           Navigator.pop(
                                                               alertDialogContext),
-                                                      child: Text('Ok'),
+                                                      child: const Text('Ok'),
                                                     ),
                                                   ],
                                                 ),
@@ -818,14 +814,14 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
 
                                         safeSetState(() {});
                                       },
-                                      text: widget!.isNew ? 'Save' : 'Update',
+                                      text: widget.isNew ? 'Save' : 'Update',
                                       options: FFButtonOptions(
                                         width: double.infinity,
                                         height: 40.0,
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             24.0, 0.0, 24.0, 0.0),
                                         iconPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
+                                            const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
@@ -838,7 +834,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                               letterSpacing: 0.0,
                                             ),
                                         elevation: 3.0,
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,
                                         ),

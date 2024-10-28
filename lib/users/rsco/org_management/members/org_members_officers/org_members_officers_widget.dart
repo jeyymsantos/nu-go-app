@@ -8,17 +8,11 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/users/rsco/org_management/members/components/update_officer_component/update_officer_component_widget.dart';
-import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'org_members_officers_model.dart';
 export 'org_members_officers_model.dart';
@@ -115,11 +109,11 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: TitleHeaderComponentWidget(
+                  child: const TitleHeaderComponentWidget(
                     titleText: 'Officers',
                   ),
                 ),
@@ -131,7 +125,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -143,18 +137,18 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 10.0, 0.0),
                                     child: Container(
                                       width: 40.0,
                                       height: 40.0,
                                       clipBehavior: Clip.antiAlias,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
                                       ),
                                       child: Image.network(
                                         valueOrDefault<String>(
-                                          widget!.orgDoc?.logo,
+                                          widget.orgDoc?.logo,
                                           'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2Fnub_logo.jpg?alt=media&token=2bf8d1ce-43ca-411c-819d-41d6b0d36b81',
                                         ),
                                         fit: BoxFit.cover,
@@ -170,7 +164,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                   children: [
                                     Text(
                                       valueOrDefault<String>(
-                                        widget!.orgDoc?.organizationName,
+                                        widget.orgDoc?.organizationName,
                                         'Junior Philippine Institute of Accountants - NU Baliwag',
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -184,10 +178,10 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                     ),
                                     Align(
                                       alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
+                                          const AlignmentDirectional(-1.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
-                                          widget!.orgDoc?.type,
+                                          widget.orgDoc?.type,
                                           'Academic Organization',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -207,7 +201,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                           ).animateOnPageLoad(
                               animationsMap['rowOnPageLoadAnimation1']!),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 20.0, 0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -221,7 +215,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                       borderRadius: BorderRadius.circular(6.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           10.0, 10.0, 10.0, 10.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
@@ -230,12 +224,12 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                         children: [
                                           Text(
                                             valueOrDefault<String>(
-                                              widget!.membersDoc
+                                              widget.membersDoc
                                                   ?.where((e) =>
                                                       e.isOfficer == true)
                                                   .toList()
-                                                  ?.length
-                                                  ?.toString(),
+                                                  .length
+                                                  .toString(),
                                               '0',
                                             ),
                                             style: FlutterFlowTheme.of(context)
@@ -253,7 +247,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         5.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -276,7 +270,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                     ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 10.0)),
+                              ].divide(const SizedBox(width: 10.0)),
                             ).animateOnPageLoad(
                                 animationsMap['rowOnPageLoadAnimation2']!),
                           ),
@@ -285,7 +279,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                     ),
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             0.0, 20.0, 0.0, 30.0),
                         child: SingleChildScrollView(
                           child: Column(
@@ -293,7 +287,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                             children: [
                               Builder(
                                 builder: (context) {
-                                  final members = widget!.membersDoc!
+                                  final members = widget.membersDoc!
                                       .where((e) => valueOrDefault<bool>(
                                             e.isOfficer == true,
                                             false,
@@ -304,7 +298,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                           desc: false)
                                       .toList();
                                   if (members.isEmpty) {
-                                    return EmptyListWidget(
+                                    return const EmptyListWidget(
                                       emptyWhat: 'officers',
                                     );
                                   }
@@ -316,11 +310,11 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                     scrollDirection: Axis.vertical,
                                     itemCount: members.length,
                                     separatorBuilder: (_, __) =>
-                                        SizedBox(height: 10.0),
+                                        const SizedBox(height: 10.0),
                                     itemBuilder: (context, membersIndex) {
                                       final membersItem = members[membersIndex];
                                       return Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             20.0, 0.0, 20.0, 0.0),
                                         child: FutureBuilder<UsersRecord>(
                                           future: UsersRecord.getDocumentOnce(
@@ -370,7 +364,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       5.0,
                                                                       0.0,
@@ -417,8 +411,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                                                         String>(
                                                                       memberBarDetailsUsersRecord
                                                                           .photoUrl,
-                                                                      'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png' +
-                                                                          '$membersIndex',
+                                                                      'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png' '$membersIndex',
                                                                     ),
                                                                     useHeroAnimation:
                                                                         true,
@@ -432,8 +425,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                                                       String>(
                                                                 memberBarDetailsUsersRecord
                                                                     .photoUrl,
-                                                                'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png' +
-                                                                    '$membersIndex',
+                                                                'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png' '$membersIndex',
                                                               ),
                                                               transitionOnUserGestures:
                                                                   true,
@@ -443,7 +435,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                                                 clipBehavior: Clip
                                                                     .antiAlias,
                                                                 decoration:
-                                                                    BoxDecoration(
+                                                                    const BoxDecoration(
                                                                   shape: BoxShape
                                                                       .circle,
                                                                 ),
@@ -465,7 +457,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                                         Flexible(
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         5.0,
                                                                         0.0,
@@ -527,7 +519,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            EdgeInsets.all(5.0),
+                                                            const EdgeInsets.all(5.0),
                                                         child: InkWell(
                                                           splashColor: Colors
                                                               .transparent,
@@ -571,7 +563,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                                                         userDoc:
                                                                             membersItem.userReference!,
                                                                         orgDoc:
-                                                                            widget!.orgDoc!,
+                                                                            widget.orgDoc!,
                                                                         membersDoc:
                                                                             membersItem,
                                                                       ),
@@ -597,7 +589,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -635,13 +627,13 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                                       ),
                                                       if (membersItem
                                                               .userReference !=
-                                                          widget!.orgDoc
+                                                          widget.orgDoc
                                                               ?.orgFounder)
                                                         Builder(
                                                           builder: (context) =>
                                                               Padding(
                                                             padding:
-                                                                EdgeInsets.all(
+                                                                const EdgeInsets.all(
                                                                     5.0),
                                                             child: InkWell(
                                                               splashColor: Colors
@@ -656,7 +648,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                                               onTap: () async {
                                                                 logFirebaseEvent(
                                                                     'ORG_MEMBERS_OFFICERS_Row_vryt9szu_ON_TAP');
-                                                                var _shouldSetState =
+                                                                var shouldSetState =
                                                                     false;
                                                                 logFirebaseEvent(
                                                                     'Row_alert_dialog');
@@ -674,7 +666,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                                                       backgroundColor:
                                                                           Colors
                                                                               .transparent,
-                                                                      alignment: AlignmentDirectional(
+                                                                      alignment: const AlignmentDirectional(
                                                                               0.0,
                                                                               0.0)
                                                                           .resolve(
@@ -686,7 +678,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                                                           onTap: () =>
                                                                               FocusScope.of(dialogContext).unfocus(),
                                                                           child:
-                                                                              ConfirmDialogBoxWidget(
+                                                                              const ConfirmDialogBoxWidget(
                                                                             confirmDialogTitle:
                                                                                 'Remove Member',
                                                                             confirmDialogMeesage:
@@ -701,7 +693,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                                                         _model.removeOfficerConfirmDialog =
                                                                             value));
 
-                                                                _shouldSetState =
+                                                                shouldSetState =
                                                                     true;
                                                                 if (_model
                                                                     .removeOfficerConfirmDialog!) {
@@ -715,7 +707,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                                                     title:
                                                                         'Removed from Group',
                                                                     message:
-                                                                        'An admin from ${widget!.orgDoc?.organizationName} has removed you from the organization. You may still re-apply by checking out the organization\'s profile.',
+                                                                        'An admin from ${widget.orgDoc?.organizationName} has removed you from the organization. You may still re-apply by checking out the organization\'s profile.',
                                                                     user: membersItem
                                                                         .userReference,
                                                                   );
@@ -725,7 +717,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                                                     notificationTitle:
                                                                         'Removed from Group',
                                                                     notificationText:
-                                                                        'An admin from ${widget!.orgDoc?.organizationName} has removed you from being a member.',
+                                                                        'An admin from ${widget.orgDoc?.organizationName} has removed you from being a member.',
                                                                     notificationSound:
                                                                         'default',
                                                                     userRefs: [
@@ -746,7 +738,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                                                     module:
                                                                         'organization',
                                                                     doneToName:
-                                                                        ' membership for ${widget!.orgDoc?.organizationName}',
+                                                                        ' membership for ${widget.orgDoc?.organizationName}',
                                                                     doneTo: membersItem
                                                                         .userReference,
                                                                   );
@@ -770,7 +762,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                                                         backgroundColor:
                                                                             Colors.transparent,
                                                                         alignment:
-                                                                            AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                            const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                         child:
                                                                             WebViewAware(
                                                                           child:
@@ -778,7 +770,7 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                                                             onTap: () =>
                                                                                 FocusScope.of(dialogContext).unfocus(),
                                                                             child:
-                                                                                CongratulationsDialogBoxWidget(
+                                                                                const CongratulationsDialogBoxWidget(
                                                                               congratsDialogTitle: 'Membership Removed',
                                                                               congratsDialogMeesage: 'The user has been removed and won\'t be able to join your events.',
                                                                             ),
@@ -792,20 +784,23 @@ class _OrgMembersOfficersWidgetState extends State<OrgMembersOfficersWidget>
                                                                       'Row_navigate_back');
                                                                   context
                                                                       .safePop();
-                                                                  if (_shouldSetState)
+                                                                  if (shouldSetState) {
                                                                     safeSetState(
                                                                         () {});
+                                                                  }
                                                                   return;
                                                                 } else {
-                                                                  if (_shouldSetState)
+                                                                  if (shouldSetState) {
                                                                     safeSetState(
                                                                         () {});
+                                                                  }
                                                                   return;
                                                                 }
 
-                                                                if (_shouldSetState)
+                                                                if (shouldSetState) {
                                                                   safeSetState(
                                                                       () {});
+                                                                }
                                                               },
                                                               child: Row(
                                                                 mainAxisSize:

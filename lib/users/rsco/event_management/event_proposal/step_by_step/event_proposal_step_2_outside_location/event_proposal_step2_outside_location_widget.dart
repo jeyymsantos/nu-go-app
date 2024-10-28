@@ -5,16 +5,8 @@ import '/flutter_flow/flutter_flow_place_picker.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/place.dart';
-import 'dart:io';
-import 'dart:math';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'event_proposal_step2_outside_location_model.dart';
 export 'event_proposal_step2_outside_location_model.dart';
 
@@ -67,7 +59,7 @@ class _EventProposalStep2OutsideLocationWidgetState
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 1400.0.ms,
-            color: Color(0xFF35408E),
+            color: const Color(0xFF35408E),
             angle: 0.576,
           ),
         ],
@@ -95,7 +87,7 @@ class _EventProposalStep2OutsideLocationWidgetState
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,18 +95,18 @@ class _EventProposalStep2OutsideLocationWidgetState
                 wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: TitleHeaderComponentWidget(
+                  child: const TitleHeaderComponentWidget(
                     titleText: 'Create Proposal',
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 10.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -124,7 +116,7 @@ class _EventProposalStep2OutsideLocationWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 10.0, 0.0),
                                     child: Text(
                                       'Step 2',
@@ -154,7 +146,7 @@ class _EventProposalStep2OutsideLocationWidgetState
                                 ],
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: Text(
                                   'Let’s specify the location where the event will take place, including any relevant details about the venue or setting.',
@@ -170,7 +162,7 @@ class _EventProposalStep2OutsideLocationWidgetState
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -191,7 +183,7 @@ class _EventProposalStep2OutsideLocationWidgetState
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 0.0, 0.0),
                                         child: Container(
                                           width: double.infinity,
@@ -208,7 +200,7 @@ class _EventProposalStep2OutsideLocationWidgetState
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 0.0, 0.0),
                                         child: Container(
                                           width: double.infinity,
@@ -247,14 +239,14 @@ class _EventProposalStep2OutsideLocationWidgetState
                     autovalidateMode: AutovalidateMode.disabled,
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 20.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 20.0),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 15.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -274,7 +266,7 @@ class _EventProposalStep2OutsideLocationWidgetState
                                   Text(
                                     valueOrDefault<String>(
                                       _model.placePickerValue.latLng
-                                          ?.toString(),
+                                          .toString(),
                                       'sad',
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -286,14 +278,14 @@ class _EventProposalStep2OutsideLocationWidgetState
                                           fontWeight: FontWeight.w500,
                                         ),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     width: double.infinity,
                                     height: 360.0,
                                     child: Stack(
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 20.0, 0.0, 0.0),
                                           child: ClipRRect(
                                             borderRadius:
@@ -310,7 +302,7 @@ class _EventProposalStep2OutsideLocationWidgetState
                                               ),
                                               child:
                                                   Builder(builder: (context) {
-                                                final _googleMapMarker = _model
+                                                final googleMapMarker = _model
                                                     .placePickerValue.latLng;
                                                 return FlutterFlowGoogleMap(
                                                   controller: _model
@@ -320,19 +312,17 @@ class _EventProposalStep2OutsideLocationWidgetState
                                                           latLng,
                                                   initialLocation: _model
                                                           .googleMapsCenter ??=
-                                                      LatLng(14.9595, 120.8899),
+                                                      const LatLng(14.9595, 120.8899),
                                                   markers: [
-                                                    if (_googleMapMarker !=
-                                                        null)
-                                                      FlutterFlowMarker(
-                                                        _googleMapMarker
-                                                            .serialize(),
-                                                        _googleMapMarker,
-                                                      ),
+                                                    FlutterFlowMarker(
+                                                      googleMapMarker
+                                                          .serialize(),
+                                                      googleMapMarker,
+                                                    ),
                                                   ],
                                                   markerColor:
                                                       GoogleMarkerColor.violet,
-                                                  markerImage: MarkerImage(
+                                                  markerImage: const MarkerImage(
                                                     imagePath:
                                                         'assets/images/NU_GO_-_No_BG.png',
                                                     isAssetImage: true,
@@ -357,7 +347,7 @@ class _EventProposalStep2OutsideLocationWidgetState
                                         ),
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(0.0, 1.0),
+                                              const AlignmentDirectional(0.0, 1.0),
                                           child: FlutterFlowPlacePicker(
                                             iOSGoogleMapsApiKey:
                                                 'AIzaSyDDX_j21s4q5SpaK8tqcckOvFPQA-w6t-g',
@@ -423,7 +413,7 @@ class _EventProposalStep2OutsideLocationWidgetState
                               false,
                             ))
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 8.0, 0.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
@@ -435,7 +425,7 @@ class _EventProposalStep2OutsideLocationWidgetState
                                             .validate()) {
                                       return;
                                     }
-                                    if (_model.placePickerValue == FFPlace()) {
+                                    if (_model.placePickerValue == const FFPlace()) {
                                       return;
                                     }
                                     logFirebaseEvent('Button_navigate_to');
@@ -444,23 +434,23 @@ class _EventProposalStep2OutsideLocationWidgetState
                                       'event_proposal_step_3',
                                       queryParameters: {
                                         'isOnline': serializeParam(
-                                          widget!.isOnline,
+                                          widget.isOnline,
                                           ParamType.bool,
                                         ),
                                         'isCampus': serializeParam(
-                                          widget!.isCampus,
+                                          widget.isCampus,
                                           ParamType.bool,
                                         ),
                                         'maxParticipants': serializeParam(
-                                          widget!.maxParticipants,
+                                          widget.maxParticipants,
                                           ParamType.int,
                                         ),
                                         'startDateTime': serializeParam(
-                                          widget!.startDateTime,
+                                          widget.startDateTime,
                                           ParamType.DateTime,
                                         ),
                                         'endDateTime': serializeParam(
-                                          widget!.endDateTime,
+                                          widget.endDateTime,
                                           ParamType.DateTime,
                                         ),
                                         'outsideLocation': serializeParam(
@@ -468,7 +458,7 @@ class _EventProposalStep2OutsideLocationWidgetState
                                           ParamType.FFPlace,
                                         ),
                                         'orgRef': serializeParam(
-                                          widget!.orgRef,
+                                          widget.orgRef,
                                           ParamType.DocumentReference,
                                         ),
                                       }.withoutNulls,
@@ -478,9 +468,9 @@ class _EventProposalStep2OutsideLocationWidgetState
                                   options: FFButtonOptions(
                                     width: double.infinity,
                                     height: 40.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -492,7 +482,7 @@ class _EventProposalStep2OutsideLocationWidgetState
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),

@@ -1,6 +1,7 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
+import '/components/dialog_box/confirm_password_dialog/confirm_password_dialog_widget.dart';
+import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -9,11 +10,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'admin_content_edit_model.dart';
 export 'admin_content_edit_model.dart';
@@ -53,15 +50,15 @@ class _AdminContentEditWidgetState extends State<AdminContentEditWidget> {
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'admin_content_edit'});
     _model.contentTitleFieldTextController ??=
-        TextEditingController(text: widget!.title);
+        TextEditingController(text: widget.title);
     _model.contentTitleFieldFocusNode ??= FocusNode();
 
     _model.contentAuthorFieldTextController ??=
-        TextEditingController(text: widget!.author);
+        TextEditingController(text: widget.author);
     _model.contentAuthorFieldFocusNode ??= FocusNode();
 
     _model.contentFieldTextController ??=
-        TextEditingController(text: widget!.content);
+        TextEditingController(text: widget.content);
     _model.contentFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -84,7 +81,7 @@ class _AdminContentEditWidgetState extends State<AdminContentEditWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(15.0, 30.0, 15.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(15.0, 30.0, 15.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,7 +92,7 @@ class _AdminContentEditWidgetState extends State<AdminContentEditWidget> {
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: TitleHeaderComponentWidget(
+                      child: const TitleHeaderComponentWidget(
                         titleText: 'Edit Content',
                       ),
                     ),
@@ -106,7 +103,7 @@ class _AdminContentEditWidgetState extends State<AdminContentEditWidget> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Container(
+                        SizedBox(
                           width: double.infinity,
                           child: Form(
                             key: _model.formKey,
@@ -115,7 +112,7 @@ class _AdminContentEditWidgetState extends State<AdminContentEditWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 10.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -199,10 +196,9 @@ class _AdminContentEditWidgetState extends State<AdminContentEditWidget> {
                                       borderRadius: BorderRadius.circular(10.0),
                                       child: Image.network(
                                         valueOrDefault<String>(
-                                          _model.uploadedFileUrl != null &&
-                                                  _model.uploadedFileUrl != ''
+                                          _model.uploadedFileUrl != ''
                                               ? _model.uploadedFileUrl
-                                              : widget!.photo,
+                                              : widget.photo,
                                           'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/n-u-go-application-yjlz84/assets/acr6c7ygcw4g/Image_Handler.png',
                                         ),
                                         width: double.infinity,
@@ -213,7 +209,7 @@ class _AdminContentEditWidgetState extends State<AdminContentEditWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: TextFormField(
                                     controller:
@@ -287,7 +283,7 @@ class _AdminContentEditWidgetState extends State<AdminContentEditWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: TextFormField(
                                     controller:
@@ -359,18 +355,18 @@ class _AdminContentEditWidgetState extends State<AdminContentEditWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: Container(
-                                    decoration: BoxDecoration(),
+                                    decoration: const BoxDecoration(),
                                     child: FlutterFlowDropDown<String>(
                                       controller:
                                           _model.contentTypeValueController ??=
                                               FormFieldController<String>(
                                         _model.contentTypeValue ??=
-                                            widget!.type,
+                                            widget.type,
                                       ),
-                                      options: [
+                                      options: const [
                                         'Academics',
                                         'Announcement',
                                         'Featured',
@@ -402,7 +398,7 @@ class _AdminContentEditWidgetState extends State<AdminContentEditWidget> {
                                           .textBoxBorder,
                                       borderWidth: 0.5,
                                       borderRadius: 8.0,
-                                      margin: EdgeInsetsDirectional.fromSTEB(
+                                      margin: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 4.0, 16.0, 4.0),
                                       hidesUnderline: true,
                                       isOverButton: true,
@@ -412,7 +408,7 @@ class _AdminContentEditWidgetState extends State<AdminContentEditWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: TextFormField(
                                     controller:
@@ -484,109 +480,206 @@ class _AdminContentEditWidgetState extends State<AdminContentEditWidget> {
                                         .asValidator(context),
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 15.0, 0.0, 50.0),
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      logFirebaseEvent(
-                                          'ADMIN_CONTENT_EDIT_PAGE_Save_ON_TAP');
-                                      logFirebaseEvent('Save_validate_form');
-                                      if (_model.formKey.currentState == null ||
-                                          !_model.formKey.currentState!
-                                              .validate()) {
-                                        return;
-                                      }
-                                      if (_model.contentTypeValue == null) {
-                                        return;
-                                      }
-                                      logFirebaseEvent('Save_backend_call');
-
-                                      await widget!.contentReference!
-                                          .update(createContentRecordData(
-                                        title: _model
-                                            .contentTitleFieldTextController
-                                            .text,
-                                        content: _model
-                                            .contentFieldTextController.text,
-                                        photo: valueOrDefault<String>(
-                                          _model.uploadedFileUrl != null &&
-                                                  _model.uploadedFileUrl != ''
-                                              ? _model.uploadedFileUrl
-                                              : widget!.photo,
-                                          'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/n-u-go-application-yjlz84/assets/acr6c7ygcw4g/Image_Handler.png',
-                                        ),
-                                        type: _model.contentTypeValue,
-                                        author: widget!.author,
-                                      ));
-                                      logFirebaseEvent('Save_action_block');
-                                      await action_blocks.logs(
-                                        context,
-                                        type: 'updated',
-                                        module: 'content',
-                                        doneToName: _model
-                                            .contentTitleFieldTextController
-                                            .text,
-                                      );
-                                      logFirebaseEvent(
-                                          'Save_clear_text_fields_pin_codes');
-                                      safeSetState(() {
-                                        _model.contentFieldTextController
-                                            ?.clear();
-                                        _model.contentAuthorFieldTextController
-                                            ?.clear();
-                                        _model.contentTitleFieldTextController
-                                            ?.clear();
-                                      });
-                                      logFirebaseEvent('Save_alert_dialog');
-                                      await showDialog(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return WebViewAware(
-                                            child: AlertDialog(
-                                              title: Text('Content Updated'),
-                                              content: Text(
-                                                  'Content has been successfully updated.'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext),
-                                                  child: Text('Ok'),
+                                Builder(
+                                  builder: (context) => Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 15.0, 0.0, 50.0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        logFirebaseEvent(
+                                            'ADMIN_CONTENT_EDIT_PAGE_Save_ON_TAP');
+                                        var shouldSetState = false;
+                                        logFirebaseEvent('Save_validate_form');
+                                        if (_model.formKey.currentState ==
+                                                null ||
+                                            !_model.formKey.currentState!
+                                                .validate()) {
+                                          return;
+                                        }
+                                        if (_model.contentTypeValue == null) {
+                                          return;
+                                        }
+                                        logFirebaseEvent('Save_alert_dialog');
+                                        await showDialog(
+                                          context: context,
+                                          builder: (dialogContext) {
+                                            return Dialog(
+                                              elevation: 0,
+                                              insetPadding: EdgeInsets.zero,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              alignment:
+                                                  const AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              child: WebViewAware(
+                                                child: GestureDetector(
+                                                  onTap: () => FocusScope.of(
+                                                          dialogContext)
+                                                      .unfocus(),
+                                                  child:
+                                                      const ConfirmPasswordDialogWidget(),
                                                 ),
-                                              ],
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => safeSetState(() =>
+                                            _model.confirmPassword = value));
+
+                                        shouldSetState = true;
+                                        if (_model.confirmPassword!) {
+                                          logFirebaseEvent('Save_backend_call');
+
+                                          await widget.contentReference!
+                                              .update(createContentRecordData(
+                                            title: _model
+                                                .contentTitleFieldTextController
+                                                .text,
+                                            content: _model
+                                                .contentFieldTextController
+                                                .text,
+                                            photo: valueOrDefault<String>(
+                                              _model.uploadedFileUrl !=
+                                                          ''
+                                                  ? _model.uploadedFileUrl
+                                                  : widget.photo,
+                                              'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/n-u-go-application-yjlz84/assets/acr6c7ygcw4g/Image_Handler.png',
                                             ),
+                                            type: _model.contentTypeValue,
+                                            author: widget.author,
+                                          ));
+                                          logFirebaseEvent('Save_action_block');
+                                          await action_blocks.logs(
+                                            context,
+                                            type: 'updated',
+                                            module: 'content',
+                                            doneToName: _model
+                                                .contentTitleFieldTextController
+                                                .text,
                                           );
-                                        },
-                                      );
-                                      logFirebaseEvent('Save_navigate_back');
-                                      context.safePop();
-                                    },
-                                    text: 'Update Content',
-                                    options: FFButtonOptions(
-                                      width: double.infinity,
-                                      height: 50.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 0.0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Montserrat',
-                                            color: Colors.white,
-                                            fontSize: 14.0,
-                                            letterSpacing: 0.0,
-                                          ),
-                                      elevation: 3.0,
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
+                                          logFirebaseEvent(
+                                              'Save_clear_text_fields_pin_codes');
+                                          safeSetState(() {
+                                            _model.contentFieldTextController
+                                                ?.clear();
+                                            _model
+                                                .contentAuthorFieldTextController
+                                                ?.clear();
+                                            _model
+                                                .contentTitleFieldTextController
+                                                ?.clear();
+                                          });
+                                          logFirebaseEvent('Save_alert_dialog');
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: const AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => FocusScope.of(
+                                                            dialogContext)
+                                                        .unfocus(),
+                                                    child:
+                                                        const InformationDialogBoxWidget(
+                                                      infoDialogTitle:
+                                                          'Content Updated',
+                                                      infoDialogMeesage:
+                                                          'Content has been successfully updated.',
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          );
+
+                                          logFirebaseEvent(
+                                              'Save_navigate_back');
+                                          context.safePop();
+                                          if (shouldSetState) {
+                                            safeSetState(() {});
+                                          }
+                                          return;
+                                        } else {
+                                          logFirebaseEvent('Save_alert_dialog');
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: const AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => FocusScope.of(
+                                                            dialogContext)
+                                                        .unfocus(),
+                                                    child:
+                                                        const InformationDialogBoxWidget(
+                                                      infoDialogTitle:
+                                                          'Action Cancelled',
+                                                      infoDialogMeesage:
+                                                          'This content update action has been cancelled.',
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          );
+
+                                          logFirebaseEvent(
+                                              'Save_navigate_back');
+                                          context.safePop();
+                                          if (shouldSetState) {
+                                            safeSetState(() {});
+                                          }
+                                          return;
+                                        }
+
+                                        if (shouldSetState) {
+                                          safeSetState(() {});
+                                        }
+                                      },
+                                      text: 'Update Content',
+                                      options: FFButtonOptions(
+                                        width: double.infinity,
+                                        height: 50.0,
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 0.0),
+                                        iconPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Montserrat',
+                                              color: Colors.white,
+                                              fontSize: 14.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                        elevation: 3.0,
+                                        borderSide: const BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(14.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(14.0),
                                     ),
                                   ),
                                 ),

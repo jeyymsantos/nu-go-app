@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/push_notifications/push_notifications_util.dart';
 import '/components/dialog_box/confirm_dialog_box/confirm_dialog_box_widget.dart';
@@ -8,13 +7,9 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'update_officer_component_model.dart';
 export 'update_officer_component_model.dart';
@@ -52,11 +47,11 @@ class _UpdateOfficerComponentWidgetState
     _model = createModel(context, () => UpdateOfficerComponentModel());
 
     _model.positionTextController ??=
-        TextEditingController(text: widget!.membersDoc?.officerRole);
+        TextEditingController(text: widget.membersDoc?.officerRole);
     _model.positionFocusNode ??= FocusNode();
 
     _model.positionRankTextController ??= TextEditingController(
-        text: widget!.membersDoc?.officerIndex?.toString());
+        text: widget.membersDoc?.officerIndex.toString());
     _model.positionRankFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -76,7 +71,7 @@ class _UpdateOfficerComponentWidgetState
       height: 500.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
           topLeft: Radius.circular(30.0),
@@ -91,7 +86,7 @@ class _UpdateOfficerComponentWidgetState
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
               child: Container(
                 width: 100.0,
                 height: 10.0,
@@ -102,7 +97,7 @@ class _UpdateOfficerComponentWidgetState
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 15.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 15.0),
               child: Text(
                 'Update Officer',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -115,9 +110,9 @@ class _UpdateOfficerComponentWidgetState
             ),
             Flexible(
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: FutureBuilder<UsersRecord>(
-                  future: UsersRecord.getDocumentOnce(widget!.userDoc!),
+                  future: UsersRecord.getDocumentOnce(widget.userDoc!),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
                     if (!snapshot.hasData) {
@@ -200,23 +195,23 @@ class _UpdateOfficerComponentWidgetState
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Container(
-                    decoration: BoxDecoration(),
+                    decoration: const BoxDecoration(),
                   ),
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Container(
                         width: double.infinity,
-                        decoration: BoxDecoration(),
+                        decoration: const BoxDecoration(),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 10.0, 0.0, 0.0),
-                          child: Container(
+                          child: SizedBox(
                             width: 200.0,
                             child: TextFormField(
                               controller: _model.positionTextController,
@@ -242,7 +237,7 @@ class _UpdateOfficerComponentWidgetState
                                       letterSpacing: 0.0,
                                     ),
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Color(0x00000000),
                                     width: 0.5,
                                   ),
@@ -287,9 +282,9 @@ class _UpdateOfficerComponentWidgetState
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(-1.0, 0.0),
+                        alignment: const AlignmentDirectional(-1.0, 0.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               5.0, 5.0, 5.0, 0.0),
                           child: Text(
                             'Ex. President, Vice President - Internal, Vice President for External Affairs, Public Relations Officer, etc.',
@@ -313,11 +308,11 @@ class _UpdateOfficerComponentWidgetState
                     children: [
                       Container(
                         width: double.infinity,
-                        decoration: BoxDecoration(),
+                        decoration: const BoxDecoration(),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 10.0, 0.0, 0.0),
-                          child: Container(
+                          child: SizedBox(
                             width: 200.0,
                             child: TextFormField(
                               controller: _model.positionRankTextController,
@@ -343,7 +338,7 @@ class _UpdateOfficerComponentWidgetState
                                       letterSpacing: 0.0,
                                     ),
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Color(0x00000000),
                                     width: 0.5,
                                   ),
@@ -398,9 +393,9 @@ class _UpdateOfficerComponentWidgetState
                         ),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(-1.0, 0.0),
+                        alignment: const AlignmentDirectional(-1.0, 0.0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               5.0, 5.0, 5.0, 0.0),
                           child: Text(
                             'This signifies the order of your position. For example, a President might be \'1\' on the order of the position in an organization. A VP for Events & Management, should be \'2\', and so on. This differs on each organization.',
@@ -421,11 +416,11 @@ class _UpdateOfficerComponentWidgetState
                   ),
                   Container(
                     width: double.infinity,
-                    decoration: BoxDecoration(),
+                    decoration: const BoxDecoration(),
                     child: Builder(
                       builder: (context) => Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                         child: FFButtonWidget(
                           onPressed: () async {
                             logFirebaseEvent(
@@ -438,9 +433,9 @@ class _UpdateOfficerComponentWidgetState
                                   elevation: 0,
                                   insetPadding: EdgeInsets.zero,
                                   backgroundColor: Colors.transparent,
-                                  alignment: AlignmentDirectional(0.0, 0.0)
+                                  alignment: const AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
-                                  child: WebViewAware(
+                                  child: const WebViewAware(
                                     child: ConfirmDialogBoxWidget(
                                       confirmDialogTitle: 'Update Officer',
                                       confirmDialogMeesage:
@@ -455,7 +450,7 @@ class _UpdateOfficerComponentWidgetState
                             if (_model.officerConfirmDialog!) {
                               logFirebaseEvent('Button_backend_call');
 
-                              await widget!.membersDoc!.reference
+                              await widget.membersDoc!.reference
                                   .update(createMembersRecordData(
                                 officerRole: _model.positionTextController.text,
                                 officerIndex: int.tryParse(
@@ -467,7 +462,7 @@ class _UpdateOfficerComponentWidgetState
                                 type: 'updated',
                                 module: 'organizations',
                                 doneToName: 'an officer',
-                                doneTo: widget!.userDoc,
+                                doneTo: widget.userDoc,
                               );
                               logFirebaseEvent('Button_action_block');
                               await action_blocks.triggerAppNotification(
@@ -475,8 +470,8 @@ class _UpdateOfficerComponentWidgetState
                                 type: 'user',
                                 title: 'Your officership has been updated',
                                 message:
-                                    'An admin from ${widget!.orgDoc?.organizationName} has updated your officership information. Check on your Organizations to view.',
-                                user: widget!.userDoc,
+                                    'An admin from ${widget.orgDoc?.organizationName} has updated your officership information. Check on your Organizations to view.',
+                                user: widget.userDoc,
                               );
                               logFirebaseEvent(
                                   'Button_trigger_push_notification');
@@ -484,9 +479,9 @@ class _UpdateOfficerComponentWidgetState
                                 notificationTitle:
                                     'You have been updated as an officer!',
                                 notificationText:
-                                    'An admin from ${widget!.orgDoc?.organizationName} has updated your officership.',
+                                    'An admin from ${widget.orgDoc?.organizationName} has updated your officership.',
                                 notificationSound: 'default',
-                                userRefs: [widget!.userDoc!],
+                                userRefs: [widget.userDoc!],
                                 initialPageName: 'auth_redirect',
                                 parameterData: {},
                               );
@@ -498,9 +493,9 @@ class _UpdateOfficerComponentWidgetState
                                     elevation: 0,
                                     insetPadding: EdgeInsets.zero,
                                     backgroundColor: Colors.transparent,
-                                    alignment: AlignmentDirectional(0.0, 0.0)
+                                    alignment: const AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
-                                    child: WebViewAware(
+                                    child: const WebViewAware(
                                       child: CongratulationsDialogBoxWidget(
                                         congratsDialogTitle: 'Officer Updated',
                                         congratsDialogMeesage:
@@ -522,9 +517,9 @@ class _UpdateOfficerComponentWidgetState
                                     elevation: 0,
                                     insetPadding: EdgeInsets.zero,
                                     backgroundColor: Colors.transparent,
-                                    alignment: AlignmentDirectional(0.0, 0.0)
+                                    alignment: const AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
-                                    child: WebViewAware(
+                                    child: const WebViewAware(
                                       child: InformationDialogBoxWidget(
                                         infoDialogTitle: 'Action Cancelled',
                                         infoDialogMeesage:
@@ -544,9 +539,9 @@ class _UpdateOfficerComponentWidgetState
                           text: 'Update Officer',
                           options: FFButtonOptions(
                             height: 50.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -558,7 +553,7 @@ class _UpdateOfficerComponentWidgetState
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),

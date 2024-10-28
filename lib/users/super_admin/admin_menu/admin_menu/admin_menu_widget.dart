@@ -3,12 +3,9 @@ import '/backend/backend.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/users/super_admin/admin_menu/admin_menu_component/admin_menu_card/admin_menu_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'admin_menu_model.dart';
 export 'admin_menu_model.dart';
 
@@ -85,32 +82,32 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
               body: SafeArea(
                 top: true,
                 child: Align(
-                  alignment: AlignmentDirectional(0.0, -1.0),
+                  alignment: const AlignmentDirectional(0.0, -1.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         child: wrapWithModel(
                           model: _model.titleHeaderComponentModel,
                           updateCallback: () => safeSetState(() {}),
-                          child: TitleHeaderComponentWidget(
+                          child: const TitleHeaderComponentWidget(
                             titleText: 'Admin Menu',
                           ),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 5.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -128,7 +125,7 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                           ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 0.0, 0.0),
                                       child: Text(
                                         'This control panel allows you to modify key aspects of the app.',
@@ -159,28 +156,17 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 20.0),
-                          child: GridView(
-                            padding: EdgeInsets.zero,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 10.0,
-                              mainAxisSpacing: 10.0,
-                              childAspectRatio: 1.4,
-                            ),
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            children: [
-                              if ((adminMenuRolesRecord
-                                          ?.roleAccess?.toApprovalManagement ==
-                                      true) ||
-                                  currentUserDocument!.settings.isSuperAdmin)
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      20.0, 0.0, 0.0, 0.0),
-                                  child: InkWell(
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                if ((adminMenuRolesRecord?.roleAccess
+                                            .toApprovalManagement ==
+                                        true) ||
+                                    currentUserDocument!.settings.isSuperAdmin)
+                                  InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
                                     hoverColor: Colors.transparent,
@@ -197,37 +183,20 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     child: wrapWithModel(
                                       model: _model.approvalManagementModel,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: AdminMenuCardWidget(
-                                        moduleIcon: Icon(
-                                          FFIcons.kstatusUp,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          size: 18.0,
-                                        ),
+                                      child: const AdminMenuCardWidget(
                                         moduleName: 'Approval Management',
                                         moduleDescription:
                                             'Manage approval sets that can be used in certain modules.',
-                                        accessLevelIcon: Icon(
-                                          Icons.trending_up,
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          size: 14.0,
-                                        ),
-                                        accessLevelLabel: 'High Access',
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
+                                        imagePath:
+                                            'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FIcons%2FApproval%20Management.png?alt=media&token=ef521d7f-5cb2-4859-b84a-a1c2c16430ef',
                                       ),
                                     ),
                                   ),
-                                ),
-                              if ((adminMenuRolesRecord
-                                          ?.roleAccess?.toContentManagement ==
-                                      true) ||
-                                  currentUserDocument!.settings.isSuperAdmin)
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 20.0, 0.0),
-                                  child: InkWell(
+                                if ((adminMenuRolesRecord
+                                            ?.roleAccess.toContentManagement ==
+                                        true) ||
+                                    currentUserDocument!.settings.isSuperAdmin)
+                                  InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
                                     hoverColor: Colors.transparent,
@@ -241,85 +210,51 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                       context.pushNamed('admin_content_menu');
                                     },
                                     child: wrapWithModel(
-                                      model: _model.contentManagementModel,
+                                      model: _model.contentManagementModel1,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: AdminMenuCardWidget(
-                                        moduleIcon: Icon(
-                                          FFIcons.kimage4,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          size: 18.0,
-                                        ),
+                                      child: const AdminMenuCardWidget(
                                         moduleName: 'Content Management',
                                         moduleDescription:
                                             'Manage and publish announcement, news and updates to all users.',
-                                        accessLevelIcon: Icon(
-                                          Icons.trending_neutral,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          size: 14.0,
-                                        ),
-                                        accessLevelLabel: 'Moderate Access',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                        imagePath:
+                                            'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FIcons%2FContent%20Management.png?alt=media&token=343f88b7-c9d2-4843-b9f1-b7dcdc836e6a',
                                       ),
                                     ),
                                   ),
-                                ),
-                              if ((adminMenuRolesRecord
-                                          ?.roleAccess?.toFeedbackManagement ==
-                                      true) ||
-                                  currentUserDocument!.settings.isSuperAdmin)
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      20.0, 0.0, 0.0, 0.0),
-                                  child: InkWell(
+                                if ((adminMenuRolesRecord?.roleAccess
+                                            .toFeedbackManagement ==
+                                        true) ||
+                                    currentUserDocument!.settings.isSuperAdmin)
+                                  InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
                                       logFirebaseEvent(
-                                          'ADMIN_MENU_FeedbackManagement_ON_TAP');
+                                          'ADMIN_MENU_PAGE_ContentManagement_ON_TAP');
                                       logFirebaseEvent(
-                                          'FeedbackManagement_navigate_to');
+                                          'ContentManagement_navigate_to');
 
                                       context.pushNamed('admin_feedback');
                                     },
                                     child: wrapWithModel(
-                                      model: _model.feedbackManagementModel,
+                                      model: _model.contentManagementModel2,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: AdminMenuCardWidget(
-                                        moduleIcon: Icon(
-                                          FFIcons.kmessages4,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          size: 18.0,
-                                        ),
+                                      child: const AdminMenuCardWidget(
                                         moduleName: 'Feedback Management',
                                         moduleDescription:
-                                            'View feedbacks received from users.',
-                                        accessLevelIcon: Icon(
-                                          Icons.trending_neutral_rounded,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          size: 14.0,
-                                        ),
-                                        accessLevelLabel: 'Moderate Access',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                            'Manage all feedback received from users to improve the app experience.',
+                                        imagePath:
+                                            'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FIcons%2FFeedback%20Management.png?alt=media&token=b89cb425-5f70-4815-9c8a-176df0f2741f',
                                       ),
                                     ),
                                   ),
-                                ),
-                              if ((adminMenuRolesRecord
-                                          ?.roleAccess?.toFileMaintenance ==
-                                      true) ||
-                                  currentUserDocument!.settings.isSuperAdmin)
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 20.0, 0.0),
-                                  child: InkWell(
+                                if ((adminMenuRolesRecord
+                                            ?.roleAccess.toFileMaintenance ==
+                                        true) ||
+                                    currentUserDocument!.settings.isSuperAdmin)
+                                  InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
                                     hoverColor: Colors.transparent,
@@ -336,37 +271,20 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     child: wrapWithModel(
                                       model: _model.fileMaintenanceModel,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: AdminMenuCardWidget(
-                                        moduleIcon: Icon(
-                                          FFIcons.kfolderOpen,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          size: 18.0,
-                                        ),
+                                      child: const AdminMenuCardWidget(
                                         moduleName: 'File Maintenance',
                                         moduleDescription:
                                             'Modules involving management of internal usage of the application.',
-                                        accessLevelIcon: Icon(
-                                          Icons.trending_up,
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          size: 14.0,
-                                        ),
-                                        accessLevelLabel: 'High Access',
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
+                                        imagePath:
+                                            'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FIcons%2FFiles%20Managewent.png?alt=media&token=fecdc3bf-6647-4fd6-bd84-15643e91c195',
                                       ),
                                     ),
                                   ),
-                                ),
-                              if ((adminMenuRolesRecord
-                                          ?.roleAccess?.toLogsManagement ==
-                                      true) ||
-                                  currentUserDocument!.settings.isSuperAdmin)
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      20.0, 0.0, 0.0, 0.0),
-                                  child: InkWell(
+                                if ((adminMenuRolesRecord
+                                            ?.roleAccess.toLogsManagement ==
+                                        true) ||
+                                    currentUserDocument!.settings.isSuperAdmin)
+                                  InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
                                     hoverColor: Colors.transparent,
@@ -382,37 +300,20 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     child: wrapWithModel(
                                       model: _model.logsManagementModel,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: AdminMenuCardWidget(
-                                        moduleIcon: Icon(
-                                          FFIcons.kflash,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          size: 18.0,
-                                        ),
-                                        moduleName: 'Logs\nManagement',
+                                      child: const AdminMenuCardWidget(
+                                        moduleName: 'Logs Management',
                                         moduleDescription:
                                             'View any changes and updates being made in the application.',
-                                        accessLevelIcon: Icon(
-                                          Icons.trending_up,
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          size: 14.0,
-                                        ),
-                                        accessLevelLabel: 'High Access',
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
+                                        imagePath:
+                                            'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FIcons%2FLog%20Management.png?alt=media&token=d88ea9b0-6298-405b-a80b-ab26431df073',
                                       ),
                                     ),
                                   ),
-                                ),
-                              if ((adminMenuRolesRecord?.roleAccess
-                                          ?.toMaintenanceManagement ==
-                                      true) ||
-                                  currentUserDocument!.settings.isSuperAdmin)
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 20.0, 0.0),
-                                  child: InkWell(
+                                if ((adminMenuRolesRecord?.roleAccess
+                                            .toMaintenanceManagement ==
+                                        true) ||
+                                    currentUserDocument!.settings.isSuperAdmin)
+                                  InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
                                     hoverColor: Colors.transparent,
@@ -428,37 +329,20 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     child: wrapWithModel(
                                       model: _model.maintenanceManagementModel,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: AdminMenuCardWidget(
-                                        moduleIcon: Icon(
-                                          FFIcons.kdcube,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          size: 18.0,
-                                        ),
+                                      child: const AdminMenuCardWidget(
                                         moduleName: 'Maintenance Management',
                                         moduleDescription:
                                             'Turn on maintenance mode to hold users from using the app.',
-                                        accessLevelIcon: Icon(
-                                          Icons.trending_up,
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          size: 14.0,
-                                        ),
-                                        accessLevelLabel: 'High Access',
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
+                                        imagePath:
+                                            'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FIcons%2FMaintenance%20Management.png?alt=media&token=9dabb3c3-26fd-4313-ab04-2bdcf79cbbb1',
                                       ),
                                     ),
                                   ),
-                                ),
-                              if ((adminMenuRolesRecord?.roleAccess
-                                          ?.toOrganizationManagement ==
-                                      true) ||
-                                  currentUserDocument!.settings.isSuperAdmin)
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      20.0, 0.0, 0.0, 0.0),
-                                  child: InkWell(
+                                if ((adminMenuRolesRecord?.roleAccess
+                                            .toOrganizationManagement ==
+                                        true) ||
+                                    currentUserDocument!.settings.isSuperAdmin)
+                                  InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
                                     hoverColor: Colors.transparent,
@@ -474,37 +358,20 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     child: wrapWithModel(
                                       model: _model.organizationManagementModel,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: AdminMenuCardWidget(
-                                        moduleIcon: Icon(
-                                          FFIcons.kpeople4,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          size: 18.0,
-                                        ),
+                                      child: const AdminMenuCardWidget(
                                         moduleName: 'Organization Management',
                                         moduleDescription:
                                             'Manage the Recognized Student Council & Organizations using the app.',
-                                        accessLevelIcon: Icon(
-                                          Icons.trending_up,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          size: 14.0,
-                                        ),
-                                        accessLevelLabel: 'Moderate Access',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                        imagePath:
+                                            'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FIcons%2FOrganization%20Management.png?alt=media&token=1f8cdd26-0cde-4122-b905-db7dc84ee2ff',
                                       ),
                                     ),
                                   ),
-                                ),
-                              if ((adminMenuRolesRecord?.roleAccess
-                                          ?.toPushNotificiationManamgement ==
-                                      true) ||
-                                  currentUserDocument!.settings.isSuperAdmin)
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 20.0, 0.0),
-                                  child: InkWell(
+                                if ((adminMenuRolesRecord?.roleAccess
+                                            .toPushNotificiationManamgement ==
+                                        true) ||
+                                    currentUserDocument!.settings.isSuperAdmin)
+                                  InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
                                     hoverColor: Colors.transparent,
@@ -515,44 +382,26 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                       logFirebaseEvent(
                                           'PushNotificationManagement_navigate_to');
 
-                                      context.pushNamed('admin_notif_menu');
+                                      context.pushNamed('admin_notif_send');
                                     },
                                     child: wrapWithModel(
                                       model: _model
                                           .pushNotificationManagementModel,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: AdminMenuCardWidget(
-                                        moduleIcon: Icon(
-                                          FFIcons.kvolumeHigh,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          size: 18.0,
-                                        ),
-                                        moduleName:
-                                            'Push Notification Management',
+                                      child: const AdminMenuCardWidget(
+                                        moduleName: 'Send Push Notification',
                                         moduleDescription:
                                             'Manage the push notifications being sent by the application to the users.',
-                                        accessLevelIcon: Icon(
-                                          FFIcons.kuserTick,
-                                          color: FlutterFlowTheme.of(context)
-                                              .success,
-                                          size: 14.0,
-                                        ),
-                                        accessLevelLabel: 'Restricted',
-                                        color: FlutterFlowTheme.of(context)
-                                            .success,
+                                        imagePath:
+                                            'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FIcons%2FPush%20Notification%20Management.png?alt=media&token=f3266fcd-e5df-4be6-b632-36e4b3f4fa00',
                                       ),
                                     ),
                                   ),
-                                ),
-                              if ((adminMenuRolesRecord
-                                          ?.roleAccess?.toResourcesManagement ==
-                                      true) ||
-                                  currentUserDocument!.settings.isSuperAdmin)
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      20.0, 0.0, 0.0, 0.0),
-                                  child: InkWell(
+                                if ((adminMenuRolesRecord?.roleAccess
+                                            .toResourcesManagement ==
+                                        true) ||
+                                    currentUserDocument!.settings.isSuperAdmin)
+                                  InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
                                     hoverColor: Colors.transparent,
@@ -568,37 +417,20 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     child: wrapWithModel(
                                       model: _model.resourcesManagementModel,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: AdminMenuCardWidget(
-                                        moduleIcon: Icon(
-                                          FFIcons.klayer,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          size: 18.0,
-                                        ),
+                                      child: const AdminMenuCardWidget(
                                         moduleName: 'Resources Management',
                                         moduleDescription:
                                             'Modify any resources being access by the users.',
-                                        accessLevelIcon: Icon(
-                                          FFIcons.kuserTick,
-                                          color: FlutterFlowTheme.of(context)
-                                              .success,
-                                          size: 14.0,
-                                        ),
-                                        accessLevelLabel: 'Restrcited',
-                                        color: FlutterFlowTheme.of(context)
-                                            .success,
+                                        imagePath:
+                                            'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FIcons%2FResources%20Manangement.png?alt=media&token=da8e9a38-dec7-48df-bef6-8579647a813d',
                                       ),
                                     ),
                                   ),
-                                ),
-                              if ((adminMenuRolesRecord
-                                          ?.roleAccess?.toUserManagement ==
-                                      true) ||
-                                  currentUserDocument!.settings.isSuperAdmin)
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 20.0, 0.0),
-                                  child: InkWell(
+                                if ((adminMenuRolesRecord
+                                            ?.roleAccess.toUserManagement ==
+                                        true) ||
+                                    currentUserDocument!.settings.isSuperAdmin)
+                                  InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
                                     hoverColor: Colors.transparent,
@@ -614,30 +446,20 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     child: wrapWithModel(
                                       model: _model.userManagementModel,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: AdminMenuCardWidget(
-                                        moduleIcon: Icon(
-                                          FFIcons.kuserEdit,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          size: 18.0,
-                                        ),
+                                      child: const AdminMenuCardWidget(
                                         moduleName: 'User\nManagement',
                                         moduleDescription:
                                             'Manage user accounts using the application.',
-                                        accessLevelIcon: Icon(
-                                          Icons.trending_up,
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          size: 14.0,
-                                        ),
-                                        accessLevelLabel: 'High Access',
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
+                                        imagePath:
+                                            'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FIcons%2FUser%20Management.png?alt=media&token=5276ddcb-9dde-4e01-aa22-df3efc706178',
                                       ),
                                     ),
                                   ),
-                                ),
-                            ],
+                              ]
+                                  .divide(const SizedBox(height: 10.0))
+                                  .addToStart(const SizedBox(height: 5.0))
+                                  .addToEnd(const SizedBox(height: 5.0)),
+                            ),
                           ),
                         ),
                       ),

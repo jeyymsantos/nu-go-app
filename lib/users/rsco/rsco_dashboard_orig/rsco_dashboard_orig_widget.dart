@@ -3,14 +3,10 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/users/rsco/org_management/components/rsco_sidebar/rsco_sidebar_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'rsco_dashboard_orig_model.dart';
 export 'rsco_dashboard_orig_model.dart';
@@ -53,7 +49,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<OrganizationsRecord>(
-      future: OrganizationsRecord.getDocumentOnce(widget!.org!),
+      future: OrganizationsRecord.getDocumentOnce(widget.org!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -79,7 +75,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            drawer: Container(
+            drawer: SizedBox(
               width: 300.0,
               child: Drawer(
                 elevation: 16.0,
@@ -105,7 +101,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -141,7 +137,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -161,7 +157,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                 ),
                                 AuthUserStreamWidget(
                                   builder: (context) => Text(
-                                    'Logged in as: ${currentUserDisplayName}',
+                                    'Logged in as: $currentUserDisplayName',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -176,7 +172,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 15.0, 20.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -188,7 +184,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                     height: 100.0,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
-                                      boxShadow: [
+                                      boxShadow: const [
                                         BoxShadow(
                                           blurRadius: 6.0,
                                           color: Color(0x0F000000),
@@ -201,7 +197,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(10.0),
+                                      padding: const EdgeInsets.all(10.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -238,7 +234,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 10.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -265,12 +261,12 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                 width: 35.0,
                                                 height: 35.0,
                                                 decoration: BoxDecoration(
-                                                  color: Color(0x4C4AD991),
+                                                  color: const Color(0x4C4AD991),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           14.0),
                                                 ),
-                                                child: Icon(
+                                                child: const Icon(
                                                   FFIcons.kcalendar,
                                                   color: Color(0xFF4AD991),
                                                   size: 20.0,
@@ -281,13 +277,13 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              Icon(
+                                              const Icon(
                                                 Icons.trending_up_rounded,
                                                 color: Color(0xFF00B69B),
                                                 size: 18.0,
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         5.0, 0.0, 5.0, 0.0),
                                                 child: Text(
@@ -299,7 +295,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                         fontFamily:
                                                             'Montserrat',
                                                         color:
-                                                            Color(0xFF00B69B),
+                                                            const Color(0xFF00B69B),
                                                         fontSize: 10.0,
                                                         letterSpacing: 0.0,
                                                       ),
@@ -333,7 +329,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                     height: 100.0,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
-                                      boxShadow: [
+                                      boxShadow: const [
                                         BoxShadow(
                                           blurRadius: 6.0,
                                           color: Color(0x0F000000),
@@ -346,7 +342,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(10.0),
+                                      padding: const EdgeInsets.all(10.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -383,7 +379,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 10.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -410,12 +406,12 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                 width: 35.0,
                                                 height: 35.0,
                                                 decoration: BoxDecoration(
-                                                  color: Color(0x46FF9066),
+                                                  color: const Color(0x46FF9066),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           14.0),
                                                 ),
-                                                child: Icon(
+                                                child: const Icon(
                                                   FFIcons.kwallet4,
                                                   color: Color(0xFFFF9066),
                                                   size: 20.0,
@@ -426,13 +422,13 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              Icon(
+                                              const Icon(
                                                 Icons.trending_up_rounded,
                                                 color: Color(0xFF00B69B),
                                                 size: 18.0,
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         5.0, 0.0, 5.0, 0.0),
                                                 child: Text(
@@ -444,7 +440,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                         fontFamily:
                                                             'Montserrat',
                                                         color:
-                                                            Color(0xFF00B69B),
+                                                            const Color(0xFF00B69B),
                                                         fontSize: 10.0,
                                                         letterSpacing: 0.0,
                                                       ),
@@ -472,11 +468,11 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                     ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 15.0)),
+                              ].divide(const SizedBox(width: 15.0)),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 15.0, 20.0, 15.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -487,7 +483,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                     height: 100.0,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
-                                      boxShadow: [
+                                      boxShadow: const [
                                         BoxShadow(
                                           blurRadius: 6.0,
                                           color: Color(0x0F000000),
@@ -500,7 +496,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(10.0),
+                                      padding: const EdgeInsets.all(10.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -537,13 +533,13 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 10.0,
                                                                 0.0, 0.0),
                                                     child: FutureBuilder<int>(
                                                       future:
                                                           queryMembersRecordCount(
-                                                        parent: widget!.org,
+                                                        parent: widget.org,
                                                         queryBuilder:
                                                             (membersRecord) =>
                                                                 membersRecord
@@ -606,12 +602,12 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                 width: 35.0,
                                                 height: 35.0,
                                                 decoration: BoxDecoration(
-                                                  color: Color(0x4E8280FF),
+                                                  color: const Color(0x4E8280FF),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           14.0),
                                                 ),
-                                                child: Icon(
+                                                child: const Icon(
                                                   FFIcons.ktagUser,
                                                   color: Color(0xFF8280FF),
                                                   size: 20.0,
@@ -622,13 +618,13 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              Icon(
+                                              const Icon(
                                                 Icons.trending_up_rounded,
                                                 color: Color(0xFF00B69B),
                                                 size: 18.0,
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         5.0, 0.0, 5.0, 0.0),
                                                 child: Text(
@@ -640,7 +636,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                         fontFamily:
                                                             'Montserrat',
                                                         color:
-                                                            Color(0xFF00B69B),
+                                                            const Color(0xFF00B69B),
                                                         fontSize: 10.0,
                                                         letterSpacing: 0.0,
                                                       ),
@@ -674,7 +670,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                     height: 100.0,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
-                                      boxShadow: [
+                                      boxShadow: const [
                                         BoxShadow(
                                           blurRadius: 6.0,
                                           color: Color(0x0F000000),
@@ -687,7 +683,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(10.0),
+                                      padding: const EdgeInsets.all(10.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -724,13 +720,13 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 10.0,
                                                                 0.0, 0.0),
                                                     child: FutureBuilder<int>(
                                                       future:
                                                           queryMembersRecordCount(
-                                                        parent: widget!.org,
+                                                        parent: widget.org,
                                                         queryBuilder:
                                                             (membersRecord) =>
                                                                 membersRecord
@@ -788,12 +784,12 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                 width: 35.0,
                                                 height: 35.0,
                                                 decoration: BoxDecoration(
-                                                  color: Color(0x68FFC680),
+                                                  color: const Color(0x68FFC680),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           14.0),
                                                 ),
-                                                child: Icon(
+                                                child: const Icon(
                                                   FFIcons.kuserTick,
                                                   color: Color(0xFFFFC680),
                                                   size: 20.0,
@@ -804,13 +800,13 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              Icon(
+                                              const Icon(
                                                 Icons.trending_up_rounded,
                                                 color: Color(0xFF00B69B),
                                                 size: 18.0,
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         5.0, 0.0, 5.0, 0.0),
                                                 child: Text(
@@ -822,7 +818,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                         fontFamily:
                                                             'Montserrat',
                                                         color:
-                                                            Color(0xFF00B69B),
+                                                            const Color(0xFF00B69B),
                                                         fontSize: 10.0,
                                                         letterSpacing: 0.0,
                                                       ),
@@ -850,11 +846,11 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                     ),
                                   ),
                                 ),
-                              ].divide(SizedBox(width: 15.0)),
+                              ].divide(const SizedBox(width: 15.0)),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 20.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -886,16 +882,16 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 0.0),
-                            child: Container(
+                            child: SizedBox(
                               height: 232.0,
                               child: FutureBuilder<List<EventsRecord>>(
                                 future: queryEventsRecordOnce(
                                   queryBuilder: (eventsRecord) => eventsRecord
                                       .where(
                                         'org_reference',
-                                        isEqualTo: widget!.org,
+                                        isEqualTo: widget.org,
                                       )
                                       .orderBy('start_date'),
                                   limit: 5,
@@ -925,14 +921,14 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                     scrollDirection: Axis.horizontal,
                                     itemCount: listViewEventsRecordList.length,
                                     separatorBuilder: (_, __) =>
-                                        SizedBox(width: 10.0),
+                                        const SizedBox(width: 10.0),
                                     itemBuilder: (context, listViewIndex) {
                                       final listViewEventsRecord =
                                           listViewEventsRecordList[
                                               listViewIndex];
                                       return Align(
                                         alignment:
-                                            AlignmentDirectional(-1.0, -1.0),
+                                            const AlignmentDirectional(-1.0, -1.0),
                                         child: Container(
                                           width: 250.0,
                                           height: 300.0,
@@ -983,7 +979,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                             extra: <String,
                                                                 dynamic>{
                                                               kTransitionInfoKey:
-                                                                  TransitionInfo(
+                                                                  const TransitionInfo(
                                                                 hasTransition:
                                                                     true,
                                                                 transitionType:
@@ -998,7 +994,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                         },
                                                         child: ClipRRect(
                                                           borderRadius:
-                                                              BorderRadius.only(
+                                                              const BorderRadius.only(
                                                             bottomLeft:
                                                                 Radius.circular(
                                                                     0.0),
@@ -1028,11 +1024,11 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                       ),
                                                       Align(
                                                         alignment:
-                                                            AlignmentDirectional(
+                                                            const AlignmentDirectional(
                                                                 1.0, -1.0),
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       10.0,
@@ -1041,7 +1037,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                           child: Container(
                                                             decoration:
                                                                 BoxDecoration(
-                                                              color: Color(
+                                                              color: const Color(
                                                                   0x5C35408E),
                                                               borderRadius:
                                                                   BorderRadius
@@ -1081,7 +1077,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(10.0, 0.0,
                                                                 10.0, 10.0),
                                                     child: InkWell(
@@ -1113,7 +1109,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                           extra: <String,
                                                               dynamic>{
                                                             kTransitionInfoKey:
-                                                                TransitionInfo(
+                                                                const TransitionInfo(
                                                               hasTransition:
                                                                   true,
                                                               transitionType:
@@ -1135,7 +1131,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         5.0,
@@ -1171,7 +1167,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         10.0,
@@ -1192,7 +1188,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                                             .max,
                                                                     children: [
                                                                       Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             5.0,
@@ -1239,7 +1235,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                                             .end,
                                                                     children: [
                                                                       Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             5.0,
@@ -1294,7 +1290,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                 ],
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         10.0, 0.0, 10.0, 10.0),
                                                 child: Row(
@@ -1305,11 +1301,11 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                   children: [
                                                     Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               0.0, 1.0),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     5.0,
@@ -1344,7 +1340,7 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                           ),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         5.0,
                                                                         3.0,
@@ -1352,10 +1348,10 @@ class _RscoDashboardOrigWidgetState extends State<RscoDashboardOrigWidget> {
                                                                         3.0),
                                                             child: Container(
                                                               decoration:
-                                                                  BoxDecoration(),
+                                                                  const BoxDecoration(),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsets
+                                                                    const EdgeInsets
                                                                         .all(
                                                                             4.0),
                                                                 child: Text(

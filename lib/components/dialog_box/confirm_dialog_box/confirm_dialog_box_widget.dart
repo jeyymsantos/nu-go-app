@@ -2,10 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:provider/provider.dart';
 import 'confirm_dialog_box_model.dart';
 export 'confirm_dialog_box_model.dart';
 
@@ -50,7 +47,7 @@ class _ConfirmDialogBoxWidgetState extends State<ConfirmDialogBoxWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(20.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -58,7 +55,7 @@ class _ConfirmDialogBoxWidgetState extends State<ConfirmDialogBoxWidget> {
           borderRadius: BorderRadius.circular(30.0),
         ),
         child: Padding(
-          padding: EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -70,10 +67,10 @@ class _ConfirmDialogBoxWidgetState extends State<ConfirmDialogBoxWidget> {
                 animate: true,
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: Text(
                   valueOrDefault<String>(
-                    widget!.confirmDialogTitle,
+                    widget.confirmDialogTitle,
                     'Delete Account',
                   ),
                   textAlign: TextAlign.center,
@@ -87,10 +84,10 @@ class _ConfirmDialogBoxWidgetState extends State<ConfirmDialogBoxWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: Text(
                   valueOrDefault<String>(
-                    widget!.confirmDialogMeesage,
+                    widget.confirmDialogMeesage,
                     'Are you sure you want to kembot into something?',
                   ),
                   textAlign: TextAlign.center,
@@ -104,7 +101,7 @@ class _ConfirmDialogBoxWidgetState extends State<ConfirmDialogBoxWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     logFirebaseEvent('CONFIRM_DIALOG_BOX_CONFIRM_BTN_ON_TAP');
@@ -116,9 +113,9 @@ class _ConfirmDialogBoxWidgetState extends State<ConfirmDialogBoxWidget> {
                     width: double.infinity,
                     height: 40.0,
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Montserrat',
@@ -131,7 +128,7 @@ class _ConfirmDialogBoxWidgetState extends State<ConfirmDialogBoxWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     logFirebaseEvent('CONFIRM_DIALOG_BOX_CANCEL_BTN_ON_TAP');
@@ -143,10 +140,10 @@ class _ConfirmDialogBoxWidgetState extends State<ConfirmDialogBoxWidget> {
                     width: double.infinity,
                     height: 40.0,
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: Color(0xFFF1F3FF),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: const Color(0xFFF1F3FF),
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Montserrat',
                           color: FlutterFlowTheme.of(context).primary,

@@ -1,35 +1,9 @@
-import '/auth/firebase_auth/auth_util.dart';
-import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
-import '/backend/firebase_storage/storage.dart';
-import '/backend/push_notifications/push_notifications_util.dart';
-import '/components/dialog_box/confirm_dialog_box/confirm_dialog_box_widget.dart';
-import '/components/dialog_box/congratulations_dialog_box/congratulations_dialog_box_widget.dart';
-import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
-import '/flutter_flow/flutter_flow_expanded_image_view.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_radio_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/upload_data.dart';
-import '/actions/actions.dart' as action_blocks;
-import '/custom_code/actions/index.dart' as actions;
 import 'maintenance_users_widget.dart' show MaintenanceUsersWidget;
-import 'package:aligned_tooltip/aligned_tooltip.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
 class MaintenanceUsersModel extends FlutterFlowModel<MaintenanceUsersWidget> {
   ///  Local state fields for this page.
@@ -48,6 +22,8 @@ class MaintenanceUsersModel extends FlutterFlowModel<MaintenanceUsersWidget> {
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl = '';
 
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Container widget.
+  bool? confirmAction;
   // State field(s) for description_field widget.
   FocusNode? descriptionFieldFocusNode;
   TextEditingController? descriptionFieldTextController;
@@ -204,7 +180,9 @@ class MaintenanceUsersModel extends FlutterFlowModel<MaintenanceUsersWidget> {
   // Stores action output result for [Custom Action - getProgramDocument] action in emp_department widget.
   ProgramsRecord? empDepartmentOutput;
   // State field(s) for verified_switch widget.
-  bool? verifiedSwitchValue;
+  bool? verifiedSwitchValue1;
+  // State field(s) for verified_switch widget.
+  bool? verifiedSwitchValue2;
   // State field(s) for admin_switch widget.
   bool? adminSwitchValue;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in onboard_one_button widget.

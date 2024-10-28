@@ -1,15 +1,8 @@
-import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/users/super_admin/admin_menu/admin_menu_component/admin_menu_card/admin_menu_card_widget.dart';
 import 'admin_menu_widget.dart' show AdminMenuWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class AdminMenuModel extends FlutterFlowModel<AdminMenuWidget> {
   ///  State fields for stateful widgets in this page.
@@ -19,9 +12,9 @@ class AdminMenuModel extends FlutterFlowModel<AdminMenuWidget> {
   // Model for ApprovalManagement.
   late AdminMenuCardModel approvalManagementModel;
   // Model for ContentManagement.
-  late AdminMenuCardModel contentManagementModel;
-  // Model for FeedbackManagement.
-  late AdminMenuCardModel feedbackManagementModel;
+  late AdminMenuCardModel contentManagementModel1;
+  // Model for ContentManagement.
+  late AdminMenuCardModel contentManagementModel2;
   // Model for FileMaintenance.
   late AdminMenuCardModel fileMaintenanceModel;
   // Model for LogsManagement.
@@ -42,8 +35,8 @@ class AdminMenuModel extends FlutterFlowModel<AdminMenuWidget> {
     titleHeaderComponentModel =
         createModel(context, () => TitleHeaderComponentModel());
     approvalManagementModel = createModel(context, () => AdminMenuCardModel());
-    contentManagementModel = createModel(context, () => AdminMenuCardModel());
-    feedbackManagementModel = createModel(context, () => AdminMenuCardModel());
+    contentManagementModel1 = createModel(context, () => AdminMenuCardModel());
+    contentManagementModel2 = createModel(context, () => AdminMenuCardModel());
     fileMaintenanceModel = createModel(context, () => AdminMenuCardModel());
     logsManagementModel = createModel(context, () => AdminMenuCardModel());
     maintenanceManagementModel =
@@ -60,8 +53,8 @@ class AdminMenuModel extends FlutterFlowModel<AdminMenuWidget> {
   void dispose() {
     titleHeaderComponentModel.dispose();
     approvalManagementModel.dispose();
-    contentManagementModel.dispose();
-    feedbackManagementModel.dispose();
+    contentManagementModel1.dispose();
+    contentManagementModel2.dispose();
     fileMaintenanceModel.dispose();
     logsManagementModel.dispose();
     maintenanceManagementModel.dispose();

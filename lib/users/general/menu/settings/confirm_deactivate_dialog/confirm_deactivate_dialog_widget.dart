@@ -6,12 +6,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'confirm_deactivate_dialog_model.dart';
 export 'confirm_deactivate_dialog_model.dart';
@@ -55,7 +51,7 @@ class _ConfirmDeactivateDialogWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(20.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -66,7 +62,7 @@ class _ConfirmDeactivateDialogWidgetState
           key: _model.formKey,
           autovalidateMode: AutovalidateMode.disabled,
           child: Padding(
-            padding: EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(20.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -78,7 +74,7 @@ class _ConfirmDeactivateDialogWidgetState
                   animate: true,
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: Text(
                     'To confirm the deactivation of your account, please enter your password. Keep in mind that if you choose to sign in again in the future, your account will automatically reactivate without any additional steps needed.',
                     textAlign: TextAlign.justify,
@@ -92,8 +88,8 @@ class _ConfirmDeactivateDialogWidgetState
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                  child: Container(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  child: SizedBox(
                     width: double.infinity,
                     child: TextFormField(
                       controller: _model.textController,
@@ -166,12 +162,12 @@ class _ConfirmDeactivateDialogWidgetState
                 Builder(
                   builder: (context) => Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         logFirebaseEvent(
                             'CONFIRM_DEACTIVATE_DIALOG_DEACTIVATE_MY_');
-                        var _shouldSetState = false;
+                        var shouldSetState = false;
                         logFirebaseEvent('Button_validate_form');
                         if (_model.formKey.currentState == null ||
                             !_model.formKey.currentState!.validate()) {
@@ -181,7 +177,7 @@ class _ConfirmDeactivateDialogWidgetState
                         _model.checkPassword = await actions.checkUserPassword(
                           _model.textController.text,
                         );
-                        _shouldSetState = true;
+                        shouldSetState = true;
                         if (_model.checkPassword!) {
                           logFirebaseEvent('Button_backend_call');
 
@@ -200,9 +196,9 @@ class _ConfirmDeactivateDialogWidgetState
                                 elevation: 0,
                                 insetPadding: EdgeInsets.zero,
                                 backgroundColor: Colors.transparent,
-                                alignment: AlignmentDirectional(0.0, 0.0)
+                                alignment: const AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
-                                child: WebViewAware(
+                                child: const WebViewAware(
                                   child: InformationDialogBoxWidget(
                                     infoDialogTitle: 'Account Deactivated',
                                     infoDialogMeesage:
@@ -222,7 +218,7 @@ class _ConfirmDeactivateDialogWidgetState
 
                           context.goNamedAuth('auth_logout', context.mounted);
 
-                          if (_shouldSetState) safeSetState(() {});
+                          if (shouldSetState) safeSetState(() {});
                           return;
                         } else {
                           logFirebaseEvent('Button_alert_dialog');
@@ -233,9 +229,9 @@ class _ConfirmDeactivateDialogWidgetState
                                 elevation: 0,
                                 insetPadding: EdgeInsets.zero,
                                 backgroundColor: Colors.transparent,
-                                alignment: AlignmentDirectional(0.0, 0.0)
+                                alignment: const AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
-                                child: WebViewAware(
+                                child: const WebViewAware(
                                   child: FailedDialogBoxWidget(
                                     failedDialogTitle: 'Password Incorrect',
                                     failedDialogMeesage:
@@ -246,20 +242,20 @@ class _ConfirmDeactivateDialogWidgetState
                             },
                           );
 
-                          if (_shouldSetState) safeSetState(() {});
+                          if (shouldSetState) safeSetState(() {});
                           return;
                         }
 
-                        if (_shouldSetState) safeSetState(() {});
+                        if (shouldSetState) safeSetState(() {});
                       },
                       text: 'Deactivate my account',
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 40.0,
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).error,
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(

@@ -8,9 +8,6 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'update_product_marketplace_model.dart';
 export 'update_product_marketplace_model.dart';
 
@@ -73,24 +70,24 @@ class _UpdateProductMarketplaceWidgetState
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: TitleHeaderComponentWidget(
+                  child: const TitleHeaderComponentWidget(
                     titleText: 'Update Product',
                   ),
                 ),
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -99,7 +96,7 @@ class _UpdateProductMarketplaceWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 5.0),
                                     child: Text(
                                       'Upload Product Image',
@@ -128,7 +125,7 @@ class _UpdateProductMarketplaceWidgetState
                                 ],
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 15.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -223,13 +220,13 @@ class _UpdateProductMarketplaceWidgetState
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 15.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -239,7 +236,7 @@ class _UpdateProductMarketplaceWidgetState
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 5.0),
                                           child: Text(
                                             'Item Name',
@@ -268,7 +265,7 @@ class _UpdateProductMarketplaceWidgetState
                                       ],
                                     ),
                                     Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: TextFormField(
                                         controller:
                                             _model.itemNameTextController1,
@@ -355,7 +352,7 @@ class _UpdateProductMarketplaceWidgetState
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 15.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -365,7 +362,7 @@ class _UpdateProductMarketplaceWidgetState
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 5.0),
                                           child: Text(
                                             'Item Type',
@@ -397,7 +394,7 @@ class _UpdateProductMarketplaceWidgetState
                                       controller:
                                           _model.dropDownValueController1 ??=
                                               FormFieldController<String>(null),
-                                      options: [
+                                      options: const [
                                         'Clothing',
                                         'Drinkers',
                                         'Electronics'
@@ -442,7 +439,7 @@ class _UpdateProductMarketplaceWidgetState
                                           .textBoxBorder,
                                       borderWidth: 0.5,
                                       borderRadius: 8.0,
-                                      margin: EdgeInsetsDirectional.fromSTEB(
+                                      margin: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 4.0, 16.0, 4.0),
                                       hidesUnderline: true,
                                       isOverButton: true,
@@ -453,7 +450,7 @@ class _UpdateProductMarketplaceWidgetState
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 15.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -463,7 +460,7 @@ class _UpdateProductMarketplaceWidgetState
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 5.0),
                                           child: Text(
                                             'Add Sizes',
@@ -495,7 +492,7 @@ class _UpdateProductMarketplaceWidgetState
                                       controller:
                                           _model.dropDownValueController2 ??=
                                               FormFieldController<String>(null),
-                                      options: [
+                                      options: const [
                                         'X Smalll',
                                         'Small',
                                         'Medium',
@@ -546,7 +543,7 @@ class _UpdateProductMarketplaceWidgetState
                                           .textBoxBorder,
                                       borderWidth: 0.5,
                                       borderRadius: 8.0,
-                                      margin: EdgeInsetsDirectional.fromSTEB(
+                                      margin: const EdgeInsetsDirectional.fromSTEB(
                                           16.0, 4.0, 16.0, 4.0),
                                       hidesUnderline: true,
                                       isOverButton: true,
@@ -554,14 +551,14 @@ class _UpdateProductMarketplaceWidgetState
                                       isMultiSelect: false,
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -670,11 +667,11 @@ class _UpdateProductMarketplaceWidgetState
                                                     width: 100.0,
                                                     height: 50.0,
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     iconPadding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
@@ -697,7 +694,7 @@ class _UpdateProductMarketplaceWidgetState
                                                             8.0),
                                                   ),
                                                 ),
-                                              ].divide(SizedBox(width: 16.0)),
+                                              ].divide(const SizedBox(width: 16.0)),
                                             ),
                                           ),
                                           Container(
@@ -715,7 +712,7 @@ class _UpdateProductMarketplaceWidgetState
                                               ),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 12.0, 12.0, 12.0),
                                               child: Column(
@@ -835,7 +832,7 @@ class _UpdateProductMarketplaceWidgetState
                                                       ),
                                                     ],
                                                   ),
-                                                ].divide(SizedBox(height: 8.0)),
+                                                ].divide(const SizedBox(height: 8.0)),
                                               ),
                                             ),
                                           ),
@@ -846,7 +843,7 @@ class _UpdateProductMarketplaceWidgetState
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 15.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -856,7 +853,7 @@ class _UpdateProductMarketplaceWidgetState
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 5.0),
                                           child: Text(
                                             'Quantity',
@@ -885,7 +882,7 @@ class _UpdateProductMarketplaceWidgetState
                                       ],
                                     ),
                                     Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: TextFormField(
                                         controller:
                                             _model.itemNameTextController2,
@@ -973,7 +970,7 @@ class _UpdateProductMarketplaceWidgetState
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 15.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -983,7 +980,7 @@ class _UpdateProductMarketplaceWidgetState
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 5.0),
                                           child: Text(
                                             'Item Description',
@@ -1012,7 +1009,7 @@ class _UpdateProductMarketplaceWidgetState
                                       ],
                                     ),
                                     Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: TextFormField(
                                         controller:
                                             _model.descriptionTextController,
@@ -1103,7 +1100,7 @@ class _UpdateProductMarketplaceWidgetState
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 15.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -1113,7 +1110,7 @@ class _UpdateProductMarketplaceWidgetState
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 5.0),
                                           child: Text(
                                             'Item Price',
@@ -1142,7 +1139,7 @@ class _UpdateProductMarketplaceWidgetState
                                       ],
                                     ),
                                     Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: TextFormField(
                                         controller:
                                             _model.itemNameTextController3,
@@ -1212,7 +1209,7 @@ class _UpdateProductMarketplaceWidgetState
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                           ),
-                                          prefixIcon: Icon(
+                                          prefixIcon: const Icon(
                                             FFIcons.kmoney4,
                                           ),
                                         ),
@@ -1242,13 +1239,13 @@ class _UpdateProductMarketplaceWidgetState
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 10.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 10.0),
                 child: FFButtonWidget(
                   onPressed: () {
                     print('Button pressed ...');
                   },
                   text: 'Update Product',
-                  icon: Icon(
+                  icon: const Icon(
                     FFIcons.kshopAdd,
                     size: 15.0,
                   ),
@@ -1256,9 +1253,9 @@ class _UpdateProductMarketplaceWidgetState
                     width: double.infinity,
                     height: 40.0,
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Montserrat',

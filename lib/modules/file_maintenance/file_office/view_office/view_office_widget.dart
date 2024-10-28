@@ -5,8 +5,6 @@ import '/components/widgets/title_header_component/title_header_component_widget
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -14,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
@@ -149,7 +146,7 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: StreamBuilder<DefaultsRecord>(
                   stream: DefaultsRecord.getDocument(FFAppState().defaultID!),
                   builder: (context, snapshot) {
@@ -175,7 +172,7 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                         wrapWithModel(
                           model: _model.titleHeaderComponentModel,
                           updateCallback: () => safeSetState(() {}),
-                          child: TitleHeaderComponentWidget(
+                          child: const TitleHeaderComponentWidget(
                             titleText: 'File Maintenance',
                           ),
                         ),
@@ -187,7 +184,7 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                               children: [
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 5.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -207,7 +204,7 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: Text(
                                             'The group of staff handles a specific function in our university.',
@@ -241,7 +238,7 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                               children: [
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 10.0, 0.0),
                                     child: TextFormField(
                                       controller:
@@ -249,14 +246,11 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                       focusNode: _model.programSearchFocusNode,
                                       onChanged: (_) => EasyDebounce.debounce(
                                         '_model.programSearchTextController',
-                                        Duration(milliseconds: 200),
+                                        const Duration(milliseconds: 200),
                                         () async {
                                           logFirebaseEvent(
                                               'VIEW_OFFICE_program_search_ON_TEXTFIELD_');
                                           if (_model.programSearchTextController
-                                                      .text !=
-                                                  null &&
-                                              _model.programSearchTextController
                                                       .text !=
                                                   '') {
                                             logFirebaseEvent(
@@ -268,7 +262,7 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                                     .map(
                                                       (record) => TextSearchItem
                                                           .fromTerms(record, [
-                                                        record.officeName!
+                                                        record.officeName
                                                       ]),
                                                     )
                                                     .toList(),
@@ -278,7 +272,6 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                                           .text)
                                                       .map((r) => r.object)
                                                       .toList();
-                                              ;
                                             });
                                             logFirebaseEvent(
                                                 'program_search_update_app_state');
@@ -358,9 +351,6 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                                       'VIEW_OFFICE_program_search_ON_TEXTFIELD_');
                                                   if (_model.programSearchTextController
                                                               .text !=
-                                                          null &&
-                                                      _model.programSearchTextController
-                                                              .text !=
                                                           '') {
                                                     logFirebaseEvent(
                                                         'program_search_simple_search');
@@ -375,7 +365,7 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                                                           record,
                                                                           [
                                                                     record
-                                                                        .officeName!
+                                                                        .officeName
                                                                   ]),
                                                             )
                                                             .toList(),
@@ -386,7 +376,6 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                                               .map((r) =>
                                                                   r.object)
                                                               .toList();
-                                                      ;
                                                     });
                                                     logFirebaseEvent(
                                                         'program_search_update_app_state');
@@ -403,7 +392,7 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
 
                                                   safeSetState(() {});
                                                 },
-                                                child: Icon(
+                                                child: const Icon(
                                                   Icons.clear,
                                                   size: 20.0,
                                                 ),
@@ -446,7 +435,7 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                     width: 50.0,
                                     height: 50.0,
                                     clipBehavior: Clip.antiAlias,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
                                     ),
                                     child: Image.asset(
@@ -461,7 +450,7 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                         ),
                         Expanded(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 30.0, 0.0, 0.0),
                             child: SingleChildScrollView(
                               child: Column(
@@ -469,7 +458,7 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                 children: [
                                   if (!FFAppState().searchActive)
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 50.0),
                                       child: Builder(
                                         builder: (context) {
@@ -477,7 +466,7 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                               viewOfficeOfficeRecordList
                                                   .toList();
                                           if (programSearch.isEmpty) {
-                                            return EmptyListWidget(
+                                            return const EmptyListWidget(
                                               emptyWhat: 'office',
                                             );
                                           }
@@ -494,7 +483,7 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                                   programSearch[
                                                       programSearchIndex];
                                               return Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 0.0),
                                                 child: Row(
@@ -546,7 +535,7 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                                                         child:
                                                                             Padding(
                                                                           padding:
-                                                                              EdgeInsets.all(5.0),
+                                                                              const EdgeInsets.all(5.0),
                                                                           child:
                                                                               Image.asset(
                                                                             'assets/images/Office.png',
@@ -605,12 +594,12 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                                               children: [
                                                                 Align(
                                                                   alignment:
-                                                                      AlignmentDirectional(
+                                                                      const AlignmentDirectional(
                                                                           0.0,
                                                                           0.0),
                                                                   child:
                                                                       Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -676,7 +665,7 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                                                           extra: <String,
                                                                               dynamic>{
                                                                             kTransitionInfoKey:
-                                                                                TransitionInfo(
+                                                                                const TransitionInfo(
                                                                               hasTransition: true,
                                                                               transitionType: PageTransitionType.fade,
                                                                               duration: Duration(milliseconds: 0),
@@ -734,12 +723,12 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                                                             .reference))
                                                                   Align(
                                                                     alignment:
-                                                                        AlignmentDirectional(
+                                                                        const AlignmentDirectional(
                                                                             0.0,
                                                                             0.0),
                                                                     child:
                                                                         Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           10.0,
@@ -765,16 +754,16 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                                                                 builder: (alertDialogContext) {
                                                                                   return WebViewAware(
                                                                                     child: AlertDialog(
-                                                                                      title: Text('Delete Program'),
-                                                                                      content: Text('Are you sure you want to delete this office?'),
+                                                                                      title: const Text('Delete Program'),
+                                                                                      content: const Text('Are you sure you want to delete this office?'),
                                                                                       actions: [
                                                                                         TextButton(
                                                                                           onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                          child: Text('Cancel'),
+                                                                                          child: const Text('Cancel'),
                                                                                         ),
                                                                                         TextButton(
                                                                                           onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                          child: Text('Confirm'),
+                                                                                          child: const Text('Confirm'),
                                                                                         ),
                                                                                       ],
                                                                                     ),
@@ -798,12 +787,12 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                                                               builder: (alertDialogContext) {
                                                                                 return WebViewAware(
                                                                                   child: AlertDialog(
-                                                                                    title: Text('Deleted Program'),
-                                                                                    content: Text('Office has been successfully deleted.'),
+                                                                                    title: const Text('Deleted Program'),
+                                                                                    content: const Text('Office has been successfully deleted.'),
                                                                                     actions: [
                                                                                       TextButton(
                                                                                         onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                        child: Text('Okay'),
+                                                                                        child: const Text('Okay'),
                                                                                       ),
                                                                                     ],
                                                                                   ),
@@ -855,7 +844,7 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                     ),
                                   if (FFAppState().searchActive)
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 50.0),
                                       child: Builder(
                                         builder: (context) {
@@ -882,7 +871,7 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                                   programSearch[
                                                       programSearchIndex];
                                               return Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 0.0),
                                                 child: Row(
@@ -934,7 +923,7 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                                                         child:
                                                                             Padding(
                                                                           padding:
-                                                                              EdgeInsets.all(5.0),
+                                                                              const EdgeInsets.all(5.0),
                                                                           child:
                                                                               Image.asset(
                                                                             'assets/images/Office.png',
@@ -993,12 +982,12 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                                               children: [
                                                                 Align(
                                                                   alignment:
-                                                                      AlignmentDirectional(
+                                                                      const AlignmentDirectional(
                                                                           0.0,
                                                                           0.0),
                                                                   child:
                                                                       Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1064,7 +1053,7 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                                                           extra: <String,
                                                                               dynamic>{
                                                                             kTransitionInfoKey:
-                                                                                TransitionInfo(
+                                                                                const TransitionInfo(
                                                                               hasTransition: true,
                                                                               transitionType: PageTransitionType.fade,
                                                                               duration: Duration(milliseconds: 0),
@@ -1122,12 +1111,12 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                                                             .reference))
                                                                   Align(
                                                                     alignment:
-                                                                        AlignmentDirectional(
+                                                                        const AlignmentDirectional(
                                                                             0.0,
                                                                             0.0),
                                                                     child:
                                                                         Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           10.0,
@@ -1153,16 +1142,16 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                                                                 builder: (alertDialogContext) {
                                                                                   return WebViewAware(
                                                                                     child: AlertDialog(
-                                                                                      title: Text('Delete Program'),
-                                                                                      content: Text('Are you sure you want to delete this office?'),
+                                                                                      title: const Text('Delete Program'),
+                                                                                      content: const Text('Are you sure you want to delete this office?'),
                                                                                       actions: [
                                                                                         TextButton(
                                                                                           onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                          child: Text('Cancel'),
+                                                                                          child: const Text('Cancel'),
                                                                                         ),
                                                                                         TextButton(
                                                                                           onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                          child: Text('Confirm'),
+                                                                                          child: const Text('Confirm'),
                                                                                         ),
                                                                                       ],
                                                                                     ),
@@ -1186,12 +1175,12 @@ class _ViewOfficeWidgetState extends State<ViewOfficeWidget>
                                                                               builder: (alertDialogContext) {
                                                                                 return WebViewAware(
                                                                                   child: AlertDialog(
-                                                                                    title: Text('Deleted Program'),
-                                                                                    content: Text('Office has been successfully deleted.'),
+                                                                                    title: const Text('Deleted Program'),
+                                                                                    content: const Text('Office has been successfully deleted.'),
                                                                                     actions: [
                                                                                       TextButton(
                                                                                         onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                        child: Text('Okay'),
+                                                                                        child: const Text('Okay'),
                                                                                       ),
                                                                                     ],
                                                                                   ),

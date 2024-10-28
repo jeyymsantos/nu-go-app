@@ -2,12 +2,10 @@ import '/backend/backend.dart';
 import '/components/widgets/empty_list/empty_list_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/users/rsco/event_management/event_profile/components/side_bar_event_profile/side_bar_event_profile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'event_checked_out_model.dart';
@@ -62,7 +60,7 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
 
     return StreamBuilder<List<EventAttendeesRecord>>(
       stream: queryEventAttendeesRecord(
-        parent: widget!.eventDoc?.reference,
+        parent: widget.eventDoc?.reference,
         queryBuilder: (eventAttendeesRecord) => eventAttendeesRecord
             .where(
               'ticket_status',
@@ -95,7 +93,7 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            drawer: Container(
+            drawer: SizedBox(
               width: 250.0,
               child: Drawer(
                 elevation: 16.0,
@@ -104,7 +102,7 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
                     model: _model.sideBarEventProfileModel,
                     updateCallback: () => safeSetState(() {}),
                     child: SideBarEventProfileWidget(
-                      eventDoc: widget!.eventDoc!,
+                      eventDoc: widget.eventDoc!,
                     ),
                   ),
                 ),
@@ -115,32 +113,32 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Align(
-                  alignment: AlignmentDirectional(0.0, -1.0),
+                  alignment: const AlignmentDirectional(0.0, -1.0),
                   child: Container(
                     width: double.infinity,
                     height: 170.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primary,
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(30.0),
                         bottomRight: Radius.circular(30.0),
                         topLeft: Radius.circular(0.0),
                         topRight: Radius.circular(0.0),
                       ),
                     ),
-                    child: Container(
+                    child: SizedBox(
                       height: 190.0,
                       child: Stack(
-                        alignment: AlignmentDirectional(0.0, -1.0),
+                        alignment: const AlignmentDirectional(0.0, -1.0),
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 20.0, 20.0, 20.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 30.0, 0.0, 20.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -170,7 +168,7 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
                                     'Checked Out Guests',
                                     style: FlutterFlowTheme.of(context)
@@ -186,7 +184,7 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
                                     'View all checked out guests',
                                     style: FlutterFlowTheme.of(context)
@@ -205,9 +203,9 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(0.0, 1.25),
+                            alignment: const AlignmentDirectional(0.0, 1.25),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   30.0, 0.0, 30.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -228,12 +226,12 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
                                         'event_profile_insights',
                                         queryParameters: {
                                           'eventDoc': serializeParam(
-                                            widget!.eventDoc,
+                                            widget.eventDoc,
                                             ParamType.Document,
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          'eventDoc': widget!.eventDoc,
+                                          'eventDoc': widget.eventDoc,
                                         },
                                       );
                                     },
@@ -245,7 +243,7 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
                                             BorderRadius.circular(20.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -253,7 +251,7 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Icon(
                                                 Icons.insights_sharp,
@@ -295,23 +293,23 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
                                         'event_profile_dashboard',
                                         queryParameters: {
                                           'eventDoc': serializeParam(
-                                            widget!.eventDoc,
+                                            widget.eventDoc,
                                             ParamType.Document,
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          'eventDoc': widget!.eventDoc,
+                                          'eventDoc': widget.eventDoc,
                                         },
                                       );
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFF99F58),
+                                        color: const Color(0xFFF99F58),
                                         borderRadius:
                                             BorderRadius.circular(20.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -319,7 +317,7 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Icon(
                                                 FFIcons.khome,
@@ -361,23 +359,23 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
                                         'event_guests_all',
                                         queryParameters: {
                                           'eventDoc': serializeParam(
-                                            widget!.eventDoc,
+                                            widget.eventDoc,
                                             ParamType.Document,
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          'eventDoc': widget!.eventDoc,
+                                          'eventDoc': widget.eventDoc,
                                         },
                                       );
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: Color(0xFF599AFF),
+                                        color: const Color(0xFF599AFF),
                                         borderRadius:
                                             BorderRadius.circular(20.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -385,7 +383,7 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Icon(
                                                 FFIcons.kuserTag,
@@ -425,20 +423,20 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
                 Expanded(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 20.0, 20.0, 20.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
                                     'Guest List',
                                     style: FlutterFlowTheme.of(context)
@@ -455,7 +453,7 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 30.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
@@ -473,8 +471,8 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
                                                 (e.ticketCheckOut != null))
                                             .toList();
                                     if (checkedInGuests.isEmpty) {
-                                      return EmptyListWidget(
-                                        emptyWhat: 'check ins',
+                                      return const EmptyListWidget(
+                                        emptyWhat: 'check outs',
                                       );
                                     }
 
@@ -485,7 +483,7 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
                                       scrollDirection: Axis.vertical,
                                       itemCount: checkedInGuests.length,
                                       separatorBuilder: (_, __) =>
-                                          SizedBox(height: 5.0),
+                                          const SizedBox(height: 5.0),
                                       itemBuilder:
                                           (context, checkedInGuestsIndex) {
                                         final checkedInGuestsItem =
@@ -493,7 +491,7 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
                                                 checkedInGuestsIndex];
                                         return Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   20.0, 0.0, 20.0, 0.0),
                                           child: FutureBuilder<UsersRecord>(
                                             future: UsersRecord.getDocumentOnce(
@@ -536,7 +534,7 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
                                                   ),
                                                 ),
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 5.0, 0.0, 5.0),
                                                   child: Row(
@@ -549,7 +547,7 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
                                                       Flexible(
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -562,7 +560,7 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             5.0,
                                                                             0.0,
@@ -575,7 +573,7 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
                                                                   clipBehavior:
                                                                       Clip.antiAlias,
                                                                   decoration:
-                                                                      BoxDecoration(
+                                                                      const BoxDecoration(
                                                                     shape: BoxShape
                                                                         .circle,
                                                                   ),
@@ -594,7 +592,7 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
                                                               ),
                                                               Flexible(
                                                                 child: Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -673,7 +671,7 @@ class _EventCheckedOutWidgetState extends State<EventCheckedOutWidget> {
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,

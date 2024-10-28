@@ -10,18 +10,12 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/users/school_admins/approval_orgs/org_decline_bottom_sheet/org_decline_bottom_sheet_widget.dart';
 import '/users/school_admins/approval_orgs/org_revision_bottom_sheet/org_revision_bottom_sheet_widget.dart';
-import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'approval_org_applications_model.dart';
 export 'approval_org_applications_model.dart';
@@ -82,7 +76,7 @@ class _ApprovalOrgApplicationsWidgetState
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<OrganizationsRecord>(
-      stream: OrganizationsRecord.getDocument(widget!.orgRef!),
+      stream: OrganizationsRecord.getDocument(widget.orgRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -117,11 +111,11 @@ class _ApprovalOrgApplicationsWidgetState
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: TitleHeaderComponentWidget(
+                      child: const TitleHeaderComponentWidget(
                         titleText: 'Organization Approval',
                       ),
                     ),
@@ -129,7 +123,7 @@ class _ApprovalOrgApplicationsWidgetState
                   Expanded(
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -180,7 +174,7 @@ class _ApprovalOrgApplicationsWidgetState
                                     width: 100.0,
                                     height: 100.0,
                                     clipBehavior: Clip.antiAlias,
-                                    decoration: BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
                                     ),
                                     child: Image.network(
@@ -195,7 +189,7 @@ class _ApprovalOrgApplicationsWidgetState
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 10.0, 20.0, 0.0),
                                 child: Text(
                                   approvalOrgApplicationsOrganizationsRecord
@@ -232,7 +226,7 @@ class _ApprovalOrgApplicationsWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         20.0, 0.0, 20.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -241,10 +235,10 @@ class _ApprovalOrgApplicationsWidgetState
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   -1.0, 0.0),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 5.0, 0.0, 5.0),
                                                 child: Column(
@@ -273,7 +267,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                           queryParameters: {
                                                             'orgRef':
                                                                 serializeParam(
-                                                              widget!.orgRef,
+                                                              widget.orgRef,
                                                               ParamType
                                                                   .DocumentReference,
                                                             ),
@@ -281,7 +275,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                           extra: <String,
                                                               dynamic>{
                                                             kTransitionInfoKey:
-                                                                TransitionInfo(
+                                                                const TransitionInfo(
                                                               hasTransition:
                                                                   true,
                                                               transitionType:
@@ -301,12 +295,12 @@ class _ApprovalOrgApplicationsWidgetState
                                                           Flexible(
                                                             child: Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       -1.0,
                                                                       0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -385,12 +379,12 @@ class _ApprovalOrgApplicationsWidgetState
                                                                           ),
                                                                         ),
                                                                         Align(
-                                                                          alignment: AlignmentDirectional(
+                                                                          alignment: const AlignmentDirectional(
                                                                               1.0,
                                                                               0.0),
                                                                           child:
                                                                               Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
                                                                                 10.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -415,7 +409,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -467,7 +461,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -555,11 +549,11 @@ class _ApprovalOrgApplicationsWidgetState
                                                     ),
                                                     Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               -1.0, 0.0),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -617,7 +611,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -670,7 +664,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -763,7 +757,7 @@ class _ApprovalOrgApplicationsWidgetState
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 20.0, 0.0, 0.0),
                                               child: Column(
@@ -771,11 +765,11 @@ class _ApprovalOrgApplicationsWidgetState
                                                 children: [
                                                   Align(
                                                     alignment:
-                                                        AlignmentDirectional(
+                                                        const AlignmentDirectional(
                                                             -1.0, -1.0),
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -801,7 +795,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 15.0),
                                                     child: Column(
@@ -814,7 +808,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -881,7 +875,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                                   extra: <String,
                                                                       dynamic>{
                                                                     kTransitionInfoKey:
-                                                                        TransitionInfo(
+                                                                        const TransitionInfo(
                                                                       hasTransition:
                                                                           true,
                                                                       transitionType:
@@ -924,7 +918,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                                           .spaceBetween,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           10.0,
                                                                           0.0,
                                                                           0.0,
@@ -942,7 +936,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                                       ),
                                                                     ),
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           10.0,
@@ -971,7 +965,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                       'Special Interest Organization')
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -988,7 +982,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1011,7 +1005,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1083,7 +1077,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                                     extra: <String,
                                                                         dynamic>{
                                                                       kTransitionInfoKey:
-                                                                          TransitionInfo(
+                                                                          const TransitionInfo(
                                                                         hasTransition:
                                                                             true,
                                                                         transitionType:
@@ -1126,7 +1120,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                                             .spaceBetween,
                                                                     children: [
                                                                       Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                                                             10.0,
                                                                             0.0,
                                                                             0.0,
@@ -1144,7 +1138,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                                         ),
                                                                       ),
                                                                       Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             10.0,
@@ -1170,7 +1164,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                     ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 15.0),
                                                     child: Column(
@@ -1183,7 +1177,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1250,7 +1244,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                                   extra: <String,
                                                                       dynamic>{
                                                                     kTransitionInfoKey:
-                                                                        TransitionInfo(
+                                                                        const TransitionInfo(
                                                                       hasTransition:
                                                                           true,
                                                                       transitionType:
@@ -1293,7 +1287,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                                           .spaceBetween,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           10.0,
                                                                           0.0,
                                                                           0.0,
@@ -1311,7 +1305,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                                       ),
                                                                     ),
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           10.0,
@@ -1337,7 +1331,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 15.0),
                                                     child: Column(
@@ -1350,7 +1344,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1417,7 +1411,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                                   extra: <String,
                                                                       dynamic>{
                                                                     kTransitionInfoKey:
-                                                                        TransitionInfo(
+                                                                        const TransitionInfo(
                                                                       hasTransition:
                                                                           true,
                                                                       transitionType:
@@ -1460,7 +1454,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                                           .spaceBetween,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           10.0,
                                                                           0.0,
                                                                           0.0,
@@ -1478,7 +1472,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                                       ),
                                                                     ),
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           10.0,
@@ -1534,7 +1528,7 @@ class _ApprovalOrgApplicationsWidgetState
                                       .approvalStatus ==
                                   'Pending'))
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 10.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
@@ -1553,7 +1547,7 @@ class _ApprovalOrgApplicationsWidgetState
                                               .currentApprovalStep))
                                     Builder(
                                       builder: (context) => Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 0.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
@@ -1571,7 +1565,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                   backgroundColor:
                                                       Colors.transparent,
                                                   alignment:
-                                                      AlignmentDirectional(
+                                                      const AlignmentDirectional(
                                                               0.0, 0.0)
                                                           .resolve(
                                                               Directionality.of(
@@ -1583,7 +1577,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                                   dialogContext)
                                                               .unfocus(),
                                                       child:
-                                                          ConfirmDialogBoxWidget(
+                                                          const ConfirmDialogBoxWidget(
                                                         confirmDialogTitle:
                                                             'Process Request',
                                                         confirmDialogMeesage:
@@ -1610,7 +1604,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        AlignmentDirectional(
+                                                        const AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
@@ -1622,7 +1616,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                                     dialogContext)
                                                                 .unfocus(),
                                                         child:
-                                                            InformationDialogBoxWidget(
+                                                            const InformationDialogBoxWidget(
                                                           infoDialogTitle:
                                                               'Request Processed',
                                                           infoDialogMeesage:
@@ -1646,7 +1640,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                 approvalStep:
                                                     approvalOrgApplicationsOrganizationsRecord
                                                         .currentApprovalStep,
-                                                approveOrgRef: widget!.orgRef,
+                                                approveOrgRef: widget.orgRef,
                                                 approveWho:
                                                     approvalOrgApplicationsOrganizationsRecord
                                                         .orgFounder,
@@ -1675,7 +1669,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        AlignmentDirectional(
+                                                        const AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
@@ -1687,7 +1681,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                                     dialogContext)
                                                                 .unfocus(),
                                                         child:
-                                                            InformationDialogBoxWidget(
+                                                            const InformationDialogBoxWidget(
                                                           infoDialogTitle:
                                                               'Action Cancelled',
                                                           infoDialogMeesage:
@@ -1707,10 +1701,10 @@ class _ApprovalOrgApplicationsWidgetState
                                             width: double.infinity,
                                             height: 40.0,
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     24.0, 0.0, 24.0, 0.0),
                                             iconPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
@@ -1724,7 +1718,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                       letterSpacing: 0.0,
                                                     ),
                                             elevation: 3.0,
-                                            borderSide: BorderSide(
+                                            borderSide: const BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),
@@ -1735,7 +1729,7 @@ class _ApprovalOrgApplicationsWidgetState
                                       ),
                                     ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -1779,10 +1773,10 @@ class _ApprovalOrgApplicationsWidgetState
                                             options: FFButtonOptions(
                                               width: double.infinity,
                                               height: 40.0,
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: EdgeInsetsDirectional
+                                              iconPadding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -1799,7 +1793,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                     letterSpacing: 0.0,
                                                   ),
                                               elevation: 3.0,
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),
@@ -1847,10 +1841,10 @@ class _ApprovalOrgApplicationsWidgetState
                                             options: FFButtonOptions(
                                               width: double.infinity,
                                               height: 40.0,
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: EdgeInsetsDirectional
+                                              iconPadding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -1866,7 +1860,7 @@ class _ApprovalOrgApplicationsWidgetState
                                                         letterSpacing: 0.0,
                                                       ),
                                               elevation: 3.0,
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),
@@ -1875,7 +1869,7 @@ class _ApprovalOrgApplicationsWidgetState
                                             ),
                                           ),
                                         ),
-                                      ].divide(SizedBox(width: 10.0)),
+                                      ].divide(const SizedBox(width: 10.0)),
                                     ),
                                   ),
                                 ],

@@ -1,7 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/dialog_box/confirm_dialog_box/confirm_dialog_box_widget.dart';
 import '/components/dialog_box/congratulations_dialog_box/congratulations_dialog_box_widget.dart';
 import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
@@ -14,12 +13,9 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'org_application_model.dart';
@@ -127,7 +123,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                     return Stack(
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -136,13 +132,13 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                               wrapWithModel(
                                 model: _model.titleHeaderComponentModel,
                                 updateCallback: () => safeSetState(() {}),
-                                child: TitleHeaderComponentWidget(
+                                child: const TitleHeaderComponentWidget(
                                   titleText: 'Apply an Organization',
                                 ),
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 30.0),
                                   child: SingleChildScrollView(
                                     child: Column(
@@ -154,14 +150,14 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                               CrossAxisAlignment.stretch,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 10.0, 0.0, 0.0),
                                               child: Container(
                                                 width: 90.0,
                                                 height: 90.0,
                                                 clipBehavior: Clip.antiAlias,
-                                                decoration: BoxDecoration(
+                                                decoration: const BoxDecoration(
                                                   shape: BoxShape.circle,
                                                 ),
                                                 child: Image.network(
@@ -179,7 +175,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                   CrossAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 20.0),
                                                   child: FFButtonWidget(
@@ -273,14 +269,14 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                     text: 'Upload Logo',
                                                     options: FFButtonOptions(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   24.0,
                                                                   0.0,
                                                                   24.0,
                                                                   0.0),
                                                       iconPadding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -305,7 +301,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                                     0.0,
                                                               ),
                                                       elevation: 3.0,
-                                                      borderSide: BorderSide(
+                                                      borderSide: const BorderSide(
                                                         color:
                                                             Colors.transparent,
                                                         width: 1.0,
@@ -322,13 +318,13 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 50.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 15.0),
                                                 child: Column(
@@ -341,7 +337,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -490,7 +486,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 15.0),
                                                 child: Column(
@@ -503,7 +499,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -550,7 +546,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                               .orgTypeValueController ??=
                                                           FormFieldController<
                                                               String>(null),
-                                                      options: [
+                                                      options: const [
                                                         'Student Council',
                                                         'Academic Organization',
                                                         'Special Interest Organization'
@@ -622,7 +618,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                       borderWidth: 0.5,
                                                       borderRadius: 8.0,
                                                       margin:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   16.0,
                                                                   4.0,
@@ -637,7 +633,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 15.0),
                                                 child: Column(
@@ -650,7 +646,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -719,7 +715,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                             'None',
                                                           ),
                                                         ),
-                                                        options: [
+                                                        options: const [
                                                           'University-wide',
                                                           'School-wide',
                                                           'Program-wide'
@@ -790,7 +786,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                         borderWidth: 0.5,
                                                         borderRadius: 8.0,
                                                         margin:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     16.0,
                                                                     4.0,
@@ -810,11 +806,11 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                         'Special Interest Organization')
                                                       Align(
                                                         alignment:
-                                                            AlignmentDirectional(
+                                                            const AlignmentDirectional(
                                                                 -1.0, 0.0),
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -858,7 +854,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 15.0),
                                                 child: Column(
@@ -871,7 +867,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -995,7 +991,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                       borderWidth: 0.5,
                                                       borderRadius: 8.0,
                                                       margin:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   16.0,
                                                                   4.0,
@@ -1008,11 +1004,11 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                     ),
                                                     Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               -1.0, 0.0),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1046,7 +1042,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 15.0),
                                                 child: Column(
@@ -1059,7 +1055,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -1103,7 +1099,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                     ),
                                                     Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: TextFormField(
                                                         controller: _model
@@ -1226,7 +1222,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 15.0),
                                                 child: Column(
@@ -1239,7 +1235,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -1283,7 +1279,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                     ),
                                                     Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: TextFormField(
                                                         controller: _model
@@ -1414,7 +1410,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            AlignmentDirectional(
+                                                            const AlignmentDirectional(
                                                                 -1.0, -1.0),
                                                         child: Text(
                                                           'Attachments',
@@ -1435,7 +1431,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1450,7 +1446,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1478,7 +1474,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                             Flexible(
                                                               child: Align(
                                                                 alignment:
-                                                                    AlignmentDirectional(
+                                                                    const AlignmentDirectional(
                                                                         -1.0,
                                                                         -1.0),
                                                                 child: Text(
@@ -1511,7 +1507,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 15.0),
                                                     child: Column(
@@ -1524,7 +1520,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1605,22 +1601,22 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                                       height: double
                                                                           .infinity,
                                                                       decoration:
-                                                                          BoxDecoration(),
+                                                                          const BoxDecoration(),
                                                                       child:
                                                                           Align(
-                                                                        alignment: AlignmentDirectional(
+                                                                        alignment: const AlignmentDirectional(
                                                                             -1.0,
                                                                             0.0),
                                                                         child:
                                                                             Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
                                                                               10.0,
                                                                               0.0,
                                                                               0.0,
                                                                               0.0),
                                                                           child:
                                                                               Text(
-                                                                            _model.uploadedFileUrl2 != null && _model.uploadedFileUrl2 != ''
+                                                                            _model.uploadedFileUrl2 != ''
                                                                                 ? 'View File'
                                                                                 : 'Upload File',
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1634,8 +1630,6 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                                     ),
                                                                   ),
                                                                   if (_model.uploadedFileUrl2 !=
-                                                                          null &&
-                                                                      _model.uploadedFileUrl2 !=
                                                                           '')
                                                                     InkWell(
                                                                       splashColor:
@@ -1682,13 +1676,13 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                                         height:
                                                                             100.0,
                                                                         decoration:
-                                                                            BoxDecoration(),
-                                                                        alignment: AlignmentDirectional(
+                                                                            const BoxDecoration(),
+                                                                        alignment: const AlignmentDirectional(
                                                                             0.0,
                                                                             0.0),
                                                                         child:
                                                                             Align(
-                                                                          alignment: AlignmentDirectional(
+                                                                          alignment: const AlignmentDirectional(
                                                                               0.0,
                                                                               0.0),
                                                                           child:
@@ -1718,9 +1712,9 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                                     onTap:
                                                                         () async {
                                                                       logFirebaseEvent(
-                                                                          'ORG_APPLICATION_Container_gf7f70ef_ON_TA');
+                                                                          'ORG_APPLICATION_letterOfIntent_ON_TAP');
                                                                       logFirebaseEvent(
-                                                                          'Container_upload_file_to_firebase');
+                                                                          'letterOfIntent_upload_file_to_firebase');
                                                                       final selectedFiles =
                                                                           await selectFiles(
                                                                         allowedExtensions: [
@@ -1799,21 +1793,21 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                                       height:
                                                                           100.0,
                                                                       decoration:
-                                                                          BoxDecoration(),
+                                                                          const BoxDecoration(),
                                                                       alignment:
-                                                                          AlignmentDirectional(
+                                                                          const AlignmentDirectional(
                                                                               0.0,
                                                                               0.0),
                                                                       child:
                                                                           Align(
-                                                                        alignment: AlignmentDirectional(
+                                                                        alignment: const AlignmentDirectional(
                                                                             0.0,
                                                                             0.0),
                                                                         child:
                                                                             Icon(
                                                                           Icons
                                                                               .file_upload_outlined,
-                                                                          color: _model.uploadedFileUrl2 != null && _model.uploadedFileUrl2 != ''
+                                                                          color: _model.uploadedFileUrl2 != ''
                                                                               ? FlutterFlowTheme.of(context).success
                                                                               : FlutterFlowTheme.of(context).buttonVisit,
                                                                           size:
@@ -1834,7 +1828,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                       'Special Interest Organization')
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1851,7 +1845,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1874,7 +1868,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1957,22 +1951,22 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                                         height:
                                                                             double.infinity,
                                                                         decoration:
-                                                                            BoxDecoration(),
+                                                                            const BoxDecoration(),
                                                                         child:
                                                                             Align(
-                                                                          alignment: AlignmentDirectional(
+                                                                          alignment: const AlignmentDirectional(
                                                                               -1.0,
                                                                               0.0),
                                                                           child:
                                                                               Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
                                                                                 10.0,
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0),
                                                                             child:
                                                                                 Text(
-                                                                              _model.uploadedFileUrl3 != null && _model.uploadedFileUrl3 != '' ? 'View File' : 'Upload File',
+                                                                              _model.uploadedFileUrl3 != '' ? 'View File' : 'Upload File',
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                     fontFamily: 'Montserrat',
                                                                                     color: FlutterFlowTheme.of(context).tertiary,
@@ -1984,8 +1978,6 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                                       ),
                                                                     ),
                                                                     if (_model.uploadedFileUrl3 !=
-                                                                            null &&
-                                                                        _model.uploadedFileUrl3 !=
                                                                             '')
                                                                       InkWell(
                                                                         splashColor:
@@ -2026,14 +2018,14 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                                           height:
                                                                               100.0,
                                                                           decoration:
-                                                                              BoxDecoration(),
-                                                                          alignment: AlignmentDirectional(
+                                                                              const BoxDecoration(),
+                                                                          alignment: const AlignmentDirectional(
                                                                               0.0,
                                                                               0.0),
                                                                           child:
                                                                               Align(
                                                                             alignment:
-                                                                                AlignmentDirectional(0.0, 0.0),
+                                                                                const AlignmentDirectional(0.0, 0.0),
                                                                             child:
                                                                                 Icon(
                                                                               Icons.remove_red_eye_outlined,
@@ -2059,9 +2051,9 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                                       onTap:
                                                                           () async {
                                                                         logFirebaseEvent(
-                                                                            'ORG_APPLICATION_Container_yijdoq3b_ON_TA');
+                                                                            'ORG_APPLICATION_PAGE_endorsement_ON_TAP');
                                                                         logFirebaseEvent(
-                                                                            'Container_upload_file_to_firebase');
+                                                                            'endorsement_upload_file_to_firebase');
                                                                         final selectedFiles =
                                                                             await selectFiles(
                                                                           allowedExtensions: [
@@ -2132,12 +2124,12 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                                         height:
                                                                             double.infinity,
                                                                         decoration:
-                                                                            BoxDecoration(),
+                                                                            const BoxDecoration(),
                                                                         child:
                                                                             Icon(
                                                                           Icons
                                                                               .file_upload_outlined,
-                                                                          color: _model.uploadedFileUrl3 != null && _model.uploadedFileUrl3 != ''
+                                                                          color: _model.uploadedFileUrl3 != ''
                                                                               ? FlutterFlowTheme.of(context).success
                                                                               : FlutterFlowTheme.of(context).buttonVisit,
                                                                           size:
@@ -2155,7 +2147,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                     ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 15.0),
                                                     child: Column(
@@ -2168,7 +2160,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -2247,22 +2239,22 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                                     child:
                                                                         Container(
                                                                       decoration:
-                                                                          BoxDecoration(),
+                                                                          const BoxDecoration(),
                                                                       child:
                                                                           Align(
-                                                                        alignment: AlignmentDirectional(
+                                                                        alignment: const AlignmentDirectional(
                                                                             -1.0,
                                                                             0.0),
                                                                         child:
                                                                             Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
                                                                               10.0,
                                                                               0.0,
                                                                               0.0,
                                                                               0.0),
                                                                           child:
                                                                               Text(
-                                                                            _model.uploadedFileUrl4 != null && _model.uploadedFileUrl4 != ''
+                                                                            _model.uploadedFileUrl4 != ''
                                                                                 ? 'View File'
                                                                                 : 'Upload File',
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2276,8 +2268,6 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                                     ),
                                                                   ),
                                                                   if (_model.uploadedFileUrl4 !=
-                                                                          null &&
-                                                                      _model.uploadedFileUrl4 !=
                                                                           '')
                                                                     InkWell(
                                                                       splashColor:
@@ -2324,13 +2314,13 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                                         height:
                                                                             100.0,
                                                                         decoration:
-                                                                            BoxDecoration(),
-                                                                        alignment: AlignmentDirectional(
+                                                                            const BoxDecoration(),
+                                                                        alignment: const AlignmentDirectional(
                                                                             0.0,
                                                                             0.0),
                                                                         child:
                                                                             Align(
-                                                                          alignment: AlignmentDirectional(
+                                                                          alignment: const AlignmentDirectional(
                                                                               0.0,
                                                                               0.0),
                                                                           child:
@@ -2360,9 +2350,9 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                                     onTap:
                                                                         () async {
                                                                       logFirebaseEvent(
-                                                                          'ORG_APPLICATION_Container_k6gcwuuv_ON_TA');
+                                                                          'ORG_APPLICATION_PAGE_budget_ON_TAP');
                                                                       logFirebaseEvent(
-                                                                          'Container_upload_file_to_firebase');
+                                                                          'budget_upload_file_to_firebase');
                                                                       final selectedFiles =
                                                                           await selectFiles(
                                                                         allowedExtensions: [
@@ -2441,13 +2431,12 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                                       height: double
                                                                           .infinity,
                                                                       decoration:
-                                                                          BoxDecoration(),
+                                                                          const BoxDecoration(),
                                                                       child:
                                                                           Icon(
                                                                         Icons
                                                                             .file_upload_outlined,
-                                                                        color: _model.uploadedFileUrl4 != null &&
-                                                                                _model.uploadedFileUrl4 != ''
+                                                                        color: _model.uploadedFileUrl4 != ''
                                                                             ? FlutterFlowTheme.of(context).success
                                                                             : FlutterFlowTheme.of(context).buttonVisit,
                                                                         size:
@@ -2465,7 +2454,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 15.0),
                                                     child: Column(
@@ -2478,7 +2467,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -2557,22 +2546,22 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                                     child:
                                                                         Container(
                                                                       decoration:
-                                                                          BoxDecoration(),
+                                                                          const BoxDecoration(),
                                                                       child:
                                                                           Align(
-                                                                        alignment: AlignmentDirectional(
+                                                                        alignment: const AlignmentDirectional(
                                                                             -1.0,
                                                                             0.0),
                                                                         child:
                                                                             Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
                                                                               10.0,
                                                                               0.0,
                                                                               0.0,
                                                                               0.0),
                                                                           child:
                                                                               Text(
-                                                                            _model.uploadedFileUrl5 != null && _model.uploadedFileUrl5 != ''
+                                                                            _model.uploadedFileUrl5 != ''
                                                                                 ? 'View File'
                                                                                 : 'Upload File',
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2586,8 +2575,6 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                                     ),
                                                                   ),
                                                                   if (_model.uploadedFileUrl5 !=
-                                                                          null &&
-                                                                      _model.uploadedFileUrl5 !=
                                                                           '')
                                                                     InkWell(
                                                                       splashColor:
@@ -2634,13 +2621,13 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                                         height:
                                                                             100.0,
                                                                         decoration:
-                                                                            BoxDecoration(),
-                                                                        alignment: AlignmentDirectional(
+                                                                            const BoxDecoration(),
+                                                                        alignment: const AlignmentDirectional(
                                                                             0.0,
                                                                             0.0),
                                                                         child:
                                                                             Align(
-                                                                          alignment: AlignmentDirectional(
+                                                                          alignment: const AlignmentDirectional(
                                                                               0.0,
                                                                               0.0),
                                                                           child:
@@ -2659,7 +2646,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                                     height: double
                                                                         .infinity,
                                                                     decoration:
-                                                                        BoxDecoration(),
+                                                                        const BoxDecoration(),
                                                                     child:
                                                                         InkWell(
                                                                       splashColor:
@@ -2677,9 +2664,9 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                                       onTap:
                                                                           () async {
                                                                         logFirebaseEvent(
-                                                                            'ORG_APPLICATION_Icon_ir3g1gxj_ON_TAP');
+                                                                            'ORG_APPLICATION_PAGE_cbl_ON_TAP');
                                                                         logFirebaseEvent(
-                                                                            'Icon_upload_file_to_firebase');
+                                                                            'cbl_upload_file_to_firebase');
                                                                         final selectedFiles =
                                                                             await selectFiles(
                                                                           allowedExtensions: [
@@ -2747,8 +2734,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                                           Icon(
                                                                         Icons
                                                                             .file_upload_outlined,
-                                                                        color: _model.uploadedFileUrl5 != null &&
-                                                                                _model.uploadedFileUrl5 != ''
+                                                                        color: _model.uploadedFileUrl5 != ''
                                                                             ? FlutterFlowTheme.of(context).success
                                                                             : FlutterFlowTheme.of(context).buttonVisit,
                                                                         size:
@@ -2778,30 +2764,177 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                           ),
                         ),
                         Align(
-                          alignment: AlignmentDirectional(0.0, 1.0),
+                          alignment: const AlignmentDirectional(0.0, 1.0),
                           child: Builder(
                             builder: (context) => Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   20.0, 10.0, 20.0, 30.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   logFirebaseEvent(
                                       'ORG_APPLICATION_SUBMIT_APPLICATION_BTN_O');
-                                  var _shouldSetState = false;
+                                  var shouldSetState = false;
                                   logFirebaseEvent('Button_validate_form');
                                   if (_model.formKey.currentState == null ||
                                       !_model.formKey.currentState!
                                           .validate()) {
                                     return;
                                   }
-                                  if (_model.uploadedFileUrl1 == null ||
-                                      _model.uploadedFileUrl1.isEmpty) {
+                                  if (_model.uploadedFileUrl1.isEmpty) {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: const AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child: WebViewAware(
+                                            child: GestureDetector(
+                                              onTap: () =>
+                                                  FocusScope.of(dialogContext)
+                                                      .unfocus(),
+                                              child: const InformationDialogBoxWidget(
+                                                infoDialogTitle: 'Logo Missing',
+                                                infoDialogMeesage:
+                                                    'Please make sure that you have uploaded a logo for your org application.',
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+
                                     return;
                                   }
                                   if (_model.orgTypeValue == null) {
                                     return;
                                   }
                                   if (_model.adviserValue == null) {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: const AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child: WebViewAware(
+                                            child: GestureDetector(
+                                              onTap: () =>
+                                                  FocusScope.of(dialogContext)
+                                                      .unfocus(),
+                                              child: const InformationDialogBoxWidget(
+                                                infoDialogTitle:
+                                                    'Adviser Missing',
+                                                infoDialogMeesage:
+                                                    'Please make sure that you select an adviser for your organization.',
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+
+                                    return;
+                                  }
+                                  if (_model.uploadedFileUrl2.isEmpty) {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: const AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child: WebViewAware(
+                                            child: GestureDetector(
+                                              onTap: () =>
+                                                  FocusScope.of(dialogContext)
+                                                      .unfocus(),
+                                              child: const InformationDialogBoxWidget(
+                                                infoDialogTitle:
+                                                    'Letter of Intent & Officers Missing',
+                                                infoDialogMeesage:
+                                                    'Make sure to upload your letter of intent and list of officers file.',
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+
+                                    return;
+                                  }
+                                  if (_model.uploadedFileUrl4.isEmpty) {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: const AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child: WebViewAware(
+                                            child: GestureDetector(
+                                              onTap: () =>
+                                                  FocusScope.of(dialogContext)
+                                                      .unfocus(),
+                                              child: const InformationDialogBoxWidget(
+                                                infoDialogTitle:
+                                                    'Projects & Budget Missing',
+                                                infoDialogMeesage:
+                                                    'Please upload your proposed list of projects and budget file. ',
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+
+                                    return;
+                                  }
+                                  if (_model.uploadedFileUrl5.isEmpty) {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (dialogContext) {
+                                        return Dialog(
+                                          elevation: 0,
+                                          insetPadding: EdgeInsets.zero,
+                                          backgroundColor: Colors.transparent,
+                                          alignment: const AlignmentDirectional(
+                                                  0.0, 0.0)
+                                              .resolve(
+                                                  Directionality.of(context)),
+                                          child: WebViewAware(
+                                            child: GestureDetector(
+                                              onTap: () =>
+                                                  FocusScope.of(dialogContext)
+                                                      .unfocus(),
+                                              child: const InformationDialogBoxWidget(
+                                                infoDialogTitle:
+                                                    'Constitution and By-Laws Missing',
+                                                infoDialogMeesage:
+                                                    'Please make sure that you upload your constitution and by-laws file.',
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+
                                     return;
                                   }
                                   logFirebaseEvent('Button_alert_dialog');
@@ -2813,7 +2946,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0)
+                                            const AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: WebViewAware(
@@ -2821,7 +2954,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                             onTap: () =>
                                                 FocusScope.of(dialogContext)
                                                     .unfocus(),
-                                            child: ConfirmDialogBoxWidget(
+                                            child: const ConfirmDialogBoxWidget(
                                               confirmDialogTitle:
                                                   'Organizational Application',
                                               confirmDialogMeesage:
@@ -2834,7 +2967,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                   ).then((value) => safeSetState(
                                       () => _model.confirmDialog = value));
 
-                                  _shouldSetState = true;
+                                  shouldSetState = true;
                                   if (_model.confirmDialog!) {
                                     // Get Org Approval Set
                                     logFirebaseEvent(
@@ -2843,14 +2976,14 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                         await ApprovalSetsRecord
                                             .getDocumentOnce(stackDefaultsRecord
                                                 .approvalSets.organization!);
-                                    _shouldSetState = true;
+                                    shouldSetState = true;
                                     // Get Adviser
                                     logFirebaseEvent('Button_GetAdviser');
                                     _model.adviserRef =
                                         await actions.getUserDocument(
                                       _model.adviserValue!,
                                     );
-                                    _shouldSetState = true;
+                                    shouldSetState = true;
                                     logFirebaseEvent('Button_action_block');
                                     await action_blocks.orgSignatorySet(
                                       context,
@@ -2862,7 +2995,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                     logFirebaseEvent('Button_firestore_query');
                                     _model.orgCount =
                                         await queryOrganizationsRecordCount();
-                                    _shouldSetState = true;
+                                    shouldSetState = true;
                                     logFirebaseEvent('Button_backend_call');
 
                                     await OrganizationsRecord.collection
@@ -2885,9 +3018,9 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                         orgDescription: _model
                                             .descriptionTextController.text,
                                         orgDepartment: currentUserDocument
-                                            ?.student?.program,
+                                            ?.student.program,
                                         orgSchool: currentUserDocument
-                                            ?.student?.school,
+                                            ?.student.school,
                                         application: createOrgApplicationStruct(
                                           fileIntentAndOfficers:
                                               _model.uploadedFileUrl2,
@@ -2923,7 +3056,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                         await actions.getOrganizationDocument(
                                       'rsco_${_model.orgCount?.toString()}_${currentUserReference?.id}',
                                     );
-                                    _shouldSetState = true;
+                                    shouldSetState = true;
                                     logFirebaseEvent('Button_backend_call');
 
                                     await ApplicationRecord.createDoc(
@@ -2982,7 +3115,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                           '${_model.orgNameTextController.text} is pending for your review. Go to your Organizations tab to check the submission.',
                                       multipleUsers: _model
                                           .orgApprovalSet?.signatories
-                                          ?.map((e) => e.approvalUser)
+                                          .map((e) => e.approvalUser)
                                           .withoutNulls
                                           .toList(),
                                     );
@@ -2994,7 +3127,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                           elevation: 0,
                                           insetPadding: EdgeInsets.zero,
                                           backgroundColor: Colors.transparent,
-                                          alignment: AlignmentDirectional(
+                                          alignment: const AlignmentDirectional(
                                                   0.0, 0.0)
                                               .resolve(
                                                   Directionality.of(context)),
@@ -3004,7 +3137,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                                   FocusScope.of(dialogContext)
                                                       .unfocus(),
                                               child:
-                                                  CongratulationsDialogBoxWidget(
+                                                  const CongratulationsDialogBoxWidget(
                                                 congratsDialogTitle:
                                                     'Application Submitted',
                                                 congratsDialogMeesage:
@@ -3026,7 +3159,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                     );
                                     logFirebaseEvent('Button_navigate_back');
                                     context.safePop();
-                                    if (_shouldSetState) safeSetState(() {});
+                                    if (shouldSetState) safeSetState(() {});
                                     return;
                                   } else {
                                     logFirebaseEvent('Button_alert_dialog');
@@ -3037,7 +3170,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                           elevation: 0,
                                           insetPadding: EdgeInsets.zero,
                                           backgroundColor: Colors.transparent,
-                                          alignment: AlignmentDirectional(
+                                          alignment: const AlignmentDirectional(
                                                   0.0, 0.0)
                                               .resolve(
                                                   Directionality.of(context)),
@@ -3046,7 +3179,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                               onTap: () =>
                                                   FocusScope.of(dialogContext)
                                                       .unfocus(),
-                                              child: InformationDialogBoxWidget(
+                                              child: const InformationDialogBoxWidget(
                                                 infoDialogTitle:
                                                     'Application Cancelled',
                                                 infoDialogMeesage:
@@ -3058,19 +3191,19 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                       },
                                     );
 
-                                    if (_shouldSetState) safeSetState(() {});
+                                    if (shouldSetState) safeSetState(() {});
                                     return;
                                   }
 
-                                  if (_shouldSetState) safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
                                 },
                                 text: 'Submit Application',
                                 options: FFButtonOptions(
                                   width: double.infinity,
                                   height: 40.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -3082,7 +3215,7 @@ class _OrgApplicationWidgetState extends State<OrgApplicationWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                   elevation: 3.0,
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),

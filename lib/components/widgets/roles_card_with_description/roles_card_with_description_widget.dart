@@ -1,9 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'roles_card_with_description_model.dart';
 export 'roles_card_with_description_model.dart';
 
@@ -13,7 +10,7 @@ class RolesCardWithDescriptionWidget extends StatefulWidget {
     required this.title,
     required this.description,
     bool? active,
-  }) : this.active = active ?? false;
+  }) : active = active ?? false;
 
   final String? title;
   final String? description;
@@ -73,7 +70,7 @@ class _RolesCardWithDescriptionWidgetState
               children: [
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -82,7 +79,7 @@ class _RolesCardWithDescriptionWidgetState
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsets.all(5.0),
+                                padding: const EdgeInsets.all(5.0),
                                 child: Image.asset(
                                   'assets/images/Files.png',
                                   width: 40.0,
@@ -100,7 +97,7 @@ class _RolesCardWithDescriptionWidgetState
                             children: [
                               Text(
                                 valueOrDefault<String>(
-                                  widget!.title,
+                                  widget.title,
                                   'Title',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -114,7 +111,7 @@ class _RolesCardWithDescriptionWidgetState
                               ),
                               Text(
                                 valueOrDefault<String>(
-                                  widget!.description,
+                                  widget.description,
                                   'Description',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -137,7 +134,7 @@ class _RolesCardWithDescriptionWidgetState
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Theme(
                         data: ThemeData(
                           checkboxTheme: CheckboxThemeData(
@@ -152,7 +149,7 @@ class _RolesCardWithDescriptionWidgetState
                               FlutterFlowTheme.of(context).alternate,
                         ),
                         child: Checkbox(
-                          value: _model.checkboxValue ??= widget!.active,
+                          value: _model.checkboxValue ??= widget.active,
                           onChanged: (newValue) async {
                             safeSetState(
                                 () => _model.checkboxValue = newValue!);

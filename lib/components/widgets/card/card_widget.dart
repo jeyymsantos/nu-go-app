@@ -1,9 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'card_model.dart';
 export 'card_model.dart';
 
@@ -52,12 +49,12 @@ class _CardWidgetState extends State<CardWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, -1.0),
+      alignment: const AlignmentDirectional(0.0, -1.0),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
         child: Container(
           width: 300.0,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             boxShadow: [
               BoxShadow(
                 blurRadius: 2.0,
@@ -87,9 +84,9 @@ class _CardWidgetState extends State<CardWidget> {
               Stack(
                 children: [
                   Align(
-                    alignment: AlignmentDirectional(0.0, -1.0),
+                    alignment: const AlignmentDirectional(0.0, -1.0),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(0.0),
                         bottomRight: Radius.circular(0.0),
                         topLeft: Radius.circular(20.0),
@@ -104,19 +101,19 @@ class _CardWidgetState extends State<CardWidget> {
                     ),
                   ),
                   Align(
-                    alignment: AlignmentDirectional(-0.03, 2.35),
+                    alignment: const AlignmentDirectional(-0.03, 2.35),
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
                       child: Container(
                         width: 100.0,
                         height: 100.0,
                         clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                         ),
                         child: Image.network(
-                          widget!.imagePath!,
+                          widget.imagePath!,
                           fit: BoxFit.contain,
                         ),
                       ),
@@ -125,15 +122,15 @@ class _CardWidgetState extends State<CardWidget> {
                 ],
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Align(
-                      alignment: AlignmentDirectional(0.0, -1.0),
+                      alignment: const AlignmentDirectional(0.0, -1.0),
                       child: Text(
                         valueOrDefault<String>(
-                          widget!.name,
+                          widget.name,
                           'Brenley Ian DR Robles',
                         ),
                         textAlign: TextAlign.center,
@@ -146,10 +143,10 @@ class _CardWidgetState extends State<CardWidget> {
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0.0, -1.0),
+                      alignment: const AlignmentDirectional(0.0, -1.0),
                       child: Text(
                         valueOrDefault<String>(
-                          widget!.role,
+                          widget.role,
                           'Front-end Developer/UI/UX Designer',
                         ),
                         textAlign: TextAlign.center,
@@ -161,13 +158,13 @@ class _CardWidgetState extends State<CardWidget> {
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             15.0, 0.0, 15.0, 0.0),
                         child: Text(
                           valueOrDefault<String>(
-                            widget!.roleDefinition,
+                            widget.roleDefinition,
                             'Crafting seamless user experiences with code, design, and innovation expertise.',
                           ),
                           textAlign: TextAlign.center,

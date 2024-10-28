@@ -10,11 +10,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'org_revision_model.dart';
@@ -66,7 +64,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
     context.watch<FFAppState>();
 
     return FutureBuilder<OrganizationsRecord>(
-      future: OrganizationsRecord.getDocumentOnce(widget!.orgRef!),
+      future: OrganizationsRecord.getDocumentOnce(widget.orgRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -95,7 +93,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,20 +101,20 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: TitleHeaderComponentWidget(
+                      child: const TitleHeaderComponentWidget(
                         titleText: 'Update Organization',
                       ),
                     ),
                     if (orgRevisionOrganizationsRecord.status == 'Revision')
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 10.0),
                               child: Text(
                                 'Remarks',
@@ -130,7 +128,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                               ),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(-1.0, -1.0),
+                              alignment: const AlignmentDirectional(-1.0, -1.0),
                               child: StreamBuilder<UsersRecord>(
                                 stream: UsersRecord.getDocument(
                                     orgRevisionOrganizationsRecord
@@ -169,7 +167,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(10.0),
+                                      padding: const EdgeInsets.all(10.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment:
@@ -183,13 +181,13 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     -1.0, -1.0),
                                                 child: Container(
                                                   width: 40.0,
                                                   height: 40.0,
                                                   clipBehavior: Clip.antiAlias,
-                                                  decoration: BoxDecoration(
+                                                  decoration: const BoxDecoration(
                                                     shape: BoxShape.circle,
                                                   ),
                                                   child: Image.network(
@@ -211,7 +209,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   10.0,
                                                                   0.0,
@@ -258,7 +256,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   10.0,
                                                                   20.0,
@@ -273,7 +271,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                         children: [
                                                           Align(
                                                             alignment:
-                                                                AlignmentDirectional(
+                                                                const AlignmentDirectional(
                                                                     -1.0, 0.0),
                                                             child: Text(
                                                               valueOrDefault<
@@ -316,16 +314,16 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                       ),
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             0.0, 20.0, 0.0, 30.0),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Align(
-                                alignment: AlignmentDirectional(-1.0, -1.0),
+                                alignment: const AlignmentDirectional(-1.0, -1.0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 5.0),
                                   child: Text(
                                     'Organization Details',
@@ -340,7 +338,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                   ),
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                 width: double.infinity,
                                 child: Form(
                                   key: _model.formKey,
@@ -355,20 +353,18 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 0.0),
                                             child: Container(
                                               width: 90.0,
                                               height: 90.0,
                                               clipBehavior: Clip.antiAlias,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                 shape: BoxShape.circle,
                                               ),
                                               child: Image.network(
                                                 valueOrDefault<String>(
                                                   _model.uploadedFileUrl1 !=
-                                                              null &&
-                                                          _model.uploadedFileUrl1 !=
                                                               ''
                                                       ? _model.uploadedFileUrl1
                                                       : orgRevisionOrganizationsRecord
@@ -385,7 +381,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                 CrossAxisAlignment.center,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 20.0),
                                                 child: FFButtonWidget(
@@ -476,11 +472,11 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                   text: 'Upload Logo',
                                                   options: FFButtonOptions(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(24.0, 0.0,
                                                                 24.0, 0.0),
                                                     iconPadding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
@@ -499,7 +495,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                                     elevation: 3.0,
-                                                    borderSide: BorderSide(
+                                                    borderSide: const BorderSide(
                                                       color: Colors.transparent,
                                                       width: 1.0,
                                                     ),
@@ -514,7 +510,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                         ],
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 15.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -523,7 +519,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 5.0),
                                                   child: Text(
@@ -656,7 +652,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 15.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -665,7 +661,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 5.0),
                                                   child: Text(
@@ -702,7 +698,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                               ],
                                             ),
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: TextFormField(
                                                 controller: _model
@@ -818,7 +814,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 15.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -827,7 +823,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 5.0),
                                                   child: Text(
@@ -864,7 +860,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                               ],
                                             ),
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: TextFormField(
                                                 controller: _model
@@ -986,7 +982,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     -1.0, -1.0),
                                                 child: Text(
                                                   'Attachments',
@@ -1004,7 +1000,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 30.0),
                                                 child: Row(
@@ -1015,7 +1011,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1044,7 +1040,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                     Flexible(
                                                       child: Align(
                                                         alignment:
-                                                            AlignmentDirectional(
+                                                            const AlignmentDirectional(
                                                                 -1.0, -1.0),
                                                         child: Text(
                                                           'Please note that the system only accepts files in PDF format.',
@@ -1076,7 +1072,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 15.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -1087,7 +1083,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1186,8 +1182,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                                     ),
                                                                     'resourceFile':
                                                                         serializeParam(
-                                                                      _model.uploadedFileUrl2 != null &&
-                                                                              _model.uploadedFileUrl2 !=
+                                                                      _model.uploadedFileUrl2 !=
                                                                                   ''
                                                                           ? _model
                                                                               .uploadedFileUrl2
@@ -1204,23 +1199,22 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                                 height: double
                                                                     .infinity,
                                                                 decoration:
-                                                                    BoxDecoration(),
+                                                                    const BoxDecoration(),
                                                                 child: Align(
                                                                   alignment:
-                                                                      AlignmentDirectional(
+                                                                      const AlignmentDirectional(
                                                                           -1.0,
                                                                           0.0),
                                                                   child:
                                                                       Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             10.0,
                                                                             0.0,
                                                                             0.0,
                                                                             0.0),
                                                                     child: Text(
-                                                                      _model.uploadedFileUrl2 != null &&
-                                                                              _model.uploadedFileUrl2 != ''
+                                                                      _model.uploadedFileUrl2 != ''
                                                                           ? 'Uploaded successfully'
                                                                           : 'View Uploaded File',
                                                                       style: FlutterFlowTheme.of(
@@ -1244,13 +1238,13 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                             width: 50.0,
                                                             height: 100.0,
                                                             decoration:
-                                                                BoxDecoration(),
+                                                                const BoxDecoration(),
                                                             alignment:
-                                                                AlignmentDirectional(
+                                                                const AlignmentDirectional(
                                                                     0.0, 0.0),
                                                             child: Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: InkWell(
                                                                 splashColor: Colors
@@ -1353,8 +1347,6 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                                   Icons
                                                                       .file_upload_outlined,
                                                                   color: _model.uploadedFileUrl2 !=
-                                                                              null &&
-                                                                          _model.uploadedFileUrl2 !=
                                                                               ''
                                                                       ? FlutterFlowTheme.of(
                                                                               context)
@@ -1379,7 +1371,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                   .type !=
                                               'Special Interest Organization')
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 0.0, 15.0),
                                               child: Column(
@@ -1391,7 +1383,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1415,7 +1407,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1522,8 +1514,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                                       ),
                                                                       'resourceFile':
                                                                           serializeParam(
-                                                                        _model.uploadedFileUrl3 != null &&
-                                                                                _model.uploadedFileUrl3 != ''
+                                                                        _model.uploadedFileUrl3 != ''
                                                                             ? _model.uploadedFileUrl3
                                                                             : orgRevisionOrganizationsRecord.application.fileFacultyEndorsement,
                                                                         ParamType
@@ -1537,23 +1528,22 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                                   height: double
                                                                       .infinity,
                                                                   decoration:
-                                                                      BoxDecoration(),
+                                                                      const BoxDecoration(),
                                                                   child: Align(
                                                                     alignment:
-                                                                        AlignmentDirectional(
+                                                                        const AlignmentDirectional(
                                                                             -1.0,
                                                                             0.0),
                                                                     child:
                                                                         Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           10.0,
                                                                           0.0,
                                                                           0.0,
                                                                           0.0),
                                                                       child:
                                                                           Text(
-                                                                        _model.uploadedFileUrl3 != null &&
-                                                                                _model.uploadedFileUrl3 != ''
+                                                                        _model.uploadedFileUrl3 != ''
                                                                             ? 'Uploaded successfully'
                                                                             : 'View Uploaded File',
                                                                         style: FlutterFlowTheme.of(context)
@@ -1574,7 +1564,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                               height: double
                                                                   .infinity,
                                                               decoration:
-                                                                  BoxDecoration(),
+                                                                  const BoxDecoration(),
                                                               child: InkWell(
                                                                 splashColor: Colors
                                                                     .transparent,
@@ -1676,8 +1666,6 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                                   Icons
                                                                       .file_upload_outlined,
                                                                   color: _model.uploadedFileUrl3 !=
-                                                                              null &&
-                                                                          _model.uploadedFileUrl3 !=
                                                                               ''
                                                                       ? FlutterFlowTheme.of(
                                                                               context)
@@ -1699,7 +1687,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                             ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 15.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -1710,7 +1698,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1809,8 +1797,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                                     ),
                                                                     'resourceFile':
                                                                         serializeParam(
-                                                                      _model.uploadedFileUrl4 != null &&
-                                                                              _model.uploadedFileUrl4 !=
+                                                                      _model.uploadedFileUrl4 !=
                                                                                   ''
                                                                           ? _model
                                                                               .uploadedFileUrl4
@@ -1825,23 +1812,22 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                               },
                                                               child: Container(
                                                                 decoration:
-                                                                    BoxDecoration(),
+                                                                    const BoxDecoration(),
                                                                 child: Align(
                                                                   alignment:
-                                                                      AlignmentDirectional(
+                                                                      const AlignmentDirectional(
                                                                           -1.0,
                                                                           0.0),
                                                                   child:
                                                                       Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             10.0,
                                                                             0.0,
                                                                             0.0,
                                                                             0.0),
                                                                     child: Text(
-                                                                      _model.uploadedFileUrl4 != null &&
-                                                                              _model.uploadedFileUrl4 != ''
+                                                                      _model.uploadedFileUrl4 != ''
                                                                           ? 'Uploaded successfully'
                                                                           : 'View Uploaded File',
                                                                       style: FlutterFlowTheme.of(
@@ -1866,7 +1852,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                             height:
                                                                 double.infinity,
                                                             decoration:
-                                                                BoxDecoration(),
+                                                                const BoxDecoration(),
                                                             child: InkWell(
                                                               splashColor: Colors
                                                                   .transparent,
@@ -1972,8 +1958,6 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                                 Icons
                                                                     .file_upload_outlined,
                                                                 color: _model.uploadedFileUrl4 !=
-                                                                            null &&
-                                                                        _model.uploadedFileUrl4 !=
                                                                             ''
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
@@ -1995,7 +1979,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 15.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -2006,7 +1990,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -2105,8 +2089,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                                     ),
                                                                     'resourceFile':
                                                                         serializeParam(
-                                                                      _model.uploadedFileUrl5 != null &&
-                                                                              _model.uploadedFileUrl5 !=
+                                                                      _model.uploadedFileUrl5 !=
                                                                                   ''
                                                                           ? _model
                                                                               .uploadedFileUrl5
@@ -2121,23 +2104,22 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                               },
                                                               child: Container(
                                                                 decoration:
-                                                                    BoxDecoration(),
+                                                                    const BoxDecoration(),
                                                                 child: Align(
                                                                   alignment:
-                                                                      AlignmentDirectional(
+                                                                      const AlignmentDirectional(
                                                                           -1.0,
                                                                           0.0),
                                                                   child:
                                                                       Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             10.0,
                                                                             0.0,
                                                                             0.0,
                                                                             0.0),
                                                                     child: Text(
-                                                                      _model.uploadedFileUrl5 != null &&
-                                                                              _model.uploadedFileUrl5 != ''
+                                                                      _model.uploadedFileUrl5 != ''
                                                                           ? 'Uploaded successfully'
                                                                           : 'View Uploaded File',
                                                                       style: FlutterFlowTheme.of(
@@ -2162,7 +2144,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                             height:
                                                                 double.infinity,
                                                             decoration:
-                                                                BoxDecoration(),
+                                                                const BoxDecoration(),
                                                             child: InkWell(
                                                               splashColor: Colors
                                                                   .transparent,
@@ -2268,8 +2250,6 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                                 Icons
                                                                     .file_upload_outlined,
                                                                 color: _model.uploadedFileUrl5 !=
-                                                                            null &&
-                                                                        _model.uploadedFileUrl5 !=
                                                                             ''
                                                                     ? FlutterFlowTheme.of(
                                                                             context)
@@ -2294,13 +2274,13 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                       Builder(
                                         builder: (context) => Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 10.0, 0.0, 0.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
                                               logFirebaseEvent(
                                                   'ORG_REVISION_SUBMIT_REVISION_BTN_ON_TAP');
-                                              var _shouldSetState = false;
+                                              var shouldSetState = false;
                                               logFirebaseEvent(
                                                   'Button_validate_form');
                                               if (_model.formKey.currentState ==
@@ -2321,7 +2301,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        AlignmentDirectional(
+                                                        const AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
@@ -2333,7 +2313,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                                     dialogContext)
                                                                 .unfocus(),
                                                         child:
-                                                            ConfirmDialogBoxWidget(
+                                                            const ConfirmDialogBoxWidget(
                                                           confirmDialogTitle:
                                                               'Submit Revision',
                                                           confirmDialogMeesage:
@@ -2347,7 +2327,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                   () => _model.confirmDialog =
                                                       value));
 
-                                              _shouldSetState = true;
+                                              shouldSetState = true;
                                               if (_model.confirmDialog!) {
                                                 logFirebaseEvent(
                                                     'Button_action_block');
@@ -2361,13 +2341,11 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                 logFirebaseEvent(
                                                     'Button_backend_call');
 
-                                                await widget!.orgRef!.update({
+                                                await widget.orgRef!.update({
                                                   ...createOrganizationsRecordData(
                                                     logo:
                                                         valueOrDefault<String>(
                                                       _model.uploadedFileUrl1 !=
-                                                                  null &&
-                                                              _model.uploadedFileUrl1 !=
                                                                   ''
                                                           ? _model
                                                               .uploadedFileUrl1
@@ -2390,8 +2368,6 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                           valueOrDefault<
                                                               String>(
                                                         _model.uploadedFileUrl2 !=
-                                                                    null &&
-                                                                _model.uploadedFileUrl2 !=
                                                                     ''
                                                             ? _model
                                                                 .uploadedFileUrl2
@@ -2404,8 +2380,6 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                           valueOrDefault<
                                                               String>(
                                                         _model.uploadedFileUrl3 !=
-                                                                    null &&
-                                                                _model.uploadedFileUrl3 !=
                                                                     ''
                                                             ? _model
                                                                 .uploadedFileUrl3
@@ -2418,8 +2392,6 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                           valueOrDefault<
                                                               String>(
                                                         _model.uploadedFileUrl4 !=
-                                                                    null &&
-                                                                _model.uploadedFileUrl4 !=
                                                                     ''
                                                             ? _model
                                                                 .uploadedFileUrl4
@@ -2432,8 +2404,6 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                           valueOrDefault<
                                                               String>(
                                                         _model.uploadedFileUrl5 !=
-                                                                    null &&
-                                                                _model.uploadedFileUrl5 !=
                                                                     ''
                                                             ? _model
                                                                 .uploadedFileUrl5
@@ -2465,7 +2435,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
 
                                                 await ApplicationRecord
                                                         .createDoc(
-                                                            widget!.orgRef!)
+                                                            widget.orgRef!)
                                                     .set({
                                                   ...createApplicationRecordData(
                                                     message:
@@ -2503,7 +2473,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                       backgroundColor:
                                                           Colors.transparent,
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
@@ -2515,7 +2485,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                                       dialogContext)
                                                                   .unfocus(),
                                                           child:
-                                                              CongratulationsDialogBoxWidget(
+                                                              const CongratulationsDialogBoxWidget(
                                                             congratsDialogTitle:
                                                                 'Revision Submitted',
                                                             congratsDialogMeesage:
@@ -2539,7 +2509,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                       backgroundColor:
                                                           Colors.transparent,
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
@@ -2551,7 +2521,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                                       dialogContext)
                                                                   .unfocus(),
                                                           child:
-                                                              InformationDialogBoxWidget(
+                                                              const InformationDialogBoxWidget(
                                                             infoDialogTitle:
                                                                 'Action Cancelled',
                                                             infoDialogMeesage:
@@ -2566,25 +2536,27 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                 logFirebaseEvent(
                                                     'Button_navigate_back');
                                                 context.safePop();
-                                                if (_shouldSetState)
+                                                if (shouldSetState) {
                                                   safeSetState(() {});
+                                                }
                                                 return;
                                               }
 
                                               logFirebaseEvent(
                                                   'Button_navigate_back');
                                               context.safePop();
-                                              if (_shouldSetState)
+                                              if (shouldSetState) {
                                                 safeSetState(() {});
+                                              }
                                             },
                                             text: 'Submit Revision',
                                             options: FFButtonOptions(
                                               width: double.infinity,
                                               height: 40.0,
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: EdgeInsetsDirectional
+                                              iconPadding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -2600,7 +2572,7 @@ class _OrgRevisionWidgetState extends State<OrgRevisionWidget> {
                                                         letterSpacing: 0.0,
                                                       ),
                                               elevation: 3.0,
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),

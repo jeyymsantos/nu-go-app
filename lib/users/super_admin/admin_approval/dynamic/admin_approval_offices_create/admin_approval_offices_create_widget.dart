@@ -1,6 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -9,11 +8,9 @@ import '/users/super_admin/admin_approval/components/editing_of_office_approver/
 import '/users/super_admin/admin_approval/components/list_of_office_approver/list_of_office_approver_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'admin_approval_offices_create_model.dart';
@@ -132,7 +129,7 @@ class _AdminApprovalOfficesCreateWidgetState
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -140,7 +137,7 @@ class _AdminApprovalOfficesCreateWidgetState
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: TitleHeaderComponentWidget(
+                      child: const TitleHeaderComponentWidget(
                         titleText: 'Create Approval Set',
                       ),
                     ),
@@ -150,20 +147,20 @@ class _AdminApprovalOfficesCreateWidgetState
                         autovalidateMode: AutovalidateMode.disabled,
                         child: Container(
                           height: MediaQuery.sizeOf(context).height * 1.0,
-                          decoration: BoxDecoration(),
+                          decoration: const BoxDecoration(),
                           child: SingleChildScrollView(
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 20.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 30.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -171,7 +168,7 @@ class _AdminApprovalOfficesCreateWidgetState
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 15.0, 0.0, 0.0),
                                               child: TextFormField(
@@ -282,7 +279,7 @@ class _AdminApprovalOfficesCreateWidgetState
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(5.0, 5.0, 0.0, 0.0),
                                               child: Text(
                                                 'This is what you will call your approval set that can be assigned to an approval module.',
@@ -305,7 +302,7 @@ class _AdminApprovalOfficesCreateWidgetState
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 5.0),
                                         child: Text(
                                           'Approvers',
@@ -320,7 +317,7 @@ class _AdminApprovalOfficesCreateWidgetState
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 5.0),
                                         child: Text(
                                           'To rearrange the order of the set approvers, simply hold and drag the panel to your desired position.',
@@ -341,7 +338,7 @@ class _AdminApprovalOfficesCreateWidgetState
                                           false)
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 20.0, 0.0, 0.0),
                                           child: Text(
                                             'No approvers added yet.',
@@ -359,7 +356,7 @@ class _AdminApprovalOfficesCreateWidgetState
                                           ),
                                         ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 20.0, 0.0, 0.0),
                                         child: Builder(
                                           builder: (context) {
@@ -380,13 +377,12 @@ class _AdminApprovalOfficesCreateWidgetState
                                                         listOfApproversIndex];
                                                 return Container(
                                                   key: ValueKey(
-                                                      "ListView_q0yjcufx" +
-                                                          '_' +
+                                                      "ListView_q0yjcufx" '_' +
                                                           listOfApproversIndex
                                                               .toString()),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 5.0),
                                                     child: Container(
@@ -405,7 +401,7 @@ class _AdminApprovalOfficesCreateWidgetState
                                                         ),
                                                       ),
                                                       child: Padding(
-                                                        padding: EdgeInsets.all(
+                                                        padding: const EdgeInsets.all(
                                                             10.0),
                                                         child: Row(
                                                           mainAxisSize:
@@ -417,7 +413,7 @@ class _AdminApprovalOfficesCreateWidgetState
                                                             Flexible(
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             5.0,
                                                                             0.0,
@@ -475,7 +471,7 @@ class _AdminApprovalOfficesCreateWidgetState
                                                                       .max,
                                                               children: [
                                                                 Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -621,7 +617,7 @@ class _AdminApprovalOfficesCreateWidgetState
                                           true)
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 15.0, 0.0, 50.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
@@ -644,9 +640,9 @@ class _AdminApprovalOfficesCreateWidgetState
                                                             (alertDialogContext) {
                                                           return WebViewAware(
                                                             child: AlertDialog(
-                                                              title: Text(
+                                                              title: const Text(
                                                                   'Save Approval Set'),
-                                                              content: Text(
+                                                              content: const Text(
                                                                   'Are you sure you want to save this approval set?'),
                                                               actions: [
                                                                 TextButton(
@@ -654,7 +650,7 @@ class _AdminApprovalOfficesCreateWidgetState
                                                                       Navigator.pop(
                                                                           alertDialogContext,
                                                                           false),
-                                                                  child: Text(
+                                                                  child: const Text(
                                                                       'Cancel'),
                                                                 ),
                                                                 TextButton(
@@ -662,7 +658,7 @@ class _AdminApprovalOfficesCreateWidgetState
                                                                       Navigator.pop(
                                                                           alertDialogContext,
                                                                           true),
-                                                                  child: Text(
+                                                                  child: const Text(
                                                                       'Confirm'),
                                                                 ),
                                                               ],
@@ -720,16 +716,16 @@ class _AdminApprovalOfficesCreateWidgetState
                                                         (alertDialogContext) {
                                                       return WebViewAware(
                                                         child: AlertDialog(
-                                                          title: Text(
+                                                          title: const Text(
                                                               'Approval Set Created'),
-                                                          content: Text(
+                                                          content: const Text(
                                                               'Your approval set has been saved. You may now assign it to your preferred module or form.'),
                                                           actions: [
                                                             TextButton(
                                                               onPressed: () =>
                                                                   Navigator.pop(
                                                                       alertDialogContext),
-                                                              child: Text('Ok'),
+                                                              child: const Text('Ok'),
                                                             ),
                                                           ],
                                                         ),
@@ -749,16 +745,16 @@ class _AdminApprovalOfficesCreateWidgetState
                                                         (alertDialogContext) {
                                                       return WebViewAware(
                                                         child: AlertDialog(
-                                                          title: Text(
+                                                          title: const Text(
                                                               'Approval List Needed'),
-                                                          content: Text(
+                                                          content: const Text(
                                                               'Please input atleast one approver to proceed.'),
                                                           actions: [
                                                             TextButton(
                                                               onPressed: () =>
                                                                   Navigator.pop(
                                                                       alertDialogContext),
-                                                              child: Text('Ok'),
+                                                              child: const Text('Ok'),
                                                             ),
                                                           ],
                                                         ),
@@ -776,16 +772,16 @@ class _AdminApprovalOfficesCreateWidgetState
                                                       (alertDialogContext) {
                                                     return WebViewAware(
                                                       child: AlertDialog(
-                                                        title: Text(
+                                                        title: const Text(
                                                             'Approval Set Cancelled'),
-                                                        content: Text(
+                                                        content: const Text(
                                                             'This approval set has been cancelled.'),
                                                         actions: [
                                                           TextButton(
                                                             onPressed: () =>
                                                                 Navigator.pop(
                                                                     alertDialogContext),
-                                                            child: Text('Ok'),
+                                                            child: const Text('Ok'),
                                                           ),
                                                         ],
                                                       ),
@@ -802,10 +798,10 @@ class _AdminApprovalOfficesCreateWidgetState
                                             options: FFButtonOptions(
                                               width: double.infinity,
                                               height: 40.0,
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: EdgeInsetsDirectional
+                                              iconPadding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -821,7 +817,7 @@ class _AdminApprovalOfficesCreateWidgetState
                                                         letterSpacing: 0.0,
                                                       ),
                                               elevation: 3.0,
-                                              borderSide: BorderSide(
+                                              borderSide: const BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),

@@ -12,13 +12,8 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/random_data_util.dart' as random_data;
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'feedback_model.dart';
 export 'feedback_model.dart';
@@ -68,11 +63,11 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: TitleHeaderComponentWidget(
+                  child: const TitleHeaderComponentWidget(
                     titleText: 'Submit a Feedback',
                   ),
                 ),
@@ -85,7 +80,7 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                       Container(
                         width: 162.0,
                         height: 165.0,
-                        decoration: BoxDecoration(),
+                        decoration: const BoxDecoration(),
                         child: Transform.scale(
                           scaleX: 2.2,
                           scaleY: 2.2,
@@ -111,7 +106,7 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 15.0, 20.0, 15.0),
                         child: Text(
                           'To further improve the application, you may submit a feedback using the fields below. The developers will use your feedbacks to enhance features & services or fix any encountered bugs.',
@@ -124,9 +119,9 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
-                        child: Container(
+                        child: SizedBox(
                           width: double.infinity,
                           child: Form(
                             key: _model.formKey,
@@ -136,12 +131,12 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                               children: [
                                 Container(
                                   width: double.infinity,
-                                  decoration: BoxDecoration(),
+                                  decoration: const BoxDecoration(),
                                   child: FlutterFlowDropDown<String>(
                                     controller:
                                         _model.feedbackTypeValueController ??=
                                             FormFieldController<String>(null),
-                                    options: [
+                                    options: const [
                                       'I found a bug/problem',
                                       'I have a suggestion',
                                       'I want to report a content',
@@ -169,7 +164,7 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                     borderColor: Colors.transparent,
                                     borderWidth: 0.5,
                                     borderRadius: 14.0,
-                                    margin: EdgeInsetsDirectional.fromSTEB(
+                                    margin: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
                                     hidesUnderline: true,
                                     isOverButton: true,
@@ -178,7 +173,7 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: TextFormField(
                                     controller:
@@ -205,7 +200,7 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: Color(0x00000000),
                                           width: 0.5,
                                         ),
@@ -259,7 +254,7 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 0.0, 15.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -273,7 +268,7 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 5.0),
                                             child: Text(
                                               'Upload Screenshot/Photo',
@@ -330,14 +325,14 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                                 Expanded(
                                                   child: Container(
                                                     height: double.infinity,
-                                                    decoration: BoxDecoration(),
+                                                    decoration: const BoxDecoration(),
                                                     child: Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               -1.0, 0.0),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     10.0,
                                                                     0.0,
@@ -345,8 +340,6 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                                                     0.0),
                                                         child: Text(
                                                           _model.uploadedFileUrl !=
-                                                                      null &&
-                                                                  _model.uploadedFileUrl !=
                                                                       ''
                                                               ? 'View Photo'
                                                               : 'Upload Photo',
@@ -368,8 +361,6 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                                   ),
                                                 ),
                                                 if (_model.uploadedFileUrl !=
-                                                        null &&
-                                                    _model.uploadedFileUrl !=
                                                         '')
                                                   InkWell(
                                                     splashColor:
@@ -407,13 +398,13 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                                       width: 40.0,
                                                       height: 100.0,
                                                       decoration:
-                                                          BoxDecoration(),
+                                                          const BoxDecoration(),
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Align(
                                                         alignment:
-                                                            AlignmentDirectional(
+                                                            const AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Icon(
                                                           Icons
@@ -537,21 +528,18 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                                   child: Container(
                                                     width: 40.0,
                                                     height: 100.0,
-                                                    decoration: BoxDecoration(),
+                                                    decoration: const BoxDecoration(),
                                                     alignment:
-                                                        AlignmentDirectional(
+                                                        const AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Icon(
                                                         Icons
                                                             .file_upload_outlined,
-                                                        color: _model
-                                                                        .uploadedFileUrl !=
-                                                                    null &&
-                                                                _model.uploadedFileUrl !=
+                                                        color: _model.uploadedFileUrl !=
                                                                     ''
                                                             ? FlutterFlowTheme
                                                                     .of(context)
@@ -573,7 +561,7 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 15.0, 0.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
@@ -595,7 +583,7 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  AlignmentDirectional(0.0, 0.0)
+                                                  const AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
@@ -604,7 +592,7 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                                   onTap: () => FocusScope.of(
                                                           dialogContext)
                                                       .unfocus(),
-                                                  child: FailedDialogBoxWidget(
+                                                  child: const FailedDialogBoxWidget(
                                                     failedDialogTitle:
                                                         'Feedback Type Required',
                                                     failedDialogMeesage:
@@ -668,7 +656,7 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                       triggerPushNotification(
                                         notificationTitle: 'Feedback Received',
                                         notificationText:
-                                            'You have received a feedback from ${currentUserDisplayName}.',
+                                            'You have received a feedback from $currentUserDisplayName.',
                                         notificationSound: 'default',
                                         userRefs: _model.allSuperAdmin!
                                             .map((e) => e.reference)
@@ -683,7 +671,7 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                         type: 'multiple_users',
                                         title: 'Feedback Received',
                                         message:
-                                            'You have received a feedback from ${currentUserDisplayName}.',
+                                            'You have received a feedback from $currentUserDisplayName.',
                                         multipleUsers: _model.allSuperAdmin
                                             ?.map((e) => e.reference)
                                             .toList(),
@@ -694,15 +682,15 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                         builder: (alertDialogContext) {
                                           return WebViewAware(
                                             child: AlertDialog(
-                                              title: Text('Feedback Sent'),
-                                              content: Text(
+                                              title: const Text('Feedback Sent'),
+                                              content: const Text(
                                                   'Your feedback has been successfully submitted.'),
                                               actions: [
                                                 TextButton(
                                                   onPressed: () =>
                                                       Navigator.pop(
                                                           alertDialogContext),
-                                                  child: Text('Ok'),
+                                                  child: const Text('Ok'),
                                                 ),
                                               ],
                                             ),
@@ -718,10 +706,10 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                     options: FFButtonOptions(
                                       width: double.infinity,
                                       height: 50.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 0.0),
                                       iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color:
                                           FlutterFlowTheme.of(context).primary,
@@ -734,7 +722,7 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                       elevation: 3.0,
-                                      borderSide: BorderSide(
+                                      borderSide: const BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,
                                       ),

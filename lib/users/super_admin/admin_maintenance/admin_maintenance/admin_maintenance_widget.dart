@@ -1,18 +1,15 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/dialog_box/confirm_password_dialog/confirm_password_dialog_widget.dart';
+import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'admin_maintenance_model.dart';
@@ -93,7 +90,7 @@ class _AdminMaintenanceWidgetState extends State<AdminMaintenanceWidget>
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,7 +101,7 @@ class _AdminMaintenanceWidgetState extends State<AdminMaintenanceWidget>
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: TitleHeaderComponentWidget(
+                      child: const TitleHeaderComponentWidget(
                         titleText: 'Admin Maintenance',
                       ),
                     ),
@@ -116,7 +113,7 @@ class _AdminMaintenanceWidgetState extends State<AdminMaintenanceWidget>
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Container(
+                          SizedBox(
                             width: double.infinity,
                             child: Form(
                               key: _model.formKey,
@@ -148,9 +145,9 @@ class _AdminMaintenanceWidgetState extends State<AdminMaintenanceWidget>
                                           ),
                                     ),
                                   Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 20.0, 0.0, 20.0),
                                       child: Switch.adaptive(
                                         value:
@@ -158,7 +155,7 @@ class _AdminMaintenanceWidgetState extends State<AdminMaintenanceWidget>
                                         onChanged: (newValue) async {
                                           safeSetState(() =>
                                               _model.adminMaintenanceMdoeValue =
-                                                  newValue!);
+                                                  newValue);
                                         },
                                         activeColor:
                                             FlutterFlowTheme.of(context)
@@ -175,113 +172,167 @@ class _AdminMaintenanceWidgetState extends State<AdminMaintenanceWidget>
                                       ),
                                     ),
                                   ),
-                                  FFButtonWidget(
-                                    onPressed: () async {
-                                      logFirebaseEvent(
-                                          'ADMIN_MAINTENANCE_PAGE_Save_ON_TAP');
-                                      logFirebaseEvent('Save_alert_dialog');
-                                      var confirmDialogResponse =
-                                          await showDialog<bool>(
-                                                context: context,
-                                                builder: (alertDialogContext) {
-                                                  return WebViewAware(
-                                                    child: AlertDialog(
-                                                      title: Text(
-                                                          'Maintenance Mode'),
-                                                      content: Text(
-                                                          'Are you sure you want to change the maintenance mode?'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext,
-                                                                  false),
-                                                          child: Text('Cancel'),
-                                                        ),
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext,
-                                                                  true),
-                                                          child:
-                                                              Text('Confirm'),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  );
-                                                },
-                                              ) ??
-                                              false;
-                                      if (confirmDialogResponse) {
-                                        logFirebaseEvent('Save_backend_call');
-
-                                        await FFAppState()
-                                            .defaultID!
-                                            .update(createDefaultsRecordData(
-                                              isMaintenance: _model
-                                                  .adminMaintenanceMdoeValue,
-                                            ));
-                                        logFirebaseEvent('Save_action_block');
-                                        await action_blocks.logs(
-                                          context,
-                                          type: 'updated',
-                                          module: 'defaults',
-                                          doneToName: 'Maintenance Mode',
-                                        );
+                                  Builder(
+                                    builder: (context) => FFButtonWidget(
+                                      onPressed: () async {
+                                        logFirebaseEvent(
+                                            'ADMIN_MAINTENANCE_PAGE_Save_ON_TAP');
+                                        var shouldSetState = false;
                                         logFirebaseEvent('Save_alert_dialog');
                                         await showDialog(
                                           context: context,
-                                          builder: (alertDialogContext) {
-                                            return WebViewAware(
-                                              child: AlertDialog(
-                                                title: Text(
-                                                    'Maintenance Mode Updated'),
-                                                content: Text(
-                                                    'You have successfully updated the maintenance mode.'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: Text('Ok'),
-                                                  ),
-                                                ],
+                                          builder: (dialogContext) {
+                                            return Dialog(
+                                              elevation: 0,
+                                              insetPadding: EdgeInsets.zero,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              alignment:
+                                                  const AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              child: WebViewAware(
+                                                child: GestureDetector(
+                                                  onTap: () => FocusScope.of(
+                                                          dialogContext)
+                                                      .unfocus(),
+                                                  child:
+                                                      const ConfirmPasswordDialogWidget(),
+                                                ),
                                               ),
                                             );
                                           },
-                                        );
-                                        logFirebaseEvent('Save_navigate_back');
-                                        context.safePop();
-                                        return;
-                                      } else {
-                                        return;
-                                      }
-                                    },
-                                    text: 'Save',
-                                    options: FFButtonOptions(
-                                      width: double.infinity,
-                                      height: 50.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 0.0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Montserrat',
-                                            color: Colors.white,
-                                            fontSize: 14.0,
-                                            letterSpacing: 0.0,
-                                          ),
-                                      elevation: 3.0,
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
+                                        ).then((value) => safeSetState(() =>
+                                            _model.confirmMaintenance = value));
+
+                                        shouldSetState = true;
+                                        if (_model.confirmMaintenance!) {
+                                          logFirebaseEvent('Save_backend_call');
+
+                                          await FFAppState()
+                                              .defaultID!
+                                              .update(createDefaultsRecordData(
+                                                isMaintenance: _model
+                                                    .adminMaintenanceMdoeValue,
+                                              ));
+                                          logFirebaseEvent('Save_action_block');
+                                          await action_blocks.logs(
+                                            context,
+                                            type: 'updated',
+                                            module: 'defaults',
+                                            doneToName: 'Maintenance Mode',
+                                          );
+                                          logFirebaseEvent('Save_alert_dialog');
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: const AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => FocusScope.of(
+                                                            dialogContext)
+                                                        .unfocus(),
+                                                    child:
+                                                        const InformationDialogBoxWidget(
+                                                      infoDialogTitle:
+                                                          'Maintenance Mode Updated',
+                                                      infoDialogMeesage:
+                                                          'You have successfully updated the maintenance mode.',
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          );
+
+                                          logFirebaseEvent(
+                                              'Save_navigate_back');
+                                          context.safePop();
+                                          if (shouldSetState) {
+                                            safeSetState(() {});
+                                          }
+                                          return;
+                                        } else {
+                                          logFirebaseEvent('Save_alert_dialog');
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: const AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => FocusScope.of(
+                                                            dialogContext)
+                                                        .unfocus(),
+                                                    child:
+                                                        const InformationDialogBoxWidget(
+                                                      infoDialogTitle:
+                                                          'Action Cancelled',
+                                                      infoDialogMeesage:
+                                                          'Setting to maintenance mode action has been cancelled.',
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          );
+
+                                          logFirebaseEvent(
+                                              'Save_navigate_back');
+                                          context.safePop();
+                                          if (shouldSetState) {
+                                            safeSetState(() {});
+                                          }
+                                          return;
+                                        }
+
+                                        if (shouldSetState) {
+                                          safeSetState(() {});
+                                        }
+                                      },
+                                      text: 'Save',
+                                      options: FFButtonOptions(
+                                        width: double.infinity,
+                                        height: 50.0,
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 0.0),
+                                        iconPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Montserrat',
+                                              color: Colors.white,
+                                              fontSize: 14.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                        elevation: 3.0,
+                                        borderSide: const BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(14.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(14.0),
                                     ),
                                   ),
                                 ],

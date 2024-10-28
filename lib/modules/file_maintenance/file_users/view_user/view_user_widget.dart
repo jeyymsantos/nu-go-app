@@ -1,37 +1,37 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
+import '/components/dialog_box/confirm_password_dialog/confirm_password_dialog_widget.dart';
+import '/components/dialog_box/congratulations_dialog_box/congratulations_dialog_box_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
-import 'user_profile_admin_view_model.dart';
-export 'user_profile_admin_view_model.dart';
+import 'view_user_model.dart';
+export 'view_user_model.dart';
 
-class UserProfileAdminViewWidget extends StatefulWidget {
-  const UserProfileAdminViewWidget({super.key});
+class ViewUserWidget extends StatefulWidget {
+  const ViewUserWidget({
+    super.key,
+    required this.userDoc,
+  });
+
+  final UsersRecord? userDoc;
 
   @override
-  State<UserProfileAdminViewWidget> createState() =>
-      _UserProfileAdminViewWidgetState();
+  State<ViewUserWidget> createState() => _ViewUserWidgetState();
 }
 
-class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
+class _ViewUserWidgetState extends State<ViewUserWidget>
     with TickerProviderStateMixin {
-  late UserProfileAdminViewModel _model;
+  late ViewUserModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -40,10 +40,22 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => UserProfileAdminViewModel());
+    _model = createModel(context, () => ViewUserModel());
 
-    logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'user_profile_admin_view'});
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'view_user'});
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('VIEW_USER_PAGE_view_user_ON_INIT_STATE');
+      logFirebaseEvent('view_user_action_block');
+      await _model.addressLoaderAdmin(
+        context,
+        provinceCode: widget.userDoc?.address.province,
+        barangayCode: widget.userDoc?.address.barangay,
+        cityCode: widget.userDoc?.address.city,
+      );
+      safeSetState(() {});
+    });
+
     animationsMap.addAll({
       'columnOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
@@ -72,6 +84,8 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -83,12 +97,12 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: TitleHeaderComponentWidget(
-                    titleText: 'User\'s Information',
+                  child: const TitleHeaderComponentWidget(
+                    titleText: 'View User',
                   ),
                 ),
               ),
@@ -98,14 +112,14 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                   color: FlutterFlowTheme.of(context).secondaryText,
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(10.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                         child: Icon(
                           FFIcons.kshieldTick4,
                           color: FlutterFlowTheme.of(context).primaryBackground,
@@ -134,7 +148,7 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                     children: [
                       Flexible(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 20.0, 0.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -142,7 +156,7 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                               Container(
                                 width: 100.0,
                                 height: 100.0,
-                                decoration: BoxDecoration(),
+                                decoration: const BoxDecoration(),
                                 child: Stack(
                                   children: [
                                     ClipOval(
@@ -158,72 +172,68 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                           ),
                                         ),
                                         child: Padding(
-                                          padding: EdgeInsets.all(4.0),
+                                          padding: const EdgeInsets.all(4.0),
                                           child: ClipOval(
                                             child: Container(
                                               width: 45.0,
                                               height: 45.0,
-                                              decoration: BoxDecoration(
+                                              decoration: const BoxDecoration(
                                                 shape: BoxShape.circle,
                                               ),
-                                              child: AuthUserStreamWidget(
-                                                builder: (context) => InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    logFirebaseEvent(
-                                                        'USER_PROFILE_ADMIN_VIEW_Image_6k6tk67c_O');
-                                                    logFirebaseEvent(
-                                                        'Image_expand_image');
-                                                    await Navigator.push(
-                                                      context,
-                                                      PageTransition(
-                                                        type: PageTransitionType
-                                                            .fade,
-                                                        child:
-                                                            FlutterFlowExpandedImageView(
-                                                          image: Image.network(
-                                                            valueOrDefault<
-                                                                String>(
-                                                              currentUserPhoto,
-                                                              'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FNUGo%20Logo.png?alt=media&token=c16de93e-c20d-4bd1-90f0-e3d2c07fe740',
-                                                            ),
-                                                            fit: BoxFit.contain,
-                                                          ),
-                                                          allowRotation: false,
-                                                          tag: valueOrDefault<
+                                              child: InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'VIEW_USER_PAGE_Image_6k6tk67c_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'Image_expand_image');
+                                                  await Navigator.push(
+                                                    context,
+                                                    PageTransition(
+                                                      type: PageTransitionType
+                                                          .fade,
+                                                      child:
+                                                          FlutterFlowExpandedImageView(
+                                                        image: Image.network(
+                                                          valueOrDefault<
                                                               String>(
-                                                            currentUserPhoto,
+                                                            widget.userDoc
+                                                                ?.photoUrl,
                                                             'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FNUGo%20Logo.png?alt=media&token=c16de93e-c20d-4bd1-90f0-e3d2c07fe740',
                                                           ),
-                                                          useHeroAnimation:
-                                                              true,
+                                                          fit: BoxFit.contain,
                                                         ),
+                                                        allowRotation: false,
+                                                        tag: valueOrDefault<
+                                                            String>(
+                                                          widget.userDoc
+                                                              ?.photoUrl,
+                                                          'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FNUGo%20Logo.png?alt=media&token=c16de93e-c20d-4bd1-90f0-e3d2c07fe740',
+                                                        ),
+                                                        useHeroAnimation: true,
                                                       ),
-                                                    );
-                                                  },
-                                                  child: Hero(
-                                                    tag: valueOrDefault<String>(
-                                                      currentUserPhoto,
+                                                    ),
+                                                  );
+                                                },
+                                                child: Hero(
+                                                  tag: valueOrDefault<String>(
+                                                    widget.userDoc?.photoUrl,
+                                                    'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FNUGo%20Logo.png?alt=media&token=c16de93e-c20d-4bd1-90f0-e3d2c07fe740',
+                                                  ),
+                                                  transitionOnUserGestures:
+                                                      true,
+                                                  child: Image.network(
+                                                    valueOrDefault<String>(
+                                                      widget.userDoc?.photoUrl,
                                                       'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FNUGo%20Logo.png?alt=media&token=c16de93e-c20d-4bd1-90f0-e3d2c07fe740',
                                                     ),
-                                                    transitionOnUserGestures:
-                                                        true,
-                                                    child: Image.network(
-                                                      valueOrDefault<String>(
-                                                        currentUserPhoto,
-                                                        'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FNUGo%20Logo.png?alt=media&token=c16de93e-c20d-4bd1-90f0-e3d2c07fe740',
-                                                      ),
-                                                      width: double.infinity,
-                                                      height: double.infinity,
-                                                      fit: BoxFit.cover,
-                                                    ),
+                                                    width: double.infinity,
+                                                    height: double.infinity,
+                                                    fit: BoxFit.cover,
                                                   ),
                                                 ),
                                               ),
@@ -240,7 +250,7 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 0.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
@@ -253,7 +263,10 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                               MainAxisAlignment.center,
                                           children: [
                                             Text(
-                                              'Brenley Ian DR. Robles',
+                                              valueOrDefault<String>(
+                                                widget.userDoc?.displayName,
+                                                'Brenley Ian Robles',
+                                              ),
                                               textAlign: TextAlign.center,
                                               style: FlutterFlowTheme.of(
                                                       context)
@@ -268,7 +281,7 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                             Flexible(
                                               child: AlignedTooltip(
                                                 content: Padding(
-                                                  padding: EdgeInsets.all(4.0),
+                                                  padding: const EdgeInsets.all(4.0),
                                                   child: Text(
                                                     'Profile Details have been already verified.',
                                                     style: FlutterFlowTheme.of(
@@ -293,32 +306,29 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                                 tailBaseWidth: 24.0,
                                                 tailLength: 12.0,
                                                 waitDuration:
-                                                    Duration(milliseconds: 100),
-                                                showDuration: Duration(
+                                                    const Duration(milliseconds: 100),
+                                                showDuration: const Duration(
                                                     milliseconds: 1500),
                                                 triggerMode:
                                                     TooltipTriggerMode.tap,
                                                 child: Visibility(
                                                   visible: valueOrDefault<bool>(
-                                                    currentUserDocument
-                                                        ?.settings?.isVerified,
+                                                    widget.userDoc?.settings
+                                                        .isVerified,
                                                     false,
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(2.0, 0.0,
                                                                 0.0, 0.0),
-                                                    child: AuthUserStreamWidget(
-                                                      builder: (context) =>
-                                                          Icon(
-                                                        FFIcons.kverify5,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        size: 15.0,
-                                                      ),
+                                                    child: Icon(
+                                                      FFIcons.kverify5,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      size: 15.0,
                                                     ),
                                                   ),
                                                 ),
@@ -327,7 +337,10 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                           ],
                                         ),
                                         Text(
-                                          'roblesbdr@students.nu-baliwag.edu.ph',
+                                          valueOrDefault<String>(
+                                            widget.userDoc?.email,
+                                            'roblesbdr@students.nu-baliwag.edu.ph',
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -343,10 +356,13 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   20.0, 10.0, 20.0, 0.0),
                                           child: Text(
-                                            'This is the world of precious begginings',
+                                            valueOrDefault<String>(
+                                              widget.userDoc?.bioNote,
+                                              'bio',
+                                            ),
                                             textAlign: TextAlign.center,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -355,26 +371,6 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryText,
-                                                  fontSize: 12.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.normal,
-                                                ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  20.0, 10.0, 20.0, 0.0),
-                                          child: Text(
-                                            'Edit Bio',
-                                            textAlign: TextAlign.center,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Montserrat',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
                                                   fontSize: 12.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
@@ -391,7 +387,7 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 10.0, 20.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -409,7 +405,7 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 6.0, 0.0, 6.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -419,13 +415,14 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                           queryBuilder: (membersRecord) =>
                                               membersRecord.where(
                                             'user_reference',
-                                            isEqualTo: currentUserReference,
+                                            isEqualTo:
+                                                widget.userDoc?.reference,
                                           ),
                                         ),
                                         builder: (context, snapshot) {
                                           // Customize what your widget looks like when it's loading.
                                           if (!snapshot.hasData) {
-                                            return Center(
+                                            return const Center(
                                               child: SizedBox(
                                                 width: 26.0,
                                                 height: 26.0,
@@ -443,7 +440,10 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                           int textCount = snapshot.data!;
 
                                           return Text(
-                                            '0',
+                                            valueOrDefault<String>(
+                                              textCount.toString(),
+                                              '0',
+                                            ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -482,67 +482,62 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 6.0, 0.0, 6.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Text(
-                                        '0',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Montserrat',
-                                              fontSize: 21.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
+                                      FutureBuilder<int>(
+                                        future: queryEventAttendeesRecordCount(
+                                          queryBuilder:
+                                              (eventAttendeesRecord) =>
+                                                  eventAttendeesRecord
+                                                      .where(
+                                                        'ticket_user',
+                                                        isEqualTo: widget
+                                                            .userDoc?.reference,
+                                                      )
+                                                      .where(
+                                                        'ticket_status',
+                                                        isEqualTo: 'Approved',
+                                                      ),
+                                        ),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child: SpinKitChasingDots(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  size: 50.0,
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          int textCount = snapshot.data!;
+
+                                          return Text(
+                                            valueOrDefault<String>(
+                                              textCount.toString(),
+                                              '0',
                                             ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Montserrat',
+                                                  fontSize: 21.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          );
+                                        },
                                       ),
                                       Text(
                                         'Joined Events',
-                                        textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Montserrat',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryText,
-                                              fontSize: 9.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.normal,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  width: 1.0,
-                                  height: 40.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 6.0, 0.0, 6.0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Text(
-                                        '0',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Montserrat',
-                                              fontSize: 21.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                      ),
-                                      Text(
-                                        'GO Coins',
                                         textAlign: TextAlign.center,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
@@ -573,14 +568,14 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                         ),
                       ),
                       Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 10.0, 0.0, 10.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             AlignedTooltip(
                               content: Padding(
-                                padding: EdgeInsets.all(4.0),
+                                padding: const EdgeInsets.all(4.0),
                                 child: Text(
                                   'Make sure that you have your ID with you.',
                                   style: FlutterFlowTheme.of(context)
@@ -599,72 +594,91 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                               elevation: 4.0,
                               tailBaseWidth: 24.0,
                               tailLength: 12.0,
-                              waitDuration: Duration(milliseconds: 100),
-                              showDuration: Duration(milliseconds: 1500),
+                              waitDuration: const Duration(milliseconds: 100),
+                              showDuration: const Duration(milliseconds: 1500),
                               triggerMode: TooltipTriggerMode.longPress,
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  logFirebaseEvent(
-                                      'USER_PROFILE_ADMIN_VIEW_Container_vrj3ut');
-                                  logFirebaseEvent('Container_navigate_to');
+                              child: Visibility(
+                                visible: valueOrDefault<bool>(
+                                  widget.userDoc?.nfcTag == null ||
+                                      widget.userDoc?.nfcTag == '',
+                                  true,
+                                ),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    logFirebaseEvent(
+                                        'VIEW_USER_PAGE_Container_njdqjpcp_ON_TAP');
+                                    logFirebaseEvent('Container_navigate_to');
 
-                                  context.pushNamed('step_1_nfc_setup');
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    borderRadius: BorderRadius.circular(24.0),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        10.0, 5.0, 10.0, 5.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 5.0, 0.0),
-                                          child: Text(
-                                            'Setup your ID',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Montserrat',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                  fontSize: 10.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
+                                    context.pushNamed(
+                                      'admin_nfc_setup',
+                                      queryParameters: {
+                                        'userDoc': serializeParam(
+                                          widget.userDoc,
+                                          ParamType.Document,
+                                        ),
+                                      }.withoutNulls,
+                                      extra: <String, dynamic>{
+                                        'userDoc': widget.userDoc,
+                                      },
+                                    );
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .alternate,
+                                      borderRadius: BorderRadius.circular(24.0),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          10.0, 5.0, 10.0, 5.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 5.0, 0.0),
+                                            child: Text(
+                                              'Setup your ID',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Montserrat',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    fontSize: 10.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                            ),
                                           ),
-                                        ),
-                                        Icon(
-                                          FFIcons.kcardEdit,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          size: 15.0,
-                                        ),
-                                      ],
+                                          Icon(
+                                            FFIcons.kcardEdit,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            size: 15.0,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   10.0, 0.0, 0.0, 0.0),
                               child: AlignedTooltip(
                                 content: Padding(
-                                  padding: EdgeInsets.all(4.0),
+                                  padding: const EdgeInsets.all(4.0),
                                   child: Text(
                                     'Make sure that you have your ID with you.',
                                     style: FlutterFlowTheme.of(context)
@@ -683,81 +697,42 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                 elevation: 4.0,
                                 tailBaseWidth: 24.0,
                                 tailLength: 12.0,
-                                waitDuration: Duration(milliseconds: 100),
-                                showDuration: Duration(milliseconds: 1500),
+                                waitDuration: const Duration(milliseconds: 100),
+                                showDuration: const Duration(milliseconds: 1500),
                                 triggerMode: TooltipTriggerMode.longPress,
-                                child: Builder(
-                                  builder: (context) => InkWell(
+                                child: Visibility(
+                                  visible: widget.userDoc?.nfcTag != null &&
+                                      widget.userDoc?.nfcTag != '',
+                                  child: InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
                                       logFirebaseEvent(
-                                          'USER_PROFILE_ADMIN_VIEW_Container_nu70ox');
-                                      if (currentUserDocument!
-                                          .settings.isVerified) {
-                                        logFirebaseEvent(
-                                            'Container_navigate_to');
-                                        if (Navigator.of(context).canPop()) {
-                                          context.pop();
-                                        }
-                                        context.pushNamed(
-                                          'user_ID',
-                                          queryParameters: {
-                                            'isFromMenu': serializeParam(
-                                              false,
-                                              ParamType.bool,
-                                            ),
-                                          }.withoutNulls,
-                                          extra: <String, dynamic>{
-                                            kTransitionInfoKey: TransitionInfo(
-                                              hasTransition: true,
-                                              transitionType:
-                                                  PageTransitionType.fade,
-                                              duration:
-                                                  Duration(milliseconds: 0),
-                                            ),
-                                          },
-                                        );
-
-                                        return;
-                                      } else {
-                                        logFirebaseEvent(
-                                            'Container_alert_dialog');
-                                        await showDialog(
-                                          context: context,
-                                          builder: (dialogContext) {
-                                            return Dialog(
-                                              elevation: 0,
-                                              insetPadding: EdgeInsets.zero,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              alignment:
-                                                  AlignmentDirectional(0.0, 0.0)
-                                                      .resolve(
-                                                          Directionality.of(
-                                                              context)),
-                                              child: WebViewAware(
-                                                child: GestureDetector(
-                                                  onTap: () => FocusScope.of(
-                                                          dialogContext)
-                                                      .unfocus(),
-                                                  child:
-                                                      InformationDialogBoxWidget(
-                                                    infoDialogTitle:
-                                                        'Unverified Account',
-                                                    infoDialogMeesage:
-                                                        'You need to verify your account to activate this feature. Make sure to Setup your ID on your profile and submit correct information to be quickly verified.',
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        );
-
-                                        return;
+                                          'VIEW_USER_PAGE_Container_3idg75p3_ON_TAP');
+                                      logFirebaseEvent('Container_navigate_to');
+                                      if (Navigator.of(context).canPop()) {
+                                        context.pop();
                                       }
+                                      context.pushNamed(
+                                        'view_userid_admin',
+                                        queryParameters: {
+                                          'userDoc': serializeParam(
+                                            widget.userDoc,
+                                            ParamType.Document,
+                                          ),
+                                        }.withoutNulls,
+                                        extra: <String, dynamic>{
+                                          'userDoc': widget.userDoc,
+                                          kTransitionInfoKey: const TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.fade,
+                                            duration: Duration(milliseconds: 0),
+                                          ),
+                                        },
+                                      );
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
@@ -767,7 +742,7 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                             BorderRadius.circular(24.0),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -775,7 +750,7 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Text(
                                                 'View School ID',
@@ -810,11 +785,194 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                 ),
                               ),
                             ),
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  10.0, 0.0, 0.0, 0.0),
+                              child: AlignedTooltip(
+                                content: Padding(
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: Text(
+                                    'Make sure that you have your ID with you.',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          fontFamily: 'Montserrat',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ),
+                                offset: 4.0,
+                                preferredDirection: AxisDirection.down,
+                                borderRadius: BorderRadius.circular(8.0),
+                                backgroundColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                elevation: 4.0,
+                                tailBaseWidth: 24.0,
+                                tailLength: 12.0,
+                                waitDuration: const Duration(milliseconds: 100),
+                                showDuration: const Duration(milliseconds: 1500),
+                                triggerMode: TooltipTriggerMode.longPress,
+                                child: Visibility(
+                                  visible: widget.userDoc?.nfcTag != null &&
+                                      widget.userDoc?.nfcTag != '',
+                                  child: Builder(
+                                    builder: (context) => InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        logFirebaseEvent(
+                                            'VIEW_USER_PAGE_Container_4y12rvie_ON_TAP');
+                                        var shouldSetState = false;
+                                        logFirebaseEvent(
+                                            'Container_alert_dialog');
+                                        await showDialog(
+                                          context: context,
+                                          builder: (dialogContext) {
+                                            return Dialog(
+                                              elevation: 0,
+                                              insetPadding: EdgeInsets.zero,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              alignment:
+                                                  const AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              child: WebViewAware(
+                                                child: GestureDetector(
+                                                  onTap: () => FocusScope.of(
+                                                          dialogContext)
+                                                      .unfocus(),
+                                                  child:
+                                                      const ConfirmPasswordDialogWidget(),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => safeSetState(() =>
+                                            _model.confirmAction = value));
+
+                                        shouldSetState = true;
+                                        if (_model.confirmAction!) {
+                                          logFirebaseEvent(
+                                              'Container_backend_call');
+
+                                          await widget.userDoc!.reference
+                                              .update(createUsersRecordData(
+                                            nfcTag: '',
+                                          ));
+                                          logFirebaseEvent(
+                                              'Container_alert_dialog');
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: const AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => FocusScope.of(
+                                                            dialogContext)
+                                                        .unfocus(),
+                                                    child:
+                                                        const CongratulationsDialogBoxWidget(
+                                                      congratsDialogTitle:
+                                                          'NFC Reset Successful!',
+                                                      congratsDialogMeesage:
+                                                          'You have successfully reset the user\'s NFC tag.',
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          );
+
+                                          logFirebaseEvent(
+                                              'Container_navigate_back');
+                                          context.safePop();
+                                          if (shouldSetState) {
+                                            safeSetState(() {});
+                                          }
+                                          return;
+                                        } else {
+                                          if (shouldSetState) {
+                                            safeSetState(() {});
+                                          }
+                                          return;
+                                        }
+
+                                        if (shouldSetState) {
+                                          safeSetState(() {});
+                                        }
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          borderRadius:
+                                              BorderRadius.circular(24.0),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 5.0, 10.0, 5.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 5.0, 0.0),
+                                                child: Text(
+                                                  'Reset NFC',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        fontSize: 10.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                ),
+                                              ),
+                                              Icon(
+                                                FFIcons.krepeat5,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                size: 15.0,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 10.0, 20.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -822,9 +980,9 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Align(
-                              alignment: AlignmentDirectional(-1.0, 0.0),
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 15.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -843,7 +1001,10 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                           ),
                                     ),
                                     Text(
-                                      'Student',
+                                      valueOrDefault<String>(
+                                        widget.userDoc?.role,
+                                        'Student',
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -862,9 +1023,9 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                               children: [
                                 Expanded(
                                   child: Align(
-                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    alignment: const AlignmentDirectional(-1.0, 0.0),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 15.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -888,7 +1049,10 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Text(
-                                                '2021-160099',
+                                                valueOrDefault<String>(
+                                                  widget.userDoc?.idNumber,
+                                                  '2021-160059',
+                                                ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -903,7 +1067,7 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                               ),
                                               AlignedTooltip(
                                                 content: Padding(
-                                                  padding: EdgeInsets.all(4.0),
+                                                  padding: const EdgeInsets.all(4.0),
                                                   child: Text(
                                                     'You are verified!',
                                                     style: FlutterFlowTheme.of(
@@ -929,13 +1093,13 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                                 tailBaseWidth: 24.0,
                                                 tailLength: 12.0,
                                                 waitDuration:
-                                                    Duration(milliseconds: 100),
-                                                showDuration: Duration(
+                                                    const Duration(milliseconds: 100),
+                                                showDuration: const Duration(
                                                     milliseconds: 1500),
                                                 triggerMode:
                                                     TooltipTriggerMode.tap,
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           5.0, 0.0, 0.0, 0.0),
                                                   child: Icon(
@@ -954,32 +1118,115 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                     ),
                                   ),
                                 ),
-                                Expanded(
-                                  child: Align(
-                                    alignment: AlignmentDirectional(-1.0, 0.0),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 15.0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            'Section',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Montserrat',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
+                                if (widget.userDoc?.role == 'Student')
+                                  Expanded(
+                                    child: Align(
+                                      alignment:
+                                          const AlignmentDirectional(-1.0, 0.0),
+                                      child: Padding(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 15.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Section',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Montserrat',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    fontSize: 12.0,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                            ),
+                                            Text(
+                                              valueOrDefault<String>(
+                                                widget
+                                                    .userDoc?.student.section,
+                                                'ITE211',
+                                              ),
+                                              textAlign: TextAlign.start,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Montserrat',
+                                                    fontSize: 13.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                            if ((widget.userDoc?.role == 'Full-Time Faculty') ||
+                                (widget.userDoc?.role ==
+                                    'Part-Time Faculty') ||
+                                (widget.userDoc?.role == 'Student') ||
+                                (widget.userDoc?.role == 'Program Chair'))
+                              Align(
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                child: Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 15.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Program',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Montserrat',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
                                                       .secondaryText,
-                                                  fontSize: 12.0,
-                                                  letterSpacing: 0.0,
+                                              fontSize: 12.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      FutureBuilder<ProgramsRecord>(
+                                        future: ProgramsRecord.getDocumentOnce(
+                                            widget.userDoc!.student.program!),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return const Center(
+                                              child: SizedBox(
+                                                width: 16.0,
+                                                height: 16.0,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                          Color>(
+                                                    Color(0x0035408E),
+                                                  ),
                                                 ),
-                                          ),
-                                          Text(
-                                            'ITE211',
+                                              ),
+                                            );
+                                          }
+
+                                          final textProgramsRecord =
+                                              snapshot.data!;
+
+                                          return Text(
+                                            valueOrDefault<String>(
+                                              textProgramsRecord.programName,
+                                              'BS Information Technology',
+                                            ),
                                             textAlign: TextAlign.start,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -989,25 +1236,28 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
                                                 ),
-                                          ),
-                                        ],
+                                          );
+                                        },
                                       ),
-                                    ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
-                            Align(
-                              alignment: AlignmentDirectional(-1.0, 0.0),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 15.0),
+                              ),
+                            if ((widget.userDoc?.role == 'Full-Time Faculty') ||
+                                (widget.userDoc?.role ==
+                                    'Part-Time Faculty') ||
+                                (widget.userDoc?.role == 'Student') ||
+                                (widget.userDoc?.role == 'Dean') ||
+                                (widget.userDoc?.role == 'Program Chair'))
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 10.0),
                                 child: Column(
-                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Program',
+                                      'School',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -1018,63 +1268,59 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                             letterSpacing: 0.0,
                                           ),
                                     ),
-                                    Text(
-                                      'BS in Information Technology with Specialization in Mobile & Web Application',
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Montserrat',
-                                            fontSize: 13.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                                    Align(
+                                      alignment:
+                                          const AlignmentDirectional(-1.0, 0.0),
+                                      child: FutureBuilder<SchoolsRecord>(
+                                        future: SchoolsRecord.getDocumentOnce(
+                                            widget.userDoc!.student.school!),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return const Center(
+                                              child: SizedBox(
+                                                width: 16.0,
+                                                height: 16.0,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                          Color>(
+                                                    Color(0x0035408E),
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          }
+
+                                          final textSchoolsRecord =
+                                              snapshot.data!;
+
+                                          return Text(
+                                            valueOrDefault<String>(
+                                              textSchoolsRecord.schoolName,
+                                              'School of Engineering, Architecture, and Technology',
+                                            ),
+                                            textAlign: TextAlign.start,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Montserrat',
+                                                  fontSize: 13.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                          );
+                                        },
+                                      ),
                                     ),
                                   ],
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 10.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'School',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Montserrat',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          fontSize: 12.0,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                  Align(
-                                    alignment: AlignmentDirectional(-1.0, 0.0),
-                                    child: Text(
-                                      'School of Engineering, Architecture and Technology',
-                                      textAlign: TextAlign.start,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Montserrat',
-                                            fontSize: 13.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
                             Align(
-                              alignment: AlignmentDirectional(-1.0, 0.0),
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 10.0),
                                 child: Text(
                                   'Basic Information',
@@ -1093,7 +1339,7 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                               children: [
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 15.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
@@ -1115,9 +1361,12 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                         ),
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
+                                              const AlignmentDirectional(-1.0, 0.0),
                                           child: Text(
-                                            'Male',
+                                            valueOrDefault<String>(
+                                              widget.userDoc?.sex,
+                                              'Male',
+                                            ),
                                             textAlign: TextAlign.start,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -1135,9 +1384,9 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                 ),
                                 Expanded(
                                   child: Align(
-                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    alignment: const AlignmentDirectional(-1.0, 0.0),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 15.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -1158,7 +1407,10 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                                 ),
                                           ),
                                           Text(
-                                            'Single',
+                                            valueOrDefault<String>(
+                                              widget.userDoc?.civilStatus,
+                                              'Single',
+                                            ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -1180,7 +1432,7 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                               children: [
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 15.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -1202,9 +1454,18 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                         ),
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
+                                              const AlignmentDirectional(-1.0, 0.0),
                                           child: Text(
-                                            'April 01, 2003',
+                                            valueOrDefault<String>(
+                                              dateTimeFormat(
+                                                "yMMMd",
+                                                widget.userDoc?.birthDate,
+                                                locale:
+                                                    FFLocalizations.of(context)
+                                                        .languageCode,
+                                              ),
+                                              'Oct 28, 2024',
+                                            ),
                                             textAlign: TextAlign.start,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -1222,7 +1483,7 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 15.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -1244,9 +1505,12 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                         ),
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
+                                              const AlignmentDirectional(-1.0, 0.0),
                                           child: Text(
-                                            '0977-681-2713',
+                                            valueOrDefault<String>(
+                                              widget.userDoc?.phoneNumber,
+                                              '09654107968',
+                                            ),
                                             textAlign: TextAlign.start,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -1265,7 +1529,7 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                               ],
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 15.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
@@ -1284,9 +1548,9 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                                         ),
                                   ),
                                   Align(
-                                    alignment: AlignmentDirectional(-1.0, 0.0),
+                                    alignment: const AlignmentDirectional(-1.0, 0.0),
                                     child: Text(
-                                      '396, Saint Mary Street, Balite, Malolos City, Bulacan',
+                                      '${widget.userDoc?.address.houseNumber}, ${widget.userDoc?.address.street}, ${FFAppState().address.barangay}, ${FFAppState().address.city}, ${FFAppState().address.province}',
                                       textAlign: TextAlign.start,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -1302,22 +1566,6 @@ class _UserProfileAdminViewWidgetState extends State<UserProfileAdminViewWidget>
                               ),
                             ),
                           ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            0.0, 30.0, 0.0, 50.0),
-                        child: Text(
-                          'Edit Information? Contact your IT Admin',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: 'Montserrat',
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                fontSize: 12.0,
-                                letterSpacing: 0.0,
-                              ),
                         ),
                       ),
                     ],

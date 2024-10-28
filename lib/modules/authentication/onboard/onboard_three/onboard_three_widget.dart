@@ -6,16 +6,10 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'onboard_three_model.dart';
 export 'onboard_three_model.dart';
@@ -44,7 +38,7 @@ class OnboardThreeWidget extends StatefulWidget {
     required this.idNumber,
     this.role,
     this.honorifics,
-  }) : this.middleName = middleName ?? '';
+  }) : middleName = middleName ?? '';
 
   final String? firstName;
   final String middleName;
@@ -99,7 +93,7 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 1400.0.ms,
-            color: Color(0xFF35408E),
+            color: const Color(0xFF35408E),
             angle: 0.576,
           ),
         ],
@@ -126,13 +120,13 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Align(
-                  alignment: AlignmentDirectional(-1.0, 0.0),
+                  alignment: const AlignmentDirectional(-1.0, 0.0),
                   child: InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -152,7 +146,7 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -169,7 +163,7 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               5.0, 0.0, 0.0, 0.0),
                           child: Container(
                             width: double.infinity,
@@ -183,7 +177,7 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               5.0, 0.0, 0.0, 0.0),
                           child: Container(
                             width: double.infinity,
@@ -205,7 +199,7 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -226,7 +220,7 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                                     children: [
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(-1.0, -1.0),
+                                            const AlignmentDirectional(-1.0, -1.0),
                                         child: Text(
                                           'About Me',
                                           style: FlutterFlowTheme.of(context)
@@ -251,7 +245,7 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                                     ],
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 40.0, 0.0),
                                     child: Text(
                                       'To start, kindly fill out the following fields for your onboarding.',
@@ -277,12 +271,12 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                 Flexible(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 20.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 20.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Container(
+                          SizedBox(
                             width: double.infinity,
                             child: Form(
                               key: _model.formKey,
@@ -293,9 +287,9 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                                   Container(
                                     width: 150.0,
                                     height: 150.0,
-                                    decoration: BoxDecoration(),
+                                    decoration: const BoxDecoration(),
                                     child: Padding(
-                                      padding: EdgeInsets.all(2.0),
+                                      padding: const EdgeInsets.all(2.0),
                                       child: AuthUserStreamWidget(
                                         builder: (context) => Container(
                                           width:
@@ -305,7 +299,7 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                                               MediaQuery.sizeOf(context).width *
                                                   0.9,
                                           clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             shape: BoxShape.circle,
                                           ),
                                           child: Image.network(
@@ -320,7 +314,7 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 10.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
@@ -387,8 +381,7 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                                           }
                                         }
 
-                                        if (_model.uploadedFileUrl != null &&
-                                            _model.uploadedFileUrl != '') {
+                                        if (_model.uploadedFileUrl != '') {
                                           logFirebaseEvent(
                                               'Button_backend_call');
 
@@ -412,15 +405,15 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                                               return WebViewAware(
                                                 child: AlertDialog(
                                                   title:
-                                                      Text('Profile Picture'),
-                                                  content: Text(
+                                                      const Text('Profile Picture'),
+                                                  content: const Text(
                                                       'Your profile picture is now set!'),
                                                   actions: [
                                                     TextButton(
                                                       onPressed: () =>
                                                           Navigator.pop(
                                                               alertDialogContext),
-                                                      child: Text('Ok'),
+                                                      child: const Text('Ok'),
                                                     ),
                                                   ],
                                                 ),
@@ -431,10 +424,10 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                                       },
                                       text: 'Upload Profile',
                                       options: FFButtonOptions(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             24.0, 0.0, 24.0, 0.0),
                                         iconPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
+                                            const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
@@ -449,7 +442,7 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                                               letterSpacing: 0.0,
                                             ),
                                         elevation: 3.0,
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,
                                         ),
@@ -459,7 +452,7 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller:
@@ -489,7 +482,7 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                                               letterSpacing: 0.0,
                                             ),
                                         enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                             color: Color(0x00000000),
                                             width: 0.5,
                                           ),
@@ -546,7 +539,7 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
@@ -560,8 +553,7 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                                                 .validate()) {
                                           return;
                                         }
-                                        if (_model.uploadedFileUrl == null ||
-                                            _model.uploadedFileUrl.isEmpty) {
+                                        if (_model.uploadedFileUrl.isEmpty) {
                                           return;
                                         }
                                         logFirebaseEvent('Button_action_block');
@@ -572,45 +564,45 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                                         await currentUserReference!.update({
                                           ...createUsersRecordData(
                                             photoUrl: _model.uploadedFileUrl,
-                                            phoneNumber: widget!.phoneNumber,
-                                            civilStatus: widget!.civilStatus,
-                                            sex: widget!.sex,
-                                            birthDate: widget!.birthdate,
-                                            citizenship: widget!.citizenship,
-                                            religion: widget!.religion,
+                                            phoneNumber: widget.phoneNumber,
+                                            civilStatus: widget.civilStatus,
+                                            sex: widget.sex,
+                                            birthDate: widget.birthdate,
+                                            citizenship: widget.citizenship,
+                                            religion: widget.religion,
                                             address: createAddressStruct(
-                                              street: widget!.streetName,
-                                              barangay: widget!.barangay,
-                                              city: widget!.municipality,
-                                              province: widget!.province,
-                                              houseNumber: widget!.houseNumber,
+                                              street: widget.streetName,
+                                              barangay: widget.barangay,
+                                              city: widget.municipality,
+                                              province: widget.province,
+                                              houseNumber: widget.houseNumber,
                                               textBarangay: currentUserDocument
-                                                  ?.address?.barangay,
+                                                  ?.address.barangay,
                                               textCity: currentUserDocument
-                                                  ?.address?.city,
+                                                  ?.address.city,
                                               textProvince: currentUserDocument
-                                                  ?.address?.province,
+                                                  ?.address.province,
                                               clearUnsetFields: false,
                                             ),
                                             name: createNameStruct(
-                                              firstName: widget!.firstName,
-                                              middleName: widget!.middleName,
-                                              lastName: widget!.lastName,
-                                              suffixName: widget!.suffixName,
+                                              firstName: widget.firstName,
+                                              middleName: widget.middleName,
+                                              lastName: widget.lastName,
+                                              suffixName: widget.suffixName,
                                               clearUnsetFields: false,
                                             ),
                                             onboarding: true,
                                             student:
                                                 createSchoolProgramDetailsStruct(
-                                              section: widget!.section,
-                                              school: widget!.school,
-                                              program: widget!.department,
-                                              honorifics: widget!.honorifics,
+                                              section: widget.section,
+                                              school: widget.school,
+                                              program: widget.department,
+                                              honorifics: widget.honorifics,
                                               clearUnsetFields: false,
                                             ),
                                             displayName:
-                                                '${widget!.firstName} ${widget!.lastName}',
-                                            idNumber: widget!.idNumber,
+                                                '${widget.firstName} ${widget.lastName}',
+                                            idNumber: widget.idNumber,
                                             bioNote: _model
                                                 .descriptionFieldTextController
                                                 .text,
@@ -619,7 +611,7 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                                               isSuperAdmin: false,
                                               clearUnsetFields: false,
                                             ),
-                                            role: widget!.role,
+                                            role: widget.role,
                                           ),
                                           ...mapToFirestore(
                                             {
@@ -636,7 +628,7 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                                           doneToName: 'Onboarding Setup',
                                         );
                                         if (currentUserDocument
-                                                ?.settings?.isSuperAdmin ==
+                                                ?.settings.isSuperAdmin ==
                                             true) {
                                           logFirebaseEvent(
                                               'Button_navigate_to');
@@ -645,7 +637,7 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                                             'super_admin_dashboard',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
-                                                  TransitionInfo(
+                                                  const TransitionInfo(
                                                 hasTransition: true,
                                                 transitionType:
                                                     PageTransitionType.fade,
@@ -662,7 +654,7 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                                             'auth_redirect',
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
-                                                  TransitionInfo(
+                                                  const TransitionInfo(
                                                 hasTransition: true,
                                                 transitionType:
                                                     PageTransitionType.fade,
@@ -689,7 +681,7 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                                               ),
                                             ),
                                             duration:
-                                                Duration(milliseconds: 4000),
+                                                const Duration(milliseconds: 4000),
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
                                                     .success,
@@ -700,10 +692,10 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                                       options: FFButtonOptions(
                                         width: double.infinity,
                                         height: 50.0,
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 0.0),
                                         iconPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
+                                            const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
@@ -716,7 +708,7 @@ class _OnboardThreeWidgetState extends State<OnboardThreeWidget>
                                               letterSpacing: 0.0,
                                             ),
                                         elevation: 3.0,
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,
                                         ),

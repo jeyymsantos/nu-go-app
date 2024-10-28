@@ -3,11 +3,8 @@ import '/components/widgets/title_header_component/title_header_component_widget
 import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'calendar_trial_model.dart';
 export 'calendar_trial_model.dart';
 
@@ -50,21 +47,21 @@ class _CalendarTrialWidgetState extends State<CalendarTrialWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: TitleHeaderComponentWidget(
+                  child: const TitleHeaderComponentWidget(
                     titleText: 'Calendar',
                   ),
                 ),
                 Expanded(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: SingleChildScrollView(
                       primary: false,
                       child: Column(
@@ -72,7 +69,7 @@ class _CalendarTrialWidgetState extends State<CalendarTrialWidget> {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Container(
-                            decoration: BoxDecoration(),
+                            decoration: const BoxDecoration(),
                             child: FlutterFlowCalendar(
                               color: FlutterFlowTheme.of(context).primary,
                               iconColor:
@@ -123,7 +120,7 @@ class _CalendarTrialWidgetState extends State<CalendarTrialWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       10.0, 10.0, 10.0, 100.0),
                                   child: StreamBuilder<List<EventsRecord>>(
                                     stream: queryEventsRecord(
@@ -172,7 +169,7 @@ class _CalendarTrialWidgetState extends State<CalendarTrialWidget> {
                                                   listViewIndex];
                                           return Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 10.0),
                                             child: InkWell(
                                               splashColor: Colors.transparent,
@@ -198,7 +195,7 @@ class _CalendarTrialWidgetState extends State<CalendarTrialWidget> {
                                                   }.withoutNulls,
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:
-                                                        TransitionInfo(
+                                                        const TransitionInfo(
                                                       hasTransition: true,
                                                       transitionType:
                                                           PageTransitionType
@@ -232,7 +229,7 @@ class _CalendarTrialWidgetState extends State<CalendarTrialWidget> {
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     10.0,
                                                                     10.0,
@@ -277,12 +274,12 @@ class _CalendarTrialWidgetState extends State<CalendarTrialWidget> {
                                                                 Flexible(
                                                                   child: Align(
                                                                     alignment:
-                                                                        AlignmentDirectional(
+                                                                        const AlignmentDirectional(
                                                                             -1.0,
                                                                             -1.0),
                                                                     child:
                                                                         Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           15.0,
                                                                           0.0,
                                                                           0.0,
@@ -298,7 +295,7 @@ class _CalendarTrialWidgetState extends State<CalendarTrialWidget> {
                                                                         children: [
                                                                           Align(
                                                                             alignment:
-                                                                                AlignmentDirectional(-1.0, -1.0),
+                                                                                const AlignmentDirectional(-1.0, -1.0),
                                                                             child:
                                                                                 Text(
                                                                               valueOrDefault<String>(
@@ -320,7 +317,7 @@ class _CalendarTrialWidgetState extends State<CalendarTrialWidget> {
                                                                           ),
                                                                           Align(
                                                                             alignment:
-                                                                                AlignmentDirectional(-1.0, -1.0),
+                                                                                const AlignmentDirectional(-1.0, -1.0),
                                                                             child:
                                                                                 Text(
                                                                               listViewEventsRecord.eventName,
@@ -335,7 +332,7 @@ class _CalendarTrialWidgetState extends State<CalendarTrialWidget> {
                                                                           ),
                                                                           Align(
                                                                             alignment:
-                                                                                AlignmentDirectional(-1.0, -1.0),
+                                                                                const AlignmentDirectional(-1.0, -1.0),
                                                                             child:
                                                                                 StreamBuilder<RoomsRecord>(
                                                                               stream: RoomsRecord.getDocument(listViewEventsRecord.facility!),

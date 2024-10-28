@@ -2,11 +2,7 @@ import '/components/widgets/card/card_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'our_team_model.dart';
 export 'our_team_model.dart';
 
@@ -48,34 +44,34 @@ class _OurTeamWidgetState extends State<OurTeamWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: TitleHeaderComponentWidget(
+                  child: const TitleHeaderComponentWidget(
                     titleText: 'Our Team',
                   ),
                 ),
                 Expanded(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Align(
-                            alignment: AlignmentDirectional(0.0, -1.0),
+                            alignment: const AlignmentDirectional(0.0, -1.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 20.0, 0.0, 20.0),
                               child: wrapWithModel(
                                 model: _model.benjaminModel,
                                 updateCallback: () => safeSetState(() {}),
-                                child: CardWidget(
+                                child: const CardWidget(
                                   name: 'Brenley Ian DR. Robles',
                                   role: 'Front-end Developer/UI/UX Designer',
                                   roleDefinition:
@@ -87,12 +83,12 @@ class _OurTeamWidgetState extends State<OurTeamWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 20.0),
                             child: wrapWithModel(
                               model: _model.junnieModel,
                               updateCallback: () => safeSetState(() {}),
-                              child: CardWidget(
+                              child: const CardWidget(
                                 name: 'Jhon Mark L. Santos',
                                 role: 'Back-end Developer/Documentation',
                                 roleDefinition:
@@ -103,12 +99,12 @@ class _OurTeamWidgetState extends State<OurTeamWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 20.0),
                             child: wrapWithModel(
                               model: _model.nicholeModel,
                               updateCallback: () => safeSetState(() {}),
-                              child: CardWidget(
+                              child: const CardWidget(
                                 name: 'Nihole Joyce G.  Santos',
                                 role: 'Documentation',
                                 roleDefinition:

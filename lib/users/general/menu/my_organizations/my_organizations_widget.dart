@@ -4,11 +4,8 @@ import '/components/widgets/empty_list/empty_list_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'my_organizations_model.dart';
 export 'my_organizations_model.dart';
 
@@ -51,9 +48,9 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
         body: SafeArea(
           top: true,
           child: Align(
-            alignment: AlignmentDirectional(0.0, -1.0),
+            alignment: const AlignmentDirectional(0.0, -1.0),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -62,7 +59,7 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                   wrapWithModel(
                     model: _model.titleHeaderComponentModel,
                     updateCallback: () => safeSetState(() {}),
-                    child: TitleHeaderComponentWidget(
+                    child: const TitleHeaderComponentWidget(
                       titleText: 'My Organizations',
                     ),
                   ),
@@ -75,7 +72,7 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Align(
-                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Text(
                                   'Membership',
                                   style: FlutterFlowTheme.of(context)
@@ -88,7 +85,7 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 20.0, 0.0, 0.0),
                                 child: StreamBuilder<List<MembersRecord>>(
                                   stream: queryMembersRecord(
@@ -124,7 +121,7 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                         listViewMembersRecordList =
                                         snapshot.data!;
                                     if (listViewMembersRecordList.isEmpty) {
-                                      return EmptyListWidget(
+                                      return const EmptyListWidget(
                                         emptyWhat: 'memberships',
                                       );
                                     }
@@ -142,7 +139,7 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                                 listViewIndex];
                                         return Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 10.0),
                                           child: FutureBuilder<
                                               OrganizationsRecord>(
@@ -196,7 +193,7 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                                     }.withoutNulls,
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          TransitionInfo(
+                                                          const TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -233,7 +230,7 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       10.0,
                                                                       10.0,
@@ -272,12 +269,12 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                                                   Flexible(
                                                                     child:
                                                                         Align(
-                                                                      alignment: AlignmentDirectional(
+                                                                      alignment: const AlignmentDirectional(
                                                                           -1.0,
                                                                           -1.0),
                                                                       child:
                                                                           Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                                                             15.0,
                                                                             0.0,
                                                                             0.0,
@@ -292,7 +289,7 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                                                               CrossAxisAlignment.start,
                                                                           children: [
                                                                             Align(
-                                                                              alignment: AlignmentDirectional(-1.0, -1.0),
+                                                                              alignment: const AlignmentDirectional(-1.0, -1.0),
                                                                               child: Text(
                                                                                 rowOrganizationsRecord.organizationName,
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -305,7 +302,7 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                                                               ),
                                                                             ),
                                                                             Align(
-                                                                              alignment: AlignmentDirectional(-1.0, -1.0),
+                                                                              alignment: const AlignmentDirectional(-1.0, -1.0),
                                                                               child: Text(
                                                                                 rowOrganizationsRecord.type,
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -318,7 +315,7 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                                                               ),
                                                                             ),
                                                                             Align(
-                                                                              alignment: AlignmentDirectional(-1.0, -1.0),
+                                                                              alignment: const AlignmentDirectional(-1.0, -1.0),
                                                                               child: Text(
                                                                                 'Member since ${dateTimeFormat(
                                                                                   "relative",
@@ -368,13 +365,13 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                             ],
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 20.0, 0.0, 100.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
                                     'Manage',
                                     style: FlutterFlowTheme.of(context)
@@ -387,7 +384,7 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 20.0, 0.0, 0.0),
                                   child: StreamBuilder<List<MembersRecord>>(
                                     stream: queryMembersRecord(
@@ -437,7 +434,7 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                                   listViewIndex];
                                           return Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -505,7 +502,7 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                                               extra: <String,
                                                                   dynamic>{
                                                                 kTransitionInfoKey:
-                                                                    TransitionInfo(
+                                                                    const TransitionInfo(
                                                                   hasTransition:
                                                                       true,
                                                                   transitionType:
@@ -537,7 +534,7 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                                               extra: <String,
                                                                   dynamic>{
                                                                 kTransitionInfoKey:
-                                                                    TransitionInfo(
+                                                                    const TransitionInfo(
                                                                   hasTransition:
                                                                       true,
                                                                   transitionType:
@@ -572,7 +569,7 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                                           ),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         5.0,
                                                                         5.0,
@@ -611,12 +608,12 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                                                     Flexible(
                                                                       child:
                                                                           Align(
-                                                                        alignment: AlignmentDirectional(
+                                                                        alignment: const AlignmentDirectional(
                                                                             -1.0,
                                                                             -1.0),
                                                                         child:
                                                                             Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
                                                                               5.0,
                                                                               0.0,
                                                                               0.0,
@@ -631,7 +628,7 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                                                                 CrossAxisAlignment.start,
                                                                             children: [
                                                                               Align(
-                                                                                alignment: AlignmentDirectional(-1.0, -1.0),
+                                                                                alignment: const AlignmentDirectional(-1.0, -1.0),
                                                                                 child: Text(
                                                                                   containerOrganizationsRecord.organizationName,
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -644,7 +641,7 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                                                                 ),
                                                                               ),
                                                                               Align(
-                                                                                alignment: AlignmentDirectional(-1.0, -1.0),
+                                                                                alignment: const AlignmentDirectional(-1.0, -1.0),
                                                                                 child: Text(
                                                                                   containerOrganizationsRecord.type,
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -664,9 +661,9 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                                                                       mainAxisSize: MainAxisSize.max,
                                                                                       children: [
                                                                                         Align(
-                                                                                          alignment: AlignmentDirectional(-1.0, -1.0),
+                                                                                          alignment: const AlignmentDirectional(-1.0, -1.0),
                                                                                           child: Padding(
-                                                                                            padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                                                                                            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                                                                                             child: Text(
                                                                                               'Status: ',
                                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -680,9 +677,9 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                                                                           ),
                                                                                         ),
                                                                                         Align(
-                                                                                          alignment: AlignmentDirectional(-1.0, -1.0),
+                                                                                          alignment: const AlignmentDirectional(-1.0, -1.0),
                                                                                           child: Padding(
-                                                                                            padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                                                                                            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                                                                                             child: Text(
                                                                                               containerOrganizationsRecord.status,
                                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -713,7 +710,7 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                                                                       mainAxisSize: MainAxisSize.max,
                                                                                       children: [
                                                                                         Align(
-                                                                                          alignment: AlignmentDirectional(-1.0, -1.0),
+                                                                                          alignment: const AlignmentDirectional(-1.0, -1.0),
                                                                                           child: Text(
                                                                                             dateTimeFormat(
                                                                                               "relative",
@@ -738,7 +735,7 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                                                                   mainAxisSize: MainAxisSize.max,
                                                                                   children: [
                                                                                     Align(
-                                                                                      alignment: AlignmentDirectional(-1.0, -1.0),
+                                                                                      alignment: const AlignmentDirectional(-1.0, -1.0),
                                                                                       child: Text(
                                                                                         listViewMembersRecord.officerRole,
                                                                                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -761,7 +758,7 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                                                             .status !=
                                                                         'Approved')
                                                                       Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             5.0,
@@ -806,7 +803,7 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 10.0),
                                   child: FutureBuilder<int>(
                                     future: queryOrganizationsRecordCount(
@@ -839,143 +836,143 @@ class _MyOrganizationsWidgetState extends State<MyOrganizationsWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          if (rowCount < 3)
+                                          if (((currentUserDocument?.settings
+                                                          .isSuperAdmin !=
+                                                      null) &&
+                                                  (currentUserDocument?.settings
+                                                          .isSuperAdmin ==
+                                                      true)) ||
+                                              (rowCount < 3))
                                             Expanded(
-                                              child: InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  logFirebaseEvent(
-                                                      'MY_ORGANIZATIONS_Container_1tiwi073_ON_T');
-                                                  logFirebaseEvent(
-                                                      'Container_navigate_to');
+                                              child: AuthUserStreamWidget(
+                                                builder: (context) => InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    logFirebaseEvent(
+                                                        'MY_ORGANIZATIONS_Container_1tiwi073_ON_T');
+                                                    logFirebaseEvent(
+                                                        'Container_navigate_to');
 
-                                                  context.pushNamed(
-                                                    'org_application',
-                                                    extra: <String, dynamic>{
-                                                      kTransitionInfoKey:
-                                                          TransitionInfo(
-                                                        hasTransition: true,
-                                                        transitionType:
-                                                            PageTransitionType
-                                                                .fade,
-                                                        duration: Duration(
-                                                            milliseconds: 0),
+                                                    context.pushNamed(
+                                                      'org_application',
+                                                      extra: <String, dynamic>{
+                                                        kTransitionInfoKey:
+                                                            const TransitionInfo(
+                                                          hasTransition: true,
+                                                          transitionType:
+                                                              PageTransitionType
+                                                                  .fade,
+                                                          duration: Duration(
+                                                              milliseconds: 0),
+                                                        ),
+                                                      },
+                                                    );
+                                                  },
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              6.0),
+                                                      border: Border.all(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        width: 1.0,
                                                       ),
-                                                    },
-                                                  );
-                                                },
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryBackground,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            6.0),
-                                                    border: Border.all(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
-                                                      width: 1.0,
                                                     ),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsets.all(10.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Flexible(
-                                                          child: Align(
-                                                            alignment:
-                                                                AlignmentDirectional(
-                                                                    -1.0, -1.0),
-                                                            child: Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          15.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            -1.0,
-                                                                            -1.0),
-                                                                    child: Text(
-                                                                      'Apply an Organization',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Montserrat',
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).tertiary,
-                                                                            fontSize:
-                                                                                14.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FontWeight.bold,
-                                                                          ),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(10.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Flexible(
+                                                            child: Align(
+                                                              alignment:
+                                                                  const AlignmentDirectional(
+                                                                      -1.0,
+                                                                      -1.0),
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            15.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Align(
+                                                                      alignment: const AlignmentDirectional(
+                                                                          -1.0,
+                                                                          -1.0),
+                                                                      child:
+                                                                          Text(
+                                                                        'Apply an Organization',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              color: FlutterFlowTheme.of(context).tertiary,
+                                                                              fontSize: 14.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.bold,
+                                                                            ),
+                                                                      ),
                                                                     ),
-                                                                  ),
-                                                                  Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            -1.0,
-                                                                            -1.0),
-                                                                    child: Text(
-                                                                      'Do you want to establish an organization?',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Montserrat',
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).panelText,
-                                                                            fontSize:
-                                                                                11.0,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            fontWeight:
-                                                                                FontWeight.w500,
-                                                                          ),
+                                                                    Align(
+                                                                      alignment: const AlignmentDirectional(
+                                                                          -1.0,
+                                                                          -1.0),
+                                                                      child:
+                                                                          Text(
+                                                                        'Do you want to establish an organization?',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              color: FlutterFlowTheme.of(context).panelText,
+                                                                              fontSize: 11.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.w500,
+                                                                            ),
+                                                                      ),
                                                                     ),
-                                                                  ),
-                                                                ],
+                                                                  ],
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
-                                                        ),
-                                                        Icon(
-                                                          Icons.add,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          size: 22.0,
-                                                        ),
-                                                      ],
+                                                          Icon(
+                                                            Icons.add,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            size: 22.0,
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ),

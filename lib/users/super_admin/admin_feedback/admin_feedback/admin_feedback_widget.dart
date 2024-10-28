@@ -5,13 +5,10 @@ import '/components/widgets/subtitle_header/subtitle_header_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:provider/provider.dart';
 import 'admin_feedback_model.dart';
 export 'admin_feedback_model.dart';
 
@@ -54,7 +51,7 @@ class _AdminFeedbackWidgetState extends State<AdminFeedbackWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -63,14 +60,14 @@ class _AdminFeedbackWidgetState extends State<AdminFeedbackWidget> {
                 wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: TitleHeaderComponentWidget(
+                  child: const TitleHeaderComponentWidget(
                     titleText: 'Received Feedbacks',
                   ),
                 ),
                 wrapWithModel(
                   model: _model.subtitleHeaderModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: SubtitleHeaderWidget(
+                  child: const SubtitleHeaderWidget(
                     mainTitle: 'Feedback',
                     subText: 'View feedbacks received from users.',
                   ),
@@ -116,7 +113,7 @@ class _AdminFeedbackWidgetState extends State<AdminFeedbackWidget> {
                               ),
                             ),
                             noItemsFoundIndicatorBuilder: (_) =>
-                                EmptyListWidget(
+                                const EmptyListWidget(
                               emptyWhat: 'feedbacks',
                             ),
                             itemBuilder: (context, _, listViewIndex) {

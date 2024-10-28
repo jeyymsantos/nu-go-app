@@ -116,7 +116,7 @@ export '/users/school_admins/fmo/a_calendar/a_calendar_widget.dart'
     show ACalendarWidget;
 export '/users/rsco/event_management/event_proposal/step_by_step/event_proposal_step_1/event_proposal_step1_widget.dart'
     show EventProposalStep1Widget;
-export '/users/super_admin/admin_notif_send/admin_notif_send_widget.dart'
+export '/users/super_admin/admin_notifications/admin_notif_send/admin_notif_send_widget.dart'
     show AdminNotifSendWidget;
 export '/users/rsco/event_management/event_proposal/step_by_step/event_proposal_step_2/event_proposal_step2_widget.dart'
     show EventProposalStep2Widget;
@@ -144,8 +144,6 @@ export '/users/rsco/event_management/event_profile/event_profile_insights/event_
     show EventProfileInsightsWidget;
 export '/users/general/menu/nu_services/web_viewer/web_viewer_widget.dart'
     show WebViewerWidget;
-export '/users/super_admin/admin_notifications/admin_notif_menu/admin_notif_menu_widget.dart'
-    show AdminNotifMenuWidget;
 export '/users/general/menu/feedback/feedback/feedback_widget.dart'
     show FeedbackWidget;
 export '/users/super_admin/admin_feedback/admin_feedback/admin_feedback_widget.dart'
@@ -198,8 +196,8 @@ export '/users/general/menu/profile/step_1_nfc_setup/step1_nfc_setup_widget.dart
     show Step1NfcSetupWidget;
 export '/users/rsco/org_application/org_application/org_application_widget.dart'
     show OrgApplicationWidget;
-export '/users/rsco/event_management/event_profile/event_profile_feeback/event_profile_feeback_widget.dart'
-    show EventProfileFeebackWidget;
+export '/users/general/events/event_feeback/event_feeback_widget.dart'
+    show EventFeebackWidget;
 export '/users/rsco/org_management/org_edit/org_edit_widget.dart'
     show OrgEditWidget;
 export '/users/rsco/org_management/org_form_management/org_form_management_widget.dart'
@@ -289,8 +287,8 @@ export '/modules/marketplace/admin/update_product_marketplace/update_product_mar
     show UpdateProductMarketplaceWidget;
 export '/drafts/password_checker/password_checker_widget.dart'
     show PasswordCheckerWidget;
-export '/users/general/menu/user_profile_admin_view/user_profile_admin_view_widget.dart'
-    show UserProfileAdminViewWidget;
+export '/modules/file_maintenance/file_users/view_user/view_user_widget.dart'
+    show ViewUserWidget;
 export '/users/rsco/event_management/event_profile/event_edit/event_edit_widget.dart'
     show EventEditWidget;
 export '/modules/marketplace/admin/dashboard_admin_marketplace/dashboard_admin_marketplace_widget.dart'
@@ -304,3 +302,5 @@ export '/modules/marketplace/admin/my_pending_orders_admin_marketplace/my_pendin
 export '/modules/marketplace/admin/update/update_widget.dart' show UpdateWidget;
 export '/modules/marketplace/admin/order_view_admin/order_view_admin_widget.dart'
     show OrderViewAdminWidget;
+export '/modules/file_maintenance/file_users/view_userid_admin/view_userid_admin_widget.dart'
+    show ViewUseridAdminWidget;

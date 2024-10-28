@@ -4,14 +4,10 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/users/rsco/event_management/event_proposal/components/platform_choice/platform_choice_widget.dart';
-import 'dart:math';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'event_proposal_step2_model.dart';
 export 'event_proposal_step2_model.dart';
@@ -77,7 +73,7 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 1400.0.ms,
-            color: Color(0xFF35408E),
+            color: const Color(0xFF35408E),
             angle: 0.576,
           ),
         ],
@@ -106,7 +102,7 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,18 +110,18 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
                 wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: TitleHeaderComponentWidget(
+                  child: const TitleHeaderComponentWidget(
                     titleText: 'Create Proposal',
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 10.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -135,7 +131,7 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 10.0, 0.0),
                                     child: Text(
                                       'Step 2',
@@ -165,7 +161,7 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
                                 ],
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: Text(
                                   'Let’s specify the location where the event will take place, including any relevant details about the venue or setting.',
@@ -181,7 +177,7 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -202,7 +198,7 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 0.0, 0.0),
                                         child: Container(
                                           width: double.infinity,
@@ -219,7 +215,7 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 0.0, 0.0),
                                         child: Container(
                                           width: double.infinity,
@@ -235,7 +231,7 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 0.0, 0.0),
                                         child: Container(
                                           width: double.infinity,
@@ -274,14 +270,14 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
                     autovalidateMode: AutovalidateMode.disabled,
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 20.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 20.0),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 15.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -301,7 +297,7 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
                                   wrapWithModel(
                                     model: _model.platformChoiceModel,
                                     updateCallback: () => safeSetState(() {}),
-                                    child: PlatformChoiceWidget(),
+                                    child: const PlatformChoiceWidget(),
                                   ),
                                 ],
                               ),
@@ -310,7 +306,7 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -319,7 +315,7 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
                                     children: [
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                            const AlignmentDirectional(-1.0, 0.0),
                                         child: InkWell(
                                           splashColor: Colors.transparent,
                                           focusColor: Colors.transparent,
@@ -352,7 +348,7 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Icon(
                                                 Icons.settings_suggest,
@@ -363,7 +359,7 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
                                               ),
                                             ),
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   -1.0, 0.0),
                                               child: InkWell(
                                                 splashColor: Colors.transparent,
@@ -402,7 +398,7 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
                                 ),
                                 if (FFAppState().platformChoice == 'Other')
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller:
@@ -410,7 +406,7 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
                                       focusNode: _model.platformTextFocusNode,
                                       onChanged: (_) => EasyDebounce.debounce(
                                         '_model.platformTextTextController',
-                                        Duration(milliseconds: 2000),
+                                        const Duration(milliseconds: 2000),
                                         () async {
                                           logFirebaseEvent(
                                               'EVENT_PROPOSAL_STEP_2_platformText_ON_TE');
@@ -489,7 +485,7 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
                               ],
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 20.0, 0.0, 0.0),
                               child: Text(
                                 '2. Enter Link',
@@ -504,12 +500,12 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: Container(
                                 width: double.infinity,
-                                decoration: BoxDecoration(),
-                                child: Container(
+                                decoration: const BoxDecoration(),
+                                child: SizedBox(
                                   width: 200.0,
                                   child: TextFormField(
                                     controller: _model.linkTextController,
@@ -583,7 +579,7 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 20.0, 0.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
@@ -614,23 +610,23 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
                                         ParamType.String,
                                       ),
                                       'isOnline': serializeParam(
-                                        widget!.isOnline,
+                                        widget.isOnline,
                                         ParamType.bool,
                                       ),
                                       'isCampus': serializeParam(
-                                        widget!.isCampus,
+                                        widget.isCampus,
                                         ParamType.bool,
                                       ),
                                       'maxParticipants': serializeParam(
-                                        widget!.maxParticipants,
+                                        widget.maxParticipants,
                                         ParamType.int,
                                       ),
                                       'startDateTime': serializeParam(
-                                        widget!.startDateTime,
+                                        widget.startDateTime,
                                         ParamType.DateTime,
                                       ),
                                       'endDateTime': serializeParam(
-                                        widget!.endDateTime,
+                                        widget.endDateTime,
                                         ParamType.DateTime,
                                       ),
                                       'onlineLink': serializeParam(
@@ -638,7 +634,7 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
                                         ParamType.String,
                                       ),
                                       'orgRef': serializeParam(
-                                        widget!.orgRef,
+                                        widget.orgRef,
                                         ParamType.DocumentReference,
                                       ),
                                     }.withoutNulls,
@@ -648,9 +644,9 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
                                 options: FFButtonOptions(
                                   width: double.infinity,
                                   height: 40.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -662,7 +658,7 @@ class _EventProposalStep2WidgetState extends State<EventProposalStep2Widget>
                                         letterSpacing: 0.0,
                                       ),
                                   elevation: 3.0,
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),

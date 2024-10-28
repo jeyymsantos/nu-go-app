@@ -1,6 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/dialog_box/confirm_dialog_box/confirm_dialog_box_widget.dart';
 import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
@@ -10,12 +9,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/modules/marketplace/user/component/bottom_sheet_update_cart/bottom_sheet_update_cart_widget.dart';
 import 'package:styled_divider/styled_divider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cart_marketplace_model.dart';
 export 'cart_marketplace_model.dart';
@@ -57,16 +52,16 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
       body: SafeArea(
         top: true,
         child: Align(
-          alignment: AlignmentDirectional(0.0, -1.0),
+          alignment: const AlignmentDirectional(0.0, -1.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: TitleHeaderComponentWidget(
+                  child: const TitleHeaderComponentWidget(
                     titleText: 'Cart',
                   ),
                 ),
@@ -77,7 +72,7 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 24.0),
                         child: StreamBuilder<List<OrdersRecord>>(
                           stream: queryOrdersRecord(
@@ -128,7 +123,7 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                               clipBehavior: Clip.none,
                               children: [
                                 Container(
-                                  constraints: BoxConstraints(
+                                  constraints: const BoxConstraints(
                                     maxWidth: 750.0,
                                   ),
                                   decoration: BoxDecoration(
@@ -142,7 +137,7 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(16.0),
+                                    padding: const EdgeInsets.all(16.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
@@ -159,7 +154,7 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 4.0, 0.0, 12.0),
                                           child: Text(
                                             'Below is the list of items in your cart.',
@@ -175,9 +170,9 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                           builder: (context) {
                                             final cartProducts =
                                                 wrapOrdersRecord?.products
-                                                        ?.map((e) => e)
+                                                        .map((e) => e)
                                                         .toList()
-                                                        ?.toList() ??
+                                                        .toList() ??
                                                     [];
 
                                             return ListView.separated(
@@ -187,7 +182,7 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                               scrollDirection: Axis.vertical,
                                               itemCount: cartProducts.length,
                                               separatorBuilder: (_, __) =>
-                                                  SizedBox(height: 10.0),
+                                                  const SizedBox(height: 10.0),
                                               itemBuilder:
                                                   (context, cartProductsIndex) {
                                                 final cartProductsItem =
@@ -238,7 +233,7 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsets.all(5.0),
+                                                            const EdgeInsets.all(5.0),
                                                         child: Row(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
@@ -252,7 +247,7 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                                             Expanded(
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -264,7 +259,7 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                                                           .min,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           10.0,
@@ -286,7 +281,7 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                                                         child:
                                                                             Padding(
                                                                           padding:
-                                                                              EdgeInsets.all(2.0),
+                                                                              const EdgeInsets.all(2.0),
                                                                           child:
                                                                               Image.network(
                                                                             containerProductsRecord.image,
@@ -301,7 +296,7 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                                                     Flexible(
                                                                       child:
                                                                           Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             10.0,
@@ -375,7 +370,7 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                                                                           decimalType: DecimalType.periodDecimal,
                                                                                           currency: '₱',
                                                                                         ),
-                                                                                        style: TextStyle(),
+                                                                                        style: const TextStyle(),
                                                                                       )
                                                                                     ],
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -396,11 +391,11 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -468,13 +463,13 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Builder(
                                                                 builder:
                                                                     (context) =>
                                                                         Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -498,7 +493,7 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                                                         () async {
                                                                       logFirebaseEvent(
                                                                           'CART_MARKETPLACE_Icon_jm8wksrq_ON_TAP');
-                                                                      var _shouldSetState =
+                                                                      var shouldSetState =
                                                                           false;
                                                                       logFirebaseEvent(
                                                                           'Icon_alert_dialog');
@@ -515,9 +510,9 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                                                             backgroundColor:
                                                                                 Colors.transparent,
                                                                             alignment:
-                                                                                AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
-                                                                                WebViewAware(
+                                                                                const WebViewAware(
                                                                               child: ConfirmDialogBoxWidget(
                                                                                 confirmDialogTitle: 'Remove to Cart',
                                                                                 confirmDialogMeesage: 'Are you sure you want to remove this product from your cart?',
@@ -529,7 +524,7 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                                                           safeSetState(() =>
                                                                               _model.confirmDialog = value));
 
-                                                                      _shouldSetState =
+                                                                      shouldSetState =
                                                                           true;
                                                                       if (_model
                                                                           .confirmDialog!) {
@@ -544,8 +539,8 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                                                               elevation: 0,
                                                                               insetPadding: EdgeInsets.zero,
                                                                               backgroundColor: Colors.transparent,
-                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                              child: WebViewAware(
+                                                                              alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: const WebViewAware(
                                                                                 child: InformationDialogBoxWidget(
                                                                                   infoDialogTitle: 'Removed from Cart',
                                                                                   infoDialogMeesage: 'The product has been removed from your cart.',
@@ -577,20 +572,23 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                                                             },
                                                                           ),
                                                                         });
-                                                                        if (_shouldSetState)
+                                                                        if (shouldSetState) {
                                                                           safeSetState(
                                                                               () {});
+                                                                        }
                                                                         return;
                                                                       } else {
-                                                                        if (_shouldSetState)
+                                                                        if (shouldSetState) {
                                                                           safeSetState(
                                                                               () {});
+                                                                        }
                                                                         return;
                                                                       }
 
-                                                                      if (_shouldSetState)
+                                                                      if (shouldSetState) {
                                                                         safeSetState(
                                                                             () {});
+                                                                      }
                                                                     },
                                                                     child: Icon(
                                                                       FFIcons
@@ -621,7 +619,7 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                 ),
                                 Container(
                                   width: double.infinity,
-                                  constraints: BoxConstraints(
+                                  constraints: const BoxConstraints(
                                     maxWidth: 430.0,
                                   ),
                                   decoration: BoxDecoration(
@@ -635,7 +633,7 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 16.0, 16.0, 24.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -660,7 +658,7 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 12.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -668,7 +666,7 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 8.0, 0.0, 8.0),
                                                 child: Row(
@@ -775,9 +773,9 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                           options: FFButtonOptions(
                                             width: double.infinity,
                                             height: 50.0,
-                                            padding: EdgeInsets.all(0.0),
+                                            padding: const EdgeInsets.all(0.0),
                                             iconPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
@@ -789,7 +787,7 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                                                       letterSpacing: 0.0,
                                                     ),
                                             elevation: 2.0,
-                                            borderSide: BorderSide(
+                                            borderSide: const BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),
@@ -819,7 +817,7 @@ class _CartMarketplaceWidgetState extends State<CartMarketplaceWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         child: Text(
                           'Can\'t find your order? Make sure that you have added to cart the products.',

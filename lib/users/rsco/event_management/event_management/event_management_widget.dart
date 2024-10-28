@@ -1,13 +1,11 @@
 import '/backend/backend.dart';
+import '/components/dialog_box/failed_dialog_box/failed_dialog_box_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'event_management_model.dart';
 export 'event_management_model.dart';
 
@@ -52,7 +50,7 @@ class _EventManagementWidgetState extends State<EventManagementWidget> {
         queryBuilder: (eventsRecord) => eventsRecord
             .where(
               'org_reference',
-              isEqualTo: widget!.orgRef,
+              isEqualTo: widget.orgRef,
             )
             .orderBy('application.application_date', descending: true),
       ),
@@ -83,7 +81,7 @@ class _EventManagementWidgetState extends State<EventManagementWidget> {
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -93,7 +91,7 @@ class _EventManagementWidgetState extends State<EventManagementWidget> {
                         wrapWithModel(
                           model: _model.titleHeaderComponentModel,
                           updateCallback: () => safeSetState(() {}),
-                          child: TitleHeaderComponentWidget(
+                          child: const TitleHeaderComponentWidget(
                             titleText: 'Event Management',
                           ),
                         ),
@@ -102,13 +100,13 @@ class _EventManagementWidgetState extends State<EventManagementWidget> {
                     Expanded(
                       child: Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 15.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
@@ -124,7 +122,7 @@ class _EventManagementWidgetState extends State<EventManagementWidget> {
                                       'event_proposal_step_1',
                                       queryParameters: {
                                         'orgRef': serializeParam(
-                                          widget!.orgRef,
+                                          widget.orgRef,
                                           ParamType.DocumentReference,
                                         ),
                                       }.withoutNulls,
@@ -168,7 +166,7 @@ class _EventManagementWidgetState extends State<EventManagementWidget> {
                                                         Expanded(
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsets.all(
+                                                                const EdgeInsets.all(
                                                                     5.0),
                                                             child: Image.asset(
                                                               'assets/images/Files.png',
@@ -236,11 +234,11 @@ class _EventManagementWidgetState extends State<EventManagementWidget> {
                                                 children: [
                                                   Align(
                                                     alignment:
-                                                        AlignmentDirectional(
+                                                        const AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -268,14 +266,14 @@ class _EventManagementWidgetState extends State<EventManagementWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 100.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Align(
                                       alignment:
-                                          AlignmentDirectional(-1.0, 0.0),
+                                          const AlignmentDirectional(-1.0, 0.0),
                                       child: Text(
                                         'Manage',
                                         style: FlutterFlowTheme.of(context)
@@ -288,7 +286,7 @@ class _EventManagementWidgetState extends State<EventManagementWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 20.0, 0.0, 0.0),
                                       child: Builder(
                                         builder: (context) {
@@ -308,7 +306,7 @@ class _EventManagementWidgetState extends State<EventManagementWidget> {
                                               final myEventsItem =
                                                   myEvents[myEventsIndex];
                                               return Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 10.0),
                                                 child: Row(
@@ -337,7 +335,7 @@ class _EventManagementWidgetState extends State<EventManagementWidget> {
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       10.0,
                                                                       10.0,
@@ -376,12 +374,12 @@ class _EventManagementWidgetState extends State<EventManagementWidget> {
                                                                   Flexible(
                                                                     child:
                                                                         Align(
-                                                                      alignment: AlignmentDirectional(
+                                                                      alignment: const AlignmentDirectional(
                                                                           -1.0,
                                                                           -1.0),
                                                                       child:
                                                                           Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                                                             15.0,
                                                                             0.0,
                                                                             0.0,
@@ -396,7 +394,7 @@ class _EventManagementWidgetState extends State<EventManagementWidget> {
                                                                               CrossAxisAlignment.start,
                                                                           children: [
                                                                             Align(
-                                                                              alignment: AlignmentDirectional(-1.0, -1.0),
+                                                                              alignment: const AlignmentDirectional(-1.0, -1.0),
                                                                               child: Text(
                                                                                 myEventsItem.eventName,
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -409,7 +407,7 @@ class _EventManagementWidgetState extends State<EventManagementWidget> {
                                                                               ),
                                                                             ),
                                                                             Align(
-                                                                              alignment: AlignmentDirectional(-1.0, -1.0),
+                                                                              alignment: const AlignmentDirectional(-1.0, -1.0),
                                                                               child: Text(
                                                                                 myEventsItem.participantType,
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -425,9 +423,9 @@ class _EventManagementWidgetState extends State<EventManagementWidget> {
                                                                               mainAxisSize: MainAxisSize.max,
                                                                               children: [
                                                                                 Align(
-                                                                                  alignment: AlignmentDirectional(-1.0, -1.0),
+                                                                                  alignment: const AlignmentDirectional(-1.0, -1.0),
                                                                                   child: Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                                                                                     child: Text(
                                                                                       'Status: ',
                                                                                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -441,9 +439,9 @@ class _EventManagementWidgetState extends State<EventManagementWidget> {
                                                                                   ),
                                                                                 ),
                                                                                 Align(
-                                                                                  alignment: AlignmentDirectional(-1.0, -1.0),
+                                                                                  alignment: const AlignmentDirectional(-1.0, -1.0),
                                                                                   child: Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                                                                                     child: Text(
                                                                                       myEventsItem.status,
                                                                                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -478,63 +476,86 @@ class _EventManagementWidgetState extends State<EventManagementWidget> {
                                                                   if (myEventsItem
                                                                           .status !=
                                                                       'Approved')
-                                                                    InkWell(
-                                                                      splashColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      focusColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      hoverColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      highlightColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      onTap:
-                                                                          () async {
-                                                                        logFirebaseEvent(
-                                                                            'EVENT_MANAGEMENT_Icon_epyvw3go_ON_TAP');
-                                                                        logFirebaseEvent(
-                                                                            'Icon_navigate_to');
+                                                                    Builder(
+                                                                      builder:
+                                                                          (context) =>
+                                                                              InkWell(
+                                                                        splashColor:
+                                                                            Colors.transparent,
+                                                                        focusColor:
+                                                                            Colors.transparent,
+                                                                        hoverColor:
+                                                                            Colors.transparent,
+                                                                        highlightColor:
+                                                                            Colors.transparent,
+                                                                        onTap:
+                                                                            () async {
+                                                                          logFirebaseEvent(
+                                                                              'EVENT_MANAGEMENT_Icon_epyvw3go_ON_TAP');
+                                                                          if (myEventsItem.status ==
+                                                                              'Cancelled') {
+                                                                            logFirebaseEvent('Icon_alert_dialog');
+                                                                            await showDialog(
+                                                                              context: context,
+                                                                              builder: (dialogContext) {
+                                                                                return Dialog(
+                                                                                  elevation: 0,
+                                                                                  insetPadding: EdgeInsets.zero,
+                                                                                  backgroundColor: Colors.transparent,
+                                                                                  alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                  child: WebViewAware(
+                                                                                    child: GestureDetector(
+                                                                                      onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                      child: const FailedDialogBoxWidget(
+                                                                                        failedDialogTitle: 'Event Cancelled',
+                                                                                        failedDialogMeesage: 'Your event has been cancelled.',
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                );
+                                                                              },
+                                                                            );
 
-                                                                        context
-                                                                            .pushNamed(
-                                                                          'event_proposal_status',
-                                                                          queryParameters:
-                                                                              {
-                                                                            'eventRef':
-                                                                                serializeParam(
-                                                                              myEventsItem.reference,
-                                                                              ParamType.DocumentReference,
-                                                                            ),
-                                                                          }.withoutNulls,
-                                                                          extra: <String,
-                                                                              dynamic>{
-                                                                            kTransitionInfoKey:
-                                                                                TransitionInfo(
-                                                                              hasTransition: true,
-                                                                              transitionType: PageTransitionType.fade,
-                                                                              duration: Duration(milliseconds: 0),
-                                                                            ),
-                                                                          },
-                                                                        );
-                                                                      },
-                                                                      child:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .search,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryText,
-                                                                        size:
-                                                                            22.0,
+                                                                            return;
+                                                                          } else {
+                                                                            logFirebaseEvent('Icon_navigate_to');
+
+                                                                            context.pushNamed(
+                                                                              'event_proposal_status',
+                                                                              queryParameters: {
+                                                                                'eventRef': serializeParam(
+                                                                                  myEventsItem.reference,
+                                                                                  ParamType.DocumentReference,
+                                                                                ),
+                                                                              }.withoutNulls,
+                                                                              extra: <String, dynamic>{
+                                                                                kTransitionInfoKey: const TransitionInfo(
+                                                                                  hasTransition: true,
+                                                                                  transitionType: PageTransitionType.fade,
+                                                                                  duration: Duration(milliseconds: 0),
+                                                                                ),
+                                                                              },
+                                                                            );
+
+                                                                            return;
+                                                                          }
+                                                                        },
+                                                                        child:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .search,
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryText,
+                                                                          size:
+                                                                              22.0,
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   if (myEventsItem
                                                                           .status ==
                                                                       'Approved')
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           10.0,
                                                                           0.0,
                                                                           0.0,

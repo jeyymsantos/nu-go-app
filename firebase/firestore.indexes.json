@@ -1,6 +1,20 @@
 {
   "indexes": [
     {
+      "collectionGroup": "users",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "onboarding",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "role",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "programs",
       "queryScope": "COLLECTION",
       "fields": [
@@ -29,6 +43,20 @@
       ]
     },
     {
+      "collectionGroup": "users",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "onboarding",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "created_time",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "events",
       "queryScope": "COLLECTION",
       "fields": [
@@ -39,6 +67,20 @@
         {
           "fieldPath": "start_date",
           "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "event_attendees",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "ticket_status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "ticket_updated_on",
+          "order": "DESCENDING"
         }
       ]
     },
@@ -81,20 +123,6 @@
         {
           "fieldPath": "start_date",
           "order": "ASCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "event_attendees",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "ticket_status",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "ticket_updated_on",
-          "order": "DESCENDING"
         }
       ]
     },
@@ -277,8 +305,28 @@
       ]
     },
     {
+      "collectionGroup": "event_attendees",
+      "fieldPath": "ticket_user",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
       "collectionGroup": "members",
       "fieldPath": "user_reference",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "event_attendees",
+      "fieldPath": "ticket_user",
       "indexes": [
         {
           "order": "ASCENDING",

@@ -1,11 +1,7 @@
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'form_and_reservations_model.dart';
 export 'form_and_reservations_model.dart';
 
@@ -49,7 +45,7 @@ class _FormAndReservationsWidgetState extends State<FormAndReservationsWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -59,19 +55,19 @@ class _FormAndReservationsWidgetState extends State<FormAndReservationsWidget> {
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: TitleHeaderComponentWidget(
+                      child: const TitleHeaderComponentWidget(
                         titleText: 'Event Management',
                       ),
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 10.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -89,7 +85,7 @@ class _FormAndReservationsWidgetState extends State<FormAndReservationsWidget> {
                                         ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 0.0, 0.0),
                                     child: Text(
                                       'Let\'s prepare a reservation and required documents for conducting an activity.',
@@ -125,13 +121,13 @@ class _FormAndReservationsWidgetState extends State<FormAndReservationsWidget> {
                 Expanded(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 15.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -182,7 +178,7 @@ class _FormAndReservationsWidgetState extends State<FormAndReservationsWidget> {
                                                     Expanded(
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsets.all(5.0),
+                                                            const EdgeInsets.all(5.0),
                                                         child: Image.asset(
                                                           'assets/images/Files.png',
                                                           width: 70.0,
@@ -245,10 +241,10 @@ class _FormAndReservationsWidgetState extends State<FormAndReservationsWidget> {
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 10.0, 0.0),
                                                   child: Icon(
@@ -271,7 +267,7 @@ class _FormAndReservationsWidgetState extends State<FormAndReservationsWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 15.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -307,7 +303,7 @@ class _FormAndReservationsWidgetState extends State<FormAndReservationsWidget> {
                                                   Expanded(
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsets.all(5.0),
+                                                          const EdgeInsets.all(5.0),
                                                       child: Image.asset(
                                                         'assets/images/Files.png',
                                                         width: 70.0,
@@ -366,10 +362,10 @@ class _FormAndReservationsWidgetState extends State<FormAndReservationsWidget> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 10.0, 0.0),
                                                 child: Icon(
@@ -391,7 +387,7 @@ class _FormAndReservationsWidgetState extends State<FormAndReservationsWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 15.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -427,7 +423,7 @@ class _FormAndReservationsWidgetState extends State<FormAndReservationsWidget> {
                                                   Expanded(
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsets.all(5.0),
+                                                          const EdgeInsets.all(5.0),
                                                       child: Image.asset(
                                                         'assets/images/Files.png',
                                                         width: 70.0,
@@ -486,10 +482,10 @@ class _FormAndReservationsWidgetState extends State<FormAndReservationsWidget> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 10.0, 0.0),
                                                 child: Icon(
@@ -511,7 +507,7 @@ class _FormAndReservationsWidgetState extends State<FormAndReservationsWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 15.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -547,7 +543,7 @@ class _FormAndReservationsWidgetState extends State<FormAndReservationsWidget> {
                                                   Expanded(
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsets.all(5.0),
+                                                          const EdgeInsets.all(5.0),
                                                       child: Image.asset(
                                                         'assets/images/Files.png',
                                                         width: 70.0,
@@ -606,10 +602,10 @@ class _FormAndReservationsWidgetState extends State<FormAndReservationsWidget> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 10.0, 0.0),
                                                 child: Icon(
@@ -631,7 +627,7 @@ class _FormAndReservationsWidgetState extends State<FormAndReservationsWidget> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 15.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -667,7 +663,7 @@ class _FormAndReservationsWidgetState extends State<FormAndReservationsWidget> {
                                                   Expanded(
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsets.all(5.0),
+                                                          const EdgeInsets.all(5.0),
                                                       child: Image.asset(
                                                         'assets/images/Files.png',
                                                         width: 70.0,
@@ -726,10 +722,10 @@ class _FormAndReservationsWidgetState extends State<FormAndReservationsWidget> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 10.0, 0.0),
                                                 child: Icon(

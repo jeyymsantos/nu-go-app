@@ -1,22 +1,8 @@
-import '/backend/backend.dart';
-import '/components/widgets/sort_logs/sort_logs_widget.dart';
 import '/components/widgets/subtitle_header/subtitle_header_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import 'admin_logs_widget.dart' show AdminLogsWidget;
-import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class AdminLogsModel extends FlutterFlowModel<AdminLogsWidget> {
   ///  Local state fields for this page.
@@ -33,15 +19,12 @@ class AdminLogsModel extends FlutterFlowModel<AdminLogsWidget> {
   FocusNode? contentSearchFocusNode;
   TextEditingController? contentSearchTextController;
   String? Function(BuildContext, String?)? contentSearchTextControllerValidator;
-  // Model for sortLogs component.
-  late SortLogsModel sortLogsModel;
 
   @override
   void initState(BuildContext context) {
     titleHeaderComponentModel =
         createModel(context, () => TitleHeaderComponentModel());
     subtitleHeaderModel = createModel(context, () => SubtitleHeaderModel());
-    sortLogsModel = createModel(context, () => SortLogsModel());
   }
 
   @override
@@ -50,7 +33,5 @@ class AdminLogsModel extends FlutterFlowModel<AdminLogsWidget> {
     subtitleHeaderModel.dispose();
     contentSearchFocusNode?.dispose();
     contentSearchTextController?.dispose();
-
-    sortLogsModel.dispose();
   }
 }

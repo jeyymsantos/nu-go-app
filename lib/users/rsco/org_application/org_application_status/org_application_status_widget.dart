@@ -5,16 +5,11 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'org_application_status_model.dart';
 export 'org_application_status_model.dart';
@@ -99,7 +94,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<OrganizationsRecord>(
-      stream: OrganizationsRecord.getDocument(widget!.orgRef!),
+      stream: OrganizationsRecord.getDocument(widget.orgRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -131,7 +126,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,7 +134,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                         wrapWithModel(
                           model: _model.titleHeaderComponentModel,
                           updateCallback: () => safeSetState(() {}),
-                          child: TitleHeaderComponentWidget(
+                          child: const TitleHeaderComponentWidget(
                             titleText: 'Application Status',
                           ),
                         ),
@@ -151,7 +146,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                               width: 90.0,
                               height: 90.0,
                               clipBehavior: Clip.antiAlias,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 shape: BoxShape.circle,
                               ),
                               child: Image.network(
@@ -163,7 +158,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -205,7 +200,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                         if (orgApplicationStatusOrganizationsRecord.status ==
                             'Revision')
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 20.0, 0.0, 0.0),
                             child: Container(
                               width: double.infinity,
@@ -214,7 +209,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
                               child: Padding(
-                                padding: EdgeInsets.all(10.0),
+                                padding: const EdgeInsets.all(10.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -227,7 +222,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                     ),
                                     Flexible(
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             20.0, 0.0, 20.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
@@ -267,7 +262,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                   ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 20.0, 0.0, 0.0),
                                               child: InkWell(
@@ -286,14 +281,14 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                     'org_revision',
                                                     queryParameters: {
                                                       'orgRef': serializeParam(
-                                                        widget!.orgRef,
+                                                        widget.orgRef,
                                                         ParamType
                                                             .DocumentReference,
                                                       ),
                                                     }.withoutNulls,
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          TransitionInfo(
+                                                          const TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -335,14 +330,14 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                           ),
                         Flexible(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 100.0),
                             child: SingleChildScrollView(
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 0.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -351,7 +346,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 0.0, 10.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -372,14 +367,14 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                     'org_application_detailed_status',
                                                     queryParameters: {
                                                       'orgRef': serializeParam(
-                                                        widget!.orgRef,
+                                                        widget.orgRef,
                                                         ParamType
                                                             .DocumentReference,
                                                       ),
                                                     }.withoutNulls,
                                                     extra: <String, dynamic>{
                                                       kTransitionInfoKey:
-                                                          TransitionInfo(
+                                                          const TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -397,11 +392,11 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                     Flexible(
                                                       child: Align(
                                                         alignment:
-                                                            AlignmentDirectional(
+                                                            const AlignmentDirectional(
                                                                 -1.0, 0.0),
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -498,12 +493,12 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                                   ),
                                                                   Align(
                                                                     alignment:
-                                                                        AlignmentDirectional(
+                                                                        const AlignmentDirectional(
                                                                             1.0,
                                                                             0.0),
                                                                     child:
                                                                         Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           10.0,
                                                                           0.0,
                                                                           0.0,
@@ -530,10 +525,10 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                 ),
                                               ),
                                               Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     -1.0, 0.0),
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 15.0),
                                                   child: Column(
@@ -587,7 +582,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 15.0),
                                                 child: Column(
@@ -615,7 +610,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                     ),
                                                     Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               -1.0, 0.0),
                                                       child: Text(
                                                         dateTimeFormat(
@@ -655,7 +650,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                           .scope ==
                                                       'Program-wide'))
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 15.0),
                                                   child: Column(
@@ -685,7 +680,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                       ),
                                                       Align(
                                                         alignment:
-                                                            AlignmentDirectional(
+                                                            const AlignmentDirectional(
                                                                 -1.0, 0.0),
                                                         child: StreamBuilder<
                                                             SchoolsRecord>(
@@ -747,7 +742,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                       .scope ==
                                                   'Program-wide')
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 15.0),
                                                   child: Column(
@@ -777,7 +772,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                       ),
                                                       Align(
                                                         alignment:
-                                                            AlignmentDirectional(
+                                                            const AlignmentDirectional(
                                                                 -1.0, 0.0),
                                                         child: StreamBuilder<
                                                             ProgramsRecord>(
@@ -836,7 +831,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                   ),
                                                 ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 15.0),
                                                 child: Column(
@@ -864,7 +859,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                     ),
                                                     Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               -1.0, 0.0),
                                                       child: Text(
                                                         orgApplicationStatusOrganizationsRecord
@@ -890,7 +885,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 15.0),
                                                 child: Column(
@@ -918,7 +913,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                     ),
                                                     Align(
                                                       alignment:
-                                                          AlignmentDirectional(
+                                                          const AlignmentDirectional(
                                                               -1.0, 0.0),
                                                       child: Text(
                                                         orgApplicationStatusOrganizationsRecord
@@ -950,17 +945,17 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 20.0, 0.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(-1.0, -1.0),
+                                              const AlignmentDirectional(-1.0, -1.0),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 10.0),
                                             child: Text(
                                               'Attachments',
@@ -978,7 +973,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 15.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -988,7 +983,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 5.0),
                                                     child: Text(
@@ -1044,7 +1039,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                         extra: <String,
                                                             dynamic>{
                                                           kTransitionInfoKey:
-                                                              TransitionInfo(
+                                                              const TransitionInfo(
                                                             hasTransition: true,
                                                             transitionType:
                                                                 PageTransitionType
@@ -1082,7 +1077,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         10.0,
                                                                         0.0,
@@ -1106,7 +1101,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -1134,7 +1129,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                             'Special Interest Organization')
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 15.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -1145,7 +1140,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1170,7 +1165,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1236,7 +1231,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                           extra: <String,
                                                               dynamic>{
                                                             kTransitionInfoKey:
-                                                                TransitionInfo(
+                                                                const TransitionInfo(
                                                               hasTransition:
                                                                   true,
                                                               transitionType:
@@ -1277,7 +1272,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           10.0,
                                                                           0.0,
@@ -1301,7 +1296,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1326,7 +1321,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                           ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 15.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -1336,7 +1331,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 5.0),
                                                     child: Text(
@@ -1392,7 +1387,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                         extra: <String,
                                                             dynamic>{
                                                           kTransitionInfoKey:
-                                                              TransitionInfo(
+                                                              const TransitionInfo(
                                                             hasTransition: true,
                                                             transitionType:
                                                                 PageTransitionType
@@ -1430,7 +1425,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         10.0,
                                                                         0.0,
@@ -1454,7 +1449,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -1479,7 +1474,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 15.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -1489,7 +1484,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 5.0),
                                                     child: Text(
@@ -1545,7 +1540,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                         extra: <String,
                                                             dynamic>{
                                                           kTransitionInfoKey:
-                                                              TransitionInfo(
+                                                              const TransitionInfo(
                                                             hasTransition: true,
                                                             transitionType:
                                                                 PageTransitionType
@@ -1583,7 +1578,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         10.0,
                                                                         0.0,
@@ -1607,7 +1602,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -1647,9 +1642,9 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                       (orgApplicationStatusOrganizationsRecord.status ==
                           'Revision'))
                     Align(
-                      alignment: AlignmentDirectional(0.0, 1.0),
+                      alignment: const AlignmentDirectional(0.0, 1.0),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             20.0, 10.0, 20.0, 30.0),
                         child: FFButtonWidget(
                           onPressed: () async {
@@ -1661,19 +1656,19 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                   builder: (alertDialogContext) {
                                     return WebViewAware(
                                       child: AlertDialog(
-                                        title: Text('Cancel Application'),
-                                        content: Text(
+                                        title: const Text('Cancel Application'),
+                                        content: const Text(
                                             'Are you sure you want to cancel your org\'s application?'),
                                         actions: [
                                           TextButton(
                                             onPressed: () => Navigator.pop(
                                                 alertDialogContext, false),
-                                            child: Text('Cancel'),
+                                            child: const Text('Cancel'),
                                           ),
                                           TextButton(
                                             onPressed: () => Navigator.pop(
                                                 alertDialogContext, true),
-                                            child: Text('Confirm'),
+                                            child: const Text('Confirm'),
                                           ),
                                         ],
                                       ),
@@ -1684,7 +1679,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                             if (confirmDialogResponse) {
                               logFirebaseEvent('Button_backend_call');
 
-                              await widget!.orgRef!.update({
+                              await widget.orgRef!.update({
                                 ...createOrganizationsRecordData(
                                   status: 'Cancelled',
                                 ),
@@ -1697,7 +1692,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                               });
                               logFirebaseEvent('Button_backend_call');
 
-                              await ApplicationRecord.createDoc(widget!.orgRef!)
+                              await ApplicationRecord.createDoc(widget.orgRef!)
                                   .set({
                                 ...createApplicationRecordData(
                                   message:
@@ -1726,14 +1721,14 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                 builder: (alertDialogContext) {
                                   return WebViewAware(
                                     child: AlertDialog(
-                                      title: Text('Application Cancelled'),
-                                      content: Text(
+                                      title: const Text('Application Cancelled'),
+                                      content: const Text(
                                           'Your application has been cancelled.'),
                                       actions: [
                                         TextButton(
                                           onPressed: () =>
                                               Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
+                                          child: const Text('Ok'),
                                         ),
                                       ],
                                     ),
@@ -1747,9 +1742,9 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                           options: FFButtonOptions(
                             width: double.infinity,
                             height: 40.0,
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).error,
                             textStyle: FlutterFlowTheme.of(context)
@@ -1761,7 +1756,7 @@ class _OrgApplicationStatusWidgetState extends State<OrgApplicationStatusWidget>
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),

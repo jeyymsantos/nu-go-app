@@ -1,9 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'subtitle_header_model.dart';
 export 'subtitle_header_model.dart';
 
@@ -52,14 +49,14 @@ class _SubtitleHeaderWidgetState extends State<SubtitleHeaderWidget> {
       children: [
         Expanded(
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   valueOrDefault<String>(
-                    widget!.mainTitle,
+                    widget.mainTitle,
                     'Title',
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -70,10 +67,10 @@ class _SubtitleHeaderWidgetState extends State<SubtitleHeaderWidget> {
                       ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                   child: Text(
                     valueOrDefault<String>(
-                      widget!.subText,
+                      widget.subText,
                       'Subtext',
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(

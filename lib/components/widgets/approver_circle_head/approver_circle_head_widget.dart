@@ -1,9 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'approver_circle_head_model.dart';
 export 'approver_circle_head_model.dart';
 
@@ -16,7 +13,7 @@ class ApproverCircleHeadWidget extends StatefulWidget {
     required this.role,
     Color? borderColor,
     required this.note,
-  }) : this.borderColor = borderColor ?? const Color(0xFF35408E);
+  }) : borderColor = borderColor ?? const Color(0xFF35408E);
 
   final String? approverName;
   final DateTime? dateAndTime;
@@ -74,8 +71,8 @@ class _ApproverCircleHeadWidgetState extends State<ApproverCircleHeadWidget> {
                   height: 3.0,
                   decoration: BoxDecoration(
                     color: valueOrDefault<Color>(
-                      widget!.borderColor,
-                      Color(0xFF8A20A1),
+                      widget.borderColor,
+                      const Color(0xFF8A20A1),
                     ),
                   ),
                 ),
@@ -88,20 +85,20 @@ class _ApproverCircleHeadWidgetState extends State<ApproverCircleHeadWidget> {
                   shape: BoxShape.circle,
                   border: Border.all(
                     color: valueOrDefault<Color>(
-                      widget!.borderColor,
-                      Color(0xFF8A20A1),
+                      widget.borderColor,
+                      const Color(0xFF8A20A1),
                     ),
                     width: 3.0,
                   ),
                 ),
                 child: ClipOval(
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                     ),
                     child: Image.network(
                       valueOrDefault<String>(
-                        widget!.imagePath,
+                        widget.imagePath,
                         'https://static.vecteezy.com/system/resources/previews/026/630/551/original/profile-icon-symbol-design-illustration-vector.jpg',
                       ),
                       fit: BoxFit.cover,
@@ -114,8 +111,8 @@ class _ApproverCircleHeadWidgetState extends State<ApproverCircleHeadWidget> {
                   height: 3.0,
                   decoration: BoxDecoration(
                     color: valueOrDefault<Color>(
-                      widget!.borderColor,
-                      Color(0xFF8A20A1),
+                      widget.borderColor,
+                      const Color(0xFF8A20A1),
                     ),
                   ),
                 ),
@@ -124,13 +121,13 @@ class _ApproverCircleHeadWidgetState extends State<ApproverCircleHeadWidget> {
           ),
           Flexible(
             child: Padding(
-              padding: EdgeInsets.all(5.0),
+              padding: const EdgeInsets.all(5.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     valueOrDefault<String>(
-                      widget!.note,
+                      widget.note,
                       'Recommending Approval by',
                     ),
                     textAlign: TextAlign.center,
@@ -144,7 +141,7 @@ class _ApproverCircleHeadWidgetState extends State<ApproverCircleHeadWidget> {
                   ),
                   Text(
                     valueOrDefault<String>(
-                      widget!.approverName,
+                      widget.approverName,
                       'Approver',
                     ),
                     textAlign: TextAlign.center,
@@ -157,7 +154,7 @@ class _ApproverCircleHeadWidgetState extends State<ApproverCircleHeadWidget> {
                   ),
                   Text(
                     valueOrDefault<String>(
-                      widget!.role,
+                      widget.role,
                       'Role',
                     ),
                     textAlign: TextAlign.center,

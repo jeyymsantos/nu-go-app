@@ -5,11 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'b_form_and_reservations_gatepass_model.dart';
 export 'b_form_and_reservations_gatepass_model.dart';
 
@@ -84,7 +80,7 @@ class _BFormAndReservationsGatepassWidgetState
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -94,19 +90,19 @@ class _BFormAndReservationsGatepassWidgetState
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: TitleHeaderComponentWidget(
+                      child: const TitleHeaderComponentWidget(
                         titleText: 'Event Management',
                       ),
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 10.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -124,7 +120,7 @@ class _BFormAndReservationsGatepassWidgetState
                                         ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 0.0, 0.0),
                                     child: Text(
                                       'Let\'s prepare a reservation and required documents for conducting an activity.',
@@ -157,15 +153,15 @@ class _BFormAndReservationsGatepassWidgetState
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 5.0, 0.0),
                               child: Text(
                                 'Reference Number: ',
@@ -179,7 +175,7 @@ class _BFormAndReservationsGatepassWidgetState
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: Text(
                               'Org-001',
                               style: FlutterFlowTheme.of(context)
@@ -199,7 +195,7 @@ class _BFormAndReservationsGatepassWidgetState
                 Expanded(
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 30.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 30.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
@@ -211,7 +207,7 @@ class _BFormAndReservationsGatepassWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 5.0),
                                     child: Text(
                                       'To',
@@ -310,7 +306,7 @@ class _BFormAndReservationsGatepassWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 5.0),
                                     child: Text(
                                       'From',
@@ -407,7 +403,7 @@ class _BFormAndReservationsGatepassWidgetState
                             children: [
                               Flexible(
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 5.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -417,7 +413,7 @@ class _BFormAndReservationsGatepassWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 5.0),
                                             child: Text(
                                               'Date Received',
@@ -459,7 +455,7 @@ class _BFormAndReservationsGatepassWidgetState
                                               'B_FORM_AND_RESERVATIONS_GATEPASS_birthda');
                                           logFirebaseEvent(
                                               'birthdate_picker_date_time_picker');
-                                          final _datePicked1Date =
+                                          final datePicked1Date =
                                               await showDatePicker(
                                             context: context,
                                             initialDate: getCurrentTimestamp,
@@ -510,12 +506,12 @@ class _BFormAndReservationsGatepassWidgetState
                                             },
                                           );
 
-                                          if (_datePicked1Date != null) {
+                                          if (datePicked1Date != null) {
                                             safeSetState(() {
                                               _model.datePicked1 = DateTime(
-                                                _datePicked1Date.year,
-                                                _datePicked1Date.month,
-                                                _datePicked1Date.day,
+                                                datePicked1Date.year,
+                                                datePicked1Date.month,
+                                                datePicked1Date.day,
                                               );
                                             });
                                           }
@@ -547,11 +543,11 @@ class _BFormAndReservationsGatepassWidgetState
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(10.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
-                                                      '${valueOrDefault<String>(
+                                                      valueOrDefault<String>(
                                                         dateTimeFormat(
                                                           "yMMMd",
                                                           _model.datePicked1,
@@ -561,7 +557,7 @@ class _BFormAndReservationsGatepassWidgetState
                                                                   .languageCode,
                                                         ),
                                                         'Birthday',
-                                                      )}',
+                                                      ),
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -579,7 +575,7 @@ class _BFormAndReservationsGatepassWidgetState
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 10.0, 0.0),
                                                     child: Icon(
@@ -603,7 +599,7 @@ class _BFormAndReservationsGatepassWidgetState
                               ),
                               Flexible(
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       5.0, 0.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -613,7 +609,7 @@ class _BFormAndReservationsGatepassWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 5.0),
                                             child: Text(
                                               'Date Released',
@@ -655,7 +651,7 @@ class _BFormAndReservationsGatepassWidgetState
                                               'B_FORM_AND_RESERVATIONS_GATEPASS_birthda');
                                           logFirebaseEvent(
                                               'birthdate_picker_date_time_picker');
-                                          final _datePicked2Date =
+                                          final datePicked2Date =
                                               await showDatePicker(
                                             context: context,
                                             initialDate: getCurrentTimestamp,
@@ -706,12 +702,12 @@ class _BFormAndReservationsGatepassWidgetState
                                             },
                                           );
 
-                                          if (_datePicked2Date != null) {
+                                          if (datePicked2Date != null) {
                                             safeSetState(() {
                                               _model.datePicked2 = DateTime(
-                                                _datePicked2Date.year,
-                                                _datePicked2Date.month,
-                                                _datePicked2Date.day,
+                                                datePicked2Date.year,
+                                                datePicked2Date.month,
+                                                datePicked2Date.day,
                                               );
                                             });
                                           }
@@ -743,11 +739,11 @@ class _BFormAndReservationsGatepassWidgetState
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(10.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
-                                                      '${valueOrDefault<String>(
+                                                      valueOrDefault<String>(
                                                         dateTimeFormat(
                                                           "yMMMd",
                                                           _model.datePicked2,
@@ -757,7 +753,7 @@ class _BFormAndReservationsGatepassWidgetState
                                                                   .languageCode,
                                                         ),
                                                         'Birthday',
-                                                      )}',
+                                                      ),
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -775,7 +771,7 @@ class _BFormAndReservationsGatepassWidgetState
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 10.0, 0.0),
                                                     child: Icon(
@@ -806,7 +802,7 @@ class _BFormAndReservationsGatepassWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 5.0),
                                     child: Text(
                                       'Mode of Entryway',
@@ -835,7 +831,7 @@ class _BFormAndReservationsGatepassWidgetState
                                 ],
                               ),
                               Align(
-                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: FlutterFlowRadioButton(
                                   options:
                                       ['Ingress', 'Egress / Pullout'].toList(),
@@ -857,7 +853,7 @@ class _BFormAndReservationsGatepassWidgetState
                                             fontFamily: 'Montserrat',
                                             letterSpacing: 0.0,
                                           ),
-                                  textPadding: EdgeInsetsDirectional.fromSTEB(
+                                  textPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 10.0, 0.0),
                                   buttonPosition: RadioButtonPosition.left,
                                   direction: Axis.horizontal,
@@ -880,7 +876,7 @@ class _BFormAndReservationsGatepassWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 5.0),
                                     child: Text(
                                       'Mode of Transfer',
@@ -909,7 +905,7 @@ class _BFormAndReservationsGatepassWidgetState
                                 ],
                               ),
                               Align(
-                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: FlutterFlowRadioButton(
                                   options: [
                                     'Permanent',
@@ -936,7 +932,7 @@ class _BFormAndReservationsGatepassWidgetState
                                             fontFamily: 'Montserrat',
                                             letterSpacing: 0.0,
                                           ),
-                                  textPadding: EdgeInsetsDirectional.fromSTEB(
+                                  textPadding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 10.0, 0.0),
                                   buttonPosition: RadioButtonPosition.left,
                                   direction: Axis.horizontal,
@@ -959,7 +955,7 @@ class _BFormAndReservationsGatepassWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 5.0),
                                     child: Text(
                                       'Particulars / Description',
@@ -1056,7 +1052,7 @@ class _BFormAndReservationsGatepassWidgetState
                             children: [
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 5.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -1066,7 +1062,7 @@ class _BFormAndReservationsGatepassWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 5.0),
                                             child: Text(
                                               'Quantity',
@@ -1099,7 +1095,7 @@ class _BFormAndReservationsGatepassWidgetState
                                         ],
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 0.0),
                                         child: TextFormField(
                                           controller: _model.textController4,
@@ -1181,7 +1177,7 @@ class _BFormAndReservationsGatepassWidgetState
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       5.0, 0.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -1191,7 +1187,7 @@ class _BFormAndReservationsGatepassWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 5.0),
                                             child: Text(
                                               'Unit',
@@ -1224,7 +1220,7 @@ class _BFormAndReservationsGatepassWidgetState
                                         ],
                                       ),
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 0.0),
                                         child: TextFormField(
                                           controller: _model.textController5,
@@ -1313,7 +1309,7 @@ class _BFormAndReservationsGatepassWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 5.0),
                                     child: Text(
                                       'Brand / Model',
@@ -1412,7 +1408,7 @@ class _BFormAndReservationsGatepassWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 5.0),
                                     child: Text(
                                       'Serial Number',
@@ -1511,7 +1507,7 @@ class _BFormAndReservationsGatepassWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 5.0),
                                     child: Text(
                                       'Location (Origin)',
@@ -1610,7 +1606,7 @@ class _BFormAndReservationsGatepassWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 5.0),
                                     child: Text(
                                       'Destination',
@@ -1709,7 +1705,7 @@ class _BFormAndReservationsGatepassWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 5.0),
                                     child: Text(
                                       'Reason for Pullout',
@@ -1791,7 +1787,7 @@ class _BFormAndReservationsGatepassWidgetState
                             ],
                           ),
                           Align(
-                            alignment: AlignmentDirectional(1.0, 0.0),
+                            alignment: const AlignmentDirectional(1.0, 0.0),
                             child: Text(
                               '+ Add other item',
                               style: FlutterFlowTheme.of(context)
@@ -1810,7 +1806,7 @@ class _BFormAndReservationsGatepassWidgetState
                                 children: [
                                   Expanded(
                                     child: FlutterFlowCheckboxGroup(
-                                      options: [
+                                      options: const [
                                         'By clicking submit, you authorize the NU Go App to store your reservation information for processing.'
                                       ],
                                       onChanged: (val) => safeSetState(() =>
@@ -1850,23 +1846,23 @@ class _BFormAndReservationsGatepassWidgetState
                                 ],
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     5.0, 10.0, 5.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () {
                                     print('Button pressed ...');
                                   },
                                   text: 'Submit GatePass',
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.check_circle_outline_outlined,
                                     size: 20.0,
                                   ),
                                   options: FFButtonOptions(
                                     width: double.infinity,
                                     height: 40.0,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -1878,7 +1874,7 @@ class _BFormAndReservationsGatepassWidgetState
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -1888,7 +1884,7 @@ class _BFormAndReservationsGatepassWidgetState
                               ),
                             ],
                           ),
-                        ].divide(SizedBox(height: 15.0)),
+                        ].divide(const SizedBox(height: 15.0)),
                       ),
                     ),
                   ),

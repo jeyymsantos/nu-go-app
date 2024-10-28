@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'flutter_flow/request_manager.dart';
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
-import '/backend/api_requests/api_manager.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:csv/csv.dart';
 import 'package:synchronized/synchronized.dart';
@@ -22,7 +20,7 @@ class FFAppState extends ChangeNotifier {
   }
 
   Future initializePersistedState() async {
-    secureStorage = FlutterSecureStorage();
+    secureStorage = const FlutterSecureStorage();
     await _safeInitAsync(() async {
       _defaultID =
           (await secureStorage.getString('ff_defaultID'))?.ref ?? _defaultID;
@@ -408,7 +406,7 @@ class FFAppState extends ChangeNotifier {
     updateFn(_address);
   }
 
-  LatLng? _nuBaliwagLocation = LatLng(14.9594505, 120.8899354);
+  LatLng? _nuBaliwagLocation = const LatLng(14.9594505, 120.8899354);
   LatLng? get nuBaliwagLocation => _nuBaliwagLocation;
   set nuBaliwagLocation(LatLng? value) {
     _nuBaliwagLocation = value;
@@ -610,11 +608,11 @@ class FFAppState extends ChangeNotifier {
   void clearLatestUpdatesDashboardCacheKey(String? uniqueKey) =>
       _latestUpdatesDashboardManager.clearRequest(uniqueKey);
 
-  final _orgsExploreManager = FutureRequestManager<List<OrganizationsRecord>>();
-  Future<List<OrganizationsRecord>> orgsExplore({
+  final _orgsExploreManager = StreamRequestManager<List<OrganizationsRecord>>();
+  Stream<List<OrganizationsRecord>> orgsExplore({
     String? uniqueQueryKey,
     bool? overrideCache,
-    required Future<List<OrganizationsRecord>> Function() requestFn,
+    required Stream<List<OrganizationsRecord>> Function() requestFn,
   }) =>
       _orgsExploreManager.performRequest(
         uniqueQueryKey: uniqueQueryKey,
@@ -716,12 +714,12 @@ extension FlutterSecureStorageExtensions on FlutterSecureStorage {
         if (result == null || result.isEmpty) {
           return null;
         }
-        return CsvToListConverter()
+        return const CsvToListConverter()
             .convert(result)
             .first
             .map((e) => e.toString())
             .toList();
       });
   Future<void> setStringList(String key, List<String> value) async =>
-      await writeSync(key: key, value: ListToCsvConverter().convert([value]));
+      await writeSync(key: key, value: const ListToCsvConverter().convert([value]));
 }

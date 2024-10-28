@@ -1,10 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'dynamic_program_form_model.dart';
 export 'dynamic_program_form_model.dart';
 
@@ -52,7 +48,7 @@ class _DynamicProgramFormWidgetState extends State<DynamicProgramFormWidget> {
         color: FlutterFlowTheme.of(context).primaryBackground,
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -61,7 +57,7 @@ class _DynamicProgramFormWidgetState extends State<DynamicProgramFormWidget> {
               children: [
                 Flexible(
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -69,7 +65,7 @@ class _DynamicProgramFormWidgetState extends State<DynamicProgramFormWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 5.0),
                               child: Text(
                                 'Start Time',
@@ -106,7 +102,7 @@ class _DynamicProgramFormWidgetState extends State<DynamicProgramFormWidget> {
                                 'DYNAMIC_PROGRAM_FORM_birthdate_picker_ON');
                             logFirebaseEvent(
                                 'birthdate_picker_date_time_picker');
-                            final _datePicked1Date = await showDatePicker(
+                            final datePicked1Date = await showDatePicker(
                               context: context,
                               initialDate: getCurrentTimestamp,
                               firstDate: (DateTime.fromMicrosecondsSinceEpoch(
@@ -145,12 +141,12 @@ class _DynamicProgramFormWidgetState extends State<DynamicProgramFormWidget> {
                               },
                             );
 
-                            if (_datePicked1Date != null) {
+                            if (datePicked1Date != null) {
                               safeSetState(() {
                                 _model.datePicked1 = DateTime(
-                                  _datePicked1Date.year,
-                                  _datePicked1Date.month,
-                                  _datePicked1Date.day,
+                                  datePicked1Date.year,
+                                  datePicked1Date.month,
+                                  datePicked1Date.day,
                                 );
                               });
                             }
@@ -177,10 +173,10 @@ class _DynamicProgramFormWidgetState extends State<DynamicProgramFormWidget> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           10.0, 0.0, 0.0, 0.0),
                                       child: Text(
-                                        '${valueOrDefault<String>(
+                                        valueOrDefault<String>(
                                           dateTimeFormat(
                                             "yMMMd",
                                             _model.datePicked1,
@@ -188,7 +184,7 @@ class _DynamicProgramFormWidgetState extends State<DynamicProgramFormWidget> {
                                                 .languageCode,
                                           ),
                                           'Birthday',
-                                        )}',
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -201,7 +197,7 @@ class _DynamicProgramFormWidgetState extends State<DynamicProgramFormWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 10.0, 0.0),
                                       child: Icon(
                                         FFIcons.kclock,
@@ -222,7 +218,7 @@ class _DynamicProgramFormWidgetState extends State<DynamicProgramFormWidget> {
                 ),
                 Flexible(
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -230,7 +226,7 @@ class _DynamicProgramFormWidgetState extends State<DynamicProgramFormWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 5.0),
                               child: Text(
                                 'End Time',
@@ -267,7 +263,7 @@ class _DynamicProgramFormWidgetState extends State<DynamicProgramFormWidget> {
                                 'DYNAMIC_PROGRAM_FORM_birthdate_picker_ON');
                             logFirebaseEvent(
                                 'birthdate_picker_date_time_picker');
-                            final _datePicked2Date = await showDatePicker(
+                            final datePicked2Date = await showDatePicker(
                               context: context,
                               initialDate: getCurrentTimestamp,
                               firstDate: (DateTime.fromMicrosecondsSinceEpoch(
@@ -306,12 +302,12 @@ class _DynamicProgramFormWidgetState extends State<DynamicProgramFormWidget> {
                               },
                             );
 
-                            if (_datePicked2Date != null) {
+                            if (datePicked2Date != null) {
                               safeSetState(() {
                                 _model.datePicked2 = DateTime(
-                                  _datePicked2Date.year,
-                                  _datePicked2Date.month,
-                                  _datePicked2Date.day,
+                                  datePicked2Date.year,
+                                  datePicked2Date.month,
+                                  datePicked2Date.day,
                                 );
                               });
                             }
@@ -338,10 +334,10 @@ class _DynamicProgramFormWidgetState extends State<DynamicProgramFormWidget> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           10.0, 0.0, 0.0, 0.0),
                                       child: Text(
-                                        '${valueOrDefault<String>(
+                                        valueOrDefault<String>(
                                           dateTimeFormat(
                                             "yMMMd",
                                             _model.datePicked2,
@@ -349,7 +345,7 @@ class _DynamicProgramFormWidgetState extends State<DynamicProgramFormWidget> {
                                                 .languageCode,
                                           ),
                                           'Birthday',
-                                        )}',
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -362,7 +358,7 @@ class _DynamicProgramFormWidgetState extends State<DynamicProgramFormWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 10.0, 0.0),
                                       child: Icon(
                                         FFIcons.kclock,
@@ -384,7 +380,7 @@ class _DynamicProgramFormWidgetState extends State<DynamicProgramFormWidget> {
               ],
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -396,7 +392,7 @@ class _DynamicProgramFormWidgetState extends State<DynamicProgramFormWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 5.0),
                               child: Text(
                                 'Activity Portion',

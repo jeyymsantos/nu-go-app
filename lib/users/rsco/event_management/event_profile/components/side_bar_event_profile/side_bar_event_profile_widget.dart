@@ -3,13 +3,8 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'side_bar_event_profile_model.dart';
 export 'side_bar_event_profile_model.dart';
 
@@ -51,8 +46,8 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(-400.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(-400.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -63,8 +58,8 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(-400.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(-400.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -75,8 +70,8 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
             curve: Curves.easeInOut,
             delay: 100.0.ms,
             duration: 600.0.ms,
-            begin: Offset(-400.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(-400.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -87,8 +82,8 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
             curve: Curves.easeInOut,
             delay: 200.0.ms,
             duration: 600.0.ms,
-            begin: Offset(-400.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(-400.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -99,8 +94,8 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
             curve: Curves.easeInOut,
             delay: 300.0.ms,
             duration: 600.0.ms,
-            begin: Offset(-400.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(-400.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -111,8 +106,8 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
             curve: Curves.easeInOut,
             delay: 400.0.ms,
             duration: 600.0.ms,
-            begin: Offset(-400.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(-400.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -123,8 +118,8 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
             curve: Curves.easeInOut,
             delay: 500.0.ms,
             duration: 600.0.ms,
-            begin: Offset(-400.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(-400.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -135,8 +130,8 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
             curve: Curves.easeInOut,
             delay: 500.0.ms,
             duration: 600.0.ms,
-            begin: Offset(-400.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(-400.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -147,8 +142,8 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
             curve: Curves.easeInOut,
             delay: 700.0.ms,
             duration: 600.0.ms,
-            begin: Offset(-400.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(-400.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -190,7 +185,7 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
       height: double.infinity,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(20.0),
           topLeft: Radius.circular(0.0),
@@ -202,13 +197,13 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(25.0, 60.0, 25.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(25.0, 60.0, 25.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -216,12 +211,12 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                         width: 40.0,
                         height: 40.0,
                         clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                         ),
                         child: Image.network(
                           valueOrDefault<String>(
-                            widget!.eventDoc?.coverPhoto,
+                            widget.eventDoc?.coverPhoto,
                             'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2Fnu_cover.jpg?alt=media&token=c0448910-d37d-456d-804c-ae8c875ac08f',
                           ),
                           fit: BoxFit.cover,
@@ -229,7 +224,7 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                       ),
                       Flexible(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               10.0, 0.0, 0.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -238,7 +233,7 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                               Text(
                                 dateTimeFormat(
                                   "yMMMd",
-                                  widget!.eventDoc!.startDate!,
+                                  widget.eventDoc!.startDate!,
                                   locale:
                                       FFLocalizations.of(context).languageCode,
                                 ),
@@ -253,11 +248,11 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                                     ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 2.0, 0.0, 0.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    widget!.eventDoc?.eventName,
+                                    widget.eventDoc?.eventName,
                                     'Assembly',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -279,7 +274,7 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                       animationsMap['rowOnPageLoadAnimation1']!),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 40.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 40.0),
                   child: Container(
                     width: double.infinity,
                     height: 1.0,
@@ -289,14 +284,14 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
                         child: Text(
                           'MAIN',
                           style:
@@ -310,7 +305,7 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 25.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 25.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -325,12 +320,12 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                               'event_profile_dashboard',
                               queryParameters: {
                                 'eventDoc': serializeParam(
-                                  widget!.eventDoc,
+                                  widget.eventDoc,
                                   ParamType.Document,
                                 ),
                               }.withoutNulls,
                               extra: <String, dynamic>{
-                                'eventDoc': widget!.eventDoc,
+                                'eventDoc': widget.eventDoc,
                               },
                             );
                           },
@@ -343,7 +338,7 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                                 size: 24.0,
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'Overview',
@@ -364,7 +359,7 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 25.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 25.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -381,12 +376,12 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                               'event_guests_all',
                               queryParameters: {
                                 'eventDoc': serializeParam(
-                                  widget!.eventDoc,
+                                  widget.eventDoc,
                                   ParamType.Document,
                                 ),
                               }.withoutNulls,
                               extra: <String, dynamic>{
-                                'eventDoc': widget!.eventDoc,
+                                'eventDoc': widget.eventDoc,
                               },
                             );
                           },
@@ -399,7 +394,7 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                                 size: 24.0,
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'Guest',
@@ -420,7 +415,7 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 25.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 25.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -437,12 +432,12 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                               'event_profile_insights',
                               queryParameters: {
                                 'eventDoc': serializeParam(
-                                  widget!.eventDoc,
+                                  widget.eventDoc,
                                   ParamType.Document,
                                 ),
                               }.withoutNulls,
                               extra: <String, dynamic>{
-                                'eventDoc': widget!.eventDoc,
+                                'eventDoc': widget.eventDoc,
                               },
                             );
                           },
@@ -455,7 +450,7 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                                 size: 24.0,
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'Insights',
@@ -478,14 +473,14 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
                         child: Text(
                           'EVENT',
                           style:
@@ -499,7 +494,7 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 25.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 25.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -516,12 +511,12 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                               'event_check_in_out',
                               queryParameters: {
                                 'eventDoc': serializeParam(
-                                  widget!.eventDoc,
+                                  widget.eventDoc,
                                   ParamType.Document,
                                 ),
                               }.withoutNulls,
                               extra: <String, dynamic>{
-                                'eventDoc': widget!.eventDoc,
+                                'eventDoc': widget.eventDoc,
                               },
                             );
                           },
@@ -534,7 +529,7 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                                 size: 24.0,
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'Check In',
@@ -555,7 +550,7 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 25.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 25.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -569,15 +564,15 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                               context.pop();
                             }
                             context.pushNamed(
-                              'event_check_in_out',
+                              'event_edit',
                               queryParameters: {
                                 'eventDoc': serializeParam(
-                                  widget!.eventDoc,
+                                  widget.eventDoc,
                                   ParamType.Document,
                                 ),
                               }.withoutNulls,
                               extra: <String, dynamic>{
-                                'eventDoc': widget!.eventDoc,
+                                'eventDoc': widget.eventDoc,
                               },
                             );
                           },
@@ -590,7 +585,7 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                                 size: 24.0,
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'Update Event',
@@ -616,7 +611,7 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 25.0, 25.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 25.0, 25.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -626,7 +621,7 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 25.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 25.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -652,12 +647,12 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                                 ParamType.bool,
                               ),
                               'orgRef': serializeParam(
-                                widget!.eventDoc?.orgReference,
+                                widget.eventDoc?.orgReference,
                                 ParamType.DocumentReference,
                               ),
                             }.withoutNulls,
                             extra: <String, dynamic>{
-                              kTransitionInfoKey: TransitionInfo(
+                              kTransitionInfoKey: const TransitionInfo(
                                 hasTransition: true,
                                 transitionType: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),
@@ -669,7 +664,7 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Stack(
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                              alignment: const AlignmentDirectional(0.0, 0.0),
                               children: [
                                 Icon(
                                   FFIcons.krefresh,
@@ -680,14 +675,14 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                                       'iconOnActionTriggerAnimation']!,
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 2.0, 0.0, 0.0),
                                   child: AuthUserStreamWidget(
                                     builder: (context) => Container(
                                       width: 25.0,
                                       height: 25.0,
                                       clipBehavior: Clip.antiAlias,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
                                       ),
                                       child: Image.network(
@@ -704,7 +699,7 @@ class _SideBarEventProfileWidgetState extends State<SideBarEventProfileWidget>
                             ),
                             Flexible(
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     10.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   'Switch to Organization',

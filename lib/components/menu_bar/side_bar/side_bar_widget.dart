@@ -3,14 +3,8 @@ import '/components/sidebar_tile/sidebar_tile_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'dart:math';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'side_bar_model.dart';
 export 'side_bar_model.dart';
 
@@ -57,8 +51,8 @@ class _SideBarWidgetState extends State<SideBarWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(-400.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(-400.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -69,8 +63,8 @@ class _SideBarWidgetState extends State<SideBarWidget>
             curve: Curves.easeInOut,
             delay: 400.0.ms,
             duration: 600.0.ms,
-            begin: Offset(-400.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(-400.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -81,8 +75,8 @@ class _SideBarWidgetState extends State<SideBarWidget>
             curve: Curves.easeInOut,
             delay: 700.0.ms,
             duration: 600.0.ms,
-            begin: Offset(-400.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(-400.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -124,7 +118,7 @@ class _SideBarWidgetState extends State<SideBarWidget>
       height: double.infinity,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(20.0),
           topLeft: Radius.circular(0.0),
@@ -136,13 +130,13 @@ class _SideBarWidgetState extends State<SideBarWidget>
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(25.0, 50.0, 25.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(25.0, 50.0, 25.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -150,12 +144,12 @@ class _SideBarWidgetState extends State<SideBarWidget>
                         width: 40.0,
                         height: 40.0,
                         clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                         ),
                         child: Image.network(
                           valueOrDefault<String>(
-                            widget!.orgLogo,
+                            widget.orgLogo,
                             'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/NU_shield.svg/1200px-NU_shield.svg.png',
                           ),
                           fit: BoxFit.cover,
@@ -163,18 +157,18 @@ class _SideBarWidgetState extends State<SideBarWidget>
                       ),
                       Flexible(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               10.0, 0.0, 0.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 2.0, 0.0, 0.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    widget!.orgName,
+                                    widget.orgName,
                                     'Org Name',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -189,7 +183,7 @@ class _SideBarWidgetState extends State<SideBarWidget>
                               ),
                               Text(
                                 valueOrDefault<String>(
-                                  widget!.orgType,
+                                  widget.orgType,
                                   'Type',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -209,7 +203,7 @@ class _SideBarWidgetState extends State<SideBarWidget>
                       animationsMap['rowOnPageLoadAnimation1']!),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
                   child: Container(
                     width: double.infinity,
                     height: 1.0,
@@ -219,7 +213,7 @@ class _SideBarWidgetState extends State<SideBarWidget>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -227,7 +221,7 @@ class _SideBarWidgetState extends State<SideBarWidget>
                       wrapWithModel(
                         model: _model.rscoDashboardTileModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: SidebarTileWidget(
+                        child: const SidebarTileWidget(
                           tileIcon: Icon(
                             FFIcons.khome,
                           ),
@@ -237,18 +231,18 @@ class _SideBarWidgetState extends State<SideBarWidget>
                       wrapWithModel(
                         model: _model.editOrganizationModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: SidebarTileWidget(
+                        child: const SidebarTileWidget(
                           tileIcon: Icon(
                             FFIcons.kuserEdit,
                           ),
                           tileName: 'Edit Organization',
                         ),
                       ),
-                    ].divide(SizedBox(height: 20.0)),
+                    ].divide(const SizedBox(height: 20.0)),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -276,7 +270,7 @@ class _SideBarWidgetState extends State<SideBarWidget>
                         child: wrapWithModel(
                           model: _model.membersModel,
                           updateCallback: () => safeSetState(() {}),
-                          child: SidebarTileWidget(
+                          child: const SidebarTileWidget(
                             tileIcon: Icon(
                               FFIcons.kuserAdd4,
                             ),
@@ -287,7 +281,7 @@ class _SideBarWidgetState extends State<SideBarWidget>
                       wrapWithModel(
                         model: _model.eventsModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: SidebarTileWidget(
+                        child: const SidebarTileWidget(
                           tileIcon: Icon(
                             FFIcons.kactivity,
                           ),
@@ -297,7 +291,7 @@ class _SideBarWidgetState extends State<SideBarWidget>
                       wrapWithModel(
                         model: _model.formsModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: SidebarTileWidget(
+                        child: const SidebarTileWidget(
                           tileIcon: Icon(
                             FFIcons.kfolder,
                           ),
@@ -307,21 +301,21 @@ class _SideBarWidgetState extends State<SideBarWidget>
                       wrapWithModel(
                         model: _model.reportsModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: SidebarTileWidget(
+                        child: const SidebarTileWidget(
                           tileIcon: Icon(
                             FFIcons.kexport14,
                           ),
                           tileName: 'Reports',
                         ),
                       ),
-                    ].divide(SizedBox(height: 20.0)),
+                    ].divide(const SizedBox(height: 20.0)),
                   ),
                 ),
               ],
             ),
           ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 25.0, 25.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 25.0, 25.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -331,7 +325,7 @@ class _SideBarWidgetState extends State<SideBarWidget>
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 25.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 25.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -351,7 +345,7 @@ class _SideBarWidgetState extends State<SideBarWidget>
                           context.pushNamed(
                             'auth_redirect',
                             extra: <String, dynamic>{
-                              kTransitionInfoKey: TransitionInfo(
+                              kTransitionInfoKey: const TransitionInfo(
                                 hasTransition: true,
                                 transitionType: PageTransitionType.fade,
                                 duration: Duration(milliseconds: 0),
@@ -363,7 +357,7 @@ class _SideBarWidgetState extends State<SideBarWidget>
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Stack(
-                              alignment: AlignmentDirectional(0.0, 0.0),
+                              alignment: const AlignmentDirectional(0.0, 0.0),
                               children: [
                                 Icon(
                                   FFIcons.krefresh,
@@ -374,14 +368,14 @@ class _SideBarWidgetState extends State<SideBarWidget>
                                       'iconOnActionTriggerAnimation']!,
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 2.0, 0.0, 0.0),
                                   child: AuthUserStreamWidget(
                                     builder: (context) => Container(
                                       width: 25.0,
                                       height: 25.0,
                                       clipBehavior: Clip.antiAlias,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
                                       ),
                                       child: Image.network(
@@ -397,7 +391,7 @@ class _SideBarWidgetState extends State<SideBarWidget>
                               ],
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   10.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 'Switch to Profile',
