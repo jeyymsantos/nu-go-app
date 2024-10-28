@@ -103,7 +103,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
                 child: SingleChildScrollView(
                   child: Column(
-                    mainAxisSize: MainAxisSize.max,
+                    mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Padding(
