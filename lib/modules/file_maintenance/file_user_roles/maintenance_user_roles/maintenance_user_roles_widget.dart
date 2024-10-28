@@ -1,5 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/dialog_box/confirm_password_dialog/confirm_password_dialog_widget.dart';
+import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
 import '/components/widgets/roles_card_with_description/roles_card_with_description_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -178,19 +180,13 @@ class _MaintenanceUserRolesWidgetState
                                     textInputAction: TextInputAction.next,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      labelText: 'Role Name',
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
                                             fontFamily: 'Montserrat',
                                             letterSpacing: 0.0,
                                           ),
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Montserrat',
-                                            letterSpacing: 0.0,
-                                          ),
+                                      hintText: 'Role Name',
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
@@ -251,19 +247,13 @@ class _MaintenanceUserRolesWidgetState
                                     textInputAction: TextInputAction.next,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      labelText: 'Role Nickname',
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
                                             fontFamily: 'Montserrat',
                                             letterSpacing: 0.0,
                                           ),
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Montserrat',
-                                            letterSpacing: 0.0,
-                                          ),
+                                      hintText: 'Role Nickname',
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
@@ -323,19 +313,13 @@ class _MaintenanceUserRolesWidgetState
                                     textInputAction: TextInputAction.next,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      labelText: 'Role Description',
                                       labelStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
                                             fontFamily: 'Montserrat',
                                             letterSpacing: 0.0,
                                           ),
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .override(
-                                            fontFamily: 'Montserrat',
-                                            letterSpacing: 0.0,
-                                          ),
+                                      hintText: 'Role Description',
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                           color: FlutterFlowTheme.of(context)
@@ -615,86 +599,145 @@ class _MaintenanceUserRolesWidgetState
                                     ),
                                   ].divide(const SizedBox(height: 15.0)),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      20.0, 15.0, 20.0, 10.0),
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      logFirebaseEvent(
-                                          'MAINTENANCE_USER_ROLES_PAGE_Save_ON_TAP');
-                                      logFirebaseEvent('Save_validate_form');
-                                      if (_model.formKey.currentState == null ||
-                                          !_model.formKey.currentState!
-                                              .validate()) {
-                                        return;
-                                      }
-                                      logFirebaseEvent('Save_alert_dialog');
-                                      var confirmDialogResponse =
-                                          await showDialog<bool>(
-                                                context: context,
-                                                builder: (alertDialogContext) {
-                                                  return WebViewAware(
-                                                    child: AlertDialog(
-                                                      title: Text(
-                                                          widget.isNew == true
-                                                              ? 'Save Role'
-                                                              : 'Update Role'),
-                                                      content: Text(widget
-                                                                  .isNew ==
-                                                              true
-                                                          ? 'Are you sure you want to save a new role?'
-                                                          : 'Are you sure you want to update this existing role?'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext,
-                                                                  false),
-                                                          child: const Text('Cancel'),
-                                                        ),
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext,
-                                                                  true),
-                                                          child: Text(
-                                                              widget.isNew ==
-                                                                      true
-                                                                  ? 'Save'
-                                                                  : 'Update'),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  );
-                                                },
-                                              ) ??
-                                              false;
-                                      if (confirmDialogResponse) {
-                                        if (widget.isNew == true) {
-                                          logFirebaseEvent('Save_backend_call');
+                                Builder(
+                                  builder: (context) => Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        20.0, 15.0, 20.0, 10.0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        logFirebaseEvent(
+                                            'MAINTENANCE_USER_ROLES_PAGE_Save_ON_TAP');
+                                        logFirebaseEvent('Save_validate_form');
+                                        if (_model.formKey.currentState ==
+                                                null ||
+                                            !_model.formKey.currentState!
+                                                .validate()) {
+                                          return;
+                                        }
+                                        logFirebaseEvent('Save_alert_dialog');
+                                        await showDialog(
+                                          context: context,
+                                          builder: (dialogContext) {
+                                            return Dialog(
+                                              elevation: 0,
+                                              insetPadding: EdgeInsets.zero,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              alignment:
+                                                  const AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              child: WebViewAware(
+                                                child: GestureDetector(
+                                                  onTap: () => FocusScope.of(
+                                                          dialogContext)
+                                                      .unfocus(),
+                                                  child:
+                                                      const ConfirmPasswordDialogWidget(),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => safeSetState(
+                                            () => _model.confirmRole = value));
 
-                                          await RolesRecord.collection
-                                              .doc()
-                                              .set({
-                                            ...createRolesRecordData(
+                                        if (_model.confirmRole!) {
+                                          if (widget.isNew == true) {
+                                            logFirebaseEvent(
+                                                'Save_backend_call');
+
+                                            await RolesRecord.collection
+                                                .doc()
+                                                .set({
+                                              ...createRolesRecordData(
+                                                roleName: _model
+                                                    .roleNameFieldTextController
+                                                    .text,
+                                                roleDescription: _model
+                                                    .roleDescriptionTextController
+                                                    .text,
+                                                roleCreatedBy:
+                                                    currentUserReference,
+                                                roleNickname: _model
+                                                    .roleNicknameFieldTextController
+                                                    .text,
+                                                roleAccess:
+                                                    createUserSettingsStruct(
+                                                  toContentManagement: _model
+                                                      .contentManagementModel
+                                                      .checkboxValue,
+                                                  toApprovalManagement: _model
+                                                      .approvalManagementModel
+                                                      .checkboxValue,
+                                                  toFeedbackManagement: _model
+                                                      .feedbackManagementModel
+                                                      .checkboxValue,
+                                                  toFileMaintenance: _model
+                                                      .fileMaintenanceModel
+                                                      .checkboxValue,
+                                                  toLogsManagement: _model
+                                                      .logsManagementModel
+                                                      .checkboxValue,
+                                                  toMaintenanceManagement: _model
+                                                      .maintenenceManagementModel
+                                                      .checkboxValue,
+                                                  toOrganizationManagement: _model
+                                                      .organizationManagementModel
+                                                      .checkboxValue,
+                                                  toPushNotificiationManamgement:
+                                                      _model
+                                                          .pushNotificationManagementModel
+                                                          .checkboxValue,
+                                                  toResourcesManagement: _model
+                                                      .resourcesManagementModel
+                                                      .checkboxValue,
+                                                  toUserManagement: _model
+                                                      .userManagementModel
+                                                      .checkboxValue,
+                                                  clearUnsetFields: false,
+                                                  create: true,
+                                                ),
+                                              ),
+                                              ...mapToFirestore(
+                                                {
+                                                  'role_created_on': FieldValue
+                                                      .serverTimestamp(),
+                                                },
+                                              ),
+                                            });
+                                            logFirebaseEvent(
+                                                'Save_action_block');
+                                            await action_blocks.logs(
+                                              context,
+                                              type: 'added',
+                                              module: 'roles',
+                                              doneToName: _model
+                                                  .roleNameFieldTextController
+                                                  .text,
+                                            );
+                                          } else {
+                                            logFirebaseEvent(
+                                                'Save_backend_call');
+
+                                            await widget.roleReference!
+                                                .update(createRolesRecordData(
                                               roleName: _model
                                                   .roleNameFieldTextController
                                                   .text,
                                               roleDescription: _model
                                                   .roleDescriptionTextController
                                                   .text,
-                                              roleCreatedBy:
-                                                  currentUserReference,
                                               roleNickname: _model
                                                   .roleNicknameFieldTextController
                                                   .text,
                                               roleAccess:
                                                   createUserSettingsStruct(
-                                                toContentManagement: _model
-                                                    .contentManagementModel
-                                                    .checkboxValue,
                                                 toApprovalManagement: _model
                                                     .approvalManagementModel
+                                                    .checkboxValue,
+                                                toContentManagement: _model
+                                                    .contentManagementModel
                                                     .checkboxValue,
                                                 toFeedbackManagement: _model
                                                     .feedbackManagementModel
@@ -722,161 +765,119 @@ class _MaintenanceUserRolesWidgetState
                                                     .userManagementModel
                                                     .checkboxValue,
                                                 clearUnsetFields: false,
-                                                create: true,
                                               ),
-                                            ),
-                                            ...mapToFirestore(
-                                              {
-                                                'role_created_on': FieldValue
-                                                    .serverTimestamp(),
-                                              },
-                                            ),
-                                          });
-                                          logFirebaseEvent('Save_action_block');
-                                          await action_blocks.logs(
-                                            context,
-                                            type: 'added',
-                                            module: 'roles',
-                                            doneToName: _model
-                                                .roleNameFieldTextController
-                                                .text,
+                                            ));
+                                            logFirebaseEvent(
+                                                'Save_action_block');
+                                            await action_blocks.logs(
+                                              context,
+                                              type: 'updated',
+                                              module: 'roles',
+                                              doneToName: _model
+                                                  .roleNameFieldTextController
+                                                  .text,
+                                            );
+                                          }
+
+                                          logFirebaseEvent('Save_alert_dialog');
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: const AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => FocusScope.of(
+                                                            dialogContext)
+                                                        .unfocus(),
+                                                    child:
+                                                        InformationDialogBoxWidget(
+                                                      infoDialogTitle: widget
+                                                              .isNew
+                                                          ? 'New Role Created'
+                                                          : 'Existing Role Updated',
+                                                      infoDialogMeesage: widget
+                                                              .isNew
+                                                          ? 'You have successfully saved a new role!'
+                                                          : 'You have successfully updated an existing role!',
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
                                           );
                                         } else {
-                                          logFirebaseEvent('Save_backend_call');
-
-                                          await widget.roleReference!
-                                              .update(createRolesRecordData(
-                                            roleName: _model
-                                                .roleNameFieldTextController
-                                                .text,
-                                            roleDescription: _model
-                                                .roleDescriptionTextController
-                                                .text,
-                                            roleNickname: _model
-                                                .roleNicknameFieldTextController
-                                                .text,
-                                            roleAccess:
-                                                createUserSettingsStruct(
-                                              toApprovalManagement: _model
-                                                  .approvalManagementModel
-                                                  .checkboxValue,
-                                              toContentManagement: _model
-                                                  .contentManagementModel
-                                                  .checkboxValue,
-                                              toFeedbackManagement: _model
-                                                  .feedbackManagementModel
-                                                  .checkboxValue,
-                                              toFileMaintenance: _model
-                                                  .fileMaintenanceModel
-                                                  .checkboxValue,
-                                              toLogsManagement: _model
-                                                  .logsManagementModel
-                                                  .checkboxValue,
-                                              toMaintenanceManagement: _model
-                                                  .maintenenceManagementModel
-                                                  .checkboxValue,
-                                              toOrganizationManagement: _model
-                                                  .organizationManagementModel
-                                                  .checkboxValue,
-                                              toPushNotificiationManamgement: _model
-                                                  .pushNotificationManagementModel
-                                                  .checkboxValue,
-                                              toResourcesManagement: _model
-                                                  .resourcesManagementModel
-                                                  .checkboxValue,
-                                              toUserManagement: _model
-                                                  .userManagementModel
-                                                  .checkboxValue,
-                                              clearUnsetFields: false,
-                                            ),
-                                          ));
-                                          logFirebaseEvent('Save_action_block');
-                                          await action_blocks.logs(
-                                            context,
-                                            type: 'updated',
-                                            module: 'roles',
-                                            doneToName: _model
-                                                .roleNameFieldTextController
-                                                .text,
+                                          logFirebaseEvent('Save_alert_dialog');
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: const AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => FocusScope.of(
+                                                            dialogContext)
+                                                        .unfocus(),
+                                                    child:
+                                                        const InformationDialogBoxWidget(
+                                                      infoDialogTitle:
+                                                          'Action Cancelled',
+                                                      infoDialogMeesage:
+                                                          'This action has been cancelled.',
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
                                           );
                                         }
 
-                                        logFirebaseEvent('Save_alert_dialog');
-                                        await showDialog(
-                                          context: context,
-                                          builder: (alertDialogContext) {
-                                            return WebViewAware(
-                                              child: AlertDialog(
-                                                title: Text(widget.isNew
-                                                    ? 'New Role Created'
-                                                    : 'Existing Role Updated'),
-                                                content: Text(widget.isNew
-                                                    ? 'You have successfully saved a new role!'
-                                                    : 'You have successfully updated an existing role!'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: const Text('Okay'),
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          },
-                                        );
-                                      } else {
-                                        logFirebaseEvent('Save_alert_dialog');
-                                        await showDialog(
-                                          context: context,
-                                          builder: (alertDialogContext) {
-                                            return WebViewAware(
-                                              child: AlertDialog(
-                                                title: const Text('Action Cancelled'),
-                                                content: const Text(
-                                                    'This action has been cancelled.'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: const Text('Ok'),
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          },
-                                        );
-                                      }
+                                        logFirebaseEvent('Save_navigate_back');
+                                        context.safePop();
 
-                                      logFirebaseEvent('Save_navigate_back');
-                                      context.safePop();
-                                    },
-                                    text: widget.isNew ? 'Save' : 'Update',
-                                    options: FFButtonOptions(
-                                      width: double.infinity,
-                                      height: 40.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          24.0, 0.0, 24.0, 0.0),
-                                      iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Montserrat',
-                                            color: Colors.white,
-                                            fontSize: 13.0,
-                                            letterSpacing: 0.0,
-                                          ),
-                                      elevation: 3.0,
-                                      borderSide: const BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
+                                        safeSetState(() {});
+                                      },
+                                      text: widget.isNew ? 'Save' : 'Update',
+                                      options: FFButtonOptions(
+                                        width: double.infinity,
+                                        height: 40.0,
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 0.0, 24.0, 0.0),
+                                        iconPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Montserrat',
+                                              color: Colors.white,
+                                              fontSize: 13.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                        elevation: 3.0,
+                                        borderSide: const BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
                                     ),
                                   ),
                                 ),

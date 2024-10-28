@@ -1,5 +1,4 @@
 import '/backend/backend.dart';
-import '/components/widgets/event_type_choice/event_type_choice_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'event_search_widget.dart' show EventSearchWidget;
 import 'package:flutter/material.dart';
@@ -11,26 +10,24 @@ class EventSearchModel extends FlutterFlowModel<EventSearchWidget> {
 
   bool filter = false;
 
+  int eventType = -1;
+
   ///  State fields for stateful widgets in this page.
 
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
-  List<EventsRecord> simpleSearchResults = [];
-  // Model for EventType_Choice component.
-  late EventTypeChoiceModel eventTypeChoiceModel;
+  List<EventsRecord> simpleSearchResults1 = [];
+  List<EventsRecord> simpleSearchResults2 = [];
+  List<EventsRecord> simpleSearchResults3 = [];
 
   @override
-  void initState(BuildContext context) {
-    eventTypeChoiceModel = createModel(context, () => EventTypeChoiceModel());
-  }
+  void initState(BuildContext context) {}
 
   @override
   void dispose() {
     textFieldFocusNode?.dispose();
     textController?.dispose();
-
-    eventTypeChoiceModel.dispose();
   }
 }

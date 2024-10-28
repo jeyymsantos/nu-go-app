@@ -1,4 +1,6 @@
 import '/backend/backend.dart';
+import '/components/dialog_box/confirm_password_dialog/confirm_password_dialog_widget.dart';
+import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
 import '/components/widgets/empty_list/empty_list_widget.dart';
 import '/components/widgets/search_not_found_list/search_not_found_list_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
@@ -744,118 +746,176 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                               alignment:
                                                                   const AlignmentDirectional(
                                                                       0.0, 0.0),
-                                                              child: Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            10.0,
-                                                                            0.0),
-                                                                child: InkWell(
-                                                                  splashColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  focusColor: Colors
-                                                                      .transparent,
-                                                                  hoverColor: Colors
-                                                                      .transparent,
-                                                                  highlightColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  onTap:
-                                                                      () async {
-                                                                    logFirebaseEvent(
-                                                                        'VIEW_EQUIPMENT_PAGE_Icon_2kcfplnm_ON_TAP');
-                                                                    logFirebaseEvent(
-                                                                        'Icon_alert_dialog');
-                                                                    var confirmDialogResponse =
-                                                                        await showDialog<bool>(
-                                                                              context: context,
-                                                                              builder: (alertDialogContext) {
-                                                                                return WebViewAware(
-                                                                                  child: AlertDialog(
-                                                                                    title: const Text('Delete Equipment'),
-                                                                                    content: const Text('Are you sure you want to delete this equipment?'),
-                                                                                    actions: [
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                        child: const Text('Cancel'),
-                                                                                      ),
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                        child: const Text('Confirm'),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
-                                                                                );
-                                                                              },
-                                                                            ) ??
-                                                                            false;
-                                                                    if (confirmDialogResponse) {
+                                                              child: Builder(
+                                                                builder:
+                                                                    (context) =>
+                                                                        Padding(
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      InkWell(
+                                                                    splashColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    focusColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    hoverColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    highlightColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    onTap:
+                                                                        () async {
                                                                       logFirebaseEvent(
-                                                                          'Icon_backend_call');
-                                                                      await equipmentSearchItem
-                                                                          .reference
-                                                                          .delete();
-                                                                      logFirebaseEvent(
-                                                                          'Icon_action_block');
-                                                                      await action_blocks
-                                                                          .logs(
-                                                                        context,
-                                                                        type:
-                                                                            'deleted',
-                                                                        module:
-                                                                            'equipment',
-                                                                        doneToName:
-                                                                            equipmentSearchItem.equipmentName,
-                                                                      );
+                                                                          'VIEW_EQUIPMENT_PAGE_Icon_2kcfplnm_ON_TAP');
+                                                                      var shouldSetState =
+                                                                          false;
                                                                       logFirebaseEvent(
                                                                           'Icon_alert_dialog');
                                                                       await showDialog(
                                                                         context:
                                                                             context,
                                                                         builder:
-                                                                            (alertDialogContext) {
-                                                                          return WebViewAware(
+                                                                            (dialogContext) {
+                                                                          return Dialog(
+                                                                            elevation:
+                                                                                0,
+                                                                            insetPadding:
+                                                                                EdgeInsets.zero,
+                                                                            backgroundColor:
+                                                                                Colors.transparent,
+                                                                            alignment:
+                                                                                const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
-                                                                                AlertDialog(
-                                                                              title: const Text('Deleted Equipment'),
-                                                                              content: const Text('Equipment has been successfully deleted.'),
-                                                                              actions: [
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: const Text('Okay'),
-                                                                                ),
-                                                                              ],
+                                                                                WebViewAware(
+                                                                              child: GestureDetector(
+                                                                                onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                child: const ConfirmPasswordDialogWidget(),
+                                                                              ),
                                                                             ),
                                                                           );
                                                                         },
-                                                                      );
-                                                                    }
-                                                                    logFirebaseEvent(
-                                                                        'Icon_reset_form_fields');
-                                                                    safeSetState(
-                                                                        () {
-                                                                      _model
-                                                                          .equipmentSearchTextController
-                                                                          ?.clear();
-                                                                    });
-                                                                    logFirebaseEvent(
-                                                                        'Icon_update_app_state');
-                                                                    FFAppState()
-                                                                            .searchActive =
-                                                                        false;
-                                                                    safeSetState(
-                                                                        () {});
-                                                                  },
-                                                                  child: Icon(
-                                                                    FFIcons
-                                                                        .ktrash,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .error,
-                                                                    size: 24.0,
+                                                                      ).then((value) =>
+                                                                          safeSetState(() =>
+                                                                              _model.confirmEquipmentDelete = value));
+
+                                                                      shouldSetState =
+                                                                          true;
+                                                                      if (_model
+                                                                          .confirmEquipmentDelete!) {
+                                                                        logFirebaseEvent(
+                                                                            'Icon_backend_call');
+                                                                        await equipmentSearchItem
+                                                                            .reference
+                                                                            .delete();
+                                                                        logFirebaseEvent(
+                                                                            'Icon_action_block');
+                                                                        await action_blocks
+                                                                            .logs(
+                                                                          context,
+                                                                          type:
+                                                                              'deleted',
+                                                                          module:
+                                                                              'equipment',
+                                                                          doneToName:
+                                                                              equipmentSearchItem.equipmentName,
+                                                                        );
+                                                                        logFirebaseEvent(
+                                                                            'Icon_alert_dialog');
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: WebViewAware(
+                                                                                child: GestureDetector(
+                                                                                  onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                  child: const InformationDialogBoxWidget(
+                                                                                    infoDialogTitle: 'Equipment Deleted',
+                                                                                    infoDialogMeesage: 'Equipment has been successfully deleted.',
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+
+                                                                        logFirebaseEvent(
+                                                                            'Icon_reset_form_fields');
+                                                                        safeSetState(
+                                                                            () {
+                                                                          _model
+                                                                              .equipmentSearchTextController
+                                                                              ?.clear();
+                                                                        });
+                                                                        logFirebaseEvent(
+                                                                            'Icon_update_app_state');
+                                                                        FFAppState().searchActive =
+                                                                            false;
+                                                                        safeSetState(
+                                                                            () {});
+                                                                      } else {
+                                                                        logFirebaseEvent(
+                                                                            'Icon_alert_dialog');
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: WebViewAware(
+                                                                                child: GestureDetector(
+                                                                                  onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                  child: const InformationDialogBoxWidget(
+                                                                                    infoDialogTitle: 'Action Cancelled',
+                                                                                    infoDialogMeesage: 'This action has been cancelled.',
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+
+                                                                        logFirebaseEvent(
+                                                                            'Icon_navigate_back');
+                                                                        context
+                                                                            .safePop();
+                                                                        if (shouldSetState) {
+                                                                          safeSetState(
+                                                                              () {});
+                                                                        }
+                                                                        return;
+                                                                      }
+
+                                                                      if (shouldSetState) {
+                                                                        safeSetState(
+                                                                            () {});
+                                                                      }
+                                                                    },
+                                                                    child: Icon(
+                                                                      FFIcons
+                                                                          .ktrash,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      size:
+                                                                          24.0,
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
@@ -1164,118 +1224,181 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                               alignment:
                                                                   const AlignmentDirectional(
                                                                       0.0, 0.0),
-                                                              child: Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            10.0,
-                                                                            0.0),
-                                                                child: InkWell(
-                                                                  splashColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  focusColor: Colors
-                                                                      .transparent,
-                                                                  hoverColor: Colors
-                                                                      .transparent,
-                                                                  highlightColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  onTap:
-                                                                      () async {
-                                                                    logFirebaseEvent(
-                                                                        'VIEW_EQUIPMENT_PAGE_Icon_ofhv1zan_ON_TAP');
-                                                                    logFirebaseEvent(
-                                                                        'Icon_alert_dialog');
-                                                                    var confirmDialogResponse =
-                                                                        await showDialog<bool>(
-                                                                              context: context,
-                                                                              builder: (alertDialogContext) {
-                                                                                return WebViewAware(
-                                                                                  child: AlertDialog(
-                                                                                    title: const Text('Delete Equipment'),
-                                                                                    content: const Text('Are you sure you want to delete this equipment?'),
-                                                                                    actions: [
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                        child: const Text('Cancel'),
-                                                                                      ),
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                        child: const Text('Confirm'),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
-                                                                                );
-                                                                              },
-                                                                            ) ??
-                                                                            false;
-                                                                    if (confirmDialogResponse) {
+                                                              child: Builder(
+                                                                builder:
+                                                                    (context) =>
+                                                                        Padding(
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      InkWell(
+                                                                    splashColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    focusColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    hoverColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    highlightColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    onTap:
+                                                                        () async {
                                                                       logFirebaseEvent(
-                                                                          'Icon_backend_call');
-                                                                      await equipmentySearchItem
-                                                                          .reference
-                                                                          .delete();
-                                                                      logFirebaseEvent(
-                                                                          'Icon_action_block');
-                                                                      await action_blocks
-                                                                          .logs(
-                                                                        context,
-                                                                        type:
-                                                                            'deleted',
-                                                                        module:
-                                                                            'equipment',
-                                                                        doneToName:
-                                                                            equipmentySearchItem.equipmentName,
-                                                                      );
+                                                                          'VIEW_EQUIPMENT_PAGE_Icon_ofhv1zan_ON_TAP');
+                                                                      var shouldSetState =
+                                                                          false;
                                                                       logFirebaseEvent(
                                                                           'Icon_alert_dialog');
                                                                       await showDialog(
                                                                         context:
                                                                             context,
                                                                         builder:
-                                                                            (alertDialogContext) {
-                                                                          return WebViewAware(
+                                                                            (dialogContext) {
+                                                                          return Dialog(
+                                                                            elevation:
+                                                                                0,
+                                                                            insetPadding:
+                                                                                EdgeInsets.zero,
+                                                                            backgroundColor:
+                                                                                Colors.transparent,
+                                                                            alignment:
+                                                                                const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
-                                                                                AlertDialog(
-                                                                              title: const Text('Deleted Equipment'),
-                                                                              content: const Text('Equipment has been successfully deleted.'),
-                                                                              actions: [
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: const Text('Okay'),
-                                                                                ),
-                                                                              ],
+                                                                                WebViewAware(
+                                                                              child: GestureDetector(
+                                                                                onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                child: const ConfirmPasswordDialogWidget(),
+                                                                              ),
                                                                             ),
                                                                           );
                                                                         },
-                                                                      );
-                                                                    }
-                                                                    logFirebaseEvent(
-                                                                        'Icon_reset_form_fields');
-                                                                    safeSetState(
-                                                                        () {
-                                                                      _model
-                                                                          .equipmentSearchTextController
-                                                                          ?.clear();
-                                                                    });
-                                                                    logFirebaseEvent(
-                                                                        'Icon_update_app_state');
-                                                                    FFAppState()
-                                                                            .searchActive =
-                                                                        false;
-                                                                    safeSetState(
-                                                                        () {});
-                                                                  },
-                                                                  child: Icon(
-                                                                    FFIcons
-                                                                        .ktrash,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .error,
-                                                                    size: 24.0,
+                                                                      ).then((value) =>
+                                                                          safeSetState(() =>
+                                                                              _model.confirmDelete2 = value));
+
+                                                                      shouldSetState =
+                                                                          true;
+                                                                      if (_model
+                                                                          .confirmDelete2!) {
+                                                                        logFirebaseEvent(
+                                                                            'Icon_backend_call');
+                                                                        await equipmentySearchItem
+                                                                            .reference
+                                                                            .delete();
+                                                                        logFirebaseEvent(
+                                                                            'Icon_action_block');
+                                                                        await action_blocks
+                                                                            .logs(
+                                                                          context,
+                                                                          type:
+                                                                              'deleted',
+                                                                          module:
+                                                                              'equipment',
+                                                                          doneToName:
+                                                                              equipmentySearchItem.equipmentName,
+                                                                        );
+                                                                        logFirebaseEvent(
+                                                                            'Icon_alert_dialog');
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: WebViewAware(
+                                                                                child: GestureDetector(
+                                                                                  onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                  child: const InformationDialogBoxWidget(
+                                                                                    infoDialogTitle: 'Equipment Deleted',
+                                                                                    infoDialogMeesage: 'Equipment has been successfully deleted.',
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+
+                                                                        logFirebaseEvent(
+                                                                            'Icon_reset_form_fields');
+                                                                        safeSetState(
+                                                                            () {
+                                                                          _model
+                                                                              .equipmentSearchTextController
+                                                                              ?.clear();
+                                                                        });
+                                                                        logFirebaseEvent(
+                                                                            'Icon_update_app_state');
+                                                                        FFAppState().searchActive =
+                                                                            false;
+                                                                        safeSetState(
+                                                                            () {});
+                                                                        if (shouldSetState) {
+                                                                          safeSetState(
+                                                                              () {});
+                                                                        }
+                                                                        return;
+                                                                      } else {
+                                                                        logFirebaseEvent(
+                                                                            'Icon_alert_dialog');
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: WebViewAware(
+                                                                                child: GestureDetector(
+                                                                                  onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                  child: const InformationDialogBoxWidget(
+                                                                                    infoDialogTitle: 'Action Cancelled',
+                                                                                    infoDialogMeesage: 'This action has been cancelled.',
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+
+                                                                        logFirebaseEvent(
+                                                                            'Icon_navigate_back');
+                                                                        context
+                                                                            .safePop();
+                                                                        if (shouldSetState) {
+                                                                          safeSetState(
+                                                                              () {});
+                                                                        }
+                                                                        return;
+                                                                      }
+
+                                                                      if (shouldSetState) {
+                                                                        safeSetState(
+                                                                            () {});
+                                                                      }
+                                                                    },
+                                                                    child: Icon(
+                                                                      FFIcons
+                                                                          .ktrash,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      size:
+                                                                          24.0,
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),

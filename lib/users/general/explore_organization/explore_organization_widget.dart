@@ -1,6 +1,5 @@
 import '/backend/backend.dart';
 import '/components/widgets/empty_list/empty_list_widget.dart';
-import '/components/widgets/org_type/org_type_widget.dart';
 import '/components/widgets/search_not_found_list/search_not_found_list_widget.dart';
 import '/components/widgets/user_header_component/user_header_component_widget.dart';
 import '/components/widgets/user_nav_bar_component/user_nav_bar_component_widget.dart';
@@ -174,7 +173,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                       logFirebaseEvent(
                                                           'TextField_simple_search');
                                                       safeSetState(() {
-                                                        _model.simpleSearchResults =
+                                                        _model.simpleSearchResults1 =
                                                             TextSearch(
                                                           containerOrganizationsRecordList
                                                               .map(
@@ -188,7 +187,9 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                                       record
                                                                           .type,
                                                                       record
-                                                                          .organizationName
+                                                                          .organizationName,
+                                                                      record
+                                                                          .scope
                                                                     ]),
                                                               )
                                                               .toList(),
@@ -204,6 +205,10 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                           'TextField_update_app_state');
                                                       FFAppState()
                                                           .searchActive = true;
+                                                      safeSetState(() {});
+                                                      logFirebaseEvent(
+                                                          'TextField_update_page_state');
+                                                      _model.eventType = 0;
                                                       safeSetState(() {});
                                                     },
                                                   ),
@@ -261,6 +266,12 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                 onPressed: () async {
                                                   safeSetState(() => _model
                                                       .filter = !_model.filter);
+                                                  logFirebaseEvent(
+                                                      'EXPLORE_ORGANIZATION_ToggleIcon_59kiucl6');
+                                                  logFirebaseEvent(
+                                                      'ToggleIcon_update_page_state');
+                                                  _model.eventType = 0;
+                                                  safeSetState(() {});
                                                 },
                                                 value: _model.filter,
                                                 onIcon: Icon(
@@ -291,50 +302,697 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 10.0),
-                                child: wrapWithModel(
-                                  model: _model.orgTypeModel,
-                                  updateCallback: () => safeSetState(() {}),
-                                  child: const OrgTypeWidget(),
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          logFirebaseEvent(
+                                              'EXPLORE_ORGANIZATION_Container_ujmd8duj_');
+                                          logFirebaseEvent(
+                                              'Container_update_page_state');
+                                          _model.eventType = 1;
+                                          safeSetState(() {});
+                                          logFirebaseEvent(
+                                              'Container_simple_search');
+                                          safeSetState(() {
+                                            _model.simpleSearchResults2 =
+                                                TextSearch(
+                                              containerOrganizationsRecordList
+                                                  .map(
+                                                    (record) => TextSearchItem
+                                                        .fromTerms(record,
+                                                            [record.scope]),
+                                                  )
+                                                  .toList(),
+                                            )
+                                                    .search('University-wide')
+                                                    .map((r) => r.object)
+                                                    .toList();
+                                          });
+                                          logFirebaseEvent(
+                                              'Container_update_app_state');
+                                          FFAppState().searchActive = true;
+                                          safeSetState(() {});
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: _model.eventType == 1
+                                                ? const Color(0xFFE1E1E1)
+                                                : FlutterFlowTheme.of(context)
+                                                    .tabBarUnselected,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 5.0, 10.0, 5.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 5.0, 0.0),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    child: Image.asset(
+                                                      'assets/images/Uwide.png',
+                                                      height: 25.0,
+                                                      fit: BoxFit.contain,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  'U-wide',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          logFirebaseEvent(
+                                              'EXPLORE_ORGANIZATION_Container_wf0jggcn_');
+                                          logFirebaseEvent(
+                                              'Container_update_page_state');
+                                          _model.eventType = 2;
+                                          safeSetState(() {});
+                                          logFirebaseEvent(
+                                              'Container_simple_search');
+                                          safeSetState(() {
+                                            _model.simpleSearchResults3 =
+                                                TextSearch(
+                                              containerOrganizationsRecordList
+                                                  .map(
+                                                    (record) => TextSearchItem
+                                                        .fromTerms(record,
+                                                            [record.type]),
+                                                  )
+                                                  .toList(),
+                                            )
+                                                    .search('Student Council')
+                                                    .map((r) => r.object)
+                                                    .toList();
+                                          });
+                                          logFirebaseEvent(
+                                              'Container_update_app_state');
+                                          FFAppState().searchActive = true;
+                                          safeSetState(() {});
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: _model.eventType == 2
+                                                ? const Color(0xFFE1E1E1)
+                                                : FlutterFlowTheme.of(context)
+                                                    .tabBarUnselected,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 5.0, 10.0, 5.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 5.0, 0.0),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    child: Image.asset(
+                                                      'assets/images/buildings-2.png',
+                                                      height: 25.0,
+                                                      fit: BoxFit.contain,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  'Student Councils',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          logFirebaseEvent(
+                                              'EXPLORE_ORGANIZATION_Container_iyyycuho_');
+                                          logFirebaseEvent(
+                                              'Container_update_page_state');
+                                          _model.eventType = 3;
+                                          safeSetState(() {});
+                                          logFirebaseEvent(
+                                              'Container_simple_search');
+                                          safeSetState(() {
+                                            _model.simpleSearchResults4 =
+                                                TextSearch(
+                                              containerOrganizationsRecordList
+                                                  .map(
+                                                    (record) => TextSearchItem
+                                                        .fromTerms(record,
+                                                            [record.type]),
+                                                  )
+                                                  .toList(),
+                                            )
+                                                    .search(
+                                                        'Academic Organization')
+                                                    .map((r) => r.object)
+                                                    .toList();
+                                          });
+                                          logFirebaseEvent(
+                                              'Container_update_app_state');
+                                          FFAppState().searchActive = true;
+                                          safeSetState(() {});
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: _model.eventType == 3
+                                                ? const Color(0xFFE1E1E1)
+                                                : FlutterFlowTheme.of(context)
+                                                    .tabBarUnselected,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 5.0, 10.0, 5.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 5.0, 0.0),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    child: Image.asset(
+                                                      'assets/images/building.png',
+                                                      height: 25.0,
+                                                      fit: BoxFit.contain,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  'Academic Organizations',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          logFirebaseEvent(
+                                              'EXPLORE_ORGANIZATION_Container_za53tt8d_');
+                                          logFirebaseEvent(
+                                              'Container_update_page_state');
+                                          _model.eventType = 4;
+                                          safeSetState(() {});
+                                          logFirebaseEvent(
+                                              'Container_simple_search');
+                                          safeSetState(() {
+                                            _model.simpleSearchResults5 =
+                                                TextSearch(
+                                              containerOrganizationsRecordList
+                                                  .map(
+                                                    (record) => TextSearchItem
+                                                        .fromTerms(record,
+                                                            [record.type]),
+                                                  )
+                                                  .toList(),
+                                            )
+                                                    .search(
+                                                        'Special Interest Organization')
+                                                    .map((r) => r.object)
+                                                    .toList();
+                                          });
+                                          logFirebaseEvent(
+                                              'Container_update_app_state');
+                                          FFAppState().searchActive = true;
+                                          safeSetState(() {});
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: _model.eventType == 4
+                                                ? const Color(0xFFE1E1E1)
+                                                : FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 5.0, 10.0, 5.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 5.0, 0.0),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    child: Image.asset(
+                                                      'assets/images/star.png',
+                                                      height: 25.0,
+                                                      fit: BoxFit.contain,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  'Special Interest Organizations',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ].divide(const SizedBox(width: 10.0)),
+                                  ),
                                 ),
                               ),
                             Expanded(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  if (!FFAppState().searchActive)
-                                    Expanded(
-                                      child: Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 80.0),
-                                          child: Builder(
-                                            builder: (context) {
-                                              final allOrgs =
-                                                  containerOrganizationsRecordList
-                                                      .toList();
-                                              if (allOrgs.isEmpty) {
-                                                return const EmptyListWidget(
-                                                  emptyWhat: 'organizations',
-                                                );
-                                              }
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 10.0, 0.0, 0.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    if (!FFAppState().searchActive)
+                                      Expanded(
+                                        child: Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 80.0),
+                                            child: Builder(
+                                              builder: (context) {
+                                                final allOrgs =
+                                                    containerOrganizationsRecordList
+                                                        .toList();
+                                                if (allOrgs.isEmpty) {
+                                                  return const EmptyListWidget(
+                                                    emptyWhat: 'organizations',
+                                                  );
+                                                }
 
-                                              return RefreshIndicator(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                onRefresh: () async {
-                                                  logFirebaseEvent(
-                                                      'EXPLORE_ORGANIZATION_allOrgs_ON_PULL_TO_');
-                                                  logFirebaseEvent(
-                                                      'allOrgs_clear_query_cache');
-                                                  FFAppState()
-                                                      .clearOrgsExploreCache();
-                                                },
-                                                child: GridView.builder(
+                                                return RefreshIndicator(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  onRefresh: () async {
+                                                    logFirebaseEvent(
+                                                        'EXPLORE_ORGANIZATION_allOrgs_ON_PULL_TO_');
+                                                    logFirebaseEvent(
+                                                        'allOrgs_clear_query_cache');
+                                                    FFAppState()
+                                                        .clearOrgsExploreCache();
+                                                  },
+                                                  child: GridView.builder(
+                                                    padding: EdgeInsets.zero,
+                                                    gridDelegate:
+                                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                                      crossAxisCount: 2,
+                                                      crossAxisSpacing: 10.0,
+                                                      childAspectRatio: 0.55,
+                                                    ),
+                                                    scrollDirection:
+                                                        Axis.vertical,
+                                                    itemCount: allOrgs.length,
+                                                    itemBuilder: (context,
+                                                        allOrgsIndex) {
+                                                      final allOrgsItem =
+                                                          allOrgs[allOrgsIndex];
+                                                      return Align(
+                                                        alignment:
+                                                            const AlignmentDirectional(
+                                                                -1.0, -1.0),
+                                                        child: InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            logFirebaseEvent(
+                                                                'EXPLORE_ORGANIZATION_Container_5kyolx50_');
+                                                            logFirebaseEvent(
+                                                                'Container_navigate_to');
+
+                                                            context.pushNamed(
+                                                              'org_profile',
+                                                              queryParameters: {
+                                                                'orgReference':
+                                                                    serializeParam(
+                                                                  allOrgsItem
+                                                                      .reference,
+                                                                  ParamType
+                                                                      .DocumentReference,
+                                                                ),
+                                                              }.withoutNulls,
+                                                              extra: <String,
+                                                                  dynamic>{
+                                                                kTransitionInfoKey:
+                                                                    const TransitionInfo(
+                                                                  hasTransition:
+                                                                      true,
+                                                                  transitionType:
+                                                                      PageTransitionType
+                                                                          .fade,
+                                                                  duration: Duration(
+                                                                      milliseconds:
+                                                                          0),
+                                                                ),
+                                                              },
+                                                            );
+                                                          },
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10.0),
+                                                            child: Container(
+                                                              height: 290.0,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            10.0),
+                                                              ),
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .min,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      ClipRRect(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(0.0),
+                                                                        child: Image
+                                                                            .network(
+                                                                          valueOrDefault<
+                                                                              String>(
+                                                                            allOrgsItem.logo,
+                                                                            'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2Fnub_logo.jpg?alt=media&token=2bf8d1ce-43ca-411c-819d-41d6b0d36b81',
+                                                                          ),
+                                                                          width:
+                                                                              double.infinity,
+                                                                          height:
+                                                                              160.0,
+                                                                          fit: BoxFit
+                                                                              .cover,
+                                                                        ),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            10.0,
+                                                                            5.0,
+                                                                            10.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Text(
+                                                                          allOrgsItem
+                                                                              .organizationName
+                                                                              .maybeHandleOverflow(
+                                                                            maxChars:
+                                                                                50,
+                                                                          ),
+                                                                          textAlign:
+                                                                              TextAlign.start,
+                                                                          maxLines:
+                                                                              3,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .override(
+                                                                                fontFamily: 'Montserrat',
+                                                                                fontSize: 14.0,
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FontWeight.bold,
+                                                                              ),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            10.0,
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0),
+                                                                    child:
+                                                                        Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .start,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              10.0),
+                                                                          child:
+                                                                              Column(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.start,
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            children:
+                                                                                [
+                                                                              Row(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                children: [
+                                                                                  Padding(
+                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                                                                                    child: Icon(
+                                                                                      FFIcons.klikeShapes5,
+                                                                                      color: FlutterFlowTheme.of(context).primary,
+                                                                                      size: 18.0,
+                                                                                    ),
+                                                                                  ),
+                                                                                  Flexible(
+                                                                                    child: AutoSizeText(
+                                                                                      allOrgsItem.scope,
+                                                                                      textAlign: TextAlign.justify,
+                                                                                      maxLines: 2,
+                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            fontFamily: 'Montserrat',
+                                                                                            color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                            fontSize: 12.0,
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.normal,
+                                                                                          ),
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                              Row(
+                                                                                mainAxisSize: MainAxisSize.min,
+                                                                                mainAxisAlignment: MainAxisAlignment.end,
+                                                                                children: [
+                                                                                  Padding(
+                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                                                                                    child: Icon(
+                                                                                      FFIcons.kcategory25,
+                                                                                      color: FlutterFlowTheme.of(context).primary,
+                                                                                      size: 18.0,
+                                                                                    ),
+                                                                                  ),
+                                                                                  Flexible(
+                                                                                    child: AutoSizeText(
+                                                                                      allOrgsItem.type,
+                                                                                      textAlign: TextAlign.justify,
+                                                                                      maxLines: 2,
+                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            fontFamily: 'Montserrat',
+                                                                                            color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                            fontSize: 12.0,
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FontWeight.normal,
+                                                                                          ),
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ].divide(const SizedBox(height: 5.0)),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    if (FFAppState().searchActive)
+                                      Expanded(
+                                        child: Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 80.0),
+                                            child: Builder(
+                                              builder: (context) {
+                                                final searchedOrgs = () {
+                                                  if (_model.eventType == 0) {
+                                                    return _model
+                                                        .simpleSearchResults1;
+                                                  } else if (_model.eventType ==
+                                                      1) {
+                                                    return _model
+                                                        .simpleSearchResults2;
+                                                  } else if (_model.eventType ==
+                                                      2) {
+                                                    return _model
+                                                        .simpleSearchResults3;
+                                                  } else if (_model.eventType ==
+                                                      3) {
+                                                    return _model
+                                                        .simpleSearchResults4;
+                                                  } else if (_model.eventType ==
+                                                      4) {
+                                                    return _model
+                                                        .simpleSearchResults5;
+                                                  } else {
+                                                    return _model
+                                                        .simpleSearchResults1;
+                                                  }
+                                                }()
+                                                    .toList();
+                                                if (searchedOrgs.isEmpty) {
+                                                  return SearchNotFoundListWidget(
+                                                    emptyWhat: _model
+                                                        .textController.text,
+                                                  );
+                                                }
+
+                                                return GridView.builder(
                                                   padding: EdgeInsets.zero,
                                                   gridDelegate:
                                                       const SliverGridDelegateWithFixedCrossAxisCount(
@@ -344,11 +1002,13 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                   ),
                                                   scrollDirection:
                                                       Axis.vertical,
-                                                  itemCount: allOrgs.length,
-                                                  itemBuilder:
-                                                      (context, allOrgsIndex) {
-                                                    final allOrgsItem =
-                                                        allOrgs[allOrgsIndex];
+                                                  itemCount:
+                                                      searchedOrgs.length,
+                                                  itemBuilder: (context,
+                                                      searchedOrgsIndex) {
+                                                    final searchedOrgsItem =
+                                                        searchedOrgs[
+                                                            searchedOrgsIndex];
                                                     return Align(
                                                       alignment:
                                                           const AlignmentDirectional(
@@ -364,7 +1024,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                             Colors.transparent,
                                                         onTap: () async {
                                                           logFirebaseEvent(
-                                                              'EXPLORE_ORGANIZATION_Container_5kyolx50_');
+                                                              'EXPLORE_ORGANIZATION_Container_d2z78gjy_');
                                                           logFirebaseEvent(
                                                               'Container_navigate_to');
 
@@ -373,7 +1033,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                             queryParameters: {
                                                               'orgReference':
                                                                   serializeParam(
-                                                                allOrgsItem
+                                                                searchedOrgsItem
                                                                     .reference,
                                                                 ParamType
                                                                     .DocumentReference,
@@ -395,500 +1055,220 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                             },
                                                           );
                                                         },
-                                                        child: ClipRRect(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      10.0),
-                                                          child: Container(
-                                                            height: 290.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10.0),
-                                                            ),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                Column(
+                                                        child: Container(
+                                                          height: 290.0,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10.0),
+                                                          ),
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  ClipRRect(
+                                                                    borderRadius:
+                                                                        const BorderRadius
+                                                                            .only(
+                                                                      bottomLeft:
+                                                                          Radius.circular(
+                                                                              0.0),
+                                                                      bottomRight:
+                                                                          Radius.circular(
+                                                                              0.0),
+                                                                      topLeft: Radius
+                                                                          .circular(
+                                                                              10.0),
+                                                                      topRight:
+                                                                          Radius.circular(
+                                                                              10.0),
+                                                                    ),
+                                                                    child: Image
+                                                                        .network(
+                                                                      valueOrDefault<
+                                                                          String>(
+                                                                        searchedOrgsItem
+                                                                            .logo,
+                                                                        'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2Fnub_logo.jpg?alt=media&token=2bf8d1ce-43ca-411c-819d-41d6b0d36b81',
+                                                                      ),
+                                                                      width: double
+                                                                          .infinity,
+                                                                      height:
+                                                                          160.0,
+                                                                      fit: BoxFit
+                                                                          .cover,
+                                                                    ),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            10.0,
+                                                                            5.0,
+                                                                            10.0,
+                                                                            0.0),
+                                                                    child: Text(
+                                                                      searchedOrgsItem
+                                                                          .organizationName
+                                                                          .maybeHandleOverflow(
+                                                                        maxChars:
+                                                                            50,
+                                                                      ),
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .start,
+                                                                      maxLines:
+                                                                          3,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Montserrat',
+                                                                            fontSize:
+                                                                                14.0,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              Padding(
+                                                                padding: const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        10.0,
+                                                                        0.0,
+                                                                        10.0,
+                                                                        0.0),
+                                                                child: Column(
                                                                   mainAxisSize:
                                                                       MainAxisSize
                                                                           .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .start,
                                                                   crossAxisAlignment:
                                                                       CrossAxisAlignment
                                                                           .start,
                                                                   children: [
-                                                                    ClipRRect(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              0.0),
-                                                                      child: Image
-                                                                          .network(
-                                                                        valueOrDefault<
-                                                                            String>(
-                                                                          allOrgsItem
-                                                                              .logo,
-                                                                          'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2Fnub_logo.jpg?alt=media&token=2bf8d1ce-43ca-411c-819d-41d6b0d36b81',
-                                                                        ),
-                                                                        width: double
-                                                                            .infinity,
-                                                                        height:
-                                                                            160.0,
-                                                                        fit: BoxFit
-                                                                            .cover,
-                                                                      ),
-                                                                    ),
                                                                     Padding(
                                                                       padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                          10.0,
-                                                                          5.0,
-                                                                          10.0,
-                                                                          0.0),
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0),
                                                                       child:
-                                                                          Text(
-                                                                        allOrgsItem
-                                                                            .organizationName
-                                                                            .maybeHandleOverflow(
-                                                                          maxChars:
-                                                                              50,
-                                                                        ),
-                                                                        textAlign:
-                                                                            TextAlign.start,
-                                                                        maxLines:
-                                                                            3,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Montserrat',
-                                                                              fontSize: 14.0,
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FontWeight.bold,
-                                                                            ),
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        mainAxisAlignment:
+                                                                            MainAxisAlignment.start,
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.start,
+                                                                        children:
+                                                                            [
+                                                                          Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            children: [
+                                                                              Padding(
+                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                                                                                child: Icon(
+                                                                                  FFIcons.klikeShapes5,
+                                                                                  color: FlutterFlowTheme.of(context).primary,
+                                                                                  size: 18.0,
+                                                                                ),
+                                                                              ),
+                                                                              Flexible(
+                                                                                child: AutoSizeText(
+                                                                                  searchedOrgsItem.scope,
+                                                                                  textAlign: TextAlign.justify,
+                                                                                  maxLines: 2,
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Montserrat',
+                                                                                        color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                        fontSize: 12.0,
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FontWeight.normal,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                          Row(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.min,
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.end,
+                                                                            children: [
+                                                                              Padding(
+                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                                                                                child: Icon(
+                                                                                  FFIcons.kcategory25,
+                                                                                  color: FlutterFlowTheme.of(context).primary,
+                                                                                  size: 18.0,
+                                                                                ),
+                                                                              ),
+                                                                              Flexible(
+                                                                                child: AutoSizeText(
+                                                                                  searchedOrgsItem.type,
+                                                                                  textAlign: TextAlign.justify,
+                                                                                  maxLines: 2,
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Montserrat',
+                                                                                        color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                        fontSize: 12.0,
+                                                                                        letterSpacing: 0.0,
+                                                                                        fontWeight: FontWeight.normal,
+                                                                                      ),
+                                                                                ),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ].divide(const SizedBox(height: 5.0)),
                                                                       ),
                                                                     ),
                                                                   ],
                                                                 ),
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10.0,
-                                                                          0.0,
-                                                                          10.0,
-                                                                          0.0),
-                                                                  child: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .start,
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    children: [
-                                                                      Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            10.0),
-                                                                        child:
-                                                                            Column(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.start,
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.start,
-                                                                          children:
-                                                                              [
-                                                                            Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
-                                                                                  child: Icon(
-                                                                                    FFIcons.klikeShapes5,
-                                                                                    color: FlutterFlowTheme.of(context).primary,
-                                                                                    size: 18.0,
-                                                                                  ),
-                                                                                ),
-                                                                                Flexible(
-                                                                                  child: AutoSizeText(
-                                                                                    allOrgsItem.scope,
-                                                                                    textAlign: TextAlign.justify,
-                                                                                    maxLines: 2,
-                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                          fontFamily: 'Montserrat',
-                                                                                          color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                          fontSize: 12.0,
-                                                                                          letterSpacing: 0.0,
-                                                                                          fontWeight: FontWeight.normal,
-                                                                                        ),
-                                                                                  ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                            Row(
-                                                                              mainAxisSize: MainAxisSize.min,
-                                                                              mainAxisAlignment: MainAxisAlignment.end,
-                                                                              children: [
-                                                                                Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
-                                                                                  child: Icon(
-                                                                                    FFIcons.kcategory25,
-                                                                                    color: FlutterFlowTheme.of(context).primary,
-                                                                                    size: 18.0,
-                                                                                  ),
-                                                                                ),
-                                                                                Flexible(
-                                                                                  child: AutoSizeText(
-                                                                                    allOrgsItem.type,
-                                                                                    textAlign: TextAlign.justify,
-                                                                                    maxLines: 2,
-                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                          fontFamily: 'Montserrat',
-                                                                                          color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                          fontSize: 12.0,
-                                                                                          letterSpacing: 0.0,
-                                                                                          fontWeight: FontWeight.normal,
-                                                                                        ),
-                                                                                  ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          ].divide(const SizedBox(height: 5.0)),
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
+                                                              ),
+                                                            ],
                                                           ),
                                                         ),
                                                       ),
                                                     );
                                                   },
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  if (FFAppState().searchActive)
-                                    Expanded(
-                                      child: Align(
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 80.0),
-                                          child: Builder(
-                                            builder: (context) {
-                                              final searchedOrgs = _model
-                                                  .simpleSearchResults
-                                                  .toList();
-                                              if (searchedOrgs.isEmpty) {
-                                                return SearchNotFoundListWidget(
-                                                  emptyWhat: _model
-                                                      .textController.text,
                                                 );
-                                              }
-
-                                              return GridView.builder(
-                                                padding: EdgeInsets.zero,
-                                                gridDelegate:
-                                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                                  crossAxisCount: 2,
-                                                  crossAxisSpacing: 10.0,
-                                                  childAspectRatio: 0.55,
-                                                ),
-                                                scrollDirection: Axis.vertical,
-                                                itemCount: searchedOrgs.length,
-                                                itemBuilder: (context,
-                                                    searchedOrgsIndex) {
-                                                  final searchedOrgsItem =
-                                                      searchedOrgs[
-                                                          searchedOrgsIndex];
-                                                  return Align(
-                                                    alignment:
-                                                        const AlignmentDirectional(
-                                                            -1.0, -1.0),
-                                                    child: InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        logFirebaseEvent(
-                                                            'EXPLORE_ORGANIZATION_Container_d2z78gjy_');
-                                                        logFirebaseEvent(
-                                                            'Container_navigate_to');
-
-                                                        context.pushNamed(
-                                                          'org_profile',
-                                                          queryParameters: {
-                                                            'orgReference':
-                                                                serializeParam(
-                                                              searchedOrgsItem
-                                                                  .reference,
-                                                              ParamType
-                                                                  .DocumentReference,
-                                                            ),
-                                                          }.withoutNulls,
-                                                          extra: <String,
-                                                              dynamic>{
-                                                            kTransitionInfoKey:
-                                                                const TransitionInfo(
-                                                              hasTransition:
-                                                                  true,
-                                                              transitionType:
-                                                                  PageTransitionType
-                                                                      .fade,
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      0),
-                                                            ),
-                                                          },
-                                                        );
-                                                      },
-                                                      child: Container(
-                                                        height: 290.0,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      10.0),
-                                                        ),
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                ClipRRect(
-                                                                  borderRadius:
-                                                                      const BorderRadius
-                                                                          .only(
-                                                                    bottomLeft:
-                                                                        Radius.circular(
-                                                                            0.0),
-                                                                    bottomRight:
-                                                                        Radius.circular(
-                                                                            0.0),
-                                                                    topLeft: Radius
-                                                                        .circular(
-                                                                            10.0),
-                                                                    topRight: Radius
-                                                                        .circular(
-                                                                            10.0),
-                                                                  ),
-                                                                  child: Image
-                                                                      .network(
-                                                                    valueOrDefault<
-                                                                        String>(
-                                                                      searchedOrgsItem
-                                                                          .logo,
-                                                                      'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2Fnub_logo.jpg?alt=media&token=2bf8d1ce-43ca-411c-819d-41d6b0d36b81',
-                                                                    ),
-                                                                    width: double
-                                                                        .infinity,
-                                                                    height:
-                                                                        160.0,
-                                                                    fit: BoxFit
-                                                                        .cover,
-                                                                  ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10.0,
-                                                                          5.0,
-                                                                          10.0,
-                                                                          0.0),
-                                                                  child: Text(
-                                                                    searchedOrgsItem
-                                                                        .organizationName
-                                                                        .maybeHandleOverflow(
-                                                                      maxChars:
-                                                                          50,
-                                                                    ),
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .start,
-                                                                    maxLines: 3,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Montserrat',
-                                                                          fontSize:
-                                                                              14.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.bold,
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10.0,
-                                                                          0.0,
-                                                                          10.0,
-                                                                          0.0),
-                                                              child: Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .start,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  Padding(
-                                                                    padding: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            10.0),
-                                                                    child:
-                                                                        Column(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .start,
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .start,
-                                                                      children:
-                                                                          [
-                                                                        Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          children: [
-                                                                            Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
-                                                                              child: Icon(
-                                                                                FFIcons.klikeShapes5,
-                                                                                color: FlutterFlowTheme.of(context).primary,
-                                                                                size: 18.0,
-                                                                              ),
-                                                                            ),
-                                                                            Flexible(
-                                                                              child: AutoSizeText(
-                                                                                searchedOrgsItem.scope,
-                                                                                textAlign: TextAlign.justify,
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                      fontSize: 12.0,
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FontWeight.normal,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                        Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.min,
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.end,
-                                                                          children: [
-                                                                            Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
-                                                                              child: Icon(
-                                                                                FFIcons.kcategory25,
-                                                                                color: FlutterFlowTheme.of(context).primary,
-                                                                                size: 18.0,
-                                                                              ),
-                                                                            ),
-                                                                            Flexible(
-                                                                              child: AutoSizeText(
-                                                                                searchedOrgsItem.type,
-                                                                                textAlign: TextAlign.justify,
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                      fontSize: 12.0,
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FontWeight.normal,
-                                                                                    ),
-                                                                              ),
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                      ].divide(const SizedBox(
-                                                                              height: 5.0)),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
-                                              );
-                                            },
+                                              },
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                ],
-                              ).animateOnPageLoad(
-                                  animationsMap['columnOnPageLoadAnimation']!),
+                                  ],
+                                ).animateOnPageLoad(animationsMap[
+                                    'columnOnPageLoadAnimation']!),
+                              ),
                             ),
                           ],
                         ),

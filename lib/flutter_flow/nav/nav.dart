@@ -949,10 +949,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const AuthVerifyRoleWidget(),
         ),
         FFRoute(
-          name: 'a_calendar',
-          path: '/aCalendar',
+          name: 'fmo_calendar_version1',
+          path: '/fmoCalendarVersion1',
           requireAuth: true,
-          builder: (context, params) => const ACalendarWidget(),
+          builder: (context, params) => const FmoCalendarVersion1Widget(),
         ),
         FFRoute(
           name: 'event_proposal_step_1',
@@ -1759,10 +1759,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'calendar_version2',
-          path: '/calendarVersion2',
+          name: 'fmo_calendar_version2',
+          path: '/fmoCalendarVersion2',
           requireAuth: true,
-          builder: (context, params) => const CalendarVersion2Widget(),
+          builder: (context, params) => const FmoCalendarVersion2Widget(),
         ),
         FFRoute(
           name: 'event_profile_test',

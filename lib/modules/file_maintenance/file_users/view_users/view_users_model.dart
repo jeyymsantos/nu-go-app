@@ -16,6 +16,10 @@ class ViewUsersModel extends FlutterFlowModel<ViewUsersWidget> {
   // Stores action output result for [Firestore Query - Query a collection] action in Container widget.
   List<UsersRecord>? onboardedUsers;
   List<UsersRecord> simpleSearchResults = [];
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Icon widget.
+  bool? confirmDeleteUser;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Icon widget.
+  bool? confirmDeleteUserSearched;
 
   @override
   void initState(BuildContext context) {

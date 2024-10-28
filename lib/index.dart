@@ -112,8 +112,8 @@ export '/drafts/calendar_trial/calendar_trial_widget.dart'
     show CalendarTrialWidget;
 export '/modules/authentication/verifications/auth_verify_role/auth_verify_role_widget.dart'
     show AuthVerifyRoleWidget;
-export '/users/school_admins/fmo/a_calendar/a_calendar_widget.dart'
-    show ACalendarWidget;
+export '/users/school_admins/fmo/fmo_calendar_version1/fmo_calendar_version1_widget.dart'
+    show FmoCalendarVersion1Widget;
 export '/users/rsco/event_management/event_proposal/step_by_step/event_proposal_step_1/event_proposal_step1_widget.dart'
     show EventProposalStep1Widget;
 export '/users/super_admin/admin_notifications/admin_notif_send/admin_notif_send_widget.dart'
@@ -241,8 +241,8 @@ export '/modules/file_maintenance/file_users/view_users_faculty/view_users_facul
     show ViewUsersFacultyWidget;
 export '/users/rsco/event_management/event_proposal/event_proposal_detailed_status/event_proposal_detailed_status_widget.dart'
     show EventProposalDetailedStatusWidget;
-export '/users/school_admins/fmo/calendar_version2/calendar_version2_widget.dart'
-    show CalendarVersion2Widget;
+export '/users/school_admins/fmo/fmo_calendar_version2/fmo_calendar_version2_widget.dart'
+    show FmoCalendarVersion2Widget;
 export '/drafts/event_profile_test/event_profile_test_widget.dart'
     show EventProfileTestWidget;
 export '/users/general/menu/feedback/photo_viewer/photo_viewer_widget.dart'

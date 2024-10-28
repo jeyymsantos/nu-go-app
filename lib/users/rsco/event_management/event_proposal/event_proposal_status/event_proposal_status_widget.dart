@@ -9,6 +9,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
@@ -846,7 +847,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                         .rationale,
                                                                     textAlign:
                                                                         TextAlign
-                                                                            .justify,
+                                                                            .start,
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
@@ -915,7 +916,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                         .objectives,
                                                                     textAlign:
                                                                         TextAlign
-                                                                            .justify,
+                                                                            .start,
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
@@ -1009,7 +1010,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                         5.0,
                                                                         15.0,
                                                                         5.0,
-                                                                        0.0),
+                                                                        50.0),
                                                             child: Column(
                                                               mainAxisSize:
                                                                   MainAxisSize
@@ -1106,7 +1107,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                         5.0,
                                                                         15.0,
                                                                         5.0,
-                                                                        0.0),
+                                                                        50.0),
                                                             child: Column(
                                                               mainAxisSize:
                                                                   MainAxisSize
@@ -1173,52 +1174,53 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                           -1.0,
                                                                           0.0),
                                                                   child:
-                                                                      Padding(
-                                                                    padding: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            20.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child:
-                                                                        InkWell(
-                                                                      splashColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      focusColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      hoverColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      highlightColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      onTap:
-                                                                          () async {
-                                                                        logFirebaseEvent(
-                                                                            'EVENT_PROPOSAL_STATUS_Text_gc79ujke_ON_T');
-                                                                        logFirebaseEvent(
-                                                                            'Text_launch_u_r_l');
-                                                                        await launchURL(eventProposalStatusEventsRecord
-                                                                            .otherDetails
-                                                                            .onlineLink);
-                                                                      },
-                                                                      child:
-                                                                          Text(
-                                                                        eventProposalStatusEventsRecord
-                                                                            .otherDetails
-                                                                            .onlineLink,
-                                                                        textAlign:
-                                                                            TextAlign.justify,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Montserrat',
-                                                                              color: FlutterFlowTheme.of(context).primary,
-                                                                              letterSpacing: 0.0,
-                                                                            ),
-                                                                      ),
+                                                                      InkWell(
+                                                                    splashColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    focusColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    hoverColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    highlightColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    onTap:
+                                                                        () async {
+                                                                      logFirebaseEvent(
+                                                                          'EVENT_PROPOSAL_STATUS_Text_gc79ujke_ON_T');
+                                                                      logFirebaseEvent(
+                                                                          'Text_copy_to_clipboard');
+                                                                      await Clipboard.setData(ClipboardData(
+                                                                          text: eventProposalStatusEventsRecord
+                                                                              .otherDetails
+                                                                              .onlineLink));
+                                                                      logFirebaseEvent(
+                                                                          'Text_launch_u_r_l');
+                                                                      await launchURL(eventProposalStatusEventsRecord
+                                                                          .otherDetails
+                                                                          .onlineLink);
+                                                                    },
+                                                                    child: Text(
+                                                                      eventProposalStatusEventsRecord
+                                                                          .otherDetails
+                                                                          .onlineLink,
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .justify,
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Montserrat',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primary,
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                          ),
                                                                     ),
                                                                   ),
                                                                 ),
@@ -1238,7 +1240,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                         5.0,
                                                                         15.0,
                                                                         5.0,
-                                                                        0.0),
+                                                                        50.0),
                                                             child: Column(
                                                               mainAxisSize:
                                                                   MainAxisSize
@@ -1247,25 +1249,32 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                   CrossAxisAlignment
                                                                       .start,
                                                               children: [
-                                                                Align(
-                                                                  alignment:
-                                                                      const AlignmentDirectional(
-                                                                          -1.0,
-                                                                          0.0),
-                                                                  child: Text(
-                                                                    'Location',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Montserrat',
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.w600,
-                                                                        ),
-                                                                  ),
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
+                                                                  children: [
+                                                                    Align(
+                                                                      alignment:
+                                                                          const AlignmentDirectional(
+                                                                              -1.0,
+                                                                              0.0),
+                                                                      child:
+                                                                          Text(
+                                                                        'Location',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.w600,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
                                                                 ),
                                                                 Container(
                                                                   width: double

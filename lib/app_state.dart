@@ -638,21 +638,6 @@ class FFAppState extends ChangeNotifier {
   void clearActivityLogsCacheKey(String? uniqueKey) =>
       _activityLogsManager.clearRequest(uniqueKey);
 
-  final _dashboardOrgDataManager = FutureRequestManager<OrganizationsRecord>();
-  Future<OrganizationsRecord> dashboardOrgData({
-    String? uniqueQueryKey,
-    bool? overrideCache,
-    required Future<OrganizationsRecord> Function() requestFn,
-  }) =>
-      _dashboardOrgDataManager.performRequest(
-        uniqueQueryKey: uniqueQueryKey,
-        overrideCache: overrideCache,
-        requestFn: requestFn,
-      );
-  void clearDashboardOrgDataCache() => _dashboardOrgDataManager.clear();
-  void clearDashboardOrgDataCacheKey(String? uniqueKey) =>
-      _dashboardOrgDataManager.clearRequest(uniqueKey);
-
   final _officeListManager = FutureRequestManager<List<OfficeRecord>>();
   Future<List<OfficeRecord>> officeList({
     String? uniqueQueryKey,

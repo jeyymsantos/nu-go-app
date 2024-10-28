@@ -263,21 +263,6 @@ class _EventProposalStep2OutsideLocationWidgetState
                                           fontWeight: FontWeight.w500,
                                         ),
                                   ),
-                                  Text(
-                                    valueOrDefault<String>(
-                                      _model.placePickerValue.latLng
-                                          .toString(),
-                                      'sad',
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Montserrat',
-                                          fontSize: 14.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                  ),
                                   SizedBox(
                                     width: double.infinity,
                                     height: 360.0,

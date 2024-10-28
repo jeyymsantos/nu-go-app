@@ -15,6 +15,10 @@ class ViewEquipmentModel extends FlutterFlowModel<ViewEquipmentWidget> {
   String? Function(BuildContext, String?)?
       equipmentSearchTextControllerValidator;
   List<EquipmentsRecord> simpleSearchResults = [];
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Icon widget.
+  bool? confirmEquipmentDelete;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Icon widget.
+  bool? confirmDelete2;
 
   @override
   void initState(BuildContext context) {

@@ -798,14 +798,14 @@ class _RscoDashboardWidgetState extends State<RscoDashboardWidget> {
                                 20.0, 0.0, 20.0, 0.0),
                             child: SizedBox(
                               height: 232.0,
-                              child: FutureBuilder<List<EventsRecord>>(
-                                future: queryEventsRecordOnce(
+                              child: StreamBuilder<List<EventsRecord>>(
+                                stream: queryEventsRecord(
                                   queryBuilder: (eventsRecord) => eventsRecord
                                       .where(
                                         'org_reference',
                                         isEqualTo: widget.org,
                                       )
-                                      .orderBy('start_date'),
+                                      .orderBy('status', descending: true),
                                   limit: 5,
                                 ),
                                 builder: (context, snapshot) {
@@ -1083,71 +1083,6 @@ class _RscoDashboardWidgetState extends State<RscoDashboardWidget> {
                                                                     MainAxisAlignment
                                                                         .spaceBetween,
                                                                 children: [
-                                                                  Flexible(
-                                                                    child: Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      children: [
-                                                                        Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                              0.0,
-                                                                              0.0,
-                                                                              5.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Icon(
-                                                                            FFIcons.klocation5,
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).secondaryText,
-                                                                            size:
-                                                                                18.0,
-                                                                          ),
-                                                                        ),
-                                                                        Flexible(
-                                                                          child:
-                                                                              FutureBuilder<RoomsRecord>(
-                                                                            future:
-                                                                                RoomsRecord.getDocumentOnce(listViewEventsRecord.facility!),
-                                                                            builder:
-                                                                                (context, snapshot) {
-                                                                              // Customize what your widget looks like when it's loading.
-                                                                              if (!snapshot.hasData) {
-                                                                                return Center(
-                                                                                  child: SizedBox(
-                                                                                    width: 50.0,
-                                                                                    height: 50.0,
-                                                                                    child: SpinKitChasingDots(
-                                                                                      color: FlutterFlowTheme.of(context).primary,
-                                                                                      size: 50.0,
-                                                                                    ),
-                                                                                  ),
-                                                                                );
-                                                                              }
-
-                                                                              final textRoomsRecord = snapshot.data!;
-
-                                                                              return AutoSizeText(
-                                                                                valueOrDefault<String>(
-                                                                                  textRoomsRecord.roomName,
-                                                                                  'PE Area',
-                                                                                ),
-                                                                                textAlign: TextAlign.start,
-                                                                                maxLines: 2,
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Montserrat',
-                                                                                      color: FlutterFlowTheme.of(context).primary,
-                                                                                      fontSize: 13.0,
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FontWeight.normal,
-                                                                                    ),
-                                                                              );
-                                                                            },
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ),
                                                                   Flexible(
                                                                     child: Row(
                                                                       mainAxisSize:

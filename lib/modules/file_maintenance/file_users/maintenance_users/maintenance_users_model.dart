@@ -186,7 +186,7 @@ class MaintenanceUsersModel extends FlutterFlowModel<MaintenanceUsersWidget> {
   // State field(s) for admin_switch widget.
   bool? adminSwitchValue;
   // Stores action output result for [Alert Dialog - Custom Dialog] action in onboard_one_button widget.
-  bool? confirmDialog;
+  bool? confirmUserDetails;
 
   @override
   void initState(BuildContext context) {

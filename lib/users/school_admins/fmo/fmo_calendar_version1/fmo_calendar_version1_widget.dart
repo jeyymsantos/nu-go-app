@@ -7,38 +7,40 @@ import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
-import 'a_calendar_model.dart';
-export 'a_calendar_model.dart';
+import 'fmo_calendar_version1_model.dart';
+export 'fmo_calendar_version1_model.dart';
 
-class ACalendarWidget extends StatefulWidget {
-  const ACalendarWidget({super.key});
+class FmoCalendarVersion1Widget extends StatefulWidget {
+  const FmoCalendarVersion1Widget({super.key});
 
   @override
-  State<ACalendarWidget> createState() => _ACalendarWidgetState();
+  State<FmoCalendarVersion1Widget> createState() =>
+      _FmoCalendarVersion1WidgetState();
 }
 
-class _ACalendarWidgetState extends State<ACalendarWidget> {
-  late ACalendarModel _model;
+class _FmoCalendarVersion1WidgetState extends State<FmoCalendarVersion1Widget> {
+  late FmoCalendarVersion1Model _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ACalendarModel());
+    _model = createModel(context, () => FmoCalendarVersion1Model());
 
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'a_calendar'});
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'fmo_calendar_version1'});
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      logFirebaseEvent('A_CALENDAR_PAGE_a_calendar_ON_INIT_STATE');
-      logFirebaseEvent('a_calendar_update_page_state');
+      logFirebaseEvent('FMO_CALENDAR_VERSION1_fmo_calendar_versi');
+      logFirebaseEvent('fmo_calendar_version1_update_page_state');
       _model.addToChartData(ChartDataStruct(
         xTitle: 'January',
         yValue1: 30,
         yValue2: 15,
       ));
       safeSetState(() {});
-      logFirebaseEvent('a_calendar_update_page_state');
+      logFirebaseEvent('fmo_calendar_version1_update_page_state');
       _model.addToChartData(ChartDataStruct(
         xTitle: 'February',
         yValue1: 45,

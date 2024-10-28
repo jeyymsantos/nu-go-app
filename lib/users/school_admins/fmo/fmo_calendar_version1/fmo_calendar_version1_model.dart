@@ -2,10 +2,11 @@ import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'a_calendar_widget.dart' show ACalendarWidget;
+import 'fmo_calendar_version1_widget.dart' show FmoCalendarVersion1Widget;
 import 'package:flutter/material.dart';
 
-class ACalendarModel extends FlutterFlowModel<ACalendarWidget> {
+class FmoCalendarVersion1Model
+    extends FlutterFlowModel<FmoCalendarVersion1Widget> {
   ///  Local state fields for this page.
 
   List<ChartDataStruct> chartData = [];

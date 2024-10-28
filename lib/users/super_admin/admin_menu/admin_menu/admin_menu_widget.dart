@@ -447,7 +447,7 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                       model: _model.userManagementModel,
                                       updateCallback: () => safeSetState(() {}),
                                       child: const AdminMenuCardWidget(
-                                        moduleName: 'User\nManagement',
+                                        moduleName: 'User Management',
                                         moduleDescription:
                                             'Manage user accounts using the application.',
                                         imagePath:

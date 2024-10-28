@@ -14,6 +14,10 @@ class ViewUserRolesModel extends FlutterFlowModel<ViewUserRolesWidget> {
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
   List<RolesRecord> simpleSearchResults = [];
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Icon widget.
+  bool? confirmRoleDel1;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Icon widget.
+  bool? confirmRoleDel2;
 
   @override
   void initState(BuildContext context) {

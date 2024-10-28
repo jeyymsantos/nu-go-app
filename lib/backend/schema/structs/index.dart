@@ -9,6 +9,7 @@ export 'chart_data_spline_chart_struct.dart';
 export 'address_struct.dart';
 export 'approval_set_struct.dart';
 export 'approval_signatory_struct.dart';
+export 'budget_amount_struct.dart';
 export 'budget_list_struct.dart';
 export 'event_details_struct.dart';
 export 'event_program_struct.dart';

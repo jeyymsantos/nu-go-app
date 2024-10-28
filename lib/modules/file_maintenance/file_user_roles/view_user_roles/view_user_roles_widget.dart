@@ -1,4 +1,6 @@
 import '/backend/backend.dart';
+import '/components/dialog_box/confirm_password_dialog/confirm_password_dialog_widget.dart';
+import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
 import '/components/widgets/empty_list/empty_list_widget.dart';
 import '/components/widgets/search_not_found_list/search_not_found_list_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
@@ -769,122 +771,181 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                                               alignment:
                                                                   const AlignmentDirectional(
                                                                       0.0, 0.0),
-                                                              child: Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            10.0,
-                                                                            0.0),
-                                                                child: InkWell(
-                                                                  splashColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  focusColor: Colors
-                                                                      .transparent,
-                                                                  hoverColor: Colors
-                                                                      .transparent,
-                                                                  highlightColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  onTap:
-                                                                      () async {
-                                                                    logFirebaseEvent(
-                                                                        'VIEW_USER_ROLES_Icon_j5xqyrgl_ON_TAP');
-                                                                    logFirebaseEvent(
-                                                                        'Icon_alert_dialog');
-                                                                    var confirmDialogResponse =
-                                                                        await showDialog<bool>(
-                                                                              context: context,
-                                                                              builder: (alertDialogContext) {
-                                                                                return WebViewAware(
-                                                                                  child: AlertDialog(
-                                                                                    title: const Text('Delete Role'),
-                                                                                    content: const Text('Are you sure you want to delete this role?'),
-                                                                                    actions: [
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                        child: const Text('Cancel'),
-                                                                                      ),
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                        child: const Text('Confirm'),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
-                                                                                );
-                                                                              },
-                                                                            ) ??
-                                                                            false;
-                                                                    if (confirmDialogResponse) {
+                                                              child: Builder(
+                                                                builder:
+                                                                    (context) =>
+                                                                        Padding(
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      InkWell(
+                                                                    splashColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    focusColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    hoverColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    highlightColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    onTap:
+                                                                        () async {
                                                                       logFirebaseEvent(
-                                                                          'Icon_backend_call');
-                                                                      await rolesSearchItem
-                                                                          .reference
-                                                                          .delete();
-                                                                      logFirebaseEvent(
-                                                                          'Icon_action_block');
-                                                                      await action_blocks
-                                                                          .logs(
-                                                                        context,
-                                                                        type:
-                                                                            'deleted',
-                                                                        module:
-                                                                            'roles',
-                                                                        doneToName:
-                                                                            rolesSearchItem.roleName,
-                                                                      );
+                                                                          'VIEW_USER_ROLES_Icon_j5xqyrgl_ON_TAP');
+                                                                      var shouldSetState =
+                                                                          false;
                                                                       logFirebaseEvent(
                                                                           'Icon_alert_dialog');
                                                                       await showDialog(
                                                                         context:
                                                                             context,
                                                                         builder:
-                                                                            (alertDialogContext) {
-                                                                          return WebViewAware(
+                                                                            (dialogContext) {
+                                                                          return Dialog(
+                                                                            elevation:
+                                                                                0,
+                                                                            insetPadding:
+                                                                                EdgeInsets.zero,
+                                                                            backgroundColor:
+                                                                                Colors.transparent,
+                                                                            alignment:
+                                                                                const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
-                                                                                AlertDialog(
-                                                                              title: const Text('Deleted Role'),
-                                                                              content: const Text('Role has been successfully deleted.'),
-                                                                              actions: [
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: const Text('Okay'),
-                                                                                ),
-                                                                              ],
+                                                                                WebViewAware(
+                                                                              child: GestureDetector(
+                                                                                onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                child: const ConfirmPasswordDialogWidget(),
+                                                                              ),
                                                                             ),
                                                                           );
                                                                         },
-                                                                      );
-                                                                    }
-                                                                    logFirebaseEvent(
-                                                                        'Icon_reset_form_fields');
-                                                                    safeSetState(
-                                                                        () {
-                                                                      _model
-                                                                          .textController
-                                                                          ?.clear();
-                                                                    });
-                                                                    logFirebaseEvent(
-                                                                        'Icon_update_app_state');
-                                                                    FFAppState()
-                                                                            .searchActive =
-                                                                        false;
-                                                                    safeSetState(
-                                                                        () {});
-                                                                  },
-                                                                  child: Icon(
-                                                                    FFIcons
-                                                                        .ktrash,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .error,
-                                                                    size: 24.0,
-                                                                  ),
-                                                                ).animateOnPageLoad(
-                                                                    animationsMap[
-                                                                        'iconOnPageLoadAnimation2']!),
+                                                                      ).then((value) =>
+                                                                          safeSetState(() =>
+                                                                              _model.confirmRoleDel1 = value));
+
+                                                                      shouldSetState =
+                                                                          true;
+                                                                      if (_model
+                                                                          .confirmRoleDel1!) {
+                                                                        logFirebaseEvent(
+                                                                            'Icon_backend_call');
+                                                                        await rolesSearchItem
+                                                                            .reference
+                                                                            .delete();
+                                                                        logFirebaseEvent(
+                                                                            'Icon_action_block');
+                                                                        await action_blocks
+                                                                            .logs(
+                                                                          context,
+                                                                          type:
+                                                                              'deleted',
+                                                                          module:
+                                                                              'roles',
+                                                                          doneToName:
+                                                                              rolesSearchItem.roleName,
+                                                                        );
+                                                                        logFirebaseEvent(
+                                                                            'Icon_alert_dialog');
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: WebViewAware(
+                                                                                child: GestureDetector(
+                                                                                  onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                  child: const InformationDialogBoxWidget(
+                                                                                    infoDialogTitle: 'Role Deleted',
+                                                                                    infoDialogMeesage: 'Role has been successfully deleted.',
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+
+                                                                        logFirebaseEvent(
+                                                                            'Icon_reset_form_fields');
+                                                                        safeSetState(
+                                                                            () {
+                                                                          _model
+                                                                              .textController
+                                                                              ?.clear();
+                                                                        });
+                                                                        logFirebaseEvent(
+                                                                            'Icon_update_app_state');
+                                                                        FFAppState().searchActive =
+                                                                            false;
+                                                                        safeSetState(
+                                                                            () {});
+                                                                        if (shouldSetState) {
+                                                                          safeSetState(
+                                                                              () {});
+                                                                        }
+                                                                        return;
+                                                                      } else {
+                                                                        logFirebaseEvent(
+                                                                            'Icon_alert_dialog');
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: WebViewAware(
+                                                                                child: GestureDetector(
+                                                                                  onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                  child: const InformationDialogBoxWidget(
+                                                                                    infoDialogTitle: 'Action Cancelled',
+                                                                                    infoDialogMeesage: 'This action has been cancelled.',
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+
+                                                                        if (shouldSetState) {
+                                                                          safeSetState(
+                                                                              () {});
+                                                                        }
+                                                                        return;
+                                                                      }
+
+                                                                      if (shouldSetState) {
+                                                                        safeSetState(
+                                                                            () {});
+                                                                      }
+                                                                    },
+                                                                    child: Icon(
+                                                                      FFIcons
+                                                                          .ktrash,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      size:
+                                                                          24.0,
+                                                                    ),
+                                                                  ).animateOnPageLoad(
+                                                                          animationsMap[
+                                                                              'iconOnPageLoadAnimation2']!),
+                                                                ),
                                                               ),
                                                             ),
                                                           ],
@@ -1180,122 +1241,202 @@ class _ViewUserRolesWidgetState extends State<ViewUserRolesWidget>
                                                               alignment:
                                                                   const AlignmentDirectional(
                                                                       0.0, 0.0),
-                                                              child: Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            10.0,
-                                                                            0.0),
-                                                                child: InkWell(
-                                                                  splashColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  focusColor: Colors
-                                                                      .transparent,
-                                                                  hoverColor: Colors
-                                                                      .transparent,
-                                                                  highlightColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  onTap:
-                                                                      () async {
-                                                                    logFirebaseEvent(
-                                                                        'VIEW_USER_ROLES_Icon_zhmknd0v_ON_TAP');
-                                                                    logFirebaseEvent(
-                                                                        'Icon_alert_dialog');
-                                                                    var confirmDialogResponse =
-                                                                        await showDialog<bool>(
-                                                                              context: context,
-                                                                              builder: (alertDialogContext) {
-                                                                                return WebViewAware(
-                                                                                  child: AlertDialog(
-                                                                                    title: const Text('Delete Role'),
-                                                                                    content: const Text('Are you sure you want to delete this role?'),
-                                                                                    actions: [
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                        child: const Text('Cancel'),
-                                                                                      ),
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                        child: const Text('Confirm'),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
-                                                                                );
-                                                                              },
-                                                                            ) ??
-                                                                            false;
-                                                                    if (confirmDialogResponse) {
+                                                              child: Builder(
+                                                                builder:
+                                                                    (context) =>
+                                                                        Padding(
+                                                                  padding: const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      InkWell(
+                                                                    splashColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    focusColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    hoverColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    highlightColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    onTap:
+                                                                        () async {
                                                                       logFirebaseEvent(
-                                                                          'Icon_backend_call');
-                                                                      await rolesSearchItem
-                                                                          .reference
-                                                                          .delete();
-                                                                      logFirebaseEvent(
-                                                                          'Icon_action_block');
-                                                                      await action_blocks
-                                                                          .logs(
-                                                                        context,
-                                                                        type:
-                                                                            'deleted',
-                                                                        module:
-                                                                            'roles',
-                                                                        doneToName:
-                                                                            rolesSearchItem.roleName,
-                                                                      );
+                                                                          'VIEW_USER_ROLES_Icon_zhmknd0v_ON_TAP');
+                                                                      var shouldSetState =
+                                                                          false;
                                                                       logFirebaseEvent(
                                                                           'Icon_alert_dialog');
                                                                       await showDialog(
                                                                         context:
                                                                             context,
                                                                         builder:
-                                                                            (alertDialogContext) {
-                                                                          return WebViewAware(
+                                                                            (dialogContext) {
+                                                                          return Dialog(
+                                                                            elevation:
+                                                                                0,
+                                                                            insetPadding:
+                                                                                EdgeInsets.zero,
+                                                                            backgroundColor:
+                                                                                Colors.transparent,
+                                                                            alignment:
+                                                                                const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
-                                                                                AlertDialog(
-                                                                              title: const Text('Deleted Role'),
-                                                                              content: const Text('Role has been successfully deleted.'),
-                                                                              actions: [
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: const Text('Okay'),
-                                                                                ),
-                                                                              ],
+                                                                                WebViewAware(
+                                                                              child: GestureDetector(
+                                                                                onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                child: const ConfirmPasswordDialogWidget(),
+                                                                              ),
                                                                             ),
                                                                           );
                                                                         },
-                                                                      );
-                                                                    }
-                                                                    logFirebaseEvent(
-                                                                        'Icon_reset_form_fields');
-                                                                    safeSetState(
-                                                                        () {
-                                                                      _model
-                                                                          .textController
-                                                                          ?.clear();
-                                                                    });
-                                                                    logFirebaseEvent(
-                                                                        'Icon_update_app_state');
-                                                                    FFAppState()
-                                                                            .searchActive =
-                                                                        false;
-                                                                    safeSetState(
-                                                                        () {});
-                                                                  },
-                                                                  child: Icon(
-                                                                    Icons
-                                                                        .delete,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .error,
-                                                                    size: 24.0,
-                                                                  ),
-                                                                ).animateOnPageLoad(
-                                                                    animationsMap[
-                                                                        'iconOnPageLoadAnimation4']!),
+                                                                      ).then((value) =>
+                                                                          safeSetState(() =>
+                                                                              _model.confirmRoleDel2 = value));
+
+                                                                      shouldSetState =
+                                                                          true;
+                                                                      if (_model
+                                                                          .confirmRoleDel2!) {
+                                                                        logFirebaseEvent(
+                                                                            'Icon_backend_call');
+                                                                        await rolesSearchItem
+                                                                            .reference
+                                                                            .delete();
+                                                                        logFirebaseEvent(
+                                                                            'Icon_action_block');
+                                                                        await action_blocks
+                                                                            .logs(
+                                                                          context,
+                                                                          type:
+                                                                              'deleted',
+                                                                          module:
+                                                                              'roles',
+                                                                          doneToName:
+                                                                              rolesSearchItem.roleName,
+                                                                        );
+                                                                        logFirebaseEvent(
+                                                                            'Icon_alert_dialog');
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: WebViewAware(
+                                                                                child: GestureDetector(
+                                                                                  onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                  child: const InformationDialogBoxWidget(
+                                                                                    infoDialogTitle: 'Role Deleted',
+                                                                                    infoDialogMeesage: 'Role has been successfully deleted.',
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+
+                                                                        logFirebaseEvent(
+                                                                            'Icon_alert_dialog');
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (alertDialogContext) {
+                                                                            return WebViewAware(
+                                                                              child: AlertDialog(
+                                                                                title: const Text('Deleted Role'),
+                                                                                content: const Text('Role has been successfully deleted.'),
+                                                                                actions: [
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                    child: const Text('Okay'),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                        logFirebaseEvent(
+                                                                            'Icon_reset_form_fields');
+                                                                        safeSetState(
+                                                                            () {
+                                                                          _model
+                                                                              .textController
+                                                                              ?.clear();
+                                                                        });
+                                                                        logFirebaseEvent(
+                                                                            'Icon_update_app_state');
+                                                                        FFAppState().searchActive =
+                                                                            false;
+                                                                        safeSetState(
+                                                                            () {});
+                                                                        if (shouldSetState) {
+                                                                          safeSetState(
+                                                                              () {});
+                                                                        }
+                                                                        return;
+                                                                      } else {
+                                                                        logFirebaseEvent(
+                                                                            'Icon_alert_dialog');
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: WebViewAware(
+                                                                                child: GestureDetector(
+                                                                                  onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                  child: const InformationDialogBoxWidget(
+                                                                                    infoDialogTitle: 'Action Cancelled',
+                                                                                    infoDialogMeesage: 'This action has been cancelled.',
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+
+                                                                        if (shouldSetState) {
+                                                                          safeSetState(
+                                                                              () {});
+                                                                        }
+                                                                        return;
+                                                                      }
+
+                                                                      if (shouldSetState) {
+                                                                        safeSetState(
+                                                                            () {});
+                                                                      }
+                                                                    },
+                                                                    child: Icon(
+                                                                      FFIcons
+                                                                          .ktrash,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      size:
+                                                                          24.0,
+                                                                    ),
+                                                                  ).animateOnPageLoad(
+                                                                          animationsMap[
+                                                                              'iconOnPageLoadAnimation4']!),
+                                                                ),
                                                               ),
                                                             ),
                                                           ],

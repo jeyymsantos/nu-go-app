@@ -183,12 +183,6 @@ class _MaintenanceSchoolWidgetState extends State<MaintenanceSchoolWidget> {
                                               letterSpacing: 0.0,
                                             ),
                                         hintText: 'School ',
-                                        hintStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Montserrat',
-                                              letterSpacing: 0.0,
-                                            ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: FlutterFlowTheme.of(context)

@@ -5,15 +5,19 @@ import '/components/dialog_box/failed_dialog_box/failed_dialog_box_widget.dart';
 import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
+import '/flutter_flow/flutter_flow_google_map.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/users/general/events/event_check_ticket/event_check_ticket_widget.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:styled_divider/styled_divider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
@@ -47,6 +51,23 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
 
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'event_profile'});
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('EVENT_PROFILE_event_profile_ON_INIT_STAT');
+      logFirebaseEvent('event_profile_backend_call');
+      _model.eventDoc = await EventsRecord.getDocumentOnce(widget.eventRef!);
+      if ((_model.eventDoc?.settings.isOnline == false) &&
+          (_model.eventDoc?.settings.isCampus == false)) {
+        logFirebaseEvent('event_profile_custom_action');
+        _model.givenAddress = await actions.getAddressFromLatLng(
+          _model.eventDoc!.otherDetails.outsideLocation!,
+        );
+        logFirebaseEvent('event_profile_update_page_state');
+        _model.address = _model.givenAddress!;
+        safeSetState(() {});
+      }
+    });
+
     animationsMap.addAll({
       'buttonOnPageLoadAnimation1': AnimationInfo(
         loop: true,
@@ -114,6 +135,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
           onTap: () => FocusScope.of(context).unfocus(),
           child: Scaffold(
             key: scaffoldKey,
+            resizeToAvoidBottomInset: false,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             body: SafeArea(
               top: true,
@@ -723,87 +745,221 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                           ),
                                         ],
                                       ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            width: 30.0,
-                                            height: 30.0,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(5.0),
-                                              border: Border.all(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .lineColor,
-                                                width: 0.5,
+                                      if (eventProfileEventsRecord.facility !=
+                                          null)
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                              width: 30.0,
+                                              height: 30.0,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(5.0),
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .lineColor,
+                                                  width: 0.5,
+                                                ),
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(3.0),
+                                                child: Icon(
+                                                  FFIcons.klocation,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  size: 19.0,
+                                                ),
                                               ),
                                             ),
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(3.0),
-                                              child: Icon(
-                                                FFIcons.klocation,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                size: 19.0,
+                                            Flexible(
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    10.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: StreamBuilder<
+                                                            RoomsRecord>(
+                                                          stream: RoomsRecord
+                                                              .getDocument(
+                                                                  eventProfileEventsRecord
+                                                                      .facility!),
+                                                          builder: (context,
+                                                              snapshot) {
+                                                            // Customize what your widget looks like when it's loading.
+                                                            if (!snapshot
+                                                                .hasData) {
+                                                              return Center(
+                                                                child: SizedBox(
+                                                                  width: 50.0,
+                                                                  height: 50.0,
+                                                                  child:
+                                                                      SpinKitChasingDots(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                    size: 50.0,
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            }
+
+                                                            final textRoomsRecord =
+                                                                snapshot.data!;
+
+                                                            return Text(
+                                                              textRoomsRecord
+                                                                  .roomName,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Montserrat',
+                                                                    fontSize:
+                                                                        13.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                  ),
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(10.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      'Venue',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Montserrat',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontSize: 10.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
-                                          ),
-                                          Flexible(
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Row(
+                                          ],
+                                        ),
+                                      if (eventProfileEventsRecord
+                                              .settings.isOnline ==
+                                          true)
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                              width: 30.0,
+                                              height: 30.0,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(5.0),
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .lineColor,
+                                                  width: 0.5,
+                                                ),
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(3.0),
+                                                child: Icon(
+                                                  FFIcons.klocation,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  size: 19.0,
+                                                ),
+                                              ),
+                                            ),
+                                            Flexible(
+                                              child: InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  logFirebaseEvent(
+                                                      'EVENT_PROFILE_Column_9ew73uf3_ON_TAP');
+                                                  logFirebaseEvent(
+                                                      'Column_copy_to_clipboard');
+                                                  await Clipboard.setData(
+                                                      ClipboardData(
+                                                          text:
+                                                              eventProfileEventsRecord
+                                                                  .otherDetails
+                                                                  .onlineLink));
+                                                  logFirebaseEvent(
+                                                      'Column_launch_u_r_l');
+                                                  await launchURL(
+                                                      eventProfileEventsRecord
+                                                          .otherDetails
+                                                          .onlineLink);
+                                                },
+                                                child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  10.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: StreamBuilder<
-                                                          RoomsRecord>(
-                                                        stream: RoomsRecord
-                                                            .getDocument(
-                                                                eventProfileEventsRecord
-                                                                    .facility!),
-                                                        builder: (context,
-                                                            snapshot) {
-                                                          // Customize what your widget looks like when it's loading.
-                                                          if (!snapshot
-                                                              .hasData) {
-                                                            return Center(
-                                                              child: SizedBox(
-                                                                width: 50.0,
-                                                                height: 50.0,
-                                                                child:
-                                                                    SpinKitChasingDots(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                  size: 50.0,
-                                                                ),
-                                                              ),
-                                                            );
-                                                          }
-
-                                                          final textRoomsRecord =
-                                                              snapshot.data!;
-
-                                                          return Text(
-                                                            textRoomsRecord
-                                                                .roomName,
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      10.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            eventProfileEventsRecord
+                                                                .otherDetails
+                                                                .onlinePlatform,
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyMedium
@@ -818,39 +974,49 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                       FontWeight
                                                                           .w600,
                                                                 ),
-                                                          );
-                                                        },
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  10.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        'Visit Link',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Montserrat',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                  fontSize:
+                                                                      10.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .italic,
+                                                                ),
                                                       ),
                                                     ),
                                                   ],
                                                 ),
-                                                Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          10.0, 0.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    'Venue',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Montserrat',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          fontSize: 10.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
-                                                  ),
-                                                ),
-                                              ],
+                                              ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
+                                          ],
+                                        ),
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -913,7 +1079,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                       .fromSTEB(
                                                           10.0, 0.0, 0.0, 0.0),
                                                   child: Text(
-                                                    'Event',
+                                                    'Participants',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
@@ -935,6 +1101,211 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                           ),
                                         ],
                                       ),
+                                      if ((eventProfileEventsRecord
+                                                  .settings.isOnline ==
+                                              false) &&
+                                          (eventProfileEventsRecord
+                                                  .settings.isCampus ==
+                                              false))
+                                        Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              width: 30.0,
+                                              height: 30.0,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(5.0),
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .lineColor,
+                                                  width: 0.5,
+                                                ),
+                                              ),
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(3.0),
+                                                child: Icon(
+                                                  FFIcons.klocation,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  size: 19.0,
+                                                ),
+                                              ),
+                                            ),
+                                            Flexible(
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Flexible(
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      10.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              _model.address,
+                                                              'Off-Campus',
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Montserrat',
+                                                                  fontSize:
+                                                                      13.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(10.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      'Venue',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Montserrat',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontSize: 10.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 10.0,
+                                                                0.0, 0.0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Container(
+                                                          width:
+                                                              MediaQuery.sizeOf(
+                                                                          context)
+                                                                      .width *
+                                                                  1.0,
+                                                          height: 202.0,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        14.0),
+                                                          ),
+                                                          child: Builder(
+                                                              builder:
+                                                                  (context) {
+                                                            final googleMapMarker =
+                                                                eventProfileEventsRecord
+                                                                    .otherDetails
+                                                                    .outsideLocation;
+                                                            return FlutterFlowGoogleMap(
+                                                              controller: _model
+                                                                  .googleMapsController,
+                                                              onCameraIdle:
+                                                                  (latLng) =>
+                                                                      _model.googleMapsCenter =
+                                                                          latLng,
+                                                              initialLocation: _model
+                                                                      .googleMapsCenter ??=
+                                                                  eventProfileEventsRecord
+                                                                      .otherDetails
+                                                                      .outsideLocation!,
+                                                              markers: [
+                                                                if (googleMapMarker !=
+                                                                    null)
+                                                                  FlutterFlowMarker(
+                                                                    googleMapMarker
+                                                                        .serialize(),
+                                                                    googleMapMarker,
+                                                                  ),
+                                                              ],
+                                                              markerColor:
+                                                                  GoogleMarkerColor
+                                                                      .violet,
+                                                              markerImage:
+                                                                  const MarkerImage(
+                                                                imagePath:
+                                                                    'assets/images/NU_GO_-_No_BG.png',
+                                                                isAssetImage:
+                                                                    true,
+                                                                size:
+                                                                    20.0 ?? 20,
+                                                              ),
+                                                              mapType: MapType
+                                                                  .normal,
+                                                              style:
+                                                                  GoogleMapStyle
+                                                                      .standard,
+                                                              initialZoom: 14.0,
+                                                              allowInteraction:
+                                                                  true,
+                                                              allowZoom: true,
+                                                              showZoomControls:
+                                                                  true,
+                                                              showLocation:
+                                                                  true,
+                                                              showCompass:
+                                                                  false,
+                                                              showMapToolbar:
+                                                                  false,
+                                                              showTraffic:
+                                                                  false,
+                                                              centerMapOnMarkerTap:
+                                                                  true,
+                                                            );
+                                                          }),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -976,65 +1347,32 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                   padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           10.0, 0.0, 0.0, 0.0),
-                                                  child: StreamBuilder<
-                                                      RoomsRecord>(
-                                                    stream: RoomsRecord.getDocument(
-                                                        eventProfileEventsRecord
-                                                            .facility!),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      // Customize what your widget looks like when it's loading.
-                                                      if (!snapshot.hasData) {
-                                                        return Center(
-                                                          child: SizedBox(
-                                                            width: 50.0,
-                                                            height: 50.0,
-                                                            child:
-                                                                SpinKitChasingDots(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primary,
-                                                              size: 50.0,
-                                                            ),
+                                                  child: RichText(
+                                                    textScaler:
+                                                        MediaQuery.of(context)
+                                                            .textScaler,
+                                                    text: TextSpan(
+                                                      children: [
+                                                        TextSpan(
+                                                          text: eventProfileEventsRecord
+                                                              .otherDetails
+                                                              .maxParticipants
+                                                              .toString(),
+                                                          style: const TextStyle(),
+                                                        )
+                                                      ],
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Montserrat',
+                                                            fontSize: 13.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w600,
                                                           ),
-                                                        );
-                                                      }
-
-                                                      final richTextRoomsRecord =
-                                                          snapshot.data!;
-
-                                                      return RichText(
-                                                        textScaler:
-                                                            MediaQuery.of(
-                                                                    context)
-                                                                .textScaler,
-                                                        text: TextSpan(
-                                                          children: [
-                                                            TextSpan(
-                                                              text: eventProfileEventsRecord
-                                                                  .otherDetails
-                                                                  .maxParticipants
-                                                                  .toString(),
-                                                              style:
-                                                                  const TextStyle(),
-                                                            )
-                                                          ],
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Montserrat',
-                                                                fontSize: 13.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                        ),
-                                                      );
-                                                    },
+                                                    ),
                                                   ),
                                                 ),
                                                 Padding(

@@ -121,8 +121,8 @@
           "order": "ASCENDING"
         },
         {
-          "fieldPath": "start_date",
-          "order": "ASCENDING"
+          "fieldPath": "status",
+          "order": "DESCENDING"
         }
       ]
     },
@@ -251,6 +251,20 @@
         {
           "fieldPath": "ticket_created_on",
           "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "events",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "org_reference",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "start_date",
+          "order": "ASCENDING"
         }
       ]
     },

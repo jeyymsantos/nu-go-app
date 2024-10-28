@@ -1,5 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/dialog_box/confirm_password_dialog/confirm_password_dialog_widget.dart';
+import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
 import '/components/widgets/empty_list/empty_list_widget.dart';
 import '/components/widgets/search_not_found_list/search_not_found_list_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
@@ -466,282 +468,283 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                   );
                                 }
 
-                                return ListView.builder(
-                                  padding: EdgeInsets.zero,
+                                return ListView.separated(
+                                  padding: const EdgeInsets.fromLTRB(
+                                    0,
+                                    10.0,
+                                    0,
+                                    10.0,
+                                  ),
                                   primary: false,
                                   shrinkWrap: true,
                                   scrollDirection: Axis.vertical,
                                   itemCount: listViewUsersRecordList.length,
+                                  separatorBuilder: (_, __) =>
+                                      const SizedBox(height: 10.0),
                                   itemBuilder: (context, listViewIndex) {
                                     final listViewUsersRecord =
                                         listViewUsersRecordList[listViewIndex];
-                                    return Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 10.0, 0.0, 0.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Expanded(
-                                            child: Container(
-                                              width: 100.0,
-                                              height: 67.0,
-                                              decoration: BoxDecoration(
+                                    return Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            width: 100.0,
+                                            height: 67.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                              border: Border.all(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
-                                                borderRadius:
-                                                    BorderRadius.circular(6.0),
-                                                border: Border.all(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .alternate,
-                                                  width: 1.0,
-                                                ),
+                                                        .alternate,
+                                                width: 1.0,
                                               ),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Expanded(
-                                                    child: InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        logFirebaseEvent(
-                                                            'VIEW_USERS_PAGE_Row_5mlmlmj0_ON_TAP');
-                                                        logFirebaseEvent(
-                                                            'Row_navigate_to');
+                                            ),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Expanded(
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      logFirebaseEvent(
+                                                          'VIEW_USERS_PAGE_Row_5mlmlmj0_ON_TAP');
+                                                      logFirebaseEvent(
+                                                          'Row_navigate_to');
 
-                                                        context.pushNamed(
-                                                          'view_user',
-                                                          queryParameters: {
-                                                            'userDoc':
-                                                                serializeParam(
+                                                      context.pushNamed(
+                                                        'view_user',
+                                                        queryParameters: {
+                                                          'userDoc':
+                                                              serializeParam(
+                                                            listViewUsersRecord,
+                                                            ParamType.Document,
+                                                          ),
+                                                        }.withoutNulls,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          'userDoc':
                                                               listViewUsersRecord,
-                                                              ParamType
-                                                                  .Document,
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      children: [
+                                                        Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
+                                                              child: Container(
+                                                                width: 55.0,
+                                                                height: 55.0,
+                                                                clipBehavior: Clip
+                                                                    .antiAlias,
+                                                                decoration:
+                                                                    const BoxDecoration(
+                                                                  shape: BoxShape
+                                                                      .circle,
+                                                                ),
+                                                                child: Image
+                                                                    .network(
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                    listViewUsersRecord
+                                                                        .photoUrl,
+                                                                    'https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp',
+                                                                  ),
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                ),
+                                                              ),
                                                             ),
-                                                          }.withoutNulls,
-                                                          extra: <String,
-                                                              dynamic>{
-                                                            'userDoc':
-                                                                listViewUsersRecord,
-                                                          },
-                                                        );
-                                                      },
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.min,
-                                                        children: [
-                                                          Column(
+                                                          ],
+                                                        ),
+                                                        Flexible(
+                                                          child: Column(
                                                             mainAxisSize:
                                                                 MainAxisSize
                                                                     .max,
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
                                                                     .center,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
                                                             children: [
-                                                              Padding(
-                                                                padding: const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10.0,
-                                                                        0.0,
-                                                                        10.0,
-                                                                        0.0),
-                                                                child:
-                                                                    Container(
-                                                                  width: 55.0,
-                                                                  height: 55.0,
-                                                                  clipBehavior:
-                                                                      Clip.antiAlias,
-                                                                  decoration:
-                                                                      const BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
+                                                              AuthUserStreamWidget(
+                                                                builder:
+                                                                    (context) =>
+                                                                        Text(
+                                                                  '${listViewUsersRecord.student.honorifics != '' ? '${currentUserDocument?.student.honorifics} ' : ''}${listViewUsersRecord.name.firstName} ${listViewUsersRecord.name.lastName}',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Montserrat',
+                                                                        fontSize:
+                                                                            15.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                      ),
+                                                                ),
+                                                              ),
+                                                              Flexible(
+                                                                child: Text(
+                                                                  'Roles: ${listViewUsersRecord.role}',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Montserrat',
+                                                                        fontSize:
+                                                                            11.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
+                                                                ),
+                                                              ),
+                                                              Flexible(
+                                                                child: Text(
+                                                                  dateTimeFormat(
+                                                                    "relative",
+                                                                    listViewUsersRecord
+                                                                        .createdTime!,
+                                                                    locale: FFLocalizations.of(
+                                                                            context)
+                                                                        .languageCode,
                                                                   ),
-                                                                  child: Image
-                                                                      .network(
-                                                                    valueOrDefault<
-                                                                        String>(
-                                                                      listViewUsersRecord
-                                                                          .photoUrl,
-                                                                      'https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp',
-                                                                    ),
-                                                                    fit: BoxFit
-                                                                        .cover,
-                                                                  ),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Montserrat',
+                                                                        fontSize:
+                                                                            11.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                      ),
                                                                 ),
                                                               ),
                                                             ],
                                                           ),
-                                                          Flexible(
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                AuthUserStreamWidget(
-                                                                  builder:
-                                                                      (context) =>
-                                                                          Text(
-                                                                    '${listViewUsersRecord.student.honorifics != '' ? '${currentUserDocument?.student.honorifics} ' : ''}${listViewUsersRecord.name.firstName} ${listViewUsersRecord.name.lastName}',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Montserrat',
-                                                                          fontSize:
-                                                                              15.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight:
-                                                                              FontWeight.w500,
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                                Flexible(
-                                                                  child: Text(
-                                                                    'Roles: ${listViewUsersRecord.role}',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Montserrat',
-                                                                          fontSize:
-                                                                              11.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                                Flexible(
-                                                                  child: Text(
-                                                                    dateTimeFormat(
-                                                                      "relative",
-                                                                      listViewUsersRecord
-                                                                          .createdTime!,
-                                                                      locale: FFLocalizations.of(
-                                                                              context)
-                                                                          .languageCode,
-                                                                    ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Montserrat',
-                                                                          fontSize:
-                                                                              11.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      10.0,
-                                                                      0.0),
-                                                          child: InkWell(
-                                                            splashColor: Colors
-                                                                .transparent,
-                                                            focusColor: Colors
-                                                                .transparent,
-                                                            hoverColor: Colors
-                                                                .transparent,
-                                                            highlightColor:
-                                                                Colors
-                                                                    .transparent,
-                                                            onTap: () async {
-                                                              logFirebaseEvent(
-                                                                  'VIEW_USERS_PAGE_Icon_hafogsth_ON_TAP');
-                                                              logFirebaseEvent(
-                                                                  'Icon_navigate_to');
+                                                ),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Align(
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    10.0,
+                                                                    0.0),
+                                                        child: InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            logFirebaseEvent(
+                                                                'VIEW_USERS_PAGE_Icon_hafogsth_ON_TAP');
+                                                            logFirebaseEvent(
+                                                                'Icon_navigate_to');
 
-                                                              context.pushNamed(
-                                                                'maintenance_users',
-                                                                queryParameters:
-                                                                    {
-                                                                  'userDoc':
-                                                                      serializeParam(
+                                                            context.pushNamed(
+                                                              'maintenance_users',
+                                                              queryParameters: {
+                                                                'userDoc':
+                                                                    serializeParam(
+                                                                  listViewUsersRecord,
+                                                                  ParamType
+                                                                      .Document,
+                                                                ),
+                                                              }.withoutNulls,
+                                                              extra: <String,
+                                                                  dynamic>{
+                                                                'userDoc':
                                                                     listViewUsersRecord,
-                                                                    ParamType
-                                                                        .Document,
-                                                                  ),
-                                                                }.withoutNulls,
-                                                                extra: <String,
-                                                                    dynamic>{
-                                                                  'userDoc':
-                                                                      listViewUsersRecord,
-                                                                },
-                                                              );
+                                                              },
+                                                            );
 
-                                                              logFirebaseEvent(
-                                                                  'Icon_clear_text_fields_pin_codes');
-                                                              safeSetState(() {
-                                                                _model
-                                                                    .searchFieldTextController
-                                                                    ?.clear();
-                                                              });
-                                                              logFirebaseEvent(
-                                                                  'Icon_update_app_state');
-                                                              FFAppState()
-                                                                      .searchActive =
-                                                                  false;
-                                                              safeSetState(
-                                                                  () {});
-                                                            },
-                                                            child: Icon(
-                                                              FFIcons.kedit,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primary,
-                                                              size: 20.0,
-                                                            ),
+                                                            logFirebaseEvent(
+                                                                'Icon_clear_text_fields_pin_codes');
+                                                            safeSetState(() {
+                                                              _model
+                                                                  .searchFieldTextController
+                                                                  ?.clear();
+                                                            });
+                                                            logFirebaseEvent(
+                                                                'Icon_update_app_state');
+                                                            FFAppState()
+                                                                    .searchActive =
+                                                                false;
+                                                            safeSetState(() {});
+                                                          },
+                                                          child: Icon(
+                                                            FFIcons.kedit,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                            size: 20.0,
                                                           ),
                                                         ),
                                                       ),
-                                                      Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: Padding(
+                                                    ),
+                                                    Align(
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Builder(
+                                                        builder: (context) =>
+                                                            Padding(
                                                           padding:
                                                               const EdgeInsetsDirectional
                                                                   .fromSTEB(
@@ -762,36 +765,50 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                             onTap: () async {
                                                               logFirebaseEvent(
                                                                   'VIEW_USERS_PAGE_Icon_ttct2obo_ON_TAP');
+                                                              var shouldSetState =
+                                                                  false;
                                                               logFirebaseEvent(
                                                                   'Icon_alert_dialog');
-                                                              var confirmDialogResponse =
-                                                                  await showDialog<
-                                                                          bool>(
-                                                                        context:
-                                                                            context,
-                                                                        builder:
-                                                                            (alertDialogContext) {
-                                                                          return WebViewAware(
-                                                                            child:
-                                                                                AlertDialog(
-                                                                              title: const Text('Delete User'),
-                                                                              content: const Text('Are you sure you want to delete this user? This action cannot be undone.'),
-                                                                              actions: [
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                  child: const Text('Cancel'),
-                                                                                ),
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                  child: const Text('Confirm'),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          );
-                                                                        },
-                                                                      ) ??
-                                                                      false;
-                                                              if (confirmDialogResponse) {
+                                                              await showDialog(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (dialogContext) {
+                                                                  return Dialog(
+                                                                    elevation:
+                                                                        0,
+                                                                    insetPadding:
+                                                                        EdgeInsets
+                                                                            .zero,
+                                                                    backgroundColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0)
+                                                                        .resolve(
+                                                                            Directionality.of(context)),
+                                                                    child:
+                                                                        WebViewAware(
+                                                                      child:
+                                                                          GestureDetector(
+                                                                        onTap: () =>
+                                                                            FocusScope.of(dialogContext).unfocus(),
+                                                                        child:
+                                                                            const ConfirmPasswordDialogWidget(),
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              ).then((value) =>
+                                                                  safeSetState(() =>
+                                                                      _model.confirmDeleteUser =
+                                                                          value));
+
+                                                              shouldSetState =
+                                                                  true;
+                                                              if (_model
+                                                                  .confirmDeleteUser!) {
                                                                 logFirebaseEvent(
                                                                     'Icon_backend_call');
                                                                 await listViewUsersRecord
@@ -817,41 +834,116 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                   context:
                                                                       context,
                                                                   builder:
-                                                                      (alertDialogContext) {
-                                                                    return WebViewAware(
+                                                                      (dialogContext) {
+                                                                    return Dialog(
+                                                                      elevation:
+                                                                          0,
+                                                                      insetPadding:
+                                                                          EdgeInsets
+                                                                              .zero,
+                                                                      backgroundColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      alignment: const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0)
+                                                                          .resolve(
+                                                                              Directionality.of(context)),
                                                                       child:
-                                                                          AlertDialog(
-                                                                        title: const Text(
-                                                                            'Deleted User'),
-                                                                        content:
-                                                                            const Text('User has been successfully deleted.'),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                            child:
-                                                                                const Text('Okay'),
+                                                                          WebViewAware(
+                                                                        child:
+                                                                            GestureDetector(
+                                                                          onTap: () =>
+                                                                              FocusScope.of(dialogContext).unfocus(),
+                                                                          child:
+                                                                              const InformationDialogBoxWidget(
+                                                                            infoDialogTitle:
+                                                                                'User Deleted',
+                                                                            infoDialogMeesage:
+                                                                                'User has been successfully deleted.',
                                                                           ),
-                                                                        ],
+                                                                        ),
                                                                       ),
                                                                     );
                                                                   },
                                                                 );
+
+                                                                logFirebaseEvent(
+                                                                    'Icon_reset_form_fields');
+                                                                safeSetState(
+                                                                    () {
+                                                                  _model
+                                                                      .searchFieldTextController
+                                                                      ?.clear();
+                                                                });
+                                                                logFirebaseEvent(
+                                                                    'Icon_update_app_state');
+                                                                FFAppState()
+                                                                        .searchActive =
+                                                                    false;
+                                                                safeSetState(
+                                                                    () {});
+                                                                if (shouldSetState) {
+                                                                  safeSetState(
+                                                                      () {});
+                                                                }
+                                                                return;
+                                                              } else {
+                                                                logFirebaseEvent(
+                                                                    'Icon_alert_dialog');
+                                                                await showDialog(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (dialogContext) {
+                                                                    return Dialog(
+                                                                      elevation:
+                                                                          0,
+                                                                      insetPadding:
+                                                                          EdgeInsets
+                                                                              .zero,
+                                                                      backgroundColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      alignment: const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0)
+                                                                          .resolve(
+                                                                              Directionality.of(context)),
+                                                                      child:
+                                                                          WebViewAware(
+                                                                        child:
+                                                                            GestureDetector(
+                                                                          onTap: () =>
+                                                                              FocusScope.of(dialogContext).unfocus(),
+                                                                          child:
+                                                                              const InformationDialogBoxWidget(
+                                                                            infoDialogTitle:
+                                                                                'Action Cancelled',
+                                                                            infoDialogMeesage:
+                                                                                'Setting to maintenance mode action has been cancelled.',
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                );
+
+                                                                logFirebaseEvent(
+                                                                    'Icon_navigate_back');
+                                                                context
+                                                                    .safePop();
+                                                                if (shouldSetState) {
+                                                                  safeSetState(
+                                                                      () {});
+                                                                }
+                                                                return;
                                                               }
-                                                              logFirebaseEvent(
-                                                                  'Icon_reset_form_fields');
-                                                              safeSetState(() {
-                                                                _model
-                                                                    .searchFieldTextController
-                                                                    ?.clear();
-                                                              });
-                                                              logFirebaseEvent(
-                                                                  'Icon_update_app_state');
-                                                              FFAppState()
-                                                                      .searchActive =
-                                                                  false;
-                                                              safeSetState(
-                                                                  () {});
+
+                                                              if (shouldSetState) {
+                                                                safeSetState(
+                                                                    () {});
+                                                              }
                                                             },
                                                             child: Icon(
                                                               FFIcons.ktrash,
@@ -863,17 +955,17 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                           ),
                                                         ),
                                                       ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                            ).animateOnPageLoad(animationsMap[
-                                                'containerOnPageLoadAnimation1']!),
-                                          ),
-                                        ],
-                                      ).animateOnPageLoad(animationsMap[
-                                          'rowOnPageLoadAnimation1']!),
-                                    );
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ).animateOnPageLoad(animationsMap[
+                                              'containerOnPageLoadAnimation1']!),
+                                        ),
+                                      ],
+                                    ).animateOnPageLoad(animationsMap[
+                                        'rowOnPageLoadAnimation1']!);
                                   },
                                 ).animateOnPageLoad(animationsMap[
                                     'listViewOnPageLoadAnimation1']!);
@@ -904,138 +996,158 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                   );
                                 }
 
-                                return ListView.builder(
-                                  padding: EdgeInsets.zero,
+                                return ListView.separated(
+                                  padding: const EdgeInsets.fromLTRB(
+                                    0,
+                                    10.0,
+                                    0,
+                                    10.0,
+                                  ),
                                   primary: false,
                                   shrinkWrap: true,
                                   scrollDirection: Axis.vertical,
                                   itemCount: userSearchy.length,
+                                  separatorBuilder: (_, __) =>
+                                      const SizedBox(height: 10.0),
                                   itemBuilder: (context, userSearchyIndex) {
                                     final userSearchyItem =
                                         userSearchy[userSearchyIndex];
-                                    return Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 10.0, 0.0, 0.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Expanded(
-                                            child: Container(
-                                              width: 100.0,
-                                              height: 67.0,
-                                              decoration: BoxDecoration(
+                                    return Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            width: 100.0,
+                                            height: 67.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                              border: Border.all(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
-                                                borderRadius:
-                                                    BorderRadius.circular(6.0),
-                                                border: Border.all(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .alternate,
-                                                  width: 1.0,
-                                                ),
+                                                        .alternate,
+                                                width: 1.0,
                                               ),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Expanded(
-                                                    child: InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        logFirebaseEvent(
-                                                            'VIEW_USERS_PAGE_Row_2ugii5d4_ON_TAP');
-                                                        logFirebaseEvent(
-                                                            'Row_navigate_to');
+                                            ),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Expanded(
+                                                  child: InkWell(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    focusColor:
+                                                        Colors.transparent,
+                                                    hoverColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                    onTap: () async {
+                                                      logFirebaseEvent(
+                                                          'VIEW_USERS_PAGE_Row_2ugii5d4_ON_TAP');
+                                                      logFirebaseEvent(
+                                                          'Row_navigate_to');
 
-                                                        context.pushNamed(
-                                                          'view_user',
-                                                          queryParameters: {
-                                                            'userDoc':
-                                                                serializeParam(
+                                                      context.pushNamed(
+                                                        'view_user',
+                                                        queryParameters: {
+                                                          'userDoc':
+                                                              serializeParam(
+                                                            userSearchyItem,
+                                                            ParamType.Document,
+                                                          ),
+                                                        }.withoutNulls,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          'userDoc':
                                                               userSearchyItem,
-                                                              ParamType
-                                                                  .Document,
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      children: [
+                                                        Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
+                                                              child: Container(
+                                                                width: 55.0,
+                                                                height: 55.0,
+                                                                clipBehavior: Clip
+                                                                    .antiAlias,
+                                                                decoration:
+                                                                    const BoxDecoration(
+                                                                  shape: BoxShape
+                                                                      .circle,
+                                                                ),
+                                                                child: Image
+                                                                    .network(
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                    userSearchyItem
+                                                                        .photoUrl,
+                                                                    'https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp',
+                                                                  ),
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                ),
+                                                              ),
                                                             ),
-                                                          }.withoutNulls,
-                                                          extra: <String,
-                                                              dynamic>{
-                                                            'userDoc':
-                                                                userSearchyItem,
-                                                          },
-                                                        );
-                                                      },
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.min,
-                                                        children: [
-                                                          Column(
+                                                          ],
+                                                        ),
+                                                        Flexible(
+                                                          child: Column(
                                                             mainAxisSize:
                                                                 MainAxisSize
                                                                     .max,
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
                                                                     .center,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
                                                             children: [
-                                                              Padding(
-                                                                padding: const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10.0,
-                                                                        0.0,
-                                                                        10.0,
-                                                                        0.0),
-                                                                child:
-                                                                    Container(
-                                                                  width: 55.0,
-                                                                  height: 55.0,
-                                                                  clipBehavior:
-                                                                      Clip.antiAlias,
-                                                                  decoration:
-                                                                      const BoxDecoration(
-                                                                    shape: BoxShape
-                                                                        .circle,
-                                                                  ),
-                                                                  child: Image
-                                                                      .network(
-                                                                    valueOrDefault<
-                                                                        String>(
-                                                                      userSearchyItem
-                                                                          .photoUrl,
-                                                                      'https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp',
+                                                              Text(
+                                                                '${userSearchyItem.name.firstName} ${userSearchyItem.name.lastName}',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Montserrat',
+                                                                      fontSize:
+                                                                          15.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
                                                                     ),
-                                                                    fit: BoxFit
-                                                                        .cover,
-                                                                  ),
-                                                                ),
                                                               ),
-                                                            ],
-                                                          ),
-                                                          Flexible(
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                  '${userSearchyItem.name.firstName} ${userSearchyItem.name.lastName}',
+                                                              Flexible(
+                                                                child: Text(
+                                                                  'Roles: ${userSearchyItem.role != '' ? userSearchyItem.role : ''}${(userSearchyItem.role != '') && (userSearchyItem.settings.isSuperAdmin == true) ? ', ' : ''}${userSearchyItem.settings.isSuperAdmin == true ? 'Super Admin' : ''}${(userSearchyItem.role == '') && (userSearchyItem.settings.isSuperAdmin == false) ? 'N/A' : ''}',
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
@@ -1043,116 +1155,98 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                         fontFamily:
                                                                             'Montserrat',
                                                                         fontSize:
-                                                                            15.0,
+                                                                            11.0,
                                                                         letterSpacing:
                                                                             0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
                                                                       ),
                                                                 ),
-                                                                Flexible(
-                                                                  child: Text(
-                                                                    'Roles: ${userSearchyItem.role != '' ? userSearchyItem.role : ''}${(userSearchyItem.role != '') && (userSearchyItem.settings.isSuperAdmin == true) ? ', ' : ''}${userSearchyItem.settings.isSuperAdmin == true ? 'Super Admin' : ''}${(userSearchyItem.role == '') && (userSearchyItem.settings.isSuperAdmin == false) ? 'N/A' : ''}',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Montserrat',
-                                                                          fontSize:
-                                                                              11.0,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
+                                                              ),
+                                                            ],
                                                           ),
-                                                        ],
-                                                      ),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      10.0,
-                                                                      0.0),
-                                                          child: InkWell(
-                                                            splashColor: Colors
-                                                                .transparent,
-                                                            focusColor: Colors
-                                                                .transparent,
-                                                            hoverColor: Colors
-                                                                .transparent,
-                                                            highlightColor:
-                                                                Colors
-                                                                    .transparent,
-                                                            onTap: () async {
-                                                              logFirebaseEvent(
-                                                                  'VIEW_USERS_PAGE_Icon_kfoeekpc_ON_TAP');
-                                                              logFirebaseEvent(
-                                                                  'Icon_navigate_to');
+                                                ),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Align(
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    10.0,
+                                                                    0.0),
+                                                        child: InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            logFirebaseEvent(
+                                                                'VIEW_USERS_PAGE_Icon_kfoeekpc_ON_TAP');
+                                                            logFirebaseEvent(
+                                                                'Icon_navigate_to');
 
-                                                              context.pushNamed(
-                                                                'maintenance_users',
-                                                                queryParameters:
-                                                                    {
-                                                                  'userDoc':
-                                                                      serializeParam(
+                                                            context.pushNamed(
+                                                              'maintenance_users',
+                                                              queryParameters: {
+                                                                'userDoc':
+                                                                    serializeParam(
+                                                                  userSearchyItem,
+                                                                  ParamType
+                                                                      .Document,
+                                                                ),
+                                                              }.withoutNulls,
+                                                              extra: <String,
+                                                                  dynamic>{
+                                                                'userDoc':
                                                                     userSearchyItem,
-                                                                    ParamType
-                                                                        .Document,
-                                                                  ),
-                                                                }.withoutNulls,
-                                                                extra: <String,
-                                                                    dynamic>{
-                                                                  'userDoc':
-                                                                      userSearchyItem,
-                                                                },
-                                                              );
+                                                              },
+                                                            );
 
-                                                              logFirebaseEvent(
-                                                                  'Icon_clear_text_fields_pin_codes');
-                                                              safeSetState(() {
-                                                                _model
-                                                                    .searchFieldTextController
-                                                                    ?.clear();
-                                                              });
-                                                              logFirebaseEvent(
-                                                                  'Icon_update_app_state');
-                                                              FFAppState()
-                                                                      .searchActive =
-                                                                  false;
-                                                              safeSetState(
-                                                                  () {});
-                                                            },
-                                                            child: Icon(
-                                                              FFIcons.kedit,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primary,
-                                                              size: 20.0,
-                                                            ),
+                                                            logFirebaseEvent(
+                                                                'Icon_clear_text_fields_pin_codes');
+                                                            safeSetState(() {
+                                                              _model
+                                                                  .searchFieldTextController
+                                                                  ?.clear();
+                                                            });
+                                                            logFirebaseEvent(
+                                                                'Icon_update_app_state');
+                                                            FFAppState()
+                                                                    .searchActive =
+                                                                false;
+                                                            safeSetState(() {});
+                                                          },
+                                                          child: Icon(
+                                                            FFIcons.kedit,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                            size: 20.0,
                                                           ),
                                                         ),
                                                       ),
-                                                      Align(
-                                                        alignment:
-                                                            const AlignmentDirectional(
-                                                                0.0, 0.0),
-                                                        child: Padding(
+                                                    ),
+                                                    Align(
+                                                      alignment:
+                                                          const AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Builder(
+                                                        builder: (context) =>
+                                                            Padding(
                                                           padding:
                                                               const EdgeInsetsDirectional
                                                                   .fromSTEB(
@@ -1173,36 +1267,50 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                             onTap: () async {
                                                               logFirebaseEvent(
                                                                   'VIEW_USERS_PAGE_Icon_h22racil_ON_TAP');
+                                                              var shouldSetState =
+                                                                  false;
                                                               logFirebaseEvent(
                                                                   'Icon_alert_dialog');
-                                                              var confirmDialogResponse =
-                                                                  await showDialog<
-                                                                          bool>(
-                                                                        context:
-                                                                            context,
-                                                                        builder:
-                                                                            (alertDialogContext) {
-                                                                          return WebViewAware(
-                                                                            child:
-                                                                                AlertDialog(
-                                                                              title: const Text('Delete User'),
-                                                                              content: const Text('Are you sure you want to delete this user? This action cannot be undone.'),
-                                                                              actions: [
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                  child: const Text('Cancel'),
-                                                                                ),
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                  child: const Text('Confirm'),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          );
-                                                                        },
-                                                                      ) ??
-                                                                      false;
-                                                              if (confirmDialogResponse) {
+                                                              await showDialog(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (dialogContext) {
+                                                                  return Dialog(
+                                                                    elevation:
+                                                                        0,
+                                                                    insetPadding:
+                                                                        EdgeInsets
+                                                                            .zero,
+                                                                    backgroundColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    alignment: const AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0)
+                                                                        .resolve(
+                                                                            Directionality.of(context)),
+                                                                    child:
+                                                                        WebViewAware(
+                                                                      child:
+                                                                          GestureDetector(
+                                                                        onTap: () =>
+                                                                            FocusScope.of(dialogContext).unfocus(),
+                                                                        child:
+                                                                            const ConfirmPasswordDialogWidget(),
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              ).then((value) =>
+                                                                  safeSetState(() =>
+                                                                      _model.confirmDeleteUserSearched =
+                                                                          value));
+
+                                                              shouldSetState =
+                                                                  true;
+                                                              if (_model
+                                                                  .confirmDeleteUserSearched!) {
                                                                 logFirebaseEvent(
                                                                     'Icon_backend_call');
                                                                 await userSearchyItem
@@ -1227,41 +1335,116 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                   context:
                                                                       context,
                                                                   builder:
-                                                                      (alertDialogContext) {
-                                                                    return WebViewAware(
+                                                                      (dialogContext) {
+                                                                    return Dialog(
+                                                                      elevation:
+                                                                          0,
+                                                                      insetPadding:
+                                                                          EdgeInsets
+                                                                              .zero,
+                                                                      backgroundColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      alignment: const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0)
+                                                                          .resolve(
+                                                                              Directionality.of(context)),
                                                                       child:
-                                                                          AlertDialog(
-                                                                        title: const Text(
-                                                                            'Deleted User'),
-                                                                        content:
-                                                                            const Text('User has been successfully deleted.'),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                            child:
-                                                                                const Text('Okay'),
+                                                                          WebViewAware(
+                                                                        child:
+                                                                            GestureDetector(
+                                                                          onTap: () =>
+                                                                              FocusScope.of(dialogContext).unfocus(),
+                                                                          child:
+                                                                              const InformationDialogBoxWidget(
+                                                                            infoDialogTitle:
+                                                                                'User Deleted',
+                                                                            infoDialogMeesage:
+                                                                                'User has been successfully deleted.',
                                                                           ),
-                                                                        ],
+                                                                        ),
                                                                       ),
                                                                     );
                                                                   },
                                                                 );
+
+                                                                logFirebaseEvent(
+                                                                    'Icon_reset_form_fields');
+                                                                safeSetState(
+                                                                    () {
+                                                                  _model
+                                                                      .searchFieldTextController
+                                                                      ?.clear();
+                                                                });
+                                                                logFirebaseEvent(
+                                                                    'Icon_update_app_state');
+                                                                FFAppState()
+                                                                        .searchActive =
+                                                                    false;
+                                                                safeSetState(
+                                                                    () {});
+                                                                if (shouldSetState) {
+                                                                  safeSetState(
+                                                                      () {});
+                                                                }
+                                                                return;
+                                                              } else {
+                                                                logFirebaseEvent(
+                                                                    'Icon_alert_dialog');
+                                                                await showDialog(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (dialogContext) {
+                                                                    return Dialog(
+                                                                      elevation:
+                                                                          0,
+                                                                      insetPadding:
+                                                                          EdgeInsets
+                                                                              .zero,
+                                                                      backgroundColor:
+                                                                          Colors
+                                                                              .transparent,
+                                                                      alignment: const AlignmentDirectional(
+                                                                              0.0,
+                                                                              0.0)
+                                                                          .resolve(
+                                                                              Directionality.of(context)),
+                                                                      child:
+                                                                          WebViewAware(
+                                                                        child:
+                                                                            GestureDetector(
+                                                                          onTap: () =>
+                                                                              FocusScope.of(dialogContext).unfocus(),
+                                                                          child:
+                                                                              const InformationDialogBoxWidget(
+                                                                            infoDialogTitle:
+                                                                                'Action Cancelled',
+                                                                            infoDialogMeesage:
+                                                                                'Setting to maintenance mode action has been cancelled.',
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                );
+
+                                                                logFirebaseEvent(
+                                                                    'Icon_navigate_back');
+                                                                context
+                                                                    .safePop();
+                                                                if (shouldSetState) {
+                                                                  safeSetState(
+                                                                      () {});
+                                                                }
+                                                                return;
                                                               }
-                                                              logFirebaseEvent(
-                                                                  'Icon_reset_form_fields');
-                                                              safeSetState(() {
-                                                                _model
-                                                                    .searchFieldTextController
-                                                                    ?.clear();
-                                                              });
-                                                              logFirebaseEvent(
-                                                                  'Icon_update_app_state');
-                                                              FFAppState()
-                                                                      .searchActive =
-                                                                  false;
-                                                              safeSetState(
-                                                                  () {});
+
+                                                              if (shouldSetState) {
+                                                                safeSetState(
+                                                                    () {});
+                                                              }
                                                             },
                                                             child: Icon(
                                                               FFIcons.ktrash,
@@ -1273,17 +1456,17 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                           ),
                                                         ),
                                                       ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                            ).animateOnPageLoad(animationsMap[
-                                                'containerOnPageLoadAnimation2']!),
-                                          ),
-                                        ],
-                                      ).animateOnPageLoad(animationsMap[
-                                          'rowOnPageLoadAnimation2']!),
-                                    );
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ).animateOnPageLoad(animationsMap[
+                                              'containerOnPageLoadAnimation2']!),
+                                        ),
+                                      ],
+                                    ).animateOnPageLoad(animationsMap[
+                                        'rowOnPageLoadAnimation2']!);
                                   },
                                 ).animateOnPageLoad(animationsMap[
                                     'listViewOnPageLoadAnimation2']!);

@@ -14,6 +14,8 @@ class MenuModel extends FlutterFlowModel<MenuWidget> {
   SchoolsRecord? schoolOutput;
   // Model for UserHeaderComponent component.
   late UserHeaderComponentModel userHeaderComponentModel;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Row widget.
+  bool? logoutConfirm;
   // Model for UserNavBarComponent component.
   late UserNavBarComponentModel userNavBarComponentModel;
 

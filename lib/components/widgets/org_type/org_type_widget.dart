@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,12 @@ import 'org_type_model.dart';
 export 'org_type_model.dart';
 
 class OrgTypeWidget extends StatefulWidget {
-  const OrgTypeWidget({super.key});
+  const OrgTypeWidget({
+    super.key,
+    required this.organizations,
+  });
+
+  final List<OrganizationsRecord>? organizations;
 
   @override
   State<OrgTypeWidget> createState() => _OrgTypeWidgetState();

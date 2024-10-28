@@ -924,7 +924,7 @@ class _EventProfileDashboardWidgetState
                                                     false) &&
                                                 (widget.eventDoc?.settings
                                                         .isOnline ==
-                                                    false))
+                                                    true))
                                               Row(
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: [

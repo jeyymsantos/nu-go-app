@@ -3,29 +3,30 @@ import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'calendar_version2_model.dart';
-export 'calendar_version2_model.dart';
+import 'fmo_calendar_version2_model.dart';
+export 'fmo_calendar_version2_model.dart';
 
-class CalendarVersion2Widget extends StatefulWidget {
-  const CalendarVersion2Widget({super.key});
+class FmoCalendarVersion2Widget extends StatefulWidget {
+  const FmoCalendarVersion2Widget({super.key});
 
   @override
-  State<CalendarVersion2Widget> createState() => _CalendarVersion2WidgetState();
+  State<FmoCalendarVersion2Widget> createState() =>
+      _FmoCalendarVersion2WidgetState();
 }
 
-class _CalendarVersion2WidgetState extends State<CalendarVersion2Widget>
+class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
     with TickerProviderStateMixin {
-  late CalendarVersion2Model _model;
+  late FmoCalendarVersion2Model _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => CalendarVersion2Model());
+    _model = createModel(context, () => FmoCalendarVersion2Model());
 
     logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'calendar_version2'});
+        parameters: {'screen_name': 'fmo_calendar_version2'});
     _model.tabBarController = TabController(
       vsync: this,
       length: 2,
@@ -129,54 +130,58 @@ class _CalendarVersion2WidgetState extends State<CalendarVersion2Widget>
                                         )
                                       ],
                                     ),
-                                    child: FlutterFlowCalendar(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      iconColor: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      weekFormat: false,
-                                      weekStartsMonday: true,
-                                      onChange:
-                                          (DateTimeRange? newSelectedDate) {
-                                        safeSetState(() =>
-                                            _model.calendarSelectedDay1 =
-                                                newSelectedDate);
-                                      },
-                                      titleStyle: FlutterFlowTheme.of(context)
-                                          .titleLarge
-                                          .override(
-                                            fontFamily: 'Montserrat',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      dayOfWeekStyle:
-                                          FlutterFlowTheme.of(context)
-                                              .labelMedium
-                                              .override(
-                                                fontFamily: 'Montserrat',
-                                                letterSpacing: 0.0,
-                                              ),
-                                      dateStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Montserrat',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      selectedDateStyle:
-                                          FlutterFlowTheme.of(context)
-                                              .titleSmall
-                                              .override(
-                                                fontFamily: 'Montserrat',
-                                                letterSpacing: 0.0,
-                                              ),
-                                      inactiveDateStyle:
-                                          FlutterFlowTheme.of(context)
-                                              .labelMedium
-                                              .override(
-                                                fontFamily: 'Montserrat',
-                                                letterSpacing: 0.0,
-                                              ),
-                                      locale: FFLocalizations.of(context)
-                                          .languageCode,
+                                    child: Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          20.0, 0.0, 20.0, 0.0),
+                                      child: FlutterFlowCalendar(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        iconColor: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        weekFormat: false,
+                                        weekStartsMonday: true,
+                                        onChange:
+                                            (DateTimeRange? newSelectedDate) {
+                                          safeSetState(() =>
+                                              _model.calendarSelectedDay1 =
+                                                  newSelectedDate);
+                                        },
+                                        titleStyle: FlutterFlowTheme.of(context)
+                                            .titleLarge
+                                            .override(
+                                              fontFamily: 'Montserrat',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        dayOfWeekStyle:
+                                            FlutterFlowTheme.of(context)
+                                                .labelMedium
+                                                .override(
+                                                  fontFamily: 'Montserrat',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                        dateStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Montserrat',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        selectedDateStyle:
+                                            FlutterFlowTheme.of(context)
+                                                .titleSmall
+                                                .override(
+                                                  fontFamily: 'Montserrat',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                        inactiveDateStyle:
+                                            FlutterFlowTheme.of(context)
+                                                .labelMedium
+                                                .override(
+                                                  fontFamily: 'Montserrat',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                        locale: FFLocalizations.of(context)
+                                            .languageCode,
+                                      ),
                                     ),
                                   ),
                                   Column(

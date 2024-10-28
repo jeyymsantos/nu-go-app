@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/dialog_box/confirm_dialog_box/confirm_dialog_box_widget.dart';
 import '/components/widgets/empty_list/empty_list_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
@@ -689,7 +690,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                 logFirebaseEvent('Column_navigate_to');
 
                                 context.pushNamed(
-                                  'a_calendar',
+                                  'fmo_calendar_version1',
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: const TransitionInfo(
                                       hasTransition: true,
@@ -872,101 +873,120 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                       ),
                                     ],
                                   ),
-                                  InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'SUPER_ADMIN_DASHBOARD_Column_4se8gy6c_ON');
-                                      logFirebaseEvent('Column_alert_dialog');
-                                      var confirmDialogResponse =
-                                          await showDialog<bool>(
-                                                context: context,
-                                                builder: (alertDialogContext) {
-                                                  return WebViewAware(
-                                                    child: AlertDialog(
-                                                      title: const Text('Logout'),
-                                                      content: const Text(
-                                                          'Are you sure you want to logout your account?'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext,
-                                                                  false),
-                                                          child: const Text('Cancel'),
-                                                        ),
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext,
-                                                                  true),
-                                                          child: const Text('Logout'),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  );
-                                                },
-                                              ) ??
-                                              false;
-                                      if (confirmDialogResponse) {
-                                        logFirebaseEvent('Column_action_block');
-                                        await action_blocks.logs(
-                                          context,
-                                          type: 'logged off',
-                                          module: 'user',
-                                          doneToName: 'from the app',
-                                        );
-                                        logFirebaseEvent('Column_auth');
-                                        GoRouter.of(context).prepareAuthEvent();
-                                        await authManager.signOut();
-                                        GoRouter.of(context)
-                                            .clearRedirectLocation();
-
-                                        logFirebaseEvent('Column_navigate_to');
-
-                                        context.goNamedAuth(
-                                            'auth_logout', context.mounted);
-
-                                        return;
-                                      } else {
-                                        return;
-                                      }
-                                    },
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.asset(
-                                            'assets/images/Logout.png',
-                                            width: 60.0,
-                                            height: 60.0,
-                                            fit: BoxFit.contain,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 5.0, 0.0, 0.0),
-                                          child: Text(
-                                            'Logout',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodySmall
-                                                .override(
-                                                  fontFamily: 'Montserrat',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
+                                  Builder(
+                                    builder: (context) => InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        logFirebaseEvent(
+                                            'SUPER_ADMIN_DASHBOARD_Column_4se8gy6c_ON');
+                                        var shouldSetState = false;
+                                        logFirebaseEvent('Column_alert_dialog');
+                                        await showDialog(
+                                          context: context,
+                                          builder: (dialogContext) {
+                                            return Dialog(
+                                              elevation: 0,
+                                              insetPadding: EdgeInsets.zero,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              alignment:
+                                                  const AlignmentDirectional(0.0, 0.0)
+                                                      .resolve(
+                                                          Directionality.of(
+                                                              context)),
+                                              child: WebViewAware(
+                                                child: GestureDetector(
+                                                  onTap: () => FocusScope.of(
+                                                          dialogContext)
+                                                      .unfocus(),
+                                                  child: const ConfirmDialogBoxWidget(
+                                                    confirmDialogTitle:
+                                                        'Lougout',
+                                                    confirmDialogMeesage:
+                                                        'Are you sure you want to logout your account?',
+                                                  ),
                                                 ),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => safeSetState(() =>
+                                            _model.confirmLgoout = value));
+
+                                        shouldSetState = true;
+                                        if (_model.confirmLgoout!) {
+                                          logFirebaseEvent(
+                                              'Column_action_block');
+                                          await action_blocks.logs(
+                                            context,
+                                            type: 'logged off',
+                                            module: 'user',
+                                            doneToName: 'from the app',
+                                          );
+                                          logFirebaseEvent('Column_auth');
+                                          GoRouter.of(context)
+                                              .prepareAuthEvent();
+                                          await authManager.signOut();
+                                          GoRouter.of(context)
+                                              .clearRedirectLocation();
+
+                                          logFirebaseEvent(
+                                              'Column_navigate_to');
+
+                                          context.goNamedAuth(
+                                              'auth_logout', context.mounted);
+
+                                          if (shouldSetState) {
+                                            safeSetState(() {});
+                                          }
+                                          return;
+                                        } else {
+                                          if (shouldSetState) {
+                                            safeSetState(() {});
+                                          }
+                                          return;
+                                        }
+
+                                        if (shouldSetState) {
+                                          safeSetState(() {});
+                                        }
+                                      },
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            child: Image.asset(
+                                              'assets/images/Logout.png',
+                                              width: 60.0,
+                                              height: 60.0,
+                                              fit: BoxFit.contain,
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 5.0, 0.0, 0.0),
+                                            child: Text(
+                                              'Logout',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodySmall
+                                                  .override(
+                                                    fontFamily: 'Montserrat',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ],

@@ -127,6 +127,11 @@ class EventsRecord extends FirestoreRecord {
   EventDetailsStruct get otherDetails => _otherDetails ?? EventDetailsStruct();
   bool hasOtherDetails() => _otherDetails != null;
 
+  // "budget_amount" field.
+  BudgetAmountStruct? _budgetAmount;
+  BudgetAmountStruct get budgetAmount => _budgetAmount ?? BudgetAmountStruct();
+  bool hasBudgetAmount() => _budgetAmount != null;
+
   void _initializeFields() {
     _eventCode = snapshotData['event_code'] as String?;
     _eventName = snapshotData['event_name'] as String?;
@@ -162,6 +167,8 @@ class EventsRecord extends FirestoreRecord {
     _settings = EventSettingsStruct.maybeFromMap(snapshotData['settings']);
     _otherDetails =
         EventDetailsStruct.maybeFromMap(snapshotData['other_details']);
+    _budgetAmount =
+        BudgetAmountStruct.maybeFromMap(snapshotData['budget_amount']);
   }
 
   static CollectionReference get collection =>
@@ -217,6 +224,7 @@ Map<String, dynamic> createEventsRecordData({
   int? currentApprovalStep,
   EventSettingsStruct? settings,
   EventDetailsStruct? otherDetails,
+  BudgetAmountStruct? budgetAmount,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -239,6 +247,7 @@ Map<String, dynamic> createEventsRecordData({
       'current_approval_step': currentApprovalStep,
       'settings': EventSettingsStruct().toMap(),
       'other_details': EventDetailsStruct().toMap(),
+      'budget_amount': BudgetAmountStruct().toMap(),
     }.withoutNulls,
   );
 
@@ -253,6 +262,9 @@ Map<String, dynamic> createEventsRecordData({
 
   // Handle nested data for "other_details" field.
   addEventDetailsStructData(firestoreData, otherDetails, 'other_details');
+
+  // Handle nested data for "budget_amount" field.
+  addBudgetAmountStructData(firestoreData, budgetAmount, 'budget_amount');
 
   return firestoreData;
 }
@@ -285,7 +297,8 @@ class EventsRecordDocumentEquality implements Equality<EventsRecord> {
         listEquality.equals(
             e1?.currentApprovalSignatory, e2?.currentApprovalSignatory) &&
         e1?.settings == e2?.settings &&
-        e1?.otherDetails == e2?.otherDetails;
+        e1?.otherDetails == e2?.otherDetails &&
+        e1?.budgetAmount == e2?.budgetAmount;
   }
 
   @override
@@ -311,7 +324,8 @@ class EventsRecordDocumentEquality implements Equality<EventsRecord> {
         e?.currentApprovalStep,
         e?.currentApprovalSignatory,
         e?.settings,
-        e?.otherDetails
+        e?.otherDetails,
+        e?.budgetAmount
       ]);
 
   @override

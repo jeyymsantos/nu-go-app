@@ -902,7 +902,7 @@ class _ApprovalEventProposalWidgetState
                                                                   .rationale,
                                                               textAlign:
                                                                   TextAlign
-                                                                      .justify,
+                                                                      .start,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -967,7 +967,7 @@ class _ApprovalEventProposalWidgetState
                                                                   .objectives,
                                                               textAlign:
                                                                   TextAlign
-                                                                      .justify,
+                                                                      .start,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -1032,7 +1032,7 @@ class _ApprovalEventProposalWidgetState
                                                                   .targetOutput,
                                                               textAlign:
                                                                   TextAlign
-                                                                      .justify,
+                                                                      .start,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -1057,7 +1057,7 @@ class _ApprovalEventProposalWidgetState
                                                                   5.0,
                                                                   15.0,
                                                                   5.0,
-                                                                  0.0),
+                                                                  50.0),
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -1162,7 +1162,7 @@ class _ApprovalEventProposalWidgetState
                                                                   5.0,
                                                                   15.0,
                                                                   5.0,
-                                                                  0.0),
+                                                                  50.0),
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -1225,54 +1225,45 @@ class _ApprovalEventProposalWidgetState
                                                             alignment:
                                                                 const AlignmentDirectional(
                                                                     -1.0, 0.0),
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
+                                                            child: InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                logFirebaseEvent(
+                                                                    'APPROVAL_EVENT_PROPOSAL_Text_mc4f1ur6_ON');
+                                                                logFirebaseEvent(
+                                                                    'Text_launch_u_r_l');
+                                                                await launchURL(
+                                                                    approvalEventProposalEventsRecord
+                                                                        .otherDetails
+                                                                        .onlineLink);
+                                                              },
+                                                              child: Text(
+                                                                approvalEventProposalEventsRecord
+                                                                    .otherDetails
+                                                                    .onlineLink,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .justify,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Montserrat',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                      letterSpacing:
                                                                           0.0,
-                                                                          20.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: InkWell(
-                                                                splashColor: Colors
-                                                                    .transparent,
-                                                                focusColor: Colors
-                                                                    .transparent,
-                                                                hoverColor: Colors
-                                                                    .transparent,
-                                                                highlightColor:
-                                                                    Colors
-                                                                        .transparent,
-                                                                onTap:
-                                                                    () async {
-                                                                  logFirebaseEvent(
-                                                                      'APPROVAL_EVENT_PROPOSAL_Text_mc4f1ur6_ON');
-                                                                  logFirebaseEvent(
-                                                                      'Text_launch_u_r_l');
-                                                                  await launchURL(
-                                                                      approvalEventProposalEventsRecord
-                                                                          .otherDetails
-                                                                          .onlineLink);
-                                                                },
-                                                                child: Text(
-                                                                  approvalEventProposalEventsRecord
-                                                                      .otherDetails
-                                                                      .onlineLink,
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .justify,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Montserrat',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primary,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                      ),
-                                                                ),
+                                                                    ),
                                                               ),
                                                             ),
                                                           ),
@@ -1290,7 +1281,7 @@ class _ApprovalEventProposalWidgetState
                                                                   5.0,
                                                                   15.0,
                                                                   5.0,
-                                                                  0.0),
+                                                                  50.0),
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,

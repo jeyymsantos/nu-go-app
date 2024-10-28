@@ -2,7 +2,6 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/backend/push_notifications/push_notifications_util.dart';
-import '/components/dialog_box/confirm_dialog_box/confirm_dialog_box_widget.dart';
 import '/components/dialog_box/confirm_password_dialog/confirm_password_dialog_widget.dart';
 import '/components/dialog_box/congratulations_dialog_box/congratulations_dialog_box_widget.dart';
 import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
@@ -207,82 +206,122 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                 children: [
                                   Container(
                                     width: 90.0,
-                                    height: 87.0,
+                                    height: 90.0,
                                     decoration: const BoxDecoration(),
                                     child: Stack(
                                       children: [
                                         Align(
                                           alignment:
                                               const AlignmentDirectional(0.0, 0.0),
-                                          child: InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              logFirebaseEvent(
-                                                  'MAINTENANCE_USERS_CircleImage_rebgmw2r_O');
-                                              logFirebaseEvent(
-                                                  'CircleImage_expand_image');
-                                              await Navigator.push(
-                                                context,
-                                                PageTransition(
-                                                  type: PageTransitionType.fade,
-                                                  child:
-                                                      FlutterFlowExpandedImageView(
-                                                    image: Image.network(
-                                                      valueOrDefault<String>(
-                                                        _model.uploadedFileUrl !=
-                                                                    ''
-                                                            ? _model
-                                                                .uploadedFileUrl
-                                                            : widget.userDoc
-                                                                ?.photoUrl,
-                                                        'https://www.svgrepo.com/show/384670/account-avatar-profile-user.svg',
-                                                      ),
-                                                      fit: BoxFit.contain,
-                                                    ),
-                                                    allowRotation: false,
-                                                    tag: valueOrDefault<String>(
-                                                      _model.uploadedFileUrl !=
-                                                                  ''
-                                                          ? _model
-                                                              .uploadedFileUrl
-                                                          : widget.userDoc
-                                                              ?.photoUrl,
-                                                      'https://www.svgrepo.com/show/384670/account-avatar-profile-user.svg',
-                                                    ),
-                                                    useHeroAnimation: true,
-                                                  ),
+                                          child: ClipOval(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .lineColor,
                                                 ),
-                                              );
-                                            },
-                                            child: Hero(
-                                              tag: valueOrDefault<String>(
-                                                _model.uploadedFileUrl !=
-                                                            ''
-                                                    ? _model.uploadedFileUrl
-                                                    : widget.userDoc?.photoUrl,
-                                                'https://www.svgrepo.com/show/384670/account-avatar-profile-user.svg',
                                               ),
-                                              transitionOnUserGestures: true,
-                                              child: Container(
-                                                width: 90.0,
-                                                height: 90.0,
-                                                clipBehavior: Clip.antiAlias,
-                                                decoration: const BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                ),
-                                                child: Image.network(
-                                                  valueOrDefault<String>(
-                                                    _model.uploadedFileUrl !=
-                                                                ''
-                                                        ? _model.uploadedFileUrl
-                                                        : widget
-                                                            .userDoc?.photoUrl,
-                                                    'https://www.svgrepo.com/show/384670/account-avatar-profile-user.svg',
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(4.0),
+                                                child: ClipOval(
+                                                  child: Container(
+                                                    decoration: const BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                    ),
+                                                    child: InkWell(
+                                                      splashColor:
+                                                          Colors.transparent,
+                                                      focusColor:
+                                                          Colors.transparent,
+                                                      hoverColor:
+                                                          Colors.transparent,
+                                                      highlightColor:
+                                                          Colors.transparent,
+                                                      onTap: () async {
+                                                        logFirebaseEvent(
+                                                            'MAINTENANCE_USERS_CircleImage_rebgmw2r_O');
+                                                        logFirebaseEvent(
+                                                            'Image_expand_image');
+                                                        await Navigator.push(
+                                                          context,
+                                                          PageTransition(
+                                                            type:
+                                                                PageTransitionType
+                                                                    .fade,
+                                                            child:
+                                                                FlutterFlowExpandedImageView(
+                                                              image:
+                                                                  Image.network(
+                                                                valueOrDefault<
+                                                                    String>(
+                                                                  _model.uploadedFileUrl !=
+                                                                              ''
+                                                                      ? _model
+                                                                          .uploadedFileUrl
+                                                                      : widget
+                                                                          .userDoc
+                                                                          ?.photoUrl,
+                                                                  'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+                                                                ),
+                                                                fit: BoxFit
+                                                                    .contain,
+                                                              ),
+                                                              allowRotation:
+                                                                  false,
+                                                              tag:
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                _model.uploadedFileUrl !=
+                                                                            ''
+                                                                    ? _model
+                                                                        .uploadedFileUrl
+                                                                    : widget
+                                                                        .userDoc
+                                                                        ?.photoUrl,
+                                                                'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+                                                              ),
+                                                              useHeroAnimation:
+                                                                  true,
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
+                                                      child: Hero(
+                                                        tag: valueOrDefault<
+                                                            String>(
+                                                          _model.uploadedFileUrl !=
+                                                                      ''
+                                                              ? _model
+                                                                  .uploadedFileUrl
+                                                              : widget.userDoc
+                                                                  ?.photoUrl,
+                                                          'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+                                                        ),
+                                                        transitionOnUserGestures:
+                                                            true,
+                                                        child: Image.network(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            _model.uploadedFileUrl !=
+                                                                        ''
+                                                                ? _model
+                                                                    .uploadedFileUrl
+                                                                : widget
+                                                                    .userDoc
+                                                                    ?.photoUrl,
+                                                            'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+                                                          ),
+                                                          width:
+                                                              double.infinity,
+                                                          height:
+                                                              double.infinity,
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                    ),
                                                   ),
-                                                  fit: BoxFit.contain,
                                                 ),
                                               ),
                                             ),
@@ -3607,20 +3646,16 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                             dialogContext)
                                                         .unfocus(),
                                                     child:
-                                                        const ConfirmDialogBoxWidget(
-                                                      confirmDialogTitle:
-                                                          'Update User',
-                                                      confirmDialogMeesage:
-                                                          'Are you sure you want to update this user? This will reflect on the user\'s profile.',
-                                                    ),
+                                                        const ConfirmPasswordDialogWidget(),
                                                   ),
                                                 ),
                                               );
                                             },
                                           ).then((value) => safeSetState(() =>
-                                              _model.confirmDialog = value));
+                                              _model.confirmUserDetails =
+                                                  value));
 
-                                          if (_model.confirmDialog!) {
+                                          if (_model.confirmUserDetails!) {
                                             logFirebaseEvent(
                                                 'onboard_one_button_backend_call');
 

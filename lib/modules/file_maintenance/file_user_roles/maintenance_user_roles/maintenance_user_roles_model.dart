@@ -63,6 +63,8 @@ class MaintenanceUserRolesModel
   late RolesCardWithDescriptionModel resourcesManagementModel;
   // Model for UserManagement.
   late RolesCardWithDescriptionModel userManagementModel;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Save widget.
+  bool? confirmRole;
 
   @override
   void initState(BuildContext context) {

@@ -347,7 +347,7 @@ final parametersBuilderMap =
       ),
   'calendar_trial': ParameterData.none(),
   'auth_verify_role': ParameterData.none(),
-  'a_calendar': ParameterData.none(),
+  'fmo_calendar_version1': ParameterData.none(),
   'event_proposal_step_1': (data) async => ParameterData(
         allParams: {
           'orgRef': getParameter<DocumentReference>(data, 'orgRef'),
@@ -592,7 +592,7 @@ final parametersBuilderMap =
           'eventRef': getParameter<DocumentReference>(data, 'eventRef'),
         },
       ),
-  'calendar_version2': ParameterData.none(),
+  'fmo_calendar_version2': ParameterData.none(),
   'event_profile_test': ParameterData.none(),
   'photo_viewer': (data) async => ParameterData(
         allParams: {

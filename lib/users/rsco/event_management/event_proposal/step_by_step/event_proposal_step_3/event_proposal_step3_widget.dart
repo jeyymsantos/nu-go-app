@@ -4455,6 +4455,34 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                           create:
                                                                               true,
                                                                         ),
+                                                                        budgetAmount:
+                                                                            createBudgetAmountStruct(
+                                                                          organization: functions.calculateBudgetChargedTo(
+                                                                              FFAppState().budgetList.toList(),
+                                                                              'Organization'),
+                                                                          sponsor: functions.calculateBudgetChargedTo(
+                                                                              FFAppState().budgetList.toList(),
+                                                                              'Sponsor'),
+                                                                          school: functions.calculateBudgetChargedTo(
+                                                                              FFAppState().budgetList.toList(),
+                                                                              'School'),
+                                                                          sdao: functions.calculateBudgetChargedTo(
+                                                                              FFAppState().budgetList.toList(),
+                                                                              'SDAO'),
+                                                                          grandTotal: (List<double>
+                                                                              amount) {
+                                                                            return amount.reduce((a, b) =>
+                                                                                a +
+                                                                                b);
+                                                                          }(FFAppState()
+                                                                              .budgetList
+                                                                              .map((e) => e.amount)
+                                                                              .toList()),
+                                                                          clearUnsetFields:
+                                                                              false,
+                                                                          create:
+                                                                              true,
+                                                                        ),
                                                                       ),
                                                                       ...mapToFirestore(
                                                                         {
@@ -4550,6 +4578,34 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                           outsideLocation: widget.outsideLocation != null
                                                                               ? widget.outsideLocation!.latLng
                                                                               : FFAppState().nuBaliwagLocation,
+                                                                          clearUnsetFields:
+                                                                              false,
+                                                                          create:
+                                                                              true,
+                                                                        ),
+                                                                        budgetAmount:
+                                                                            createBudgetAmountStruct(
+                                                                          organization: functions.calculateBudgetChargedTo(
+                                                                              FFAppState().budgetList.toList(),
+                                                                              'Organization'),
+                                                                          sponsor: functions.calculateBudgetChargedTo(
+                                                                              FFAppState().budgetList.toList(),
+                                                                              'Sponsor'),
+                                                                          school: functions.calculateBudgetChargedTo(
+                                                                              FFAppState().budgetList.toList(),
+                                                                              'School'),
+                                                                          sdao: functions.calculateBudgetChargedTo(
+                                                                              FFAppState().budgetList.toList(),
+                                                                              'SDAO'),
+                                                                          grandTotal: (List<double>
+                                                                              amount) {
+                                                                            return amount.reduce((a, b) =>
+                                                                                a +
+                                                                                b);
+                                                                          }(FFAppState()
+                                                                              .budgetList
+                                                                              .map((e) => e.amount)
+                                                                              .toList()),
                                                                           clearUnsetFields:
                                                                               false,
                                                                           create:

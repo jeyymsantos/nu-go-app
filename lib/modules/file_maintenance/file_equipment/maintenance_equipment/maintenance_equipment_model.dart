@@ -64,6 +64,8 @@ class MaintenanceEquipmentModel
   FormFieldController<String>? equipmentUnitValueController;
   // Stores action output result for [Custom Action - getRoomsDocument] action in Save widget.
   RoomsRecord? roomAssignedOutput;
+  // Stores action output result for [Alert Dialog - Custom Dialog] action in Save widget.
+  bool? maintenanceEquipment;
 
   @override
   void initState(BuildContext context) {

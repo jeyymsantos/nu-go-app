@@ -1,3 +1,4 @@
+import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
 import '/components/widgets/rules_on_using_school_facilities/rules_on_using_school_facilities_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
@@ -676,101 +677,38 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                                   mainAxisSize:
                                                       MainAxisSize.min,
                                                   children: [
-                                                    InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        logFirebaseEvent(
-                                                            'EVENT_PROPOSAL_STEP_1_end_date_ON_TAP');
-                                                        logFirebaseEvent(
-                                                            'end_date_date_time_picker');
-                                                        final datePicked2Date =
-                                                            await showDatePicker(
-                                                          context: context,
-                                                          initialDate: ((_model
-                                                                      .datePicked1 ?? functions
-                                                                      .validateEventStartDate()) ??
-                                                              DateTime.now()),
-                                                          firstDate: ((_model
-                                                                      .datePicked1 ?? functions
-                                                                      .validateEventStartDate()) ??
-                                                              DateTime(1900)),
-                                                          lastDate:
-                                                              DateTime(2050),
-                                                          builder:
-                                                              (context, child) {
-                                                            return wrapInMaterialDatePickerTheme(
-                                                              context,
-                                                              child!,
-                                                              headerBackgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                              headerForegroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .info,
-                                                              headerTextStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .headlineLarge
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Montserrat',
-                                                                        fontSize:
-                                                                            32.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
-                                                                      ),
-                                                              pickerBackgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                              pickerForegroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                              selectedDateTimeBackgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                              selectedDateTimeForegroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .info,
-                                                              actionButtonForegroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                              iconSize: 24.0,
-                                                            );
-                                                          },
-                                                        );
-
-                                                        TimeOfDay?
-                                                            datePicked2Time;
-                                                        if (datePicked2Date !=
-                                                            null) {
-                                                          datePicked2Time =
-                                                              await showTimePicker(
+                                                    Builder(
+                                                      builder: (context) =>
+                                                          InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          logFirebaseEvent(
+                                                              'EVENT_PROPOSAL_STEP_1_end_date_ON_TAP');
+                                                          logFirebaseEvent(
+                                                              'end_date_date_time_picker');
+                                                          final datePicked2Date =
+                                                              await showDatePicker(
                                                             context: context,
-                                                            initialTime: TimeOfDay.fromDateTime(
-                                                                ((_model
-                                                                            .datePicked1 ?? functions
-                                                                            .validateEventStartDate()) ??
-                                                                    DateTime
-                                                                        .now())),
+                                                            initialDate: ((_model
+                                                                        .datePicked1 ?? functions
+                                                                        .validateEventStartDate()) ??
+                                                                DateTime.now()),
+                                                            firstDate: ((_model
+                                                                        .datePicked1 ?? functions
+                                                                        .validateEventStartDate()) ??
+                                                                DateTime(1900)),
+                                                            lastDate:
+                                                                DateTime(2050),
                                                             builder: (context,
                                                                 child) {
-                                                              return wrapInMaterialTimePickerTheme(
+                                                              return wrapInMaterialDatePickerTheme(
                                                                 context,
                                                                 child!,
                                                                 headerBackgroundColor:
@@ -819,146 +757,268 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                                               );
                                                             },
                                                           );
-                                                        }
 
-                                                        if (datePicked2Date !=
-                                                                null &&
-                                                            datePicked2Time !=
-                                                                null) {
-                                                          safeSetState(() {
-                                                            _model.datePicked2 =
-                                                                DateTime(
-                                                              datePicked2Date
-                                                                  .year,
-                                                              datePicked2Date
-                                                                  .month,
-                                                              datePicked2Date
-                                                                  .day,
-                                                              datePicked2Time!
-                                                                  .hour,
-                                                              datePicked2Time
-                                                                  .minute,
+                                                          TimeOfDay?
+                                                              datePicked2Time;
+                                                          if (datePicked2Date !=
+                                                              null) {
+                                                            datePicked2Time =
+                                                                await showTimePicker(
+                                                              context: context,
+                                                              initialTime: TimeOfDay.fromDateTime(((_model
+                                                                          .datePicked1 ?? functions
+                                                                          .validateEventStartDate()) ??
+                                                                  DateTime
+                                                                      .now())),
+                                                              builder: (context,
+                                                                  child) {
+                                                                return wrapInMaterialTimePickerTheme(
+                                                                  context,
+                                                                  child!,
+                                                                  headerBackgroundColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                  headerForegroundColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .info,
+                                                                  headerTextStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineLarge
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Montserrat',
+                                                                        fontSize:
+                                                                            32.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.w600,
+                                                                      ),
+                                                                  pickerBackgroundColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
+                                                                  pickerForegroundColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
+                                                                  selectedDateTimeBackgroundColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                  selectedDateTimeForegroundColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .info,
+                                                                  actionButtonForegroundColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
+                                                                  iconSize:
+                                                                      24.0,
+                                                                );
+                                                              },
                                                             );
-                                                          });
-                                                        }
-                                                      },
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Container(
-                                                            width:
-                                                                double.infinity,
-                                                            height: 40.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryBackground,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          6.0),
-                                                              border:
-                                                                  Border.all(
+                                                          }
+
+                                                          if (datePicked2Date !=
+                                                                  null &&
+                                                              datePicked2Time !=
+                                                                  null) {
+                                                            safeSetState(() {
+                                                              _model.datePicked2 =
+                                                                  DateTime(
+                                                                datePicked2Date
+                                                                    .year,
+                                                                datePicked2Date
+                                                                    .month,
+                                                                datePicked2Date
+                                                                    .day,
+                                                                datePicked2Time!
+                                                                    .hour,
+                                                                datePicked2Time
+                                                                    .minute,
+                                                              );
+                                                            });
+                                                          }
+                                                          if (_model
+                                                                  .datePicked2! <=
+                                                              _model
+                                                                  .datePicked1!) {
+                                                            logFirebaseEvent(
+                                                                'end_date_alert_dialog');
+                                                            await showDialog(
+                                                              context: context,
+                                                              builder:
+                                                                  (dialogContext) {
+                                                                return Dialog(
+                                                                  elevation: 0,
+                                                                  insetPadding:
+                                                                      EdgeInsets
+                                                                          .zero,
+                                                                  backgroundColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  alignment: const AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0)
+                                                                      .resolve(
+                                                                          Directionality.of(
+                                                                              context)),
+                                                                  child:
+                                                                      WebViewAware(
+                                                                    child:
+                                                                        GestureDetector(
+                                                                      onTap: () =>
+                                                                          FocusScope.of(dialogContext)
+                                                                              .unfocus(),
+                                                                      child:
+                                                                          const InformationDialogBoxWidget(
+                                                                        infoDialogTitle:
+                                                                            'Invalid End Date & Time',
+                                                                        infoDialogMeesage:
+                                                                            'You cannot set the end date & time before your start schedule.',
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              },
+                                                            );
+
+                                                            return;
+                                                          } else {
+                                                            return;
+                                                          }
+                                                        },
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Container(
+                                                              width: double
+                                                                  .infinity,
+                                                              height: 40.0,
+                                                              decoration:
+                                                                  BoxDecoration(
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .textBoxBorder,
-                                                                width: 0.5,
+                                                                    .primaryBackground,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            6.0),
+                                                                border:
+                                                                    Border.all(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .textBoxBorder,
+                                                                  width: 0.5,
+                                                                ),
                                                               ),
-                                                            ),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
-                                                              children: [
-                                                                Flexible(
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child: Text(
-                                                                      _model.datePicked2 !=
-                                                                              null
-                                                                          ? dateTimeFormat(
+                                                              child: Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                children: [
+                                                                  Flexible(
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          10.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                      child:
+                                                                          Text(
+                                                                        () {
+                                                                          if ((_model.datePicked2 != null) &&
+                                                                              ((_model.datePicked2! <= _model.datePicked1!) ==
+                                                                                  true)) {
+                                                                            return 'Select End Date';
+                                                                          } else if (_model.datePicked2 !=
+                                                                              null) {
+                                                                            return dateTimeFormat(
                                                                               "MMMMEEEEd",
                                                                               _model.datePicked2,
                                                                               locale: FFLocalizations.of(context).languageCode,
-                                                                            )
-                                                                          : 'Select End Date',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Montserrat',
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).secondaryText,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                          ),
+                                                                            );
+                                                                          } else {
+                                                                            return 'Select End Date';
+                                                                          }
+                                                                        }(),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              color: FlutterFlowTheme.of(context).secondaryText,
+                                                                              letterSpacing: 0.0,
+                                                                            ),
+                                                                      ),
                                                                     ),
                                                                   ),
-                                                                ),
-                                                                Flexible(
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            10.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child: Text(
-                                                                      _model.datePicked2 !=
-                                                                              null
-                                                                          ? dateTimeFormat(
+                                                                  Flexible(
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          10.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                      child:
+                                                                          Text(
+                                                                        () {
+                                                                          if ((_model.datePicked2 != null) &&
+                                                                              ((_model.datePicked2! <= _model.datePicked1!) ==
+                                                                                  true)) {
+                                                                            return '';
+                                                                          } else if (_model.datePicked2 !=
+                                                                              null) {
+                                                                            return dateTimeFormat(
                                                                               "jm",
                                                                               _model.datePicked2,
                                                                               locale: FFLocalizations.of(context).languageCode,
-                                                                            )
-                                                                          : '',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Montserrat',
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).secondaryText,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                          ),
+                                                                            );
+                                                                          } else {
+                                                                            return '';
+                                                                          }
+                                                                        }(),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              fontFamily: 'Montserrat',
+                                                                              color: FlutterFlowTheme.of(context).secondaryText,
+                                                                              letterSpacing: 0.0,
+                                                                            ),
+                                                                      ),
                                                                     ),
                                                                   ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          10.0,
-                                                                          0.0),
-                                                                  child: Icon(
-                                                                    FFIcons
-                                                                        .kcalendar,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryText,
-                                                                    size: 24.0,
+                                                                  Padding(
+                                                                    padding: const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0),
+                                                                    child: Icon(
+                                                                      FFIcons
+                                                                          .kcalendar,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryText,
+                                                                      size:
+                                                                          24.0,
+                                                                    ),
                                                                   ),
-                                                                ),
-                                                              ],
+                                                                ],
+                                                              ),
                                                             ),
-                                                          ),
-                                                        ],
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
                                                   ],
@@ -1325,214 +1385,265 @@ class _EventProposalStep1WidgetState extends State<EventProposalStep1Widget>
                                     ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 20.0, 0.0, 0.0),
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      logFirebaseEvent(
-                                          'EVENT_PROPOSAL_STEP_1_NEXT_BTN_ON_TAP');
-                                      logFirebaseEvent('Button_validate_form');
-                                      if (_model.formKey.currentState == null ||
-                                          !_model.formKey.currentState!
-                                              .validate()) {
-                                        return;
-                                      }
-                                      if (_model.datePicked1 == null) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Question #1: Start Date & Time is required.',
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
+                                Builder(
+                                  builder: (context) => Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 20.0, 0.0, 0.0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        logFirebaseEvent(
+                                            'EVENT_PROPOSAL_STEP_1_NEXT_BTN_ON_TAP');
+                                        logFirebaseEvent(
+                                            'Button_validate_form');
+                                        if (_model.formKey.currentState ==
+                                                null ||
+                                            !_model.formKey.currentState!
+                                                .validate()) {
+                                          return;
+                                        }
+                                        if (_model.datePicked1 == null) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                'Question #1: Start Date & Time is required.',
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBackground,
+                                                ),
                                               ),
+                                              duration:
+                                                  const Duration(milliseconds: 4000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .error,
                                             ),
-                                            duration:
-                                                const Duration(milliseconds: 4000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .error,
-                                          ),
-                                        );
-                                        return;
-                                      }
-                                      if (_model.datePicked2 == null) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Question #1: End Date & Time is required.',
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
+                                          );
+                                          return;
+                                        }
+                                        if (_model.datePicked2 == null) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                'Question #1: End Date & Time is required.',
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBackground,
+                                                ),
                                               ),
+                                              duration:
+                                                  const Duration(milliseconds: 4000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .error,
                                             ),
-                                            duration:
-                                                const Duration(milliseconds: 4000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .error,
-                                          ),
-                                        );
-                                        return;
-                                      }
-                                      if (_model.onlineOrInpersonValue ==
-                                          null) {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Question #2 is required.',
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
+                                          );
+                                          return;
+                                        }
+                                        if (_model.onlineOrInpersonValue ==
+                                            null) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                'Question #2 is required.',
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBackground,
+                                                ),
                                               ),
+                                              duration:
+                                                  const Duration(milliseconds: 4000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .error,
                                             ),
-                                            duration:
-                                                const Duration(milliseconds: 4000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .error,
-                                          ),
-                                        );
-                                        return;
-                                      }
-                                      if (_model.onlineOrInpersonValue ==
-                                          'Online') {
-                                        logFirebaseEvent('Button_navigate_to');
+                                          );
+                                          return;
+                                        }
+                                        if (_model.datePicked2! <=
+                                            _model.datePicked1!) {
+                                          logFirebaseEvent(
+                                              'Button_alert_dialog');
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: const AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => FocusScope.of(
+                                                            dialogContext)
+                                                        .unfocus(),
+                                                    child:
+                                                        const InformationDialogBoxWidget(
+                                                      infoDialogTitle:
+                                                          'Invalid End Date & Time',
+                                                      infoDialogMeesage:
+                                                          'Make sure to select a valid end schedule for your event.',
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          );
 
-                                        context.pushNamed(
-                                          'event_proposal_step_2',
-                                          queryParameters: {
-                                            'isOnline': serializeParam(
-                                              true,
-                                              ParamType.bool,
-                                            ),
-                                            'isCampus': serializeParam(
-                                              false,
-                                              ParamType.bool,
-                                            ),
-                                            'maxParticipants': serializeParam(
-                                              int.tryParse(_model
-                                                  .maxAttendeesTextController
-                                                  .text),
-                                              ParamType.int,
-                                            ),
-                                            'startDateTime': serializeParam(
-                                              _model.datePicked1,
-                                              ParamType.DateTime,
-                                            ),
-                                            'endDateTime': serializeParam(
-                                              _model.datePicked2,
-                                              ParamType.DateTime,
-                                            ),
-                                            'orgRef': serializeParam(
-                                              widget.orgRef,
-                                              ParamType.DocumentReference,
-                                            ),
-                                          }.withoutNulls,
-                                        );
-                                      } else if (_model.campusOrOutsideValue ==
-                                          'Inside the Campus') {
-                                        logFirebaseEvent('Button_navigate_to');
+                                          return;
+                                        } else {
+                                          if (_model.onlineOrInpersonValue ==
+                                              'Online') {
+                                            logFirebaseEvent(
+                                                'Button_navigate_to');
 
-                                        context.pushNamed(
-                                          'event_proposal_step_2_InsideFacility',
-                                          queryParameters: {
-                                            'isOnline': serializeParam(
-                                              false,
-                                              ParamType.bool,
-                                            ),
-                                            'isCampus': serializeParam(
-                                              true,
-                                              ParamType.bool,
-                                            ),
-                                            'maxParticipants': serializeParam(
-                                              int.tryParse(_model
-                                                  .maxAttendeesTextController
-                                                  .text),
-                                              ParamType.int,
-                                            ),
-                                            'startDateTime': serializeParam(
-                                              _model.datePicked1,
-                                              ParamType.DateTime,
-                                            ),
-                                            'endDateTime': serializeParam(
-                                              _model.datePicked2,
-                                              ParamType.DateTime,
-                                            ),
-                                            'orgRef': serializeParam(
-                                              widget.orgRef,
-                                              ParamType.DocumentReference,
-                                            ),
-                                          }.withoutNulls,
-                                        );
-                                      } else {
-                                        logFirebaseEvent('Button_navigate_to');
+                                            context.pushNamed(
+                                              'event_proposal_step_2',
+                                              queryParameters: {
+                                                'isOnline': serializeParam(
+                                                  true,
+                                                  ParamType.bool,
+                                                ),
+                                                'isCampus': serializeParam(
+                                                  false,
+                                                  ParamType.bool,
+                                                ),
+                                                'maxParticipants':
+                                                    serializeParam(
+                                                  int.tryParse(_model
+                                                      .maxAttendeesTextController
+                                                      .text),
+                                                  ParamType.int,
+                                                ),
+                                                'startDateTime': serializeParam(
+                                                  _model.datePicked1,
+                                                  ParamType.DateTime,
+                                                ),
+                                                'endDateTime': serializeParam(
+                                                  _model.datePicked2,
+                                                  ParamType.DateTime,
+                                                ),
+                                                'orgRef': serializeParam(
+                                                  widget.orgRef,
+                                                  ParamType.DocumentReference,
+                                                ),
+                                              }.withoutNulls,
+                                            );
+                                          } else if (_model
+                                                  .campusOrOutsideValue ==
+                                              'Inside the Campus') {
+                                            logFirebaseEvent(
+                                                'Button_navigate_to');
 
-                                        context.pushNamed(
-                                          'event_proposal_step_2_OutsideLocation',
-                                          queryParameters: {
-                                            'isOnline': serializeParam(
-                                              false,
-                                              ParamType.bool,
+                                            context.pushNamed(
+                                              'event_proposal_step_2_InsideFacility',
+                                              queryParameters: {
+                                                'isOnline': serializeParam(
+                                                  false,
+                                                  ParamType.bool,
+                                                ),
+                                                'isCampus': serializeParam(
+                                                  true,
+                                                  ParamType.bool,
+                                                ),
+                                                'maxParticipants':
+                                                    serializeParam(
+                                                  int.tryParse(_model
+                                                      .maxAttendeesTextController
+                                                      .text),
+                                                  ParamType.int,
+                                                ),
+                                                'startDateTime': serializeParam(
+                                                  _model.datePicked1,
+                                                  ParamType.DateTime,
+                                                ),
+                                                'endDateTime': serializeParam(
+                                                  _model.datePicked2,
+                                                  ParamType.DateTime,
+                                                ),
+                                                'orgRef': serializeParam(
+                                                  widget.orgRef,
+                                                  ParamType.DocumentReference,
+                                                ),
+                                              }.withoutNulls,
+                                            );
+                                          } else {
+                                            logFirebaseEvent(
+                                                'Button_navigate_to');
+
+                                            context.pushNamed(
+                                              'event_proposal_step_2_OutsideLocation',
+                                              queryParameters: {
+                                                'isOnline': serializeParam(
+                                                  false,
+                                                  ParamType.bool,
+                                                ),
+                                                'isCampus': serializeParam(
+                                                  false,
+                                                  ParamType.bool,
+                                                ),
+                                                'maxParticipants':
+                                                    serializeParam(
+                                                  int.tryParse(_model
+                                                      .maxAttendeesTextController
+                                                      .text),
+                                                  ParamType.int,
+                                                ),
+                                                'startDateTime': serializeParam(
+                                                  _model.datePicked1,
+                                                  ParamType.DateTime,
+                                                ),
+                                                'endDateTime': serializeParam(
+                                                  _model.datePicked2,
+                                                  ParamType.DateTime,
+                                                ),
+                                                'orgRef': serializeParam(
+                                                  widget.orgRef,
+                                                  ParamType.DocumentReference,
+                                                ),
+                                              }.withoutNulls,
+                                            );
+                                          }
+
+                                          return;
+                                        }
+                                      },
+                                      text: 'Next',
+                                      options: FFButtonOptions(
+                                        width: double.infinity,
+                                        height: 40.0,
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 0.0, 24.0, 0.0),
+                                        iconPadding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Montserrat',
+                                              color: Colors.white,
+                                              fontSize: 13.0,
+                                              letterSpacing: 0.0,
                                             ),
-                                            'isCampus': serializeParam(
-                                              false,
-                                              ParamType.bool,
-                                            ),
-                                            'maxParticipants': serializeParam(
-                                              int.tryParse(_model
-                                                  .maxAttendeesTextController
-                                                  .text),
-                                              ParamType.int,
-                                            ),
-                                            'startDateTime': serializeParam(
-                                              _model.datePicked1,
-                                              ParamType.DateTime,
-                                            ),
-                                            'endDateTime': serializeParam(
-                                              _model.datePicked2,
-                                              ParamType.DateTime,
-                                            ),
-                                            'orgRef': serializeParam(
-                                              widget.orgRef,
-                                              ParamType.DocumentReference,
-                                            ),
-                                          }.withoutNulls,
-                                        );
-                                      }
-                                    },
-                                    text: 'Next',
-                                    options: FFButtonOptions(
-                                      width: double.infinity,
-                                      height: 40.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          24.0, 0.0, 24.0, 0.0),
-                                      iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Montserrat',
-                                            color: Colors.white,
-                                            fontSize: 13.0,
-                                            letterSpacing: 0.0,
-                                          ),
-                                      elevation: 3.0,
-                                      borderSide: const BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
+                                        elevation: 3.0,
+                                        borderSide: const BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(8.0),
                                     ),
                                   ),
                                 ),

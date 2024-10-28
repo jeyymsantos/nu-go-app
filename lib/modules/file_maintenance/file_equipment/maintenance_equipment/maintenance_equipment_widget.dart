@@ -1,4 +1,6 @@
 import '/backend/backend.dart';
+import '/components/dialog_box/confirm_password_dialog/confirm_password_dialog_widget.dart';
+import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_count_controller.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -219,6 +221,9 @@ class _MaintenanceEquipmentWidgetState
                                                 .labelMedium
                                                 .override(
                                                   fontFamily: 'Montserrat',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
                                                   letterSpacing: 0.0,
                                                 ),
                                         searchTextStyle:
@@ -234,7 +239,7 @@ class _MaintenanceEquipmentWidgetState
                                               fontFamily: 'Montserrat',
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondaryText,
+                                                      .primaryText,
                                               letterSpacing: 0.0,
                                             ),
                                         hintText: 'Room Location',
@@ -415,167 +420,160 @@ class _MaintenanceEquipmentWidgetState
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Expanded(
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 15.0, 0.0),
-                                            child: TextFormField(
-                                              controller: _model
-                                                  .countControllerTextController,
-                                              focusNode: _model
-                                                  .countControllerFocusNode,
-                                              autofocus: true,
-                                              textInputAction:
-                                                  TextInputAction.next,
-                                              obscureText: false,
-                                              decoration: InputDecoration(
-                                                labelStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Montserrat',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                hintText: 'Equipment Quantity',
-                                                hintStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Montserrat',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                enabledBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .textBoxBorder,
-                                                    width: 0.5,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                ),
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    width: 0.5,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                ),
-                                                errorBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .error,
-                                                    width: 0.5,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                ),
-                                                focusedErrorBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .error,
-                                                    width: 0.5,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                ),
-                                              ),
-                                              style:
+                                          child: TextFormField(
+                                            controller: _model
+                                                .countControllerTextController,
+                                            focusNode:
+                                                _model.countControllerFocusNode,
+                                            autofocus: true,
+                                            textInputAction:
+                                                TextInputAction.next,
+                                            obscureText: false,
+                                            decoration: InputDecoration(
+                                              labelStyle:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                                      .labelMedium
                                                       .override(
                                                         fontFamily:
                                                             'Montserrat',
                                                         letterSpacing: 0.0,
                                                       ),
-                                              keyboardType:
-                                                  TextInputType.number,
-                                              validator: _model
-                                                  .countControllerTextControllerValidator
-                                                  .asValidator(context),
+                                              hintText: 'Equipment Quantity',
+                                              hintStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .textBoxBorder,
+                                                  width: 0.5,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  width: 0.5,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                              errorBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .error,
+                                                  width: 0.5,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                              focusedErrorBorder:
+                                                  OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .error,
+                                                  width: 0.5,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
                                             ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Montserrat',
+                                                  letterSpacing: 0.0,
+                                                ),
+                                            keyboardType: TextInputType.number,
+                                            validator: _model
+                                                .countControllerTextControllerValidator
+                                                .asValidator(context),
                                           ),
                                         ),
                                         Align(
                                           alignment:
                                               const AlignmentDirectional(0.0, 0.0),
-                                          child: Container(
-                                            width: 160.0,
-                                            height: 50.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              shape: BoxShape.rectangle,
-                                              border: Border.all(
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 0.0, 0.0, 0.0),
+                                            child: Container(
+                                              width: 160.0,
+                                              height: 50.0,
+                                              decoration: BoxDecoration(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .alternate,
-                                                width: 2.0,
+                                                        .primaryBackground,
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                shape: BoxShape.rectangle,
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .textBoxBorder,
+                                                  width: 0.5,
+                                                ),
                                               ),
-                                            ),
-                                            child: FlutterFlowCountController(
-                                              decrementIconBuilder: (enabled) =>
-                                                  FaIcon(
-                                                FontAwesomeIcons.minus,
-                                                color: enabled
-                                                    ? FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText
-                                                    : FlutterFlowTheme.of(
-                                                            context)
-                                                        .alternate,
-                                                size: 20.0,
+                                              child: FlutterFlowCountController(
+                                                decrementIconBuilder:
+                                                    (enabled) => FaIcon(
+                                                  FontAwesomeIcons.minus,
+                                                  color: enabled
+                                                      ? FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryText
+                                                      : FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryText,
+                                                  size: 20.0,
+                                                ),
+                                                incrementIconBuilder:
+                                                    (enabled) => FaIcon(
+                                                  FontAwesomeIcons.plus,
+                                                  color: enabled
+                                                      ? FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary
+                                                      : FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryText,
+                                                  size: 20.0,
+                                                ),
+                                                countBuilder: (count) => Text(
+                                                  count.toString(),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .titleLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            'Montserrat',
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                                count: _model
+                                                        .countControllerValue ??=
+                                                    widget.equipmentValue !=
+                                                            null
+                                                        ? widget
+                                                            .equipmentValue!
+                                                        : 0,
+                                                updateCount: (count) =>
+                                                    safeSetState(() => _model
+                                                            .countControllerValue =
+                                                        count),
+                                                stepSize: 1,
                                               ),
-                                              incrementIconBuilder: (enabled) =>
-                                                  FaIcon(
-                                                FontAwesomeIcons.plus,
-                                                color: enabled
-                                                    ? FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary
-                                                    : FlutterFlowTheme.of(
-                                                            context)
-                                                        .alternate,
-                                                size: 20.0,
-                                              ),
-                                              countBuilder: (count) => Text(
-                                                count.toString(),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleLarge
-                                                        .override(
-                                                          fontFamily:
-                                                              'Montserrat',
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                              ),
-                                              count: _model
-                                                      .countControllerValue ??=
-                                                  widget.equipmentValue != null
-                                                      ? widget.equipmentValue!
-                                                      : 0,
-                                              updateCount: (count) =>
-                                                  safeSetState(() => _model
-                                                          .countControllerValue =
-                                                      count),
-                                              stepSize: 1,
                                             ),
                                           ),
                                         ),
@@ -592,7 +590,23 @@ class _MaintenanceEquipmentWidgetState
                                         _model.equipmentUnitValue ??=
                                             widget.equipmentUnit,
                                       ),
-                                      options: const ['Option 1'],
+                                      options: const [
+                                        'pc',
+                                        'set',
+                                        'kit',
+                                        'pr',
+                                        'pl',
+                                        'box',
+                                        'doz',
+                                        'cs',
+                                        'rl',
+                                        'bdl',
+                                        'bot',
+                                        'jar',
+                                        'tab',
+                                        'tb',
+                                        'blk'
+                                      ],
                                       onChanged: (val) => safeSetState(() =>
                                           _model.equipmentUnitValue = val),
                                       height: 50.0,
@@ -601,6 +615,9 @@ class _MaintenanceEquipmentWidgetState
                                               .labelMedium
                                               .override(
                                                 fontFamily: 'Montserrat',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
                                                 letterSpacing: 0.0,
                                               ),
                                       searchTextStyle:
@@ -615,7 +632,7 @@ class _MaintenanceEquipmentWidgetState
                                           .override(
                                             fontFamily: 'Montserrat',
                                             color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
+                                                .primaryText,
                                             letterSpacing: 0.0,
                                           ),
                                       hintText: 'Equipment Unit',
@@ -641,238 +658,258 @@ class _MaintenanceEquipmentWidgetState
                                       isMultiSelect: false,
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 15.0, 0.0, 0.0),
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        logFirebaseEvent(
-                                            'MAINTENANCE_EQUIPMENT_PAGE_Save_ON_TAP');
-                                        logFirebaseEvent('Save_validate_form');
-                                        if (_model.formKey.currentState ==
-                                                null ||
-                                            !_model.formKey.currentState!
-                                                .validate()) {
-                                          return;
-                                        }
-                                        if (_model.roomAssignedDropdownValue ==
-                                            null) {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                'Room Location field is required',
-                                                style: TextStyle(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
+                                  Builder(
+                                    builder: (context) => Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 15.0, 0.0, 0.0),
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                          logFirebaseEvent(
+                                              'MAINTENANCE_EQUIPMENT_PAGE_Save_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Save_validate_form');
+                                          if (_model.formKey.currentState ==
+                                                  null ||
+                                              !_model.formKey.currentState!
+                                                  .validate()) {
+                                            return;
+                                          }
+                                          if (_model
+                                                  .roomAssignedDropdownValue ==
+                                              null) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'Room Location field is required',
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
                                                 ),
+                                                duration: const Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
                                               ),
-                                              duration:
-                                                  const Duration(milliseconds: 4000),
-                                              backgroundColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                            ),
+                                            );
+                                            return;
+                                          }
+                                          if (_model.equipmentUnitValue ==
+                                              null) {
+                                            return;
+                                          }
+                                          logFirebaseEvent(
+                                              'Save_custom_action');
+                                          _model.roomAssignedOutput =
+                                              await actions.getRoomsDocument(
+                                            _model.roomAssignedDropdownValue!,
                                           );
-                                          return;
-                                        }
-                                        if (_model.equipmentUnitValue == null) {
-                                          return;
-                                        }
-                                        logFirebaseEvent('Save_custom_action');
-                                        _model.roomAssignedOutput =
-                                            await actions.getRoomsDocument(
-                                          _model.roomAssignedDropdownValue!,
-                                        );
-                                        logFirebaseEvent('Save_alert_dialog');
-                                        var confirmDialogResponse =
-                                            await showDialog<bool>(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return WebViewAware(
-                                                      child: AlertDialog(
-                                                        title: Text(widget
-                                                                    .isNew ==
-                                                                true
-                                                            ? 'Save Equipment'
-                                                            : 'Update Equipment'),
-                                                        content: Text(widget
-                                                                    .isNew ==
-                                                                true
-                                                            ? 'Are you sure you want to save a new equipment?'
-                                                            : 'Are you sure you want to update this existing equipment?'),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext,
-                                                                    false),
-                                                            child:
-                                                                const Text('Cancel'),
-                                                          ),
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext,
-                                                                    true),
-                                                            child: Text(
-                                                                widget.isNew ==
-                                                                        true
-                                                                    ? 'Save'
-                                                                    : 'Update'),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    );
-                                                  },
-                                                ) ??
-                                                false;
-                                        if (confirmDialogResponse) {
-                                          if (widget.isNew == true) {
-                                            logFirebaseEvent(
-                                                'Save_backend_call');
+                                          logFirebaseEvent('Save_alert_dialog');
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: const AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => FocusScope.of(
+                                                            dialogContext)
+                                                        .unfocus(),
+                                                    child:
+                                                        const ConfirmPasswordDialogWidget(),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ).then((value) => safeSetState(() =>
+                                              _model.maintenanceEquipment =
+                                                  value));
 
-                                            await EquipmentsRecord.collection
-                                                .doc()
-                                                .set(createEquipmentsRecordData(
-                                                  equipmentName: _model
-                                                      .equipmentNameFieldTextController
-                                                      .text,
-                                                  equipmentTag: _model
-                                                      .equipmentTagFieldTextController
-                                                      .text,
-                                                  equipmentLocation: _model
-                                                      .roomAssignedOutput
-                                                      ?.reference,
-                                                  equipmentUnit:
-                                                      _model.equipmentUnitValue,
-                                                  equipmentQuantity: _model
-                                                      .countControllerValue,
-                                                ));
+                                          if (_model.maintenanceEquipment!) {
+                                            if (widget.isNew == true) {
+                                              logFirebaseEvent(
+                                                  'Save_backend_call');
+
+                                              await EquipmentsRecord.collection
+                                                  .doc()
+                                                  .set(
+                                                      createEquipmentsRecordData(
+                                                    equipmentName: _model
+                                                        .equipmentNameFieldTextController
+                                                        .text,
+                                                    equipmentTag: _model
+                                                        .equipmentTagFieldTextController
+                                                        .text,
+                                                    equipmentLocation: _model
+                                                        .roomAssignedOutput
+                                                        ?.reference,
+                                                    equipmentUnit: _model
+                                                        .equipmentUnitValue,
+                                                    equipmentQuantity: _model
+                                                        .countControllerValue,
+                                                  ));
+                                              logFirebaseEvent(
+                                                  'Save_action_block');
+                                              await action_blocks.logs(
+                                                context,
+                                                type: 'added',
+                                                module: 'equipment',
+                                                doneToName: _model
+                                                    .equipmentNameFieldTextController
+                                                    .text,
+                                              );
+                                            } else {
+                                              logFirebaseEvent(
+                                                  'Save_backend_call');
+
+                                              await widget.equipmentRef!.update(
+                                                  createEquipmentsRecordData(
+                                                equipmentName: _model
+                                                    .equipmentNameFieldTextController
+                                                    .text,
+                                                equipmentTag: _model
+                                                    .equipmentTagFieldTextController
+                                                    .text,
+                                                equipmentLocation: _model
+                                                    .roomAssignedOutput
+                                                    ?.reference,
+                                                equipmentUnit:
+                                                    _model.equipmentUnitValue,
+                                                equipmentQuantity:
+                                                    _model.countControllerValue,
+                                              ));
+                                              logFirebaseEvent(
+                                                  'Save_action_block');
+                                              await action_blocks.logs(
+                                                context,
+                                                type: 'updated',
+                                                module: 'equipment',
+                                                doneToName: _model
+                                                    .equipmentNameFieldTextController
+                                                    .text,
+                                              );
+                                            }
+
                                             logFirebaseEvent(
-                                                'Save_action_block');
-                                            await action_blocks.logs(
-                                              context,
-                                              type: 'added',
-                                              module: 'equipment',
-                                              doneToName: _model
-                                                  .equipmentNameFieldTextController
-                                                  .text,
+                                                'Save_alert_dialog');
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: WebViewAware(
+                                                    child: GestureDetector(
+                                                      onTap: () =>
+                                                          FocusScope.of(
+                                                                  dialogContext)
+                                                              .unfocus(),
+                                                      child:
+                                                          InformationDialogBoxWidget(
+                                                        infoDialogTitle: widget
+                                                                .isNew
+                                                            ? 'New Equipment  Created'
+                                                            : 'Existing Equipment Updated',
+                                                        infoDialogMeesage: widget
+                                                                .isNew
+                                                            ? 'You have successfully saved a new equipment!'
+                                                            : 'You have successfully updated an existing equipment!',
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
                                             );
                                           } else {
                                             logFirebaseEvent(
-                                                'Save_backend_call');
-
-                                            await widget.equipmentRef!.update(
-                                                createEquipmentsRecordData(
-                                              equipmentName: _model
-                                                  .equipmentNameFieldTextController
-                                                  .text,
-                                              equipmentTag: _model
-                                                  .equipmentTagFieldTextController
-                                                  .text,
-                                              equipmentLocation: _model
-                                                  .roomAssignedOutput
-                                                  ?.reference,
-                                              equipmentUnit:
-                                                  _model.equipmentUnitValue,
-                                              equipmentQuantity:
-                                                  _model.countControllerValue,
-                                            ));
-                                            logFirebaseEvent(
-                                                'Save_action_block');
-                                            await action_blocks.logs(
-                                              context,
-                                              type: 'updated',
-                                              module: 'equipment',
-                                              doneToName: _model
-                                                  .equipmentNameFieldTextController
-                                                  .text,
+                                                'Save_alert_dialog');
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: WebViewAware(
+                                                    child: GestureDetector(
+                                                      onTap: () =>
+                                                          FocusScope.of(
+                                                                  dialogContext)
+                                                              .unfocus(),
+                                                      child:
+                                                          const InformationDialogBoxWidget(
+                                                        infoDialogTitle:
+                                                            'Action Cancelled',
+                                                        infoDialogMeesage:
+                                                            'This action has been cancelled.',
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
                                             );
                                           }
 
-                                          logFirebaseEvent('Save_alert_dialog');
-                                          await showDialog(
-                                            context: context,
-                                            builder: (alertDialogContext) {
-                                              return WebViewAware(
-                                                child: AlertDialog(
-                                                  title: Text(widget.isNew
-                                                      ? 'New Equipment  Created'
-                                                      : 'Existing Equipment Updated'),
-                                                  content: Text(widget.isNew
-                                                      ? 'You have successfully saved a new equipment!'
-                                                      : 'You have successfully updated an existing equipment!'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: const Text('Okay'),
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                          );
-                                        } else {
-                                          logFirebaseEvent('Save_alert_dialog');
-                                          await showDialog(
-                                            context: context,
-                                            builder: (alertDialogContext) {
-                                              return WebViewAware(
-                                                child: AlertDialog(
-                                                  title:
-                                                      const Text('Action Cancelled'),
-                                                  content: const Text(
-                                                      'This action has been cancelled.'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: const Text('Ok'),
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                          );
-                                        }
+                                          logFirebaseEvent(
+                                              'Save_navigate_back');
+                                          context.safePop();
 
-                                        logFirebaseEvent('Save_navigate_back');
-                                        context.safePop();
-
-                                        safeSetState(() {});
-                                      },
-                                      text: widget.isNew ? 'Save' : 'Update',
-                                      options: FFButtonOptions(
-                                        width: double.infinity,
-                                        height: 40.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 0.0, 24.0, 0.0),
-                                        iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily: 'Montserrat',
-                                              color: Colors.white,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.0,
-                                            ),
-                                        elevation: 3.0,
-                                        borderSide: const BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1.0,
+                                          safeSetState(() {});
+                                        },
+                                        text: widget.isNew ? 'Save' : 'Update',
+                                        options: FFButtonOptions(
+                                          width: double.infinity,
+                                          height: 40.0,
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  24.0, 0.0, 24.0, 0.0),
+                                          iconPadding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Montserrat',
+                                                    color: Colors.white,
+                                                    fontSize: 13.0,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          elevation: 3.0,
+                                          borderSide: const BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
                                       ),
                                     ),
                                   ),
