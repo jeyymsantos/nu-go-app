@@ -7,6 +7,8 @@ import '/components/widgets/title_header_component/title_header_component_widget
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -14,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
@@ -175,14 +178,14 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: const TitleHeaderComponentWidget(
+                      child: TitleHeaderComponentWidget(
                         titleText: 'File Maintenance',
                       ),
                     ),
@@ -194,7 +197,7 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 5.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -212,7 +215,7 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                           ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 0.0, 0.0),
                                       child: Text(
                                         'Assets and materials that the campus owns',
@@ -246,7 +249,7 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 10.0, 0.0),
                                 child: TextFormField(
                                   controller:
@@ -254,11 +257,14 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                   focusNode: _model.equipmentSearchFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.equipmentSearchTextController',
-                                    const Duration(milliseconds: 200),
+                                    Duration(milliseconds: 200),
                                     () async {
                                       logFirebaseEvent(
                                           'VIEW_EQUIPMENT_equipment_search_ON_TEXTF');
                                       if (_model.equipmentSearchTextController
+                                                  .text !=
+                                              null &&
+                                          _model.equipmentSearchTextController
                                                   .text !=
                                               '') {
                                         logFirebaseEvent(
@@ -271,7 +277,7 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                   (record) =>
                                                       TextSearchItem.fromTerms(
                                                           record, [
-                                                    record.equipmentName
+                                                    record.equipmentName!
                                                   ]),
                                                 )
                                                 .toList(),
@@ -281,6 +287,7 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                   .text)
                                               .map((r) => r.object)
                                               .toList();
+                                          ;
                                         });
                                         logFirebaseEvent(
                                             'equipment_search_update_app_state');
@@ -356,6 +363,9 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                   'VIEW_EQUIPMENT_equipment_search_ON_TEXTF');
                                               if (_model.equipmentSearchTextController
                                                           .text !=
+                                                      null &&
+                                                  _model.equipmentSearchTextController
+                                                          .text !=
                                                       '') {
                                                 logFirebaseEvent(
                                                     'equipment_search_simple_search');
@@ -369,7 +379,7 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                                   .fromTerms(
                                                                       record, [
                                                             record
-                                                                .equipmentName
+                                                                .equipmentName!
                                                           ]),
                                                         )
                                                         .toList(),
@@ -379,6 +389,7 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                               .text)
                                                           .map((r) => r.object)
                                                           .toList();
+                                                  ;
                                                 });
                                                 logFirebaseEvent(
                                                     'equipment_search_update_app_state');
@@ -395,7 +406,7 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
 
                                               safeSetState(() {});
                                             },
-                                            child: const Icon(
+                                            child: Icon(
                                               Icons.clear,
                                               size: 20.0,
                                             ),
@@ -438,7 +449,7 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                 width: 50.0,
                                 height: 50.0,
                                 clipBehavior: Clip.antiAlias,
-                                decoration: const BoxDecoration(
+                                decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                 ),
                                 child: Image.asset(
@@ -454,14 +465,14 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                     Expanded(
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               if (!FFAppState().searchActive)
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 50.0),
                                   child: Builder(
                                     builder: (context) {
@@ -469,7 +480,7 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                           viewEquipmentEquipmentsRecordList
                                               .toList();
                                       if (equipmentSearch.isEmpty) {
-                                        return const EmptyListWidget(
+                                        return EmptyListWidget(
                                           emptyWhat: 'equipment',
                                         );
                                       }
@@ -487,7 +498,7 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                   equipmentSearchIndex];
                                           return Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -536,7 +547,7 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                                     child:
                                                                         Padding(
                                                                       padding:
-                                                                          const EdgeInsets.all(
+                                                                          EdgeInsets.all(
                                                                               5.0),
                                                                       child: Image
                                                                           .asset(
@@ -619,11 +630,11 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -704,7 +715,7 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                                       extra: <String,
                                                                           dynamic>{
                                                                         kTransitionInfoKey:
-                                                                            const TransitionInfo(
+                                                                            TransitionInfo(
                                                                           hasTransition:
                                                                               true,
                                                                           transitionType:
@@ -744,13 +755,13 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Builder(
                                                                 builder:
                                                                     (context) =>
                                                                         Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -774,7 +785,7 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                                         () async {
                                                                       logFirebaseEvent(
                                                                           'VIEW_EQUIPMENT_PAGE_Icon_2kcfplnm_ON_TAP');
-                                                                      var shouldSetState =
+                                                                      var _shouldSetState =
                                                                           false;
                                                                       logFirebaseEvent(
                                                                           'Icon_alert_dialog');
@@ -791,12 +802,12 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                                             backgroundColor:
                                                                                 Colors.transparent,
                                                                             alignment:
-                                                                                const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
                                                                                 WebViewAware(
                                                                               child: GestureDetector(
                                                                                 onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                child: const ConfirmPasswordDialogWidget(),
+                                                                                child: ConfirmPasswordDialogWidget(),
                                                                               ),
                                                                             ),
                                                                           );
@@ -805,7 +816,7 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                                           safeSetState(() =>
                                                                               _model.confirmEquipmentDelete = value));
 
-                                                                      shouldSetState =
+                                                                      _shouldSetState =
                                                                           true;
                                                                       if (_model
                                                                           .confirmEquipmentDelete!) {
@@ -837,11 +848,11 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                                               elevation: 0,
                                                                               insetPadding: EdgeInsets.zero,
                                                                               backgroundColor: Colors.transparent,
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                               child: WebViewAware(
                                                                                 child: GestureDetector(
                                                                                   onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                  child: const InformationDialogBoxWidget(
+                                                                                  child: InformationDialogBoxWidget(
                                                                                     infoDialogTitle: 'Equipment Deleted',
                                                                                     infoDialogMeesage: 'Equipment has been successfully deleted.',
                                                                                   ),
@@ -877,11 +888,11 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                                               elevation: 0,
                                                                               insetPadding: EdgeInsets.zero,
                                                                               backgroundColor: Colors.transparent,
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                               child: WebViewAware(
                                                                                 child: GestureDetector(
                                                                                   onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                  child: const InformationDialogBoxWidget(
+                                                                                  child: InformationDialogBoxWidget(
                                                                                     infoDialogTitle: 'Action Cancelled',
                                                                                     infoDialogMeesage: 'This action has been cancelled.',
                                                                                   ),
@@ -895,17 +906,15 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                                             'Icon_navigate_back');
                                                                         context
                                                                             .safePop();
-                                                                        if (shouldSetState) {
+                                                                        if (_shouldSetState)
                                                                           safeSetState(
                                                                               () {});
-                                                                        }
                                                                         return;
                                                                       }
 
-                                                                      if (shouldSetState) {
+                                                                      if (_shouldSetState)
                                                                         safeSetState(
                                                                             () {});
-                                                                      }
                                                                     },
                                                                     child: Icon(
                                                                       FFIcons
@@ -938,7 +947,7 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                 ),
                               if (FFAppState().searchActive)
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 50.0),
                                   child: Builder(
                                     builder: (context) {
@@ -965,7 +974,7 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                   equipmentySearchIndex];
                                           return Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -1014,7 +1023,7 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                                     child:
                                                                         Padding(
                                                                       padding:
-                                                                          const EdgeInsets.all(
+                                                                          EdgeInsets.all(
                                                                               5.0),
                                                                       child: Image
                                                                           .asset(
@@ -1097,11 +1106,11 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1182,7 +1191,7 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                                       extra: <String,
                                                                           dynamic>{
                                                                         kTransitionInfoKey:
-                                                                            const TransitionInfo(
+                                                                            TransitionInfo(
                                                                           hasTransition:
                                                                               true,
                                                                           transitionType:
@@ -1222,13 +1231,13 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Builder(
                                                                 builder:
                                                                     (context) =>
                                                                         Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1252,7 +1261,7 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                                         () async {
                                                                       logFirebaseEvent(
                                                                           'VIEW_EQUIPMENT_PAGE_Icon_ofhv1zan_ON_TAP');
-                                                                      var shouldSetState =
+                                                                      var _shouldSetState =
                                                                           false;
                                                                       logFirebaseEvent(
                                                                           'Icon_alert_dialog');
@@ -1269,12 +1278,12 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                                             backgroundColor:
                                                                                 Colors.transparent,
                                                                             alignment:
-                                                                                const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
                                                                                 WebViewAware(
                                                                               child: GestureDetector(
                                                                                 onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                child: const ConfirmPasswordDialogWidget(),
+                                                                                child: ConfirmPasswordDialogWidget(),
                                                                               ),
                                                                             ),
                                                                           );
@@ -1283,7 +1292,7 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                                           safeSetState(() =>
                                                                               _model.confirmDelete2 = value));
 
-                                                                      shouldSetState =
+                                                                      _shouldSetState =
                                                                           true;
                                                                       if (_model
                                                                           .confirmDelete2!) {
@@ -1315,11 +1324,11 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                                               elevation: 0,
                                                                               insetPadding: EdgeInsets.zero,
                                                                               backgroundColor: Colors.transparent,
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                               child: WebViewAware(
                                                                                 child: GestureDetector(
                                                                                   onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                  child: const InformationDialogBoxWidget(
+                                                                                  child: InformationDialogBoxWidget(
                                                                                     infoDialogTitle: 'Equipment Deleted',
                                                                                     infoDialogMeesage: 'Equipment has been successfully deleted.',
                                                                                   ),
@@ -1343,10 +1352,9 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                                             false;
                                                                         safeSetState(
                                                                             () {});
-                                                                        if (shouldSetState) {
+                                                                        if (_shouldSetState)
                                                                           safeSetState(
                                                                               () {});
-                                                                        }
                                                                         return;
                                                                       } else {
                                                                         logFirebaseEvent(
@@ -1360,11 +1368,11 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                                               elevation: 0,
                                                                               insetPadding: EdgeInsets.zero,
                                                                               backgroundColor: Colors.transparent,
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                               child: WebViewAware(
                                                                                 child: GestureDetector(
                                                                                   onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                  child: const InformationDialogBoxWidget(
+                                                                                  child: InformationDialogBoxWidget(
                                                                                     infoDialogTitle: 'Action Cancelled',
                                                                                     infoDialogMeesage: 'This action has been cancelled.',
                                                                                   ),
@@ -1378,17 +1386,15 @@ class _ViewEquipmentWidgetState extends State<ViewEquipmentWidget>
                                                                             'Icon_navigate_back');
                                                                         context
                                                                             .safePop();
-                                                                        if (shouldSetState) {
+                                                                        if (_shouldSetState)
                                                                           safeSetState(
                                                                               () {});
-                                                                        }
                                                                         return;
                                                                       }
 
-                                                                      if (shouldSetState) {
+                                                                      if (_shouldSetState)
                                                                         safeSetState(
                                                                             () {});
-                                                                      }
                                                                     },
                                                                     child: Icon(
                                                                       FFIcons

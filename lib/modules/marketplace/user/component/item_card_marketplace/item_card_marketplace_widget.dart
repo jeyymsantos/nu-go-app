@@ -1,6 +1,9 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'item_card_marketplace_model.dart';
 export 'item_card_marketplace_model.dart';
 
@@ -54,7 +57,7 @@ class _ItemCardMarketplaceWidgetState extends State<ItemCardMarketplaceWidget> {
     return Container(
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
             blurRadius: 4.0,
             color: Color(0x0B000000),
@@ -68,7 +71,7 @@ class _ItemCardMarketplaceWidgetState extends State<ItemCardMarketplaceWidget> {
         borderRadius: BorderRadius.circular(6.0),
       ),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+        padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,7 +80,7 @@ class _ItemCardMarketplaceWidgetState extends State<ItemCardMarketplaceWidget> {
               borderRadius: BorderRadius.circular(8.0),
               child: Image.network(
                 valueOrDefault<String>(
-                  widget.photo,
+                  widget!.photo,
                   'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FNUGo%20Logo.png?alt=media&token=c16de93e-c20d-4bd1-90f0-e3d2c07fe740',
                 ),
                 width: double.infinity,
@@ -87,7 +90,7 @@ class _ItemCardMarketplaceWidgetState extends State<ItemCardMarketplaceWidget> {
             ),
             Text(
               valueOrDefault<String>(
-                widget.name,
+                widget!.name,
                 'Sample Product',
               ),
               style: FlutterFlowTheme.of(context).titleMedium.override(
@@ -104,7 +107,7 @@ class _ItemCardMarketplaceWidgetState extends State<ItemCardMarketplaceWidget> {
                 Text(
                   valueOrDefault<String>(
                     formatNumber(
-                      widget.price,
+                      widget!.price,
                       formatType: FormatType.decimal,
                       decimalType: DecimalType.automatic,
                       currency: '₱',
@@ -120,7 +123,7 @@ class _ItemCardMarketplaceWidgetState extends State<ItemCardMarketplaceWidget> {
                 ),
               ],
             ),
-          ].divide(const SizedBox(height: 5.0)),
+          ].divide(SizedBox(height: 5.0)),
         ),
       ),
     );

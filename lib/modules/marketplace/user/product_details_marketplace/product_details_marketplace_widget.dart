@@ -2,8 +2,13 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/modules/marketplace/user/component/bottom_sheetadd_to_cart/bottom_sheetadd_to_cart_widget.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'product_details_marketplace_model.dart';
 export 'product_details_marketplace_model.dart';
@@ -66,7 +71,7 @@ class _ProductDetailsMarketplaceWidgetState
                     child: Padding(
                       padding: MediaQuery.viewInsetsOf(context),
                       child: BottomSheetaddToCartWidget(
-                        product: widget.productDoc!,
+                        product: widget!.productDoc!,
                       ),
                     ),
                   ),
@@ -87,12 +92,12 @@ class _ProductDetailsMarketplaceWidgetState
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              Container(
                 width: MediaQuery.sizeOf(context).width * 1.0,
                 height: 400.0,
                 child: Stack(
                   children: [
-                    SizedBox(
+                    Container(
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       height: 400.0,
                       child: ListView(
@@ -103,7 +108,7 @@ class _ProductDetailsMarketplaceWidgetState
                         children: [
                           Image.network(
                             valueOrDefault<String>(
-                              widget.productDoc?.image,
+                              widget!.productDoc?.image,
                               'https://images.unsplash.com/photo-1563315657-fe24a7764781?w=500&h=500',
                             ),
                             width: MediaQuery.sizeOf(context).width * 1.0,
@@ -126,11 +131,11 @@ class _ProductDetailsMarketplaceWidgetState
                       ),
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(1.0, 1.0),
+                      alignment: AlignmentDirectional(1.0, 1.0),
                       child: Container(
                         width: MediaQuery.sizeOf(context).width * 1.0,
                         height: 50.0,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           gradient: LinearGradient(
                             colors: [Colors.transparent, Color(0x99000000)],
                             stops: [0.0, 1.0],
@@ -142,7 +147,7 @@ class _ProductDetailsMarketplaceWidgetState
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(10.0, 40.0, 10.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(10.0, 40.0, 10.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -150,8 +155,8 @@ class _ProductDetailsMarketplaceWidgetState
                           FlutterFlowIconButton(
                             borderRadius: 20.0,
                             buttonSize: 40.0,
-                            fillColor: const Color(0x33000000),
-                            icon: const Icon(
+                            fillColor: Color(0x33000000),
+                            icon: Icon(
                               Icons.arrow_back,
                               color: Colors.white,
                               size: 24.0,
@@ -171,7 +176,7 @@ class _ProductDetailsMarketplaceWidgetState
               ),
               Container(
                 width: MediaQuery.sizeOf(context).width * 1.0,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(0.0),
@@ -182,7 +187,7 @@ class _ProductDetailsMarketplaceWidgetState
                 ),
                 child: Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 40.0),
+                      EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 40.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -193,7 +198,7 @@ class _ProductDetailsMarketplaceWidgetState
                         children: [
                           Text(
                             valueOrDefault<String>(
-                              widget.productDoc?.name,
+                              widget!.productDoc?.name,
                               'Product Name',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -213,7 +218,7 @@ class _ProductDetailsMarketplaceWidgetState
                               Text(
                                 valueOrDefault<String>(
                                   formatNumber(
-                                    widget.productDoc?.price,
+                                    widget!.productDoc?.price,
                                     formatType: FormatType.decimal,
                                     decimalType: DecimalType.automatic,
                                     currency: '₱',
@@ -237,7 +242,7 @@ class _ProductDetailsMarketplaceWidgetState
                                   children: [
                                     TextSpan(
                                       text: valueOrDefault<String>(
-                                        widget.productDoc?.stock.toString(),
+                                        widget!.productDoc?.stock?.toString(),
                                         '0',
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -288,7 +293,7 @@ class _ProductDetailsMarketplaceWidgetState
                           ),
                           Text(
                             valueOrDefault<String>(
-                              widget.productDoc?.description,
+                              widget!.productDoc?.description,
                               'This is a description. This is a description. This is a description. This is a description. This is a description. This is a description. This is a description. This is a description. This is a description. This is a description. This is a description. This is a description. ',
                             ),
                             textAlign: TextAlign.justify,
@@ -303,7 +308,7 @@ class _ProductDetailsMarketplaceWidgetState
                           ),
                         ],
                       ),
-                    ].divide(const SizedBox(height: 20.0)),
+                    ].divide(SizedBox(height: 20.0)),
                   ),
                 ),
               ),

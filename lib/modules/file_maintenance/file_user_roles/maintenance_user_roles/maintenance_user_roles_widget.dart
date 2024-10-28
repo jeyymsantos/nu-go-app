@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/dialog_box/confirm_password_dialog/confirm_password_dialog_widget.dart';
 import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
 import '/components/widgets/roles_card_with_description/roles_card_with_description_widget.dart';
@@ -8,7 +9,12 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'maintenance_user_roles_model.dart';
 export 'maintenance_user_roles_model.dart';
@@ -22,7 +28,7 @@ class MaintenanceUserRolesWidget extends StatefulWidget {
     this.roleDescription,
     this.roleReference,
     this.roleSettings,
-  }) : isNew = isNew ?? true;
+  }) : this.isNew = isNew ?? true;
 
   final bool isNew;
   final String? roleName;
@@ -50,15 +56,15 @@ class _MaintenanceUserRolesWidgetState
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'maintenance_user_roles'});
     _model.roleNameFieldTextController ??=
-        TextEditingController(text: widget.isNew ? '' : widget.roleName);
+        TextEditingController(text: widget!.isNew ? '' : widget!.roleName);
     _model.roleNameFieldFocusNode ??= FocusNode();
 
     _model.roleNicknameFieldTextController ??=
-        TextEditingController(text: widget.isNew ? '' : widget.roleNickname);
+        TextEditingController(text: widget!.isNew ? '' : widget!.roleNickname);
     _model.roleNicknameFieldFocusNode ??= FocusNode();
 
     _model.roleDescriptionTextController ??= TextEditingController(
-        text: widget.isNew ? '' : widget.roleDescription);
+        text: widget!.isNew ? '' : widget!.roleDescription);
     _model.roleDescriptionFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -85,11 +91,11 @@ class _MaintenanceUserRolesWidgetState
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TitleHeaderComponentWidget(
+                  child: TitleHeaderComponentWidget(
                     titleText: 'File Maintenance',
                   ),
                 ),
@@ -99,13 +105,13 @@ class _MaintenanceUserRolesWidgetState
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -123,7 +129,7 @@ class _MaintenanceUserRolesWidgetState
                                       ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 0.0, 0.0),
                                   child: Text(
                                     'A specific role that a user can have while using the application.',
@@ -156,12 +162,12 @@ class _MaintenanceUserRolesWidgetState
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 30.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 30.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        SizedBox(
+                        Container(
                           width: double.infinity,
                           child: Form(
                             key: _model.formKey,
@@ -170,7 +176,7 @@ class _MaintenanceUserRolesWidgetState
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       20.0, 10.0, 20.0, 0.0),
                                   child: TextFormField(
                                     controller:
@@ -236,7 +242,7 @@ class _MaintenanceUserRolesWidgetState
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       20.0, 0.0, 20.0, 0.0),
                                   child: TextFormField(
                                     controller:
@@ -303,7 +309,7 @@ class _MaintenanceUserRolesWidgetState
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       20.0, 0.0, 20.0, 0.0),
                                   child: TextFormField(
                                     controller:
@@ -371,9 +377,9 @@ class _MaintenanceUserRolesWidgetState
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         20.0, 0.0, 20.0, 0.0),
                                     child: RichText(
                                       textScaler:
@@ -393,7 +399,7 @@ class _MaintenanceUserRolesWidgetState
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                           ),
-                                          const TextSpan(
+                                          TextSpan(
                                             text:
                                                 'by checking the boxes that match each user\'s responsibilities.',
                                             style: TextStyle(),
@@ -415,7 +421,7 @@ class _MaintenanceUserRolesWidgetState
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           20.0, 0.0, 20.0, 0.0),
                                       child: wrapWithModel(
                                         model: _model.approvalManagementModel,
@@ -425,15 +431,15 @@ class _MaintenanceUserRolesWidgetState
                                           title: 'Approval Management',
                                           description:
                                               'Manage approval sets that can be used in certain modules.',
-                                          active: widget.roleSettings != null
-                                              ? widget.roleSettings!
+                                          active: widget!.roleSettings != null
+                                              ? widget!.roleSettings!
                                                   .toApprovalManagement
                                               : false,
                                         ),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           20.0, 0.0, 20.0, 0.0),
                                       child: wrapWithModel(
                                         model: _model.contentManagementModel,
@@ -443,15 +449,15 @@ class _MaintenanceUserRolesWidgetState
                                           title: 'Content Management',
                                           description:
                                               'Manage and publish announcement, news and updates to all users.',
-                                          active: widget.roleSettings != null
-                                              ? widget.roleSettings!
+                                          active: widget!.roleSettings != null
+                                              ? widget!.roleSettings!
                                                   .toContentManagement
                                               : false,
                                         ),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           20.0, 0.0, 20.0, 0.0),
                                       child: wrapWithModel(
                                         model: _model.feedbackManagementModel,
@@ -461,15 +467,15 @@ class _MaintenanceUserRolesWidgetState
                                           title: 'Feedback Management',
                                           description:
                                               'View feedbacks received from users.',
-                                          active: widget.roleSettings != null
-                                              ? widget.roleSettings!
+                                          active: widget!.roleSettings != null
+                                              ? widget!.roleSettings!
                                                   .toFeedbackManagement
                                               : false,
                                         ),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           20.0, 0.0, 20.0, 0.0),
                                       child: wrapWithModel(
                                         model: _model.fileMaintenanceModel,
@@ -479,15 +485,15 @@ class _MaintenanceUserRolesWidgetState
                                           title: 'File Maintenance',
                                           description:
                                               'Modules involving management of internal usage of the application.',
-                                          active: widget.roleSettings != null
-                                              ? widget.roleSettings!
+                                          active: widget!.roleSettings != null
+                                              ? widget!.roleSettings!
                                                   .toFileMaintenance
                                               : false,
                                         ),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           20.0, 0.0, 20.0, 0.0),
                                       child: wrapWithModel(
                                         model: _model.logsManagementModel,
@@ -497,15 +503,15 @@ class _MaintenanceUserRolesWidgetState
                                           title: 'Logs Management',
                                           description:
                                               'View any changes and updates being made in the application.',
-                                          active: widget.roleSettings != null
-                                              ? widget.roleSettings!
+                                          active: widget!.roleSettings != null
+                                              ? widget!.roleSettings!
                                                   .toLogsManagement
                                               : false,
                                         ),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           20.0, 0.0, 20.0, 0.0),
                                       child: wrapWithModel(
                                         model:
@@ -516,15 +522,15 @@ class _MaintenanceUserRolesWidgetState
                                           title: 'Maintenance Management',
                                           description:
                                               'Turn on maintenance mode to hold users from using the app.',
-                                          active: widget.roleSettings != null
-                                              ? widget.roleSettings!
+                                          active: widget!.roleSettings != null
+                                              ? widget!.roleSettings!
                                                   .toMaintenanceManagement
                                               : false,
                                         ),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           20.0, 0.0, 20.0, 0.0),
                                       child: wrapWithModel(
                                         model:
@@ -535,15 +541,15 @@ class _MaintenanceUserRolesWidgetState
                                           title: 'Organization Management',
                                           description:
                                               'Manage the Recognized Student Council & Organizations using the app.',
-                                          active: widget.roleSettings != null
-                                              ? widget.roleSettings!
+                                          active: widget!.roleSettings != null
+                                              ? widget!.roleSettings!
                                                   .toOrganizationManagement
                                               : false,
                                         ),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           20.0, 0.0, 20.0, 0.0),
                                       child: wrapWithModel(
                                         model: _model
@@ -554,15 +560,32 @@ class _MaintenanceUserRolesWidgetState
                                           title: 'Push Notification Management',
                                           description:
                                               'Manage the push notifications being sent by the application to the users.',
-                                          active: widget.roleSettings != null
-                                              ? widget.roleSettings!
+                                          active: widget!.roleSettings != null
+                                              ? widget!.roleSettings!
                                                   .toPushNotificiationManamgement
                                               : false,
                                         ),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          20.0, 0.0, 20.0, 0.0),
+                                      child: wrapWithModel(
+                                        model: _model.reportsModel,
+                                        updateCallback: () =>
+                                            safeSetState(() {}),
+                                        child: RolesCardWithDescriptionWidget(
+                                          title: 'Reports',
+                                          description:
+                                              'Access top performing organizations and events.',
+                                          active: widget!.roleSettings != null
+                                              ? widget!.roleSettings!.toReports
+                                              : false,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           20.0, 0.0, 20.0, 0.0),
                                       child: wrapWithModel(
                                         model: _model.resourcesManagementModel,
@@ -572,15 +595,15 @@ class _MaintenanceUserRolesWidgetState
                                           title: 'Resources Management',
                                           description:
                                               'Modify any resources being access by the users.',
-                                          active: widget.roleSettings != null
-                                              ? widget.roleSettings!
+                                          active: widget!.roleSettings != null
+                                              ? widget!.roleSettings!
                                                   .toResourcesManagement
                                               : false,
                                         ),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           20.0, 0.0, 20.0, 0.0),
                                       child: wrapWithModel(
                                         model: _model.userManagementModel,
@@ -590,18 +613,18 @@ class _MaintenanceUserRolesWidgetState
                                           title: 'User Management',
                                           description:
                                               'Manage user accounts using the application.',
-                                          active: widget.roleSettings != null
-                                              ? widget.roleSettings!
+                                          active: widget!.roleSettings != null
+                                              ? widget!.roleSettings!
                                                   .toUserManagement
                                               : false,
                                         ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(height: 15.0)),
+                                  ].divide(SizedBox(height: 15.0)),
                                 ),
                                 Builder(
                                   builder: (context) => Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         20.0, 15.0, 20.0, 10.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
@@ -624,7 +647,7 @@ class _MaintenanceUserRolesWidgetState
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
+                                                  AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
@@ -634,7 +657,7 @@ class _MaintenanceUserRolesWidgetState
                                                           dialogContext)
                                                       .unfocus(),
                                                   child:
-                                                      const ConfirmPasswordDialogWidget(),
+                                                      ConfirmPasswordDialogWidget(),
                                                 ),
                                               ),
                                             );
@@ -643,7 +666,7 @@ class _MaintenanceUserRolesWidgetState
                                             () => _model.confirmRole = value));
 
                                         if (_model.confirmRole!) {
-                                          if (widget.isNew == true) {
+                                          if (widget!.isNew == true) {
                                             logFirebaseEvent(
                                                 'Save_backend_call');
 
@@ -695,6 +718,8 @@ class _MaintenanceUserRolesWidgetState
                                                   toUserManagement: _model
                                                       .userManagementModel
                                                       .checkboxValue,
+                                                  toReports: _model.reportsModel
+                                                      .checkboxValue,
                                                   clearUnsetFields: false,
                                                   create: true,
                                                 ),
@@ -720,7 +745,7 @@ class _MaintenanceUserRolesWidgetState
                                             logFirebaseEvent(
                                                 'Save_backend_call');
 
-                                            await widget.roleReference!
+                                            await widget!.roleReference!
                                                 .update(createRolesRecordData(
                                               roleName: _model
                                                   .roleNameFieldTextController
@@ -764,6 +789,8 @@ class _MaintenanceUserRolesWidgetState
                                                 toUserManagement: _model
                                                     .userManagementModel
                                                     .checkboxValue,
+                                                toReports: _model
+                                                    .reportsModel.checkboxValue,
                                                 clearUnsetFields: false,
                                               ),
                                             ));
@@ -788,7 +815,7 @@ class _MaintenanceUserRolesWidgetState
                                                 insetPadding: EdgeInsets.zero,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
@@ -799,11 +826,11 @@ class _MaintenanceUserRolesWidgetState
                                                         .unfocus(),
                                                     child:
                                                         InformationDialogBoxWidget(
-                                                      infoDialogTitle: widget
+                                                      infoDialogTitle: widget!
                                                               .isNew
                                                           ? 'New Role Created'
                                                           : 'Existing Role Updated',
-                                                      infoDialogMeesage: widget
+                                                      infoDialogMeesage: widget!
                                                               .isNew
                                                           ? 'You have successfully saved a new role!'
                                                           : 'You have successfully updated an existing role!',
@@ -823,7 +850,7 @@ class _MaintenanceUserRolesWidgetState
                                                 insetPadding: EdgeInsets.zero,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
@@ -833,7 +860,7 @@ class _MaintenanceUserRolesWidgetState
                                                             dialogContext)
                                                         .unfocus(),
                                                     child:
-                                                        const InformationDialogBoxWidget(
+                                                        InformationDialogBoxWidget(
                                                       infoDialogTitle:
                                                           'Action Cancelled',
                                                       infoDialogMeesage:
@@ -851,14 +878,14 @@ class _MaintenanceUserRolesWidgetState
 
                                         safeSetState(() {});
                                       },
-                                      text: widget.isNew ? 'Save' : 'Update',
+                                      text: widget!.isNew ? 'Save' : 'Update',
                                       options: FFButtonOptions(
                                         width: double.infinity,
                                         height: 40.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             24.0, 0.0, 24.0, 0.0),
                                         iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
+                                            EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
@@ -871,7 +898,7 @@ class _MaintenanceUserRolesWidgetState
                                               letterSpacing: 0.0,
                                             ),
                                         elevation: 3.0,
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,
                                         ),
@@ -881,7 +908,7 @@ class _MaintenanceUserRolesWidgetState
                                     ),
                                   ),
                                 ),
-                              ].divide(const SizedBox(height: 15.0)),
+                              ].divide(SizedBox(height: 15.0)),
                             ),
                           ),
                         ),

@@ -1,5 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/dialog_box/confirm_password_dialog/confirm_password_dialog_widget.dart';
+import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -8,9 +10,12 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'maintenance_rooms_model.dart';
 export 'maintenance_rooms_model.dart';
@@ -25,7 +30,7 @@ class MaintenanceRoomsWidget extends StatefulWidget {
     this.roomFacilityType,
     this.roomRef,
     this.roomMaxCapacity,
-  }) : isNew = isNew ?? false;
+  }) : this.isNew = isNew ?? false;
 
   final bool isNew;
   final String? roomNumber;
@@ -52,15 +57,15 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'maintenance_rooms'});
     _model.roomNumberFieldTextController ??=
-        TextEditingController(text: widget.isNew ? '' : widget.roomNumber);
+        TextEditingController(text: widget!.isNew ? '' : widget!.roomNumber);
     _model.roomNumberFieldFocusNode ??= FocusNode();
 
     _model.roomNameFieldTextController ??=
-        TextEditingController(text: widget.isNew ? '' : widget.roomName);
+        TextEditingController(text: widget!.isNew ? '' : widget!.roomName);
     _model.roomNameFieldFocusNode ??= FocusNode();
 
     _model.roomMaxCapacityFieldTextController ??= TextEditingController(
-        text: widget.isNew ? '' : widget.roomMaxCapacity?.toString());
+        text: widget!.isNew ? '' : widget!.roomMaxCapacity?.toString());
     _model.roomMaxCapacityFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -83,7 +88,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,7 +96,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                 wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TitleHeaderComponentWidget(
+                  child: TitleHeaderComponentWidget(
                     titleText: 'File Maintenance',
                   ),
                 ),
@@ -103,7 +108,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -121,7 +126,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                       ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 0.0, 0.0),
                                   child: Text(
                                     'Monitor, track and view the list of rooms available in the campus.',
@@ -154,12 +159,12 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                 Flexible(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 30.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 30.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          SizedBox(
+                          Container(
                             width: double.infinity,
                             child: Form(
                               key: _model.formKey,
@@ -168,7 +173,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller:
@@ -242,7 +247,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller:
@@ -314,7 +319,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller: _model
@@ -396,7 +401,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: StreamBuilder<List<OfficeRecord>>(
                                       stream: queryOfficeRecord(
@@ -428,7 +433,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                                   .roomDesignationDropdownValueController ??=
                                               FormFieldController<String>(
                                             _model.roomDesignationDropdownValue ??=
-                                                widget.roomDesignation?.id,
+                                                widget!.roomDesignation?.id,
                                           ),
                                           options: List<String>.from(
                                               roomDesignationDropdownOfficeRecordList
@@ -485,7 +490,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                           borderWidth: 0.5,
                                           borderRadius: 8.0,
                                           margin:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 4.0, 16.0, 4.0),
                                           hidesUnderline: true,
                                           isOverButton: true,
@@ -496,7 +501,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: StreamBuilder<
                                         List<FacilityTypesRecord>>(
@@ -530,7 +535,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                                   .facilityTypeDropdownValueController ??=
                                               FormFieldController<String>(
                                             _model.facilityTypeDropdownValue ??=
-                                                widget.roomFacilityType?.id,
+                                                widget!.roomFacilityType?.id,
                                           ),
                                           options: List<String>.from(
                                               facilityTypeDropdownFacilityTypesRecordList
@@ -587,7 +592,7 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                           borderWidth: 0.5,
                                           borderRadius: 8.0,
                                           margin:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 4.0, 16.0, 4.0),
                                           hidesUnderline: true,
                                           isOverButton: true,
@@ -597,93 +602,125 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                       },
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 15.0, 0.0, 0.0),
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        logFirebaseEvent(
-                                            'MAINTENANCE_ROOMS_PAGE_Save_ON_TAP');
-                                        logFirebaseEvent('Save_validate_form');
-                                        if (_model.formKey.currentState ==
-                                                null ||
-                                            !_model.formKey.currentState!
-                                                .validate()) {
-                                          return;
-                                        }
-                                        if (_model
-                                                .roomDesignationDropdownValue ==
-                                            null) {
-                                          return;
-                                        }
-                                        if (_model.facilityTypeDropdownValue ==
-                                            null) {
-                                          return;
-                                        }
-                                        logFirebaseEvent('Save_custom_action');
-                                        _model.officeDesignationOutput =
-                                            await actions.getOfficeDocument(
-                                          _model.roomDesignationDropdownValue!,
-                                        );
-                                        logFirebaseEvent('Save_custom_action');
-                                        _model.facilityTypeOutput =
-                                            await actions
-                                                .getFacilityTypesDocument(
-                                          _model.facilityTypeDropdownValue,
-                                        );
-                                        logFirebaseEvent('Save_alert_dialog');
-                                        var confirmDialogResponse =
-                                            await showDialog<bool>(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return WebViewAware(
-                                                      child: AlertDialog(
-                                                        title: Text(widget
-                                                                    .isNew ==
-                                                                true
-                                                            ? 'Save Room'
-                                                            : 'Update Room'),
-                                                        content: Text(widget
-                                                                    .isNew ==
-                                                                true
-                                                            ? 'Are you sure you want to save a new room?'
-                                                            : 'Are you sure you want to update this existing room?'),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext,
-                                                                    false),
-                                                            child:
-                                                                const Text('Cancel'),
-                                                          ),
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext,
-                                                                    true),
-                                                            child: Text(
-                                                                widget.isNew ==
-                                                                        true
-                                                                    ? 'Save'
-                                                                    : 'Update'),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    );
-                                                  },
-                                                ) ??
-                                                false;
-                                        if (confirmDialogResponse) {
-                                          if (widget.isNew == true) {
-                                            logFirebaseEvent(
-                                                'Save_backend_call');
+                                  Builder(
+                                    builder: (context) => Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 15.0, 0.0, 0.0),
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                          logFirebaseEvent(
+                                              'MAINTENANCE_ROOMS_PAGE_Save_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Save_validate_form');
+                                          if (_model.formKey.currentState ==
+                                                  null ||
+                                              !_model.formKey.currentState!
+                                                  .validate()) {
+                                            return;
+                                          }
+                                          if (_model
+                                                  .roomDesignationDropdownValue ==
+                                              null) {
+                                            return;
+                                          }
+                                          if (_model
+                                                  .facilityTypeDropdownValue ==
+                                              null) {
+                                            return;
+                                          }
+                                          logFirebaseEvent(
+                                              'Save_custom_action');
+                                          _model.officeDesignationOutput =
+                                              await actions.getOfficeDocument(
+                                            _model
+                                                .roomDesignationDropdownValue!,
+                                          );
+                                          logFirebaseEvent(
+                                              'Save_custom_action');
+                                          _model.facilityTypeOutput =
+                                              await actions
+                                                  .getFacilityTypesDocument(
+                                            _model.facilityTypeDropdownValue,
+                                          );
+                                          logFirebaseEvent('Save_alert_dialog');
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => FocusScope.of(
+                                                            dialogContext)
+                                                        .unfocus(),
+                                                    child:
+                                                        ConfirmPasswordDialogWidget(),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ).then((value) => safeSetState(() =>
+                                              _model.confirmFacility = value));
 
-                                            await RoomsRecord.collection
-                                                .doc()
-                                                .set({
-                                              ...createRoomsRecordData(
+                                          if (_model.confirmFacility!) {
+                                            if (widget!.isNew == true) {
+                                              logFirebaseEvent(
+                                                  'Save_backend_call');
+
+                                              await RoomsRecord.collection
+                                                  .doc()
+                                                  .set({
+                                                ...createRoomsRecordData(
+                                                  roomNumber: int.tryParse(_model
+                                                      .roomNumberFieldTextController
+                                                      .text),
+                                                  roomName: _model
+                                                      .roomNameFieldTextController
+                                                      .text,
+                                                  roomDesignation: _model
+                                                      .officeDesignationOutput
+                                                      ?.reference,
+                                                  roomFacilityType: _model
+                                                      .facilityTypeOutput
+                                                      ?.reference,
+                                                  roomCreatedBy:
+                                                      currentUserReference,
+                                                  roomMaximumCapacity:
+                                                      int.tryParse(_model
+                                                          .roomMaxCapacityFieldTextController
+                                                          .text),
+                                                ),
+                                                ...mapToFirestore(
+                                                  {
+                                                    'room_created_on':
+                                                        FieldValue
+                                                            .serverTimestamp(),
+                                                  },
+                                                ),
+                                              });
+                                              logFirebaseEvent(
+                                                  'Save_action_block');
+                                              await action_blocks.logs(
+                                                context,
+                                                type: 'added',
+                                                module: 'rooms',
+                                                doneToName: _model
+                                                    .roomNameFieldTextController
+                                                    .text,
+                                              );
+                                            } else {
+                                              logFirebaseEvent(
+                                                  'Save_backend_call');
+
+                                              await widget!.roomRef!
+                                                  .update(createRoomsRecordData(
                                                 roomNumber: int.tryParse(_model
                                                     .roomNumberFieldTextController
                                                     .text),
@@ -696,145 +733,158 @@ class _MaintenanceRoomsWidgetState extends State<MaintenanceRoomsWidget> {
                                                 roomFacilityType: _model
                                                     .facilityTypeOutput
                                                     ?.reference,
-                                                roomCreatedBy:
-                                                    currentUserReference,
                                                 roomMaximumCapacity:
                                                     int.tryParse(_model
                                                         .roomMaxCapacityFieldTextController
                                                         .text),
-                                              ),
-                                              ...mapToFirestore(
-                                                {
-                                                  'room_created_on': FieldValue
-                                                      .serverTimestamp(),
-                                                },
-                                              ),
-                                            });
+                                              ));
+                                              logFirebaseEvent(
+                                                  'Save_action_block');
+                                              await action_blocks.logs(
+                                                context,
+                                                type: 'updated',
+                                                module: 'rooms',
+                                                doneToName: _model
+                                                    .roomNameFieldTextController
+                                                    .text,
+                                              );
+                                            }
+
                                             logFirebaseEvent(
-                                                'Save_action_block');
-                                            await action_blocks.logs(
-                                              context,
-                                              type: 'added',
-                                              module: 'rooms',
-                                              doneToName: _model
-                                                  .roomNameFieldTextController
-                                                  .text,
+                                                'Save_alert_dialog');
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return WebViewAware(
+                                                  child: AlertDialog(
+                                                    title: Text(widget!.isNew
+                                                        ? 'New Room Created'
+                                                        : 'Existing Room Updated'),
+                                                    content: Text(widget!.isNew
+                                                        ? 'You have successfully saved a new room!'
+                                                        : 'You have successfully updated an existing room!'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext),
+                                                        child: Text('Okay'),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                            logFirebaseEvent(
+                                                'Save_alert_dialog');
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: WebViewAware(
+                                                    child: GestureDetector(
+                                                      onTap: () =>
+                                                          FocusScope.of(
+                                                                  dialogContext)
+                                                              .unfocus(),
+                                                      child:
+                                                          InformationDialogBoxWidget(
+                                                        infoDialogTitle: widget!
+                                                                .isNew
+                                                            ? 'New Room Created'
+                                                            : 'Existing Room Updated',
+                                                        infoDialogMeesage: widget!
+                                                                .isNew
+                                                            ? 'You have successfully saved a new room!'
+                                                            : 'You have successfully updated an existing room!',
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
                                             );
                                           } else {
                                             logFirebaseEvent(
-                                                'Save_backend_call');
-
-                                            await widget.roomRef!
-                                                .update(createRoomsRecordData(
-                                              roomNumber: int.tryParse(_model
-                                                  .roomNumberFieldTextController
-                                                  .text),
-                                              roomName: _model
-                                                  .roomNameFieldTextController
-                                                  .text,
-                                              roomDesignation: _model
-                                                  .officeDesignationOutput
-                                                  ?.reference,
-                                              roomFacilityType: _model
-                                                  .facilityTypeOutput
-                                                  ?.reference,
-                                              roomMaximumCapacity: int.tryParse(
-                                                  _model
-                                                      .roomMaxCapacityFieldTextController
-                                                      .text),
-                                            ));
-                                            logFirebaseEvent(
-                                                'Save_action_block');
-                                            await action_blocks.logs(
-                                              context,
-                                              type: 'updated',
-                                              module: 'rooms',
-                                              doneToName: _model
-                                                  .roomNameFieldTextController
-                                                  .text,
+                                                'Save_alert_dialog');
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: WebViewAware(
+                                                    child: GestureDetector(
+                                                      onTap: () =>
+                                                          FocusScope.of(
+                                                                  dialogContext)
+                                                              .unfocus(),
+                                                      child:
+                                                          InformationDialogBoxWidget(
+                                                        infoDialogTitle:
+                                                            'Action Cancelled',
+                                                        infoDialogMeesage:
+                                                            'This action has been cancelled. ',
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
                                             );
                                           }
 
-                                          logFirebaseEvent('Save_alert_dialog');
-                                          await showDialog(
-                                            context: context,
-                                            builder: (alertDialogContext) {
-                                              return WebViewAware(
-                                                child: AlertDialog(
-                                                  title: Text(widget.isNew
-                                                      ? 'New Room Created'
-                                                      : 'Existing Room Updated'),
-                                                  content: Text(widget.isNew
-                                                      ? 'You have successfully saved a new room!'
-                                                      : 'You have successfully updated an existing room!'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: const Text('Okay'),
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                          );
-                                        } else {
-                                          logFirebaseEvent('Save_alert_dialog');
-                                          await showDialog(
-                                            context: context,
-                                            builder: (alertDialogContext) {
-                                              return WebViewAware(
-                                                child: AlertDialog(
-                                                  title:
-                                                      const Text('Action Cancelled'),
-                                                  content: const Text(
-                                                      'This action has been cancelled.'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: const Text('Ok'),
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                          );
-                                        }
+                                          logFirebaseEvent(
+                                              'Save_navigate_back');
+                                          context.safePop();
 
-                                        logFirebaseEvent('Save_navigate_back');
-                                        context.safePop();
-
-                                        safeSetState(() {});
-                                      },
-                                      text: widget.isNew ? 'Save' : 'Update',
-                                      options: FFButtonOptions(
-                                        width: double.infinity,
-                                        height: 40.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 0.0, 24.0, 0.0),
-                                        iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily: 'Montserrat',
-                                              color: Colors.white,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.0,
-                                            ),
-                                        elevation: 3.0,
-                                        borderSide: const BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1.0,
+                                          safeSetState(() {});
+                                        },
+                                        text: widget!.isNew ? 'Save' : 'Update',
+                                        options: FFButtonOptions(
+                                          width: double.infinity,
+                                          height: 40.0,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  24.0, 0.0, 24.0, 0.0),
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Montserrat',
+                                                    color: Colors.white,
+                                                    fontSize: 13.0,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          elevation: 3.0,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
                                       ),
                                     ),
                                   ),

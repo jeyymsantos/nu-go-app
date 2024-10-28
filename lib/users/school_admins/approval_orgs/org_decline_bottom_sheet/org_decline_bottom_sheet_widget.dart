@@ -9,6 +9,9 @@ import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'org_decline_bottom_sheet_model.dart';
 export 'org_decline_bottom_sheet_model.dart';
@@ -59,7 +62,7 @@ class _OrgDeclineBottomSheetWidgetState
     return Container(
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
-        borderRadius: const BorderRadius.only(
+        borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
           topLeft: Radius.circular(20.0),
@@ -67,12 +70,12 @@ class _OrgDeclineBottomSheetWidgetState
         ),
       ),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
+        padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
               child: Container(
                 width: 80.0,
                 height: 10.0,
@@ -86,13 +89,13 @@ class _OrgDeclineBottomSheetWidgetState
               key: _model.formKey,
               autovalidateMode: AutovalidateMode.disabled,
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                       child: Text(
                         'By declining the organization, they cannot proceed further in the process. \n\nPlease specify the reason for the application\'s rejection below.',
                         textAlign: TextAlign.justify,
@@ -103,7 +106,7 @@ class _OrgDeclineBottomSheetWidgetState
                       ),
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       child: TextFormField(
                         controller: _model.declineMessageTextController,
                         focusNode: _model.declineMessageFocusNode,
@@ -168,7 +171,7 @@ class _OrgDeclineBottomSheetWidgetState
                     Builder(
                       builder: (context) => Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                         child: FFButtonWidget(
                           onPressed: () async {
                             logFirebaseEvent(
@@ -186,9 +189,9 @@ class _OrgDeclineBottomSheetWidgetState
                                   elevation: 0,
                                   insetPadding: EdgeInsets.zero,
                                   backgroundColor: Colors.transparent,
-                                  alignment: const AlignmentDirectional(0.0, 0.0)
+                                  alignment: AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
-                                  child: const WebViewAware(
+                                  child: WebViewAware(
                                     child: ConfirmDialogBoxWidget(
                                       confirmDialogTitle: 'Decline Request',
                                       confirmDialogMeesage:
@@ -210,9 +213,9 @@ class _OrgDeclineBottomSheetWidgetState
                                     elevation: 0,
                                     insetPadding: EdgeInsets.zero,
                                     backgroundColor: Colors.transparent,
-                                    alignment: const AlignmentDirectional(0.0, 0.0)
+                                    alignment: AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
-                                    child: const WebViewAware(
+                                    child: WebViewAware(
                                       child: InformationDialogBoxWidget(
                                         infoDialogTitle: 'Request Declined',
                                         infoDialogMeesage:
@@ -228,18 +231,18 @@ class _OrgDeclineBottomSheetWidgetState
                                 context,
                                 declineWhat: 'organization',
                                 approvalList:
-                                    widget.orgDoc?.currentApprovalSignatory,
+                                    widget!.orgDoc?.currentApprovalSignatory,
                                 approvalStep: functions.getUserIndex(
-                                    widget.orgDoc!.currentApprovalSignatory
+                                    widget!.orgDoc!.currentApprovalSignatory
                                         .map((e) => e.approvalUser)
                                         .withoutNulls
                                         .toList(),
                                     currentUserReference!),
-                                declineOrgRef: widget.orgDoc?.reference,
+                                declineOrgRef: widget!.orgDoc?.reference,
                                 declineFeedback:
                                     _model.declineMessageTextController.text,
-                                declineToWho: widget.orgDoc?.orgFounder,
-                                declineName: widget.orgDoc?.organizationName,
+                                declineToWho: widget!.orgDoc?.orgFounder,
+                                declineName: widget!.orgDoc?.organizationName,
                               );
                             } else {
                               logFirebaseEvent('Button_alert_dialog');
@@ -250,9 +253,9 @@ class _OrgDeclineBottomSheetWidgetState
                                     elevation: 0,
                                     insetPadding: EdgeInsets.zero,
                                     backgroundColor: Colors.transparent,
-                                    alignment: const AlignmentDirectional(0.0, 0.0)
+                                    alignment: AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
-                                    child: const WebViewAware(
+                                    child: WebViewAware(
                                       child: InformationDialogBoxWidget(
                                         infoDialogTitle: 'Action Cancelled',
                                         infoDialogMeesage:
@@ -274,16 +277,16 @@ class _OrgDeclineBottomSheetWidgetState
                             safeSetState(() {});
                           },
                           text: 'Decline Organization',
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.close,
                             size: 15.0,
                           ),
                           options: FFButtonOptions(
                             width: double.infinity,
-                            height: 30.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            height: 40.0,
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).error,
                             textStyle: FlutterFlowTheme.of(context)
@@ -295,7 +298,7 @@ class _OrgDeclineBottomSheetWidgetState
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),

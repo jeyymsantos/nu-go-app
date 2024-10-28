@@ -3,6 +3,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/users/super_admin/admin_approval/components/adding_of_office_approver/adding_of_office_approver_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'list_of_office_approver_model.dart';
@@ -53,7 +55,7 @@ class _ListOfOfficeApproverWidgetState
     return Container(
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
-        borderRadius: const BorderRadius.only(
+        borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
           topLeft: Radius.circular(30.0),
@@ -66,7 +68,7 @@ class _ListOfOfficeApproverWidgetState
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
               child: Container(
                 width: 100.0,
                 height: 10.0,
@@ -77,7 +79,7 @@ class _ListOfOfficeApproverWidgetState
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 23.0, 0.0, 5.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 23.0, 0.0, 5.0),
               child: Text(
                 'List of Offices',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -92,9 +94,9 @@ class _ListOfOfficeApproverWidgetState
               mainAxisSize: MainAxisSize.max,
               children: [
                 Container(
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                     child: ListView(
                       padding: EdgeInsets.zero,
                       primary: false,
@@ -102,7 +104,7 @@ class _ListOfOfficeApproverWidgetState
                       scrollDirection: Axis.vertical,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 5.0),
                           child: Container(
                             width: double.infinity,
@@ -115,7 +117,7 @@ class _ListOfOfficeApproverWidgetState
                               ),
                             ),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   5.0, 5.0, 5.0, 5.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
@@ -125,9 +127,9 @@ class _ListOfOfficeApproverWidgetState
                                   Flexible(
                                     child: Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           'Full-Time Faculty',
@@ -167,7 +169,7 @@ class _ListOfOfficeApproverWidgetState
                                                       MediaQuery.viewInsetsOf(
                                                           context),
                                                   child:
-                                                      const AddingOfOfficeApproverWidget(
+                                                      AddingOfOfficeApproverWidget(
                                                     officeName:
                                                         'Full-Time Faculty',
                                                   ),
@@ -194,7 +196,7 @@ class _ListOfOfficeApproverWidgetState
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 5.0),
                           child: Container(
                             width: double.infinity,
@@ -207,7 +209,7 @@ class _ListOfOfficeApproverWidgetState
                               ),
                             ),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   5.0, 5.0, 5.0, 5.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
@@ -217,9 +219,9 @@ class _ListOfOfficeApproverWidgetState
                                   Flexible(
                                     child: Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           'Program Chair',
@@ -259,7 +261,7 @@ class _ListOfOfficeApproverWidgetState
                                                       MediaQuery.viewInsetsOf(
                                                           context),
                                                   child:
-                                                      const AddingOfOfficeApproverWidget(
+                                                      AddingOfOfficeApproverWidget(
                                                     officeName: 'Program Chair',
                                                   ),
                                                 ),
@@ -285,7 +287,7 @@ class _ListOfOfficeApproverWidgetState
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 5.0),
                           child: Container(
                             width: double.infinity,
@@ -298,7 +300,7 @@ class _ListOfOfficeApproverWidgetState
                               ),
                             ),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   5.0, 5.0, 5.0, 5.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
@@ -308,9 +310,9 @@ class _ListOfOfficeApproverWidgetState
                                   Flexible(
                                     child: Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           'Dean',
@@ -350,7 +352,7 @@ class _ListOfOfficeApproverWidgetState
                                                       MediaQuery.viewInsetsOf(
                                                           context),
                                                   child:
-                                                      const AddingOfOfficeApproverWidget(
+                                                      AddingOfOfficeApproverWidget(
                                                     officeName: 'Dean',
                                                   ),
                                                 ),
@@ -381,12 +383,12 @@ class _ListOfOfficeApproverWidgetState
                 ),
                 Container(
                   height: 219.0,
-                  decoration: const BoxDecoration(),
+                  decoration: BoxDecoration(),
                   child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                     child: Builder(
                       builder: (context) {
-                        final listOfOffices = widget.offices!.toList();
+                        final listOfOffices = widget!.offices!.toList();
 
                         return ListView.builder(
                           padding: EdgeInsets.zero,
@@ -397,7 +399,7 @@ class _ListOfOfficeApproverWidgetState
                             final listOfOfficesItem =
                                 listOfOffices[listOfOfficesIndex];
                             return Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 5.0),
                               child: Container(
                                 width: double.infinity,
@@ -411,7 +413,7 @@ class _ListOfOfficeApproverWidgetState
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 5.0, 5.0, 5.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -421,10 +423,10 @@ class _ListOfOfficeApproverWidgetState
                                       Flexible(
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(-1.0, 0.0),
+                                              AlignmentDirectional(-1.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     5.0, 0.0, 0.0, 0.0),
                                             child: Text(
                                               listOfOfficesItem.officeName,

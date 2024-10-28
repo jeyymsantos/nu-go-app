@@ -1,6 +1,8 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/dialog_box/confirm_dialog_box/confirm_dialog_box_widget.dart';
+import '/components/dialog_box/failed_dialog_box/failed_dialog_box_widget.dart';
 import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
@@ -12,9 +14,14 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/users/school_admins/approval_event/event_decline_bottom_sheet/event_decline_bottom_sheet_widget.dart';
 import '/users/school_admins/approval_event/event_revision_bottom_sheet/event_revision_bottom_sheet_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'approval_event_proposal_model.dart';
 export 'approval_event_proposal_model.dart';
@@ -63,7 +70,7 @@ class _ApprovalEventProposalWidgetState
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<EventsRecord>(
-      stream: EventsRecord.getDocument(widget.eventRef!),
+      stream: EventsRecord.getDocument(widget!.eventRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -93,7 +100,7 @@ class _ApprovalEventProposalWidgetState
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,7 +108,7 @@ class _ApprovalEventProposalWidgetState
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: const TitleHeaderComponentWidget(
+                      child: TitleHeaderComponentWidget(
                         titleText: 'Proposal Approval',
                       ),
                     ),
@@ -110,7 +117,7 @@ class _ApprovalEventProposalWidgetState
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -128,7 +135,7 @@ class _ApprovalEventProposalWidgetState
                                       ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 0.0, 0.0),
                                   child: Text(
                                     'Monitor your proposal status on this page.',
@@ -162,11 +169,11 @@ class _ApprovalEventProposalWidgetState
                         children: [
                           Flexible(
                             child: Container(
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Column(
                                 children: [
                                   Align(
-                                    alignment: const Alignment(0.0, 0),
+                                    alignment: Alignment(0.0, 0),
                                     child: FlutterFlowButtonTabBar(
                                       useToggleButtonStyle: true,
                                       labelStyle: FlutterFlowTheme.of(context)
@@ -205,9 +212,9 @@ class _ApprovalEventProposalWidgetState
                                       borderRadius: 9.0,
                                       elevation: 0.0,
                                       buttonMargin:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               8.0, 0.0, 8.0, 0.0),
-                                      tabs: const [
+                                      tabs: [
                                         Tab(
                                           text: 'About',
                                         ),
@@ -235,7 +242,7 @@ class _ApprovalEventProposalWidgetState
                                         KeepAliveWidgetWrapper(
                                           builder: (context) => Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 10.0),
                                             child: SingleChildScrollView(
                                               child: Column(
@@ -255,7 +262,7 @@ class _ApprovalEventProposalWidgetState
                                                     ),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsets.all(2.0),
+                                                          EdgeInsets.all(2.0),
                                                       child: InkWell(
                                                         splashColor:
                                                             Colors.transparent,
@@ -338,7 +345,7 @@ class _ApprovalEventProposalWidgetState
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(5.0, 15.0,
                                                                 5.0, 0.0),
                                                     child: Column(
@@ -380,7 +387,7 @@ class _ApprovalEventProposalWidgetState
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(5.0, 15.0,
                                                                 5.0, 0.0),
                                                     child: Row(
@@ -390,7 +397,7 @@ class _ApprovalEventProposalWidgetState
                                                         Expanded(
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -398,7 +405,7 @@ class _ApprovalEventProposalWidgetState
                                                                         0.0),
                                                             child: Container(
                                                               decoration:
-                                                                  const BoxDecoration(),
+                                                                  BoxDecoration(),
                                                               child: Column(
                                                                 mainAxisSize:
                                                                     MainAxisSize
@@ -473,7 +480,7 @@ class _ApprovalEventProposalWidgetState
                                                         Expanded(
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         10.0,
                                                                         0.0,
@@ -481,7 +488,7 @@ class _ApprovalEventProposalWidgetState
                                                                         0.0),
                                                             child: Container(
                                                               decoration:
-                                                                  const BoxDecoration(),
+                                                                  BoxDecoration(),
                                                               child: Column(
                                                                 mainAxisSize:
                                                                     MainAxisSize
@@ -547,11 +554,11 @@ class _ApprovalEventProposalWidgetState
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   15.0,
@@ -577,7 +584,7 @@ class _ApprovalEventProposalWidgetState
                                                             queryParameters: {
                                                               'eventRef':
                                                                   serializeParam(
-                                                                widget
+                                                                widget!
                                                                     .eventRef,
                                                                 ParamType
                                                                     .DocumentReference,
@@ -614,7 +621,7 @@ class _ApprovalEventProposalWidgetState
                                                                     EventApplicationRecord>>(
                                                               stream:
                                                                   queryEventApplicationRecord(
-                                                                parent: widget
+                                                                parent: widget!
                                                                     .eventRef,
                                                                 queryBuilder: (eventApplicationRecord) =>
                                                                     eventApplicationRecord.orderBy(
@@ -695,12 +702,12 @@ class _ApprovalEventProposalWidgetState
                                                                     ),
                                                                     Align(
                                                                       alignment:
-                                                                          const AlignmentDirectional(
+                                                                          AlignmentDirectional(
                                                                               1.0,
                                                                               0.0),
                                                                       child:
                                                                           Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             10.0,
                                                                             0.0,
                                                                             0.0,
@@ -727,7 +734,7 @@ class _ApprovalEventProposalWidgetState
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(5.0, 15.0,
                                                                 5.0, 0.0),
                                                     child: Column(
@@ -739,7 +746,7 @@ class _ApprovalEventProposalWidgetState
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   -1.0, 0.0),
                                                           child: Text(
                                                             'Application ID',
@@ -759,7 +766,7 @@ class _ApprovalEventProposalWidgetState
                                                         ),
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   -1.0, 0.0),
                                                           child: Text(
                                                             approvalEventProposalEventsRecord
@@ -783,7 +790,7 @@ class _ApprovalEventProposalWidgetState
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(5.0, 15.0,
                                                                 5.0, 0.0),
                                                     child: Column(
@@ -795,7 +802,7 @@ class _ApprovalEventProposalWidgetState
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   -1.0, 0.0),
                                                           child: Text(
                                                             'Proposal Submitted',
@@ -815,11 +822,11 @@ class _ApprovalEventProposalWidgetState
                                                         ),
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   -1.0, 0.0),
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         5.0,
@@ -855,7 +862,7 @@ class _ApprovalEventProposalWidgetState
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(5.0, 15.0,
                                                                 5.0, 0.0),
                                                     child: Column(
@@ -867,7 +874,7 @@ class _ApprovalEventProposalWidgetState
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   -1.0, 0.0),
                                                           child: Text(
                                                             'Rationale',
@@ -887,11 +894,11 @@ class _ApprovalEventProposalWidgetState
                                                         ),
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   -1.0, 0.0),
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         5.0,
@@ -920,7 +927,7 @@ class _ApprovalEventProposalWidgetState
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(5.0, 15.0,
                                                                 5.0, 0.0),
                                                     child: Column(
@@ -932,7 +939,7 @@ class _ApprovalEventProposalWidgetState
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   -1.0, 0.0),
                                                           child: Text(
                                                             'Objectives',
@@ -952,11 +959,11 @@ class _ApprovalEventProposalWidgetState
                                                         ),
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   -1.0, 0.0),
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         5.0,
@@ -985,7 +992,7 @@ class _ApprovalEventProposalWidgetState
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(5.0, 15.0,
                                                                 5.0, 0.0),
                                                     child: Column(
@@ -997,7 +1004,7 @@ class _ApprovalEventProposalWidgetState
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   -1.0, 0.0),
                                                           child: Text(
                                                             'Target Output',
@@ -1017,11 +1024,11 @@ class _ApprovalEventProposalWidgetState
                                                         ),
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   -1.0, 0.0),
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         5.0,
@@ -1052,7 +1059,7 @@ class _ApprovalEventProposalWidgetState
                                                       .settings.isCampus)
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   15.0,
@@ -1067,7 +1074,7 @@ class _ApprovalEventProposalWidgetState
                                                         children: [
                                                           Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     -1.0, 0.0),
                                                             child: Text(
                                                               'Facility',
@@ -1087,11 +1094,11 @@ class _ApprovalEventProposalWidgetState
                                                           ),
                                                           Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     -1.0, 0.0),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           5.0,
@@ -1157,7 +1164,7 @@ class _ApprovalEventProposalWidgetState
                                                       .settings.isOnline)
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   15.0,
@@ -1172,7 +1179,7 @@ class _ApprovalEventProposalWidgetState
                                                         children: [
                                                           Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     -1.0, 0.0),
                                                             child: Text(
                                                               'Virtual',
@@ -1192,11 +1199,11 @@ class _ApprovalEventProposalWidgetState
                                                           ),
                                                           Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     -1.0, 0.0),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           5.0,
@@ -1223,7 +1230,7 @@ class _ApprovalEventProposalWidgetState
                                                           ),
                                                           Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     -1.0, 0.0),
                                                             child: InkWell(
                                                               splashColor: Colors
@@ -1276,7 +1283,7 @@ class _ApprovalEventProposalWidgetState
                                                           .settings.isOnline)
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   5.0,
                                                                   15.0,
@@ -1291,7 +1298,7 @@ class _ApprovalEventProposalWidgetState
                                                         children: [
                                                           Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     -1.0, 0.0),
                                                             child: Text(
                                                               'Location',
@@ -1326,7 +1333,7 @@ class _ApprovalEventProposalWidgetState
                                                             child: Builder(
                                                                 builder:
                                                                     (context) {
-                                                              final googleMapMarker =
+                                                              final _googleMapMarker =
                                                                   approvalEventProposalEventsRecord
                                                                       .otherDetails
                                                                       .outsideLocation;
@@ -1343,19 +1350,19 @@ class _ApprovalEventProposalWidgetState
                                                                         .otherDetails
                                                                         .outsideLocation!,
                                                                 markers: [
-                                                                  if (googleMapMarker !=
+                                                                  if (_googleMapMarker !=
                                                                       null)
                                                                     FlutterFlowMarker(
-                                                                      googleMapMarker
+                                                                      _googleMapMarker
                                                                           .serialize(),
-                                                                      googleMapMarker,
+                                                                      _googleMapMarker,
                                                                     ),
                                                                 ],
                                                                 markerColor:
                                                                     GoogleMarkerColor
                                                                         .violet,
                                                                 markerImage:
-                                                                    const MarkerImage(
+                                                                    MarkerImage(
                                                                   imagePath:
                                                                       'assets/images/NU_GO_-_No_BG.png',
                                                                   isAssetImage:
@@ -1399,7 +1406,7 @@ class _ApprovalEventProposalWidgetState
                                         KeepAliveWidgetWrapper(
                                           builder: (context) => Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 35.0),
                                             child: SingleChildScrollView(
                                               primary: false,
@@ -1414,7 +1421,7 @@ class _ApprovalEventProposalWidgetState
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   0.0, 0.0),
                                                           child: Text(
                                                             'Budget Items',
@@ -1436,7 +1443,7 @@ class _ApprovalEventProposalWidgetState
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       10.0,
@@ -1468,7 +1475,7 @@ class _ApprovalEventProposalWidgetState
                                                                       budget[
                                                                           budgetIndex];
                                                                   return Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1483,7 +1490,7 @@ class _ApprovalEventProposalWidgetState
                                                                       ),
                                                                       child:
                                                                           Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             5.0,
                                                                             5.0,
                                                                             5.0,
@@ -1500,7 +1507,7 @@ class _ApprovalEventProposalWidgetState
                                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                                               children: [
                                                                                 Align(
-                                                                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                   child: Text(
                                                                                     budgetItem.itemName,
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1511,7 +1518,7 @@ class _ApprovalEventProposalWidgetState
                                                                                   ),
                                                                                 ),
                                                                                 Align(
-                                                                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                   child: Text(
                                                                                     '${formatNumber(
                                                                                       budgetItem.price,
@@ -1531,7 +1538,7 @@ class _ApprovalEventProposalWidgetState
                                                                                   ),
                                                                                 ),
                                                                                 Align(
-                                                                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                   child: Text(
                                                                                     'Charged to: ${budgetItem.chargedTo}',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1557,7 +1564,7 @@ class _ApprovalEventProposalWidgetState
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 20.0,
                                                                 0.0, 10.0),
                                                     child: Column(
@@ -1566,7 +1573,7 @@ class _ApprovalEventProposalWidgetState
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   -1.0, 0.0),
                                                           child: Text(
                                                             'Total Requested Budget',
@@ -1586,7 +1593,7 @@ class _ApprovalEventProposalWidgetState
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       5.0,
                                                                       0.0,
@@ -1600,7 +1607,7 @@ class _ApprovalEventProposalWidgetState
                                                               color: FlutterFlowTheme
                                                                       .of(context)
                                                                   .backPanelText,
-                                                              boxShadow: const [
+                                                              boxShadow: [
                                                                 BoxShadow(
                                                                   blurRadius:
                                                                       2.0,
@@ -1628,7 +1635,7 @@ class _ApprovalEventProposalWidgetState
                                                               children: [
                                                                 Padding(
                                                                   padding:
-                                                                      const EdgeInsets
+                                                                      EdgeInsets
                                                                           .all(
                                                                               10.0),
                                                                   child: Row(
@@ -1656,7 +1663,7 @@ class _ApprovalEventProposalWidgetState
                                                                               CrossAxisAlignment.start,
                                                                           children: [
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                               child: Text(
                                                                                 'Budget Request per Office',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1668,7 +1675,7 @@ class _ApprovalEventProposalWidgetState
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                               child: Text(
                                                                                 'Overall pricing summary',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1707,7 +1714,7 @@ class _ApprovalEventProposalWidgetState
                                                                               .max,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               15.0,
                                                                               5.0,
                                                                               15.0,
@@ -1747,7 +1754,7 @@ class _ApprovalEventProposalWidgetState
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               4.0,
                                                                               0.0,
@@ -1779,7 +1786,7 @@ class _ApprovalEventProposalWidgetState
                                                                               .max,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               15.0,
                                                                               0.0,
                                                                               15.0,
@@ -1819,7 +1826,7 @@ class _ApprovalEventProposalWidgetState
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               4.0,
                                                                               0.0,
@@ -1844,7 +1851,7 @@ class _ApprovalEventProposalWidgetState
                                                                               .max,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               15.0,
                                                                               0.0,
                                                                               15.0,
@@ -1884,7 +1891,7 @@ class _ApprovalEventProposalWidgetState
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               4.0,
                                                                               0.0,
@@ -1909,7 +1916,7 @@ class _ApprovalEventProposalWidgetState
                                                                               .max,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               15.0,
                                                                               0.0,
                                                                               15.0,
@@ -1949,7 +1956,7 @@ class _ApprovalEventProposalWidgetState
                                                                           ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               4.0,
                                                                               0.0,
@@ -1974,7 +1981,7 @@ class _ApprovalEventProposalWidgetState
                                                                               .max,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               15.0,
                                                                               5.0,
                                                                               15.0,
@@ -1997,7 +2004,7 @@ class _ApprovalEventProposalWidgetState
                                                                               ),
                                                                               Flexible(
                                                                                 child: Align(
-                                                                                  alignment: const AlignmentDirectional(1.0, 0.0),
+                                                                                  alignment: AlignmentDirectional(1.0, 0.0),
                                                                                   child: Text(
                                                                                     approvalEventProposalEventsRecord.budgetRequest.isNotEmpty
                                                                                         ? formatNumber(
@@ -2026,10 +2033,10 @@ class _ApprovalEventProposalWidgetState
                                                                       ],
                                                                     ),
                                                                   ]
-                                                                      .divide(const SizedBox(
+                                                                      .divide(SizedBox(
                                                                           height:
                                                                               3.0))
-                                                                      .around(const SizedBox(
+                                                                      .around(SizedBox(
                                                                           height:
                                                                               3.0)),
                                                                 ),
@@ -2037,7 +2044,7 @@ class _ApprovalEventProposalWidgetState
                                                             ),
                                                           ),
                                                         ),
-                                                      ].divide(const SizedBox(
+                                                      ].divide(SizedBox(
                                                           height: 10.0)),
                                                     ),
                                                   ),
@@ -2049,7 +2056,7 @@ class _ApprovalEventProposalWidgetState
                                         KeepAliveWidgetWrapper(
                                           builder: (context) => Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 35.0),
                                             child: SingleChildScrollView(
                                               primary: false,
@@ -2058,7 +2065,7 @@ class _ApprovalEventProposalWidgetState
                                                 children: [
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Text(
                                                       'Program Flow',
@@ -2078,7 +2085,7 @@ class _ApprovalEventProposalWidgetState
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 10.0,
                                                                 0.0, 0.0),
                                                     child: Builder(
@@ -2103,7 +2110,7 @@ class _ApprovalEventProposalWidgetState
                                                                     programIndex];
                                                             return Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -2118,7 +2125,7 @@ class _ApprovalEventProposalWidgetState
                                                                               5.0),
                                                                 ),
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           5.0,
@@ -2140,7 +2147,7 @@ class _ApprovalEventProposalWidgetState
                                                                         children: [
                                                                           Align(
                                                                             alignment:
-                                                                                const AlignmentDirectional(-1.0, 0.0),
+                                                                                AlignmentDirectional(-1.0, 0.0),
                                                                             child:
                                                                                 Text(
                                                                               programItem.activity,
@@ -2153,7 +2160,7 @@ class _ApprovalEventProposalWidgetState
                                                                           ),
                                                                           Align(
                                                                             alignment:
-                                                                                const AlignmentDirectional(-1.0, 0.0),
+                                                                                AlignmentDirectional(-1.0, 0.0),
                                                                             child:
                                                                                 Text(
                                                                               '${dateTimeFormat(
@@ -2215,7 +2222,7 @@ class _ApprovalEventProposalWidgetState
                                       .approvalStatus ==
                                   'Pending'))
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 10.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
@@ -2235,108 +2242,216 @@ class _ApprovalEventProposalWidgetState
                                               .currentApprovalStep))
                                     Builder(
                                       builder: (context) => Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 0.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
                                             logFirebaseEvent(
                                                 'APPROVAL_EVENT_PROPOSAL_APPROVE_EVENT_BT');
-                                            logFirebaseEvent(
-                                                'Button_alert_dialog');
-                                            await showDialog(
-                                              barrierDismissible: false,
-                                              context: context,
-                                              builder: (dialogContext) {
-                                                return Dialog(
-                                                  elevation: 0,
-                                                  insetPadding: EdgeInsets.zero,
-                                                  backgroundColor:
-                                                      Colors.transparent,
-                                                  alignment:
-                                                      const AlignmentDirectional(
-                                                              0.0, 0.0)
-                                                          .resolve(
-                                                              Directionality.of(
-                                                                  context)),
-                                                  child: WebViewAware(
-                                                    child: GestureDetector(
-                                                      onTap: () =>
-                                                          FocusScope.of(
-                                                                  dialogContext)
-                                                              .unfocus(),
-                                                      child:
-                                                          const ConfirmDialogBoxWidget(
-                                                        confirmDialogTitle:
-                                                            'Process Request',
-                                                        confirmDialogMeesage:
-                                                            'Are you sure you want to process this request?',
-                                                      ),
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            ).then((value) => safeSetState(() =>
-                                                _model.confirmDialog = value));
-
-                                            if (_model.confirmDialog!) {
+                                            var _shouldSetState = false;
+                                            if (approvalEventProposalEventsRecord
+                                                    .facility !=
+                                                null) {
                                               logFirebaseEvent(
-                                                  'Button_alert_dialog');
-                                              await showDialog(
-                                                barrierDismissible: false,
-                                                context: context,
-                                                builder: (dialogContext) {
-                                                  return Dialog(
-                                                    elevation: 0,
-                                                    insetPadding:
-                                                        EdgeInsets.zero,
-                                                    backgroundColor:
-                                                        Colors.transparent,
-                                                    alignment:
-                                                        const AlignmentDirectional(
-                                                                0.0, 0.0)
-                                                            .resolve(
-                                                                Directionality.of(
-                                                                    context)),
-                                                    child: WebViewAware(
-                                                      child: GestureDetector(
-                                                        onTap: () =>
-                                                            FocusScope.of(
-                                                                    dialogContext)
-                                                                .unfocus(),
-                                                        child:
-                                                            const InformationDialogBoxWidget(
-                                                          infoDialogTitle:
-                                                              'Request Processed',
-                                                          infoDialogMeesage:
-                                                              'You have interposed no objection to the proposed event, and it is hereby approved.',
+                                                  'Button_custom_action');
+                                              _model.isRoomAvailableChecker =
+                                                  await actions
+                                                      .checkRoomAvailability(
+                                                approvalEventProposalEventsRecord
+                                                    .facility!,
+                                                approvalEventProposalEventsRecord
+                                                    .startDate!,
+                                                approvalEventProposalEventsRecord
+                                                    .endTime!,
+                                              );
+                                              _shouldSetState = true;
+                                              if (_model
+                                                  .isRoomAvailableChecker!) {
+                                                logFirebaseEvent(
+                                                    'Button_alert_dialog');
+                                                await showDialog(
+                                                  barrierDismissible: false,
+                                                  context: context,
+                                                  builder: (dialogContext) {
+                                                    return Dialog(
+                                                      elevation: 0,
+                                                      insetPadding:
+                                                          EdgeInsets.zero,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                      child: WebViewAware(
+                                                        child: GestureDetector(
+                                                          onTap: () =>
+                                                              FocusScope.of(
+                                                                      dialogContext)
+                                                                  .unfocus(),
+                                                          child:
+                                                              ConfirmDialogBoxWidget(
+                                                            confirmDialogTitle:
+                                                                'Process Request',
+                                                            confirmDialogMeesage:
+                                                                'Are you sure you want to process this request?',
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  );
-                                                },
-                                              );
+                                                    );
+                                                  },
+                                                ).then((value) => safeSetState(
+                                                    () =>
+                                                        _model.confirmDialog1 =
+                                                            value));
 
-                                              logFirebaseEvent(
-                                                  'Button_action_block');
-                                              await action_blocks
-                                                  .dynamicApprove(
-                                                context,
-                                                approveWhat: 'event',
-                                                approvalList:
-                                                    approvalEventProposalEventsRecord
-                                                        .currentApprovalSignatory,
-                                                approvalStep:
-                                                    approvalEventProposalEventsRecord
-                                                        .currentApprovalStep,
-                                                approveEventRef:
-                                                    widget.eventRef,
-                                                approveWho:
-                                                    approvalEventProposalEventsRecord
-                                                        .eventOrganizer,
-                                                approveName:
-                                                    approvalEventProposalEventsRecord
-                                                        .eventName,
-                                              );
+                                                _shouldSetState = true;
+                                                if (_model.confirmDialog1!) {
+                                                  logFirebaseEvent(
+                                                      'Button_alert_dialog');
+                                                  await showDialog(
+                                                    barrierDismissible: false,
+                                                    context: context,
+                                                    builder: (dialogContext) {
+                                                      return Dialog(
+                                                        elevation: 0,
+                                                        insetPadding:
+                                                            EdgeInsets.zero,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                        child: WebViewAware(
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () =>
+                                                                FocusScope.of(
+                                                                        dialogContext)
+                                                                    .unfocus(),
+                                                            child:
+                                                                InformationDialogBoxWidget(
+                                                              infoDialogTitle:
+                                                                  'Request Processed',
+                                                              infoDialogMeesage:
+                                                                  'You have interposed no objection to the proposed event, and it is hereby approved.',
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+
+                                                  logFirebaseEvent(
+                                                      'Button_action_block');
+                                                  await action_blocks
+                                                      .dynamicApprove(
+                                                    context,
+                                                    approveWhat: 'event',
+                                                    approvalList:
+                                                        approvalEventProposalEventsRecord
+                                                            .currentApprovalSignatory,
+                                                    approvalStep:
+                                                        approvalEventProposalEventsRecord
+                                                            .currentApprovalStep,
+                                                    approveEventRef:
+                                                        widget!.eventRef,
+                                                    approveWho:
+                                                        approvalEventProposalEventsRecord
+                                                            .eventOrganizer,
+                                                    approveName:
+                                                        approvalEventProposalEventsRecord
+                                                            .eventName,
+                                                  );
+                                                } else {
+                                                  logFirebaseEvent(
+                                                      'Button_alert_dialog');
+                                                  await showDialog(
+                                                    barrierDismissible: false,
+                                                    context: context,
+                                                    builder: (dialogContext) {
+                                                      return Dialog(
+                                                        elevation: 0,
+                                                        insetPadding:
+                                                            EdgeInsets.zero,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                        child: WebViewAware(
+                                                          child:
+                                                              GestureDetector(
+                                                            onTap: () =>
+                                                                FocusScope.of(
+                                                                        dialogContext)
+                                                                    .unfocus(),
+                                                            child:
+                                                                InformationDialogBoxWidget(
+                                                              infoDialogTitle:
+                                                                  'Action Cancelled',
+                                                              infoDialogMeesage:
+                                                                  'This action has been cancelled and no changes has been made.',
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  );
+                                                }
+
+                                                if (_shouldSetState)
+                                                  safeSetState(() {});
+                                                return;
+                                              } else {
+                                                logFirebaseEvent(
+                                                    'Button_alert_dialog');
+                                                await showDialog(
+                                                  context: context,
+                                                  builder: (dialogContext) {
+                                                    return Dialog(
+                                                      elevation: 0,
+                                                      insetPadding:
+                                                          EdgeInsets.zero,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                      child: WebViewAware(
+                                                        child: GestureDetector(
+                                                          onTap: () =>
+                                                              FocusScope.of(
+                                                                      dialogContext)
+                                                                  .unfocus(),
+                                                          child:
+                                                              FailedDialogBoxWidget(
+                                                            failedDialogTitle:
+                                                                'Facility has been Taken',
+                                                            failedDialogMeesage:
+                                                                'As of this moment, there has been an event who was able to secure the facility first. You can opt to choose giving a revision status to this proposal.',
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+
+                                                if (_shouldSetState)
+                                                  safeSetState(() {});
+                                                return;
+                                              }
                                             } else {
                                               logFirebaseEvent(
                                                   'Button_alert_dialog');
@@ -2351,7 +2466,7 @@ class _ApprovalEventProposalWidgetState
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
@@ -2363,30 +2478,136 @@ class _ApprovalEventProposalWidgetState
                                                                     dialogContext)
                                                                 .unfocus(),
                                                         child:
-                                                            const InformationDialogBoxWidget(
-                                                          infoDialogTitle:
-                                                              'Action Cancelled',
-                                                          infoDialogMeesage:
-                                                              'This action has been cancelled and no changes has been made.',
+                                                            ConfirmDialogBoxWidget(
+                                                          confirmDialogTitle:
+                                                              'Process Request',
+                                                          confirmDialogMeesage:
+                                                              'Are you sure you want to process this request?',
                                                         ),
                                                       ),
                                                     ),
                                                   );
                                                 },
-                                              );
+                                              ).then((value) => safeSetState(
+                                                  () => _model.confirmDialog =
+                                                      value));
+
+                                              _shouldSetState = true;
+                                              if (_model.confirmDialog!) {
+                                                logFirebaseEvent(
+                                                    'Button_alert_dialog');
+                                                await showDialog(
+                                                  barrierDismissible: false,
+                                                  context: context,
+                                                  builder: (dialogContext) {
+                                                    return Dialog(
+                                                      elevation: 0,
+                                                      insetPadding:
+                                                          EdgeInsets.zero,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                      child: WebViewAware(
+                                                        child: GestureDetector(
+                                                          onTap: () =>
+                                                              FocusScope.of(
+                                                                      dialogContext)
+                                                                  .unfocus(),
+                                                          child:
+                                                              InformationDialogBoxWidget(
+                                                            infoDialogTitle:
+                                                                'Request Processed',
+                                                            infoDialogMeesage:
+                                                                'You have interposed no objection to the proposed event, and it is hereby approved.',
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+
+                                                logFirebaseEvent(
+                                                    'Button_action_block');
+                                                await action_blocks
+                                                    .dynamicApprove(
+                                                  context,
+                                                  approveWhat: 'event',
+                                                  approvalList:
+                                                      approvalEventProposalEventsRecord
+                                                          .currentApprovalSignatory,
+                                                  approvalStep:
+                                                      approvalEventProposalEventsRecord
+                                                          .currentApprovalStep,
+                                                  approveEventRef:
+                                                      widget!.eventRef,
+                                                  approveWho:
+                                                      approvalEventProposalEventsRecord
+                                                          .eventOrganizer,
+                                                  approveName:
+                                                      approvalEventProposalEventsRecord
+                                                          .eventName,
+                                                );
+                                              } else {
+                                                logFirebaseEvent(
+                                                    'Button_alert_dialog');
+                                                await showDialog(
+                                                  barrierDismissible: false,
+                                                  context: context,
+                                                  builder: (dialogContext) {
+                                                    return Dialog(
+                                                      elevation: 0,
+                                                      insetPadding:
+                                                          EdgeInsets.zero,
+                                                      backgroundColor:
+                                                          Colors.transparent,
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                      child: WebViewAware(
+                                                        child: GestureDetector(
+                                                          onTap: () =>
+                                                              FocusScope.of(
+                                                                      dialogContext)
+                                                                  .unfocus(),
+                                                          child:
+                                                              InformationDialogBoxWidget(
+                                                            infoDialogTitle:
+                                                                'Action Cancelled',
+                                                            infoDialogMeesage:
+                                                                'This action has been cancelled and no changes has been made.',
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+                                              }
+
+                                              if (_shouldSetState)
+                                                safeSetState(() {});
+                                              return;
                                             }
 
-                                            safeSetState(() {});
+                                            if (_shouldSetState)
+                                              safeSetState(() {});
                                           },
                                           text: 'Approve Event',
                                           options: FFButtonOptions(
                                             width: double.infinity,
                                             height: 40.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     24.0, 0.0, 24.0, 0.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
@@ -2400,7 +2621,7 @@ class _ApprovalEventProposalWidgetState
                                                       letterSpacing: 0.0,
                                                     ),
                                             elevation: 3.0,
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),
@@ -2411,7 +2632,7 @@ class _ApprovalEventProposalWidgetState
                                       ),
                                     ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 0.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -2457,10 +2678,10 @@ class _ApprovalEventProposalWidgetState
                                             options: FFButtonOptions(
                                               width: double.infinity,
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -2472,12 +2693,12 @@ class _ApprovalEventProposalWidgetState
                                                     fontFamily: 'Montserrat',
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .primaryText,
+                                                        .primaryBackground,
                                                     fontSize: 13.0,
                                                     letterSpacing: 0.0,
                                                   ),
                                               elevation: 3.0,
-                                              borderSide: const BorderSide(
+                                              borderSide: BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),
@@ -2525,10 +2746,10 @@ class _ApprovalEventProposalWidgetState
                                             options: FFButtonOptions(
                                               width: double.infinity,
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       24.0, 0.0, 24.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -2544,7 +2765,7 @@ class _ApprovalEventProposalWidgetState
                                                         letterSpacing: 0.0,
                                                       ),
                                               elevation: 3.0,
-                                              borderSide: const BorderSide(
+                                              borderSide: BorderSide(
                                                 color: Colors.transparent,
                                                 width: 1.0,
                                               ),
@@ -2553,7 +2774,7 @@ class _ApprovalEventProposalWidgetState
                                             ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 10.0)),
+                                      ].divide(SizedBox(width: 10.0)),
                                     ),
                                   ),
                                 ],

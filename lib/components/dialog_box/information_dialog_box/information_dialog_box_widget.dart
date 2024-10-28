@@ -3,7 +3,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'information_dialog_box_model.dart';
 export 'information_dialog_box_model.dart';
 
@@ -12,7 +15,7 @@ class InformationDialogBoxWidget extends StatefulWidget {
     super.key,
     String? infoDialogTitle,
     required this.infoDialogMeesage,
-  }) : infoDialogTitle = infoDialogTitle ?? 'Congratulations';
+  }) : this.infoDialogTitle = infoDialogTitle ?? 'Congratulations';
 
   final String infoDialogTitle;
   final String? infoDialogMeesage;
@@ -50,7 +53,7 @@ class _InformationDialogBoxWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: EdgeInsets.all(20.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -58,7 +61,7 @@ class _InformationDialogBoxWidgetState
           borderRadius: BorderRadius.circular(30.0),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -73,9 +76,9 @@ class _InformationDialogBoxWidgetState
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: Text(
-                  widget.infoDialogTitle,
+                  widget!.infoDialogTitle,
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Montserrat',
@@ -87,10 +90,10 @@ class _InformationDialogBoxWidgetState
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: Text(
                   valueOrDefault<String>(
-                    widget.infoDialogMeesage,
+                    widget!.infoDialogMeesage,
                     'You have succesfully applied for this organization. Kindly wait for the approval.',
                   ),
                   textAlign: TextAlign.center,
@@ -104,7 +107,7 @@ class _InformationDialogBoxWidgetState
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     logFirebaseEvent('INFORMATION_DIALOG_BOX_OKAY_BTN_ON_TAP');
@@ -116,9 +119,9 @@ class _InformationDialogBoxWidgetState
                     width: double.infinity,
                     height: 40.0,
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                     iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Montserrat',

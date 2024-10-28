@@ -1,11 +1,16 @@
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:styled_divider/styled_divider.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'order_view_admin_model.dart';
 export 'order_view_admin_model.dart';
 
@@ -51,16 +56,16 @@ class _OrderViewAdminWidgetState extends State<OrderViewAdminWidget> {
       body: SafeArea(
         top: true,
         child: Align(
-          alignment: const AlignmentDirectional(0.0, -1.0),
+          alignment: AlignmentDirectional(0.0, -1.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TitleHeaderComponentWidget(
+                  child: TitleHeaderComponentWidget(
                     titleText: 'View Order',
                   ),
                 ),
@@ -71,7 +76,7 @@ class _OrderViewAdminWidgetState extends State<OrderViewAdminWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 16.0, 24.0),
                         child: Wrap(
                           spacing: 16.0,
@@ -84,7 +89,7 @@ class _OrderViewAdminWidgetState extends State<OrderViewAdminWidget> {
                           clipBehavior: Clip.none,
                           children: [
                             Container(
-                              constraints: const BoxConstraints(
+                              constraints: BoxConstraints(
                                 maxWidth: 750.0,
                               ),
                               decoration: BoxDecoration(
@@ -97,7 +102,7 @@ class _OrderViewAdminWidgetState extends State<OrderViewAdminWidget> {
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(16.0),
+                                padding: EdgeInsets.all(16.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,7 +117,7 @@ class _OrderViewAdminWidgetState extends State<OrderViewAdminWidget> {
                                           ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 12.0),
                                       child: Text(
                                         'Below are the orders made.',
@@ -126,11 +131,11 @@ class _OrderViewAdminWidgetState extends State<OrderViewAdminWidget> {
                                     ),
                                     Builder(
                                       builder: (context) {
-                                        final myProducts = widget
+                                        final myProducts = widget!
                                                 .order?.products
-                                                .map((e) => e)
+                                                ?.map((e) => e)
                                                 .toList()
-                                                .toList() ??
+                                                ?.toList() ??
                                             [];
 
                                         return ListView.builder(
@@ -175,7 +180,7 @@ class _OrderViewAdminWidgetState extends State<OrderViewAdminWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -218,7 +223,7 @@ class _OrderViewAdminWidgetState extends State<OrderViewAdminWidget> {
                                                           ),
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsets.all(
+                                                                EdgeInsets.all(
                                                                     5.0),
                                                             child: Row(
                                                               mainAxisSize:
@@ -234,7 +239,7 @@ class _OrderViewAdminWidgetState extends State<OrderViewAdminWidget> {
                                                                 Expanded(
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -246,7 +251,7 @@ class _OrderViewAdminWidgetState extends State<OrderViewAdminWidget> {
                                                                               .min,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               10.0,
@@ -263,7 +268,7 @@ class _OrderViewAdminWidgetState extends State<OrderViewAdminWidget> {
                                                                             ),
                                                                             child:
                                                                                 Padding(
-                                                                              padding: const EdgeInsets.all(2.0),
+                                                                              padding: EdgeInsets.all(2.0),
                                                                               child: Image.network(
                                                                                 itemProductsRecord.image,
                                                                                 width: 40.0,
@@ -275,7 +280,7 @@ class _OrderViewAdminWidgetState extends State<OrderViewAdminWidget> {
                                                                         Flexible(
                                                                           child:
                                                                               Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 10.0,
@@ -352,7 +357,7 @@ class _OrderViewAdminWidgetState extends State<OrderViewAdminWidget> {
                                                                                               ),
                                                                                               '₱123',
                                                                                             ),
-                                                                                            style: const TextStyle(),
+                                                                                            style: TextStyle(),
                                                                                           )
                                                                                         ],
                                                                                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -403,14 +408,14 @@ class _OrderViewAdminWidgetState extends State<OrderViewAdminWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Container(
                               width: double.infinity,
-                              constraints: const BoxConstraints(
+                              constraints: BoxConstraints(
                                 maxWidth: 430.0,
                               ),
                               decoration: BoxDecoration(
@@ -423,7 +428,7 @@ class _OrderViewAdminWidgetState extends State<OrderViewAdminWidget> {
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     16.0, 16.0, 16.0, 24.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -446,7 +451,7 @@ class _OrderViewAdminWidgetState extends State<OrderViewAdminWidget> {
                                       lineStyle: DividerLineStyle.dashed,
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 12.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -455,7 +460,7 @@ class _OrderViewAdminWidgetState extends State<OrderViewAdminWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 8.0, 0.0, 8.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -508,7 +513,7 @@ class _OrderViewAdminWidgetState extends State<OrderViewAdminWidget> {
                                                 Text(
                                                   valueOrDefault<String>(
                                                     formatNumber(
-                                                      widget.order?.totalPrice,
+                                                      widget!.order?.totalPrice,
                                                       formatType:
                                                           FormatType.decimal,
                                                       decimalType: DecimalType

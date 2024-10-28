@@ -3,7 +3,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
 
+import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 class UserSettingsStruct extends FFFirebaseStruct {
@@ -21,6 +23,7 @@ class UserSettingsStruct extends FFFirebaseStruct {
     bool? toPushNotificiationManamgement,
     bool? toResourcesManagement,
     bool? toUserManagement,
+    bool? toReports,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _isDeactivated = isDeactivated,
         _isSuperAdmin = isSuperAdmin,
@@ -35,6 +38,7 @@ class UserSettingsStruct extends FFFirebaseStruct {
         _toPushNotificiationManamgement = toPushNotificiationManamgement,
         _toResourcesManagement = toResourcesManagement,
         _toUserManagement = toUserManagement,
+        _toReports = toReports,
         super(firestoreUtilData);
 
   // "isDeactivated" field.
@@ -131,6 +135,13 @@ class UserSettingsStruct extends FFFirebaseStruct {
 
   bool hasToUserManagement() => _toUserManagement != null;
 
+  // "toReports" field.
+  bool? _toReports;
+  bool get toReports => _toReports ?? false;
+  set toReports(bool? val) => _toReports = val;
+
+  bool hasToReports() => _toReports != null;
+
   static UserSettingsStruct fromMap(Map<String, dynamic> data) =>
       UserSettingsStruct(
         isDeactivated: data['isDeactivated'] as bool?,
@@ -147,6 +158,7 @@ class UserSettingsStruct extends FFFirebaseStruct {
             data['toPushNotificiationManamgement'] as bool?,
         toResourcesManagement: data['toResourcesManagement'] as bool?,
         toUserManagement: data['toUserManagement'] as bool?,
+        toReports: data['toReports'] as bool?,
       );
 
   static UserSettingsStruct? maybeFromMap(dynamic data) => data is Map
@@ -167,6 +179,7 @@ class UserSettingsStruct extends FFFirebaseStruct {
         'toPushNotificiationManamgement': _toPushNotificiationManamgement,
         'toResourcesManagement': _toResourcesManagement,
         'toUserManagement': _toUserManagement,
+        'toReports': _toReports,
       }.withoutNulls;
 
   @override
@@ -221,6 +234,10 @@ class UserSettingsStruct extends FFFirebaseStruct {
         ),
         'toUserManagement': serializeParam(
           _toUserManagement,
+          ParamType.bool,
+        ),
+        'toReports': serializeParam(
+          _toReports,
           ParamType.bool,
         ),
       }.withoutNulls;
@@ -292,6 +309,11 @@ class UserSettingsStruct extends FFFirebaseStruct {
           ParamType.bool,
           false,
         ),
+        toReports: deserializeParam(
+          data['toReports'],
+          ParamType.bool,
+          false,
+        ),
       );
 
   @override
@@ -313,7 +335,8 @@ class UserSettingsStruct extends FFFirebaseStruct {
         toPushNotificiationManamgement ==
             other.toPushNotificiationManamgement &&
         toResourcesManagement == other.toResourcesManagement &&
-        toUserManagement == other.toUserManagement;
+        toUserManagement == other.toUserManagement &&
+        toReports == other.toReports;
   }
 
   @override
@@ -330,7 +353,8 @@ class UserSettingsStruct extends FFFirebaseStruct {
         toOrganizationManagement,
         toPushNotificiationManamgement,
         toResourcesManagement,
-        toUserManagement
+        toUserManagement,
+        toReports
       ]);
 }
 
@@ -348,6 +372,7 @@ UserSettingsStruct createUserSettingsStruct({
   bool? toPushNotificiationManamgement,
   bool? toResourcesManagement,
   bool? toUserManagement,
+  bool? toReports,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -367,6 +392,7 @@ UserSettingsStruct createUserSettingsStruct({
       toPushNotificiationManamgement: toPushNotificiationManamgement,
       toResourcesManagement: toResourcesManagement,
       toUserManagement: toUserManagement,
+      toReports: toReports,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

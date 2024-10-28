@@ -5,13 +5,18 @@ import '/components/widgets/title_header_component/title_header_component_widget
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/users/general/component/notif_item/notif_item_widget.dart';
+import 'dart:math';
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:styled_divider/styled_divider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'notification_model.dart';
 export 'notification_model.dart';
 
@@ -41,7 +46,7 @@ class _NotificationWidgetState extends State<NotificationWidget>
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       logFirebaseEvent('NOTIFICATION_notification_ON_INIT_STATE');
       logFirebaseEvent('notification_wait__delay');
-      await Future.delayed(const Duration(milliseconds: 1000));
+      await Future.delayed(const Duration(milliseconds: 1500));
       logFirebaseEvent('notification_backend_call');
 
       await currentUserReference!.update({
@@ -94,170 +99,158 @@ class _NotificationWidgetState extends State<NotificationWidget>
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<NotificationsRecord>>(
-      future: queryNotificationsRecordOnce(
-        queryBuilder: (notificationsRecord) => notificationsRecord
-            .where(Filter.or(
-              Filter(
-                'type',
-                isEqualTo: 'global',
-              ),
-              Filter(
-                'user',
-                isEqualTo: currentUserReference,
-              ),
-              Filter(
-                'multiple_users',
-                arrayContains: currentUserReference,
-              ),
-            ))
-            .orderBy('created_on', descending: true),
-        limit: 10,
-      ),
-      builder: (context, snapshot) {
-        // Customize what your widget looks like when it's loading.
-        if (!snapshot.hasData) {
-          return Scaffold(
-            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: Center(
-              child: SizedBox(
-                width: 50.0,
-                height: 50.0,
-                child: SpinKitChasingDots(
-                  color: FlutterFlowTheme.of(context).primary,
-                  size: 50.0,
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        key: scaffoldKey,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        body: SafeArea(
+          top: true,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                child: wrapWithModel(
+                  model: _model.titleHeaderComponentModel,
+                  updateCallback: () => safeSetState(() {}),
+                  child: TitleHeaderComponentWidget(
+                    titleText: 'Notifications',
+                  ),
                 ),
               ),
-            ),
-          );
-        }
-        List<NotificationsRecord> notificationNotificationsRecordList =
-            snapshot.data!;
-
-        return GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Scaffold(
-            key: scaffoldKey,
-            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: SafeArea(
-              top: true,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
-                    child: wrapWithModel(
-                      model: _model.titleHeaderComponentModel,
-                      updateCallback: () => safeSetState(() {}),
-                      child: const TitleHeaderComponentWidget(
-                        titleText: 'Notifications',
-                      ),
-                    ),
+              Expanded(
+                child: FutureBuilder<List<NotificationsRecord>>(
+                  future: queryNotificationsRecordOnce(
+                    queryBuilder: (notificationsRecord) => notificationsRecord
+                        .where(Filter.or(
+                          Filter(
+                            'type',
+                            isEqualTo: 'global',
+                          ),
+                          Filter(
+                            'user',
+                            isEqualTo: currentUserReference,
+                          ),
+                          Filter(
+                            'multiple_users',
+                            arrayContains: currentUserReference,
+                          ),
+                        ))
+                        .orderBy('created_on', descending: true),
+                    limit: 10,
                   ),
-                  Expanded(
-                    child: Builder(
-                      builder: (context) {
-                        final allNotif =
-                            notificationNotificationsRecordList.toList();
-                        if (allNotif.isEmpty) {
-                          return const EmptyNotificationWidget();
-                        }
+                  builder: (context, snapshot) {
+                    // Customize what your widget looks like when it's loading.
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: SizedBox(
+                          width: 50.0,
+                          height: 50.0,
+                          child: SpinKitChasingDots(
+                            color: FlutterFlowTheme.of(context).primary,
+                            size: 50.0,
+                          ),
+                        ),
+                      );
+                    }
+                    List<NotificationsRecord> listViewNotificationsRecordList =
+                        snapshot.data!;
+                    if (listViewNotificationsRecordList.isEmpty) {
+                      return EmptyNotificationWidget();
+                    }
 
-                        return ListView.builder(
-                          padding: EdgeInsets.zero,
-                          primary: false,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          itemCount: allNotif.length,
-                          itemBuilder: (context, allNotifIndex) {
-                            final allNotifItem = allNotif[allNotifIndex];
-                            return Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 0.0, 10.0, 0.0),
-                                  child: FutureBuilder<UsersRecord>(
-                                    future: UsersRecord.getDocumentOnce(
-                                        allNotifItem.createdBy!),
-                                    builder: (context, snapshot) {
-                                      // Customize what your widget looks like when it's loading.
-                                      if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 50.0,
-                                            height: 50.0,
-                                            child: SpinKitChasingDots(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              size: 50.0,
-                                            ),
-                                          ),
-                                        );
-                                      }
-
-                                      final notifItemUsersRecord =
-                                          snapshot.data!;
-
-                                      return wrapWithModel(
-                                        model: _model.notifItemModels.getModel(
-                                          random_data.randomString(
-                                            0,
-                                            0,
-                                            true,
-                                            true,
-                                            true,
-                                          ),
-                                          allNotifIndex,
+                    return ListView.builder(
+                      padding: EdgeInsets.zero,
+                      primary: false,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      itemCount: listViewNotificationsRecordList.length,
+                      itemBuilder: (context, listViewIndex) {
+                        final listViewNotificationsRecord =
+                            listViewNotificationsRecordList[listViewIndex];
+                        return Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10.0, 0.0, 10.0, 0.0),
+                              child: FutureBuilder<UsersRecord>(
+                                future: UsersRecord.getDocumentOnce(
+                                    listViewNotificationsRecord.createdBy!),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50.0,
+                                        height: 50.0,
+                                        child: SpinKitChasingDots(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          size: 50.0,
                                         ),
-                                        updateCallback: () =>
-                                            safeSetState(() {}),
-                                        updateOnChange: true,
-                                        child: NotifItemWidget(
-                                          key: Key(
-                                            'Keyll0_${random_data.randomString(
-                                              0,
-                                              0,
-                                              true,
-                                              true,
-                                              true,
-                                            )}',
-                                          ),
-                                          iconImage:
-                                              notifItemUsersRecord.photoUrl,
-                                          title: allNotifItem.title,
-                                          time: allNotifItem.createdOn!,
-                                          message: allNotifItem.message,
-                                        ),
-                                      ).animateOnPageLoad(animationsMap[
-                                          'notifItemOnPageLoadAnimation']!);
-                                    },
-                                  ),
-                                ),
-                                StyledDivider(
-                                  height: 20.0,
-                                  thickness: 0.5,
-                                  color: FlutterFlowTheme.of(context).lineColor,
-                                  lineStyle: DividerLineStyle.dashed,
-                                ),
-                              ],
-                            );
-                          },
-                        ).animateOnPageLoad(
-                            animationsMap['listViewOnPageLoadAnimation']!);
+                                      ),
+                                    );
+                                  }
+
+                                  final notifItemUsersRecord = snapshot.data!;
+
+                                  return wrapWithModel(
+                                    model: _model.notifItemModels.getModel(
+                                      random_data.randomString(
+                                        6,
+                                        6,
+                                        true,
+                                        true,
+                                        true,
+                                      ),
+                                      listViewIndex,
+                                    ),
+                                    updateCallback: () => safeSetState(() {}),
+                                    updateOnChange: true,
+                                    child: NotifItemWidget(
+                                      key: Key(
+                                        'Keyll0_${random_data.randomString(
+                                          6,
+                                          6,
+                                          true,
+                                          true,
+                                          true,
+                                        )}',
+                                      ),
+                                      iconImage: notifItemUsersRecord.photoUrl,
+                                      title: listViewNotificationsRecord.title,
+                                      time: listViewNotificationsRecord
+                                          .createdOn!,
+                                      message:
+                                          listViewNotificationsRecord.message,
+                                    ),
+                                  ).animateOnPageLoad(animationsMap[
+                                      'notifItemOnPageLoadAnimation']!);
+                                },
+                              ),
+                            ),
+                            StyledDivider(
+                              height: 20.0,
+                              thickness: 0.5,
+                              color: FlutterFlowTheme.of(context).lineColor,
+                              lineStyle: DividerLineStyle.dashed,
+                            ),
+                          ],
+                        );
                       },
-                    ),
-                  ),
-                ],
+                    ).animateOnPageLoad(
+                        animationsMap['listViewOnPageLoadAnimation']!);
+                  },
+                ),
               ),
-            ),
+            ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

@@ -13,6 +13,8 @@ import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'admin_notif_send_model.dart';
 export 'admin_notif_send_model.dart';
@@ -83,7 +85,7 @@ class _AdminNotifSendWidgetState extends State<AdminNotifSendWidget> {
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,7 +96,7 @@ class _AdminNotifSendWidgetState extends State<AdminNotifSendWidget> {
                         wrapWithModel(
                           model: _model.titleHeaderComponentModel,
                           updateCallback: () => safeSetState(() {}),
-                          child: const TitleHeaderComponentWidget(
+                          child: TitleHeaderComponentWidget(
                             titleText: 'Push Notification',
                           ),
                         ),
@@ -105,7 +107,7 @@ class _AdminNotifSendWidgetState extends State<AdminNotifSendWidget> {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            SizedBox(
+                            Container(
                               width: double.infinity,
                               child: Form(
                                 key: _model.formKey,
@@ -130,7 +132,7 @@ class _AdminNotifSendWidgetState extends State<AdminNotifSendWidget> {
                                         model: _model.subtitleHeaderModel,
                                         updateCallback: () =>
                                             safeSetState(() {}),
-                                        child: const SubtitleHeaderWidget(
+                                        child: SubtitleHeaderWidget(
                                           mainTitle: 'Send Push Notification',
                                           subText:
                                               'This enables you to send notifications across all devices that have NU GO.',
@@ -233,7 +235,7 @@ class _AdminNotifSendWidgetState extends State<AdminNotifSendWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller: _model
@@ -315,7 +317,7 @@ class _AdminNotifSendWidgetState extends State<AdminNotifSendWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller:
@@ -399,13 +401,13 @@ class _AdminNotifSendWidgetState extends State<AdminNotifSendWidget> {
                                     ),
                                     Builder(
                                       builder: (context) => Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 15.0, 0.0, 0.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
                                             logFirebaseEvent(
                                                 'ADMIN_NOTIF_SEND_PAGE_Save_ON_TAP');
-                                            var shouldSetState = false;
+                                            var _shouldSetState = false;
                                             logFirebaseEvent(
                                                 'Save_validate_form');
                                             if (_model.formKey.currentState ==
@@ -414,7 +416,9 @@ class _AdminNotifSendWidgetState extends State<AdminNotifSendWidget> {
                                                     .validate()) {
                                               return;
                                             }
-                                            if (_model
+                                            if (_model.uploadedFileUrl ==
+                                                    null ||
+                                                _model
                                                     .uploadedFileUrl.isEmpty) {
                                               return;
                                             }
@@ -429,7 +433,7 @@ class _AdminNotifSendWidgetState extends State<AdminNotifSendWidget> {
                                                   backgroundColor:
                                                       Colors.transparent,
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                               0.0, 0.0)
                                                           .resolve(
                                                               Directionality.of(
@@ -441,7 +445,7 @@ class _AdminNotifSendWidgetState extends State<AdminNotifSendWidget> {
                                                                   dialogContext)
                                                               .unfocus(),
                                                       child:
-                                                          const ConfirmPasswordDialogWidget(),
+                                                          ConfirmPasswordDialogWidget(),
                                                     ),
                                                   ),
                                                 );
@@ -450,7 +454,7 @@ class _AdminNotifSendWidgetState extends State<AdminNotifSendWidget> {
                                                 _model.confirmPushNotif =
                                                     value));
 
-                                            shouldSetState = true;
+                                            _shouldSetState = true;
                                             if (_model.confirmPushNotif!) {
                                               logFirebaseEvent(
                                                   'Save_trigger_push_notification');
@@ -504,7 +508,7 @@ class _AdminNotifSendWidgetState extends State<AdminNotifSendWidget> {
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
@@ -516,7 +520,7 @@ class _AdminNotifSendWidgetState extends State<AdminNotifSendWidget> {
                                                                     dialogContext)
                                                                 .unfocus(),
                                                         child:
-                                                            const InformationDialogBoxWidget(
+                                                            InformationDialogBoxWidget(
                                                           infoDialogTitle:
                                                               'Notification Sent',
                                                           infoDialogMeesage:
@@ -528,9 +532,8 @@ class _AdminNotifSendWidgetState extends State<AdminNotifSendWidget> {
                                                 },
                                               );
 
-                                              if (shouldSetState) {
+                                              if (_shouldSetState)
                                                 safeSetState(() {});
-                                              }
                                               return;
                                             } else {
                                               logFirebaseEvent(
@@ -545,7 +548,7 @@ class _AdminNotifSendWidgetState extends State<AdminNotifSendWidget> {
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
@@ -557,7 +560,7 @@ class _AdminNotifSendWidgetState extends State<AdminNotifSendWidget> {
                                                                     dialogContext)
                                                                 .unfocus(),
                                                         child:
-                                                            const InformationDialogBoxWidget(
+                                                            InformationDialogBoxWidget(
                                                           infoDialogTitle:
                                                               'Action Cancelled',
                                                           infoDialogMeesage:
@@ -572,25 +575,23 @@ class _AdminNotifSendWidgetState extends State<AdminNotifSendWidget> {
                                               logFirebaseEvent(
                                                   'Save_navigate_back');
                                               context.safePop();
-                                              if (shouldSetState) {
+                                              if (_shouldSetState)
                                                 safeSetState(() {});
-                                              }
                                               return;
                                             }
 
-                                            if (shouldSetState) {
+                                            if (_shouldSetState)
                                               safeSetState(() {});
-                                            }
                                           },
                                           text: 'Send Notification',
                                           options: FFButtonOptions(
                                             width: double.infinity,
                                             height: 50.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
@@ -604,7 +605,7 @@ class _AdminNotifSendWidgetState extends State<AdminNotifSendWidget> {
                                                       letterSpacing: 0.0,
                                                     ),
                                             elevation: 3.0,
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),

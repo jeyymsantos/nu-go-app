@@ -1,9 +1,18 @@
+import '/backend/firebase_storage/storage.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/upload_data.dart';
 import 'update_product_marketplace_widget.dart'
     show UpdateProductMarketplaceWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class UpdateProductMarketplaceModel
     extends FlutterFlowModel<UpdateProductMarketplaceWidget> {

@@ -6,7 +6,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'user_feedback_copy_model.dart';
 export 'user_feedback_copy_model.dart';
@@ -53,9 +56,9 @@ class _UserFeedbackCopyWidgetState extends State<UserFeedbackCopyWidget> {
         body: SafeArea(
           top: true,
           child: Align(
-            alignment: const AlignmentDirectional(0.0, -1.0),
+            alignment: AlignmentDirectional(0.0, -1.0),
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -64,12 +67,12 @@ class _UserFeedbackCopyWidgetState extends State<UserFeedbackCopyWidget> {
                   wrapWithModel(
                     model: _model.titleHeaderComponentModel,
                     updateCallback: () => safeSetState(() {}),
-                    child: const TitleHeaderComponentWidget(
+                    child: TitleHeaderComponentWidget(
                       titleText: 'Tell us your feedback',
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -77,7 +80,7 @@ class _UserFeedbackCopyWidgetState extends State<UserFeedbackCopyWidget> {
                         children: [
                           Container(
                             width: double.infinity,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: InkWell(
                               splashColor: Colors.transparent,
                               focusColor: Colors.transparent,
@@ -102,7 +105,7 @@ class _UserFeedbackCopyWidgetState extends State<UserFeedbackCopyWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Text(
                                   'We\'d love to hear your thoughts',
                                   style: FlutterFlowTheme.of(context)
@@ -116,7 +119,7 @@ class _UserFeedbackCopyWidgetState extends State<UserFeedbackCopyWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Text(
                                   'to help us improve your overall experience.',
                                   textAlign: TextAlign.center,
@@ -131,7 +134,7 @@ class _UserFeedbackCopyWidgetState extends State<UserFeedbackCopyWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 20.0, 0.0, 0.0),
                                 child: RatingBar.builder(
                                   onRatingUpdate: (newValue) => safeSetState(
@@ -154,7 +157,7 @@ class _UserFeedbackCopyWidgetState extends State<UserFeedbackCopyWidget> {
                             ],
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 20.0, 0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
@@ -164,7 +167,7 @@ class _UserFeedbackCopyWidgetState extends State<UserFeedbackCopyWidget> {
                                   children: [
                                     Builder(
                                       builder: (context) => Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 5.0),
                                         child: InkWell(
                                           splashColor: Colors.transparent,
@@ -185,7 +188,7 @@ class _UserFeedbackCopyWidgetState extends State<UserFeedbackCopyWidget> {
                                                   backgroundColor:
                                                       Colors.transparent,
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                               0.0, 0.0)
                                                           .resolve(
                                                               Directionality.of(
@@ -197,7 +200,7 @@ class _UserFeedbackCopyWidgetState extends State<UserFeedbackCopyWidget> {
                                                                   dialogContext)
                                                               .unfocus(),
                                                       child:
-                                                          const ConfirmPasswordDialogWidget(),
+                                                          ConfirmPasswordDialogWidget(),
                                                     ),
                                                   ),
                                                 );
@@ -303,7 +306,7 @@ class _UserFeedbackCopyWidgetState extends State<UserFeedbackCopyWidget> {
                           ),
                           Builder(
                             builder: (context) => Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 20.0, 0.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
@@ -311,7 +314,7 @@ class _UserFeedbackCopyWidgetState extends State<UserFeedbackCopyWidget> {
                                       'USER_FEEDBACK_COPY_PAGE_CHECK_BTN_ON_TAP');
                                   logFirebaseEvent('Button_alert_dialog');
                                   await showDialog(
-                                    barrierColor: const Color(0xAB1A1A1A),
+                                    barrierColor: Color(0xAB1A1A1A),
                                     context: context,
                                     builder: (dialogContext) {
                                       return Dialog(
@@ -319,7 +322,7 @@ class _UserFeedbackCopyWidgetState extends State<UserFeedbackCopyWidget> {
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
+                                            AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: WebViewAware(
@@ -327,7 +330,7 @@ class _UserFeedbackCopyWidgetState extends State<UserFeedbackCopyWidget> {
                                             onTap: () =>
                                                 FocusScope.of(dialogContext)
                                                     .unfocus(),
-                                            child: const SizedBox(
+                                            child: Container(
                                               width: double.infinity,
                                               child:
                                                   CongratulationsDialogBoxWidget(
@@ -347,9 +350,9 @@ class _UserFeedbackCopyWidgetState extends State<UserFeedbackCopyWidget> {
                                 options: FFButtonOptions(
                                   width: double.infinity,
                                   height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       16.0, 0.0, 16.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,
                                   textStyle: FlutterFlowTheme.of(context)

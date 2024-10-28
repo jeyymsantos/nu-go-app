@@ -2,7 +2,11 @@ import '/components/widgets/card_with_description/card_with_description_widget.d
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'admin_approval_offices_menu_model.dart';
 export 'admin_approval_offices_menu_model.dart';
 
@@ -47,9 +51,9 @@ class _AdminApprovalOfficesMenuWidgetState
         body: SafeArea(
           top: true,
           child: Align(
-            alignment: const AlignmentDirectional(0.0, -1.0),
+            alignment: AlignmentDirectional(0.0, -1.0),
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -61,13 +65,13 @@ class _AdminApprovalOfficesMenuWidgetState
                       wrapWithModel(
                         model: _model.titleHeaderComponentModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: const TitleHeaderComponentWidget(
+                        child: TitleHeaderComponentWidget(
                           titleText: 'Approval Management',
                         ),
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -91,7 +95,7 @@ class _AdminApprovalOfficesMenuWidgetState
                                       context.pushNamed(
                                         'admin_approval_offices_create',
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
+                                          kTransitionInfoKey: TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -103,7 +107,7 @@ class _AdminApprovalOfficesMenuWidgetState
                                     child: wrapWithModel(
                                       model: _model.cardWithDescriptionModel1,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: const CardWithDescriptionWidget(
+                                      child: CardWithDescriptionWidget(
                                         title: 'Create Approval Set',
                                         description:
                                             'Create a new approval set to be used on certain modules.',
@@ -127,7 +131,7 @@ class _AdminApprovalOfficesMenuWidgetState
                                     child: wrapWithModel(
                                       model: _model.cardWithDescriptionModel2,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: const CardWithDescriptionWidget(
+                                      child: CardWithDescriptionWidget(
                                         title: 'Assign Approval Set',
                                         description:
                                             'Assign an approval set to a certain module/forms of the application.',
@@ -151,14 +155,14 @@ class _AdminApprovalOfficesMenuWidgetState
                                     child: wrapWithModel(
                                       model: _model.cardWithDescriptionModel3,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: const CardWithDescriptionWidget(
+                                      child: CardWithDescriptionWidget(
                                         title: 'Manage Approval Set',
                                         description:
                                             'View, update, or delete any approval set on the app.',
                                       ),
                                     ),
                                   ),
-                                ].divide(const SizedBox(height: 10.0)),
+                                ].divide(SizedBox(height: 10.0)),
                               ),
                             ],
                           ),

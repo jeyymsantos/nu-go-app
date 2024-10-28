@@ -2,8 +2,12 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'auth_verify_role_model.dart';
 export 'auth_verify_role_model.dart';
 
@@ -60,7 +64,7 @@ class _AuthVerifyRoleWidgetState extends State<AuthVerifyRoleWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,15 +72,15 @@ class _AuthVerifyRoleWidgetState extends State<AuthVerifyRoleWidget> {
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: const TitleHeaderComponentWidget(
+                      child: TitleHeaderComponentWidget(
                         titleText: 'Role Verification',
                       ),
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
                           child: Image.asset(
@@ -89,10 +93,10 @@ class _AuthVerifyRoleWidgetState extends State<AuthVerifyRoleWidget> {
                       ),
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                         child: Text(
                           'Your access is being verified',
                           style: FlutterFlowTheme.of(context)
@@ -106,10 +110,10 @@ class _AuthVerifyRoleWidgetState extends State<AuthVerifyRoleWidget> {
                       ),
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 5.0, 0.0),
                         child: Text(
                           'The school admin is currently checking on your account and validating your role. Once verified, you may now login to your account.',
                           textAlign: TextAlign.center,

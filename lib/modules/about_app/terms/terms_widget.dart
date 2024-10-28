@@ -2,8 +2,14 @@ import '/components/widgets/title_header_component/title_header_component_widget
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'terms_model.dart';
 export 'terms_model.dart';
 
@@ -267,14 +273,14 @@ class _TermsWidgetState extends State<TermsWidget>
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TitleHeaderComponentWidget(
+                  child: TitleHeaderComponentWidget(
                     titleText: 'Terms & Conditions',
                   ),
                 ),
@@ -285,7 +291,7 @@ class _TermsWidgetState extends State<TermsWidget>
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Align(
-                          alignment: const AlignmentDirectional(-1.0, -1.0),
+                          alignment: AlignmentDirectional(-1.0, -1.0),
                           child: Text(
                             'Usage of NU GO!',
                             style: FlutterFlowTheme.of(context)
@@ -300,9 +306,9 @@ class _TermsWidgetState extends State<TermsWidget>
                               animationsMap['textOnPageLoadAnimation1']!),
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(-1.0, -1.0),
+                          alignment: AlignmentDirectional(-1.0, -1.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 25.0, 0.0, 0.0),
                             child: Text(
                               ' Acceptance of Terms:',
@@ -319,7 +325,7 @@ class _TermsWidgetState extends State<TermsWidget>
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 15.0, 0.0, 0.0),
                           child: Text(
                             'By accessing and using the NU GO! Event Management Application, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, please refrain from using the App.',
@@ -336,9 +342,9 @@ class _TermsWidgetState extends State<TermsWidget>
                               animationsMap['textOnPageLoadAnimation3']!),
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(-1.0, -1.0),
+                          alignment: AlignmentDirectional(-1.0, -1.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 0.0),
                             child: Text(
                               'Authorization',
@@ -355,7 +361,7 @@ class _TermsWidgetState extends State<TermsWidget>
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 15.0, 0.0, 0.0),
                           child: Text(
                             'By registering in the App, users warrant that they are duly authorized to register, request access, and provide information on their behalf. The App Owner may request additional documents to verify such authority.',
@@ -371,9 +377,9 @@ class _TermsWidgetState extends State<TermsWidget>
                               animationsMap['textOnPageLoadAnimation5']!),
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(-1.0, -1.0),
+                          alignment: AlignmentDirectional(-1.0, -1.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 0.0),
                             child: Text(
                               'Use of the App',
@@ -390,7 +396,7 @@ class _TermsWidgetState extends State<TermsWidget>
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 15.0, 0.0, 0.0),
                           child: Text(
                             ' The App shall only be used for the following purposes:\n      - Event management and organization.\n      - Registration for events hosted by \n         registered student councils and \n         organizations.',
@@ -406,9 +412,9 @@ class _TermsWidgetState extends State<TermsWidget>
                               animationsMap['textOnPageLoadAnimation7']!),
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(-1.0, -1.0),
+                          alignment: AlignmentDirectional(-1.0, -1.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 0.0),
                             child: Text(
                               'Restrictions',
@@ -425,9 +431,9 @@ class _TermsWidgetState extends State<TermsWidget>
                           ),
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(-1.0, -1.0),
+                          alignment: AlignmentDirectional(-1.0, -1.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 0.0),
                             child: Text(
                               'In Access',
@@ -454,9 +460,9 @@ class _TermsWidgetState extends State<TermsWidget>
                         ).animateOnPageLoad(
                             animationsMap['textOnPageLoadAnimation10']!),
                         Align(
-                          alignment: const AlignmentDirectional(-1.0, -1.0),
+                          alignment: AlignmentDirectional(-1.0, -1.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 0.0),
                             child: Text(
                               'In App',
@@ -483,9 +489,9 @@ class _TermsWidgetState extends State<TermsWidget>
                         ).animateOnPageLoad(
                             animationsMap['textOnPageLoadAnimation12']!),
                         Align(
-                          alignment: const AlignmentDirectional(-1.0, -1.0),
+                          alignment: AlignmentDirectional(-1.0, -1.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 0.0),
                             child: Text(
                               'Profile and Data Privacy',
@@ -502,7 +508,7 @@ class _TermsWidgetState extends State<TermsWidget>
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 15.0, 0.0, 0.0),
                           child: Text(
                             'All information gathered by the App shall be treated as confidential. Users\' personal information is processed in accordance with the Data Privacy Act of 2012. The App Owner will use the information provided by users in accordance with the Data Privacy Policy.',
@@ -518,9 +524,9 @@ class _TermsWidgetState extends State<TermsWidget>
                               animationsMap['textOnPageLoadAnimation14']!),
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(-1.0, -1.0),
+                          alignment: AlignmentDirectional(-1.0, -1.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 0.0),
                             child: Text(
                               'Limitation of Liability',
@@ -537,7 +543,7 @@ class _TermsWidgetState extends State<TermsWidget>
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 15.0, 0.0, 0.0),
                           child: Text(
                             'The App Owner, its officers, directors, and employees shall not be liable for breaches arising from the user\'s contrary use of the App. They shall not be liable for any indirect, consequential, or special liability related to the user\'s use of the App not in accordance with these terms.',
@@ -553,9 +559,9 @@ class _TermsWidgetState extends State<TermsWidget>
                               animationsMap['textOnPageLoadAnimation16']!),
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(-1.0, -1.0),
+                          alignment: AlignmentDirectional(-1.0, -1.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 15.0, 0.0, 0.0),
                             child: Text(
                               'Updates to Terms',
@@ -572,7 +578,7 @@ class _TermsWidgetState extends State<TermsWidget>
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 15.0, 0.0, 0.0),
                           child: Text(
                             'The App Owner reserves the right to revise these Terms at any time. Users are expected to review the Terms regularly to ensure understanding of all conditions governing the use of the App.\n\n\n',

@@ -4,6 +4,8 @@ import '/components/widgets/title_header_component/title_header_component_widget
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -11,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
@@ -153,11 +156,11 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: const TitleHeaderComponentWidget(
+                      child: TitleHeaderComponentWidget(
                         titleText: 'Manage Approval Sets',
                       ),
                     ),
@@ -166,26 +169,26 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         child: wrapWithModel(
                           model: _model.subtitleHeaderModel,
                           updateCallback: () => safeSetState(() {}),
-                          child: const SubtitleHeaderWidget(
+                          child: SubtitleHeaderWidget(
                             mainTitle: 'Approval Sets',
                             subText: 'Manage, edit, and delete approval sets.',
                           ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: TextFormField(
                                   controller:
@@ -193,11 +196,14 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                   focusNode: _model.approvalSearchFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.approvalSearchTextController',
-                                    const Duration(milliseconds: 200),
+                                    Duration(milliseconds: 200),
                                     () async {
                                       logFirebaseEvent(
                                           'ADMIN_APPROVAL_MANAGE_approval_search_ON');
                                       if (_model.approvalSearchTextController
+                                                  .text !=
+                                              null &&
+                                          _model.approvalSearchTextController
                                                   .text !=
                                               '') {
                                         logFirebaseEvent(
@@ -210,7 +216,7 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                   (record) =>
                                                       TextSearchItem.fromTerms(
                                                           record,
-                                                          [record.name]),
+                                                          [record.name!]),
                                                 )
                                                 .toList(),
                                           )
@@ -219,6 +225,7 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                   .text)
                                               .map((r) => r.object)
                                               .toList();
+                                          ;
                                         });
                                         logFirebaseEvent(
                                             'approval_search_update_app_state');
@@ -294,6 +301,9 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                   'ADMIN_APPROVAL_MANAGE_approval_search_ON');
                                               if (_model.approvalSearchTextController
                                                           .text !=
+                                                      null &&
+                                                  _model.approvalSearchTextController
+                                                          .text !=
                                                       '') {
                                                 logFirebaseEvent(
                                                     'approval_search_simple_search');
@@ -306,7 +316,7 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                               TextSearchItem
                                                                   .fromTerms(
                                                                       record, [
-                                                            record.name
+                                                            record.name!
                                                           ]),
                                                         )
                                                         .toList(),
@@ -316,6 +326,7 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                               .text)
                                                           .map((r) => r.object)
                                                           .toList();
+                                                  ;
                                                 });
                                                 logFirebaseEvent(
                                                     'approval_search_update_app_state');
@@ -332,7 +343,7 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
 
                                               safeSetState(() {});
                                             },
-                                            child: const Icon(
+                                            child: Icon(
                                               Icons.clear,
                                               size: 20.0,
                                             ),
@@ -359,14 +370,14 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                   Expanded(
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             if (!FFAppState().searchActive)
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 50.0),
                                 child: Builder(
                                   builder: (context) {
@@ -387,14 +398,14 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                 allApprovalSetsIndex];
                                         return Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 10.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           20.0, 0.0, 20.0, 0.0),
                                                   child: Container(
@@ -427,7 +438,7 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                         Expanded(
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         10.0,
                                                                         0.0,
@@ -447,7 +458,7 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                                 Flexible(
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -466,7 +477,7 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                                               .start,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               10.0,
                                                                               0.0,
@@ -499,11 +510,11 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -559,7 +570,7 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                                       extra: <String,
                                                                           dynamic>{
                                                                         kTransitionInfoKey:
-                                                                            const TransitionInfo(
+                                                                            TransitionInfo(
                                                                           hasTransition:
                                                                               true,
                                                                           transitionType:
@@ -599,11 +610,11 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -632,16 +643,16 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                                               builder: (alertDialogContext) {
                                                                                 return WebViewAware(
                                                                                   child: AlertDialog(
-                                                                                    title: const Text('Delete Approval Set'),
-                                                                                    content: const Text('Are you sure you want to delete this approval set?'),
+                                                                                    title: Text('Delete Approval Set'),
+                                                                                    content: Text('Are you sure you want to delete this approval set?'),
                                                                                     actions: [
                                                                                       TextButton(
                                                                                         onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                        child: const Text('Cancel'),
+                                                                                        child: Text('Cancel'),
                                                                                       ),
                                                                                       TextButton(
                                                                                         onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                        child: const Text('Confirm'),
+                                                                                        child: Text('Confirm'),
                                                                                       ),
                                                                                     ],
                                                                                   ),
@@ -677,12 +688,12 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                                           return WebViewAware(
                                                                             child:
                                                                                 AlertDialog(
-                                                                              title: const Text('Deleted Approval Set'),
-                                                                              content: const Text('Approval Set has been successfully deleted.'),
+                                                                              title: Text('Deleted Approval Set'),
+                                                                              content: Text('Approval Set has been successfully deleted.'),
                                                                               actions: [
                                                                                 TextButton(
                                                                                   onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: const Text('Okay'),
+                                                                                  child: Text('Okay'),
                                                                                 ),
                                                                               ],
                                                                             ),
@@ -736,7 +747,7 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                               ),
                             if (FFAppState().searchActive)
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 50.0),
                                 child: Builder(
                                   builder: (context) {
@@ -756,14 +767,14 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                 searchedApprovalSetsIndex];
                                         return Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 10.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Expanded(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           20.0, 0.0, 20.0, 0.0),
                                                   child: Container(
@@ -796,7 +807,7 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                         Expanded(
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         10.0,
                                                                         0.0,
@@ -816,7 +827,7 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                                 Flexible(
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -835,7 +846,7 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                                               .start,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               10.0,
                                                                               0.0,
@@ -868,11 +879,11 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -928,7 +939,7 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                                       extra: <String,
                                                                           dynamic>{
                                                                         kTransitionInfoKey:
-                                                                            const TransitionInfo(
+                                                                            TransitionInfo(
                                                                           hasTransition:
                                                                               true,
                                                                           transitionType:
@@ -968,11 +979,11 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1001,16 +1012,16 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                                               builder: (alertDialogContext) {
                                                                                 return WebViewAware(
                                                                                   child: AlertDialog(
-                                                                                    title: const Text('Delete Approval Set'),
-                                                                                    content: const Text('Are you sure you want to delete this approval set?'),
+                                                                                    title: Text('Delete Approval Set'),
+                                                                                    content: Text('Are you sure you want to delete this approval set?'),
                                                                                     actions: [
                                                                                       TextButton(
                                                                                         onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                        child: const Text('Cancel'),
+                                                                                        child: Text('Cancel'),
                                                                                       ),
                                                                                       TextButton(
                                                                                         onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                        child: const Text('Confirm'),
+                                                                                        child: Text('Confirm'),
                                                                                       ),
                                                                                     ],
                                                                                   ),
@@ -1046,12 +1057,12 @@ class _AdminApprovalManageWidgetState extends State<AdminApprovalManageWidget>
                                                                           return WebViewAware(
                                                                             child:
                                                                                 AlertDialog(
-                                                                              title: const Text('Deleted Approval Set'),
-                                                                              content: const Text('Approval Set has been successfully deleted.'),
+                                                                              title: Text('Deleted Approval Set'),
+                                                                              content: Text('Approval Set has been successfully deleted.'),
                                                                               actions: [
                                                                                 TextButton(
                                                                                   onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: const Text('Okay'),
+                                                                                  child: Text('Okay'),
                                                                                 ),
                                                                               ],
                                                                             ),

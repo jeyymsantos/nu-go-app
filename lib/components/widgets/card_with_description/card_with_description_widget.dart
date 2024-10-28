@@ -1,6 +1,9 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'card_with_description_model.dart';
 export 'card_with_description_model.dart';
 
@@ -62,12 +65,12 @@ class _CardWithDescriptionWidgetState extends State<CardWithDescriptionWidget> {
         children: [
           Expanded(
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(5.0),
+                    padding: EdgeInsets.all(5.0),
                     child: Image.asset(
                       'assets/images/Files.png',
                       width: 40.0,
@@ -82,7 +85,7 @@ class _CardWithDescriptionWidgetState extends State<CardWithDescriptionWidget> {
                       children: [
                         Text(
                           valueOrDefault<String>(
-                            widget.title,
+                            widget!.title,
                             'Title',
                           ),
                           style:
@@ -95,7 +98,7 @@ class _CardWithDescriptionWidgetState extends State<CardWithDescriptionWidget> {
                         ),
                         Text(
                           valueOrDefault<String>(
-                            widget.description,
+                            widget!.description,
                             'Description',
                           ),
                           style:
@@ -114,9 +117,9 @@ class _CardWithDescriptionWidgetState extends State<CardWithDescriptionWidget> {
             ),
           ),
           Align(
-            alignment: const AlignmentDirectional(0.0, 0.0),
+            alignment: AlignmentDirectional(0.0, 0.0),
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
               child: Icon(
                 Icons.navigate_next,
                 color: FlutterFlowTheme.of(context).accent1,

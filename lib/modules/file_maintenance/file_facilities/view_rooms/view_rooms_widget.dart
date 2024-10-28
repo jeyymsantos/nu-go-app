@@ -1,10 +1,14 @@
 import '/backend/backend.dart';
+import '/components/dialog_box/confirm_password_dialog/confirm_password_dialog_widget.dart';
+import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
 import '/components/widgets/empty_list/empty_list_widget.dart';
 import '/components/widgets/search_not_found_list/search_not_found_list_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -12,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
@@ -170,14 +175,14 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: const TitleHeaderComponentWidget(
+                      child: TitleHeaderComponentWidget(
                         titleText: 'File Maintenance',
                       ),
                     ),
@@ -189,7 +194,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 5.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -207,7 +212,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                           ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 0.0, 0.0),
                                       child: Text(
                                         'Monitor, track and view the list of rooms available in the campus.',
@@ -241,7 +246,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 10.0, 0.0),
                                 child: TextFormField(
                                   controller:
@@ -249,11 +254,14 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                   focusNode: _model.facilitySearchFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.facilitySearchTextController',
-                                    const Duration(milliseconds: 200),
+                                    Duration(milliseconds: 200),
                                     () async {
                                       logFirebaseEvent(
                                           'VIEW_ROOMS_facility_search_ON_TEXTFIELD_');
                                       if (_model.facilitySearchTextController
+                                                  .text !=
+                                              null &&
+                                          _model.facilitySearchTextController
                                                   .text !=
                                               '') {
                                         logFirebaseEvent(
@@ -266,7 +274,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                   (record) =>
                                                       TextSearchItem.fromTerms(
                                                           record,
-                                                          [record.roomName]),
+                                                          [record.roomName!]),
                                                 )
                                                 .toList(),
                                           )
@@ -275,6 +283,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                   .text)
                                               .map((r) => r.object)
                                               .toList();
+                                          ;
                                         });
                                         logFirebaseEvent(
                                             'facility_search_update_app_state');
@@ -350,6 +359,9 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                   'VIEW_ROOMS_facility_search_ON_TEXTFIELD_');
                                               if (_model.facilitySearchTextController
                                                           .text !=
+                                                      null &&
+                                                  _model.facilitySearchTextController
+                                                          .text !=
                                                       '') {
                                                 logFirebaseEvent(
                                                     'facility_search_simple_search');
@@ -362,7 +374,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                               TextSearchItem
                                                                   .fromTerms(
                                                                       record, [
-                                                            record.roomName
+                                                            record.roomName!
                                                           ]),
                                                         )
                                                         .toList(),
@@ -372,6 +384,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                               .text)
                                                           .map((r) => r.object)
                                                           .toList();
+                                                  ;
                                                 });
                                                 logFirebaseEvent(
                                                     'facility_search_update_app_state');
@@ -388,7 +401,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
 
                                               safeSetState(() {});
                                             },
-                                            child: const Icon(
+                                            child: Icon(
                                               Icons.clear,
                                               size: 20.0,
                                             ),
@@ -431,7 +444,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                 width: 50.0,
                                 height: 50.0,
                                 clipBehavior: Clip.antiAlias,
-                                decoration: const BoxDecoration(
+                                decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                 ),
                                 child: Image.asset(
@@ -447,21 +460,21 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                     Expanded(
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               if (!FFAppState().searchActive)
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 50.0),
                                   child: Builder(
                                     builder: (context) {
                                       final roomSearch =
                                           viewRoomsRoomsRecordList.toList();
                                       if (roomSearch.isEmpty) {
-                                        return const EmptyListWidget(
+                                        return EmptyListWidget(
                                           emptyWhat: 'rooms',
                                         );
                                       }
@@ -478,7 +491,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                               roomSearch[roomSearchIndex];
                                           return Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -527,7 +540,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                                     child:
                                                                         Padding(
                                                                       padding:
-                                                                          const EdgeInsets.all(
+                                                                          EdgeInsets.all(
                                                                               5.0),
                                                                       child: Image
                                                                           .asset(
@@ -610,11 +623,11 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -696,7 +709,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                                       extra: <String,
                                                                           dynamic>{
                                                                         kTransitionInfoKey:
-                                                                            const TransitionInfo(
+                                                                            TransitionInfo(
                                                                           hasTransition:
                                                                               true,
                                                                           transitionType:
@@ -736,120 +749,163 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
-                                                              child: Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            10.0,
-                                                                            0.0),
-                                                                child: InkWell(
-                                                                  splashColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  focusColor: Colors
-                                                                      .transparent,
-                                                                  hoverColor: Colors
-                                                                      .transparent,
-                                                                  highlightColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  onTap:
-                                                                      () async {
-                                                                    logFirebaseEvent(
-                                                                        'VIEW_ROOMS_PAGE_Icon_p6a2n54r_ON_TAP');
-                                                                    logFirebaseEvent(
-                                                                        'Icon_alert_dialog');
-                                                                    var confirmDialogResponse =
-                                                                        await showDialog<bool>(
-                                                                              context: context,
-                                                                              builder: (alertDialogContext) {
-                                                                                return WebViewAware(
-                                                                                  child: AlertDialog(
-                                                                                    title: const Text('Delete Room'),
-                                                                                    content: const Text('Are you sure you want to delete this room?'),
-                                                                                    actions: [
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                        child: const Text('Cancel'),
-                                                                                      ),
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                        child: const Text('Confirm'),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
-                                                                                );
-                                                                              },
-                                                                            ) ??
-                                                                            false;
-                                                                    if (confirmDialogResponse) {
+                                                              child: Builder(
+                                                                builder:
+                                                                    (context) =>
+                                                                        Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      InkWell(
+                                                                    splashColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    focusColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    hoverColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    highlightColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    onTap:
+                                                                        () async {
                                                                       logFirebaseEvent(
-                                                                          'Icon_backend_call');
-                                                                      await roomSearchItem
-                                                                          .reference
-                                                                          .delete();
-                                                                      logFirebaseEvent(
-                                                                          'Icon_action_block');
-                                                                      await action_blocks
-                                                                          .logs(
-                                                                        context,
-                                                                        type:
-                                                                            'deleted',
-                                                                        module:
-                                                                            'rooms',
-                                                                        doneToName:
-                                                                            roomSearchItem.roomName,
-                                                                      );
+                                                                          'VIEW_ROOMS_PAGE_Icon_p6a2n54r_ON_TAP');
                                                                       logFirebaseEvent(
                                                                           'Icon_alert_dialog');
                                                                       await showDialog(
                                                                         context:
                                                                             context,
                                                                         builder:
-                                                                            (alertDialogContext) {
-                                                                          return WebViewAware(
+                                                                            (dialogContext) {
+                                                                          return Dialog(
+                                                                            elevation:
+                                                                                0,
+                                                                            insetPadding:
+                                                                                EdgeInsets.zero,
+                                                                            backgroundColor:
+                                                                                Colors.transparent,
+                                                                            alignment:
+                                                                                AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
-                                                                                AlertDialog(
-                                                                              title: const Text('Deleted Room'),
-                                                                              content: const Text('Room has been successfully deleted.'),
-                                                                              actions: [
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: const Text('Okay'),
-                                                                                ),
-                                                                              ],
+                                                                                WebViewAware(
+                                                                              child: GestureDetector(
+                                                                                onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                child: ConfirmPasswordDialogWidget(),
+                                                                              ),
                                                                             ),
                                                                           );
                                                                         },
-                                                                      );
-                                                                    }
-                                                                    logFirebaseEvent(
-                                                                        'Icon_reset_form_fields');
-                                                                    safeSetState(
-                                                                        () {
-                                                                      _model
-                                                                          .facilitySearchTextController
-                                                                          ?.clear();
-                                                                    });
-                                                                    logFirebaseEvent(
-                                                                        'Icon_update_app_state');
-                                                                    FFAppState()
-                                                                            .searchActive =
-                                                                        false;
-                                                                    safeSetState(
-                                                                        () {});
-                                                                  },
-                                                                  child: Icon(
-                                                                    FFIcons
-                                                                        .ktrash,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .error,
-                                                                    size: 24.0,
+                                                                      ).then((value) =>
+                                                                          safeSetState(() =>
+                                                                              _model.confirmDelete3 = value));
+
+                                                                      if (_model
+                                                                          .confirmDelete3!) {
+                                                                        logFirebaseEvent(
+                                                                            'Icon_backend_call');
+                                                                        await roomSearchItem
+                                                                            .reference
+                                                                            .delete();
+                                                                        logFirebaseEvent(
+                                                                            'Icon_action_block');
+                                                                        await action_blocks
+                                                                            .logs(
+                                                                          context,
+                                                                          type:
+                                                                              'deleted',
+                                                                          module:
+                                                                              'rooms',
+                                                                          doneToName:
+                                                                              roomSearchItem.roomName,
+                                                                        );
+                                                                        logFirebaseEvent(
+                                                                            'Icon_alert_dialog');
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: WebViewAware(
+                                                                                child: GestureDetector(
+                                                                                  onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                  child: InformationDialogBoxWidget(
+                                                                                    infoDialogTitle: 'Facility Deleted',
+                                                                                    infoDialogMeesage: 'Facility has been successfully deleted.',
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                      } else {
+                                                                        logFirebaseEvent(
+                                                                            'Icon_alert_dialog');
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: WebViewAware(
+                                                                                child: GestureDetector(
+                                                                                  onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                  child: InformationDialogBoxWidget(
+                                                                                    infoDialogTitle: 'Action Cancelled',
+                                                                                    infoDialogMeesage: 'This action has been cancelled. ',
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                      }
+
+                                                                      logFirebaseEvent(
+                                                                          'Icon_reset_form_fields');
+                                                                      safeSetState(
+                                                                          () {
+                                                                        _model
+                                                                            .facilitySearchTextController
+                                                                            ?.clear();
+                                                                      });
+                                                                      logFirebaseEvent(
+                                                                          'Icon_update_app_state');
+                                                                      FFAppState()
+                                                                              .searchActive =
+                                                                          false;
+                                                                      safeSetState(
+                                                                          () {});
+
+                                                                      safeSetState(
+                                                                          () {});
+                                                                    },
+                                                                    child: Icon(
+                                                                      FFIcons
+                                                                          .ktrash,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      size:
+                                                                          24.0,
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
@@ -872,7 +928,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                 ),
                               if (FFAppState().searchActive)
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 50.0),
                                   child: Builder(
                                     builder: (context) {
@@ -898,7 +954,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                               roomySearch[roomySearchIndex];
                                           return Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -947,7 +1003,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                                     child:
                                                                         Padding(
                                                                       padding:
-                                                                          const EdgeInsets.all(
+                                                                          EdgeInsets.all(
                                                                               5.0),
                                                                       child: Image
                                                                           .asset(
@@ -1030,11 +1086,11 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1116,7 +1172,7 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                                       extra: <String,
                                                                           dynamic>{
                                                                         kTransitionInfoKey:
-                                                                            const TransitionInfo(
+                                                                            TransitionInfo(
                                                                           hasTransition:
                                                                               true,
                                                                           transitionType:
@@ -1156,120 +1212,163 @@ class _ViewRoomsWidgetState extends State<ViewRoomsWidget>
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
-                                                              child: Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            10.0,
-                                                                            0.0),
-                                                                child: InkWell(
-                                                                  splashColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  focusColor: Colors
-                                                                      .transparent,
-                                                                  hoverColor: Colors
-                                                                      .transparent,
-                                                                  highlightColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  onTap:
-                                                                      () async {
-                                                                    logFirebaseEvent(
-                                                                        'VIEW_ROOMS_PAGE_Icon_ejft8vpm_ON_TAP');
-                                                                    logFirebaseEvent(
-                                                                        'Icon_alert_dialog');
-                                                                    var confirmDialogResponse =
-                                                                        await showDialog<bool>(
-                                                                              context: context,
-                                                                              builder: (alertDialogContext) {
-                                                                                return WebViewAware(
-                                                                                  child: AlertDialog(
-                                                                                    title: const Text('Delete Room'),
-                                                                                    content: const Text('Are you sure you want to delete this room?'),
-                                                                                    actions: [
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                        child: const Text('Cancel'),
-                                                                                      ),
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                        child: const Text('Confirm'),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
-                                                                                );
-                                                                              },
-                                                                            ) ??
-                                                                            false;
-                                                                    if (confirmDialogResponse) {
+                                                              child: Builder(
+                                                                builder:
+                                                                    (context) =>
+                                                                        Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      InkWell(
+                                                                    splashColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    focusColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    hoverColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    highlightColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    onTap:
+                                                                        () async {
                                                                       logFirebaseEvent(
-                                                                          'Icon_backend_call');
-                                                                      await roomySearchItem
-                                                                          .reference
-                                                                          .delete();
-                                                                      logFirebaseEvent(
-                                                                          'Icon_action_block');
-                                                                      await action_blocks
-                                                                          .logs(
-                                                                        context,
-                                                                        type:
-                                                                            'deleted',
-                                                                        module:
-                                                                            'rooms',
-                                                                        doneToName:
-                                                                            roomySearchItem.roomName,
-                                                                      );
+                                                                          'VIEW_ROOMS_PAGE_Icon_ejft8vpm_ON_TAP');
                                                                       logFirebaseEvent(
                                                                           'Icon_alert_dialog');
                                                                       await showDialog(
                                                                         context:
                                                                             context,
                                                                         builder:
-                                                                            (alertDialogContext) {
-                                                                          return WebViewAware(
+                                                                            (dialogContext) {
+                                                                          return Dialog(
+                                                                            elevation:
+                                                                                0,
+                                                                            insetPadding:
+                                                                                EdgeInsets.zero,
+                                                                            backgroundColor:
+                                                                                Colors.transparent,
+                                                                            alignment:
+                                                                                AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
-                                                                                AlertDialog(
-                                                                              title: const Text('Deleted Room'),
-                                                                              content: const Text('Room has been successfully deleted.'),
-                                                                              actions: [
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: const Text('Okay'),
-                                                                                ),
-                                                                              ],
+                                                                                WebViewAware(
+                                                                              child: GestureDetector(
+                                                                                onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                child: ConfirmPasswordDialogWidget(),
+                                                                              ),
                                                                             ),
                                                                           );
                                                                         },
-                                                                      );
-                                                                    }
-                                                                    logFirebaseEvent(
-                                                                        'Icon_reset_form_fields');
-                                                                    safeSetState(
-                                                                        () {
-                                                                      _model
-                                                                          .facilitySearchTextController
-                                                                          ?.clear();
-                                                                    });
-                                                                    logFirebaseEvent(
-                                                                        'Icon_update_app_state');
-                                                                    FFAppState()
-                                                                            .searchActive =
-                                                                        false;
-                                                                    safeSetState(
-                                                                        () {});
-                                                                  },
-                                                                  child: Icon(
-                                                                    FFIcons
-                                                                        .ktrash,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .error,
-                                                                    size: 24.0,
+                                                                      ).then((value) =>
+                                                                          safeSetState(() =>
+                                                                              _model.confirmDelete4 = value));
+
+                                                                      if (_model
+                                                                          .confirmDelete4!) {
+                                                                        logFirebaseEvent(
+                                                                            'Icon_backend_call');
+                                                                        await roomySearchItem
+                                                                            .reference
+                                                                            .delete();
+                                                                        logFirebaseEvent(
+                                                                            'Icon_action_block');
+                                                                        await action_blocks
+                                                                            .logs(
+                                                                          context,
+                                                                          type:
+                                                                              'deleted',
+                                                                          module:
+                                                                              'rooms',
+                                                                          doneToName:
+                                                                              roomySearchItem.roomName,
+                                                                        );
+                                                                        logFirebaseEvent(
+                                                                            'Icon_alert_dialog');
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: WebViewAware(
+                                                                                child: GestureDetector(
+                                                                                  onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                  child: InformationDialogBoxWidget(
+                                                                                    infoDialogTitle: 'Facility Deleted',
+                                                                                    infoDialogMeesage: 'Facility has been successfully deleted.',
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                      } else {
+                                                                        logFirebaseEvent(
+                                                                            'Icon_alert_dialog');
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: WebViewAware(
+                                                                                child: GestureDetector(
+                                                                                  onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                  child: InformationDialogBoxWidget(
+                                                                                    infoDialogTitle: 'Action Cancelled',
+                                                                                    infoDialogMeesage: 'This action has been cancelled. ',
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                      }
+
+                                                                      logFirebaseEvent(
+                                                                          'Icon_reset_form_fields');
+                                                                      safeSetState(
+                                                                          () {
+                                                                        _model
+                                                                            .facilitySearchTextController
+                                                                            ?.clear();
+                                                                      });
+                                                                      logFirebaseEvent(
+                                                                          'Icon_update_app_state');
+                                                                      FFAppState()
+                                                                              .searchActive =
+                                                                          false;
+                                                                      safeSetState(
+                                                                          () {});
+
+                                                                      safeSetState(
+                                                                          () {});
+                                                                    },
+                                                                    child: Icon(
+                                                                      FFIcons
+                                                                          .ktrash,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      size:
+                                                                          24.0,
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),

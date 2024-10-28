@@ -1,12 +1,18 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/dialog_box/confirm_dialog_box/confirm_dialog_box_widget.dart';
 import '/components/dialog_box/congratulations_dialog_box/congratulations_dialog_box_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:styled_divider/styled_divider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'my_pending_orders_admin_marketplace_model.dart';
 export 'my_pending_orders_admin_marketplace_model.dart';
@@ -50,16 +56,16 @@ class _MyPendingOrdersAdminMarketplaceWidgetState
       body: SafeArea(
         top: true,
         child: Align(
-          alignment: const AlignmentDirectional(0.0, -1.0),
+          alignment: AlignmentDirectional(0.0, -1.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TitleHeaderComponentWidget(
+                  child: TitleHeaderComponentWidget(
                     titleText: 'Received Orders',
                   ),
                 ),
@@ -71,7 +77,7 @@ class _MyPendingOrdersAdminMarketplaceWidgetState
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 16.0, 24.0),
                         child: Wrap(
                           spacing: 16.0,
@@ -84,7 +90,7 @@ class _MyPendingOrdersAdminMarketplaceWidgetState
                           clipBehavior: Clip.none,
                           children: [
                             Container(
-                              constraints: const BoxConstraints(
+                              constraints: BoxConstraints(
                                 maxWidth: 750.0,
                               ),
                               decoration: BoxDecoration(
@@ -97,7 +103,7 @@ class _MyPendingOrdersAdminMarketplaceWidgetState
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(16.0),
+                                padding: EdgeInsets.all(16.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,7 +118,7 @@ class _MyPendingOrdersAdminMarketplaceWidgetState
                                           ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 4.0, 0.0, 12.0),
                                       child: Text(
                                         'Below are the orders pending for claiming and completion.',
@@ -198,7 +204,7 @@ class _MyPendingOrdersAdminMarketplaceWidgetState
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -274,7 +280,7 @@ class _MyPendingOrdersAdminMarketplaceWidgetState
                                                             ),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsets
+                                                                  EdgeInsets
                                                                       .all(5.0),
                                                               child: Row(
                                                                 mainAxisSize:
@@ -290,7 +296,7 @@ class _MyPendingOrdersAdminMarketplaceWidgetState
                                                                   Expanded(
                                                                     child:
                                                                         Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           5.0,
@@ -301,7 +307,7 @@ class _MyPendingOrdersAdminMarketplaceWidgetState
                                                                             MainAxisSize.min,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 10.0,
@@ -316,7 +322,7 @@ class _MyPendingOrdersAdminMarketplaceWidgetState
                                                                                 ),
                                                                               ),
                                                                               child: Padding(
-                                                                                padding: const EdgeInsets.all(2.0),
+                                                                                padding: EdgeInsets.all(2.0),
                                                                                 child: Image.network(
                                                                                   itemUsersRecord.photoUrl,
                                                                                   width: 40.0,
@@ -328,7 +334,7 @@ class _MyPendingOrdersAdminMarketplaceWidgetState
                                                                           Flexible(
                                                                             child:
                                                                                 Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                               child: Column(
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -361,7 +367,7 @@ class _MyPendingOrdersAdminMarketplaceWidgetState
                                                                                                 ),
                                                                                                 '₱123',
                                                                                               ),
-                                                                                              style: const TextStyle(),
+                                                                                              style: TextStyle(),
                                                                                             )
                                                                                           ],
                                                                                           style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -380,7 +386,7 @@ class _MyPendingOrdersAdminMarketplaceWidgetState
                                                                                                 listViewOrdersRecord.updatedAt!,
                                                                                                 locale: FFLocalizations.of(context).languageCode,
                                                                                               ),
-                                                                                              style: const TextStyle(),
+                                                                                              style: TextStyle(),
                                                                                             )
                                                                                           ],
                                                                                           style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -401,7 +407,7 @@ class _MyPendingOrdersAdminMarketplaceWidgetState
                                                                   ),
                                                                   Align(
                                                                     alignment:
-                                                                        const AlignmentDirectional(
+                                                                        AlignmentDirectional(
                                                                             0.0,
                                                                             0.0),
                                                                     child:
@@ -409,7 +415,7 @@ class _MyPendingOrdersAdminMarketplaceWidgetState
                                                                       builder:
                                                                           (context) =>
                                                                               Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             5.0,
@@ -427,7 +433,7 @@ class _MyPendingOrdersAdminMarketplaceWidgetState
                                                                           onTap:
                                                                               () async {
                                                                             logFirebaseEvent('MY_PENDING_ORDERS_ADMIN_MARKETPLACE_Icon');
-                                                                            var shouldSetState =
+                                                                            var _shouldSetState =
                                                                                 false;
                                                                             logFirebaseEvent('Icon_alert_dialog');
                                                                             await showDialog(
@@ -437,8 +443,8 @@ class _MyPendingOrdersAdminMarketplaceWidgetState
                                                                                   elevation: 0,
                                                                                   insetPadding: EdgeInsets.zero,
                                                                                   backgroundColor: Colors.transparent,
-                                                                                  alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                  child: const WebViewAware(
+                                                                                  alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                  child: WebViewAware(
                                                                                     child: ConfirmDialogBoxWidget(
                                                                                       confirmDialogTitle: 'Complete Order',
                                                                                       confirmDialogMeesage: 'Are you sure you want to complete this order? By completing this order, you also complete all the products made within this.',
@@ -449,7 +455,7 @@ class _MyPendingOrdersAdminMarketplaceWidgetState
                                                                             ).then((value) =>
                                                                                 safeSetState(() => _model.confirmDialog = value));
 
-                                                                            shouldSetState =
+                                                                            _shouldSetState =
                                                                                 true;
                                                                             if (_model.confirmDialog!) {
                                                                               logFirebaseEvent('Icon_alert_dialog');
@@ -460,8 +466,8 @@ class _MyPendingOrdersAdminMarketplaceWidgetState
                                                                                     elevation: 0,
                                                                                     insetPadding: EdgeInsets.zero,
                                                                                     backgroundColor: Colors.transparent,
-                                                                                    alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                    child: const WebViewAware(
+                                                                                    alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                    child: WebViewAware(
                                                                                       child: CongratulationsDialogBoxWidget(
                                                                                         congratsDialogTitle: 'Order Completed',
                                                                                         congratsDialogMeesage: 'You have completed this order and all the products under this order has been placed.',
@@ -484,20 +490,17 @@ class _MyPendingOrdersAdminMarketplaceWidgetState
                                                                                   },
                                                                                 ),
                                                                               });
-                                                                              if (shouldSetState) {
+                                                                              if (_shouldSetState)
                                                                                 safeSetState(() {});
-                                                                              }
                                                                               return;
                                                                             } else {
-                                                                              if (shouldSetState) {
+                                                                              if (_shouldSetState)
                                                                                 safeSetState(() {});
-                                                                              }
                                                                               return;
                                                                             }
 
-                                                                            if (shouldSetState) {
+                                                                            if (_shouldSetState)
                                                                               safeSetState(() {});
-                                                                            }
                                                                           },
                                                                           child:
                                                                               Icon(

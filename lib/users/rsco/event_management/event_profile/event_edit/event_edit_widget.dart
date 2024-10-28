@@ -2,6 +2,7 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/backend/push_notifications/push_notifications_util.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/dialog_box/confirm_dialog_box/confirm_dialog_box_widget.dart';
 import '/components/dialog_box/congratulations_dialog_box/congratulations_dialog_box_widget.dart';
 import '/components/dialog_box/failed_dialog_box/failed_dialog_box_widget.dart';
@@ -15,8 +16,13 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'event_edit_model.dart';
@@ -52,23 +58,23 @@ class _EventEditWidgetState extends State<EventEditWidget>
       initialIndex: 0,
     )..addListener(() => safeSetState(() {}));
     _model.eventNameTextController ??=
-        TextEditingController(text: widget.eventDoc?.eventName);
+        TextEditingController(text: widget!.eventDoc?.eventName);
     _model.eventNameFocusNode ??= FocusNode();
 
     _model.maxAttendeesTextController ??= TextEditingController(
-        text: widget.eventDoc?.otherDetails.maxParticipants.toString());
+        text: widget!.eventDoc?.otherDetails?.maxParticipants?.toString());
     _model.maxAttendeesFocusNode ??= FocusNode();
 
     _model.rationaleTextController ??=
-        TextEditingController(text: widget.eventDoc?.rationale);
+        TextEditingController(text: widget!.eventDoc?.rationale);
     _model.rationaleFocusNode ??= FocusNode();
 
     _model.objectivesTextController ??=
-        TextEditingController(text: widget.eventDoc?.rationale);
+        TextEditingController(text: widget!.eventDoc?.rationale);
     _model.objectivesFocusNode ??= FocusNode();
 
     _model.targetOutputTextController ??=
-        TextEditingController(text: widget.eventDoc?.targetOutput);
+        TextEditingController(text: widget!.eventDoc?.targetOutput);
     _model.targetOutputFocusNode ??= FocusNode();
 
     _model.activityNameTextController ??= TextEditingController();
@@ -98,7 +104,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
           child: Stack(
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,29 +112,29 @@ class _EventEditWidgetState extends State<EventEditWidget>
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: const TitleHeaderComponentWidget(
+                      child: TitleHeaderComponentWidget(
                         titleText: 'Update Event',
                       ),
                     ),
                     Expanded(
                       child: Container(
                         width: double.infinity,
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Stack(
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 100.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Flexible(
                                     child: Container(
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: Column(
                                         children: [
                                           Align(
-                                            alignment: const Alignment(0.0, 0),
+                                            alignment: Alignment(0.0, 0),
                                             child: FlutterFlowButtonTabBar(
                                               useToggleButtonStyle: true,
                                               labelStyle: FlutterFlowTheme.of(
@@ -171,10 +177,10 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                               borderRadius: 9.0,
                                               elevation: 0.0,
                                               buttonMargin:
-                                                  const EdgeInsetsDirectional
+                                                  EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           8.0, 0.0, 8.0, 0.0),
-                                              tabs: const [
+                                              tabs: [
                                                 Tab(
                                                   text: 'General Details',
                                                 ),
@@ -194,7 +200,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                               controller:
                                                   _model.tabBarController,
                                               children: [
-                                                SizedBox(
+                                                Container(
                                                   width: double.infinity,
                                                   child: Form(
                                                     key: _model.formKey2,
@@ -203,7 +209,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                             .disabled,
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   10.0,
@@ -227,7 +233,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                           .max,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -264,7 +270,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                   ],
                                                                 ),
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -377,9 +383,9 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                           .network(
                                                                         valueOrDefault<
                                                                             String>(
-                                                                          _model.uploadedFileUrl != ''
+                                                                          _model.uploadedFileUrl != null && _model.uploadedFileUrl != ''
                                                                               ? _model.uploadedFileUrl
-                                                                              : widget.eventDoc?.coverPhoto,
+                                                                              : widget!.eventDoc?.coverPhoto,
                                                                           'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/n-u-go-application-yjlz84/assets/acr6c7ygcw4g/Image_Handler.png',
                                                                         ),
                                                                         width: double
@@ -396,7 +402,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -419,7 +425,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                               MainAxisSize.max,
                                                                           children: [
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                               child: Text(
                                                                                 'Event Name',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -514,7 +520,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -545,7 +551,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                         ),
                                                                   ),
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             10.0,
@@ -657,7 +663,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -680,7 +686,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                               MainAxisSize.max,
                                                                           children: [
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                               child: Text(
                                                                                 'Target Participants',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -707,9 +713,9 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                           controller: _model.targetParticipantsValueController ??=
                                                                               FormFieldController<String>(
                                                                             _model.targetParticipantsValue ??=
-                                                                                widget.eventDoc?.participantType,
+                                                                                widget!.eventDoc?.participantType,
                                                                           ),
-                                                                          options: const [
+                                                                          options: [
                                                                             'University-wide',
                                                                             'Members-wide'
                                                                           ],
@@ -744,7 +750,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                               0.5,
                                                                           borderRadius:
                                                                               8.0,
-                                                                          margin: const EdgeInsetsDirectional.fromSTEB(
+                                                                          margin: EdgeInsetsDirectional.fromSTEB(
                                                                               16.0,
                                                                               4.0,
                                                                               16.0,
@@ -767,7 +773,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                             Flexible(
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -784,7 +790,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                               .max,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               0.0,
@@ -913,7 +919,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                             Flexible(
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -930,7 +936,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                               .max,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               0.0,
@@ -1058,7 +1064,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1081,7 +1087,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                               MainAxisSize.max,
                                                                           children: [
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                               child: Text(
                                                                                 'Target Output',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1186,7 +1192,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                       AutovalidateMode.disabled,
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 10.0,
                                                                 0.0, 0.0),
                                                     child:
@@ -1198,7 +1204,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -1211,7 +1217,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                               children: [
                                                                 Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           -1.0,
                                                                           0.0),
                                                                   child: Text(
@@ -1232,7 +1238,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                   ),
                                                                 ),
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           20.0,
@@ -1260,7 +1266,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                           children: [
                                                                             Flexible(
                                                                               child: Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                                                                                 child: Column(
                                                                                   mainAxisSize: MainAxisSize.min,
                                                                                   children: [
@@ -1268,7 +1274,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                                       mainAxisSize: MainAxisSize.max,
                                                                                       children: [
                                                                                         Padding(
-                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                                          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                                           child: Text(
                                                                                             'Start Time',
                                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1299,7 +1305,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                                         logFirebaseEvent('EVENT_EDIT_PAGE_time_start_ON_TAP');
                                                                                         logFirebaseEvent('time_start_date_time_picker');
 
-                                                                                        final datePicked1Time = await showTimePicker(
+                                                                                        final _datePicked1Time = await showTimePicker(
                                                                                           context: context,
                                                                                           initialTime: TimeOfDay.fromDateTime(getCurrentTimestamp),
                                                                                           builder: (context, child) {
@@ -1323,14 +1329,14 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                                             );
                                                                                           },
                                                                                         );
-                                                                                        if (datePicked1Time != null) {
+                                                                                        if (_datePicked1Time != null) {
                                                                                           safeSetState(() {
                                                                                             _model.datePicked1 = DateTime(
                                                                                               getCurrentTimestamp.year,
                                                                                               getCurrentTimestamp.month,
                                                                                               getCurrentTimestamp.day,
-                                                                                              datePicked1Time.hour,
-                                                                                              datePicked1Time.minute,
+                                                                                              _datePicked1Time.hour,
+                                                                                              _datePicked1Time.minute,
                                                                                             );
                                                                                           });
                                                                                         }
@@ -1355,9 +1361,18 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                                               children: [
                                                                                                 Flexible(
                                                                                                   child: Padding(
-                                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                                    padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                                     child: Text(
                                                                                                       valueOrDefault<String>(
+                                                                                                                    dateTimeFormat(
+                                                                                                                      "jm",
+                                                                                                                      _model.datePicked1,
+                                                                                                                      locale: FFLocalizations.of(context).languageCode,
+                                                                                                                    ),
+                                                                                                                    'StartTime',
+                                                                                                                  ) !=
+                                                                                                                  null &&
+                                                                                                              valueOrDefault<String>(
                                                                                                                     dateTimeFormat(
                                                                                                                       "jm",
                                                                                                                       _model.datePicked1,
@@ -1384,7 +1399,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                                                   ),
                                                                                                 ),
                                                                                                 Padding(
-                                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                                   child: Icon(
                                                                                                     FFIcons.kclock,
                                                                                                     color: FlutterFlowTheme.of(context).secondaryText,
@@ -1403,7 +1418,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                             ),
                                                                             Flexible(
                                                                               child: Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                                                                                 child: Column(
                                                                                   mainAxisSize: MainAxisSize.min,
                                                                                   children: [
@@ -1411,7 +1426,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                                       mainAxisSize: MainAxisSize.max,
                                                                                       children: [
                                                                                         Padding(
-                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                                          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                                           child: Text(
                                                                                             'End Time',
                                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1442,7 +1457,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                                         logFirebaseEvent('EVENT_EDIT_PAGE_end_time_ON_TAP');
                                                                                         logFirebaseEvent('end_time_date_time_picker');
 
-                                                                                        final datePicked2Time = await showTimePicker(
+                                                                                        final _datePicked2Time = await showTimePicker(
                                                                                           context: context,
                                                                                           initialTime: TimeOfDay.fromDateTime(getCurrentTimestamp),
                                                                                           builder: (context, child) {
@@ -1466,14 +1481,14 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                                             );
                                                                                           },
                                                                                         );
-                                                                                        if (datePicked2Time != null) {
+                                                                                        if (_datePicked2Time != null) {
                                                                                           safeSetState(() {
                                                                                             _model.datePicked2 = DateTime(
                                                                                               getCurrentTimestamp.year,
                                                                                               getCurrentTimestamp.month,
                                                                                               getCurrentTimestamp.day,
-                                                                                              datePicked2Time.hour,
-                                                                                              datePicked2Time.minute,
+                                                                                              _datePicked2Time.hour,
+                                                                                              _datePicked2Time.minute,
                                                                                             );
                                                                                           });
                                                                                         }
@@ -1498,9 +1513,15 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                                               children: [
                                                                                                 Flexible(
                                                                                                   child: Padding(
-                                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                                    padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                                     child: Text(
                                                                                                       dateTimeFormat(
+                                                                                                                    "jm",
+                                                                                                                    _model.datePicked2,
+                                                                                                                    locale: FFLocalizations.of(context).languageCode,
+                                                                                                                  ) !=
+                                                                                                                  null &&
+                                                                                                              dateTimeFormat(
                                                                                                                     "jm",
                                                                                                                     _model.datePicked2,
                                                                                                                     locale: FFLocalizations.of(context).languageCode,
@@ -1521,7 +1542,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                                                   ),
                                                                                                 ),
                                                                                                 Padding(
-                                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                                   child: Icon(
                                                                                                     FFIcons.kclock,
                                                                                                     color: FlutterFlowTheme.of(context).secondaryText,
@@ -1541,7 +1562,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                           ],
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               0.0,
@@ -1553,7 +1574,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                             children: [
                                                                               Flexible(
                                                                                 child: Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                                                                                   child: Column(
                                                                                     mainAxisSize: MainAxisSize.min,
                                                                                     children: [
@@ -1561,7 +1582,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                                         mainAxisSize: MainAxisSize.max,
                                                                                         children: [
                                                                                           Padding(
-                                                                                            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                                            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                                             child: Text(
                                                                                               'Activity Portion',
                                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1650,7 +1671,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                           ),
                                                           Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     1.0, 0.0),
                                                             child: InkWell(
                                                               splashColor: Colors
@@ -1726,7 +1747,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         20.0,
@@ -1759,7 +1780,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                         program[
                                                                             programIndex];
                                                                     return Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -1773,7 +1794,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                         ),
                                                                         child:
                                                                             Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               5.0,
                                                                               5.0,
                                                                               5.0,
@@ -1790,7 +1811,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                                                 children: [
                                                                                   Align(
-                                                                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                     child: Text(
                                                                                       programItem.activity,
                                                                                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1801,7 +1822,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                                     ),
                                                                                   ),
                                                                                   Align(
-                                                                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                     child: Text(
                                                                                       '${dateTimeFormat(
                                                                                         "jm",
@@ -1821,7 +1842,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                                 ],
                                                                               ),
                                                                               Align(
-                                                                                alignment: const AlignmentDirectional(1.0, 0.0),
+                                                                                alignment: AlignmentDirectional(1.0, 0.0),
                                                                                 child: Column(
                                                                                   mainAxisSize: MainAxisSize.max,
                                                                                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -1872,22 +1893,22 @@ class _EventEditWidgetState extends State<EventEditWidget>
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(0.0, 1.0),
+                              alignment: AlignmentDirectional(0.0, 1.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 10.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Align(
-                                      alignment: const AlignmentDirectional(0.0, 1.0),
+                                      alignment: AlignmentDirectional(0.0, 1.0),
                                       child: Builder(
                                         builder: (context) => FFButtonWidget(
                                           onPressed: () async {
                                             logFirebaseEvent(
                                                 'EVENT_EDIT_PAGE_UPDATE_EVENT_BTN_ON_TAP');
-                                            var shouldSetState = false;
+                                            var _shouldSetState = false;
                                             if (!(FFAppState()
                                                 .eventProgramList
                                                 .isNotEmpty)) {
@@ -1903,7 +1924,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
@@ -1915,7 +1936,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                     dialogContext)
                                                                 .unfocus(),
                                                         child:
-                                                            const FailedDialogBoxWidget(
+                                                            FailedDialogBoxWidget(
                                                           failedDialogTitle:
                                                               'Program Flow Required',
                                                           failedDialogMeesage:
@@ -1927,9 +1948,8 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                 },
                                               );
 
-                                              if (shouldSetState) {
+                                              if (_shouldSetState)
                                                 safeSetState(() {});
-                                              }
                                               return;
                                             } else {
                                               logFirebaseEvent(
@@ -1944,7 +1964,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
@@ -1956,7 +1976,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                     dialogContext)
                                                                 .unfocus(),
                                                         child:
-                                                            const ConfirmDialogBoxWidget(
+                                                            ConfirmDialogBoxWidget(
                                                           confirmDialogTitle:
                                                               'Submit Revision',
                                                           confirmDialogMeesage:
@@ -1970,12 +1990,12 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                   () => _model.confirmDialog =
                                                       value));
 
-                                              shouldSetState = true;
+                                              _shouldSetState = true;
                                               if (_model.confirmDialog!) {
                                                 logFirebaseEvent(
                                                     'Button_backend_call');
 
-                                                await widget
+                                                await widget!
                                                     .eventDoc!.reference
                                                     .update({
                                                   ...createEventsRecordData(
@@ -1995,10 +2015,12 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                         .text,
                                                     coverPhoto:
                                                         _model.uploadedFileUrl !=
+                                                                    null &&
+                                                                _model.uploadedFileUrl !=
                                                                     ''
                                                             ? _model
                                                                 .uploadedFileUrl
-                                                            : widget.eventDoc
+                                                            : widget!.eventDoc
                                                                 ?.coverPhoto,
                                                   ),
                                                   ...mapToFirestore(
@@ -2015,7 +2037,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                     'Button_backend_call');
 
                                                 await EventApplicationRecord
-                                                        .createDoc(widget
+                                                        .createDoc(widget!
                                                             .eventDoc!
                                                             .reference)
                                                     .set({
@@ -2055,7 +2077,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                       backgroundColor:
                                                           Colors.transparent,
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
@@ -2067,7 +2089,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                       dialogContext)
                                                                   .unfocus(),
                                                           child:
-                                                              const CongratulationsDialogBoxWidget(
+                                                              CongratulationsDialogBoxWidget(
                                                             congratsDialogTitle:
                                                                 'Event Updated',
                                                             congratsDialogMeesage:
@@ -2082,9 +2104,8 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                 logFirebaseEvent(
                                                     'Button_navigate_back');
                                                 context.safePop();
-                                                if (shouldSetState) {
+                                                if (_shouldSetState)
                                                   safeSetState(() {});
-                                                }
                                                 return;
                                               } else {
                                                 logFirebaseEvent(
@@ -2099,7 +2120,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                       backgroundColor:
                                                           Colors.transparent,
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
@@ -2111,7 +2132,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                       dialogContext)
                                                                   .unfocus(),
                                                           child:
-                                                              const InformationDialogBoxWidget(
+                                                              InformationDialogBoxWidget(
                                                             infoDialogTitle:
                                                                 'Action Cancelled',
                                                             infoDialogMeesage:
@@ -2126,19 +2147,17 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                 logFirebaseEvent(
                                                     'Button_navigate_back');
                                                 context.safePop();
-                                                if (shouldSetState) {
+                                                if (_shouldSetState)
                                                   safeSetState(() {});
-                                                }
                                                 return;
                                               }
                                             }
 
-                                            if (shouldSetState) {
+                                            if (_shouldSetState)
                                               safeSetState(() {});
-                                            }
                                           },
                                           text: 'Update Event',
-                                          icon: const Icon(
+                                          icon: Icon(
                                             FFIcons.ksmsEdit,
                                             size: 15.0,
                                           ),
@@ -2146,10 +2165,10 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                             width: double.infinity,
                                             height: 40.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     24.0, 0.0, 24.0, 0.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
@@ -2163,7 +2182,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                       letterSpacing: 0.0,
                                                     ),
                                             elevation: 3.0,
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),
@@ -2179,57 +2198,14 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                         Expanded(
                                           child: Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 1.0),
-                                            child: FFButtonWidget(
-                                              onPressed: () {
-                                                print('Button pressed ...');
-                                              },
-                                              text: 'Postpone Event',
-                                              options: FFButtonOptions(
-                                                width: double.infinity,
-                                                height: 40.0,
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        24.0, 0.0, 24.0, 0.0),
-                                                iconPadding:
-                                                    const EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .panelText,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Montserrat',
-                                                          color: Colors.white,
-                                                          fontSize: 13.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                elevation: 3.0,
-                                                borderSide: const BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Align(
-                                            alignment:
-                                                const AlignmentDirectional(0.0, 1.0),
+                                                AlignmentDirectional(0.0, 1.0),
                                             child: Builder(
                                               builder: (context) =>
                                                   FFButtonWidget(
                                                 onPressed: () async {
                                                   logFirebaseEvent(
                                                       'EVENT_EDIT_PAGE_CANCEL_EVENT_BTN_ON_TAP');
-                                                  var shouldSetState = false;
+                                                  var _shouldSetState = false;
                                                   logFirebaseEvent(
                                                       'Button_alert_dialog');
                                                   await showDialog(
@@ -2242,7 +2218,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                         backgroundColor:
                                                             Colors.transparent,
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                     0.0, 0.0)
                                                                 .resolve(
                                                                     Directionality.of(
@@ -2255,7 +2231,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                         dialogContext)
                                                                     .unfocus(),
                                                             child:
-                                                                const ConfirmDialogBoxWidget(
+                                                                ConfirmDialogBoxWidget(
                                                               confirmDialogTitle:
                                                                   'Cancel Event',
                                                               confirmDialogMeesage:
@@ -2270,12 +2246,12 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                           _model.confirmCancel =
                                                               value));
 
-                                                  shouldSetState = true;
+                                                  _shouldSetState = true;
                                                   if (_model.confirmCancel!) {
                                                     logFirebaseEvent(
                                                         'Button_backend_call');
 
-                                                    await widget
+                                                    await widget!
                                                         .eventDoc!.reference
                                                         .update({
                                                       ...createEventsRecordData(
@@ -2295,24 +2271,24 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                       context,
                                                       type: 'cancelled',
                                                       module: 'event',
-                                                      doneToName: widget
+                                                      doneToName: widget!
                                                           .eventDoc?.eventName,
                                                     );
                                                     logFirebaseEvent(
                                                         'Button_firestore_query');
                                                     _model.allGuests =
                                                         await queryEventAttendeesRecordOnce(
-                                                      parent: widget
+                                                      parent: widget!
                                                           .eventDoc?.reference,
                                                     );
-                                                    shouldSetState = true;
+                                                    _shouldSetState = true;
                                                     logFirebaseEvent(
                                                         'Button_trigger_push_notification');
                                                     triggerPushNotification(
                                                       notificationTitle:
                                                           'Event is Cancelled',
                                                       notificationText:
-                                                          '${widget.eventDoc?.eventName} has been cancelled by the organizers.',
+                                                          '${widget!.eventDoc?.eventName} has been cancelled by the organizers.',
                                                       notificationSound:
                                                           'default',
                                                       userRefs: _model
@@ -2334,7 +2310,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                       title:
                                                           'Event is Cancelled',
                                                       message:
-                                                          '${widget.eventDoc?.eventName} has been cancelled by the organizers.',
+                                                          '${widget!.eventDoc?.eventName} has been cancelled by the organizers.',
                                                       multipleUsers: _model
                                                           .allGuests
                                                           ?.map((e) =>
@@ -2354,7 +2330,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                           backgroundColor:
                                                               Colors
                                                                   .transparent,
-                                                          alignment: const AlignmentDirectional(
+                                                          alignment: AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
@@ -2367,7 +2343,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                           dialogContext)
                                                                       .unfocus(),
                                                               child:
-                                                                  const InformationDialogBoxWidget(
+                                                                  InformationDialogBoxWidget(
                                                                 infoDialogTitle:
                                                                     'Event Cancelled',
                                                                 infoDialogMeesage:
@@ -2392,7 +2368,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                         ),
                                                         'orgRef':
                                                             serializeParam(
-                                                          widget.eventDoc
+                                                          widget!.eventDoc
                                                               ?.orgReference,
                                                           ParamType
                                                               .DocumentReference,
@@ -2400,9 +2376,8 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                       }.withoutNulls,
                                                     );
 
-                                                    if (shouldSetState) {
+                                                    if (_shouldSetState)
                                                       safeSetState(() {});
-                                                    }
                                                     return;
                                                   } else {
                                                     logFirebaseEvent(
@@ -2417,7 +2392,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                           backgroundColor:
                                                               Colors
                                                                   .transparent,
-                                                          alignment: const AlignmentDirectional(
+                                                          alignment: AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
@@ -2430,7 +2405,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                                           dialogContext)
                                                                       .unfocus(),
                                                               child:
-                                                                  const InformationDialogBoxWidget(
+                                                                  InformationDialogBoxWidget(
                                                                 infoDialogTitle:
                                                                     'Action Cancelled',
                                                                 infoDialogMeesage:
@@ -2445,25 +2420,27 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                     logFirebaseEvent(
                                                         'Button_navigate_back');
                                                     context.safePop();
-                                                    if (shouldSetState) {
+                                                    if (_shouldSetState)
                                                       safeSetState(() {});
-                                                    }
                                                     return;
                                                   }
 
-                                                  if (shouldSetState) {
+                                                  if (_shouldSetState)
                                                     safeSetState(() {});
-                                                  }
                                                 },
                                                 text: 'Cancel Event',
+                                                icon: Icon(
+                                                  Icons.cancel_outlined,
+                                                  size: 15.0,
+                                                ),
                                                 options: FFButtonOptions(
                                                   width: double.infinity,
                                                   height: 40.0,
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           24.0, 0.0, 24.0, 0.0),
                                                   iconPadding:
-                                                      const EdgeInsetsDirectional
+                                                      EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
@@ -2481,7 +2458,7 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                                             letterSpacing: 0.0,
                                                           ),
                                                   elevation: 3.0,
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Colors.transparent,
                                                     width: 1.0,
                                                   ),
@@ -2493,9 +2470,9 @@ class _EventEditWidgetState extends State<EventEditWidget>
                                             ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 10.0)),
+                                      ].divide(SizedBox(width: 10.0)),
                                     ),
-                                  ].divide(const SizedBox(height: 5.0)),
+                                  ].divide(SizedBox(height: 5.0)),
                                 ),
                               ),
                             ),

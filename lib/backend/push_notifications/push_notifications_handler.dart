@@ -1,17 +1,23 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'serialization_util.dart';
 import '../backend.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
+import '../../index.dart';
+import '../../main.dart';
 
 final _handledMessageIds = <String?>{};
 
 class PushNotificationsHandler extends StatefulWidget {
-  const PushNotificationsHandler({super.key, required this.child});
+  const PushNotificationsHandler({Key? key, required this.child})
+      : super(key: key);
 
   final Widget child;
 
@@ -97,7 +103,7 @@ class ParameterData {
       );
 
   static Future<ParameterData> Function(Map<String, dynamic>) none() =>
-      (data) async => const ParameterData();
+      (data) async => ParameterData();
 }
 
 final parametersBuilderMap =
@@ -345,7 +351,7 @@ final parametersBuilderMap =
               data, 'eventDoc', EventsRecord.fromSnapshot),
         },
       ),
-  'calendar_trial': ParameterData.none(),
+  'event_calendar': ParameterData.none(),
   'auth_verify_role': ParameterData.none(),
   'fmo_calendar_version1': ParameterData.none(),
   'event_proposal_step_1': (data) async => ParameterData(
@@ -515,7 +521,12 @@ final parametersBuilderMap =
         },
       ),
   'org_form_management': ParameterData.none(),
-  'org_reports': ParameterData.none(),
+  'org_reports': (data) async => ParameterData(
+        allParams: {
+          'orgDoc': await getDocumentParameter<OrganizationsRecord>(
+              data, 'orgDoc', OrganizationsRecord.fromSnapshot),
+        },
+      ),
   'admin_approval_offices_menu': ParameterData.none(),
   'admin_approval_offices_create': ParameterData.none(),
   'admin_approval_offices_update': (data) async => ParameterData(
@@ -702,6 +713,9 @@ final parametersBuilderMap =
               data, 'userDoc', UsersRecord.fromSnapshot),
         },
       ),
+  'org_reportsCopy': ParameterData.none(),
+  'calendar': ParameterData.none(),
+  'admin_org_report': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

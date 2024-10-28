@@ -8,6 +8,9 @@ import 'dart:async';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'auth_sign_in_model.dart';
 export 'auth_sign_in_model.dart';
@@ -80,14 +83,14 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Align(
-                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Text(
                               'Sign In',
                               style: FlutterFlowTheme.of(context)
@@ -101,7 +104,7 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Text(
                               'Mabuhay, Nationalian!',
                               style: FlutterFlowTheme.of(context)
@@ -117,9 +120,9 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 30.0, 0.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20.0),
@@ -133,7 +136,7 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 20.0, 0.0, 0.0),
                             child: Form(
                               key: _model.formKey,
@@ -142,16 +145,16 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
-                                    child: SizedBox(
+                                    child: Container(
                                       width: double.infinity,
                                       child: TextFormField(
                                         controller:
                                             _model.emailFieldTextController,
                                         focusNode: _model.emailFieldFocusNode,
                                         autofocus: false,
-                                        autofillHints: const [AutofillHints.email],
+                                        autofillHints: [AutofillHints.email],
                                         textInputAction: TextInputAction.next,
                                         obscureText: false,
                                         decoration: InputDecoration(
@@ -206,7 +209,7 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                           ),
                                           filled: true,
                                           contentPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 25.0, 0.0, 25.0),
                                           prefixIcon: Icon(
                                             Icons.alternate_email,
@@ -231,9 +234,9 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
-                                    child: SizedBox(
+                                    child: Container(
                                       width: double.infinity,
                                       child: TextFormField(
                                         controller:
@@ -241,7 +244,7 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                         focusNode:
                                             _model.passwordFieldFocusNode,
                                         autofocus: false,
-                                        autofillHints: const [AutofillHints.password],
+                                        autofillHints: [AutofillHints.password],
                                         textInputAction: TextInputAction.done,
                                         obscureText:
                                             !_model.passwordFieldVisibility,
@@ -297,7 +300,7 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                           ),
                                           filled: true,
                                           contentPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 25.0, 0.0, 25.0),
                                           prefixIcon: Icon(
                                             Icons.lock_outline_sharp,
@@ -337,9 +340,9 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                     ),
                                   ),
                                   Align(
-                                    alignment: const AlignmentDirectional(1.0, 0.0),
+                                    alignment: AlignmentDirectional(1.0, 0.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 5.0, 0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -362,7 +365,7 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                             }.withoutNulls,
                                             extra: <String, dynamic>{
                                               kTransitionInfoKey:
-                                                  const TransitionInfo(
+                                                  TransitionInfo(
                                                 hasTransition: true,
                                                 transitionType:
                                                     PageTransitionType.fade,
@@ -389,7 +392,7 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 20.0, 0.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -399,7 +402,7 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                         Flexible(
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     1.0, 10.0, 0.0, 0.0),
                                             child: RichText(
                                               textScaler: MediaQuery.of(context)
@@ -450,7 +453,7 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                                                 'privacy_statement');
                                                           },
                                                   ),
-                                                  const TextSpan(
+                                                  TextSpan(
                                                     text: ' and ',
                                                     style: TextStyle(
                                                       fontSize: 11.0,
@@ -487,7 +490,7 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                                                 'terms');
                                                           },
                                                   ),
-                                                  const TextSpan(
+                                                  TextSpan(
                                                     text:
                                                         ' consent to the use of your personal data.',
                                                     style: TextStyle(
@@ -515,7 +518,7 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                   ),
                                   Builder(
                                     builder: (context) => Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
@@ -562,7 +565,7 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
@@ -574,7 +577,7 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                                                     dialogContext)
                                                                 .unfocus(),
                                                         child:
-                                                            const InformationDialogBoxWidget(
+                                                            InformationDialogBoxWidget(
                                                           infoDialogTitle:
                                                               'Account Deactivated',
                                                           infoDialogMeesage:
@@ -612,7 +615,7 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                                 context.mounted,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      const TransitionInfo(
+                                                      TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType.fade,
@@ -654,7 +657,7 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                                           .viewInsetsOf(
                                                               context),
                                                       child:
-                                                          const EmailVerificationWidget(),
+                                                          EmailVerificationWidget(),
                                                     ),
                                                   ),
                                                 );
@@ -685,10 +688,10 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                           width: double.infinity,
                                           height: 50.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -703,7 +706,7 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                                     fontWeight: FontWeight.w600,
                                                   ),
                                           elevation: 3.0,
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
                                           ),
@@ -714,7 +717,7 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 20.0, 0.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -723,7 +726,7 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 5.0, 0.0),
                                           child: Text(
                                             'Not Registered yet?',
@@ -754,7 +757,7 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                               'auth_sign_up',
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
-                                                    const TransitionInfo(
+                                                    TransitionInfo(
                                                   hasTransition: true,
                                                   transitionType:
                                                       PageTransitionType.fade,
@@ -801,26 +804,26 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                   ],
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 1.0),
+                  alignment: AlignmentDirectional(0.0, 1.0),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
                     child: Container(
-                      decoration: const BoxDecoration(),
+                      decoration: BoxDecoration(),
                       child: Visibility(
                         visible: (isWeb
                                 ? MediaQuery.viewInsetsOf(context).bottom > 0
                                 : _isKeyboardVisible) ==
                             false,
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 20.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 6.0),
                                 child: Text(
                                   'P O W E R E D   B Y',
@@ -835,7 +838,7 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8.0),
                                   child: Image.asset(
@@ -843,7 +846,7 @@ class _AuthSignInWidgetState extends State<AuthSignInWidget> {
                                     width: 70.0,
                                     height: 30.0,
                                     fit: BoxFit.contain,
-                                    alignment: const Alignment(0.0, 0.0),
+                                    alignment: Alignment(0.0, 0.0),
                                   ),
                                 ),
                               ),

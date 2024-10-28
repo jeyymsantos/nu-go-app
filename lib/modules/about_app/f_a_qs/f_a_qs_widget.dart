@@ -1,7 +1,11 @@
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'f_a_qs_model.dart';
 export 'f_a_qs_model.dart';
 
@@ -46,11 +50,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TitleHeaderComponentWidget(
+                  child: TitleHeaderComponentWidget(
                     titleText: 'Frequently Ask Questions',
                   ),
                 ),
@@ -61,14 +65,14 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       AnimatedContainer(
-                        duration: const Duration(milliseconds: 1560),
+                        duration: Duration(milliseconds: 1560),
                         curve: Curves.elasticOut,
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 20.0, 20.0, 20.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -84,10 +88,10 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(-1.0, 0.0),
+                                            AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   5.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             'NU GO! Fast Facts',
@@ -108,9 +112,9 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                     ],
                                   ),
                                   Align(
-                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 0.0, 0.0),
                                       child: Text(
                                         'Welcome to the FAQs section! Here, you\'ll find answers to the most common questions about our app, features, and services. If you need further assistance, feel free to reach out to us.',
@@ -130,7 +134,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -165,7 +169,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -174,7 +178,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                               children: [
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           -1.0, 0.0),
                                                   child: Text(
                                                     'What is NU GO!?',
@@ -205,11 +209,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '1')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -220,7 +224,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -248,7 +252,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -282,7 +286,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -292,7 +296,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 Flexible(
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'What platforms is NU GO! available on? ',
@@ -324,11 +328,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '2')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -339,7 +343,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -367,7 +371,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -402,7 +406,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -411,7 +415,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                               children: [
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           -1.0, 0.0),
                                                   child: Text(
                                                     'How do I install NU GO!? ',
@@ -442,11 +446,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '3')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -457,7 +461,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -485,7 +489,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -520,7 +524,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -529,7 +533,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                               children: [
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           -1.0, 0.0),
                                                   child: Text(
                                                     'Who can use NU GO!?',
@@ -560,11 +564,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '4')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -575,7 +579,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -603,7 +607,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -637,7 +641,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -647,7 +651,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 Flexible(
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'Do I need internet access to use NU GO!? ',
@@ -679,11 +683,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '5')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -694,7 +698,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -722,7 +726,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -756,7 +760,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -766,7 +770,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 Flexible(
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'How do I register an account on NU GO!? ',
@@ -798,11 +802,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '6')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -813,7 +817,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -841,7 +845,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -876,7 +880,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -885,7 +889,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                               children: [
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           -1.0, 0.0),
                                                   child: Text(
                                                     'Can I edit my profile after registration? ',
@@ -916,11 +920,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '7')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -931,7 +935,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -959,7 +963,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -994,7 +998,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -1003,7 +1007,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                               children: [
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           -1.0, 0.0),
                                                   child: Text(
                                                     'How can I join a student organization? ',
@@ -1034,11 +1038,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '8')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -1049,7 +1053,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -1077,7 +1081,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -1111,7 +1115,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -1121,7 +1125,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 Flexible(
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'How do I submit an event proposal for my organization? ',
@@ -1153,11 +1157,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '9')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -1168,7 +1172,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -1196,7 +1200,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -1230,7 +1234,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -1240,7 +1244,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 Flexible(
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'How do I know if my event proposal is approved? ',
@@ -1272,11 +1276,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '10')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -1287,7 +1291,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -1315,7 +1319,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -1349,7 +1353,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -1359,7 +1363,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 Flexible(
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'Can I manage multiple organizations in NU GO!?',
@@ -1391,11 +1395,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '11')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -1406,7 +1410,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -1434,7 +1438,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -1468,7 +1472,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -1478,7 +1482,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 Flexible(
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'Can I apply multiple organization in NU GO!? ',
@@ -1510,11 +1514,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '12')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -1525,7 +1529,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -1553,7 +1557,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -1587,7 +1591,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -1597,7 +1601,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 Flexible(
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'Will I get notifications for upcoming events? ',
@@ -1629,11 +1633,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '13')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -1644,7 +1648,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -1672,7 +1676,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -1706,7 +1710,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -1716,7 +1720,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 Flexible(
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'How long does the approval process take? ',
@@ -1748,11 +1752,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '14')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -1763,7 +1767,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -1791,7 +1795,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -1825,7 +1829,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -1835,7 +1839,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 Flexible(
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'Can administrators request revisions to an event or organization application? ',
@@ -1867,11 +1871,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '15')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -1882,7 +1886,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -1910,7 +1914,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -1944,7 +1948,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -1954,7 +1958,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 Flexible(
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'Can a regular student create events in NU GO!? ',
@@ -1986,11 +1990,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '16')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -2001,7 +2005,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -2029,7 +2033,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -2063,7 +2067,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -2073,7 +2077,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 Flexible(
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'Can I edit my event proposal after submitting it? ',
@@ -2105,11 +2109,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '17')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -2120,7 +2124,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -2148,7 +2152,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -2182,7 +2186,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -2192,7 +2196,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 Flexible(
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'How can I reserve a facility for my event? ',
@@ -2224,11 +2228,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '18')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -2239,7 +2243,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -2267,7 +2271,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -2301,7 +2305,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -2311,7 +2315,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 Flexible(
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'How do I check if a facility is available for reservation? ',
@@ -2343,11 +2347,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '19')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -2358,7 +2362,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -2386,7 +2390,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -2420,7 +2424,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -2430,7 +2434,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 Flexible(
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'What are the system requirements for NU GO!? ',
@@ -2462,11 +2466,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '20')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -2477,7 +2481,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -2505,7 +2509,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -2539,7 +2543,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -2549,7 +2553,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 Flexible(
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'How do I reset my password? ',
@@ -2581,11 +2585,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '21')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -2596,7 +2600,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -2624,7 +2628,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -2658,7 +2662,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -2668,7 +2672,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 Flexible(
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'Who should I contact for technical support? ',
@@ -2700,11 +2704,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '22')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -2715,7 +2719,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -2743,7 +2747,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -2777,7 +2781,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -2787,7 +2791,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 Flexible(
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'What should I do if I cannot log into my account? ',
@@ -2819,11 +2823,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '23')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -2834,7 +2838,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -2862,7 +2866,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -2896,7 +2900,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -2906,7 +2910,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 Flexible(
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'The app keeps crashing. What can I do? ',
@@ -2938,11 +2942,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '24')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -2953,7 +2957,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -2981,7 +2985,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -3015,7 +3019,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -3025,7 +3029,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 Flexible(
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'I didn’t receive a confirmation email. What should I do? ',
@@ -3057,11 +3061,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '25')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -3072,7 +3076,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -3100,7 +3104,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 20.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(0.0),
@@ -3134,7 +3138,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(10.0),
+                                            padding: EdgeInsets.all(10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -3144,7 +3148,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                 Flexible(
                                                   child: Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'Can I delete my account from NU GO!? ',
@@ -3176,11 +3180,11 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                       if (_model.questionNumber == '26')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: AnimatedContainer(
                                             duration:
-                                                const Duration(milliseconds: 1280),
+                                                Duration(milliseconds: 1280),
                                             curve: Curves.easeIn,
                                             width: double.infinity,
                                             decoration: BoxDecoration(
@@ -3191,7 +3195,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                                   BorderRadius.circular(10.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(10.0),
+                                              padding: EdgeInsets.all(10.0),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -3218,7 +3222,7 @@ class _FAQsWidgetState extends State<FAQsWidget> {
                                 ),
                               ),
                             ),
-                          ].divide(const SizedBox(height: 5.0)),
+                          ].divide(SizedBox(height: 5.0)),
                         ),
                       ),
                     ],

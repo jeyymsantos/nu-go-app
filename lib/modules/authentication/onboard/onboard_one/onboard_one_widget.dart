@@ -7,11 +7,15 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:math';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'onboard_one_model.dart';
 export 'onboard_one_model.dart';
 
@@ -46,7 +50,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
         context.goNamed(
           'auth_redirect',
           extra: <String, dynamic>{
-            kTransitionInfoKey: const TransitionInfo(
+            kTransitionInfoKey: TransitionInfo(
               hasTransition: true,
               transitionType: PageTransitionType.fade,
               duration: Duration(milliseconds: 0),
@@ -86,7 +90,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 1400.0.ms,
-            color: const Color(0xFF35408E),
+            color: Color(0xFF35408E),
             angle: 0.576,
           ),
         ],
@@ -113,13 +117,13 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(15.0, 50.0, 15.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(15.0, 50.0, 15.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -137,7 +141,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               5.0, 0.0, 0.0, 0.0),
                           child: Container(
                             width: double.infinity,
@@ -151,7 +155,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               5.0, 0.0, 0.0, 0.0),
                           child: Container(
                             width: double.infinity,
@@ -171,7 +175,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -192,7 +196,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                     children: [
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(-1.0, -1.0),
+                                            AlignmentDirectional(-1.0, -1.0),
                                         child: InkWell(
                                           splashColor: Colors.transparent,
                                           focusColor: Colors.transparent,
@@ -208,7 +212,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                               'auth_redirect',
                                               extra: <String, dynamic>{
                                                 kTransitionInfoKey:
-                                                    const TransitionInfo(
+                                                    TransitionInfo(
                                                   hasTransition: true,
                                                   transitionType:
                                                       PageTransitionType.fade,
@@ -238,7 +242,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                                         .primaryText,
                                                   ),
                                                 ),
-                                                duration: const Duration(
+                                                duration: Duration(
                                                     milliseconds: 4000),
                                                 backgroundColor:
                                                     FlutterFlowTheme.of(context)
@@ -271,7 +275,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                     ],
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 40.0, 0.0),
                                     child: Text(
                                       'To start, kindly fill out the following fields for your onboarding.',
@@ -297,12 +301,12 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                 Flexible(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          SizedBox(
+                          Container(
                             width: double.infinity,
                             child: Form(
                               key: _model.formKey,
@@ -311,7 +315,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller:
@@ -339,7 +343,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                               letterSpacing: 0.0,
                                             ),
                                         enabledBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Color(0x00000000),
                                             width: 0.5,
                                           ),
@@ -390,7 +394,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller:
@@ -419,7 +423,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                               letterSpacing: 0.0,
                                             ),
                                         enabledBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Color(0x00000000),
                                             width: 0.5,
                                           ),
@@ -470,7 +474,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller:
@@ -498,7 +502,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                               letterSpacing: 0.0,
                                             ),
                                         enabledBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Color(0x00000000),
                                             width: 0.5,
                                           ),
@@ -549,7 +553,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -557,7 +561,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: TextFormField(
                                               controller: _model
@@ -592,7 +596,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                                     ),
                                                 enabledBorder:
                                                     OutlineInputBorder(
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Color(0x00000000),
                                                     width: 0.5,
                                                   ),
@@ -661,7 +665,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                                     .civilStatusDropdownValueController ??=
                                                 FormFieldController<String>(
                                                     null),
-                                            options: const [
+                                            options: [
                                               'Single',
                                               'Married',
                                               'Widowed',
@@ -694,7 +698,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                             borderWidth: 0.5,
                                             borderRadius: 14.0,
                                             margin:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 0.0, 16.0, 0.0),
                                             hidesUnderline: true,
                                             isOverButton: true,
@@ -706,7 +710,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -736,7 +740,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(15.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -754,7 +758,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                                 ],
                                               ),
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Row(
                                                   mainAxisSize:
@@ -764,7 +768,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -839,7 +843,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 15.0, 0.0, 0.0),
                                           child: TextFormField(
                                             controller: _model
@@ -872,7 +876,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                                     letterSpacing: 0.0,
                                                   ),
                                               enabledBorder: OutlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 0.5,
                                                 ),
@@ -940,7 +944,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                     ],
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 12.0, 0.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -952,7 +956,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                             'ONBOARD_ONE_PAGE_birthdate_picker_ON_TAP');
                                         logFirebaseEvent(
                                             'birthdate_picker_date_time_picker');
-                                        final datePickedDate =
+                                        final _datePickedDate =
                                             await showDatePicker(
                                           context: context,
                                           initialDate: DateTime
@@ -1007,12 +1011,12 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                           },
                                         );
 
-                                        if (datePickedDate != null) {
+                                        if (_datePickedDate != null) {
                                           safeSetState(() {
                                             _model.datePicked = DateTime(
-                                              datePickedDate.year,
-                                              datePickedDate.month,
-                                              datePickedDate.day,
+                                              _datePickedDate.year,
+                                              _datePickedDate.month,
+                                              _datePickedDate.day,
                                             );
                                           });
                                         }
@@ -1043,7 +1047,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                                       .spaceBetween,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           10.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -1072,7 +1076,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 10.0, 0.0),
                                                   child: Icon(
@@ -1096,7 +1100,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 15.0, 10.0, 0.0),
                                           child: TextFormField(
                                             controller: _model
@@ -1129,7 +1133,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                                     letterSpacing: 0.0,
                                                   ),
                                               enabledBorder: OutlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 0.5,
                                                 ),
@@ -1188,7 +1192,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 15.0, 0.0, 0.0),
                                           child: TextFormField(
                                             controller: _model
@@ -1221,7 +1225,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                                     letterSpacing: 0.0,
                                                   ),
                                               enabledBorder: OutlineInputBorder(
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Color(0x00000000),
                                                   width: 0.5,
                                                 ),
@@ -1280,7 +1284,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                     ],
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: FutureBuilder<ApiCallResponse>(
                                       future:
@@ -1349,7 +1353,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                           borderWidth: 0.5,
                                           borderRadius: 14.0,
                                           margin:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 16.0, 0.0),
                                           hidesUnderline: true,
                                           isOverButton: true,
@@ -1362,7 +1366,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                   if (_model.provincesDropdownValue != null &&
                                       _model.provincesDropdownValue != '')
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 15.0, 0.0, 0.0),
                                       child: FutureBuilder<ApiCallResponse>(
                                         future: AddressGroup.getCityCall.call(
@@ -1434,7 +1438,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                             borderWidth: 0.5,
                                             borderRadius: 14.0,
                                             margin:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 0.0, 16.0, 0.0),
                                             hidesUnderline: true,
                                             isOverButton: true,
@@ -1447,7 +1451,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                   if (_model.cityDropdownValue != null &&
                                       _model.cityDropdownValue != '')
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 15.0, 0.0, 0.0),
                                       child: FutureBuilder<ApiCallResponse>(
                                         future: AddressGroup.barangayCall.call(
@@ -1521,7 +1525,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                             borderWidth: 0.5,
                                             borderRadius: 14.0,
                                             margin:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 0.0, 16.0, 0.0),
                                             hidesUnderline: true,
                                             isOverButton: true,
@@ -1532,7 +1536,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                       ),
                                     ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 15.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
@@ -1560,7 +1564,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                                 ),
                                               ),
                                               duration:
-                                                  const Duration(milliseconds: 4000),
+                                                  Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .error,
@@ -1582,7 +1586,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                                 ),
                                               ),
                                               duration:
-                                                  const Duration(milliseconds: 4000),
+                                                  Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .error,
@@ -1603,7 +1607,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                                 ),
                                               ),
                                               duration:
-                                                  const Duration(milliseconds: 4000),
+                                                  Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .error,
@@ -1625,7 +1629,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                                 ),
                                               ),
                                               duration:
-                                                  const Duration(milliseconds: 4000),
+                                                  Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .error,
@@ -1646,7 +1650,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                                 ),
                                               ),
                                               duration:
-                                                  const Duration(milliseconds: 4000),
+                                                  Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .error,
@@ -1668,7 +1672,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                                 ),
                                               ),
                                               duration:
-                                                  const Duration(milliseconds: 4000),
+                                                  Duration(milliseconds: 4000),
                                               backgroundColor:
                                                   FlutterFlowTheme.of(context)
                                                       .error,
@@ -1760,7 +1764,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                             ),
                                           }.withoutNulls,
                                           extra: <String, dynamic>{
-                                            kTransitionInfoKey: const TransitionInfo(
+                                            kTransitionInfoKey: TransitionInfo(
                                               hasTransition: true,
                                               transitionType:
                                                   PageTransitionType.fade,
@@ -1774,10 +1778,10 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                       options: FFButtonOptions(
                                         width: double.infinity,
                                         height: 50.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 0.0),
                                         iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
+                                            EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
@@ -1790,7 +1794,7 @@ class _OnboardOneWidgetState extends State<OnboardOneWidget>
                                               letterSpacing: 0.0,
                                             ),
                                         elevation: 3.0,
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,
                                         ),

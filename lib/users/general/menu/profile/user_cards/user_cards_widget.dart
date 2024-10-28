@@ -1,10 +1,14 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'user_cards_model.dart';
 export 'user_cards_model.dart';
 
@@ -42,18 +46,18 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: const Color(0xFF121212),
+        backgroundColor: Color(0xFF121212),
         body: Align(
-          alignment: const AlignmentDirectional(0.0, -1.0),
+          alignment: AlignmentDirectional(0.0, -1.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Align(
-                alignment: const AlignmentDirectional(0.0, -1.0),
+                alignment: AlignmentDirectional(0.0, -1.0),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                   child: Container(
                     width: double.infinity,
                     height: 182.0,
@@ -65,26 +69,26 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                           'assets/images/Ads_6.png',
                         ).image,
                       ),
-                      borderRadius: const BorderRadius.only(
+                      borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(30.0),
                         bottomRight: Radius.circular(30.0),
                         topLeft: Radius.circular(0.0),
                         topRight: Radius.circular(0.0),
                       ),
                     ),
-                    child: SizedBox(
+                    child: Container(
                       height: 190.0,
                       child: Stack(
-                        alignment: const AlignmentDirectional(0.0, -1.0),
+                        alignment: AlignmentDirectional(0.0, -1.0),
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 20.0, 20.0, 20.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 30.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -116,7 +120,7 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       25.0, 0.0, 0.0, 0.0),
                                               child: Text(
@@ -139,10 +143,10 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                                               ),
                                             ),
                                             Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   1.0, 0.0),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 5.0, 0.0),
                                                 child: ClipRRect(
@@ -164,9 +168,9 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 25.0, 0.0, 0.0),
                                     child: Text(
                                       'Let\'s make it easy for you!',
@@ -184,9 +188,9 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 20.0),
                                     child: Text(
                                       'Your membership card is here',
@@ -207,28 +211,28 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.0, 1.25),
+                            alignment: AlignmentDirectional(0.0, 1.25),
                             child: Container(
                               decoration: BoxDecoration(
-                                color: const Color(0xFF3A3A3A),
+                                color: Color(0xFF3A3A3A),
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 5.0, 10.0, 5.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 5.0, 0.0),
                                       child: AuthUserStreamWidget(
                                         builder: (context) => Container(
                                           width: 25.0,
                                           height: 25.0,
                                           clipBehavior: Clip.antiAlias,
-                                          decoration: const BoxDecoration(
+                                          decoration: BoxDecoration(
                                             shape: BoxShape.circle,
                                           ),
                                           child: Image.network(
@@ -244,7 +248,7 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                                           valueOrDefault<String>(
                                             'You are now a member, ${valueOrDefault<String>(
                                               currentUserDocument
-                                                  ?.name.firstName,
+                                                  ?.name?.firstName,
                                               'User',
                                             )}',
                                             'You are a member, Brenley',
@@ -277,7 +281,7 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -303,7 +307,7 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                         child: Icon(
                           FFIcons.kconvertCard4,
                           color: FlutterFlowTheme.of(context).primaryBackground,
@@ -332,17 +336,17 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                         child: FlipCard(
                           fill: Fill.fillBack,
                           direction: FlipDirection.HORIZONTAL,
                           speed: 400,
                           front: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Container(
                               width: 363.0,
                               height: 224.0,
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
                                     blurRadius: 18.0,
@@ -367,7 +371,7 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                                   ),
                                   Align(
                                     alignment:
-                                        const AlignmentDirectional(-0.75, 0.63),
+                                        AlignmentDirectional(-0.75, 0.63),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       crossAxisAlignment:
@@ -375,7 +379,7 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 30.0),
                                           child: AuthUserStreamWidget(
                                             builder: (context) => AutoSizeText(
@@ -403,7 +407,7 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                                         AuthUserStreamWidget(
                                           builder: (context) => Text(
                                             valueOrDefault<String>(
-                                              '${currentUserDocument?.name.firstName} ${currentUserDocument?.name.middleName} ${currentUserDocument?.name.lastName}',
+                                              '${currentUserDocument?.name?.firstName} ${currentUserDocument?.name?.middleName} ${currentUserDocument?.name?.lastName}',
                                               'BRENLEY IAN DR. ROBLES',
                                             ),
                                             style: FlutterFlowTheme.of(context)
@@ -443,7 +447,7 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                                   ),
                                   Align(
                                     alignment:
-                                        const AlignmentDirectional(0.84, -0.03),
+                                        AlignmentDirectional(0.84, -0.03),
                                     child: Container(
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
@@ -452,7 +456,7 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                                             BorderRadius.circular(5.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(5.0),
+                                        padding: EdgeInsets.all(5.0),
                                         child: AuthUserStreamWidget(
                                           builder: (context) => BarcodeWidget(
                                             data: valueOrDefault(
@@ -466,8 +470,8 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primaryBackground,
-                                            errorBuilder: (context, error) =>
-                                                const SizedBox(
+                                            errorBuilder: (_context, _error) =>
+                                                SizedBox(
                                               width: 80.0,
                                               height: 80.0,
                                             ),
@@ -482,11 +486,11 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                             ),
                           ),
                           back: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Container(
                               width: 363.0,
                               height: 224.0,
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
                                     blurRadius: 18.0,
@@ -510,7 +514,7 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                                     ),
                                   ),
                                   Align(
-                                    alignment: const AlignmentDirectional(0.89, 0.1),
+                                    alignment: AlignmentDirectional(0.89, 0.1),
                                     child: Container(
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
@@ -519,7 +523,7 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                                             BorderRadius.circular(5.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(5.0),
+                                        padding: EdgeInsets.all(5.0),
                                         child: AuthUserStreamWidget(
                                           builder: (context) => BarcodeWidget(
                                             data: valueOrDefault(
@@ -533,8 +537,8 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primaryBackground,
-                                            errorBuilder: (context, error) =>
-                                                const SizedBox(
+                                            errorBuilder: (_context, _error) =>
+                                                SizedBox(
                                               width: 60.0,
                                               height: 60.0,
                                             ),
@@ -554,7 +558,7 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 20.0, 20.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -567,7 +571,7 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 10.0, 0.0),
                                         child: Icon(
                                           FFIcons.kconvertCard4,
@@ -625,13 +629,13 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                           ),
                           if (_model.noteShow == true)
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         25.0, 0.0, 25.0, 0.0),
                                     child: Text(
                                       'Here is your exclusive e-black card, a symbol of your esteemed membership within the organization. This card not only validates your affiliation but also grants you special privileges.',
@@ -648,7 +652,7 @@ class _UserCardsWidgetState extends State<UserCardsWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         25.0, 10.0, 25.0, 30.0),
                                     child: Text(
                                       'Please remember, this card is highly confidential—handle it with care and do not share it with others without consent.',

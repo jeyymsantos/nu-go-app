@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'flutter_flow/request_manager.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
+import '/backend/api_requests/api_manager.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:csv/csv.dart';
 import 'package:synchronized/synchronized.dart';
@@ -20,7 +22,7 @@ class FFAppState extends ChangeNotifier {
   }
 
   Future initializePersistedState() async {
-    secureStorage = const FlutterSecureStorage();
+    secureStorage = FlutterSecureStorage();
     await _safeInitAsync(() async {
       _defaultID =
           (await secureStorage.getString('ff_defaultID'))?.ref ?? _defaultID;
@@ -33,6 +35,38 @@ class FFAppState extends ChangeNotifier {
   }
 
   late FlutterSecureStorage secureStorage;
+
+  List<ChartSplineStruct> _splineChart = [
+    ChartSplineStruct.fromSerializableMap(jsonDecode(
+        '{\"x_axis\":\"Jan\",\"y_first\":\"5.0\",\"y_second\":\"0.0\"}'))
+  ];
+  List<ChartSplineStruct> get splineChart => _splineChart;
+  set splineChart(List<ChartSplineStruct> value) {
+    _splineChart = value;
+  }
+
+  void addToSplineChart(ChartSplineStruct value) {
+    splineChart.add(value);
+  }
+
+  void removeFromSplineChart(ChartSplineStruct value) {
+    splineChart.remove(value);
+  }
+
+  void removeAtIndexFromSplineChart(int index) {
+    splineChart.removeAt(index);
+  }
+
+  void updateSplineChartAtIndex(
+    int index,
+    ChartSplineStruct Function(ChartSplineStruct) updateFn,
+  ) {
+    splineChart[index] = updateFn(_splineChart[index]);
+  }
+
+  void insertAtIndexInSplineChart(int index, ChartSplineStruct value) {
+    splineChart.insert(index, value);
+  }
 
   bool _searchActive = false;
   bool get searchActive => _searchActive;
@@ -406,7 +440,7 @@ class FFAppState extends ChangeNotifier {
     updateFn(_address);
   }
 
-  LatLng? _nuBaliwagLocation = const LatLng(14.9594505, 120.8899354);
+  LatLng? _nuBaliwagLocation = LatLng(14.9594505, 120.8899354);
   LatLng? get nuBaliwagLocation => _nuBaliwagLocation;
   set nuBaliwagLocation(LatLng? value) {
     _nuBaliwagLocation = value;
@@ -448,46 +482,6 @@ class FFAppState extends ChangeNotifier {
 
   void insertAtIndexInChartData1(int index, ChartDataSemiDoughnutStruct value) {
     ChartData1.insert(index, value);
-  }
-
-  List<ChartDataSplineChartStruct> _ChartData2 = [
-    ChartDataSplineChartStruct.fromSerializableMap(jsonDecode(
-        '{\"xx\":\"Jan\",\"yy\":\"43.0\",\"secondSeriesValue\":\"34.0\"}')),
-    ChartDataSplineChartStruct.fromSerializableMap(jsonDecode(
-        '{\"xx\":\"Feb\",\"yy\":\"67.0\",\"secondSeriesValue\":\"54.0\"}')),
-    ChartDataSplineChartStruct.fromSerializableMap(jsonDecode(
-        '{\"xx\":\"Mar\",\"yy\":\"56.0\",\"secondSeriesValue\":\"45.0\"}')),
-    ChartDataSplineChartStruct.fromSerializableMap(jsonDecode(
-        '{\"xx\":\"Apr\",\"yy\":\"67.0\",\"secondSeriesValue\":\"32.0\"}')),
-    ChartDataSplineChartStruct.fromSerializableMap(jsonDecode(
-        '{\"xx\":\"May\",\"yy\":\"77.0\",\"secondSeriesValue\":\"65.0\"}'))
-  ];
-  List<ChartDataSplineChartStruct> get ChartData2 => _ChartData2;
-  set ChartData2(List<ChartDataSplineChartStruct> value) {
-    _ChartData2 = value;
-  }
-
-  void addToChartData2(ChartDataSplineChartStruct value) {
-    ChartData2.add(value);
-  }
-
-  void removeFromChartData2(ChartDataSplineChartStruct value) {
-    ChartData2.remove(value);
-  }
-
-  void removeAtIndexFromChartData2(int index) {
-    ChartData2.removeAt(index);
-  }
-
-  void updateChartData2AtIndex(
-    int index,
-    ChartDataSplineChartStruct Function(ChartDataSplineChartStruct) updateFn,
-  ) {
-    ChartData2[index] = updateFn(_ChartData2[index]);
-  }
-
-  void insertAtIndexInChartData2(int index, ChartDataSplineChartStruct value) {
-    ChartData2.insert(index, value);
   }
 
   String _ChartData3 = '';
@@ -699,12 +693,12 @@ extension FlutterSecureStorageExtensions on FlutterSecureStorage {
         if (result == null || result.isEmpty) {
           return null;
         }
-        return const CsvToListConverter()
+        return CsvToListConverter()
             .convert(result)
             .first
             .map((e) => e.toString())
             .toList();
       });
   Future<void> setStringList(String key, List<String> value) async =>
-      await writeSync(key: key, value: const ListToCsvConverter().convert([value]));
+      await writeSync(key: key, value: ListToCsvConverter().convert([value]));
 }

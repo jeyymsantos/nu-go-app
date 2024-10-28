@@ -1,13 +1,20 @@
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/widgets/approver_circle_head/approver_circle_head_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import '/flutter_flow/random_data_util.dart' as random_data;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'org_application_detailed_status_model.dart';
 export 'org_application_detailed_status_model.dart';
 
@@ -92,7 +99,7 @@ class _OrgApplicationDetailedStatusWidgetState
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<OrganizationsRecord>(
-      stream: OrganizationsRecord.getDocument(widget.orgRef!),
+      stream: OrganizationsRecord.getDocument(widget!.orgRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -122,7 +129,7 @@ class _OrgApplicationDetailedStatusWidgetState
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,7 +137,7 @@ class _OrgApplicationDetailedStatusWidgetState
                       wrapWithModel(
                         model: _model.titleHeaderComponentModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: const TitleHeaderComponentWidget(
+                        child: TitleHeaderComponentWidget(
                           titleText: 'Application Tracker',
                         ),
                       ),
@@ -144,7 +151,7 @@ class _OrgApplicationDetailedStatusWidgetState
                                 width: 70.0,
                                 height: 70.0,
                                 clipBehavior: Clip.antiAlias,
-                                decoration: const BoxDecoration(
+                                decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                 ),
                                 child: Image.network(
@@ -157,7 +164,7 @@ class _OrgApplicationDetailedStatusWidgetState
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 10.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -177,7 +184,7 @@ class _OrgApplicationDetailedStatusWidgetState
                                           ),
                                     ),
                                     Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         orgApplicationDetailedStatusOrganizationsRecord
                                             .type,
@@ -202,7 +209,7 @@ class _OrgApplicationDetailedStatusWidgetState
                           ).animateOnPageLoad(
                               animationsMap['columnOnPageLoadAnimation1']!),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 0.0),
                             child: SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
@@ -216,10 +223,10 @@ class _OrgApplicationDetailedStatusWidgetState
                                     children: [
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, -1.0),
+                                            AlignmentDirectional(0.0, -1.0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 9.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
@@ -260,13 +267,13 @@ class _OrgApplicationDetailedStatusWidgetState
                                                   ),
                                                 ),
                                                 child: Padding(
-                                                  padding: const EdgeInsets.all(6.0),
+                                                  padding: EdgeInsets.all(6.0),
                                                   child: Container(
                                                     width: 1.0,
                                                     height: 1.0,
                                                     clipBehavior:
                                                         Clip.antiAlias,
-                                                    decoration: const BoxDecoration(
+                                                    decoration: BoxDecoration(
                                                       shape: BoxShape.circle,
                                                     ),
                                                     child: Image.asset(
@@ -300,7 +307,7 @@ class _OrgApplicationDetailedStatusWidgetState
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: Text(
                                           'Submitted',
                                           textAlign: TextAlign.center,
@@ -316,13 +323,13 @@ class _OrgApplicationDetailedStatusWidgetState
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: Container(
                                           width: 105.0,
-                                          decoration: const BoxDecoration(),
+                                          decoration: BoxDecoration(),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 5.0),
                                             child: Text(
                                               valueOrDefault<String>(
@@ -359,7 +366,7 @@ class _OrgApplicationDetailedStatusWidgetState
                                   ),
                                   Container(
                                     height: 150.0,
-                                    decoration: const BoxDecoration(),
+                                    decoration: BoxDecoration(),
                                     child: Builder(
                                       builder: (context) {
                                         final approvalStatus =
@@ -497,10 +504,10 @@ class _OrgApplicationDetailedStatusWidgetState
                                     children: [
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, -1.0),
+                                            AlignmentDirectional(0.0, -1.0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 9.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
@@ -592,13 +599,13 @@ class _OrgApplicationDetailedStatusWidgetState
                                                   ),
                                                 ),
                                                 child: Padding(
-                                                  padding: const EdgeInsets.all(6.0),
+                                                  padding: EdgeInsets.all(6.0),
                                                   child: Container(
                                                     width: 1.0,
                                                     height: 1.0,
                                                     clipBehavior:
                                                         Clip.antiAlias,
-                                                    decoration: const BoxDecoration(
+                                                    decoration: BoxDecoration(
                                                       shape: BoxShape.circle,
                                                     ),
                                                     child: Image.asset(
@@ -623,7 +630,7 @@ class _OrgApplicationDetailedStatusWidgetState
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: Text(
                                           valueOrDefault<String>(
                                             orgApplicationDetailedStatusOrganizationsRecord
@@ -643,10 +650,10 @@ class _OrgApplicationDetailedStatusWidgetState
                                       ),
                                       Container(
                                         width: 105.0,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 5.0),
                                           child: Text(
                                             () {
@@ -703,7 +710,7 @@ class _OrgApplicationDetailedStatusWidgetState
                       children: [
                         StreamBuilder<List<ApplicationRecord>>(
                           stream: queryApplicationRecord(
-                            parent: widget.orgRef,
+                            parent: widget!.orgRef,
                             queryBuilder: (applicationRecord) =>
                                 applicationRecord.orderBy('timestamp',
                                     descending: true),
@@ -736,7 +743,7 @@ class _OrgApplicationDetailedStatusWidgetState
                                     listViewApplicationRecordList[
                                         listViewIndex];
                                 return Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       20.0, 0.0, 20.0, 0.0),
                                   child: FutureBuilder<UsersRecord>(
                                     future: UsersRecord.getDocumentOnce(
@@ -812,14 +819,14 @@ class _OrgApplicationDetailedStatusWidgetState
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(1.0),
+                                                            EdgeInsets.all(1.0),
                                                         child: Container(
                                                           width: 30.0,
                                                           height: 30.0,
                                                           clipBehavior:
                                                               Clip.antiAlias,
                                                           decoration:
-                                                              const BoxDecoration(
+                                                              BoxDecoration(
                                                             shape:
                                                                 BoxShape.circle,
                                                           ),
@@ -837,7 +844,7 @@ class _OrgApplicationDetailedStatusWidgetState
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   10.0,
                                                                   0.0,
@@ -893,7 +900,7 @@ class _OrgApplicationDetailedStatusWidgetState
                                                 ),
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, -1.0),
                                                   child: Text(
                                                     dateTimeFormat(
@@ -922,10 +929,10 @@ class _OrgApplicationDetailedStatusWidgetState
                                               ],
                                             ),
                                             Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         16.0, 0.0, 0.0, 0.0),
                                                 child: Container(
@@ -933,7 +940,7 @@ class _OrgApplicationDetailedStatusWidgetState
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryBackground,
-                                                    boxShadow: const [
+                                                    boxShadow: [
                                                       BoxShadow(
                                                         blurRadius: 0.0,
                                                         color:
@@ -955,7 +962,7 @@ class _OrgApplicationDetailedStatusWidgetState
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(25.0, 0.0,
                                                                 0.0, 15.0),
                                                     child: Column(
@@ -970,11 +977,11 @@ class _OrgApplicationDetailedStatusWidgetState
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   -1.0, 0.0),
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         4.0,
@@ -1012,10 +1019,13 @@ class _OrgApplicationDetailedStatusWidgetState
                                                           children: [
                                                             if (listViewApplicationRecord
                                                                         .feedback !=
+                                                                    null &&
+                                                                listViewApplicationRecord
+                                                                        .feedback !=
                                                                     '')
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             5.0,
@@ -1033,7 +1043,7 @@ class _OrgApplicationDetailedStatusWidgetState
                                                                           .start,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           5.0,
@@ -1066,7 +1076,7 @@ class _OrgApplicationDetailedStatusWidgetState
                                                                         child:
                                                                             Padding(
                                                                           padding:
-                                                                              const EdgeInsets.all(3.0),
+                                                                              EdgeInsets.all(3.0),
                                                                           child:
                                                                               Column(
                                                                             mainAxisSize:
@@ -1074,7 +1084,7 @@ class _OrgApplicationDetailedStatusWidgetState
                                                                             crossAxisAlignment:
                                                                                 CrossAxisAlignment.start,
                                                                             children: [
-                                                                              if (listViewApplicationRecord.feedback != '')
+                                                                              if (listViewApplicationRecord.feedback != null && listViewApplicationRecord.feedback != '')
                                                                                 Text(
                                                                                   '\"${listViewApplicationRecord.feedback}\"',
                                                                                   textAlign: TextAlign.justify,
@@ -1113,7 +1123,7 @@ class _OrgApplicationDetailedStatusWidgetState
                           },
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 0.0),
                           child: Container(
                             decoration: BoxDecoration(
@@ -1143,12 +1153,12 @@ class _OrgApplicationDetailedStatusWidgetState
                                             ),
                                           ),
                                           child: Padding(
-                                            padding: const EdgeInsets.all(1.0),
+                                            padding: EdgeInsets.all(1.0),
                                             child: Container(
                                               width: 30.0,
                                               height: 30.0,
                                               clipBehavior: Clip.antiAlias,
-                                              decoration: const BoxDecoration(
+                                              decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
                                               ),
                                               child: Image.asset(
@@ -1160,7 +1170,7 @@ class _OrgApplicationDetailedStatusWidgetState
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 0.0, 0.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -1203,7 +1213,7 @@ class _OrgApplicationDetailedStatusWidgetState
                                     ),
                                     Align(
                                       alignment:
-                                          const AlignmentDirectional(0.0, -1.0),
+                                          AlignmentDirectional(0.0, -1.0),
                                       child: Text(
                                         valueOrDefault<String>(
                                           dateTimeFormat(
@@ -1230,9 +1240,9 @@ class _OrgApplicationDetailedStatusWidgetState
                                   ],
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         15.0, 0.0, 0.0, 0.0),
                                     child: Container(
                                       decoration: BoxDecoration(
@@ -1244,7 +1254,7 @@ class _OrgApplicationDetailedStatusWidgetState
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             25.0, 0.0, 0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
@@ -1254,10 +1264,10 @@ class _OrgApplicationDetailedStatusWidgetState
                                               CrossAxisAlignment.start,
                                           children: [
                                             Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   -1.0, 0.0),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 5.0, 0.0, 10.0),
                                                 child: Text(

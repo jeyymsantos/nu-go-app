@@ -1,15 +1,21 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/widgets/empty_list/empty_list_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'admin_manage_orgs_model.dart';
 export 'admin_manage_orgs_model.dart';
 
@@ -113,7 +119,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
           child: Stack(
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -122,7 +128,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: const TitleHeaderComponentWidget(
+                      child: TitleHeaderComponentWidget(
                         titleText: 'Manage Organizations',
                       ),
                     ),
@@ -153,7 +159,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                           return Column(
                             children: [
                               Align(
-                                alignment: const Alignment(0.0, 0),
+                                alignment: Alignment(0.0, 0),
                                 child: FlutterFlowButtonTabBar(
                                   useToggleButtonStyle: true,
                                   labelStyle: FlutterFlowTheme.of(context)
@@ -190,9 +196,9 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                   borderWidth: 2.0,
                                   borderRadius: 9.0,
                                   elevation: 0.0,
-                                  buttonMargin: const EdgeInsetsDirectional.fromSTEB(
+                                  buttonMargin: EdgeInsetsDirectional.fromSTEB(
                                       8.0, 0.0, 8.0, 0.0),
-                                  tabs: const [
+                                  tabs: [
                                     Tab(
                                       text: 'Pending',
                                     ),
@@ -219,7 +225,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                   children: [
                                     KeepAliveWidgetWrapper(
                                       builder: (context) => Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 5.0, 0.0, 0.0),
                                         child: Builder(
                                           builder: (context) {
@@ -247,6 +253,12 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                             'Revision')) &&
                                                     ((e.status != 'Declined') && (e.status != 'Cancelled')))
                                                 .toList();
+                                            if (pendingOrgs.isEmpty) {
+                                              return EmptyListWidget(
+                                                emptyWhat:
+                                                    'pending approval for organizations',
+                                              );
+                                            }
 
                                             return ListView.builder(
                                               padding: EdgeInsets.zero,
@@ -258,7 +270,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                     pendingOrgs[
                                                         pendingOrgsIndex];
                                                 return Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 0.0),
                                                   child: Row(
@@ -295,7 +307,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                               extra: <String,
                                                                   dynamic>{
                                                                 kTransitionInfoKey:
-                                                                    const TransitionInfo(
+                                                                    TransitionInfo(
                                                                   hasTransition:
                                                                       true,
                                                                   transitionType:
@@ -329,7 +341,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                             ),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsets
+                                                                  EdgeInsets
                                                                       .all(3.0),
                                                               child: Row(
                                                                 mainAxisSize:
@@ -349,7 +361,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                                               .min,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               5.0,
@@ -382,7 +394,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                                         Expanded(
                                                                           child:
                                                                               Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 5.0,
@@ -416,7 +428,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                                                       ),
                                                                                 )),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                                                                                   child: SelectionArea(
                                                                                       child: AutoSizeText(
                                                                                     '${pendingOrgsItem.status} | ${dateTimeFormat(
@@ -444,12 +456,12 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                                             .max,
                                                                     children: [
                                                                       Align(
-                                                                        alignment: const AlignmentDirectional(
+                                                                        alignment: AlignmentDirectional(
                                                                             0.0,
                                                                             0.0),
                                                                         child:
                                                                             Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               10.0,
@@ -485,7 +497,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                     ),
                                     KeepAliveWidgetWrapper(
                                       builder: (context) => Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 5.0, 0.0, 0.0),
                                         child: Builder(
                                           builder: (context) {
@@ -509,6 +521,12 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                             currentUserReference!) <
                                                         e.currentApprovalStep))
                                                 .toList();
+                                            if (approvedOrgs.isEmpty) {
+                                              return EmptyListWidget(
+                                                emptyWhat:
+                                                    'approved organizations',
+                                              );
+                                            }
 
                                             return ListView.builder(
                                               padding: EdgeInsets.zero,
@@ -520,7 +538,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                     approvedOrgs[
                                                         approvedOrgsIndex];
                                                 return Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 0.0),
                                                   child: Row(
@@ -557,7 +575,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                               extra: <String,
                                                                   dynamic>{
                                                                 kTransitionInfoKey:
-                                                                    const TransitionInfo(
+                                                                    TransitionInfo(
                                                                   hasTransition:
                                                                       true,
                                                                   transitionType:
@@ -591,7 +609,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                             ),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsets
+                                                                  EdgeInsets
                                                                       .all(3.0),
                                                               child: Row(
                                                                 mainAxisSize:
@@ -611,7 +629,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                                               .min,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               5.0,
@@ -644,7 +662,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                                         Flexible(
                                                                           child:
                                                                               Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 5.0,
@@ -678,7 +696,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                                                       ),
                                                                                 )),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                                                                                   child: SelectionArea(
                                                                                       child: AutoSizeText(
                                                                                     dateTimeFormat(
@@ -706,12 +724,12 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                                             .max,
                                                                     children: [
                                                                       Align(
-                                                                        alignment: const AlignmentDirectional(
+                                                                        alignment: AlignmentDirectional(
                                                                             0.0,
                                                                             0.0),
                                                                         child:
                                                                             Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               10.0,
@@ -747,7 +765,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                     ),
                                     KeepAliveWidgetWrapper(
                                       builder: (context) => Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 5.0, 0.0, 0.0),
                                         child: Builder(
                                           builder: (context) {
@@ -765,14 +783,20 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                             currentUserReference!) !=
                                                         -1))
                                                 .toList();
+                                            if (declinedOrgs.isEmpty) {
+                                              return EmptyListWidget(
+                                                emptyWhat:
+                                                    'declined organizations',
+                                              );
+                                            }
 
                                             return ListView.separated(
-                                              padding: const EdgeInsets.symmetric(
+                                              padding: EdgeInsets.symmetric(
                                                   vertical: 10.0),
                                               scrollDirection: Axis.vertical,
                                               itemCount: declinedOrgs.length,
                                               separatorBuilder: (_, __) =>
-                                                  const SizedBox(height: 10.0),
+                                                  SizedBox(height: 10.0),
                                               itemBuilder:
                                                   (context, declinedOrgsIndex) {
                                                 final declinedOrgsItem =
@@ -806,7 +830,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                       }.withoutNulls,
                                                       extra: <String, dynamic>{
                                                         kTransitionInfoKey:
-                                                            const TransitionInfo(
+                                                            TransitionInfo(
                                                           hasTransition: true,
                                                           transitionType:
                                                               PageTransitionType
@@ -836,7 +860,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                     ),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsets.all(3.0),
+                                                          EdgeInsets.all(3.0),
                                                       child: Row(
                                                         mainAxisSize:
                                                             MainAxisSize.min,
@@ -854,7 +878,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                                       .min,
                                                               children: [
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -901,7 +925,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                                 Flexible(
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -950,7 +974,7 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                                               ),
                                                                         )),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               10.0,
                                                                               0.0,
@@ -983,11 +1007,11 @@ class _AdminManageOrgsWidgetState extends State<AdminManageOrgsWidget>
                                                             children: [
                                                               Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,

@@ -6,10 +6,14 @@ import '/components/dialog_box/congratulations_dialog_box/congratulations_dialog
 import '/components/widgets/empty_list/empty_list_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/users/rsco/event_management/event_profile/components/side_bar_event_profile/side_bar_event_profile_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'event_guests_all_original_model.dart';
 export 'event_guests_all_original_model.dart';
@@ -54,7 +58,7 @@ class _EventGuestsAllOriginalWidgetState
   Widget build(BuildContext context) {
     return StreamBuilder<List<EventAttendeesRecord>>(
       stream: queryEventAttendeesRecord(
-        parent: widget.eventDoc?.reference,
+        parent: widget!.eventDoc?.reference,
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
@@ -81,7 +85,7 @@ class _EventGuestsAllOriginalWidgetState
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            drawer: SizedBox(
+            drawer: Container(
               width: 250.0,
               child: Drawer(
                 elevation: 16.0,
@@ -90,7 +94,7 @@ class _EventGuestsAllOriginalWidgetState
                     model: _model.sideBarEventProfileModel,
                     updateCallback: () => safeSetState(() {}),
                     child: SideBarEventProfileWidget(
-                      eventDoc: widget.eventDoc!,
+                      eventDoc: widget!.eventDoc!,
                     ),
                   ),
                 ),
@@ -102,32 +106,32 @@ class _EventGuestsAllOriginalWidgetState
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Align(
-                      alignment: const AlignmentDirectional(0.0, -1.0),
+                      alignment: AlignmentDirectional(0.0, -1.0),
                       child: Container(
                         width: double.infinity,
                         height: 170.0,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primary,
-                          borderRadius: const BorderRadius.only(
+                          borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(30.0),
                             bottomRight: Radius.circular(30.0),
                             topLeft: Radius.circular(0.0),
                             topRight: Radius.circular(0.0),
                           ),
                         ),
-                        child: SizedBox(
+                        child: Container(
                           height: 190.0,
                           child: Stack(
-                            alignment: const AlignmentDirectional(0.0, -1.0),
+                            alignment: AlignmentDirectional(0.0, -1.0),
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 20.0, 20.0, 20.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 30.0, 0.0, 20.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -159,7 +163,7 @@ class _EventGuestsAllOriginalWidgetState
                                     ),
                                     Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: Text(
                                         'Event Guests',
                                         style: FlutterFlowTheme.of(context)
@@ -177,7 +181,7 @@ class _EventGuestsAllOriginalWidgetState
                                     ),
                                     Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: Text(
                                         'Manage your Guests',
                                         style: FlutterFlowTheme.of(context)
@@ -197,9 +201,9 @@ class _EventGuestsAllOriginalWidgetState
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 1.25),
+                                alignment: AlignmentDirectional(0.0, 1.25),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       30.0, 0.0, 30.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -221,12 +225,12 @@ class _EventGuestsAllOriginalWidgetState
                                             'event_profile_insights',
                                             queryParameters: {
                                               'eventDoc': serializeParam(
-                                                widget.eventDoc,
+                                                widget!.eventDoc,
                                                 ParamType.Document,
                                               ),
                                             }.withoutNulls,
                                             extra: <String, dynamic>{
-                                              'eventDoc': widget.eventDoc,
+                                              'eventDoc': widget!.eventDoc,
                                             },
                                           );
                                         },
@@ -239,7 +243,7 @@ class _EventGuestsAllOriginalWidgetState
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 5.0, 10.0, 5.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -247,7 +251,7 @@ class _EventGuestsAllOriginalWidgetState
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 5.0, 0.0),
                                                   child: Icon(
@@ -292,24 +296,24 @@ class _EventGuestsAllOriginalWidgetState
                                             'event_check_in_out',
                                             queryParameters: {
                                               'eventDoc': serializeParam(
-                                                widget.eventDoc,
+                                                widget!.eventDoc,
                                                 ParamType.Document,
                                               ),
                                             }.withoutNulls,
                                             extra: <String, dynamic>{
-                                              'eventDoc': widget.eventDoc,
+                                              'eventDoc': widget!.eventDoc,
                                             },
                                           );
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
-                                            color: const Color(0xFFF99F58),
+                                            color: Color(0xFFF99F58),
                                             borderRadius:
                                                 BorderRadius.circular(20.0),
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 5.0, 10.0, 5.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -317,7 +321,7 @@ class _EventGuestsAllOriginalWidgetState
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 5.0, 0.0),
                                                   child: Icon(
@@ -362,24 +366,24 @@ class _EventGuestsAllOriginalWidgetState
                                             'event_profile_dashboard',
                                             queryParameters: {
                                               'eventDoc': serializeParam(
-                                                widget.eventDoc,
+                                                widget!.eventDoc,
                                                 ParamType.Document,
                                               ),
                                             }.withoutNulls,
                                             extra: <String, dynamic>{
-                                              'eventDoc': widget.eventDoc,
+                                              'eventDoc': widget!.eventDoc,
                                             },
                                           );
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
-                                            color: const Color(0xFF599AFF),
+                                            color: Color(0xFF599AFF),
                                             borderRadius:
                                                 BorderRadius.circular(20.0),
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 5.0, 10.0, 5.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -387,7 +391,7 @@ class _EventGuestsAllOriginalWidgetState
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 5.0, 0.0),
                                                   child: Icon(
@@ -429,20 +433,20 @@ class _EventGuestsAllOriginalWidgetState
                     Flexible(
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Flexible(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           20.0, 0.0, 20.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -473,13 +477,13 @@ class _EventGuestsAllOriginalWidgetState
                                                       queryParameters: {
                                                         'eventDoc':
                                                             serializeParam(
-                                                          widget.eventDoc,
+                                                          widget!.eventDoc,
                                                           ParamType.Document,
                                                         ),
                                                       }.withoutNulls,
                                                       extra: <String, dynamic>{
                                                         'eventDoc':
-                                                            widget.eventDoc,
+                                                            widget!.eventDoc,
                                                       },
                                                     );
                                                   },
@@ -495,7 +499,7 @@ class _EventGuestsAllOriginalWidgetState
                                                     ),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsets.all(5.0),
+                                                          EdgeInsets.all(5.0),
                                                       child: Row(
                                                         mainAxisSize:
                                                             MainAxisSize.min,
@@ -505,7 +509,7 @@ class _EventGuestsAllOriginalWidgetState
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -589,7 +593,7 @@ class _EventGuestsAllOriginalWidgetState
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsets.all(5.0),
+                                                        EdgeInsets.all(5.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.min,
@@ -599,7 +603,7 @@ class _EventGuestsAllOriginalWidgetState
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -669,11 +673,11 @@ class _EventGuestsAllOriginalWidgetState
                                                   ),
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(width: 10.0)),
+                                            ].divide(SizedBox(width: 10.0)),
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 20.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -683,7 +687,7 @@ class _EventGuestsAllOriginalWidgetState
                                               children: [
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           -1.0, 0.0),
                                                   child: Text(
                                                     'Guest List',
@@ -717,7 +721,7 @@ class _EventGuestsAllOriginalWidgetState
                                                         ),
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   -1.0, 0.0),
                                                           child: Text(
                                                             'Download',
@@ -752,7 +756,7 @@ class _EventGuestsAllOriginalWidgetState
                                                         ),
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   -1.0, 0.0),
                                                           child: Text(
                                                             'All Guest',
@@ -783,7 +787,7 @@ class _EventGuestsAllOriginalWidgetState
                                                       ],
                                                     ),
                                                   ].divide(
-                                                      const SizedBox(width: 15.0)),
+                                                      SizedBox(width: 15.0)),
                                                 ),
                                               ],
                                             ),
@@ -793,7 +797,7 @@ class _EventGuestsAllOriginalWidgetState
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 20.0, 0.0, 30.0),
                                         child: SingleChildScrollView(
                                           child: Column(
@@ -809,7 +813,7 @@ class _EventGuestsAllOriginalWidgetState
                                                               desc: true)
                                                           .toList();
                                                   if (allGuests.isEmpty) {
-                                                    return const EmptyListWidget(
+                                                    return EmptyListWidget(
                                                       emptyWhat: 'guests',
                                                     );
                                                   }
@@ -822,7 +826,7 @@ class _EventGuestsAllOriginalWidgetState
                                                         Axis.vertical,
                                                     itemCount: allGuests.length,
                                                     separatorBuilder: (_, __) =>
-                                                        const SizedBox(height: 5.0),
+                                                        SizedBox(height: 5.0),
                                                     itemBuilder: (context,
                                                         allGuestsIndex) {
                                                       final allGuestsItem =
@@ -830,7 +834,7 @@ class _EventGuestsAllOriginalWidgetState
                                                               allGuestsIndex];
                                                       return Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     20.0,
                                                                     0.0,
@@ -885,7 +889,7 @@ class _EventGuestsAllOriginalWidgetState
                                                               ),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             5.0,
@@ -906,7 +910,7 @@ class _EventGuestsAllOriginalWidgetState
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 5.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -916,7 +920,7 @@ class _EventGuestsAllOriginalWidgetState
                                                                               width: 30.0,
                                                                               height: 30.0,
                                                                               clipBehavior: Clip.antiAlias,
-                                                                              decoration: const BoxDecoration(
+                                                                              decoration: BoxDecoration(
                                                                                 shape: BoxShape.circle,
                                                                               ),
                                                                               child: Image.network(
@@ -931,7 +935,7 @@ class _EventGuestsAllOriginalWidgetState
                                                                           Flexible(
                                                                             child:
                                                                                 Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                                                                               child: FutureBuilder<ProgramsRecord>(
                                                                                 future: ProgramsRecord.getDocumentOnce(containerUsersRecord.student.program!),
                                                                                 builder: (context, snapshot) {
@@ -992,7 +996,7 @@ class _EventGuestsAllOriginalWidgetState
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 5.0,
@@ -1004,7 +1008,7 @@ class _EventGuestsAllOriginalWidgetState
                                                                                 borderRadius: BorderRadius.circular(5.0),
                                                                               ),
                                                                               child: Padding(
-                                                                                padding: const EdgeInsets.all(5.0),
+                                                                                padding: EdgeInsets.all(5.0),
                                                                                 child: Text(
                                                                                   'Going',
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1028,7 +1032,7 @@ class _EventGuestsAllOriginalWidgetState
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 5.0,
@@ -1040,7 +1044,7 @@ class _EventGuestsAllOriginalWidgetState
                                                                                 borderRadius: BorderRadius.circular(5.0),
                                                                               ),
                                                                               child: Padding(
-                                                                                padding: const EdgeInsets.all(5.0),
+                                                                                padding: EdgeInsets.all(5.0),
                                                                                 child: Text(
                                                                                   'Cancelled',
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1066,7 +1070,7 @@ class _EventGuestsAllOriginalWidgetState
                                                                           Builder(
                                                                             builder: (context) =>
                                                                                 Padding(
-                                                                              padding: const EdgeInsets.all(5.0),
+                                                                              padding: EdgeInsets.all(5.0),
                                                                               child: InkWell(
                                                                                 splashColor: Colors.transparent,
                                                                                 focusColor: Colors.transparent,
@@ -1074,7 +1078,7 @@ class _EventGuestsAllOriginalWidgetState
                                                                                 highlightColor: Colors.transparent,
                                                                                 onTap: () async {
                                                                                   logFirebaseEvent('EVENT_GUESTS_ALL_ORIGINAL_Row_4aez78ms_O');
-                                                                                  var shouldSetState = false;
+                                                                                  var _shouldSetState = false;
                                                                                   logFirebaseEvent('Row_alert_dialog');
                                                                                   await showDialog(
                                                                                     context: context,
@@ -1083,11 +1087,11 @@ class _EventGuestsAllOriginalWidgetState
                                                                                         elevation: 0,
                                                                                         insetPadding: EdgeInsets.zero,
                                                                                         backgroundColor: Colors.transparent,
-                                                                                        alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                        alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                                         child: WebViewAware(
                                                                                           child: GestureDetector(
                                                                                             onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                            child: const ConfirmDialogBoxWidget(
+                                                                                            child: ConfirmDialogBoxWidget(
                                                                                               confirmDialogTitle: 'Approve Join Request',
                                                                                               confirmDialogMeesage: 'Are you sure you want to approve this request?',
                                                                                             ),
@@ -1097,7 +1101,7 @@ class _EventGuestsAllOriginalWidgetState
                                                                                     },
                                                                                   ).then((value) => safeSetState(() => _model.approveConfirmDialog = value));
 
-                                                                                  shouldSetState = true;
+                                                                                  _shouldSetState = true;
                                                                                   if (_model.approveConfirmDialog!) {
                                                                                     logFirebaseEvent('Row_backend_call');
 
@@ -1117,7 +1121,7 @@ class _EventGuestsAllOriginalWidgetState
                                                                                       context,
                                                                                       type: 'approved',
                                                                                       module: 'event',
-                                                                                      doneToName: 'the event join request for ${widget.eventDoc?.eventName}',
+                                                                                      doneToName: 'the event join request for ${widget!.eventDoc?.eventName}',
                                                                                       doneTo: containerUsersRecord.reference,
                                                                                     );
                                                                                     logFirebaseEvent('Row_action_block');
@@ -1125,13 +1129,13 @@ class _EventGuestsAllOriginalWidgetState
                                                                                       context,
                                                                                       type: 'user',
                                                                                       title: 'Event Join Request Approved',
-                                                                                      message: 'The organization has accepted your request to join ${widget.eventDoc?.eventName}. Check your ticket on My Tickets tab.',
+                                                                                      message: 'The organization has accepted your request to join ${widget!.eventDoc?.eventName}. Check your ticket on My Tickets tab.',
                                                                                       user: containerUsersRecord.reference,
                                                                                     );
                                                                                     logFirebaseEvent('Row_trigger_push_notification');
                                                                                     triggerPushNotification(
                                                                                       notificationTitle: 'You can now join the event!',
-                                                                                      notificationText: 'The organization has accepted your request to join ${widget.eventDoc?.eventName}.',
+                                                                                      notificationText: 'The organization has accepted your request to join ${widget!.eventDoc?.eventName}.',
                                                                                       notificationSound: 'default',
                                                                                       userRefs: [
                                                                                         containerUsersRecord.reference
@@ -1147,11 +1151,11 @@ class _EventGuestsAllOriginalWidgetState
                                                                                           elevation: 0,
                                                                                           insetPadding: EdgeInsets.zero,
                                                                                           backgroundColor: Colors.transparent,
-                                                                                          alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                          alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                                           child: WebViewAware(
                                                                                             child: GestureDetector(
                                                                                               onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                              child: const CongratulationsDialogBoxWidget(
+                                                                                              child: CongratulationsDialogBoxWidget(
                                                                                                 congratsDialogTitle: 'Request Approved',
                                                                                                 congratsDialogMeesage: 'The user has been notified for their ticket.',
                                                                                               ),
@@ -1161,14 +1165,14 @@ class _EventGuestsAllOriginalWidgetState
                                                                                       },
                                                                                     );
 
-                                                                                    if (shouldSetState) safeSetState(() {});
+                                                                                    if (_shouldSetState) safeSetState(() {});
                                                                                     return;
                                                                                   } else {
-                                                                                    if (shouldSetState) safeSetState(() {});
+                                                                                    if (_shouldSetState) safeSetState(() {});
                                                                                     return;
                                                                                   }
 
-                                                                                  if (shouldSetState) safeSetState(() {});
+                                                                                  if (_shouldSetState) safeSetState(() {});
                                                                                 },
                                                                                 child: Row(
                                                                                   mainAxisSize: MainAxisSize.min,
@@ -1196,7 +1200,7 @@ class _EventGuestsAllOriginalWidgetState
                                                                           Builder(
                                                                             builder: (context) =>
                                                                                 Padding(
-                                                                              padding: const EdgeInsets.all(5.0),
+                                                                              padding: EdgeInsets.all(5.0),
                                                                               child: InkWell(
                                                                                 splashColor: Colors.transparent,
                                                                                 focusColor: Colors.transparent,
@@ -1204,7 +1208,7 @@ class _EventGuestsAllOriginalWidgetState
                                                                                 highlightColor: Colors.transparent,
                                                                                 onTap: () async {
                                                                                   logFirebaseEvent('EVENT_GUESTS_ALL_ORIGINAL_Row_4vgb3zfj_O');
-                                                                                  var shouldSetState = false;
+                                                                                  var _shouldSetState = false;
                                                                                   logFirebaseEvent('Row_alert_dialog');
                                                                                   await showDialog(
                                                                                     context: context,
@@ -1213,11 +1217,11 @@ class _EventGuestsAllOriginalWidgetState
                                                                                         elevation: 0,
                                                                                         insetPadding: EdgeInsets.zero,
                                                                                         backgroundColor: Colors.transparent,
-                                                                                        alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                        alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                                         child: WebViewAware(
                                                                                           child: GestureDetector(
                                                                                             onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                            child: const ConfirmDialogBoxWidget(
+                                                                                            child: ConfirmDialogBoxWidget(
                                                                                               confirmDialogTitle: 'Decline Request',
                                                                                               confirmDialogMeesage: 'Are you sure you want to decline member from joining the event? They may still re-apply and still needs approval.',
                                                                                             ),
@@ -1227,20 +1231,20 @@ class _EventGuestsAllOriginalWidgetState
                                                                                     },
                                                                                   ).then((value) => safeSetState(() => _model.declineConfirmDialogCopy = value));
 
-                                                                                  shouldSetState = true;
+                                                                                  _shouldSetState = true;
                                                                                   if (_model.declineConfirmDialogCopy!) {
                                                                                     logFirebaseEvent('Row_action_block');
                                                                                     await action_blocks.triggerAppNotification(
                                                                                       context,
                                                                                       type: 'user',
                                                                                       title: 'Event Join Request Declined',
-                                                                                      message: 'The organization has refused to accept your request to join ${widget.eventDoc?.eventName}. You may still try to re-apply by submitting a join event request again on the event\'s profile.',
+                                                                                      message: 'The organization has refused to accept your request to join ${widget!.eventDoc?.eventName}. You may still try to re-apply by submitting a join event request again on the event\'s profile.',
                                                                                       user: containerUsersRecord.reference,
                                                                                     );
                                                                                     logFirebaseEvent('Row_trigger_push_notification');
                                                                                     triggerPushNotification(
                                                                                       notificationTitle: 'Event Join Request Declined',
-                                                                                      notificationText: 'The organization has declined your request to join ${widget.eventDoc?.eventName}.',
+                                                                                      notificationText: 'The organization has declined your request to join ${widget!.eventDoc?.eventName}.',
                                                                                       notificationSound: 'default',
                                                                                       userRefs: [
                                                                                         containerUsersRecord.reference
@@ -1253,7 +1257,7 @@ class _EventGuestsAllOriginalWidgetState
                                                                                       context,
                                                                                       type: 'declined',
                                                                                       module: 'event',
-                                                                                      doneToName: 'the event join request for ${widget.eventDoc?.eventName}',
+                                                                                      doneToName: 'the event join request for ${widget!.eventDoc?.eventName}',
                                                                                       doneTo: containerUsersRecord.reference,
                                                                                     );
                                                                                     logFirebaseEvent('Row_backend_call');
@@ -1266,11 +1270,11 @@ class _EventGuestsAllOriginalWidgetState
                                                                                           elevation: 0,
                                                                                           insetPadding: EdgeInsets.zero,
                                                                                           backgroundColor: Colors.transparent,
-                                                                                          alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                          alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                                           child: WebViewAware(
                                                                                             child: GestureDetector(
                                                                                               onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                              child: const CongratulationsDialogBoxWidget(
+                                                                                              child: CongratulationsDialogBoxWidget(
                                                                                                 congratsDialogTitle: 'Event Join Request Declined',
                                                                                                 congratsDialogMeesage: 'The user has been declined and won\'t be able to join your event.',
                                                                                               ),
@@ -1280,14 +1284,14 @@ class _EventGuestsAllOriginalWidgetState
                                                                                       },
                                                                                     );
 
-                                                                                    if (shouldSetState) safeSetState(() {});
+                                                                                    if (_shouldSetState) safeSetState(() {});
                                                                                     return;
                                                                                   } else {
-                                                                                    if (shouldSetState) safeSetState(() {});
+                                                                                    if (_shouldSetState) safeSetState(() {});
                                                                                     return;
                                                                                   }
 
-                                                                                  if (shouldSetState) safeSetState(() {});
+                                                                                  if (_shouldSetState) safeSetState(() {});
                                                                                 },
                                                                                 child: Row(
                                                                                   mainAxisSize: MainAxisSize.min,
@@ -1341,9 +1345,9 @@ class _EventGuestsAllOriginalWidgetState
                   ],
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(1.0, 1.0),
+                  alignment: AlignmentDirectional(1.0, 1.0),
                   child: Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: EdgeInsets.all(20.0),
                     child: Container(
                       width: 50.0,
                       height: 50.0,
@@ -1365,12 +1369,12 @@ class _EventGuestsAllOriginalWidgetState
                             'event_check_in_out',
                             queryParameters: {
                               'eventDoc': serializeParam(
-                                widget.eventDoc,
+                                widget!.eventDoc,
                                 ParamType.Document,
                               ),
                             }.withoutNulls,
                             extra: <String, dynamic>{
-                              'eventDoc': widget.eventDoc,
+                              'eventDoc': widget!.eventDoc,
                             },
                           );
                         },

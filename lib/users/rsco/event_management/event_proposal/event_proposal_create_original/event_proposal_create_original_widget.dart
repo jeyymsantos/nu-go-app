@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/widgets/rules_on_using_school_facilities/rules_on_using_school_facilities_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
@@ -14,10 +15,13 @@ import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'event_proposal_create_original_model.dart';
@@ -55,7 +59,7 @@ class _EventProposalCreateOriginalWidgetState
       logFirebaseEvent('EVENT_PROPOSAL_CREATE_ORIGINAL_event_pro');
       logFirebaseEvent('event_proposal_create_original_custom_ac');
       _model.eventAppState = await actions.getEventsDocument(
-        widget.eventRef!.id,
+        widget!.eventRef!.id,
       );
       logFirebaseEvent('event_proposal_create_original_update_ap');
       FFAppState().budgetList =
@@ -106,7 +110,7 @@ class _EventProposalCreateOriginalWidgetState
     context.watch<FFAppState>();
 
     return StreamBuilder<EventsRecord>(
-      stream: EventsRecord.getDocument(widget.eventRef!),
+      stream: EventsRecord.getDocument(widget!.eventRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -135,7 +139,7 @@ class _EventProposalCreateOriginalWidgetState
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -143,19 +147,19 @@ class _EventProposalCreateOriginalWidgetState
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: const TitleHeaderComponentWidget(
+                      child: TitleHeaderComponentWidget(
                         titleText: 'Create Proposal',
                       ),
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 5.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -173,7 +177,7 @@ class _EventProposalCreateOriginalWidgetState
                                         ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 0.0, 0.0),
                                     child: Text(
                                       'Create your event proposal by filling out this page.',
@@ -208,11 +212,11 @@ class _EventProposalCreateOriginalWidgetState
                         children: [
                           Flexible(
                             child: Container(
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Column(
                                 children: [
                                   Align(
-                                    alignment: const Alignment(0.0, 0),
+                                    alignment: Alignment(0.0, 0),
                                     child: FlutterFlowButtonTabBar(
                                       useToggleButtonStyle: true,
                                       labelStyle: FlutterFlowTheme.of(context)
@@ -251,9 +255,9 @@ class _EventProposalCreateOriginalWidgetState
                                       borderRadius: 9.0,
                                       elevation: 0.0,
                                       buttonMargin:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               8.0, 0.0, 8.0, 0.0),
-                                      tabs: const [
+                                      tabs: [
                                         Tab(
                                           text: 'About',
                                         ),
@@ -283,14 +287,14 @@ class _EventProposalCreateOriginalWidgetState
                                       controller: _model.tabBarController,
                                       children: [
                                         KeepAliveWidgetWrapper(
-                                          builder: (context) => SizedBox(
+                                          builder: (context) => Container(
                                             width: double.infinity,
                                             child: Form(
                                               key: _model.formKey3,
                                               autovalidateMode:
                                                   AutovalidateMode.disabled,
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 0.0),
                                                 child: SingleChildScrollView(
@@ -310,7 +314,7 @@ class _EventProposalCreateOriginalWidgetState
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -355,7 +359,7 @@ class _EventProposalCreateOriginalWidgetState
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -480,6 +484,8 @@ class _EventProposalCreateOriginalWidgetState
                                                                   valueOrDefault<
                                                                       String>(
                                                                     _model.uploadedFileUrl !=
+                                                                                null &&
+                                                                            _model.uploadedFileUrl !=
                                                                                 ''
                                                                         ? _model
                                                                             .uploadedFileUrl
@@ -500,7 +506,7 @@ class _EventProposalCreateOriginalWidgetState
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -522,7 +528,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                             .max,
                                                                     children: [
                                                                       Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -659,7 +665,7 @@ class _EventProposalCreateOriginalWidgetState
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -671,7 +677,7 @@ class _EventProposalCreateOriginalWidgetState
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       -1.0,
                                                                       0.0),
                                                               child: Text(
@@ -694,7 +700,7 @@ class _EventProposalCreateOriginalWidgetState
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           15.0,
@@ -708,7 +714,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                   Flexible(
                                                                     child:
                                                                         Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           5.0,
@@ -723,7 +729,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                                 MainAxisSize.max,
                                                                             children: [
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                                 child: Text(
                                                                                   'Start Date',
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -758,7 +764,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                                 () async {
                                                                               logFirebaseEvent('EVENT_PROPOSAL_CREATE_ORIGINAL_start_dat');
                                                                               logFirebaseEvent('start_date_date_time_picker');
-                                                                              final datePicked1Date = await showDatePicker(
+                                                                              final _datePicked1Date = await showDatePicker(
                                                                                 context: context,
                                                                                 initialDate: getCurrentTimestamp,
                                                                                 firstDate: getCurrentTimestamp,
@@ -785,12 +791,12 @@ class _EventProposalCreateOriginalWidgetState
                                                                                 },
                                                                               );
 
-                                                                              if (datePicked1Date != null) {
+                                                                              if (_datePicked1Date != null) {
                                                                                 safeSetState(() {
                                                                                   _model.datePicked1 = DateTime(
-                                                                                    datePicked1Date.year,
-                                                                                    datePicked1Date.month,
-                                                                                    datePicked1Date.day,
+                                                                                    _datePicked1Date.year,
+                                                                                    _datePicked1Date.month,
+                                                                                    _datePicked1Date.day,
                                                                                   );
                                                                                 });
                                                                               }
@@ -816,7 +822,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                                     children: [
                                                                                       Flexible(
                                                                                         child: Padding(
-                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                          padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                           child: Text(
                                                                                             _model.datePicked1 != null
                                                                                                 ? valueOrDefault<String>(
@@ -841,7 +847,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                                         ),
                                                                                       ),
                                                                                       Padding(
-                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                         child: Icon(
                                                                                           FFIcons.kcalendar,
                                                                                           color: FlutterFlowTheme.of(context).secondaryText,
@@ -861,7 +867,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                   Flexible(
                                                                     child:
                                                                         Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           5.0,
                                                                           0.0,
                                                                           0.0,
@@ -876,7 +882,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                                 MainAxisSize.max,
                                                                             children: [
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                                 child: Text(
                                                                                   'End Date',
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -911,7 +917,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                                 () async {
                                                                               logFirebaseEvent('EVENT_PROPOSAL_CREATE_ORIGINAL_end_date_');
                                                                               logFirebaseEvent('end_date_date_time_picker');
-                                                                              final datePicked2Date = await showDatePicker(
+                                                                              final _datePicked2Date = await showDatePicker(
                                                                                 context: context,
                                                                                 initialDate: getCurrentTimestamp,
                                                                                 firstDate: getCurrentTimestamp,
@@ -938,12 +944,12 @@ class _EventProposalCreateOriginalWidgetState
                                                                                 },
                                                                               );
 
-                                                                              if (datePicked2Date != null) {
+                                                                              if (_datePicked2Date != null) {
                                                                                 safeSetState(() {
                                                                                   _model.datePicked2 = DateTime(
-                                                                                    datePicked2Date.year,
-                                                                                    datePicked2Date.month,
-                                                                                    datePicked2Date.day,
+                                                                                    _datePicked2Date.year,
+                                                                                    _datePicked2Date.month,
+                                                                                    _datePicked2Date.day,
                                                                                   );
                                                                                 });
                                                                               }
@@ -969,7 +975,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                                     children: [
                                                                                       Flexible(
                                                                                         child: Padding(
-                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                          padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                           child: Text(
                                                                                             _model.datePicked2 != null
                                                                                                 ? valueOrDefault<String>(
@@ -994,7 +1000,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                                         ),
                                                                                       ),
                                                                                       Padding(
-                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                         child: Icon(
                                                                                           FFIcons.kcalendar,
                                                                                           color: FlutterFlowTheme.of(context).secondaryText,
@@ -1019,7 +1025,7 @@ class _EventProposalCreateOriginalWidgetState
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1056,7 +1062,7 @@ class _EventProposalCreateOriginalWidgetState
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           2.0,
@@ -1098,7 +1104,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                             padding:
                                                                                 MediaQuery.viewInsetsOf(context),
                                                                             child:
-                                                                                const SizedBox(
+                                                                                Container(
                                                                               height: 437.0,
                                                                               child: RulesOnUsingSchoolFacilitiesWidget(),
                                                                             ),
@@ -1141,7 +1147,7 @@ class _EventProposalCreateOriginalWidgetState
                                                       Flexible(
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -1158,7 +1164,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                         .max,
                                                                 children: [
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1310,7 +1316,7 @@ class _EventProposalCreateOriginalWidgetState
                                                       Flexible(
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -1327,7 +1333,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                         .max,
                                                                 children: [
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1478,7 +1484,7 @@ class _EventProposalCreateOriginalWidgetState
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1500,7 +1506,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                             .max,
                                                                     children: [
                                                                       Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -1629,7 +1635,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                             0.5,
                                                                         borderRadius:
                                                                             8.0,
-                                                                        margin: const EdgeInsetsDirectional.fromSTEB(
+                                                                        margin: EdgeInsetsDirectional.fromSTEB(
                                                                             16.0,
                                                                             4.0,
                                                                             16.0,
@@ -1653,7 +1659,7 @@ class _EventProposalCreateOriginalWidgetState
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1675,7 +1681,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                             .max,
                                                                     children: [
                                                                       Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -1712,7 +1718,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                         .targetParticipantsValueController ??= FormFieldController<
                                                                             String>(
                                                                         null),
-                                                                    options: const [
+                                                                    options: [
                                                                       'University-wide',
                                                                       'Members-wide'
                                                                     ],
@@ -1756,7 +1762,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                         0.5,
                                                                     borderRadius:
                                                                         8.0,
-                                                                    margin: const EdgeInsetsDirectional
+                                                                    margin: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             4.0,
@@ -1779,7 +1785,7 @@ class _EventProposalCreateOriginalWidgetState
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1801,7 +1807,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                             .max,
                                                                     children: [
                                                                       Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -1950,7 +1956,7 @@ class _EventProposalCreateOriginalWidgetState
                                             autovalidateMode:
                                                 AutovalidateMode.disabled,
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 10.0, 0.0, 20.0),
                                               child: SingleChildScrollView(
@@ -1961,7 +1967,7 @@ class _EventProposalCreateOriginalWidgetState
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1983,7 +1989,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                           .max,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -2127,7 +2133,7 @@ class _EventProposalCreateOriginalWidgetState
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -2144,7 +2150,7 @@ class _EventProposalCreateOriginalWidgetState
                                                             children: [
                                                               Flexible(
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -2160,7 +2166,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -2274,7 +2280,7 @@ class _EventProposalCreateOriginalWidgetState
                                                               ),
                                                               Flexible(
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -2290,7 +2296,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -2398,7 +2404,7 @@ class _EventProposalCreateOriginalWidgetState
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -2448,7 +2454,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                 FormFieldController<
                                                                         String>(
                                                                     null),
-                                                            options: const [
+                                                            options: [
                                                               'Organization',
                                                               'Sponsor',
                                                               'School',
@@ -2490,7 +2496,7 @@ class _EventProposalCreateOriginalWidgetState
                                                             borderWidth: 0.5,
                                                             borderRadius: 8.0,
                                                             margin:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         16.0,
                                                                         2.0,
@@ -2508,11 +2514,11 @@ class _EventProposalCreateOriginalWidgetState
                                                     ),
                                                     Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               1.0, 0.0),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     10.0,
@@ -2610,7 +2616,7 @@ class _EventProposalCreateOriginalWidgetState
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         20.0,
@@ -2643,7 +2649,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                         budget[
                                                                             budgetIndex];
                                                                     return Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -2657,7 +2663,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                         ),
                                                                         child:
                                                                             Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               5.0,
                                                                               5.0,
                                                                               5.0,
@@ -2674,7 +2680,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                                                 children: [
                                                                                   Align(
-                                                                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                     child: Text(
                                                                                       budgetItem.itemName,
                                                                                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2685,7 +2691,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                                     ),
                                                                                   ),
                                                                                   Align(
-                                                                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                     child: Text(
                                                                                       '${formatNumber(
                                                                                         budgetItem.price,
@@ -2705,7 +2711,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                                     ),
                                                                                   ),
                                                                                   Align(
-                                                                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                     child: Text(
                                                                                       'Charged to: ${budgetItem.chargedTo}',
                                                                                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2717,7 +2723,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                                 ],
                                                                               ),
                                                                               Align(
-                                                                                alignment: const AlignmentDirectional(1.0, 0.0),
+                                                                                alignment: AlignmentDirectional(1.0, 0.0),
                                                                                 child: Column(
                                                                                   mainAxisSize: MainAxisSize.max,
                                                                                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -2757,7 +2763,7 @@ class _EventProposalCreateOriginalWidgetState
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   20.0,
@@ -2769,7 +2775,7 @@ class _EventProposalCreateOriginalWidgetState
                                                         children: [
                                                           Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     -1.0, 0.0),
                                                             child: Text(
                                                               'Total Requested Budget',
@@ -2789,7 +2795,7 @@ class _EventProposalCreateOriginalWidgetState
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         5.0,
                                                                         0.0,
@@ -2803,7 +2809,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .backPanelText,
-                                                                boxShadow: const [
+                                                                boxShadow: [
                                                                   BoxShadow(
                                                                     blurRadius:
                                                                         2.0,
@@ -2831,7 +2837,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                 children: [
                                                                   Padding(
                                                                     padding:
-                                                                        const EdgeInsets.all(
+                                                                        EdgeInsets.all(
                                                                             10.0),
                                                                     child: Row(
                                                                       mainAxisSize:
@@ -2858,7 +2864,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                                 CrossAxisAlignment.start,
                                                                             children: [
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                 child: Text(
                                                                                   'Budget Request per Office',
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2870,7 +2876,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                                 ),
                                                                               ),
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                 child: Text(
                                                                                   'Overall pricing summary',
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2908,7 +2914,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 15.0,
                                                                                 5.0,
                                                                                 15.0,
@@ -2946,7 +2952,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 4.0,
                                                                                 0.0,
@@ -2974,7 +2980,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 15.0,
                                                                                 0.0,
                                                                                 15.0,
@@ -3012,7 +3018,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 4.0,
                                                                                 0.0,
@@ -3033,7 +3039,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 15.0,
                                                                                 0.0,
                                                                                 15.0,
@@ -3071,7 +3077,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 4.0,
                                                                                 0.0,
@@ -3092,7 +3098,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 15.0,
                                                                                 0.0,
                                                                                 15.0,
@@ -3130,7 +3136,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 4.0,
                                                                                 0.0,
@@ -3151,7 +3157,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 15.0,
                                                                                 5.0,
                                                                                 15.0,
@@ -3172,7 +3178,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                                 ),
                                                                                 Flexible(
                                                                                   child: Align(
-                                                                                    alignment: const AlignmentDirectional(1.0, 0.0),
+                                                                                    alignment: AlignmentDirectional(1.0, 0.0),
                                                                                     child: Text(
                                                                                       FFAppState().budgetList.isNotEmpty
                                                                                           ? formatNumber(
@@ -3201,10 +3207,10 @@ class _EventProposalCreateOriginalWidgetState
                                                                         ],
                                                                       ),
                                                                     ]
-                                                                        .divide(const SizedBox(
+                                                                        .divide(SizedBox(
                                                                             height:
                                                                                 3.0))
-                                                                        .around(const SizedBox(
+                                                                        .around(SizedBox(
                                                                             height:
                                                                                 3.0)),
                                                                   ),
@@ -3212,7 +3218,7 @@ class _EventProposalCreateOriginalWidgetState
                                                               ),
                                                             ),
                                                           ),
-                                                        ].divide(const SizedBox(
+                                                        ].divide(SizedBox(
                                                             height: 10.0)),
                                                       ),
                                                     ),
@@ -3228,7 +3234,7 @@ class _EventProposalCreateOriginalWidgetState
                                             autovalidateMode:
                                                 AutovalidateMode.disabled,
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 10.0, 0.0, 0.0),
                                               child: SingleChildScrollView(
@@ -3239,7 +3245,7 @@ class _EventProposalCreateOriginalWidgetState
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -3251,7 +3257,7 @@ class _EventProposalCreateOriginalWidgetState
                                                         children: [
                                                           Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     -1.0, 0.0),
                                                             child: Text(
                                                               'Target Implementation',
@@ -3273,7 +3279,7 @@ class _EventProposalCreateOriginalWidgetState
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         20.0,
@@ -3301,7 +3307,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                       Flexible(
                                                                         child:
                                                                             Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               5.0,
@@ -3315,7 +3321,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 children: [
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                                     child: Text(
                                                                                       'Start Time',
                                                                                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3346,7 +3352,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                                   logFirebaseEvent('EVENT_PROPOSAL_CREATE_ORIGINAL_time_star');
                                                                                   logFirebaseEvent('time_start_date_time_picker');
 
-                                                                                  final datePicked3Time = await showTimePicker(
+                                                                                  final _datePicked3Time = await showTimePicker(
                                                                                     context: context,
                                                                                     initialTime: TimeOfDay.fromDateTime(getCurrentTimestamp),
                                                                                     builder: (context, child) {
@@ -3370,14 +3376,14 @@ class _EventProposalCreateOriginalWidgetState
                                                                                       );
                                                                                     },
                                                                                   );
-                                                                                  if (datePicked3Time != null) {
+                                                                                  if (_datePicked3Time != null) {
                                                                                     safeSetState(() {
                                                                                       _model.datePicked3 = DateTime(
                                                                                         getCurrentTimestamp.year,
                                                                                         getCurrentTimestamp.month,
                                                                                         getCurrentTimestamp.day,
-                                                                                        datePicked3Time.hour,
-                                                                                        datePicked3Time.minute,
+                                                                                        _datePicked3Time.hour,
+                                                                                        _datePicked3Time.minute,
                                                                                       );
                                                                                     });
                                                                                   }
@@ -3402,9 +3408,18 @@ class _EventProposalCreateOriginalWidgetState
                                                                                         children: [
                                                                                           Flexible(
                                                                                             child: Padding(
-                                                                                              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                              padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                               child: Text(
                                                                                                 valueOrDefault<String>(
+                                                                                                              dateTimeFormat(
+                                                                                                                "jm",
+                                                                                                                _model.datePicked3,
+                                                                                                                locale: FFLocalizations.of(context).languageCode,
+                                                                                                              ),
+                                                                                                              'StartTime',
+                                                                                                            ) !=
+                                                                                                            null &&
+                                                                                                        valueOrDefault<String>(
                                                                                                               dateTimeFormat(
                                                                                                                 "jm",
                                                                                                                 _model.datePicked3,
@@ -3431,7 +3446,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                                             ),
                                                                                           ),
                                                                                           Padding(
-                                                                                            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                             child: Icon(
                                                                                               FFIcons.kclock,
                                                                                               color: FlutterFlowTheme.of(context).secondaryText,
@@ -3451,7 +3466,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                       Flexible(
                                                                         child:
                                                                             Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               5.0,
                                                                               0.0,
                                                                               0.0,
@@ -3465,7 +3480,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 children: [
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                                     child: Text(
                                                                                       'End Time',
                                                                                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3496,7 +3511,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                                   logFirebaseEvent('EVENT_PROPOSAL_CREATE_ORIGINAL_end_time_');
                                                                                   logFirebaseEvent('end_time_date_time_picker');
 
-                                                                                  final datePicked4Time = await showTimePicker(
+                                                                                  final _datePicked4Time = await showTimePicker(
                                                                                     context: context,
                                                                                     initialTime: TimeOfDay.fromDateTime(getCurrentTimestamp),
                                                                                     builder: (context, child) {
@@ -3520,14 +3535,14 @@ class _EventProposalCreateOriginalWidgetState
                                                                                       );
                                                                                     },
                                                                                   );
-                                                                                  if (datePicked4Time != null) {
+                                                                                  if (_datePicked4Time != null) {
                                                                                     safeSetState(() {
                                                                                       _model.datePicked4 = DateTime(
                                                                                         getCurrentTimestamp.year,
                                                                                         getCurrentTimestamp.month,
                                                                                         getCurrentTimestamp.day,
-                                                                                        datePicked4Time.hour,
-                                                                                        datePicked4Time.minute,
+                                                                                        _datePicked4Time.hour,
+                                                                                        _datePicked4Time.minute,
                                                                                       );
                                                                                     });
                                                                                   }
@@ -3552,9 +3567,15 @@ class _EventProposalCreateOriginalWidgetState
                                                                                         children: [
                                                                                           Flexible(
                                                                                             child: Padding(
-                                                                                              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                              padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                               child: Text(
                                                                                                 dateTimeFormat(
+                                                                                                              "jm",
+                                                                                                              _model.datePicked4,
+                                                                                                              locale: FFLocalizations.of(context).languageCode,
+                                                                                                            ) !=
+                                                                                                            null &&
+                                                                                                        dateTimeFormat(
                                                                                                               "jm",
                                                                                                               _model.datePicked4,
                                                                                                               locale: FFLocalizations.of(context).languageCode,
@@ -3575,7 +3596,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                                             ),
                                                                                           ),
                                                                                           Padding(
-                                                                                            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                             child: Icon(
                                                                                               FFIcons.kclock,
                                                                                               color: FlutterFlowTheme.of(context).secondaryText,
@@ -3595,7 +3616,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                     ],
                                                                   ),
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -3609,7 +3630,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                         Flexible(
                                                                           child:
                                                                               Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 10.0,
                                                                                 0.0,
@@ -3622,7 +3643,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                                   mainAxisSize: MainAxisSize.max,
                                                                                   children: [
                                                                                     Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                                       child: Text(
                                                                                         'Activity Portion',
                                                                                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3711,7 +3732,7 @@ class _EventProposalCreateOriginalWidgetState
                                                     ),
                                                     Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               1.0, 0.0),
                                                       child: InkWell(
                                                         splashColor:
@@ -3792,7 +3813,7 @@ class _EventProposalCreateOriginalWidgetState
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   20.0,
@@ -3821,7 +3842,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                       programIndex];
                                                               return Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -3837,7 +3858,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                   ),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             5.0,
                                                                             5.0,
@@ -3858,7 +3879,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                               CrossAxisAlignment.start,
                                                                           children: [
                                                                             Align(
-                                                                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                              alignment: AlignmentDirectional(-1.0, 0.0),
                                                                               child: Text(
                                                                                 programItem.activity,
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3869,7 +3890,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                               ),
                                                                             ),
                                                                             Align(
-                                                                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                              alignment: AlignmentDirectional(-1.0, 0.0),
                                                                               child: Text(
                                                                                 '${dateTimeFormat(
                                                                                   "jm",
@@ -3889,7 +3910,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                           ],
                                                                         ),
                                                                         Align(
-                                                                          alignment: const AlignmentDirectional(
+                                                                          alignment: AlignmentDirectional(
                                                                               1.0,
                                                                               0.0),
                                                                           child:
@@ -3938,7 +3959,7 @@ class _EventProposalCreateOriginalWidgetState
                                         KeepAliveWidgetWrapper(
                                           builder: (context) => Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 0.0),
                                             child: SingleChildScrollView(
                                               primary: false,
@@ -3947,7 +3968,7 @@ class _EventProposalCreateOriginalWidgetState
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 15.0),
                                                     child: Column(
@@ -3956,7 +3977,7 @@ class _EventProposalCreateOriginalWidgetState
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   -1.0, 0.0),
                                                           child: Text(
                                                             'Terms and Condition',
@@ -3981,7 +4002,7 @@ class _EventProposalCreateOriginalWidgetState
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'By submitting this event proposal, you agree and acknowledge to the following:',
@@ -3999,11 +4020,11 @@ class _EventProposalCreateOriginalWidgetState
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   15.0,
                                                                   10.0,
@@ -4032,7 +4053,7 @@ class _EventProposalCreateOriginalWidgetState
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 20.0,
                                                                 0.0, 0.0),
                                                     child: Row(
@@ -4111,7 +4132,7 @@ class _EventProposalCreateOriginalWidgetState
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 20.0,
                                                                 0.0, 0.0),
                                                     child: FFButtonWidget(
@@ -4132,16 +4153,16 @@ class _EventProposalCreateOriginalWidgetState
                                                                                 (alertDialogContext) {
                                                                               return WebViewAware(
                                                                                 child: AlertDialog(
-                                                                                  title: const Text('Revise Event'),
-                                                                                  content: const Text('Are you sure you want to resubmit your proposal?'),
+                                                                                  title: Text('Revise Event'),
+                                                                                  content: Text('Are you sure you want to resubmit your proposal?'),
                                                                                   actions: [
                                                                                     TextButton(
                                                                                       onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                      child: const Text('Cancel'),
+                                                                                      child: Text('Cancel'),
                                                                                     ),
                                                                                     TextButton(
                                                                                       onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                      child: const Text('Confirm'),
+                                                                                      child: Text('Confirm'),
                                                                                     ),
                                                                                   ],
                                                                                 ),
@@ -4167,7 +4188,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                       logFirebaseEvent(
                                                                           'Button_backend_call');
 
-                                                                      await widget
+                                                                      await widget!
                                                                           .eventRef!
                                                                           .update({
                                                                         ...createEventsRecordData(
@@ -4238,7 +4259,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                           ),
                                                                           coverPhoto:
                                                                               valueOrDefault<String>(
-                                                                            _model.uploadedFileUrl != ''
+                                                                            _model.uploadedFileUrl != null && _model.uploadedFileUrl != ''
                                                                                 ? _model.uploadedFileUrl
                                                                                 : eventProposalCreateOriginalEventsRecord.coverPhoto,
                                                                             'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/n-u-go-application-yjlz84/assets/acr6c7ygcw4g/Image_Handler.png',
@@ -4263,7 +4284,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                           'Button_backend_call');
 
                                                                       await EventApplicationRecord.createDoc(
-                                                                              widget.eventRef!)
+                                                                              widget!.eventRef!)
                                                                           .set({
                                                                         ...createEventApplicationRecordData(
                                                                           message:
@@ -4303,12 +4324,12 @@ class _EventProposalCreateOriginalWidgetState
                                                                           return WebViewAware(
                                                                             child:
                                                                                 AlertDialog(
-                                                                              title: const Text('Proposal Resubmitted'),
-                                                                              content: const Text('Proposal is now pending for your adviser\'s approval.'),
+                                                                              title: Text('Proposal Resubmitted'),
+                                                                              content: Text('Proposal is now pending for your adviser\'s approval.'),
                                                                               actions: [
                                                                                 TextButton(
                                                                                   onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: const Text('Okay'),
+                                                                                  child: Text('Okay'),
                                                                                 ),
                                                                               ],
                                                                             ),
@@ -4336,12 +4357,12 @@ class _EventProposalCreateOriginalWidgetState
                                                                           return WebViewAware(
                                                                             child:
                                                                                 AlertDialog(
-                                                                              title: const Text('Incomplete Submission'),
-                                                                              content: const Text('Make sure that you have inputs on budget and/or program flow.'),
+                                                                              title: Text('Incomplete Submission'),
+                                                                              content: Text('Make sure that you have inputs on budget and/or program flow.'),
                                                                               actions: [
                                                                                 TextButton(
                                                                                   onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: const Text('Ok'),
+                                                                                  child: Text('Ok'),
                                                                                 ),
                                                                               ],
                                                                             ),
@@ -4361,13 +4382,13 @@ class _EventProposalCreateOriginalWidgetState
                                                                           child:
                                                                               AlertDialog(
                                                                             title:
-                                                                                const Text('Action Cancelled'),
+                                                                                Text('Action Cancelled'),
                                                                             content:
-                                                                                const Text('The action has been cancelled.'),
+                                                                                Text('The action has been cancelled.'),
                                                                             actions: [
                                                                               TextButton(
                                                                                 onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                child: const Text('Ok'),
+                                                                                child: Text('Ok'),
                                                                               ),
                                                                             ],
                                                                           ),
@@ -4385,7 +4406,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                 },
                                                       text:
                                                           'Submit your Proposal',
-                                                      icon: const Icon(
+                                                      icon: Icon(
                                                         FFIcons.ksend24,
                                                         size: 20.0,
                                                       ),
@@ -4393,14 +4414,14 @@ class _EventProposalCreateOriginalWidgetState
                                                         width: double.infinity,
                                                         height: 40.0,
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     24.0,
                                                                     0.0,
                                                                     24.0,
                                                                     0.0),
                                                         iconPadding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -4425,7 +4446,7 @@ class _EventProposalCreateOriginalWidgetState
                                                                       0.0,
                                                                 ),
                                                         elevation: 3.0,
-                                                        borderSide: const BorderSide(
+                                                        borderSide: BorderSide(
                                                           color: Colors
                                                               .transparent,
                                                           width: 1.0,

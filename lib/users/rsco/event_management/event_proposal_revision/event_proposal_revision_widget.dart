@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/dialog_box/confirm_dialog_box/confirm_dialog_box_widget.dart';
 import '/components/dialog_box/congratulations_dialog_box/congratulations_dialog_box_widget.dart';
 import '/components/dialog_box/failed_dialog_box/failed_dialog_box_widget.dart';
@@ -16,16 +17,22 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/place.dart';
 import '/flutter_flow/upload_data.dart';
 import '/users/rsco/event_management/event_proposal/components/platform_choice/platform_choice_widget.dart';
+import 'dart:io';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'event_proposal_revision_model.dart';
@@ -62,11 +69,11 @@ class _EventProposalRevisionWidgetState
       logFirebaseEvent('EVENT_PROPOSAL_REVISION_event_proposal_r');
       logFirebaseEvent('event_proposal_revision_update_app_state');
       FFAppState().budgetList =
-          widget.eventDoc!.budgetRequest.toList().cast<BudgetListStruct>();
+          widget!.eventDoc!.budgetRequest.toList().cast<BudgetListStruct>();
       FFAppState().eventProgramList =
-          widget.eventDoc!.programFlow.toList().cast<EventProgramStruct>();
+          widget!.eventDoc!.programFlow.toList().cast<EventProgramStruct>();
       FFAppState().platformChoice =
-          widget.eventDoc!.otherDetails.onlinePlatform;
+          widget!.eventDoc!.otherDetails.onlinePlatform;
       safeSetState(() {});
     });
 
@@ -76,31 +83,31 @@ class _EventProposalRevisionWidgetState
       initialIndex: 0,
     )..addListener(() => safeSetState(() {}));
     _model.maxAttendeesTextController ??= TextEditingController(
-        text: widget.eventDoc?.otherDetails.maxParticipants.toString());
+        text: widget!.eventDoc?.otherDetails?.maxParticipants?.toString());
     _model.maxAttendeesFocusNode ??= FocusNode();
 
     _model.platformTextTextController ??= TextEditingController(
-        text: widget.eventDoc?.otherDetails.onlinePlatform);
+        text: widget!.eventDoc?.otherDetails?.onlinePlatform);
     _model.platformTextFocusNode ??= FocusNode();
 
     _model.linkTextController ??=
-        TextEditingController(text: widget.eventDoc?.otherDetails.onlineLink);
+        TextEditingController(text: widget!.eventDoc?.otherDetails?.onlineLink);
     _model.linkFocusNode ??= FocusNode();
 
     _model.eventNameTextController ??=
-        TextEditingController(text: widget.eventDoc?.eventName);
+        TextEditingController(text: widget!.eventDoc?.eventName);
     _model.eventNameFocusNode ??= FocusNode();
 
     _model.rationaleTextController ??=
-        TextEditingController(text: widget.eventDoc?.rationale);
+        TextEditingController(text: widget!.eventDoc?.rationale);
     _model.rationaleFocusNode ??= FocusNode();
 
     _model.objectivesTextController ??=
-        TextEditingController(text: widget.eventDoc?.rationale);
+        TextEditingController(text: widget!.eventDoc?.rationale);
     _model.objectivesFocusNode ??= FocusNode();
 
     _model.targetOutputTextController ??=
-        TextEditingController(text: widget.eventDoc?.targetOutput);
+        TextEditingController(text: widget!.eventDoc?.targetOutput);
     _model.targetOutputFocusNode ??= FocusNode();
 
     _model.itemNameTextController ??= TextEditingController();
@@ -138,7 +145,7 @@ class _EventProposalRevisionWidgetState
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -146,20 +153,20 @@ class _EventProposalRevisionWidgetState
                 wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TitleHeaderComponentWidget(
+                  child: TitleHeaderComponentWidget(
                     titleText: 'Edit Proposal',
                   ),
                 ),
-                if (widget.eventDoc?.status == 'Revision')
+                if (widget!.eventDoc?.status == 'Revision')
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 10.0),
                           child: Text(
                             'Remarks',
@@ -173,12 +180,12 @@ class _EventProposalRevisionWidgetState
                           ),
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(-1.0, -1.0),
+                          alignment: AlignmentDirectional(-1.0, -1.0),
                           child: StreamBuilder<UsersRecord>(
-                            stream: UsersRecord.getDocument(widget
+                            stream: UsersRecord.getDocument(widget!
                                 .eventDoc!
                                 .currentApprovalSignatory[
-                                    widget.eventDoc!.currentApprovalStep]
+                                    widget!.eventDoc!.currentApprovalStep]
                                 .approvalUser!),
                             builder: (context, snapshot) {
                               // Customize what your widget looks like when it's loading.
@@ -211,7 +218,7 @@ class _EventProposalRevisionWidgetState
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
+                                  padding: EdgeInsets.all(10.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -224,13 +231,13 @@ class _EventProposalRevisionWidgetState
                                             CrossAxisAlignment.start,
                                         children: [
                                           Align(
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                 -1.0, -1.0),
                                             child: Container(
                                               width: 40.0,
                                               height: 40.0,
                                               clipBehavior: Clip.antiAlias,
-                                              decoration: const BoxDecoration(
+                                              decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
                                               ),
                                               child: Image.network(
@@ -249,7 +256,7 @@ class _EventProposalRevisionWidgetState
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           10.0, 0.0, 0.0, 0.0),
                                                   child: Column(
@@ -294,7 +301,7 @@ class _EventProposalRevisionWidgetState
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           10.0, 20.0, 0.0, 0.0),
                                                   child: Column(
@@ -306,10 +313,10 @@ class _EventProposalRevisionWidgetState
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 -1.0, 0.0),
                                                         child: Text(
-                                                          '\"${(widget.eventDoc?.currentApprovalSignatory[widget.eventDoc!.currentApprovalStep])?.approvalFeedback}\"',
+                                                          '\"${(widget!.eventDoc?.currentApprovalSignatory?[widget!.eventDoc!.currentApprovalStep])?.approvalFeedback}\"',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -340,13 +347,13 @@ class _EventProposalRevisionWidgetState
                     ),
                   ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 5.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -364,7 +371,7 @@ class _EventProposalRevisionWidgetState
                                     ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: Text(
                                   'Create your event proposal by filling out this page.',
@@ -398,17 +405,17 @@ class _EventProposalRevisionWidgetState
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 60.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 60.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Flexible(
                               child: Container(
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Column(
                                   children: [
                                     Align(
-                                      alignment: const Alignment(0.0, 0),
+                                      alignment: Alignment(0.0, 0),
                                       child: FlutterFlowButtonTabBar(
                                         useToggleButtonStyle: true,
                                         labelStyle: FlutterFlowTheme.of(context)
@@ -448,9 +455,9 @@ class _EventProposalRevisionWidgetState
                                         borderRadius: 9.0,
                                         elevation: 0.0,
                                         buttonMargin:
-                                            const EdgeInsetsDirectional.fromSTEB(
+                                            EdgeInsetsDirectional.fromSTEB(
                                                 8.0, 0.0, 8.0, 0.0),
-                                        tabs: const [
+                                        tabs: [
                                           Tab(
                                             text: 'General',
                                           ),
@@ -488,7 +495,7 @@ class _EventProposalRevisionWidgetState
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 10.0,
                                                                 0.0, 0.0),
                                                     child: Column(
@@ -516,7 +523,7 @@ class _EventProposalRevisionWidgetState
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       15.0,
                                                                       0.0,
@@ -536,7 +543,7 @@ class _EventProposalRevisionWidgetState
                                                                         .max,
                                                                 children: [
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             10.0,
@@ -560,7 +567,7 @@ class _EventProposalRevisionWidgetState
                                                                     ),
                                                                   ),
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             2.0,
                                                                             10.0,
@@ -612,7 +619,7 @@ class _EventProposalRevisionWidgetState
                                                                               () async {
                                                                             logFirebaseEvent('EVENT_PROPOSAL_REVISION_start_date_ON_TA');
                                                                             logFirebaseEvent('start_date_date_time_picker');
-                                                                            final datePicked1Date =
+                                                                            final _datePicked1Date =
                                                                                 await showDatePicker(
                                                                               context: context,
                                                                               initialDate: functions.validateEventStartDate(),
@@ -641,10 +648,10 @@ class _EventProposalRevisionWidgetState
                                                                             );
 
                                                                             TimeOfDay?
-                                                                                datePicked1Time;
-                                                                            if (datePicked1Date !=
+                                                                                _datePicked1Time;
+                                                                            if (_datePicked1Date !=
                                                                                 null) {
-                                                                              datePicked1Time = await showTimePicker(
+                                                                              _datePicked1Time = await showTimePicker(
                                                                                 context: context,
                                                                                 initialTime: TimeOfDay.fromDateTime(functions.validateEventStartDate()),
                                                                                 builder: (context, child) {
@@ -670,15 +677,15 @@ class _EventProposalRevisionWidgetState
                                                                               );
                                                                             }
 
-                                                                            if (datePicked1Date != null &&
-                                                                                datePicked1Time != null) {
+                                                                            if (_datePicked1Date != null &&
+                                                                                _datePicked1Time != null) {
                                                                               safeSetState(() {
                                                                                 _model.datePicked1 = DateTime(
-                                                                                  datePicked1Date.year,
-                                                                                  datePicked1Date.month,
-                                                                                  datePicked1Date.day,
-                                                                                  datePicked1Time!.hour,
-                                                                                  datePicked1Time.minute,
+                                                                                  _datePicked1Date.year,
+                                                                                  _datePicked1Date.month,
+                                                                                  _datePicked1Date.day,
+                                                                                  _datePicked1Time!.hour,
+                                                                                  _datePicked1Time.minute,
                                                                                 );
                                                                               });
                                                                             }
@@ -705,7 +712,7 @@ class _EventProposalRevisionWidgetState
                                                                                   children: [
                                                                                     Flexible(
                                                                                       child: Padding(
-                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                         child: Text(
                                                                                           valueOrDefault<String>(
                                                                                             _model.datePicked1 != null
@@ -716,7 +723,7 @@ class _EventProposalRevisionWidgetState
                                                                                                   )
                                                                                                 : dateTimeFormat(
                                                                                                     "MMMMEEEEd",
-                                                                                                    widget.eventDoc?.startDate,
+                                                                                                    widget!.eventDoc?.startDate,
                                                                                                     locale: FFLocalizations.of(context).languageCode,
                                                                                                   ),
                                                                                             'Select Start Date',
@@ -731,7 +738,7 @@ class _EventProposalRevisionWidgetState
                                                                                     ),
                                                                                     Flexible(
                                                                                       child: Padding(
-                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                         child: Text(
                                                                                           valueOrDefault<String>(
                                                                                             _model.datePicked1 != null
@@ -742,7 +749,7 @@ class _EventProposalRevisionWidgetState
                                                                                                   )
                                                                                                 : dateTimeFormat(
                                                                                                     "jm",
-                                                                                                    widget.eventDoc?.startDate,
+                                                                                                    widget!.eventDoc?.startDate,
                                                                                                     locale: FFLocalizations.of(context).languageCode,
                                                                                                   ),
                                                                                             'Select Start Time',
@@ -756,7 +763,7 @@ class _EventProposalRevisionWidgetState
                                                                                       ),
                                                                                     ),
                                                                                     Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                       child: Icon(
                                                                                         FFIcons.kcalendar,
                                                                                         color: FlutterFlowTheme.of(context).secondaryText,
@@ -780,7 +787,7 @@ class _EventProposalRevisionWidgetState
                                                                         .max,
                                                                 children: [
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             10.0,
@@ -804,7 +811,7 @@ class _EventProposalRevisionWidgetState
                                                                     ),
                                                                   ),
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             2.0,
                                                                             10.0,
@@ -856,11 +863,11 @@ class _EventProposalRevisionWidgetState
                                                                               () async {
                                                                             logFirebaseEvent('EVENT_PROPOSAL_REVISION_end_date_ON_TAP');
                                                                             logFirebaseEvent('end_date_date_time_picker');
-                                                                            final datePicked2Date =
+                                                                            final _datePicked2Date =
                                                                                 await showDatePicker(
                                                                               context: context,
-                                                                              initialDate: ((_model.datePicked1 ?? functions.validateEventStartDate()) ?? DateTime.now()),
-                                                                              firstDate: ((_model.datePicked1 ?? functions.validateEventStartDate()) ?? DateTime(1900)),
+                                                                              initialDate: ((_model.datePicked1 != null ? _model.datePicked1 : functions.validateEventStartDate()) ?? DateTime.now()),
+                                                                              firstDate: ((_model.datePicked1 != null ? _model.datePicked1 : functions.validateEventStartDate()) ?? DateTime(1900)),
                                                                               lastDate: DateTime(2050),
                                                                               builder: (context, child) {
                                                                                 return wrapInMaterialDatePickerTheme(
@@ -885,12 +892,12 @@ class _EventProposalRevisionWidgetState
                                                                             );
 
                                                                             TimeOfDay?
-                                                                                datePicked2Time;
-                                                                            if (datePicked2Date !=
+                                                                                _datePicked2Time;
+                                                                            if (_datePicked2Date !=
                                                                                 null) {
-                                                                              datePicked2Time = await showTimePicker(
+                                                                              _datePicked2Time = await showTimePicker(
                                                                                 context: context,
-                                                                                initialTime: TimeOfDay.fromDateTime(((_model.datePicked1 ?? functions.validateEventStartDate()) ?? DateTime.now())),
+                                                                                initialTime: TimeOfDay.fromDateTime(((_model.datePicked1 != null ? _model.datePicked1 : functions.validateEventStartDate()) ?? DateTime.now())),
                                                                                 builder: (context, child) {
                                                                                   return wrapInMaterialTimePickerTheme(
                                                                                     context,
@@ -914,15 +921,15 @@ class _EventProposalRevisionWidgetState
                                                                               );
                                                                             }
 
-                                                                            if (datePicked2Date != null &&
-                                                                                datePicked2Time != null) {
+                                                                            if (_datePicked2Date != null &&
+                                                                                _datePicked2Time != null) {
                                                                               safeSetState(() {
                                                                                 _model.datePicked2 = DateTime(
-                                                                                  datePicked2Date.year,
-                                                                                  datePicked2Date.month,
-                                                                                  datePicked2Date.day,
-                                                                                  datePicked2Time!.hour,
-                                                                                  datePicked2Time.minute,
+                                                                                  _datePicked2Date.year,
+                                                                                  _datePicked2Date.month,
+                                                                                  _datePicked2Date.day,
+                                                                                  _datePicked2Time!.hour,
+                                                                                  _datePicked2Time.minute,
                                                                                 );
                                                                               });
                                                                             }
@@ -949,7 +956,7 @@ class _EventProposalRevisionWidgetState
                                                                                   children: [
                                                                                     Flexible(
                                                                                       child: Padding(
-                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                         child: Text(
                                                                                           valueOrDefault<String>(
                                                                                             _model.datePicked2 != null
@@ -960,7 +967,7 @@ class _EventProposalRevisionWidgetState
                                                                                                   )
                                                                                                 : dateTimeFormat(
                                                                                                     "MMMMEEEEd",
-                                                                                                    widget.eventDoc?.endTime,
+                                                                                                    widget!.eventDoc?.endTime,
                                                                                                     locale: FFLocalizations.of(context).languageCode,
                                                                                                   ),
                                                                                             'Select End Date',
@@ -975,7 +982,7 @@ class _EventProposalRevisionWidgetState
                                                                                     ),
                                                                                     Flexible(
                                                                                       child: Padding(
-                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                         child: Text(
                                                                                           valueOrDefault<String>(
                                                                                             _model.datePicked2 != null
@@ -986,7 +993,7 @@ class _EventProposalRevisionWidgetState
                                                                                                   )
                                                                                                 : dateTimeFormat(
                                                                                                     "jm",
-                                                                                                    widget.eventDoc?.endTime,
+                                                                                                    widget!.eventDoc?.endTime,
                                                                                                     locale: FFLocalizations.of(context).languageCode,
                                                                                                   ),
                                                                                             'Select End Time',
@@ -1000,7 +1007,7 @@ class _EventProposalRevisionWidgetState
                                                                                       ),
                                                                                     ),
                                                                                     Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                       child: Icon(
                                                                                         FFIcons.kcalendar,
                                                                                         color: FlutterFlowTheme.of(context).secondaryText,
@@ -1023,7 +1030,7 @@ class _EventProposalRevisionWidgetState
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       15.0,
                                                                       0.0,
@@ -1061,7 +1068,7 @@ class _EventProposalRevisionWidgetState
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             2.0,
@@ -1102,7 +1109,7 @@ class _EventProposalRevisionWidgetState
                                                                             child:
                                                                                 Padding(
                                                                               padding: MediaQuery.viewInsetsOf(context),
-                                                                              child: const SizedBox(
+                                                                              child: Container(
                                                                                 height: 437.0,
                                                                                 child: RulesOnUsingSchoolFacilitiesWidget(),
                                                                               ),
@@ -1147,7 +1154,7 @@ class _EventProposalRevisionWidgetState
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 15.0,
                                                                 0.0, 0.0),
                                                     child: Column(
@@ -1175,7 +1182,7 @@ class _EventProposalRevisionWidgetState
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       15.0,
                                                                       10.0,
@@ -1299,7 +1306,7 @@ class _EventProposalRevisionWidgetState
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 15.0,
                                                                 0.0, 0.0),
                                                     child: Column(
@@ -1327,7 +1334,7 @@ class _EventProposalRevisionWidgetState
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       10.0,
                                                                       10.0,
@@ -1345,7 +1352,7 @@ class _EventProposalRevisionWidgetState
                                                             controller: _model
                                                                     .onlineOrInpersonValueController ??=
                                                                 FormFieldController<
-                                                                    String>(widget
+                                                                    String>(widget!
                                                                         .eventDoc!
                                                                         .settings
                                                                         .isOnline
@@ -1375,7 +1382,7 @@ class _EventProposalRevisionWidgetState
                                                                           0.0,
                                                                     ),
                                                             textPadding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -1408,7 +1415,7 @@ class _EventProposalRevisionWidgetState
                                                             'Online')
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -1425,7 +1432,7 @@ class _EventProposalRevisionWidgetState
                                                                         .start,
                                                                 children: [
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             15.0,
@@ -1441,7 +1448,7 @@ class _EventProposalRevisionWidgetState
                                                                               .start,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               15.0,
                                                                               0.0,
                                                                               0.0,
@@ -1463,7 +1470,7 @@ class _EventProposalRevisionWidgetState
                                                                           updateCallback: () =>
                                                                               safeSetState(() {}),
                                                                           child:
-                                                                              const PlatformChoiceWidget(),
+                                                                              PlatformChoiceWidget(),
                                                                         ),
                                                                       ],
                                                                     ),
@@ -1474,7 +1481,7 @@ class _EventProposalRevisionWidgetState
                                                                             .max,
                                                                     children: [
                                                                       Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             15.0,
                                                                             10.0,
                                                                             15.0,
@@ -1487,7 +1494,7 @@ class _EventProposalRevisionWidgetState
                                                                               MainAxisAlignment.spaceBetween,
                                                                           children: [
                                                                             Align(
-                                                                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                              alignment: AlignmentDirectional(-1.0, 0.0),
                                                                               child: InkWell(
                                                                                 splashColor: Colors.transparent,
                                                                                 focusColor: Colors.transparent,
@@ -1501,7 +1508,7 @@ class _EventProposalRevisionWidgetState
                                                                                   logFirebaseEvent('Text_set_form_field');
                                                                                   safeSetState(() {
                                                                                     _model.platformTextTextController?.text = '';
-                                                                                    _model.platformTextTextController?.selection = const TextSelection.collapsed(offset: 0);
+                                                                                    _model.platformTextTextController?.selection = TextSelection.collapsed(offset: 0);
                                                                                   });
                                                                                 },
                                                                                 child: Text(
@@ -1520,7 +1527,7 @@ class _EventProposalRevisionWidgetState
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 children: [
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                                                                                     child: Icon(
                                                                                       Icons.settings_suggest,
                                                                                       color: FlutterFlowTheme.of(context).primaryText,
@@ -1528,7 +1535,7 @@ class _EventProposalRevisionWidgetState
                                                                                     ),
                                                                                   ),
                                                                                   Align(
-                                                                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                     child: InkWell(
                                                                                       splashColor: Colors.transparent,
                                                                                       focusColor: Colors.transparent,
@@ -1559,7 +1566,7 @@ class _EventProposalRevisionWidgetState
                                                                               .platformChoice ==
                                                                           'Other')
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               15.0,
                                                                               10.0,
                                                                               15.0,
@@ -1573,7 +1580,7 @@ class _EventProposalRevisionWidgetState
                                                                             onChanged: (_) =>
                                                                                 EasyDebounce.debounce(
                                                                               '_model.platformTextTextController',
-                                                                              const Duration(milliseconds: 2000),
+                                                                              Duration(milliseconds: 2000),
                                                                               () async {
                                                                                 logFirebaseEvent('EVENT_PROPOSAL_REVISION_platformText_ON_');
                                                                                 logFirebaseEvent('platformText_update_app_state');
@@ -1637,7 +1644,7 @@ class _EventProposalRevisionWidgetState
                                                                     ],
                                                                   ),
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             15.0,
                                                                             20.0,
@@ -1661,7 +1668,7 @@ class _EventProposalRevisionWidgetState
                                                                     ),
                                                                   ),
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             10.0,
@@ -1672,16 +1679,16 @@ class _EventProposalRevisionWidgetState
                                                                       width: double
                                                                           .infinity,
                                                                       decoration:
-                                                                          const BoxDecoration(),
+                                                                          BoxDecoration(),
                                                                       child:
                                                                           Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             15.0,
                                                                             0.0,
                                                                             15.0,
                                                                             0.0),
                                                                         child:
-                                                                            SizedBox(
+                                                                            Container(
                                                                           width:
                                                                               200.0,
                                                                           child:
@@ -1758,7 +1765,7 @@ class _EventProposalRevisionWidgetState
                                                             'Face-to-Face')
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         15.0,
@@ -1773,7 +1780,7 @@ class _EventProposalRevisionWidgetState
                                                                       .start,
                                                               children: [
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           15.0,
                                                                           0.0,
@@ -1797,7 +1804,7 @@ class _EventProposalRevisionWidgetState
                                                                   ),
                                                                 ),
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           10.0,
                                                                           10.0,
@@ -1813,12 +1820,12 @@ class _EventProposalRevisionWidgetState
                                                                         safeSetState(
                                                                             () {}),
                                                                     controller: _model
-                                                                        .campusOrOutsideValueController ??= FormFieldController<String>(widget
+                                                                        .campusOrOutsideValueController ??= FormFieldController<String>(widget!
                                                                             .eventDoc!
                                                                             .settings
                                                                             .isOnline
                                                                         ? 'Inside the Campus'
-                                                                        : (widget.eventDoc!.settings.isCampus
+                                                                        : (widget!.eventDoc!.settings.isCampus
                                                                             ? 'Inside the Campus'
                                                                             : 'Outside the Campus')),
                                                                     optionHeight:
@@ -1844,7 +1851,7 @@ class _EventProposalRevisionWidgetState
                                                                               0.0,
                                                                         ),
                                                                     textPadding:
-                                                                        const EdgeInsetsDirectional.fromSTEB(
+                                                                        EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             5.0,
@@ -1874,11 +1881,11 @@ class _EventProposalRevisionWidgetState
                                                                         .campusOrOutsideValue ==
                                                                     'Inside the Campus')
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             15.0,
-                                                                            10.0,
-                                                                            15.0,
+                                                                            0.0,
+                                                                            0.0,
                                                                             0.0),
                                                                     child:
                                                                         Column(
@@ -1890,9 +1897,7 @@ class _EventProposalRevisionWidgetState
                                                                               .start,
                                                                       children: [
                                                                         Text(
-                                                                          '3.2. Here are the available facilities that are suitable for your event based on the maximum capacity. Kindly select what you prefer:',
-                                                                          textAlign:
-                                                                              TextAlign.justify,
+                                                                          '3.2 Here are the available facilities that are suitable for your event based on the maximum capacity. Kindly select what you prefer:',
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .override(
@@ -1903,7 +1908,7 @@ class _EventProposalRevisionWidgetState
                                                                               ),
                                                                         ),
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               10.0,
                                                                               0.0,
@@ -1913,7 +1918,7 @@ class _EventProposalRevisionWidgetState
                                                                             width:
                                                                                 double.infinity,
                                                                             decoration:
-                                                                                const BoxDecoration(),
+                                                                                BoxDecoration(),
                                                                             child:
                                                                                 StreamBuilder<List<RoomsRecord>>(
                                                                               stream: queryRoomsRecord(
@@ -1943,7 +1948,7 @@ class _EventProposalRevisionWidgetState
 
                                                                                 return FlutterFlowDropDown<String>(
                                                                                   controller: _model.listOfFacilitiesValueController ??= FormFieldController<String>(
-                                                                                    _model.listOfFacilitiesValue ??= widget.eventDoc?.facility?.id,
+                                                                                    _model.listOfFacilitiesValue ??= '',
                                                                                   ),
                                                                                   options: List<String>.from(listOfFacilitiesRoomsRecordList.map((e) => e.reference.id).toList()),
                                                                                   optionLabels: listOfFacilitiesRoomsRecordList.map((e) => e.roomName).toList(),
@@ -1954,8 +1959,15 @@ class _EventProposalRevisionWidgetState
                                                                                     _model.roomContent = await actions.getRoomsDocument(
                                                                                       _model.listOfFacilitiesValue!,
                                                                                     );
+                                                                                    logFirebaseEvent('listOfFacilities_custom_action');
+                                                                                    _model.isRoomAvailableChecker = await actions.checkRoomAvailability(
+                                                                                      _model.roomContent!.reference,
+                                                                                      _model.datePicked1 != null ? _model.datePicked1! : widget!.eventDoc!.startDate!,
+                                                                                      _model.datePicked2 != null ? _model.datePicked2! : widget!.eventDoc!.endTime!,
+                                                                                    );
                                                                                     logFirebaseEvent('listOfFacilities_update_page_state');
                                                                                     _model.roomDoc = _model.roomContent;
+                                                                                    _model.isRoomAvailable = _model.isRoomAvailableChecker!;
                                                                                     safeSetState(() {});
 
                                                                                     safeSetState(() {});
@@ -1985,7 +1997,7 @@ class _EventProposalRevisionWidgetState
                                                                                   borderColor: Colors.transparent,
                                                                                   borderWidth: 0.5,
                                                                                   borderRadius: 8.0,
-                                                                                  margin: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                                                                                  margin: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                                                                                   hidesUnderline: true,
                                                                                   isOverButton: true,
                                                                                   isSearchable: true,
@@ -1998,7 +2010,7 @@ class _EventProposalRevisionWidgetState
                                                                         if (_model.roomDoc !=
                                                                             null)
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 10.0,
                                                                                 0.0,
@@ -2033,8 +2045,8 @@ class _EventProposalRevisionWidgetState
                                                                                   ),
                                                                                   TextSpan(
                                                                                     text: valueOrDefault<String>(
-                                                                                      _model.roomDoc?.roomMaximumCapacity.toString(),
-                                                                                      '0',
+                                                                                      _model.roomDoc?.roomMaximumCapacity?.toString(),
+                                                                                      '15',
                                                                                     ),
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                           fontFamily: 'Montserrat',
@@ -2078,6 +2090,73 @@ class _EventProposalRevisionWidgetState
                                                                               textAlign: TextAlign.center,
                                                                             ),
                                                                           ),
+                                                                        if ((_model.roomDoc !=
+                                                                                null) &&
+                                                                            !_model.isRoomAvailable)
+                                                                          Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                0.0,
+                                                                                10.0,
+                                                                                0.0,
+                                                                                0.0),
+                                                                            child:
+                                                                                RichText(
+                                                                              textScaler: MediaQuery.of(context).textScaler,
+                                                                              text: TextSpan(
+                                                                                children: [
+                                                                                  TextSpan(
+                                                                                    text: 'However, an ',
+                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                          fontFamily: 'Montserrat',
+                                                                                          color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                          fontSize: 12.0,
+                                                                                          letterSpacing: 0.0,
+                                                                                          fontWeight: FontWeight.normal,
+                                                                                        ),
+                                                                                  ),
+                                                                                  TextSpan(
+                                                                                    text: 'existing event already reserved the same room on the same date and within its time frame. \n',
+                                                                                    style: TextStyle(
+                                                                                      color: FlutterFlowTheme.of(context).error,
+                                                                                      fontWeight: FontWeight.bold,
+                                                                                    ),
+                                                                                  ),
+                                                                                  TextSpan(
+                                                                                    text: '\nYou may try to select another room or change your event\'s schedule by navigating back to Step 1.',
+                                                                                    style: TextStyle(),
+                                                                                  )
+                                                                                ],
+                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                      fontFamily: 'Montserrat',
+                                                                                      color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                      fontSize: 12.0,
+                                                                                      letterSpacing: 0.0,
+                                                                                    ),
+                                                                              ),
+                                                                              textAlign: TextAlign.center,
+                                                                            ),
+                                                                          ),
+                                                                        if ((_model.roomDoc !=
+                                                                                null) &&
+                                                                            _model.isRoomAvailable)
+                                                                          Align(
+                                                                            alignment:
+                                                                                AlignmentDirectional(0.0, 0.0),
+                                                                            child:
+                                                                                Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                                                                              child: Text(
+                                                                                'Room is available for your preferred schedule!',
+                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                      fontFamily: 'Montserrat',
+                                                                                      color: FlutterFlowTheme.of(context).success,
+                                                                                      fontSize: 12.0,
+                                                                                      letterSpacing: 0.0,
+                                                                                      fontWeight: FontWeight.bold,
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
                                                                       ],
                                                                     ),
                                                                   ),
@@ -2085,7 +2164,7 @@ class _EventProposalRevisionWidgetState
                                                                         .campusOrOutsideValue ==
                                                                     'Outside the Campus')
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             15.0,
                                                                             15.0,
@@ -2111,7 +2190,7 @@ class _EventProposalRevisionWidgetState
                                                                                 fontWeight: FontWeight.w500,
                                                                               ),
                                                                         ),
-                                                                        SizedBox(
+                                                                        Container(
                                                                           width:
                                                                               double.infinity,
                                                                           height:
@@ -2120,7 +2199,7 @@ class _EventProposalRevisionWidgetState
                                                                               Stack(
                                                                             children: [
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                                                                                 child: ClipRRect(
                                                                                   borderRadius: BorderRadius.circular(4.0),
                                                                                   child: Container(
@@ -2131,19 +2210,20 @@ class _EventProposalRevisionWidgetState
                                                                                       borderRadius: BorderRadius.circular(4.0),
                                                                                     ),
                                                                                     child: Builder(builder: (context) {
-                                                                                      final googleMapMarker = _model.placePickerValue.latLng;
+                                                                                      final _googleMapMarker = _model.placePickerValue.latLng;
                                                                                       return FlutterFlowGoogleMap(
                                                                                         controller: _model.googleMapsController,
                                                                                         onCameraIdle: (latLng) => _model.googleMapsCenter = latLng,
-                                                                                        initialLocation: _model.googleMapsCenter ??= const LatLng(14.9595, 120.8899),
+                                                                                        initialLocation: _model.googleMapsCenter ??= LatLng(14.9595, 120.8899),
                                                                                         markers: [
-                                                                                          FlutterFlowMarker(
-                                                                                            googleMapMarker.serialize(),
-                                                                                            googleMapMarker,
-                                                                                          ),
+                                                                                          if (_googleMapMarker != null)
+                                                                                            FlutterFlowMarker(
+                                                                                              _googleMapMarker.serialize(),
+                                                                                              _googleMapMarker,
+                                                                                            ),
                                                                                         ],
                                                                                         markerColor: GoogleMarkerColor.violet,
-                                                                                        markerImage: const MarkerImage(
+                                                                                        markerImage: MarkerImage(
                                                                                           imagePath: 'assets/images/NU_GO_-_No_BG.png',
                                                                                           isAssetImage: true,
                                                                                           size: 20.0 ?? 20,
@@ -2165,7 +2245,7 @@ class _EventProposalRevisionWidgetState
                                                                                 ),
                                                                               ),
                                                                               Align(
-                                                                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                                                                alignment: AlignmentDirectional(0.0, 1.0),
                                                                                 child: FlutterFlowPlacePicker(
                                                                                   iOSGoogleMapsApiKey: 'AIzaSyDDX_j21s4q5SpaK8tqcckOvFPQA-w6t-g',
                                                                                   androidGoogleMapsApiKey: 'AIzaSyBfou15_9miiCTU53YWzz85w-HdRtHrclU',
@@ -2216,14 +2296,14 @@ class _EventProposalRevisionWidgetState
                                             ),
                                           ),
                                           KeepAliveWidgetWrapper(
-                                            builder: (context) => SizedBox(
+                                            builder: (context) => Container(
                                               width: double.infinity,
                                               child: Form(
                                                 key: _model.formKey1,
                                                 autovalidateMode:
                                                     AutovalidateMode.disabled,
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 0.0),
                                                   child: SingleChildScrollView(
@@ -2242,7 +2322,7 @@ class _EventProposalRevisionWidgetState
                                                                       .max,
                                                               children: [
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -2285,7 +2365,7 @@ class _EventProposalRevisionWidgetState
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -2405,11 +2485,12 @@ class _EventProposalRevisionWidgetState
                                                                       .network(
                                                                     valueOrDefault<
                                                                         String>(
-                                                                      _model.uploadedFileUrl !=
+                                                                      _model.uploadedFileUrl != null &&
+                                                                              _model.uploadedFileUrl !=
                                                                                   ''
                                                                           ? _model
                                                                               .uploadedFileUrl
-                                                                          : widget
+                                                                          : widget!
                                                                               .eventDoc
                                                                               ?.coverPhoto,
                                                                       'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/n-u-go-application-yjlz84/assets/acr6c7ygcw4g/Image_Handler.png',
@@ -2428,7 +2509,7 @@ class _EventProposalRevisionWidgetState
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -2451,7 +2532,7 @@ class _EventProposalRevisionWidgetState
                                                                               .max,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               0.0,
@@ -2579,7 +2660,7 @@ class _EventProposalRevisionWidgetState
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -2602,7 +2683,7 @@ class _EventProposalRevisionWidgetState
                                                                               .max,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               0.0,
@@ -2637,11 +2718,11 @@ class _EventProposalRevisionWidgetState
                                                                               .targetParticipantsValueController ??=
                                                                           FormFieldController<
                                                                               String>(
-                                                                        _model.targetParticipantsValue ??= widget
+                                                                        _model.targetParticipantsValue ??= widget!
                                                                             .eventDoc
                                                                             ?.participantType,
                                                                       ),
-                                                                      options: const [
+                                                                      options: [
                                                                         'University-wide',
                                                                         'Members-wide'
                                                                       ],
@@ -2684,7 +2765,7 @@ class _EventProposalRevisionWidgetState
                                                                           0.5,
                                                                       borderRadius:
                                                                           8.0,
-                                                                      margin: const EdgeInsetsDirectional.fromSTEB(
+                                                                      margin: EdgeInsetsDirectional.fromSTEB(
                                                                           16.0,
                                                                           4.0,
                                                                           16.0,
@@ -2707,7 +2788,7 @@ class _EventProposalRevisionWidgetState
                                                         Flexible(
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -2724,7 +2805,7 @@ class _EventProposalRevisionWidgetState
                                                                           .max,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -2868,7 +2949,7 @@ class _EventProposalRevisionWidgetState
                                                         Flexible(
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -2885,7 +2966,7 @@ class _EventProposalRevisionWidgetState
                                                                           .max,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -3028,7 +3109,7 @@ class _EventProposalRevisionWidgetState
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -3051,7 +3132,7 @@ class _EventProposalRevisionWidgetState
                                                                               .max,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               0.0,
@@ -3190,7 +3271,7 @@ class _EventProposalRevisionWidgetState
                                               autovalidateMode:
                                                   AutovalidateMode.disabled,
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 20.0),
                                                 child: SingleChildScrollView(
@@ -3201,7 +3282,7 @@ class _EventProposalRevisionWidgetState
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -3223,7 +3304,7 @@ class _EventProposalRevisionWidgetState
                                                                             .max,
                                                                     children: [
                                                                       Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -3360,7 +3441,7 @@ class _EventProposalRevisionWidgetState
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -3378,7 +3459,7 @@ class _EventProposalRevisionWidgetState
                                                                 Flexible(
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -3395,7 +3476,7 @@ class _EventProposalRevisionWidgetState
                                                                               MainAxisSize.max,
                                                                           children: [
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                               child: Text(
                                                                                 'Price',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3492,7 +3573,7 @@ class _EventProposalRevisionWidgetState
                                                                 Flexible(
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             5.0,
                                                                             0.0,
@@ -3509,7 +3590,7 @@ class _EventProposalRevisionWidgetState
                                                                               MainAxisSize.max,
                                                                           children: [
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                               child: Text(
                                                                                 'Quantity',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3629,7 +3710,7 @@ class _EventProposalRevisionWidgetState
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -3679,7 +3760,7 @@ class _EventProposalRevisionWidgetState
                                                                 FormFieldController<
                                                                         String>(
                                                                     null),
-                                                            options: const [
+                                                            options: [
                                                               'Organization',
                                                               'Sponsor',
                                                               'School',
@@ -3721,7 +3802,7 @@ class _EventProposalRevisionWidgetState
                                                             borderWidth: 0.5,
                                                             borderRadius: 8.0,
                                                             margin:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         16.0,
                                                                         2.0,
@@ -3738,11 +3819,11 @@ class _EventProposalRevisionWidgetState
                                                       ),
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 1.0, 0.0),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       10.0,
@@ -3841,7 +3922,7 @@ class _EventProposalRevisionWidgetState
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           20.0,
@@ -3874,7 +3955,7 @@ class _EventProposalRevisionWidgetState
                                                                           budget[
                                                                               budgetIndex];
                                                                       return Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -3888,7 +3969,7 @@ class _EventProposalRevisionWidgetState
                                                                           ),
                                                                           child:
                                                                               Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 5.0,
                                                                                 5.0,
                                                                                 5.0,
@@ -3903,7 +3984,7 @@ class _EventProposalRevisionWidgetState
                                                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                                                   children: [
                                                                                     Align(
-                                                                                      alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                      alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                       child: Text(
                                                                                         budgetItem.itemName,
                                                                                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3914,7 +3995,7 @@ class _EventProposalRevisionWidgetState
                                                                                       ),
                                                                                     ),
                                                                                     Align(
-                                                                                      alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                      alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                       child: Text(
                                                                                         '${formatNumber(
                                                                                           budgetItem.price,
@@ -3934,7 +4015,7 @@ class _EventProposalRevisionWidgetState
                                                                                       ),
                                                                                     ),
                                                                                     Align(
-                                                                                      alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                      alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                       child: Text(
                                                                                         'Charged to: ${budgetItem.chargedTo}',
                                                                                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3946,7 +4027,7 @@ class _EventProposalRevisionWidgetState
                                                                                   ],
                                                                                 ),
                                                                                 Align(
-                                                                                  alignment: const AlignmentDirectional(1.0, 0.0),
+                                                                                  alignment: AlignmentDirectional(1.0, 0.0),
                                                                                   child: Column(
                                                                                     mainAxisSize: MainAxisSize.max,
                                                                                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -3986,7 +4067,7 @@ class _EventProposalRevisionWidgetState
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     20.0,
@@ -3998,7 +4079,7 @@ class _EventProposalRevisionWidgetState
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       -1.0,
                                                                       0.0),
                                                               child: Text(
@@ -4019,7 +4100,7 @@ class _EventProposalRevisionWidgetState
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -4033,7 +4114,7 @@ class _EventProposalRevisionWidgetState
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .backPanelText,
-                                                                  boxShadow: const [
+                                                                  boxShadow: [
                                                                     BoxShadow(
                                                                       blurRadius:
                                                                           2.0,
@@ -4061,7 +4142,7 @@ class _EventProposalRevisionWidgetState
                                                                   children: [
                                                                     Padding(
                                                                       padding:
-                                                                          const EdgeInsets.all(
+                                                                          EdgeInsets.all(
                                                                               10.0),
                                                                       child:
                                                                           Row(
@@ -4084,7 +4165,7 @@ class _EventProposalRevisionWidgetState
                                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                                               children: [
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                   child: Text(
                                                                                     'Budget Request per Office',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -4096,7 +4177,7 @@ class _EventProposalRevisionWidgetState
                                                                                   ),
                                                                                 ),
                                                                                 Padding(
-                                                                                  padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                   child: Text(
                                                                                     'Overall pricing summary',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -4134,7 +4215,7 @@ class _EventProposalRevisionWidgetState
                                                                               MainAxisSize.max,
                                                                           children: [
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(15.0, 5.0, 15.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(15.0, 5.0, 15.0, 0.0),
                                                                               child: Row(
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -4167,7 +4248,7 @@ class _EventProposalRevisionWidgetState
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                                                                               child: Container(
                                                                                 width: double.infinity,
                                                                                 height: 1.0,
@@ -4191,7 +4272,7 @@ class _EventProposalRevisionWidgetState
                                                                               MainAxisSize.max,
                                                                           children: [
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
                                                                               child: Row(
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -4224,7 +4305,7 @@ class _EventProposalRevisionWidgetState
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                                                                               child: Container(
                                                                                 width: double.infinity,
                                                                                 height: 1.0,
@@ -4240,7 +4321,7 @@ class _EventProposalRevisionWidgetState
                                                                               MainAxisSize.max,
                                                                           children: [
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
                                                                               child: Row(
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -4273,7 +4354,7 @@ class _EventProposalRevisionWidgetState
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                                                                               child: Container(
                                                                                 width: double.infinity,
                                                                                 height: 1.0,
@@ -4289,7 +4370,7 @@ class _EventProposalRevisionWidgetState
                                                                               MainAxisSize.max,
                                                                           children: [
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
                                                                               child: Row(
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -4322,7 +4403,7 @@ class _EventProposalRevisionWidgetState
                                                                               ),
                                                                             ),
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                                                                               child: Container(
                                                                                 width: double.infinity,
                                                                                 height: 1.0,
@@ -4338,7 +4419,7 @@ class _EventProposalRevisionWidgetState
                                                                               MainAxisSize.max,
                                                                           children: [
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(15.0, 5.0, 15.0, 5.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(15.0, 5.0, 15.0, 5.0),
                                                                               child: Row(
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -4354,7 +4435,7 @@ class _EventProposalRevisionWidgetState
                                                                                   ),
                                                                                   Flexible(
                                                                                     child: Align(
-                                                                                      alignment: const AlignmentDirectional(1.0, 0.0),
+                                                                                      alignment: AlignmentDirectional(1.0, 0.0),
                                                                                       child: Text(
                                                                                         FFAppState().budgetList.isNotEmpty
                                                                                             ? formatNumber(
@@ -4382,14 +4463,14 @@ class _EventProposalRevisionWidgetState
                                                                             ),
                                                                           ],
                                                                         ),
-                                                                      ].divide(const SizedBox(height: 3.0)).around(
-                                                                              const SizedBox(height: 3.0)),
+                                                                      ].divide(SizedBox(height: 3.0)).around(
+                                                                              SizedBox(height: 3.0)),
                                                                     ),
                                                                   ],
                                                                 ),
                                                               ),
                                                             ),
-                                                          ].divide(const SizedBox(
+                                                          ].divide(SizedBox(
                                                               height: 10.0)),
                                                         ),
                                                       ),
@@ -4405,7 +4486,7 @@ class _EventProposalRevisionWidgetState
                                               autovalidateMode:
                                                   AutovalidateMode.disabled,
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 0.0),
                                                 child: SingleChildScrollView(
@@ -4416,7 +4497,7 @@ class _EventProposalRevisionWidgetState
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -4428,7 +4509,7 @@ class _EventProposalRevisionWidgetState
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       -1.0,
                                                                       0.0),
                                                               child: Text(
@@ -4451,7 +4532,7 @@ class _EventProposalRevisionWidgetState
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           20.0,
@@ -4479,7 +4560,7 @@ class _EventProposalRevisionWidgetState
                                                                         Flexible(
                                                                           child:
                                                                               Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 5.0,
@@ -4492,7 +4573,7 @@ class _EventProposalRevisionWidgetState
                                                                                   mainAxisSize: MainAxisSize.max,
                                                                                   children: [
                                                                                     Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                                       child: Text(
                                                                                         'Start Time',
                                                                                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -4523,7 +4604,7 @@ class _EventProposalRevisionWidgetState
                                                                                     logFirebaseEvent('EVENT_PROPOSAL_REVISION_time_start_ON_TA');
                                                                                     logFirebaseEvent('time_start_date_time_picker');
 
-                                                                                    final datePicked3Time = await showTimePicker(
+                                                                                    final _datePicked3Time = await showTimePicker(
                                                                                       context: context,
                                                                                       initialTime: TimeOfDay.fromDateTime(getCurrentTimestamp),
                                                                                       builder: (context, child) {
@@ -4547,14 +4628,14 @@ class _EventProposalRevisionWidgetState
                                                                                         );
                                                                                       },
                                                                                     );
-                                                                                    if (datePicked3Time != null) {
+                                                                                    if (_datePicked3Time != null) {
                                                                                       safeSetState(() {
                                                                                         _model.datePicked3 = DateTime(
                                                                                           getCurrentTimestamp.year,
                                                                                           getCurrentTimestamp.month,
                                                                                           getCurrentTimestamp.day,
-                                                                                          datePicked3Time.hour,
-                                                                                          datePicked3Time.minute,
+                                                                                          _datePicked3Time.hour,
+                                                                                          _datePicked3Time.minute,
                                                                                         );
                                                                                       });
                                                                                     }
@@ -4579,9 +4660,18 @@ class _EventProposalRevisionWidgetState
                                                                                           children: [
                                                                                             Flexible(
                                                                                               child: Padding(
-                                                                                                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   valueOrDefault<String>(
+                                                                                                                dateTimeFormat(
+                                                                                                                  "jm",
+                                                                                                                  _model.datePicked3,
+                                                                                                                  locale: FFLocalizations.of(context).languageCode,
+                                                                                                                ),
+                                                                                                                'StartTime',
+                                                                                                              ) !=
+                                                                                                              null &&
+                                                                                                          valueOrDefault<String>(
                                                                                                                 dateTimeFormat(
                                                                                                                   "jm",
                                                                                                                   _model.datePicked3,
@@ -4608,7 +4698,7 @@ class _EventProposalRevisionWidgetState
                                                                                               ),
                                                                                             ),
                                                                                             Padding(
-                                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                               child: Icon(
                                                                                                 FFIcons.kclock,
                                                                                                 color: FlutterFlowTheme.of(context).secondaryText,
@@ -4628,7 +4718,7 @@ class _EventProposalRevisionWidgetState
                                                                         Flexible(
                                                                           child:
                                                                               Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 5.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -4641,7 +4731,7 @@ class _EventProposalRevisionWidgetState
                                                                                   mainAxisSize: MainAxisSize.max,
                                                                                   children: [
                                                                                     Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                                       child: Text(
                                                                                         'End Time',
                                                                                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -4672,7 +4762,7 @@ class _EventProposalRevisionWidgetState
                                                                                     logFirebaseEvent('EVENT_PROPOSAL_REVISION_end_time_ON_TAP');
                                                                                     logFirebaseEvent('end_time_date_time_picker');
 
-                                                                                    final datePicked4Time = await showTimePicker(
+                                                                                    final _datePicked4Time = await showTimePicker(
                                                                                       context: context,
                                                                                       initialTime: TimeOfDay.fromDateTime(getCurrentTimestamp),
                                                                                       builder: (context, child) {
@@ -4696,14 +4786,14 @@ class _EventProposalRevisionWidgetState
                                                                                         );
                                                                                       },
                                                                                     );
-                                                                                    if (datePicked4Time != null) {
+                                                                                    if (_datePicked4Time != null) {
                                                                                       safeSetState(() {
                                                                                         _model.datePicked4 = DateTime(
                                                                                           getCurrentTimestamp.year,
                                                                                           getCurrentTimestamp.month,
                                                                                           getCurrentTimestamp.day,
-                                                                                          datePicked4Time.hour,
-                                                                                          datePicked4Time.minute,
+                                                                                          _datePicked4Time.hour,
+                                                                                          _datePicked4Time.minute,
                                                                                         );
                                                                                       });
                                                                                     }
@@ -4728,9 +4818,15 @@ class _EventProposalRevisionWidgetState
                                                                                           children: [
                                                                                             Flexible(
                                                                                               child: Padding(
-                                                                                                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                                 child: Text(
                                                                                                   dateTimeFormat(
+                                                                                                                "jm",
+                                                                                                                _model.datePicked4,
+                                                                                                                locale: FFLocalizations.of(context).languageCode,
+                                                                                                              ) !=
+                                                                                                              null &&
+                                                                                                          dateTimeFormat(
                                                                                                                 "jm",
                                                                                                                 _model.datePicked4,
                                                                                                                 locale: FFLocalizations.of(context).languageCode,
@@ -4751,7 +4847,7 @@ class _EventProposalRevisionWidgetState
                                                                                               ),
                                                                                             ),
                                                                                             Padding(
-                                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                               child: Icon(
                                                                                                 FFIcons.kclock,
                                                                                                 color: FlutterFlowTheme.of(context).secondaryText,
@@ -4771,7 +4867,7 @@ class _EventProposalRevisionWidgetState
                                                                       ],
                                                                     ),
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -4784,7 +4880,7 @@ class _EventProposalRevisionWidgetState
                                                                           Flexible(
                                                                             child:
                                                                                 Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                                                                               child: Column(
                                                                                 mainAxisSize: MainAxisSize.min,
                                                                                 children: [
@@ -4792,7 +4888,7 @@ class _EventProposalRevisionWidgetState
                                                                                     mainAxisSize: MainAxisSize.max,
                                                                                     children: [
                                                                                       Padding(
-                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                                         child: Text(
                                                                                           'Activity Portion',
                                                                                           style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -4881,7 +4977,7 @@ class _EventProposalRevisionWidgetState
                                                       ),
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 1.0, 0.0),
                                                         child: InkWell(
                                                           splashColor: Colors
@@ -4962,7 +5058,7 @@ class _EventProposalRevisionWidgetState
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     20.0,
@@ -4991,7 +5087,7 @@ class _EventProposalRevisionWidgetState
                                                                     program[
                                                                         programIndex];
                                                                 return Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -5007,7 +5103,7 @@ class _EventProposalRevisionWidgetState
                                                                     ),
                                                                     child:
                                                                         Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           5.0,
                                                                           5.0,
                                                                           5.0,
@@ -5026,7 +5122,7 @@ class _EventProposalRevisionWidgetState
                                                                                 CrossAxisAlignment.start,
                                                                             children: [
                                                                               Align(
-                                                                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                 child: Text(
                                                                                   programItem.activity,
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -5037,7 +5133,7 @@ class _EventProposalRevisionWidgetState
                                                                                 ),
                                                                               ),
                                                                               Align(
-                                                                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                 child: Text(
                                                                                   '${dateTimeFormat(
                                                                                     "jm",
@@ -5058,7 +5154,7 @@ class _EventProposalRevisionWidgetState
                                                                           ),
                                                                           Align(
                                                                             alignment:
-                                                                                const AlignmentDirectional(1.0, 0.0),
+                                                                                AlignmentDirectional(1.0, 0.0),
                                                                             child:
                                                                                 Column(
                                                                               mainAxisSize: MainAxisSize.max,
@@ -5111,33 +5207,37 @@ class _EventProposalRevisionWidgetState
                         ),
                       ),
                       Align(
-                        alignment: const AlignmentDirectional(0.0, 1.0),
+                        alignment: AlignmentDirectional(0.0, 1.0),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 10.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                alignment: AlignmentDirectional(0.0, 1.0),
                                 child: Builder(
                                   builder: (context) => FFButtonWidget(
                                     onPressed: () async {
                                       logFirebaseEvent(
                                           'EVENT_PROPOSAL_REVISION_RESUBMIT_PROPOSA');
-                                      var shouldSetState = false;
-                                      if ((_model.maxAttendeesTextController.text == '') ||
+                                      var _shouldSetState = false;
+                                      if ((_model.maxAttendeesTextController.text == null || _model.maxAttendeesTextController.text == '') ||
                                           (_model.onlineOrInpersonValue == null ||
                                               _model.onlineOrInpersonValue ==
                                                   '') ||
-                                          (_model.eventNameTextController.text ==
+                                          (_model.eventNameTextController.text == null ||
+                                              _model.eventNameTextController.text ==
                                                   '') ||
-                                          (_model.rationaleTextController.text ==
+                                          (_model.rationaleTextController.text == null ||
+                                              _model.rationaleTextController.text ==
                                                   '') ||
-                                          (_model.objectivesTextController.text ==
+                                          (_model.objectivesTextController.text == null ||
+                                              _model.objectivesTextController.text ==
                                                   '') ||
-                                          (_model.targetOutputTextController.text ==
+                                          (_model.targetOutputTextController.text == null ||
+                                              _model.targetOutputTextController.text ==
                                                   '')) {
                                         logFirebaseEvent('Button_alert_dialog');
                                         await showDialog(
@@ -5149,7 +5249,7 @@ class _EventProposalRevisionWidgetState
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
+                                                  AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
@@ -5158,7 +5258,7 @@ class _EventProposalRevisionWidgetState
                                                   onTap: () => FocusScope.of(
                                                           dialogContext)
                                                       .unfocus(),
-                                                  child: const FailedDialogBoxWidget(
+                                                  child: FailedDialogBoxWidget(
                                                     failedDialogTitle:
                                                         'Missing Fields',
                                                     failedDialogMeesage:
@@ -5170,13 +5270,13 @@ class _EventProposalRevisionWidgetState
                                           },
                                         );
 
-                                        if (shouldSetState) {
+                                        if (_shouldSetState)
                                           safeSetState(() {});
-                                        }
                                         return;
                                       } else if ((_model.onlineOrInpersonValue == 'Online') &&
-                                          ((FFAppState().platformChoice == '') ||
-                                              (_model.linkTextController.text ==
+                                          ((FFAppState().platformChoice == null || FFAppState().platformChoice == '') ||
+                                              (_model.linkTextController.text == null ||
+                                                  _model.linkTextController.text ==
                                                       ''))) {
                                         logFirebaseEvent('Button_alert_dialog');
                                         await showDialog(
@@ -5188,7 +5288,7 @@ class _EventProposalRevisionWidgetState
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
+                                                  AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
@@ -5197,7 +5297,7 @@ class _EventProposalRevisionWidgetState
                                                   onTap: () => FocusScope.of(
                                                           dialogContext)
                                                       .unfocus(),
-                                                  child: const FailedDialogBoxWidget(
+                                                  child: FailedDialogBoxWidget(
                                                     failedDialogTitle:
                                                         'Missing Online Platform Details',
                                                     failedDialogMeesage:
@@ -5209,16 +5309,13 @@ class _EventProposalRevisionWidgetState
                                           },
                                         );
 
-                                        if (shouldSetState) {
+                                        if (_shouldSetState)
                                           safeSetState(() {});
-                                        }
                                         return;
                                       } else if ((_model.onlineOrInpersonValue == 'Face-to-Face') &&
                                           (_model.campusOrOutsideValue ==
                                               'Inside the Campus') &&
-                                          (_model.listOfFacilitiesValue == null ||
-                                              _model.listOfFacilitiesValue ==
-                                                  '')) {
+                                          (_model.roomDoc == null)) {
                                         logFirebaseEvent('Button_alert_dialog');
                                         await showDialog(
                                           context: context,
@@ -5229,7 +5326,7 @@ class _EventProposalRevisionWidgetState
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
+                                                  AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
@@ -5238,7 +5335,7 @@ class _EventProposalRevisionWidgetState
                                                   onTap: () => FocusScope.of(
                                                           dialogContext)
                                                       .unfocus(),
-                                                  child: const FailedDialogBoxWidget(
+                                                  child: FailedDialogBoxWidget(
                                                     failedDialogTitle:
                                                         'No Facility Selected',
                                                     failedDialogMeesage:
@@ -5250,14 +5347,15 @@ class _EventProposalRevisionWidgetState
                                           },
                                         );
 
-                                        if (shouldSetState) {
+                                        if (_shouldSetState)
                                           safeSetState(() {});
-                                        }
                                         return;
                                       } else if ((_model.onlineOrInpersonValue ==
                                               'Face-to-Face') &&
-                                          (_model.campusOrOutsideValue == 'Outside the Campus') &&
-                                          ((_model.placePickerValue == null) || (widget.eventDoc?.otherDetails.outsideLocation == null))) {
+                                          (_model.campusOrOutsideValue ==
+                                              'Outside the Campus') &&
+                                          ((_model.placePickerValue == null) ||
+                                              (widget!.eventDoc?.otherDetails?.outsideLocation == null))) {
                                         logFirebaseEvent('Button_alert_dialog');
                                         await showDialog(
                                           context: context,
@@ -5268,7 +5366,7 @@ class _EventProposalRevisionWidgetState
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
+                                                  AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
@@ -5277,7 +5375,7 @@ class _EventProposalRevisionWidgetState
                                                   onTap: () => FocusScope.of(
                                                           dialogContext)
                                                       .unfocus(),
-                                                  child: const FailedDialogBoxWidget(
+                                                  child: FailedDialogBoxWidget(
                                                     failedDialogTitle:
                                                         'Outside Location Missing',
                                                     failedDialogMeesage:
@@ -5289,9 +5387,8 @@ class _EventProposalRevisionWidgetState
                                           },
                                         );
 
-                                        if (shouldSetState) {
+                                        if (_shouldSetState)
                                           safeSetState(() {});
-                                        }
                                         return;
                                       } else {
                                         if (!(FFAppState()
@@ -5307,7 +5404,7 @@ class _EventProposalRevisionWidgetState
                                                 insetPadding: EdgeInsets.zero,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
@@ -5317,7 +5414,7 @@ class _EventProposalRevisionWidgetState
                                                             dialogContext)
                                                         .unfocus(),
                                                     child:
-                                                        const FailedDialogBoxWidget(
+                                                        FailedDialogBoxWidget(
                                                       failedDialogTitle:
                                                           'Budget Declaration Required',
                                                       failedDialogMeesage:
@@ -5329,9 +5426,8 @@ class _EventProposalRevisionWidgetState
                                             },
                                           );
 
-                                          if (shouldSetState) {
+                                          if (_shouldSetState)
                                             safeSetState(() {});
-                                          }
                                           return;
                                         } else if (!(FFAppState()
                                             .eventProgramList
@@ -5346,7 +5442,7 @@ class _EventProposalRevisionWidgetState
                                                 insetPadding: EdgeInsets.zero,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
@@ -5356,7 +5452,7 @@ class _EventProposalRevisionWidgetState
                                                             dialogContext)
                                                         .unfocus(),
                                                     child:
-                                                        const FailedDialogBoxWidget(
+                                                        FailedDialogBoxWidget(
                                                       failedDialogTitle:
                                                           'Program Flow Required',
                                                       failedDialogMeesage:
@@ -5368,9 +5464,8 @@ class _EventProposalRevisionWidgetState
                                             },
                                           );
 
-                                          if (shouldSetState) {
+                                          if (_shouldSetState)
                                             safeSetState(() {});
-                                          }
                                           return;
                                         } else {
                                           logFirebaseEvent(
@@ -5383,7 +5478,7 @@ class _EventProposalRevisionWidgetState
                                                 insetPadding: EdgeInsets.zero,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
@@ -5393,7 +5488,7 @@ class _EventProposalRevisionWidgetState
                                                             dialogContext)
                                                         .unfocus(),
                                                     child:
-                                                        const ConfirmDialogBoxWidget(
+                                                        ConfirmDialogBoxWidget(
                                                       confirmDialogTitle:
                                                           'Submit Revision',
                                                       confirmDialogMeesage:
@@ -5406,20 +5501,20 @@ class _EventProposalRevisionWidgetState
                                           ).then((value) => safeSetState(() =>
                                               _model.confirmDialog = value));
 
-                                          shouldSetState = true;
+                                          _shouldSetState = true;
                                           if (_model.confirmDialog!) {
                                             logFirebaseEvent(
                                                 'Button_action_block');
                                             await action_blocks
                                                 .resetRevisionStatus(
                                               context,
-                                              signatorySet: widget.eventDoc
+                                              signatorySet: widget!.eventDoc
                                                   ?.currentApprovalSignatory,
                                             );
                                             logFirebaseEvent(
                                                 'Button_backend_call');
 
-                                            await widget.eventDoc!.reference
+                                            await widget!.eventDoc!.reference
                                                 .update({
                                               ...createEventsRecordData(
                                                 status: 'Pending',
@@ -5428,9 +5523,14 @@ class _EventProposalRevisionWidgetState
                                                     .eventNameTextController
                                                     .text,
                                                 startDate:
-                                                    _model.datePicked1 ?? widget.eventDoc
+                                                    _model.datePicked1 != null
+                                                        ? _model.datePicked1
+                                                        : widget!.eventDoc
                                                             ?.startDate,
-                                                endTime: _model.datePicked2 ?? widget.eventDoc?.endTime,
+                                                endTime: _model.datePicked2 !=
+                                                        null
+                                                    ? _model.datePicked2
+                                                    : widget!.eventDoc?.endTime,
                                                 rationale: _model
                                                     .rationaleTextController
                                                     .text,
@@ -5444,10 +5544,13 @@ class _EventProposalRevisionWidgetState
                                                 targetOutput: _model
                                                     .targetOutputTextController
                                                     .text,
-                                                coverPhoto: _model.uploadedFileUrl !=
+                                                coverPhoto: _model
+                                                                .uploadedFileUrl !=
+                                                            null &&
+                                                        _model.uploadedFileUrl !=
                                                             ''
                                                     ? _model.uploadedFileUrl
-                                                    : widget
+                                                    : widget!
                                                         .eventDoc?.coverPhoto,
                                                 settings:
                                                     createEventSettingsStruct(
@@ -5481,10 +5584,10 @@ class _EventProposalRevisionWidgetState
                                                           ? _model
                                                               .placePickerValue
                                                               .latLng
-                                                          : widget
+                                                          : widget!
                                                               .eventDoc
                                                               ?.otherDetails
-                                                              .outsideLocation,
+                                                              ?.outsideLocation,
                                                   clearUnsetFields: false,
                                                 ),
                                               ),
@@ -5513,7 +5616,7 @@ class _EventProposalRevisionWidgetState
                                                 'Button_backend_call');
 
                                             await EventApplicationRecord
-                                                    .createDoc(widget
+                                                    .createDoc(widget!
                                                         .eventDoc!.reference)
                                                 .set({
                                               ...createEventApplicationRecordData(
@@ -5550,7 +5653,7 @@ class _EventProposalRevisionWidgetState
                                                   backgroundColor:
                                                       Colors.transparent,
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                               0.0, 0.0)
                                                           .resolve(
                                                               Directionality.of(
@@ -5562,7 +5665,7 @@ class _EventProposalRevisionWidgetState
                                                                   dialogContext)
                                                               .unfocus(),
                                                       child:
-                                                          const CongratulationsDialogBoxWidget(
+                                                          CongratulationsDialogBoxWidget(
                                                         congratsDialogTitle:
                                                             'Revision Submitted',
                                                         congratsDialogMeesage:
@@ -5577,9 +5680,8 @@ class _EventProposalRevisionWidgetState
                                             logFirebaseEvent(
                                                 'Button_navigate_back');
                                             context.safePop();
-                                            if (shouldSetState) {
+                                            if (_shouldSetState)
                                               safeSetState(() {});
-                                            }
                                             return;
                                           } else {
                                             logFirebaseEvent(
@@ -5593,7 +5695,7 @@ class _EventProposalRevisionWidgetState
                                                   backgroundColor:
                                                       Colors.transparent,
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                               0.0, 0.0)
                                                           .resolve(
                                                               Directionality.of(
@@ -5605,7 +5707,7 @@ class _EventProposalRevisionWidgetState
                                                                   dialogContext)
                                                               .unfocus(),
                                                       child:
-                                                          const InformationDialogBoxWidget(
+                                                          InformationDialogBoxWidget(
                                                         infoDialogTitle:
                                                             'Action Cancelled',
                                                         infoDialogMeesage:
@@ -5630,28 +5732,27 @@ class _EventProposalRevisionWidgetState
                                               }.withoutNulls,
                                             );
 
-                                            if (shouldSetState) {
+                                            if (_shouldSetState)
                                               safeSetState(() {});
-                                            }
                                             return;
                                           }
                                         }
                                       }
 
-                                      if (shouldSetState) safeSetState(() {});
+                                      if (_shouldSetState) safeSetState(() {});
                                     },
                                     text: 'Resubmit Proposal',
-                                    icon: const Icon(
+                                    icon: Icon(
                                       FFIcons.ksmsEdit,
                                       size: 15.0,
                                     ),
                                     options: FFButtonOptions(
                                       width: double.infinity,
                                       height: 40.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           24.0, 0.0, 24.0, 0.0),
                                       iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color:
                                           FlutterFlowTheme.of(context).primary,
@@ -5664,7 +5765,7 @@ class _EventProposalRevisionWidgetState
                                             letterSpacing: 0.0,
                                           ),
                                       elevation: 3.0,
-                                      borderSide: const BorderSide(
+                                      borderSide: BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,
                                       ),
@@ -5673,7 +5774,7 @@ class _EventProposalRevisionWidgetState
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(height: 5.0)),
+                            ].divide(SizedBox(height: 5.0)),
                           ),
                         ),
                       ),

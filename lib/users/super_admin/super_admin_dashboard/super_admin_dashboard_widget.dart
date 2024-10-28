@@ -6,11 +6,17 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import 'package:sticky_headers/sticky_headers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'super_admin_dashboard_model.dart';
 export 'super_admin_dashboard_model.dart';
@@ -83,14 +89,14 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                       color: FlutterFlowTheme.of(context).primaryBackground,
                     ),
                     child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
+                      padding: EdgeInsetsDirectional.fromSTEB(
                           10.0, 10.0, 10.0, 10.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Align(
-                            alignment: const AlignmentDirectional(-1.0, -1.0),
+                            alignment: AlignmentDirectional(-1.0, -1.0),
                             child: Text(
                               'Dashboard',
                               style: FlutterFlowTheme.of(context)
@@ -118,7 +124,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -128,14 +134,14 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 0.0, 0.0, 0.0),
                                   child: AuthUserStreamWidget(
                                     builder: (context) => Container(
                                       width: 50.0,
                                       height: 50.0,
                                       clipBehavior: Clip.antiAlias,
-                                      decoration: const BoxDecoration(
+                                      decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                       ),
                                       child: Image.network(
@@ -149,7 +155,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 0.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -161,7 +167,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                       AuthUserStreamWidget(
                                         builder: (context) => Text(
                                           valueOrDefault<String>(
-                                            'Hi, ${currentUserDocument?.name.firstName}',
+                                            'Hi, ${currentUserDocument?.name?.firstName}',
                                             'Hi, Brutch!',
                                           ),
                                           style: FlutterFlowTheme.of(context)
@@ -217,9 +223,9 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                             ),
                             Expanded(
                               child: Align(
-                                alignment: const AlignmentDirectional(1.0, 0.0),
+                                alignment: AlignmentDirectional(1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 0.0, 0.0, 0.0),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
@@ -228,7 +234,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                       width: 150.0,
                                       height: 93.0,
                                       fit: BoxFit.cover,
-                                      alignment: const Alignment(0.0, 0.0),
+                                      alignment: Alignment(0.0, 0.0),
                                     ),
                                   ),
                                 ),
@@ -238,7 +244,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 10.0, 20.0, 10.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -251,13 +257,13 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                   borderRadius: BorderRadius.circular(6.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 7.0, 0.0),
                                         child: Icon(
                                           Icons.check_circle,
@@ -276,7 +282,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                             builder: (context, snapshot) {
                                               // Customize what your widget looks like when it's loading.
                                               if (!snapshot.hasData) {
-                                                return const Center(
+                                                return Center(
                                                   child: SizedBox(
                                                     width: 24.0,
                                                     height: 24.0,
@@ -336,13 +342,13 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                   borderRadius: BorderRadius.circular(6.0),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: EdgeInsets.all(8.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 7.0, 0.0),
                                         child: Icon(
                                           Icons.pending_rounded,
@@ -368,7 +374,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                               builder: (context, snapshot) {
                                                 // Customize what your widget looks like when it's loading.
                                                 if (!snapshot.hasData) {
-                                                  return const Center(
+                                                  return Center(
                                                     child: SizedBox(
                                                       width: 24.0,
                                                       height: 24.0,
@@ -444,7 +450,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                     borderRadius: BorderRadius.circular(6.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: EdgeInsets.all(8.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.min,
                                       mainAxisAlignment:
@@ -452,7 +458,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 7.0, 0.0),
                                           child: Icon(
                                             FFIcons.kaddCircle1,
@@ -483,7 +489,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                               builder: (context, snapshot) {
                                                 // Customize what your widget looks like when it's loading.
                                                 if (!snapshot.hasData) {
-                                                  return const Center(
+                                                  return Center(
                                                     child: SizedBox(
                                                       width: 24.0,
                                                       height: 24.0,
@@ -539,12 +545,12 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                 ),
                               ),
                             ),
-                          ].divide(const SizedBox(width: 10.0)),
+                          ].divide(SizedBox(width: 10.0)),
                         ).animateOnPageLoad(
                             animationsMap['rowOnPageLoadAnimation']!),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             25.0, 10.0, 25.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -575,7 +581,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 0.0, 0.0),
                                     child: Text(
                                       'Resources',
@@ -618,7 +624,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 0.0, 0.0),
                                     child: Text(
                                       'Student Mode',
@@ -661,7 +667,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 0.0, 0.0),
                                     child: Text(
                                       'Menu',
@@ -690,9 +696,9 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                 logFirebaseEvent('Column_navigate_to');
 
                                 context.pushNamed(
-                                  'fmo_calendar_version1',
+                                  'event_calendar',
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: const TransitionInfo(
+                                    kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -713,7 +719,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 0.0, 0.0),
                                     child: Text(
                                       'Calendar',
@@ -735,13 +741,13 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             10.0, 10.0, 10.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   25.0, 10.0, 25.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -758,7 +764,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                           'SUPER_ADMIN_DASHBOARD_Column_n4k9vu5p_ON');
                                       logFirebaseEvent('Column_navigate_to');
 
-                                      context.pushNamed('step_1_nfc_setup');
+                                      context.pushNamed('admin_org_report');
                                     },
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -775,7 +781,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: Text(
                                             'Reports',
@@ -822,7 +828,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 5.0, 0.0, 0.0),
                                           child: Text(
                                             'Maintenance',
@@ -855,7 +861,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 5.0, 0.0, 0.0),
                                         child: Text(
                                           'Shop',
@@ -882,7 +888,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                       onTap: () async {
                                         logFirebaseEvent(
                                             'SUPER_ADMIN_DASHBOARD_Column_4se8gy6c_ON');
-                                        var shouldSetState = false;
+                                        var _shouldSetState = false;
                                         logFirebaseEvent('Column_alert_dialog');
                                         await showDialog(
                                           context: context,
@@ -893,7 +899,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
+                                                  AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
@@ -902,7 +908,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                                   onTap: () => FocusScope.of(
                                                           dialogContext)
                                                       .unfocus(),
-                                                  child: const ConfirmDialogBoxWidget(
+                                                  child: ConfirmDialogBoxWidget(
                                                     confirmDialogTitle:
                                                         'Lougout',
                                                     confirmDialogMeesage:
@@ -915,7 +921,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                         ).then((value) => safeSetState(() =>
                                             _model.confirmLgoout = value));
 
-                                        shouldSetState = true;
+                                        _shouldSetState = true;
                                         if (_model.confirmLgoout!) {
                                           logFirebaseEvent(
                                               'Column_action_block');
@@ -938,20 +944,17 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                           context.goNamedAuth(
                                               'auth_logout', context.mounted);
 
-                                          if (shouldSetState) {
+                                          if (_shouldSetState)
                                             safeSetState(() {});
-                                          }
                                           return;
                                         } else {
-                                          if (shouldSetState) {
+                                          if (_shouldSetState)
                                             safeSetState(() {});
-                                          }
                                           return;
                                         }
 
-                                        if (shouldSetState) {
+                                        if (_shouldSetState)
                                           safeSetState(() {});
-                                        }
                                       },
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -968,7 +971,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 5.0, 0.0, 0.0),
                                             child: Text(
                                               'Logout',
@@ -996,7 +999,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             0.0, 20.0, 0.0, 10.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -1167,18 +1170,18 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                     ),
                                   ),
                                 ]
-                                    .divide(const SizedBox(width: 10.0))
-                                    .addToStart(const SizedBox(width: 20.0))
-                                    .addToEnd(const SizedBox(width: 20.0)),
+                                    .divide(SizedBox(width: 10.0))
+                                    .addToStart(SizedBox(width: 20.0))
+                                    .addToEnd(SizedBox(width: 20.0)),
                               ),
                             ),
                           ],
                         ),
                       ),
                       Container(
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 20.0, 20.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -1240,7 +1243,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                 ],
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 20.0, 0.0, 0.0),
                                 child: FutureBuilder<List<ContentRecord>>(
                                   future: FFAppState().latestUpdatesDashboard(
@@ -1270,7 +1273,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                         listViewContentRecordList =
                                         snapshot.data!;
                                     if (listViewContentRecordList.isEmpty) {
-                                      return const EmptyListWidget(
+                                      return EmptyListWidget(
                                         emptyWhat:
                                             'There are no recent campus updates available.',
                                       );
@@ -1289,7 +1292,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                                 listViewIndex];
                                         return Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 15.0),
                                           child: Container(
                                             decoration: BoxDecoration(
@@ -1369,7 +1372,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                                       Flexible(
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       10.0,
                                                                       0.0,
@@ -1411,11 +1414,11 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                                               ),
                                                               Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         -1.0,
                                                                         0.0),
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           15.0,
@@ -1471,7 +1474,7 @@ class _SuperAdminDashboardWidgetState extends State<SuperAdminDashboardWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 0.0),
                                                   child: Container(

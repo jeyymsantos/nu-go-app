@@ -3,7 +3,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'join_event_using_code_model.dart';
 export 'join_event_using_code_model.dart';
 
@@ -46,7 +49,7 @@ class _JoinEventUsingCodeWidgetState extends State<JoinEventUsingCodeWidget> {
       children: [
         Flexible(
           child: ClipRRect(
-            borderRadius: const BorderRadius.only(
+            borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(0.0),
               bottomRight: Radius.circular(0.0),
               topLeft: Radius.circular(15.0),
@@ -57,7 +60,7 @@ class _JoinEventUsingCodeWidgetState extends State<JoinEventUsingCodeWidget> {
               height: double.infinity,
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
-                borderRadius: const BorderRadius.only(
+                borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(0.0),
                   bottomRight: Radius.circular(0.0),
                   topLeft: Radius.circular(15.0),
@@ -72,16 +75,16 @@ class _JoinEventUsingCodeWidgetState extends State<JoinEventUsingCodeWidget> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Align(
-                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        alignment: AlignmentDirectional(0.0, 0.0),
                         child: Container(
                           width: double.infinity,
                           height: 58.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context).primary,
                           ),
-                          alignment: const AlignmentDirectional(-1.0, -1.0),
+                          alignment: AlignmentDirectional(-1.0, -1.0),
                           child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -94,7 +97,7 @@ class _JoinEventUsingCodeWidgetState extends State<JoinEventUsingCodeWidget> {
                                   size: 20.0,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     'Join Organization using Code',
@@ -119,7 +122,7 @@ class _JoinEventUsingCodeWidgetState extends State<JoinEventUsingCodeWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(15.0, 30.0, 15.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(15.0, 30.0, 15.0, 0.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -145,7 +148,7 @@ class _JoinEventUsingCodeWidgetState extends State<JoinEventUsingCodeWidget> {
                             fieldHeight: 44.0,
                             fieldWidth: 44.0,
                             borderWidth: 2.0,
-                            borderRadius: const BorderRadius.only(
+                            borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(12.0),
                               bottomRight: Radius.circular(12.0),
                               topLeft: Radius.circular(12.0),
@@ -194,7 +197,7 @@ class _JoinEventUsingCodeWidgetState extends State<JoinEventUsingCodeWidget> {
                           ],
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 5.0, 0.0, 0.0),
                           child: Text(
                             'By joining this organization, you agree to abide by its rules and regulations. We encourage you to take the time to read the manuals provided so that you can become familiar with them.',
@@ -208,7 +211,7 @@ class _JoinEventUsingCodeWidgetState extends State<JoinEventUsingCodeWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 15.0, 0.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
@@ -221,9 +224,9 @@ class _JoinEventUsingCodeWidgetState extends State<JoinEventUsingCodeWidget> {
                             options: FFButtonOptions(
                               width: double.infinity,
                               height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -235,7 +238,7 @@ class _JoinEventUsingCodeWidgetState extends State<JoinEventUsingCodeWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),

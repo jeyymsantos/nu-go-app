@@ -6,10 +6,16 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'step1_nfc_setup_model.dart';
@@ -55,7 +61,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 1400.0.ms,
-            color: const Color(0xFF35408E),
+            color: Color(0xFF35408E),
             angle: 0.576,
           ),
         ],
@@ -100,24 +106,24 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TitleHeaderComponentWidget(
+                  child: TitleHeaderComponentWidget(
                     titleText: 'Verify your account',
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,7 +132,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 10.0, 0.0),
                                   child: Text(
                                     'Step 1',
@@ -156,7 +162,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 5.0, 0.0, 0.0),
                               child: Text(
                                 'Let\'s set up your ID! Kindly enable NFC to proceed with the verification process.',
@@ -172,7 +178,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -194,7 +200,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           5.0, 0.0, 0.0, 0.0),
                                       child: Container(
                                         width: double.infinity,
@@ -210,7 +216,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           5.0, 0.0, 0.0, 0.0),
                                       child: Container(
                                         width: double.infinity,
@@ -245,7 +251,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
                   child: SingleChildScrollView(
                     primary: false,
                     child: Column(
@@ -255,12 +261,12 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                       children: [
                         if (FFAppState().scannedNFCTag == ' ')
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 0.0),
                             child: Container(
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 20.0, 0.0, 20.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -275,7 +281,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                                     ),
                                     Flexible(
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           valueOrDefault<String>(
@@ -302,23 +308,23 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                         if (FFAppState().scannedNFCresult ==
                             'School ID has been detected!')
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 40.0, 20.0, 40.0, 20.0),
                             child: Container(
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  const Icon(
+                                  Icon(
                                     Icons.check_circle,
                                     color: Color(0xFF0FA741),
                                     size: 24.0,
                                   ),
                                   Flexible(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           10.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         'Your school ID has been detected and may now be saved to your account.',
@@ -350,7 +356,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 25.0, 20.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -381,7 +387,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                                                   BorderRadius.circular(6.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 5.0, 12.0, 5.0),
                                               child: Row(
@@ -391,7 +397,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 4.0, 0.0),
                                                     child: Icon(
@@ -424,7 +430,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                                         ],
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 0.0, 0.0),
                                         child: RichText(
                                           textScaler:
@@ -436,7 +442,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                                                     currentUserDocument
                                                         ?.idNumber,
                                                     ''),
-                                                style: const TextStyle(),
+                                                style: TextStyle(),
                                               )
                                             ],
                                             style: FlutterFlowTheme.of(context)
@@ -453,11 +459,11 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(height: 10.0)),
+                            ].divide(SizedBox(height: 10.0)),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 10.0, 20.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -488,7 +494,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                                                   BorderRadius.circular(6.0),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       12.0, 5.0, 12.0, 5.0),
                                               child: Row(
@@ -498,7 +504,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 4.0, 0.0),
                                                     child: Icon(
@@ -533,7 +539,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                                       Flexible(
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 0.0, 0.0, 0.0),
                                           child: RichText(
                                             textScaler: MediaQuery.of(context)
@@ -546,7 +552,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                                                         .scannedNFCresult,
                                                     'No ID scanned',
                                                   ),
-                                                  style: const TextStyle(),
+                                                  style: TextStyle(),
                                                 )
                                               ],
                                               style:
@@ -566,13 +572,13 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(height: 10.0)),
+                            ].divide(SizedBox(height: 10.0)),
                           ),
                         ),
                         if (isiOS)
                           Flexible(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 5.0, 20.0, 0.0),
                               child: Text(
                                 'Please be advised that iOS devices do not support NU Baliwag\'s NFC card due to compatibility issues. To get verified, reach out to the developers.',
@@ -591,7 +597,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                             ),
                           ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 15.0, 20.0, 40.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -622,15 +628,15 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                                         : 'Scan Again',
                                     'Scan',
                                   ),
-                                  icon: const Icon(
+                                  icon: Icon(
                                     FFIcons.kscan,
                                     size: 15.0,
                                   ),
                                   options: FFButtonOptions(
                                     height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -654,7 +660,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                                       onPressed: () async {
                                         logFirebaseEvent(
                                             'STEP_1_NFC_SETUP_PAGE_NEXT_BTN_ON_TAP');
-                                        var shouldSetState = false;
+                                        var _shouldSetState = false;
                                         logFirebaseEvent(
                                             'Button_firestore_query');
                                         _model.nfcCount =
@@ -666,7 +672,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                                                 FFAppState().scannedNFCTag,
                                           ),
                                         );
-                                        shouldSetState = true;
+                                        _shouldSetState = true;
                                         if (_model.nfcCount == 0) {
                                           logFirebaseEvent(
                                               'Button_navigate_to');
@@ -676,9 +682,8 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                                           context.pushNamed(
                                               'step_2_signature_setup');
 
-                                          if (shouldSetState) {
+                                          if (_shouldSetState)
                                             safeSetState(() {});
-                                          }
                                           return;
                                         } else {
                                           logFirebaseEvent(
@@ -691,7 +696,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                                                 insetPadding: EdgeInsets.zero,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
@@ -701,7 +706,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                                                             dialogContext)
                                                         .unfocus(),
                                                     child:
-                                                        const FailedDialogBoxWidget(
+                                                        FailedDialogBoxWidget(
                                                       failedDialogTitle:
                                                           'School ID already used!',
                                                       failedDialogMeesage:
@@ -713,23 +718,21 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                                             },
                                           );
 
-                                          if (shouldSetState) {
+                                          if (_shouldSetState)
                                             safeSetState(() {});
-                                          }
                                           return;
                                         }
 
-                                        if (shouldSetState) {
+                                        if (_shouldSetState)
                                           safeSetState(() {});
-                                        }
                                       },
                                       text: 'Next',
                                       options: FFButtonOptions(
                                         height: 40.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 16.0, 0.0),
                                         iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
+                                            EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
@@ -749,7 +752,7 @@ class _Step1NfcSetupWidgetState extends State<Step1NfcSetupWidget>
                                     ),
                                   ),
                                 ),
-                            ].divide(const SizedBox(width: 10.0)),
+                            ].divide(SizedBox(width: 10.0)),
                           ),
                         ),
                       ],

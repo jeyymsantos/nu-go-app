@@ -3,6 +3,9 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'user_header_component_model.dart';
 export 'user_header_component_model.dart';
 
@@ -10,7 +13,7 @@ class UserHeaderComponentWidget extends StatefulWidget {
   const UserHeaderComponentWidget({
     super.key,
     int? selectedPageIndex,
-  }) : selectedPageIndex = selectedPageIndex ?? 1;
+  }) : this.selectedPageIndex = selectedPageIndex ?? 1;
 
   final int selectedPageIndex;
 
@@ -46,7 +49,7 @@ class _UserHeaderComponentWidgetState extends State<UserHeaderComponentWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
       child: Container(
         width: double.infinity,
         height: 50.0,
@@ -58,8 +61,8 @@ class _UserHeaderComponentWidgetState extends State<UserHeaderComponentWidget> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
-              child: SizedBox(
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
+              child: Container(
                 width: 30.0,
                 height: 30.0,
                 child: Stack(
@@ -77,7 +80,7 @@ class _UserHeaderComponentWidgetState extends State<UserHeaderComponentWidget> {
                         context.pushNamed(
                           'notification',
                           extra: <String, dynamic>{
-                            kTransitionInfoKey: const TransitionInfo(
+                            kTransitionInfoKey: TransitionInfo(
                               hasTransition: true,
                               transitionType: PageTransitionType.fade,
                               duration: Duration(milliseconds: 0),
@@ -88,7 +91,7 @@ class _UserHeaderComponentWidgetState extends State<UserHeaderComponentWidget> {
                       child: Container(
                         width: double.infinity,
                         height: double.infinity,
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -107,7 +110,7 @@ class _UserHeaderComponentWidgetState extends State<UserHeaderComponentWidget> {
                       ),
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(1.0, -1.0),
+                      alignment: AlignmentDirectional(1.0, -1.0),
                       child: AuthUserStreamWidget(
                         builder: (context) =>
                             StreamBuilder<List<NotificationsRecord>>(
@@ -123,7 +126,7 @@ class _UserHeaderComponentWidgetState extends State<UserHeaderComponentWidget> {
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
                             if (!snapshot.hasData) {
-                              return const Center(
+                              return Center(
                                 child: SizedBox(
                                   width: 10.0,
                                   height: 10.0,
@@ -154,7 +157,7 @@ class _UserHeaderComponentWidgetState extends State<UserHeaderComponentWidget> {
                                 color: FlutterFlowTheme.of(context).error,
                                 shape: BoxShape.circle,
                               ),
-                              alignment: const AlignmentDirectional(1.0, -1.0),
+                              alignment: AlignmentDirectional(1.0, -1.0),
                             );
                           },
                         ),

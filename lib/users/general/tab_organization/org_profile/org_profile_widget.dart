@@ -8,8 +8,12 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'org_profile_model.dart';
 export 'org_profile_model.dart';
@@ -56,7 +60,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<OrganizationsRecord>(
-      stream: OrganizationsRecord.getDocument(widget.orgReference!),
+      stream: OrganizationsRecord.getDocument(widget!.orgReference!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -93,11 +97,11 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                         child: Stack(
                           children: [
                             Align(
-                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),
                                 child: Image.network(
@@ -112,7 +116,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   10.0, 10.0, 0.0, 0.0),
                               child: Container(
                                 width: 35.0,
@@ -143,15 +147,15 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                               ),
                             ),
                             Align(
-                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 80.0, 0.0, 0.0),
                                 child: Container(
                                   width: 100.0,
                                   height: 100.0,
                                   clipBehavior: Clip.antiAlias,
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
                                   child: Image.network(
@@ -168,7 +172,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         child: Text(
                           orgProfileOrganizationsRecord.organizationName,
@@ -183,7 +187,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         child: Text(
                           orgProfileOrganizationsRecord.type,
@@ -202,7 +206,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -213,7 +217,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                   queryBuilder: (eventsRecord) => eventsRecord
                                       .where(
                                         'org_reference',
-                                        isEqualTo: widget.orgReference,
+                                        isEqualTo: widget!.orgReference,
                                       )
                                       .where(
                                         'status',
@@ -311,7 +315,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                             Flexible(
                               child: FutureBuilder<int>(
                                 future: queryMembersRecordCount(
-                                  parent: widget.orgReference,
+                                  parent: widget!.orgReference,
                                   queryBuilder: (membersRecord) =>
                                       membersRecord.where(
                                     'status',
@@ -385,11 +389,11 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                 },
                               ),
                             ),
-                          ].divide(const SizedBox(width: 5.0)),
+                          ].divide(SizedBox(width: 5.0)),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 20.0, 20.0, 20.0),
                         child: Text(
                           orgProfileOrganizationsRecord.purpose,
@@ -407,7 +411,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                       ),
                       StreamBuilder<List<MembersRecord>>(
                         stream: queryMembersRecord(
-                          parent: widget.orgReference,
+                          parent: widget!.orgReference,
                           queryBuilder: (membersRecord) => membersRecord.where(
                             'user_reference',
                             isEqualTo: currentUserReference,
@@ -433,7 +437,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                               snapshot.data!;
 
                           return Container(
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
@@ -444,19 +448,19 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                         ((orgProfileOrganizationsRecord
                                                     .orgSchool ==
                                                 currentUserDocument
-                                                    ?.student.school) &&
+                                                    ?.student?.school) &&
                                             (orgProfileOrganizationsRecord
                                                     .scope ==
                                                 'School-wide')) ||
                                         ((orgProfileOrganizationsRecord
                                                     .orgDepartment ==
                                                 currentUserDocument
-                                                    ?.student.program) &&
+                                                    ?.student?.program) &&
                                             (orgProfileOrganizationsRecord
                                                     .scope ==
                                                 'Program-wide'))))
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         15.0, 0.0, 15.0, 0.0),
                                     child: AuthUserStreamWidget(
                                       builder: (context) => Column(
@@ -467,14 +471,14 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                               false)
                                             Builder(
                                               builder: (context) => Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         5.0, 0.0, 5.0, 0.0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
                                                     logFirebaseEvent(
                                                         'ORG_PROFILE_JOIN_ORGANIZATION_BTN_ON_TAP');
-                                                    var shouldSetState = false;
+                                                    var _shouldSetState = false;
                                                     logFirebaseEvent(
                                                         'Button_alert_dialog');
                                                     await showDialog(
@@ -487,7 +491,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                           backgroundColor:
                                                               Colors
                                                                   .transparent,
-                                                          alignment: const AlignmentDirectional(
+                                                          alignment: AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
@@ -500,7 +504,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                                           dialogContext)
                                                                       .unfocus(),
                                                               child:
-                                                                  const ConfirmDialogBoxWidget(
+                                                                  ConfirmDialogBoxWidget(
                                                                 confirmDialogTitle:
                                                                     'Join Organization',
                                                                 confirmDialogMeesage:
@@ -515,13 +519,13 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                                 .confirmDialog =
                                                             value));
 
-                                                    shouldSetState = true;
+                                                    _shouldSetState = true;
                                                     if (_model.confirmDialog!) {
                                                       logFirebaseEvent(
                                                           'Button_backend_call');
 
                                                       await MembersRecord
-                                                              .createDoc(widget
+                                                              .createDoc(widget!
                                                                   .orgReference!)
                                                           .set({
                                                         ...createMembersRecordData(
@@ -577,7 +581,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                             backgroundColor:
                                                                 Colors
                                                                     .transparent,
-                                                            alignment: const AlignmentDirectional(
+                                                            alignment: AlignmentDirectional(
                                                                     0.0, 0.0)
                                                                 .resolve(
                                                                     Directionality.of(
@@ -590,7 +594,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                                             dialogContext)
                                                                         .unfocus(),
                                                                 child:
-                                                                    const InformationDialogBoxWidget(
+                                                                    InformationDialogBoxWidget(
                                                                   infoDialogTitle:
                                                                       'Application Submitted',
                                                                   infoDialogMeesage:
@@ -602,31 +606,28 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                         },
                                                       );
 
-                                                      if (shouldSetState) {
+                                                      if (_shouldSetState)
                                                         safeSetState(() {});
-                                                      }
                                                       return;
                                                     } else {
-                                                      if (shouldSetState) {
+                                                      if (_shouldSetState)
                                                         safeSetState(() {});
-                                                      }
                                                       return;
                                                     }
 
-                                                    if (shouldSetState) {
+                                                    if (_shouldSetState)
                                                       safeSetState(() {});
-                                                    }
                                                   },
                                                   text: 'Join Organization',
                                                   options: FFButtonOptions(
                                                     width: double.infinity,
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(24.0, 0.0,
                                                                 24.0, 0.0),
                                                     iconPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
@@ -643,7 +644,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                           letterSpacing: 0.0,
                                                         ),
                                                     elevation: 3.0,
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Colors.transparent,
                                                       width: 1.0,
                                                     ),
@@ -662,14 +663,14 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                   'Pending'))
                                             Builder(
                                               builder: (context) => Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         5.0, 0.0, 5.0, 0.0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
                                                     logFirebaseEvent(
                                                         'ORG_PROFILE_CANCEL_APPLICATION_BTN_ON_TA');
-                                                    var shouldSetState = false;
+                                                    var _shouldSetState = false;
                                                     logFirebaseEvent(
                                                         'Button_alert_dialog');
                                                     await showDialog(
@@ -682,7 +683,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                           backgroundColor:
                                                               Colors
                                                                   .transparent,
-                                                          alignment: const AlignmentDirectional(
+                                                          alignment: AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
@@ -695,7 +696,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                                           dialogContext)
                                                                       .unfocus(),
                                                               child:
-                                                                  const ConfirmDialogBoxWidget(
+                                                                  ConfirmDialogBoxWidget(
                                                                 confirmDialogTitle:
                                                                     'Cancel Application',
                                                                 confirmDialogMeesage:
@@ -710,7 +711,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                                 .confirmDialog2 =
                                                             value));
 
-                                                    shouldSetState = true;
+                                                    _shouldSetState = true;
                                                     if (_model
                                                         .confirmDialog2!) {
                                                       logFirebaseEvent(
@@ -754,7 +755,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                             backgroundColor:
                                                                 Colors
                                                                     .transparent,
-                                                            alignment: const AlignmentDirectional(
+                                                            alignment: AlignmentDirectional(
                                                                     0.0, 0.0)
                                                                 .resolve(
                                                                     Directionality.of(
@@ -767,7 +768,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                                             dialogContext)
                                                                         .unfocus(),
                                                                 child:
-                                                                    const InformationDialogBoxWidget(
+                                                                    InformationDialogBoxWidget(
                                                                   infoDialogTitle:
                                                                       'Application Cancelled',
                                                                   infoDialogMeesage:
@@ -779,31 +780,28 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                         },
                                                       );
 
-                                                      if (shouldSetState) {
+                                                      if (_shouldSetState)
                                                         safeSetState(() {});
-                                                      }
                                                       return;
                                                     } else {
-                                                      if (shouldSetState) {
+                                                      if (_shouldSetState)
                                                         safeSetState(() {});
-                                                      }
                                                       return;
                                                     }
 
-                                                    if (shouldSetState) {
+                                                    if (_shouldSetState)
                                                       safeSetState(() {});
-                                                    }
                                                   },
                                                   text: 'Cancel Application',
                                                   options: FFButtonOptions(
                                                     width: double.infinity,
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(24.0, 0.0,
                                                                 24.0, 0.0),
                                                     iconPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
@@ -820,7 +818,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                           letterSpacing: 0.0,
                                                         ),
                                                     elevation: 3.0,
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Colors.transparent,
                                                       width: 1.0,
                                                     ),
@@ -839,14 +837,14 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                   'Approved'))
                                             Builder(
                                               builder: (context) => Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         5.0, 0.0, 5.0, 0.0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
                                                     logFirebaseEvent(
                                                         'ORG_PROFILE_LEAVE_ORGANIZATION_BTN_ON_TA');
-                                                    var shouldSetState = false;
+                                                    var _shouldSetState = false;
                                                     logFirebaseEvent(
                                                         'Button_alert_dialog');
                                                     await showDialog(
@@ -859,7 +857,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                           backgroundColor:
                                                               Colors
                                                                   .transparent,
-                                                          alignment: const AlignmentDirectional(
+                                                          alignment: AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
@@ -872,7 +870,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                                           dialogContext)
                                                                       .unfocus(),
                                                               child:
-                                                                  const ConfirmDialogBoxWidget(
+                                                                  ConfirmDialogBoxWidget(
                                                                 confirmDialogTitle:
                                                                     'Leave Organization',
                                                                 confirmDialogMeesage:
@@ -887,7 +885,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                                 .confirmDialog3 =
                                                             value));
 
-                                                    shouldSetState = true;
+                                                    _shouldSetState = true;
                                                     if (_model
                                                         .confirmDialog3!) {
                                                       logFirebaseEvent(
@@ -931,7 +929,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                             backgroundColor:
                                                                 Colors
                                                                     .transparent,
-                                                            alignment: const AlignmentDirectional(
+                                                            alignment: AlignmentDirectional(
                                                                     0.0, 0.0)
                                                                 .resolve(
                                                                     Directionality.of(
@@ -944,7 +942,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                                             dialogContext)
                                                                         .unfocus(),
                                                                 child:
-                                                                    const InformationDialogBoxWidget(
+                                                                    InformationDialogBoxWidget(
                                                                   infoDialogTitle:
                                                                       'Left Organization',
                                                                   infoDialogMeesage:
@@ -956,31 +954,28 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                         },
                                                       );
 
-                                                      if (shouldSetState) {
+                                                      if (_shouldSetState)
                                                         safeSetState(() {});
-                                                      }
                                                       return;
                                                     } else {
-                                                      if (shouldSetState) {
+                                                      if (_shouldSetState)
                                                         safeSetState(() {});
-                                                      }
                                                       return;
                                                     }
 
-                                                    if (shouldSetState) {
+                                                    if (_shouldSetState)
                                                       safeSetState(() {});
-                                                    }
                                                   },
                                                   text: 'Leave Organization',
                                                   options: FFButtonOptions(
                                                     width: double.infinity,
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(24.0, 0.0,
                                                                 24.0, 0.0),
                                                     iconPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
@@ -997,7 +992,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                           letterSpacing: 0.0,
                                                         ),
                                                     elevation: 3.0,
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Colors.transparent,
                                                       width: 1.0,
                                                     ),
@@ -1017,7 +1012,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                     (containerMembersRecordList.first.status ==
                                         'Pending'))
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         20.0, 20.0, 20.0, 20.0),
                                     child: Text(
                                       'Your request to join the organization is pending.',
@@ -1044,11 +1039,11 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                   Expanded(
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 0.0),
                       child: Column(
                         children: [
                           Align(
-                            alignment: const Alignment(0.0, 0),
+                            alignment: Alignment(0.0, 0),
                             child: FlutterFlowButtonTabBar(
                               useToggleButtonStyle: true,
                               labelStyle: FlutterFlowTheme.of(context)
@@ -1082,9 +1077,9 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                               borderWidth: 2.0,
                               borderRadius: 8.0,
                               elevation: 0.0,
-                              buttonMargin: const EdgeInsetsDirectional.fromSTEB(
+                              buttonMargin: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 8.0, 0.0),
-                              tabs: const [
+                              tabs: [
                                 Tab(
                                   text: 'Events',
                                 ),
@@ -1113,7 +1108,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                           eventsRecord
                                               .where(
                                                 'org_reference',
-                                                isEqualTo: widget.orgReference,
+                                                isEqualTo: widget!.orgReference,
                                               )
                                               .where(
                                                 'status',
@@ -1144,7 +1139,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                           snapshot.data!;
                                       if (eventsListViewEventsRecordList
                                           .isEmpty) {
-                                        return const EmptyListWidget(
+                                        return EmptyListWidget(
                                           emptyWhat: 'events',
                                         );
                                       }
@@ -1167,7 +1162,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                 eventsListViewEventsRecordList[
                                                     eventsListViewIndex];
                                             return Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   -1.0, -1.0),
                                               child: Container(
                                                 width: double.infinity,
@@ -1180,7 +1175,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                           6.0),
                                                 ),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(10.0, 10.0,
                                                           10.0, 10.0),
                                                   child: InkWell(
@@ -1212,7 +1207,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                         extra: <String,
                                                             dynamic>{
                                                           kTransitionInfoKey:
-                                                              const TransitionInfo(
+                                                              TransitionInfo(
                                                             hasTransition: true,
                                                             transitionType:
                                                                 PageTransitionType
@@ -1264,11 +1259,11 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                         Expanded(
                                                           child: Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     -1.0, -1.0),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           15.0,
                                                                           0.0,
@@ -1287,7 +1282,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                                 children: [
                                                                   Align(
                                                                     alignment:
-                                                                        const AlignmentDirectional(
+                                                                        AlignmentDirectional(
                                                                             -1.0,
                                                                             -1.0),
                                                                     child: Text(
@@ -1316,7 +1311,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                                             .max,
                                                                     children: [
                                                                       Align(
-                                                                        alignment: const AlignmentDirectional(
+                                                                        alignment: AlignmentDirectional(
                                                                             -1.0,
                                                                             -1.0),
                                                                         child:
@@ -1339,7 +1334,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                                         ),
                                                                       ),
                                                                       Align(
-                                                                        alignment: const AlignmentDirectional(
+                                                                        alignment: AlignmentDirectional(
                                                                             -1.0,
                                                                             -1.0),
                                                                         child:
@@ -1357,7 +1352,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                                         ),
                                                                       ),
                                                                       Align(
-                                                                        alignment: const AlignmentDirectional(
+                                                                        alignment: AlignmentDirectional(
                                                                             -1.0,
                                                                             -1.0),
                                                                         child:
@@ -1402,7 +1397,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                   builder: (context) =>
                                       StreamBuilder<List<MembersRecord>>(
                                     stream: queryMembersRecord(
-                                      parent: widget.orgReference,
+                                      parent: widget!.orgReference,
                                       queryBuilder: (membersRecord) =>
                                           membersRecord
                                               .where(
@@ -1446,7 +1441,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                               membersListViewMembersRecordList[
                                                   membersListViewIndex];
                                           return Align(
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                 -1.0, -1.0),
                                             child: StreamBuilder<UsersRecord>(
                                               stream: UsersRecord.getDocument(
@@ -1485,7 +1480,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 10.0,
                                                                 10.0,
@@ -1526,11 +1521,11 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                         Expanded(
                                                           child: Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     -1.0, -1.0),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           15.0,
                                                                           0.0,
@@ -1549,7 +1544,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                                 children: [
                                                                   Align(
                                                                     alignment:
-                                                                        const AlignmentDirectional(
+                                                                        AlignmentDirectional(
                                                                             -1.0,
                                                                             -1.0),
                                                                     child: Text(
@@ -1582,7 +1577,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                                             .max,
                                                                     children: [
                                                                       Align(
-                                                                        alignment: const AlignmentDirectional(
+                                                                        alignment: AlignmentDirectional(
                                                                             -1.0,
                                                                             -1.0),
                                                                         child:
@@ -1600,7 +1595,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                                                         ),
                                                                       ),
                                                                       Align(
-                                                                        alignment: const AlignmentDirectional(
+                                                                        alignment: AlignmentDirectional(
                                                                             -1.0,
                                                                             -1.0),
                                                                         child:
@@ -1646,7 +1641,7 @@ class _OrgProfileWidgetState extends State<OrgProfileWidget>
                                 ),
                                 KeepAliveWidgetWrapper(
                                   builder: (context) => Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         10.0, 20.0, 0.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,

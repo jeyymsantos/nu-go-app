@@ -1,7 +1,11 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'auth_verify_phone_model.dart';
 export 'auth_verify_phone_model.dart';
 
@@ -53,7 +57,7 @@ class _AuthVerifyPhoneWidgetState extends State<AuthVerifyPhoneWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -87,10 +91,10 @@ class _AuthVerifyPhoneWidgetState extends State<AuthVerifyPhoneWidget> {
                       ],
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
                           child: Image.asset(
@@ -112,7 +116,7 @@ class _AuthVerifyPhoneWidgetState extends State<AuthVerifyPhoneWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                       child: Text(
                         'We will send you a one time password on this email address',
                         textAlign: TextAlign.center,
@@ -124,7 +128,7 @@ class _AuthVerifyPhoneWidgetState extends State<AuthVerifyPhoneWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                       child: Text(
                         'nu******in@nugo.baliwag.edu.ph',
                         textAlign: TextAlign.center,
@@ -137,7 +141,7 @@ class _AuthVerifyPhoneWidgetState extends State<AuthVerifyPhoneWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                       child: PinCodeTextField(
                         autoDisposeControllers: false,
                         appContext: context,
@@ -161,7 +165,7 @@ class _AuthVerifyPhoneWidgetState extends State<AuthVerifyPhoneWidget> {
                           fieldHeight: 44.0,
                           fieldWidth: 44.0,
                           borderWidth: 2.0,
-                          borderRadius: const BorderRadius.only(
+                          borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(12.0),
                             bottomRight: Radius.circular(12.0),
                             topLeft: Radius.circular(12.0),
@@ -184,7 +188,7 @@ class _AuthVerifyPhoneWidgetState extends State<AuthVerifyPhoneWidget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 5.0, 0.0, 0.0),
                           child: Text(
                             'Didn\'t send OTP?',
@@ -199,7 +203,7 @@ class _AuthVerifyPhoneWidgetState extends State<AuthVerifyPhoneWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               5.0, 5.0, 0.0, 0.0),
                           child: Text(
                             'Request new OTP',
@@ -219,13 +223,13 @@ class _AuthVerifyPhoneWidgetState extends State<AuthVerifyPhoneWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 6.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 6.0),
                       child: Text(
                         'P O W E R E D   B Y',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -237,7 +241,7 @@ class _AuthVerifyPhoneWidgetState extends State<AuthVerifyPhoneWidget> {
                       ),
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: Image.asset(
@@ -245,7 +249,7 @@ class _AuthVerifyPhoneWidgetState extends State<AuthVerifyPhoneWidget> {
                           width: 70.0,
                           height: 30.0,
                           fit: BoxFit.contain,
-                          alignment: const Alignment(0.0, 0.0),
+                          alignment: Alignment(0.0, 0.0),
                         ),
                       ),
                     ),

@@ -1,8 +1,13 @@
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'sidebar_tile_model.dart';
 export 'sidebar_tile_model.dart';
 
@@ -45,8 +50,8 @@ class _SidebarTileWidgetState extends State<SidebarTileWidget>
             curve: Curves.easeInOut,
             delay: 100.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(-400.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(-400.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -71,12 +76,12 @@ class _SidebarTileWidgetState extends State<SidebarTileWidget>
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          widget.tileIcon!,
+          widget!.tileIcon!,
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
             child: Text(
               valueOrDefault<String>(
-                widget.tileName,
+                widget!.tileName,
                 'tileName',
               ),
               style: FlutterFlowTheme.of(context).bodyMedium.override(

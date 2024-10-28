@@ -4,12 +4,14 @@ import '/components/widgets/search_not_found_list/search_not_found_list_widget.d
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'event_search_model.dart';
@@ -99,10 +101,25 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            floatingActionButton: FloatingActionButton(
+              onPressed: () async {
+                logFirebaseEvent('EVENT_SEARCH_FloatingActionButton_elie3n');
+                logFirebaseEvent('FloatingActionButton_navigate_to');
+
+                context.pushNamed('calendar');
+              },
+              backgroundColor: FlutterFlowTheme.of(context).primary,
+              elevation: 8.0,
+              child: Icon(
+                Icons.date_range,
+                color: FlutterFlowTheme.of(context).info,
+                size: 24.0,
+              ),
+            ),
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -112,13 +129,13 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 10.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 10.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -167,7 +184,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                 onChanged: (_) =>
                                                     EasyDebounce.debounce(
                                                   '_model.textController',
-                                                  const Duration(milliseconds: 2000),
+                                                  Duration(milliseconds: 2000),
                                                   () async {
                                                     logFirebaseEvent(
                                                         'EVENT_SEARCH_TextField_4o1bchas_ON_TEXTF');
@@ -184,7 +201,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                                           record,
                                                                           [
                                                                     record
-                                                                        .eventName
+                                                                        .eventName!
                                                                   ]),
                                                             )
                                                             .toList(),
@@ -195,6 +212,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                               .map((r) =>
                                                                   r.object)
                                                               .toList();
+                                                      ;
                                                     });
                                                     logFirebaseEvent(
                                                         'TextField_update_app_state');
@@ -207,7 +225,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                     safeSetState(() {});
                                                   },
                                                 ),
-                                                autofocus: widget.autofocus!,
+                                                autofocus: widget!.autofocus!,
                                                 obscureText: false,
                                                 decoration: InputDecoration(
                                                   labelStyle:
@@ -236,7 +254,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                   errorBorder: InputBorder.none,
                                                   focusedErrorBorder:
                                                       InputBorder.none,
-                                                  prefixIcon: const Icon(
+                                                  prefixIcon: Icon(
                                                     Icons.search_sharp,
                                                   ),
                                                 ),
@@ -287,7 +305,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                           if ((_model.filter == true) ||
                               (_model.eventType != 0))
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 10.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -315,7 +333,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                   (record) =>
                                                       TextSearchItem.fromTerms(
                                                           record, [
-                                                    record.participantType
+                                                    record.participantType!
                                                   ]),
                                                 )
                                                 .toList(),
@@ -323,6 +341,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                   .search('University-wide')
                                                   .map((r) => r.object)
                                                   .toList();
+                                          ;
                                         });
                                         logFirebaseEvent(
                                             'Container_update_app_state');
@@ -332,7 +351,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                       child: Container(
                                         decoration: BoxDecoration(
                                           color: _model.eventType == 1
-                                              ? const Color(0xFFE1E1E1)
+                                              ? Color(0xFFE1E1E1)
                                               : FlutterFlowTheme.of(context)
                                                   .tabBarUnselected,
                                           borderRadius:
@@ -340,7 +359,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                         ),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 5.0, 10.0, 5.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -348,7 +367,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 5.0, 0.0),
                                                 child: ClipRRect(
@@ -404,7 +423,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                   (record) =>
                                                       TextSearchItem.fromTerms(
                                                           record, [
-                                                    record.participantType
+                                                    record.participantType!
                                                   ]),
                                                 )
                                                 .toList(),
@@ -412,6 +431,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                   .search('Members-wide')
                                                   .map((r) => r.object)
                                                   .toList();
+                                          ;
                                         });
                                         logFirebaseEvent(
                                             'Container_update_app_state');
@@ -421,7 +441,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                       child: Container(
                                         decoration: BoxDecoration(
                                           color: _model.eventType == 2
-                                              ? const Color(0xFFE1E1E1)
+                                              ? Color(0xFFE1E1E1)
                                               : FlutterFlowTheme.of(context)
                                                   .secondaryBackground,
                                           borderRadius:
@@ -429,7 +449,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                         ),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 5.0, 10.0, 5.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
@@ -437,7 +457,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 5.0, 0.0),
                                                 child: ClipRRect(
@@ -470,15 +490,15 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                       ),
                                     ),
                                   ),
-                                ].divide(const SizedBox(width: 10.0)),
+                                ].divide(SizedBox(width: 10.0)),
                               ),
                             ),
                           if (!FFAppState().searchActive)
                             Expanded(
                               child: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: Builder(
                                     builder: (context) {
@@ -492,7 +512,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                   'concluded')
                                               .toList();
                                       if (allEvents.isEmpty) {
-                                        return const EmptyListWidget(
+                                        return EmptyListWidget(
                                           emptyWhat:
                                               'There are no events listed at the moment.',
                                         );
@@ -501,7 +521,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                       return GridView.builder(
                                         padding: EdgeInsets.zero,
                                         gridDelegate:
-                                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                            SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 2,
                                           crossAxisSpacing: 10.0,
                                           childAspectRatio: 0.54,
@@ -512,7 +532,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                           final allEventsItem =
                                               allEvents[allEventsIndex];
                                           return Align(
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                 -1.0, -1.0),
                                             child: InkWell(
                                               splashColor: Colors.transparent,
@@ -537,7 +557,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                   }.withoutNulls,
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:
-                                                        const TransitionInfo(
+                                                        TransitionInfo(
                                                       hasTransition: true,
                                                       transitionType:
                                                           PageTransitionType
@@ -581,7 +601,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                           children: [
                                                             ClipRRect(
                                                               borderRadius:
-                                                                  const BorderRadius
+                                                                  BorderRadius
                                                                       .only(
                                                                 bottomLeft: Radius
                                                                     .circular(
@@ -615,7 +635,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       10.0,
                                                                       0.0,
@@ -631,7 +651,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             5.0,
@@ -666,7 +686,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                                 ),
                                                               ),
                                                               Padding(
-                                                                padding: const EdgeInsetsDirectional
+                                                                padding: EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         10.0,
@@ -681,7 +701,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                                           .start,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -692,7 +712,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 5.0,
@@ -787,7 +807,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                                               .end,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               5.0,
@@ -845,11 +865,11 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                         children: [
                                                           Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     0.0, 0.0),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           10.0,
                                                                           0.0,
@@ -907,7 +927,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                                         clipBehavior:
                                                                             Clip.antiAlias,
                                                                         decoration:
-                                                                            const BoxDecoration(
+                                                                            BoxDecoration(
                                                                           shape:
                                                                               BoxShape.circle,
                                                                         ),
@@ -925,7 +945,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                                       Flexible(
                                                                         child:
                                                                             Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               5.0,
                                                                               0.0,
                                                                               0.0,
@@ -972,9 +992,9 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                           if (FFAppState().searchActive)
                             Expanded(
                               child: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: Builder(
                                     builder: (context) {
@@ -997,7 +1017,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                       return GridView.builder(
                                         padding: EdgeInsets.zero,
                                         gridDelegate:
-                                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                            SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 2,
                                           crossAxisSpacing: 10.0,
                                           childAspectRatio: 0.54,
@@ -1010,7 +1030,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                               searchedEvents[
                                                   searchedEventsIndex];
                                           return Align(
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                 -1.0, -1.0),
                                             child: InkWell(
                                               splashColor: Colors.transparent,
@@ -1036,7 +1056,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                   }.withoutNulls,
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:
-                                                        const TransitionInfo(
+                                                        TransitionInfo(
                                                       hasTransition: true,
                                                       transitionType:
                                                           PageTransitionType
@@ -1080,7 +1100,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                           children: [
                                                             ClipRRect(
                                                               borderRadius:
-                                                                  const BorderRadius
+                                                                  BorderRadius
                                                                       .only(
                                                                 bottomLeft: Radius
                                                                     .circular(
@@ -1112,11 +1132,11 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       1.0,
                                                                       -1.0),
                                                               child: Padding(
-                                                                padding: const EdgeInsetsDirectional
+                                                                padding: EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         10.0,
@@ -1126,7 +1146,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                                     Container(
                                                                   decoration:
                                                                       BoxDecoration(
-                                                                    color: const Color(
+                                                                    color: Color(
                                                                         0x5C35408E),
                                                                     borderRadius:
                                                                         BorderRadius.circular(
@@ -1139,7 +1159,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       10.0,
                                                                       0.0,
@@ -1155,7 +1175,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             5.0,
@@ -1190,7 +1210,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                                 ),
                                                               ),
                                                               Padding(
-                                                                padding: const EdgeInsetsDirectional
+                                                                padding: EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         10.0,
@@ -1205,7 +1225,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                                           .start,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -1216,7 +1236,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 5.0,
@@ -1311,7 +1331,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                                               .end,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               5.0,
@@ -1359,7 +1379,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                     Flexible(
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1377,10 +1397,10 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
-                                                                padding: const EdgeInsetsDirectional
+                                                                padding: EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         10.0,
                                                                         0.0,
@@ -1438,7 +1458,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                                           clipBehavior:
                                                                               Clip.antiAlias,
                                                                           decoration:
-                                                                              const BoxDecoration(
+                                                                              BoxDecoration(
                                                                             shape:
                                                                                 BoxShape.circle,
                                                                           ),
@@ -1455,7 +1475,7 @@ class _EventSearchWidgetState extends State<EventSearchWidget> {
                                                                         Flexible(
                                                                           child:
                                                                               Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 5.0,
                                                                                 0.0,
                                                                                 0.0,

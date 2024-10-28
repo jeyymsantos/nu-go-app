@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/dialog_box/confirm_password_dialog/confirm_password_dialog_widget.dart';
 import '/components/dialog_box/congratulations_dialog_box/congratulations_dialog_box_widget.dart';
@@ -6,12 +7,17 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'view_user_model.dart';
@@ -49,9 +55,9 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
       logFirebaseEvent('view_user_action_block');
       await _model.addressLoaderAdmin(
         context,
-        provinceCode: widget.userDoc?.address.province,
-        barangayCode: widget.userDoc?.address.barangay,
-        cityCode: widget.userDoc?.address.city,
+        provinceCode: widget!.userDoc?.address?.province,
+        barangayCode: widget!.userDoc?.address?.barangay,
+        cityCode: widget!.userDoc?.address?.city,
       );
       safeSetState(() {});
     });
@@ -97,11 +103,11 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TitleHeaderComponentWidget(
+                  child: TitleHeaderComponentWidget(
                     titleText: 'View User',
                   ),
                 ),
@@ -112,14 +118,14 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                   color: FlutterFlowTheme.of(context).secondaryText,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: EdgeInsets.all(10.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                         child: Icon(
                           FFIcons.kshieldTick4,
                           color: FlutterFlowTheme.of(context).primaryBackground,
@@ -148,7 +154,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                     children: [
                       Flexible(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 20.0, 0.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -156,7 +162,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                               Container(
                                 width: 100.0,
                                 height: 100.0,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                                 child: Stack(
                                   children: [
                                     ClipOval(
@@ -172,12 +178,12 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                           ),
                                         ),
                                         child: Padding(
-                                          padding: const EdgeInsets.all(4.0),
+                                          padding: EdgeInsets.all(4.0),
                                           child: ClipOval(
                                             child: Container(
                                               width: 45.0,
                                               height: 45.0,
-                                              decoration: const BoxDecoration(
+                                              decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
                                               ),
                                               child: InkWell(
@@ -201,7 +207,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                                         image: Image.network(
                                                           valueOrDefault<
                                                               String>(
-                                                            widget.userDoc
+                                                            widget!.userDoc
                                                                 ?.photoUrl,
                                                             'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FNUGo%20Logo.png?alt=media&token=c16de93e-c20d-4bd1-90f0-e3d2c07fe740',
                                                           ),
@@ -210,7 +216,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                                         allowRotation: false,
                                                         tag: valueOrDefault<
                                                             String>(
-                                                          widget.userDoc
+                                                          widget!.userDoc
                                                               ?.photoUrl,
                                                           'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FNUGo%20Logo.png?alt=media&token=c16de93e-c20d-4bd1-90f0-e3d2c07fe740',
                                                         ),
@@ -221,14 +227,14 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                                 },
                                                 child: Hero(
                                                   tag: valueOrDefault<String>(
-                                                    widget.userDoc?.photoUrl,
+                                                    widget!.userDoc?.photoUrl,
                                                     'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FNUGo%20Logo.png?alt=media&token=c16de93e-c20d-4bd1-90f0-e3d2c07fe740',
                                                   ),
                                                   transitionOnUserGestures:
                                                       true,
                                                   child: Image.network(
                                                     valueOrDefault<String>(
-                                                      widget.userDoc?.photoUrl,
+                                                      widget!.userDoc?.photoUrl,
                                                       'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FNUGo%20Logo.png?alt=media&token=c16de93e-c20d-4bd1-90f0-e3d2c07fe740',
                                                     ),
                                                     width: double.infinity,
@@ -250,7 +256,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 0.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
@@ -264,7 +270,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                           children: [
                                             Text(
                                               valueOrDefault<String>(
-                                                widget.userDoc?.displayName,
+                                                widget!.userDoc?.displayName,
                                                 'Brenley Ian Robles',
                                               ),
                                               textAlign: TextAlign.center,
@@ -281,7 +287,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                             Flexible(
                                               child: AlignedTooltip(
                                                 content: Padding(
-                                                  padding: const EdgeInsets.all(4.0),
+                                                  padding: EdgeInsets.all(4.0),
                                                   child: Text(
                                                     'Profile Details have been already verified.',
                                                     style: FlutterFlowTheme.of(
@@ -306,20 +312,20 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                                 tailBaseWidth: 24.0,
                                                 tailLength: 12.0,
                                                 waitDuration:
-                                                    const Duration(milliseconds: 100),
-                                                showDuration: const Duration(
+                                                    Duration(milliseconds: 100),
+                                                showDuration: Duration(
                                                     milliseconds: 1500),
                                                 triggerMode:
                                                     TooltipTriggerMode.tap,
                                                 child: Visibility(
                                                   visible: valueOrDefault<bool>(
-                                                    widget.userDoc?.settings
-                                                        .isVerified,
+                                                    widget!.userDoc?.settings
+                                                        ?.isVerified,
                                                     false,
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(2.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Icon(
@@ -338,7 +344,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                         ),
                                         Text(
                                           valueOrDefault<String>(
-                                            widget.userDoc?.email,
+                                            widget!.userDoc?.email,
                                             'roblesbdr@students.nu-baliwag.edu.ph',
                                           ),
                                           style: FlutterFlowTheme.of(context)
@@ -356,11 +362,11 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   20.0, 10.0, 20.0, 0.0),
                                           child: Text(
                                             valueOrDefault<String>(
-                                              widget.userDoc?.bioNote,
+                                              widget!.userDoc?.bioNote,
                                               'bio',
                                             ),
                                             textAlign: TextAlign.center,
@@ -387,7 +393,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 10.0, 20.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -405,7 +411,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 6.0, 0.0, 6.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -416,13 +422,13 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                               membersRecord.where(
                                             'user_reference',
                                             isEqualTo:
-                                                widget.userDoc?.reference,
+                                                widget!.userDoc?.reference,
                                           ),
                                         ),
                                         builder: (context, snapshot) {
                                           // Customize what your widget looks like when it's loading.
                                           if (!snapshot.hasData) {
-                                            return const Center(
+                                            return Center(
                                               child: SizedBox(
                                                 width: 26.0,
                                                 height: 26.0,
@@ -482,7 +488,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 6.0, 0.0, 6.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -494,7 +500,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                                   eventAttendeesRecord
                                                       .where(
                                                         'ticket_user',
-                                                        isEqualTo: widget
+                                                        isEqualTo: widget!
                                                             .userDoc?.reference,
                                                       )
                                                       .where(
@@ -568,14 +574,14 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             0.0, 10.0, 0.0, 10.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             AlignedTooltip(
                               content: Padding(
-                                padding: const EdgeInsets.all(4.0),
+                                padding: EdgeInsets.all(4.0),
                                 child: Text(
                                   'Make sure that you have your ID with you.',
                                   style: FlutterFlowTheme.of(context)
@@ -594,13 +600,13 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                               elevation: 4.0,
                               tailBaseWidth: 24.0,
                               tailLength: 12.0,
-                              waitDuration: const Duration(milliseconds: 100),
-                              showDuration: const Duration(milliseconds: 1500),
+                              waitDuration: Duration(milliseconds: 100),
+                              showDuration: Duration(milliseconds: 1500),
                               triggerMode: TooltipTriggerMode.longPress,
                               child: Visibility(
                                 visible: valueOrDefault<bool>(
-                                  widget.userDoc?.nfcTag == null ||
-                                      widget.userDoc?.nfcTag == '',
+                                  widget!.userDoc?.nfcTag == null ||
+                                      widget!.userDoc?.nfcTag == '',
                                   true,
                                 ),
                                 child: InkWell(
@@ -617,12 +623,12 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                       'admin_nfc_setup',
                                       queryParameters: {
                                         'userDoc': serializeParam(
-                                          widget.userDoc,
+                                          widget!.userDoc,
                                           ParamType.Document,
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        'userDoc': widget.userDoc,
+                                        'userDoc': widget!.userDoc,
                                       },
                                     );
                                   },
@@ -633,7 +639,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                       borderRadius: BorderRadius.circular(24.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           10.0, 5.0, 10.0, 5.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -642,7 +648,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 5.0, 0.0),
                                             child: Text(
                                               'Setup your ID',
@@ -674,11 +680,11 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   10.0, 0.0, 0.0, 0.0),
                               child: AlignedTooltip(
                                 content: Padding(
-                                  padding: const EdgeInsets.all(4.0),
+                                  padding: EdgeInsets.all(4.0),
                                   child: Text(
                                     'Make sure that you have your ID with you.',
                                     style: FlutterFlowTheme.of(context)
@@ -697,12 +703,12 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                 elevation: 4.0,
                                 tailBaseWidth: 24.0,
                                 tailLength: 12.0,
-                                waitDuration: const Duration(milliseconds: 100),
-                                showDuration: const Duration(milliseconds: 1500),
+                                waitDuration: Duration(milliseconds: 100),
+                                showDuration: Duration(milliseconds: 1500),
                                 triggerMode: TooltipTriggerMode.longPress,
                                 child: Visibility(
-                                  visible: widget.userDoc?.nfcTag != null &&
-                                      widget.userDoc?.nfcTag != '',
+                                  visible: widget!.userDoc?.nfcTag != null &&
+                                      widget!.userDoc?.nfcTag != '',
                                   child: InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
@@ -719,13 +725,13 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                         'view_userid_admin',
                                         queryParameters: {
                                           'userDoc': serializeParam(
-                                            widget.userDoc,
+                                            widget!.userDoc,
                                             ParamType.Document,
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          'userDoc': widget.userDoc,
-                                          kTransitionInfoKey: const TransitionInfo(
+                                          'userDoc': widget!.userDoc,
+                                          kTransitionInfoKey: TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -742,7 +748,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                             BorderRadius.circular(24.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -750,7 +756,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Text(
                                                 'View School ID',
@@ -786,11 +792,11 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   10.0, 0.0, 0.0, 0.0),
                               child: AlignedTooltip(
                                 content: Padding(
-                                  padding: const EdgeInsets.all(4.0),
+                                  padding: EdgeInsets.all(4.0),
                                   child: Text(
                                     'Make sure that you have your ID with you.',
                                     style: FlutterFlowTheme.of(context)
@@ -809,12 +815,12 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                 elevation: 4.0,
                                 tailBaseWidth: 24.0,
                                 tailLength: 12.0,
-                                waitDuration: const Duration(milliseconds: 100),
-                                showDuration: const Duration(milliseconds: 1500),
+                                waitDuration: Duration(milliseconds: 100),
+                                showDuration: Duration(milliseconds: 1500),
                                 triggerMode: TooltipTriggerMode.longPress,
                                 child: Visibility(
-                                  visible: widget.userDoc?.nfcTag != null &&
-                                      widget.userDoc?.nfcTag != '',
+                                  visible: widget!.userDoc?.nfcTag != null &&
+                                      widget!.userDoc?.nfcTag != '',
                                   child: Builder(
                                     builder: (context) => InkWell(
                                       splashColor: Colors.transparent,
@@ -824,7 +830,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                       onTap: () async {
                                         logFirebaseEvent(
                                             'VIEW_USER_PAGE_Container_4y12rvie_ON_TAP');
-                                        var shouldSetState = false;
+                                        var _shouldSetState = false;
                                         logFirebaseEvent(
                                             'Container_alert_dialog');
                                         await showDialog(
@@ -836,7 +842,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
+                                                  AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
@@ -846,7 +852,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                                           dialogContext)
                                                       .unfocus(),
                                                   child:
-                                                      const ConfirmPasswordDialogWidget(),
+                                                      ConfirmPasswordDialogWidget(),
                                                 ),
                                               ),
                                             );
@@ -854,12 +860,12 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                         ).then((value) => safeSetState(() =>
                                             _model.confirmAction = value));
 
-                                        shouldSetState = true;
+                                        _shouldSetState = true;
                                         if (_model.confirmAction!) {
                                           logFirebaseEvent(
                                               'Container_backend_call');
 
-                                          await widget.userDoc!.reference
+                                          await widget!.userDoc!.reference
                                               .update(createUsersRecordData(
                                             nfcTag: '',
                                           ));
@@ -873,7 +879,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                                 insetPadding: EdgeInsets.zero,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
@@ -883,7 +889,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                                             dialogContext)
                                                         .unfocus(),
                                                     child:
-                                                        const CongratulationsDialogBoxWidget(
+                                                        CongratulationsDialogBoxWidget(
                                                       congratsDialogTitle:
                                                           'NFC Reset Successful!',
                                                       congratsDialogMeesage:
@@ -898,20 +904,17 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                           logFirebaseEvent(
                                               'Container_navigate_back');
                                           context.safePop();
-                                          if (shouldSetState) {
+                                          if (_shouldSetState)
                                             safeSetState(() {});
-                                          }
                                           return;
                                         } else {
-                                          if (shouldSetState) {
+                                          if (_shouldSetState)
                                             safeSetState(() {});
-                                          }
                                           return;
                                         }
 
-                                        if (shouldSetState) {
+                                        if (_shouldSetState)
                                           safeSetState(() {});
-                                        }
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
@@ -922,7 +925,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                         ),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 5.0, 10.0, 5.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -930,7 +933,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                                 MainAxisAlignment.center,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 5.0, 0.0),
                                                 child: Text(
@@ -972,7 +975,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 10.0, 20.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -980,9 +983,9 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 15.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -1002,7 +1005,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                     ),
                                     Text(
                                       valueOrDefault<String>(
-                                        widget.userDoc?.role,
+                                        widget!.userDoc?.role,
                                         'Student',
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -1023,9 +1026,9 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                               children: [
                                 Expanded(
                                   child: Align(
-                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 15.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -1050,7 +1053,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                             children: [
                                               Text(
                                                 valueOrDefault<String>(
-                                                  widget.userDoc?.idNumber,
+                                                  widget!.userDoc?.idNumber,
                                                   '2021-160059',
                                                 ),
                                                 style:
@@ -1067,7 +1070,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                               ),
                                               AlignedTooltip(
                                                 content: Padding(
-                                                  padding: const EdgeInsets.all(4.0),
+                                                  padding: EdgeInsets.all(4.0),
                                                   child: Text(
                                                     'You are verified!',
                                                     style: FlutterFlowTheme.of(
@@ -1093,13 +1096,13 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                                 tailBaseWidth: 24.0,
                                                 tailLength: 12.0,
                                                 waitDuration:
-                                                    const Duration(milliseconds: 100),
-                                                showDuration: const Duration(
+                                                    Duration(milliseconds: 100),
+                                                showDuration: Duration(
                                                     milliseconds: 1500),
                                                 triggerMode:
                                                     TooltipTriggerMode.tap,
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           5.0, 0.0, 0.0, 0.0),
                                                   child: Icon(
@@ -1118,13 +1121,13 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                     ),
                                   ),
                                 ),
-                                if (widget.userDoc?.role == 'Student')
+                                if (widget!.userDoc?.role == 'Student')
                                   Expanded(
                                     child: Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 15.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -1147,8 +1150,8 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                             ),
                                             Text(
                                               valueOrDefault<String>(
-                                                widget
-                                                    .userDoc?.student.section,
+                                                widget!
+                                                    .userDoc?.student?.section,
                                                 'ITE211',
                                               ),
                                               textAlign: TextAlign.start,
@@ -1169,15 +1172,15 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                   ),
                               ],
                             ),
-                            if ((widget.userDoc?.role == 'Full-Time Faculty') ||
-                                (widget.userDoc?.role ==
+                            if ((widget!.userDoc?.role == 'Full-Time Faculty') ||
+                                (widget!.userDoc?.role ==
                                     'Part-Time Faculty') ||
-                                (widget.userDoc?.role == 'Student') ||
-                                (widget.userDoc?.role == 'Program Chair'))
+                                (widget!.userDoc?.role == 'Student') ||
+                                (widget!.userDoc?.role == 'Program Chair'))
                               Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 15.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -1199,11 +1202,11 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                       ),
                                       FutureBuilder<ProgramsRecord>(
                                         future: ProgramsRecord.getDocumentOnce(
-                                            widget.userDoc!.student.program!),
+                                            widget!.userDoc!.student.program!),
                                         builder: (context, snapshot) {
                                           // Customize what your widget looks like when it's loading.
                                           if (!snapshot.hasData) {
-                                            return const Center(
+                                            return Center(
                                               child: SizedBox(
                                                 width: 16.0,
                                                 height: 16.0,
@@ -1243,14 +1246,14 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                   ),
                                 ),
                               ),
-                            if ((widget.userDoc?.role == 'Full-Time Faculty') ||
-                                (widget.userDoc?.role ==
+                            if ((widget!.userDoc?.role == 'Full-Time Faculty') ||
+                                (widget!.userDoc?.role ==
                                     'Part-Time Faculty') ||
-                                (widget.userDoc?.role == 'Student') ||
-                                (widget.userDoc?.role == 'Dean') ||
-                                (widget.userDoc?.role == 'Program Chair'))
+                                (widget!.userDoc?.role == 'Student') ||
+                                (widget!.userDoc?.role == 'Dean') ||
+                                (widget!.userDoc?.role == 'Program Chair'))
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 10.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
@@ -1270,14 +1273,14 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                     ),
                                     Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: FutureBuilder<SchoolsRecord>(
                                         future: SchoolsRecord.getDocumentOnce(
-                                            widget.userDoc!.student.school!),
+                                            widget!.userDoc!.student.school!),
                                         builder: (context, snapshot) {
                                           // Customize what your widget looks like when it's loading.
                                           if (!snapshot.hasData) {
-                                            return const Center(
+                                            return Center(
                                               child: SizedBox(
                                                 width: 16.0,
                                                 height: 16.0,
@@ -1318,9 +1321,9 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                 ),
                               ),
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 10.0),
                                 child: Text(
                                   'Basic Information',
@@ -1339,7 +1342,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                               children: [
                                 Expanded(
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 15.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
@@ -1361,10 +1364,10 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                         ),
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(-1.0, 0.0),
+                                              AlignmentDirectional(-1.0, 0.0),
                                           child: Text(
                                             valueOrDefault<String>(
-                                              widget.userDoc?.sex,
+                                              widget!.userDoc?.sex,
                                               'Male',
                                             ),
                                             textAlign: TextAlign.start,
@@ -1384,9 +1387,9 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                 ),
                                 Expanded(
                                   child: Align(
-                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 15.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -1408,7 +1411,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                           ),
                                           Text(
                                             valueOrDefault<String>(
-                                              widget.userDoc?.civilStatus,
+                                              widget!.userDoc?.civilStatus,
                                               'Single',
                                             ),
                                             style: FlutterFlowTheme.of(context)
@@ -1432,7 +1435,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                               children: [
                                 Expanded(
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 15.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -1454,12 +1457,12 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                         ),
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(-1.0, 0.0),
+                                              AlignmentDirectional(-1.0, 0.0),
                                           child: Text(
                                             valueOrDefault<String>(
                                               dateTimeFormat(
                                                 "yMMMd",
-                                                widget.userDoc?.birthDate,
+                                                widget!.userDoc?.birthDate,
                                                 locale:
                                                     FFLocalizations.of(context)
                                                         .languageCode,
@@ -1483,7 +1486,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 15.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -1505,10 +1508,10 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                         ),
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(-1.0, 0.0),
+                                              AlignmentDirectional(-1.0, 0.0),
                                           child: Text(
                                             valueOrDefault<String>(
-                                              widget.userDoc?.phoneNumber,
+                                              widget!.userDoc?.phoneNumber,
                                               '09654107968',
                                             ),
                                             textAlign: TextAlign.start,
@@ -1529,7 +1532,7 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 15.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
@@ -1548,9 +1551,9 @@ class _ViewUserWidgetState extends State<ViewUserWidget>
                                         ),
                                   ),
                                   Align(
-                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                     child: Text(
-                                      '${widget.userDoc?.address.houseNumber}, ${widget.userDoc?.address.street}, ${FFAppState().address.barangay}, ${FFAppState().address.city}, ${FFAppState().address.province}',
+                                      '${widget!.userDoc?.address?.houseNumber}, ${widget!.userDoc?.address?.street}, ${FFAppState().address.barangay}, ${FFAppState().address.city}, ${FFAppState().address.province}',
                                       textAlign: TextAlign.start,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium

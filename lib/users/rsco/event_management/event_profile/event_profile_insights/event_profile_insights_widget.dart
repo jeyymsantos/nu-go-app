@@ -1,14 +1,20 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/feedback_component_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/users/rsco/event_management/event_profile/components/side_bar_event_profile/side_bar_event_profile_widget.dart';
+import 'dart:math';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'event_profile_insights_model.dart';
@@ -47,7 +53,7 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
       logFirebaseEvent('EVENT_PROFILE_INSIGHTS_event_profile_ins');
       logFirebaseEvent('event_profile_insights_firestore_query');
       _model.allApprovedTickets = await queryEventAttendeesRecordOnce(
-        parent: widget.eventDoc?.reference,
+        parent: widget!.eventDoc?.reference,
         queryBuilder: (eventAttendeesRecord) => eventAttendeesRecord.where(
           'ticket_status',
           isEqualTo: 'Approved',
@@ -61,9 +67,9 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
       _model.numberOfFeedback = 0;
       safeSetState(() {});
       while (FFAppState().index < _model.allApprovedTickets!.length) {
-        if (_model.allApprovedTickets?[FFAppState().index].ticketFeedback !=
+        if (_model.allApprovedTickets?[FFAppState().index]?.ticketFeedback !=
                 null &&
-            _model.allApprovedTickets?[FFAppState().index].ticketFeedback !=
+            _model.allApprovedTickets?[FFAppState().index]?.ticketFeedback !=
                 '') {
           logFirebaseEvent('event_profile_insights_update_page_state');
           _model.totalRatings = _model.totalRatings +
@@ -121,7 +127,7 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
 
     return StreamBuilder<List<EventAttendeesRecord>>(
       stream: queryEventAttendeesRecord(
-        parent: widget.eventDoc?.reference,
+        parent: widget!.eventDoc?.reference,
         queryBuilder: (eventAttendeesRecord) => eventAttendeesRecord.where(
           'ticket_status',
           isEqualTo: 'Approved',
@@ -152,7 +158,7 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            drawer: SizedBox(
+            drawer: Container(
               width: 250.0,
               child: Drawer(
                 elevation: 16.0,
@@ -161,7 +167,7 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
                     model: _model.sideBarEventProfileModel,
                     updateCallback: () => safeSetState(() {}),
                     child: SideBarEventProfileWidget(
-                      eventDoc: widget.eventDoc!,
+                      eventDoc: widget!.eventDoc!,
                     ),
                   ),
                 ),
@@ -171,32 +177,32 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
               mainAxisSize: MainAxisSize.min,
               children: [
                 Align(
-                  alignment: const AlignmentDirectional(0.0, -1.0),
+                  alignment: AlignmentDirectional(0.0, -1.0),
                   child: Container(
                     width: double.infinity,
                     height: 170.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primary,
-                      borderRadius: const BorderRadius.only(
+                      borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(30.0),
                         bottomRight: Radius.circular(30.0),
                         topLeft: Radius.circular(0.0),
                         topRight: Radius.circular(0.0),
                       ),
                     ),
-                    child: SizedBox(
+                    child: Container(
                       height: 190.0,
                       child: Stack(
-                        alignment: const AlignmentDirectional(0.0, -1.0),
+                        alignment: AlignmentDirectional(0.0, -1.0),
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 20.0, 20.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 30.0, 0.0, 20.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -226,7 +232,7 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
                                     'Event Insights',
                                     style: FlutterFlowTheme.of(context)
@@ -242,9 +248,9 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 20.0),
                                     child: Text(
                                       'Here is an insight of your event',
@@ -265,9 +271,9 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.0, 1.25),
+                            alignment: AlignmentDirectional(0.0, 1.25),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   30.0, 0.0, 30.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -288,23 +294,23 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
                                         'event_guests_all',
                                         queryParameters: {
                                           'eventDoc': serializeParam(
-                                            widget.eventDoc,
+                                            widget!.eventDoc,
                                             ParamType.Document,
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          'eventDoc': widget.eventDoc,
+                                          'eventDoc': widget!.eventDoc,
                                         },
                                       );
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0xFF599AFF),
+                                        color: Color(0xFF599AFF),
                                         borderRadius:
                                             BorderRadius.circular(20.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -312,7 +318,7 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Icon(
                                                 FFIcons.kuserTag,
@@ -352,7 +358,7 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
                 Flexible(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 30.0, 20.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(20.0, 30.0, 20.0, 0.0),
                     child: SingleChildScrollView(
                       primary: false,
                       child: Column(
@@ -378,12 +384,12 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
                                       'event_guests_going',
                                       queryParameters: {
                                         'eventDoc': serializeParam(
-                                          widget.eventDoc,
+                                          widget!.eventDoc,
                                           ParamType.Document,
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        'eventDoc': widget.eventDoc,
+                                        'eventDoc': widget!.eventDoc,
                                       },
                                     );
                                   },
@@ -394,7 +400,7 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
                                       borderRadius: BorderRadius.circular(6.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(5.0),
+                                      padding: EdgeInsets.all(5.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment:
@@ -402,7 +408,7 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               FFIcons.kpet,
@@ -475,12 +481,12 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
                                       'event_checked_in',
                                       queryParameters: {
                                         'eventDoc': serializeParam(
-                                          widget.eventDoc,
+                                          widget!.eventDoc,
                                           ParamType.Document,
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        'eventDoc': widget.eventDoc,
+                                        'eventDoc': widget!.eventDoc,
                                       },
                                     );
                                   },
@@ -491,7 +497,7 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
                                       borderRadius: BorderRadius.circular(6.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(5.0),
+                                      padding: EdgeInsets.all(5.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment:
@@ -499,7 +505,7 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               FFIcons.kmagicStar4,
@@ -572,12 +578,12 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
                                       'event_checked_out',
                                       queryParameters: {
                                         'eventDoc': serializeParam(
-                                          widget.eventDoc,
+                                          widget!.eventDoc,
                                           ParamType.Document,
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        'eventDoc': widget.eventDoc,
+                                        'eventDoc': widget!.eventDoc,
                                       },
                                     );
                                   },
@@ -588,7 +594,7 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
                                       borderRadius: BorderRadius.circular(6.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(5.0),
+                                      padding: EdgeInsets.all(5.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment:
@@ -596,7 +602,7 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               Icons.exit_to_app,
@@ -654,10 +660,10 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 10.0)),
+                            ].divide(SizedBox(width: 10.0)),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 20.0, 0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -676,8 +682,11 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
                                   valueOrDefault<String>(
                                     eventProfileInsightsEventAttendeesRecordList
                                                 .where((e) =>
+                                                    e.ticketFeedback != null &&
                                                     e.ticketFeedback != '')
-                                                .toList().isNotEmpty
+                                                .toList()
+                                                .length !=
+                                            0
                                         ? valueOrDefault<String>(
                                             (_model.totalRatings /
                                                     _model.numberOfFeedback!
@@ -719,7 +728,7 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
                                       FlutterFlowTheme.of(context).accent2,
                                 ),
                                 Container(
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -735,11 +744,12 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
                                             ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             4.0, 0.0, 4.0, 0.0),
                                         child: Text(
                                           eventProfileInsightsEventAttendeesRecordList
                                               .where((e) =>
+                                                  e.ticketFeedback != null &&
                                                   e.ticketFeedback != '')
                                               .toList()
                                               .length
@@ -772,13 +782,14 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
                                 animationsMap['columnOnPageLoadAnimation']!),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 0.0),
                             child: Builder(
                               builder: (context) {
                                 final onlyWithFeedback =
                                     eventProfileInsightsEventAttendeesRecordList
                                         .where((e) =>
+                                            e.ticketFeedback != null &&
                                             e.ticketFeedback != '')
                                         .toList();
 
@@ -788,7 +799,7 @@ class _EventProfileInsightsWidgetState extends State<EventProfileInsightsWidget>
                                   scrollDirection: Axis.vertical,
                                   itemCount: onlyWithFeedback.length,
                                   separatorBuilder: (_, __) =>
-                                      const SizedBox(height: 15.0),
+                                      SizedBox(height: 15.0),
                                   itemBuilder:
                                       (context, onlyWithFeedbackIndex) {
                                     final onlyWithFeedbackItem =

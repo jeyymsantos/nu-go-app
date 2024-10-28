@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/components/dialog_box/confirm_dialog_box/confirm_dialog_box_widget.dart';
@@ -14,8 +15,12 @@ import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/random_data_util.dart' as random_data;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'update_model.dart';
 export 'update_model.dart';
@@ -73,11 +78,11 @@ class _UpdateWidgetState extends State<UpdateWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TitleHeaderComponentWidget(
+                  child: TitleHeaderComponentWidget(
                     titleText: 'Update Product',
                   ),
                 ),
@@ -88,13 +93,13 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                   autovalidateMode: AutovalidateMode.disabled,
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -103,7 +108,7 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 5.0),
                                       child: Text(
                                         'Update Product Image',
@@ -132,7 +137,7 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                                   ],
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 15.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -218,7 +223,8 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                                       borderRadius: BorderRadius.circular(10.0),
                                       child: Image.network(
                                         valueOrDefault<String>(
-                                          _model.uploadedFileUrl != ''
+                                          _model.uploadedFileUrl != null &&
+                                                  _model.uploadedFileUrl != ''
                                               ? _model.uploadedFileUrl
                                               : 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/n-u-go-application-yjlz84/assets/acr6c7ygcw4g/Image_Handler.png',
                                           'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/n-u-go-application-yjlz84/assets/acr6c7ygcw4g/Image_Handler.png',
@@ -234,13 +240,13 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 15.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -250,7 +256,7 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 5.0),
                                             child: Text(
                                               'Item Name',
@@ -281,7 +287,7 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: TextFormField(
                                           controller:
                                               _model.itemNameTextController,
@@ -370,7 +376,7 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 15.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -380,7 +386,7 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 5.0),
                                             child: Text(
                                               'Category',
@@ -413,7 +419,7 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                                         controller: _model
                                                 .dropDownValueController ??=
                                             FormFieldController<String>(null),
-                                        options: const [
+                                        options: [
                                           'Clothing',
                                           'Uniform',
                                           'Electronics',
@@ -446,7 +452,7 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                                                 .textBoxBorder,
                                         borderWidth: 0.5,
                                         borderRadius: 8.0,
-                                        margin: const EdgeInsetsDirectional.fromSTEB(
+                                        margin: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 4.0, 16.0, 4.0),
                                         hidesUnderline: true,
                                         isOverButton: true,
@@ -457,7 +463,7 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 15.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -467,7 +473,7 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 5.0),
                                             child: Text(
                                               'Stocks',
@@ -602,7 +608,7 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                                                   ],
                                                 ),
                                               ),
-                                            ].divide(const SizedBox(width: 16.0)),
+                                            ].divide(SizedBox(width: 16.0)),
                                           ),
                                         ],
                                       ),
@@ -610,7 +616,7 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 15.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -620,7 +626,7 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 5.0),
                                             child: Text(
                                               'Item Price',
@@ -651,7 +657,7 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: TextFormField(
                                           controller:
                                               _model.itemPriceTextController,
@@ -746,7 +752,7 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 15.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -756,7 +762,7 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 5.0),
                                             child: Text(
                                               'Item Description',
@@ -787,7 +793,7 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: TextFormField(
                                           controller:
                                               _model.descriptionTextController,
@@ -892,17 +898,18 @@ class _UpdateWidgetState extends State<UpdateWidget> {
               Builder(
                 builder: (context) => Padding(
                   padding:
-                      const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 10.0),
+                      EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 10.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       logFirebaseEvent('UPDATE_PAGE_ADD_PRODUCT_BTN_ON_TAP');
-                      var shouldSetState = false;
+                      var _shouldSetState = false;
                       logFirebaseEvent('Button_validate_form');
                       if (_model.formKey.currentState == null ||
                           !_model.formKey.currentState!.validate()) {
                         return;
                       }
-                      if (_model.uploadedFileUrl.isEmpty) {
+                      if (_model.uploadedFileUrl == null ||
+                          _model.uploadedFileUrl.isEmpty) {
                         await showDialog(
                           context: context,
                           builder: (dialogContext) {
@@ -910,13 +917,13 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                               elevation: 0,
                               insetPadding: EdgeInsets.zero,
                               backgroundColor: Colors.transparent,
-                              alignment: const AlignmentDirectional(0.0, 0.0)
+                              alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
                               child: WebViewAware(
                                 child: GestureDetector(
                                   onTap: () =>
                                       FocusScope.of(dialogContext).unfocus(),
-                                  child: const InformationDialogBoxWidget(
+                                  child: InformationDialogBoxWidget(
                                     infoDialogTitle: 'Product Image Required',
                                     infoDialogMeesage:
                                         'Please make sure that there is an ',
@@ -937,13 +944,13 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                               elevation: 0,
                               insetPadding: EdgeInsets.zero,
                               backgroundColor: Colors.transparent,
-                              alignment: const AlignmentDirectional(0.0, 0.0)
+                              alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
                               child: WebViewAware(
                                 child: GestureDetector(
                                   onTap: () =>
                                       FocusScope.of(dialogContext).unfocus(),
-                                  child: const InformationDialogBoxWidget(
+                                  child: InformationDialogBoxWidget(
                                     infoDialogTitle: 'Category Required',
                                     infoDialogMeesage:
                                         'Please select a category from the dropdown menu.',
@@ -967,13 +974,13 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                               elevation: 0,
                               insetPadding: EdgeInsets.zero,
                               backgroundColor: Colors.transparent,
-                              alignment: const AlignmentDirectional(0.0, 0.0)
+                              alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
                               child: WebViewAware(
                                 child: GestureDetector(
                                   onTap: () =>
                                       FocusScope.of(dialogContext).unfocus(),
-                                  child: const FailedDialogBoxWidget(
+                                  child: FailedDialogBoxWidget(
                                     failedDialogTitle: 'Invalid Price',
                                     failedDialogMeesage:
                                         'You cannot set amount to zero or a negative value.',
@@ -984,7 +991,7 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                           },
                         );
 
-                        if (shouldSetState) safeSetState(() {});
+                        if (_shouldSetState) safeSetState(() {});
                         return;
                       } else if (functions.convertToDouble(
                               _model.quantityTextController.text) <=
@@ -997,13 +1004,13 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                               elevation: 0,
                               insetPadding: EdgeInsets.zero,
                               backgroundColor: Colors.transparent,
-                              alignment: const AlignmentDirectional(0.0, 0.0)
+                              alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
                               child: WebViewAware(
                                 child: GestureDetector(
                                   onTap: () =>
                                       FocusScope.of(dialogContext).unfocus(),
-                                  child: const FailedDialogBoxWidget(
+                                  child: FailedDialogBoxWidget(
                                     failedDialogTitle: 'Invalid Quantity',
                                     failedDialogMeesage:
                                         'You cannot set quantity to zero or a negative value.',
@@ -1014,7 +1021,7 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                           },
                         );
 
-                        if (shouldSetState) safeSetState(() {});
+                        if (_shouldSetState) safeSetState(() {});
                         return;
                       } else {
                         logFirebaseEvent('Button_alert_dialog');
@@ -1025,13 +1032,13 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                               elevation: 0,
                               insetPadding: EdgeInsets.zero,
                               backgroundColor: Colors.transparent,
-                              alignment: const AlignmentDirectional(0.0, 0.0)
+                              alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
                               child: WebViewAware(
                                 child: GestureDetector(
                                   onTap: () =>
                                       FocusScope.of(dialogContext).unfocus(),
-                                  child: const ConfirmDialogBoxWidget(
+                                  child: ConfirmDialogBoxWidget(
                                     confirmDialogTitle: 'Add Product',
                                     confirmDialogMeesage:
                                         'Are you sure you want to add product?',
@@ -1043,7 +1050,7 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                         ).then((value) =>
                             safeSetState(() => _model.confirmDialog = value));
 
-                        shouldSetState = true;
+                        _shouldSetState = true;
                         if (_model.confirmDialog!) {
                           logFirebaseEvent('Button_backend_call');
 
@@ -1088,13 +1095,13 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                                 elevation: 0,
                                 insetPadding: EdgeInsets.zero,
                                 backgroundColor: Colors.transparent,
-                                alignment: const AlignmentDirectional(0.0, 0.0)
+                                alignment: AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
                                 child: WebViewAware(
                                   child: GestureDetector(
                                     onTap: () =>
                                         FocusScope.of(dialogContext).unfocus(),
-                                    child: const CongratulationsDialogBoxWidget(
+                                    child: CongratulationsDialogBoxWidget(
                                       congratsDialogTitle: 'Product Added',
                                       congratsDialogMeesage:
                                           'The product has been added successfully.',
@@ -1107,7 +1114,7 @@ class _UpdateWidgetState extends State<UpdateWidget> {
 
                           logFirebaseEvent('Button_navigate_back');
                           context.safePop();
-                          if (shouldSetState) safeSetState(() {});
+                          if (_shouldSetState) safeSetState(() {});
                           return;
                         } else {
                           logFirebaseEvent('Button_alert_dialog');
@@ -1118,13 +1125,13 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                                 elevation: 0,
                                 insetPadding: EdgeInsets.zero,
                                 backgroundColor: Colors.transparent,
-                                alignment: const AlignmentDirectional(0.0, 0.0)
+                                alignment: AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
                                 child: WebViewAware(
                                   child: GestureDetector(
                                     onTap: () =>
                                         FocusScope.of(dialogContext).unfocus(),
-                                    child: const InformationDialogBoxWidget(
+                                    child: InformationDialogBoxWidget(
                                       infoDialogTitle: 'Action Cancelled',
                                       infoDialogMeesage:
                                           'Action has been cancelled. No changes has been saved.',
@@ -1135,15 +1142,15 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                             },
                           );
 
-                          if (shouldSetState) safeSetState(() {});
+                          if (_shouldSetState) safeSetState(() {});
                           return;
                         }
                       }
 
-                      if (shouldSetState) safeSetState(() {});
+                      if (_shouldSetState) safeSetState(() {});
                     },
                     text: 'Add Product',
-                    icon: const Icon(
+                    icon: Icon(
                       FFIcons.kshopAdd,
                       size: 15.0,
                     ),
@@ -1151,9 +1158,9 @@ class _UpdateWidgetState extends State<UpdateWidget> {
                       width: double.infinity,
                       height: 40.0,
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(

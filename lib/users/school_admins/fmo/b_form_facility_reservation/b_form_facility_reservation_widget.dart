@@ -4,7 +4,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'b_form_facility_reservation_model.dart';
 export 'b_form_facility_reservation_model.dart';
 
@@ -67,7 +71,7 @@ class _BFormFacilityReservationWidgetState
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -77,19 +81,19 @@ class _BFormFacilityReservationWidgetState
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: const TitleHeaderComponentWidget(
+                      child: TitleHeaderComponentWidget(
                         titleText: 'Event Management',
                       ),
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 10.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -107,7 +111,7 @@ class _BFormFacilityReservationWidgetState
                                         ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 0.0, 0.0),
                                     child: Text(
                                       'Let\'s prepare a reservation and required documents for conducting an activity.',
@@ -140,15 +144,15 @@ class _BFormFacilityReservationWidgetState
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Align(
-                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 5.0, 0.0),
                               child: Text(
                                 'Reference Number: ',
@@ -162,7 +166,7 @@ class _BFormFacilityReservationWidgetState
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Text(
                               'Org-001',
                               style: FlutterFlowTheme.of(context)
@@ -182,7 +186,7 @@ class _BFormFacilityReservationWidgetState
                 Expanded(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 30.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 30.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
@@ -194,7 +198,7 @@ class _BFormFacilityReservationWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 5.0),
                                     child: Text(
                                       'Title of Activity',
@@ -291,7 +295,7 @@ class _BFormFacilityReservationWidgetState
                             children: [
                               Flexible(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 5.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -301,7 +305,7 @@ class _BFormFacilityReservationWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 5.0),
                                             child: Text(
                                               'Start Date',
@@ -343,7 +347,7 @@ class _BFormFacilityReservationWidgetState
                                               'B_FORM_FACILITY_RESERVATION_birthdate_pi');
                                           logFirebaseEvent(
                                               'birthdate_picker_date_time_picker');
-                                          final datePicked1Date =
+                                          final _datePicked1Date =
                                               await showDatePicker(
                                             context: context,
                                             initialDate: getCurrentTimestamp,
@@ -394,12 +398,12 @@ class _BFormFacilityReservationWidgetState
                                             },
                                           );
 
-                                          if (datePicked1Date != null) {
+                                          if (_datePicked1Date != null) {
                                             safeSetState(() {
                                               _model.datePicked1 = DateTime(
-                                                datePicked1Date.year,
-                                                datePicked1Date.month,
-                                                datePicked1Date.day,
+                                                _datePicked1Date.year,
+                                                _datePicked1Date.month,
+                                                _datePicked1Date.day,
                                               );
                                             });
                                           }
@@ -431,11 +435,11 @@ class _BFormFacilityReservationWidgetState
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(10.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
-                                                      valueOrDefault<String>(
+                                                      '${valueOrDefault<String>(
                                                         dateTimeFormat(
                                                           "yMMMd",
                                                           _model.datePicked1,
@@ -445,7 +449,7 @@ class _BFormFacilityReservationWidgetState
                                                                   .languageCode,
                                                         ),
                                                         'Birthday',
-                                                      ),
+                                                      )}',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -463,7 +467,7 @@ class _BFormFacilityReservationWidgetState
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 10.0, 0.0),
                                                     child: Icon(
@@ -487,7 +491,7 @@ class _BFormFacilityReservationWidgetState
                               ),
                               Flexible(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 0.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -497,7 +501,7 @@ class _BFormFacilityReservationWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 5.0),
                                             child: Text(
                                               'End Date',
@@ -539,7 +543,7 @@ class _BFormFacilityReservationWidgetState
                                               'B_FORM_FACILITY_RESERVATION_birthdate_pi');
                                           logFirebaseEvent(
                                               'birthdate_picker_date_time_picker');
-                                          final datePicked2Date =
+                                          final _datePicked2Date =
                                               await showDatePicker(
                                             context: context,
                                             initialDate: getCurrentTimestamp,
@@ -590,12 +594,12 @@ class _BFormFacilityReservationWidgetState
                                             },
                                           );
 
-                                          if (datePicked2Date != null) {
+                                          if (_datePicked2Date != null) {
                                             safeSetState(() {
                                               _model.datePicked2 = DateTime(
-                                                datePicked2Date.year,
-                                                datePicked2Date.month,
-                                                datePicked2Date.day,
+                                                _datePicked2Date.year,
+                                                _datePicked2Date.month,
+                                                _datePicked2Date.day,
                                               );
                                             });
                                           }
@@ -627,11 +631,11 @@ class _BFormFacilityReservationWidgetState
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(10.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
-                                                      valueOrDefault<String>(
+                                                      '${valueOrDefault<String>(
                                                         dateTimeFormat(
                                                           "yMMMd",
                                                           _model.datePicked2,
@@ -641,7 +645,7 @@ class _BFormFacilityReservationWidgetState
                                                                   .languageCode,
                                                         ),
                                                         'Birthday',
-                                                      ),
+                                                      )}',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -659,7 +663,7 @@ class _BFormFacilityReservationWidgetState
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 10.0, 0.0),
                                                     child: Icon(
@@ -688,7 +692,7 @@ class _BFormFacilityReservationWidgetState
                             children: [
                               Flexible(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 5.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -698,7 +702,7 @@ class _BFormFacilityReservationWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 5.0),
                                             child: Text(
                                               'Start Time',
@@ -740,7 +744,7 @@ class _BFormFacilityReservationWidgetState
                                               'B_FORM_FACILITY_RESERVATION_birthdate_pi');
                                           logFirebaseEvent(
                                               'birthdate_picker_date_time_picker');
-                                          final datePicked3Date =
+                                          final _datePicked3Date =
                                               await showDatePicker(
                                             context: context,
                                             initialDate: getCurrentTimestamp,
@@ -791,12 +795,12 @@ class _BFormFacilityReservationWidgetState
                                             },
                                           );
 
-                                          if (datePicked3Date != null) {
+                                          if (_datePicked3Date != null) {
                                             safeSetState(() {
                                               _model.datePicked3 = DateTime(
-                                                datePicked3Date.year,
-                                                datePicked3Date.month,
-                                                datePicked3Date.day,
+                                                _datePicked3Date.year,
+                                                _datePicked3Date.month,
+                                                _datePicked3Date.day,
                                               );
                                             });
                                           }
@@ -828,11 +832,11 @@ class _BFormFacilityReservationWidgetState
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(10.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
-                                                      valueOrDefault<String>(
+                                                      '${valueOrDefault<String>(
                                                         dateTimeFormat(
                                                           "jm",
                                                           _model.datePicked4,
@@ -842,7 +846,7 @@ class _BFormFacilityReservationWidgetState
                                                                   .languageCode,
                                                         ),
                                                         'Birthday',
-                                                      ),
+                                                      )}',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -860,7 +864,7 @@ class _BFormFacilityReservationWidgetState
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 10.0, 0.0),
                                                     child: Icon(
@@ -884,7 +888,7 @@ class _BFormFacilityReservationWidgetState
                               ),
                               Flexible(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 0.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -894,7 +898,7 @@ class _BFormFacilityReservationWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 5.0),
                                             child: Text(
                                               'End Time',
@@ -936,7 +940,7 @@ class _BFormFacilityReservationWidgetState
                                               'B_FORM_FACILITY_RESERVATION_birthdate_pi');
                                           logFirebaseEvent(
                                               'birthdate_picker_date_time_picker');
-                                          final datePicked4Date =
+                                          final _datePicked4Date =
                                               await showDatePicker(
                                             context: context,
                                             initialDate: getCurrentTimestamp,
@@ -987,12 +991,12 @@ class _BFormFacilityReservationWidgetState
                                             },
                                           );
 
-                                          if (datePicked4Date != null) {
+                                          if (_datePicked4Date != null) {
                                             safeSetState(() {
                                               _model.datePicked4 = DateTime(
-                                                datePicked4Date.year,
-                                                datePicked4Date.month,
-                                                datePicked4Date.day,
+                                                _datePicked4Date.year,
+                                                _datePicked4Date.month,
+                                                _datePicked4Date.day,
                                               );
                                             });
                                           }
@@ -1024,11 +1028,11 @@ class _BFormFacilityReservationWidgetState
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(10.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
-                                                      valueOrDefault<String>(
+                                                      '${valueOrDefault<String>(
                                                         dateTimeFormat(
                                                           "jm",
                                                           _model.datePicked4,
@@ -1038,7 +1042,7 @@ class _BFormFacilityReservationWidgetState
                                                                   .languageCode,
                                                         ),
                                                         'Birthday',
-                                                      ),
+                                                      )}',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -1056,7 +1060,7 @@ class _BFormFacilityReservationWidgetState
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 10.0, 0.0),
                                                     child: Icon(
@@ -1087,7 +1091,7 @@ class _BFormFacilityReservationWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 5.0),
                                     child: Text(
                                       'Expected Number of Attendees',
@@ -1186,7 +1190,7 @@ class _BFormFacilityReservationWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 5.0),
                                     child: Text(
                                       'Name of Speaker (if applicable)',
@@ -1285,7 +1289,7 @@ class _BFormFacilityReservationWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 5.0),
                                     child: Text(
                                       'Venue',
@@ -1382,7 +1386,7 @@ class _BFormFacilityReservationWidgetState
                             children: [
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 5.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -1392,7 +1396,7 @@ class _BFormFacilityReservationWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 5.0),
                                             child: Text(
                                               'Equipment Name',
@@ -1425,7 +1429,7 @@ class _BFormFacilityReservationWidgetState
                                         ],
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 0.0),
                                         child: TextFormField(
                                           controller: _model.textController5,
@@ -1507,7 +1511,7 @@ class _BFormFacilityReservationWidgetState
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 0.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -1517,7 +1521,7 @@ class _BFormFacilityReservationWidgetState
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 5.0),
                                             child: Text(
                                               'Quantity',
@@ -1550,7 +1554,7 @@ class _BFormFacilityReservationWidgetState
                                         ],
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 0.0),
                                         child: TextFormField(
                                           controller: _model.textController6,
@@ -1633,7 +1637,7 @@ class _BFormFacilityReservationWidgetState
                             ],
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(1.0, 0.0),
+                            alignment: AlignmentDirectional(1.0, 0.0),
                             child: Text(
                               '+ Add other item',
                               style: FlutterFlowTheme.of(context)
@@ -1652,7 +1656,7 @@ class _BFormFacilityReservationWidgetState
                                 children: [
                                   Expanded(
                                     child: FlutterFlowCheckboxGroup(
-                                      options: const [
+                                      options: [
                                         'By clicking submit, you authorize the NU Go App to store your reservation information for processing.'
                                       ],
                                       onChanged: (val) => safeSetState(() =>
@@ -1692,23 +1696,23 @@ class _BFormFacilityReservationWidgetState
                                 ],
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     5.0, 10.0, 5.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () {
                                     print('Button pressed ...');
                                   },
                                   text: 'Submit GatePass',
-                                  icon: const Icon(
+                                  icon: Icon(
                                     Icons.check_circle_outline_outlined,
                                     size: 20.0,
                                   ),
                                   options: FFButtonOptions(
                                     width: double.infinity,
                                     height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
                                     color: FlutterFlowTheme.of(context).primary,
                                     textStyle: FlutterFlowTheme.of(context)
@@ -1720,7 +1724,7 @@ class _BFormFacilityReservationWidgetState
                                           letterSpacing: 0.0,
                                         ),
                                     elevation: 3.0,
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 1.0,
                                     ),
@@ -1730,7 +1734,7 @@ class _BFormFacilityReservationWidgetState
                               ),
                             ],
                           ),
-                        ].divide(const SizedBox(height: 15.0)),
+                        ].divide(SizedBox(height: 15.0)),
                       ),
                     ),
                   ),

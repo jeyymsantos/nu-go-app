@@ -8,12 +8,15 @@ import '/components/widgets/user_nav_bar_component/user_nav_bar_component_widget
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/users/general/events/event_check_ticket/event_check_ticket_widget.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:styled_divider/styled_divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'tickets_model.dart';
 export 'tickets_model.dart';
@@ -64,7 +67,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
           child: Stack(
             children: [
               Align(
-                alignment: const AlignmentDirectional(0.0, -1.0),
+                alignment: AlignmentDirectional(0.0, -1.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -73,11 +76,11 @@ class _TicketsWidgetState extends State<TicketsWidget>
                     wrapWithModel(
                       model: _model.userHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: const UserHeaderComponentWidget(),
+                      child: UserHeaderComponentWidget(),
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -120,7 +123,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                     ),
                     Flexible(
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 20.0, 20.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -159,7 +162,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                   return Column(
                                     children: [
                                       Align(
-                                        alignment: const Alignment(0.0, 0),
+                                        alignment: Alignment(0.0, 0),
                                         child: FlutterFlowButtonTabBar(
                                           useToggleButtonStyle: true,
                                           labelStyle:
@@ -201,9 +204,9 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                           borderRadius: 9.0,
                                           elevation: 0.0,
                                           buttonMargin:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 8.0, 0.0),
-                                          tabs: const [
+                                          tabs: [
                                             Tab(
                                               text: 'Pending',
                                             ),
@@ -223,7 +226,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                           children: [
                                             KeepAliveWidgetWrapper(
                                               builder: (context) => Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 0.0),
                                                 child: Builder(
@@ -236,7 +239,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                             .toList();
                                                     if (upcomingTickets
                                                         .isEmpty) {
-                                                      return const NoTicketWidget();
+                                                      return NoTicketWidget();
                                                     }
 
                                                     return ListView.separated(
@@ -248,7 +251,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                       itemCount: upcomingTickets
                                                           .length,
                                                       separatorBuilder:
-                                                          (_, __) => const SizedBox(
+                                                          (_, __) => SizedBox(
                                                               height: 10.0),
                                                       itemBuilder: (context,
                                                           upcomingTicketsIndex) {
@@ -322,13 +325,13 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                           backgroundColor:
                                                                               Colors.transparent,
                                                                           alignment:
-                                                                              const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                           child:
                                                                               WebViewAware(
                                                                             child:
                                                                                 GestureDetector(
                                                                               onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                              child: const FailedDialogBoxWidget(
+                                                                              child: FailedDialogBoxWidget(
                                                                                 failedDialogTitle: 'Event is Cancelled',
                                                                                 failedDialogMeesage: 'Sorry, the event has been cancelled. Pending tickets are automatically terminated.',
                                                                               ),
@@ -360,12 +363,12 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                             backgroundColor:
                                                                                 Colors.transparent,
                                                                             alignment:
-                                                                                const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
                                                                                 WebViewAware(
                                                                               child: GestureDetector(
                                                                                 onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                child: const InformationDialogBoxWidget(
+                                                                                child: InformationDialogBoxWidget(
                                                                                   infoDialogTitle: 'Event Concluded',
                                                                                   infoDialogMeesage: 'The event has already concluded. Thank you for your interest!',
                                                                                 ),
@@ -390,12 +393,12 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                             backgroundColor:
                                                                                 Colors.transparent,
                                                                             alignment:
-                                                                                const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
                                                                                 WebViewAware(
                                                                               child: GestureDetector(
                                                                                 onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                child: const InformationDialogBoxWidget(
+                                                                                child: InformationDialogBoxWidget(
                                                                                   infoDialogTitle: 'Ticket Pending',
                                                                                   infoDialogMeesage: 'Your ticket is pending. Please wait for the organizer to approve your request.',
                                                                                 ),
@@ -458,7 +461,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                         final stackOrganizationsRecord =
                                                                             snapshot.data!;
 
-                                                                        return SizedBox(
+                                                                        return Container(
                                                                           height:
                                                                               110.0,
                                                                           child:
@@ -475,7 +478,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                     children: [
                                                                                       Expanded(
                                                                                         child: Padding(
-                                                                                          padding: const EdgeInsets.all(5.0),
+                                                                                          padding: EdgeInsets.all(5.0),
                                                                                           child: Container(
                                                                                             height: 100.0,
                                                                                             decoration: BoxDecoration(
@@ -483,7 +486,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                               borderRadius: BorderRadius.circular(0.0),
                                                                                             ),
                                                                                             child: Padding(
-                                                                                              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                                                                                              padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                                                                                               child: Column(
                                                                                                 mainAxisSize: MainAxisSize.min,
                                                                                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -538,7 +541,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                                                     ),
                                                                                                                   ),
                                                                                                                   Align(
-                                                                                                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                                    alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                                     child: Text(
                                                                                                                       dateTimeFormat(
                                                                                                                         "dd",
@@ -563,16 +566,16 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                                       ),
                                                                                                       Flexible(
                                                                                                         child: Align(
-                                                                                                          alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                          alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                           child: Padding(
-                                                                                                            padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                                                                                                            padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
                                                                                                             child: Column(
                                                                                                               mainAxisSize: MainAxisSize.max,
                                                                                                               mainAxisAlignment: MainAxisAlignment.end,
                                                                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                                                                               children: [
                                                                                                                 Align(
-                                                                                                                  alignment: const AlignmentDirectional(-1.0, -1.0),
+                                                                                                                  alignment: AlignmentDirectional(-1.0, -1.0),
                                                                                                                   child: Text(
                                                                                                                     valueOrDefault<String>(
                                                                                                                       containerEventsRecord.eventName,
@@ -591,7 +594,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                                                   ),
                                                                                                                 ),
                                                                                                                 Align(
-                                                                                                                  alignment: const AlignmentDirectional(-1.0, -1.0),
+                                                                                                                  alignment: AlignmentDirectional(-1.0, -1.0),
                                                                                                                   child: Text(
                                                                                                                     valueOrDefault<String>(
                                                                                                                       stackOrganizationsRecord.organizationName,
@@ -615,9 +618,9 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                                   ),
                                                                                                   if (functions.checkEventStatus(containerEventsRecord.startDate!, containerEventsRecord.endTime!, getCurrentTimestamp) != 'concluded')
                                                                                                     Align(
-                                                                                                      alignment: const AlignmentDirectional(1.0, 1.0),
+                                                                                                      alignment: AlignmentDirectional(1.0, 1.0),
                                                                                                       child: Padding(
-                                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                                                                                                         child: Container(
                                                                                                           decoration: BoxDecoration(
                                                                                                             color: () {
@@ -632,11 +635,11 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                                             borderRadius: BorderRadius.circular(18.0),
                                                                                                           ),
                                                                                                           child: Padding(
-                                                                                                            padding: const EdgeInsetsDirectional.fromSTEB(5.0, 3.0, 5.0, 3.0),
+                                                                                                            padding: EdgeInsetsDirectional.fromSTEB(5.0, 3.0, 5.0, 3.0),
                                                                                                             child: Container(
-                                                                                                              decoration: const BoxDecoration(),
+                                                                                                              decoration: BoxDecoration(),
                                                                                                               child: Padding(
-                                                                                                                padding: const EdgeInsets.all(4.0),
+                                                                                                                padding: EdgeInsets.all(4.0),
                                                                                                                 child: Text(
                                                                                                                   upcomingTicketsItem.ticketStatus,
                                                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -684,7 +687,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                             color: FlutterFlowTheme.of(context).primaryBackground,
                                                                                             borderRadius: BorderRadius.circular(0.0),
                                                                                           ),
-                                                                                          child: SizedBox(
+                                                                                          child: Container(
                                                                                             width: 200.0,
                                                                                             height: double.infinity,
                                                                                             child: custom_widgets.GrayscaleColorFiltered(
@@ -709,7 +712,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                 desktop: false,
                                                                               ))
                                                                                 Align(
-                                                                                  alignment: const AlignmentDirectional(0.32, -1.17),
+                                                                                  alignment: AlignmentDirectional(0.32, -1.17),
                                                                                   child: Container(
                                                                                     width: 20.0,
                                                                                     height: 20.0,
@@ -730,7 +733,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                 desktop: false,
                                                                               ))
                                                                                 Align(
-                                                                                  alignment: const AlignmentDirectional(0.32, 1.22),
+                                                                                  alignment: AlignmentDirectional(0.32, 1.22),
                                                                                   child: Container(
                                                                                     width: 20.0,
                                                                                     height: 20.0,
@@ -749,7 +752,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                 phone: false,
                                                                               ))
                                                                                 Align(
-                                                                                  alignment: const AlignmentDirectional(0.77, -1.22),
+                                                                                  alignment: AlignmentDirectional(0.77, -1.22),
                                                                                   child: Container(
                                                                                     width: 20.0,
                                                                                     height: 20.0,
@@ -768,7 +771,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                 phone: false,
                                                                               ))
                                                                                 Align(
-                                                                                  alignment: const AlignmentDirectional(0.77, 1.22),
+                                                                                  alignment: AlignmentDirectional(0.77, 1.22),
                                                                                   child: Container(
                                                                                     width: 20.0,
                                                                                     height: 20.0,
@@ -801,7 +804,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                             ),
                                             KeepAliveWidgetWrapper(
                                               builder: (context) => Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 0.0),
                                                 child: Builder(
@@ -814,7 +817,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                             .toList();
                                                     if (pendingTickets
                                                         .isEmpty) {
-                                                      return const NoTicketWidget();
+                                                      return NoTicketWidget();
                                                     }
 
                                                     return ListView.separated(
@@ -826,7 +829,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                       itemCount:
                                                           pendingTickets.length,
                                                       separatorBuilder:
-                                                          (_, __) => const SizedBox(
+                                                          (_, __) => SizedBox(
                                                               height: 10.0),
                                                       itemBuilder: (context,
                                                           pendingTicketsIndex) {
@@ -900,13 +903,13 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                           backgroundColor:
                                                                               Colors.transparent,
                                                                           alignment:
-                                                                              const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                           child:
                                                                               WebViewAware(
                                                                             child:
                                                                                 GestureDetector(
                                                                               onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                              child: const FailedDialogBoxWidget(
+                                                                              child: FailedDialogBoxWidget(
                                                                                 failedDialogTitle: 'Event is Cancelled',
                                                                                 failedDialogMeesage: 'Sorry, the event has been cancelled. All tickets have been terminated. Thank you for your interest!',
                                                                               ),
@@ -923,7 +926,8 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                             containerEventsRecord.endTime!,
                                                                             getCurrentTimestamp) ==
                                                                         'concluded') {
-                                                                      if ((pendingTicketsItem.ticketFeedback !=
+                                                                      if ((pendingTicketsItem.ticketFeedback != null &&
+                                                                              pendingTicketsItem.ticketFeedback !=
                                                                                   '') &&
                                                                           (pendingTicketsItem.ticketCheckIn !=
                                                                               null)) {
@@ -938,11 +942,11 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                               elevation: 0,
                                                                               insetPadding: EdgeInsets.zero,
                                                                               backgroundColor: Colors.transparent,
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                               child: WebViewAware(
                                                                                 child: GestureDetector(
                                                                                   onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                  child: const InformationDialogBoxWidget(
+                                                                                  child: InformationDialogBoxWidget(
                                                                                     infoDialogTitle: 'Event Concluded',
                                                                                     infoDialogMeesage: 'The event has already concluded and we have already received your feedback. Thank you joining and sharing your experiences with the team!',
                                                                                   ),
@@ -951,7 +955,8 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                             );
                                                                           },
                                                                         );
-                                                                      } else if ((pendingTicketsItem.ticketFeedback ==
+                                                                      } else if ((pendingTicketsItem.ticketFeedback == null ||
+                                                                              pendingTicketsItem.ticketFeedback ==
                                                                                   '') &&
                                                                           (pendingTicketsItem.ticketCheckIn !=
                                                                               null)) {
@@ -994,11 +999,11 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                               elevation: 0,
                                                                               insetPadding: EdgeInsets.zero,
                                                                               backgroundColor: Colors.transparent,
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                               child: WebViewAware(
                                                                                 child: GestureDetector(
                                                                                   onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                  child: const InformationDialogBoxWidget(
+                                                                                  child: InformationDialogBoxWidget(
                                                                                     infoDialogTitle: 'Event Concluded',
                                                                                     infoDialogMeesage: 'The event has already concluded. Since you have not checked in, you cannot give feedback to the event.',
                                                                                   ),
@@ -1026,7 +1031,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                             backgroundColor:
                                                                                 Colors.transparent,
                                                                             alignment:
-                                                                                const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
                                                                                 WebViewAware(
                                                                               child: GestureDetector(
@@ -1094,7 +1099,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                         final stackOrganizationsRecord =
                                                                             snapshot.data!;
 
-                                                                        return SizedBox(
+                                                                        return Container(
                                                                           height:
                                                                               110.0,
                                                                           child:
@@ -1111,7 +1116,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                     children: [
                                                                                       Expanded(
                                                                                         child: Padding(
-                                                                                          padding: const EdgeInsets.all(5.0),
+                                                                                          padding: EdgeInsets.all(5.0),
                                                                                           child: Container(
                                                                                             height: 100.0,
                                                                                             decoration: BoxDecoration(
@@ -1119,7 +1124,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                               borderRadius: BorderRadius.circular(0.0),
                                                                                             ),
                                                                                             child: Padding(
-                                                                                              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                                                                                              padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                                                                                               child: Column(
                                                                                                 mainAxisSize: MainAxisSize.min,
                                                                                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -1174,7 +1179,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                                                     ),
                                                                                                                   ),
                                                                                                                   Align(
-                                                                                                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                                    alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                                     child: Text(
                                                                                                                       dateTimeFormat(
                                                                                                                         "dd",
@@ -1199,16 +1204,16 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                                       ),
                                                                                                       Flexible(
                                                                                                         child: Align(
-                                                                                                          alignment: const AlignmentDirectional(0.0, 0.0),
+                                                                                                          alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                           child: Padding(
-                                                                                                            padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
+                                                                                                            padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 0.0, 0.0),
                                                                                                             child: Column(
                                                                                                               mainAxisSize: MainAxisSize.max,
                                                                                                               mainAxisAlignment: MainAxisAlignment.end,
                                                                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                                                                               children: [
                                                                                                                 Align(
-                                                                                                                  alignment: const AlignmentDirectional(-1.0, -1.0),
+                                                                                                                  alignment: AlignmentDirectional(-1.0, -1.0),
                                                                                                                   child: Text(
                                                                                                                     valueOrDefault<String>(
                                                                                                                       containerEventsRecord.eventName,
@@ -1227,7 +1232,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                                                   ),
                                                                                                                 ),
                                                                                                                 Align(
-                                                                                                                  alignment: const AlignmentDirectional(-1.0, -1.0),
+                                                                                                                  alignment: AlignmentDirectional(-1.0, -1.0),
                                                                                                                   child: Text(
                                                                                                                     valueOrDefault<String>(
                                                                                                                       stackOrganizationsRecord.organizationName,
@@ -1251,9 +1256,9 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                                   ),
                                                                                                   if (functions.checkEventStatus(containerEventsRecord.startDate!, containerEventsRecord.endTime!, getCurrentTimestamp) != 'concluded')
                                                                                                     Align(
-                                                                                                      alignment: const AlignmentDirectional(1.0, 1.0),
+                                                                                                      alignment: AlignmentDirectional(1.0, 1.0),
                                                                                                       child: Padding(
-                                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                                                                                                         child: Container(
                                                                                                           decoration: BoxDecoration(
                                                                                                             color: () {
@@ -1268,11 +1273,11 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                                             borderRadius: BorderRadius.circular(18.0),
                                                                                                           ),
                                                                                                           child: Padding(
-                                                                                                            padding: const EdgeInsetsDirectional.fromSTEB(5.0, 3.0, 5.0, 3.0),
+                                                                                                            padding: EdgeInsetsDirectional.fromSTEB(5.0, 3.0, 5.0, 3.0),
                                                                                                             child: Container(
-                                                                                                              decoration: const BoxDecoration(),
+                                                                                                              decoration: BoxDecoration(),
                                                                                                               child: Padding(
-                                                                                                                padding: const EdgeInsets.all(4.0),
+                                                                                                                padding: EdgeInsets.all(4.0),
                                                                                                                 child: Text(
                                                                                                                   pendingTicketsItem.ticketStatus,
                                                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1345,7 +1350,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                 desktop: false,
                                                                               ))
                                                                                 Align(
-                                                                                  alignment: const AlignmentDirectional(0.32, -1.17),
+                                                                                  alignment: AlignmentDirectional(0.32, -1.17),
                                                                                   child: Container(
                                                                                     width: 20.0,
                                                                                     height: 20.0,
@@ -1366,7 +1371,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                 desktop: false,
                                                                               ))
                                                                                 Align(
-                                                                                  alignment: const AlignmentDirectional(0.32, 1.22),
+                                                                                  alignment: AlignmentDirectional(0.32, 1.22),
                                                                                   child: Container(
                                                                                     width: 20.0,
                                                                                     height: 20.0,
@@ -1385,7 +1390,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                 phone: false,
                                                                               ))
                                                                                 Align(
-                                                                                  alignment: const AlignmentDirectional(0.77, -1.22),
+                                                                                  alignment: AlignmentDirectional(0.77, -1.22),
                                                                                   child: Container(
                                                                                     width: 20.0,
                                                                                     height: 20.0,
@@ -1404,7 +1409,7 @@ class _TicketsWidgetState extends State<TicketsWidget>
                                                                                 phone: false,
                                                                               ))
                                                                                 Align(
-                                                                                  alignment: const AlignmentDirectional(0.77, 1.22),
+                                                                                  alignment: AlignmentDirectional(0.77, 1.22),
                                                                                   child: Container(
                                                                                     width: 20.0,
                                                                                     height: 20.0,
@@ -1451,11 +1456,11 @@ class _TicketsWidgetState extends State<TicketsWidget>
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(0.0, 1.0),
+                alignment: AlignmentDirectional(0.0, 1.0),
                 child: wrapWithModel(
                   model: _model.userNavBarComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const UserNavBarComponentWidget(
+                  child: UserNavBarComponentWidget(
                     selectedPageIndex: 3,
                   ),
                 ),

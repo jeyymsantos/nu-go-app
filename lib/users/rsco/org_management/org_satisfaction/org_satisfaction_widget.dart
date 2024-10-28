@@ -4,9 +4,12 @@ import '/components/widgets/title_header_component/title_header_component_widget
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'org_satisfaction_model.dart';
 export 'org_satisfaction_model.dart';
 
@@ -35,7 +38,7 @@ class _OrgSatisfactionWidgetState extends State<OrgSatisfactionWidget> {
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'org_satisfaction'});
     _model.descriptionTextController ??=
-        TextEditingController(text: widget.orgdoc?.orgDescription);
+        TextEditingController(text: widget!.orgdoc?.orgDescription);
     _model.descriptionFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -92,7 +95,7 @@ class _OrgSatisfactionWidgetState extends State<OrgSatisfactionWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,27 +103,27 @@ class _OrgSatisfactionWidgetState extends State<OrgSatisfactionWidget> {
                           wrapWithModel(
                             model: _model.titleHeaderComponentModel,
                             updateCallback: () => safeSetState(() {}),
-                            child: const TitleHeaderComponentWidget(
+                            child: TitleHeaderComponentWidget(
                               titleText: 'Leadership Midyear Evaluation',
                             ),
                           ),
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 30.0),
                               child: SingleChildScrollView(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 50.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 15.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -160,7 +163,7 @@ class _OrgSatisfactionWidgetState extends State<OrgSatisfactionWidget> {
                                                                       0.0,
                                                                 ),
                                                       ),
-                                                      const TextSpan(
+                                                      TextSpan(
                                                         text:
                                                             'assessing the effectiveness and accomplishments of these emerging leaders within the community',
                                                         style: TextStyle(
@@ -168,7 +171,7 @@ class _OrgSatisfactionWidgetState extends State<OrgSatisfactionWidget> {
                                                               FontWeight.bold,
                                                         ),
                                                       ),
-                                                      const TextSpan(
+                                                      TextSpan(
                                                         text:
                                                             '. Student leaders, who are responsible for creating a welcoming learning environment, encouraging student involvement, and improving the overall student experience, play an essential role in the university.',
                                                         style: TextStyle(),
@@ -207,12 +210,12 @@ class _OrgSatisfactionWidgetState extends State<OrgSatisfactionWidget> {
                                                       TextSpan(
                                                         text:
                                                             currentUserDisplayName,
-                                                        style: const TextStyle(
+                                                        style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
                                                         ),
                                                       ),
-                                                      const TextSpan(
+                                                      TextSpan(
                                                         text:
                                                             '! When you submit this form, the owner will see your name and email address.',
                                                         style: TextStyle(),
@@ -229,12 +232,12 @@ class _OrgSatisfactionWidgetState extends State<OrgSatisfactionWidget> {
                                                   ),
                                                   textAlign: TextAlign.justify,
                                                 ),
-                                              ].divide(const SizedBox(height: 10.0)),
+                                              ].divide(SizedBox(height: 10.0)),
                                             ),
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 15.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -245,7 +248,7 @@ class _OrgSatisfactionWidgetState extends State<OrgSatisfactionWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -288,7 +291,7 @@ class _OrgSatisfactionWidgetState extends State<OrgSatisfactionWidget> {
                                                 ),
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: TextFormField(
                                                     controller: _model
@@ -408,9 +411,9 @@ class _OrgSatisfactionWidgetState extends State<OrgSatisfactionWidget> {
                       ),
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(0.0, 1.0),
+                      alignment: AlignmentDirectional(0.0, 1.0),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 10.0, 20.0, 30.0),
                         child: FFButtonWidget(
                           onPressed: () {
@@ -420,9 +423,9 @@ class _OrgSatisfactionWidgetState extends State<OrgSatisfactionWidget> {
                           options: FFButtonOptions(
                             width: double.infinity,
                             height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -434,7 +437,7 @@ class _OrgSatisfactionWidgetState extends State<OrgSatisfactionWidget> {
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),

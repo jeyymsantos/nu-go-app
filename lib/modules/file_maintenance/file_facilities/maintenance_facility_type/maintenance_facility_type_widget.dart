@@ -1,11 +1,17 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/dialog_box/confirm_password_dialog/confirm_password_dialog_widget.dart';
+import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'maintenance_facility_type_model.dart';
 export 'maintenance_facility_type_model.dart';
@@ -18,7 +24,7 @@ class MaintenanceFacilityTypeWidget extends StatefulWidget {
     this.facilityNickname,
     this.facilityDescription,
     this.facilityReference,
-  }) : isNew = isNew ?? false;
+  }) : this.isNew = isNew ?? false;
 
   final bool isNew;
   final String? facilityName;
@@ -45,15 +51,15 @@ class _MaintenanceFacilityTypeWidgetState
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'maintenance_facility_type'});
     _model.facilityNameFieldTextController ??=
-        TextEditingController(text: widget.isNew ? '' : widget.facilityName);
+        TextEditingController(text: widget!.isNew ? '' : widget!.facilityName);
     _model.facilityNameFieldFocusNode ??= FocusNode();
 
     _model.facilityNicknameFieldTextController ??= TextEditingController(
-        text: widget.isNew ? '' : widget.facilityNickname);
+        text: widget!.isNew ? '' : widget!.facilityNickname);
     _model.facilityNicknameFieldFocusNode ??= FocusNode();
 
     _model.facilityDescriptionTextController ??= TextEditingController(
-        text: widget.isNew ? '' : widget.facilityDescription);
+        text: widget!.isNew ? '' : widget!.facilityDescription);
     _model.facilityDescriptionFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -76,7 +82,7 @@ class _MaintenanceFacilityTypeWidgetState
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,7 +90,7 @@ class _MaintenanceFacilityTypeWidgetState
                 wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TitleHeaderComponentWidget(
+                  child: TitleHeaderComponentWidget(
                     titleText: 'File Maintenance',
                   ),
                 ),
@@ -96,7 +102,7 @@ class _MaintenanceFacilityTypeWidgetState
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -114,7 +120,7 @@ class _MaintenanceFacilityTypeWidgetState
                                       ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 0.0, 0.0),
                                   child: Text(
                                     'A specific role that a user can have while using the application.',
@@ -147,12 +153,12 @@ class _MaintenanceFacilityTypeWidgetState
                 Flexible(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 30.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 30.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          SizedBox(
+                          Container(
                             width: double.infinity,
                             child: Form(
                               key: _model.formKey,
@@ -161,7 +167,7 @@ class _MaintenanceFacilityTypeWidgetState
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 5.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller: _model
@@ -234,7 +240,7 @@ class _MaintenanceFacilityTypeWidgetState
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller: _model
@@ -307,7 +313,7 @@ class _MaintenanceFacilityTypeWidgetState
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller: _model
@@ -381,73 +387,97 @@ class _MaintenanceFacilityTypeWidgetState
                                           .asValidator(context),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 15.0, 0.0, 0.0),
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        logFirebaseEvent(
-                                            'MAINTENANCE_FACILITY_TYPE_Save_ON_TAP');
-                                        logFirebaseEvent('Save_validate_form');
-                                        if (_model.formKey.currentState ==
-                                                null ||
-                                            !_model.formKey.currentState!
-                                                .validate()) {
-                                          return;
-                                        }
-                                        logFirebaseEvent('Save_alert_dialog');
-                                        var confirmDialogResponse =
-                                            await showDialog<bool>(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return WebViewAware(
-                                                      child: AlertDialog(
-                                                        title: Text(widget
-                                                                    .isNew ==
-                                                                true
-                                                            ? 'Save Facility Type'
-                                                            : 'Update Facility Type'),
-                                                        content: Text(widget
-                                                                    .isNew ==
-                                                                true
-                                                            ? 'Are you sure you want to save a new facility type?'
-                                                            : 'Are you sure you want to update this existing facility type?'),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext,
-                                                                    false),
-                                                            child:
-                                                                const Text('Cancel'),
-                                                          ),
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext,
-                                                                    true),
-                                                            child: Text(
-                                                                widget.isNew ==
-                                                                        true
-                                                                    ? 'Save'
-                                                                    : 'Update'),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    );
-                                                  },
-                                                ) ??
-                                                false;
-                                        if (confirmDialogResponse) {
-                                          if (widget.isNew == true) {
-                                            logFirebaseEvent(
-                                                'Save_backend_call');
+                                  Builder(
+                                    builder: (context) => Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 15.0, 0.0, 0.0),
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                          logFirebaseEvent(
+                                              'MAINTENANCE_FACILITY_TYPE_Save_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Save_validate_form');
+                                          if (_model.formKey.currentState ==
+                                                  null ||
+                                              !_model.formKey.currentState!
+                                                  .validate()) {
+                                            return;
+                                          }
+                                          logFirebaseEvent('Save_alert_dialog');
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => FocusScope.of(
+                                                            dialogContext)
+                                                        .unfocus(),
+                                                    child:
+                                                        ConfirmPasswordDialogWidget(),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ).then((value) => safeSetState(() =>
+                                              _model.confirmFacilityType =
+                                                  value));
 
-                                            await FacilityTypesRecord.collection
-                                                .doc()
-                                                .set({
-                                              ...createFacilityTypesRecordData(
+                                          if (_model.confirmFacilityType!) {
+                                            if (widget!.isNew == true) {
+                                              logFirebaseEvent(
+                                                  'Save_backend_call');
+
+                                              await FacilityTypesRecord
+                                                  .collection
+                                                  .doc()
+                                                  .set({
+                                                ...createFacilityTypesRecordData(
+                                                  facilityName: _model
+                                                      .facilityNameFieldTextController
+                                                      .text,
+                                                  facilityNickname: _model
+                                                      .facilityNicknameFieldTextController
+                                                      .text,
+                                                  facilityDescription: _model
+                                                      .facilityDescriptionTextController
+                                                      .text,
+                                                  facilityCreatedBy:
+                                                      currentUserReference,
+                                                ),
+                                                ...mapToFirestore(
+                                                  {
+                                                    'facility_created_on':
+                                                        FieldValue
+                                                            .serverTimestamp(),
+                                                  },
+                                                ),
+                                              });
+                                              logFirebaseEvent(
+                                                  'Save_action_block');
+                                              await action_blocks.logs(
+                                                context,
+                                                type: 'added',
+                                                module: 'facility type',
+                                                doneToName: _model
+                                                    .facilityNameFieldTextController
+                                                    .text,
+                                              );
+                                            } else {
+                                              logFirebaseEvent(
+                                                  'Save_backend_call');
+
+                                              await widget!.facilityReference!
+                                                  .update(
+                                                      createFacilityTypesRecordData(
                                                 facilityName: _model
                                                     .facilityNameFieldTextController
                                                     .text,
@@ -457,134 +487,129 @@ class _MaintenanceFacilityTypeWidgetState
                                                 facilityDescription: _model
                                                     .facilityDescriptionTextController
                                                     .text,
-                                                facilityCreatedBy:
-                                                    currentUserReference,
-                                              ),
-                                              ...mapToFirestore(
-                                                {
-                                                  'facility_created_on':
-                                                      FieldValue
-                                                          .serverTimestamp(),
-                                                },
-                                              ),
-                                            });
+                                              ));
+                                              logFirebaseEvent(
+                                                  'Save_action_block');
+                                              await action_blocks.logs(
+                                                context,
+                                                type: 'updated',
+                                                module: 'facility type',
+                                                doneToName: _model
+                                                    .facilityNameFieldTextController
+                                                    .text,
+                                              );
+                                            }
+
                                             logFirebaseEvent(
-                                                'Save_action_block');
-                                            await action_blocks.logs(
-                                              context,
-                                              type: 'added',
-                                              module: 'facility type',
-                                              doneToName: _model
-                                                  .facilityNameFieldTextController
-                                                  .text,
+                                                'Save_alert_dialog');
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: WebViewAware(
+                                                    child: GestureDetector(
+                                                      onTap: () =>
+                                                          FocusScope.of(
+                                                                  dialogContext)
+                                                              .unfocus(),
+                                                      child:
+                                                          InformationDialogBoxWidget(
+                                                        infoDialogTitle: widget!
+                                                                .isNew
+                                                            ? 'New Facility Type Created'
+                                                            : 'Existing Facility Type Updated',
+                                                        infoDialogMeesage: widget!
+                                                                .isNew
+                                                            ? 'You have successfully saved a new facility type!'
+                                                            : 'You have successfully updated an existing facility type!',
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
                                             );
                                           } else {
                                             logFirebaseEvent(
-                                                'Save_backend_call');
-
-                                            await widget.facilityReference!
-                                                .update(
-                                                    createFacilityTypesRecordData(
-                                              facilityName: _model
-                                                  .facilityNameFieldTextController
-                                                  .text,
-                                              facilityNickname: _model
-                                                  .facilityNicknameFieldTextController
-                                                  .text,
-                                              facilityDescription: _model
-                                                  .facilityDescriptionTextController
-                                                  .text,
-                                            ));
-                                            logFirebaseEvent(
-                                                'Save_action_block');
-                                            await action_blocks.logs(
-                                              context,
-                                              type: 'updated',
-                                              module: 'facility type',
-                                              doneToName: _model
-                                                  .facilityNameFieldTextController
-                                                  .text,
+                                                'Save_alert_dialog');
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: WebViewAware(
+                                                    child: GestureDetector(
+                                                      onTap: () =>
+                                                          FocusScope.of(
+                                                                  dialogContext)
+                                                              .unfocus(),
+                                                      child:
+                                                          InformationDialogBoxWidget(
+                                                        infoDialogTitle:
+                                                            'Action Cancelled',
+                                                        infoDialogMeesage:
+                                                            'This action has been cancelled. ',
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
                                             );
                                           }
 
-                                          logFirebaseEvent('Save_alert_dialog');
-                                          await showDialog(
-                                            context: context,
-                                            builder: (alertDialogContext) {
-                                              return WebViewAware(
-                                                child: AlertDialog(
-                                                  title: Text(widget.isNew
-                                                      ? 'New Role Created'
-                                                      : 'Existing Role Updated'),
-                                                  content: Text(widget.isNew
-                                                      ? 'You have successfully saved a new role!'
-                                                      : 'You have successfully updated an existing role!'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: const Text('Okay'),
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                          );
-                                        } else {
-                                          logFirebaseEvent('Save_alert_dialog');
-                                          await showDialog(
-                                            context: context,
-                                            builder: (alertDialogContext) {
-                                              return WebViewAware(
-                                                child: AlertDialog(
-                                                  title:
-                                                      const Text('Action Cancelled'),
-                                                  content: const Text(
-                                                      'This action has been cancelled.'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: const Text('Ok'),
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                          );
-                                        }
+                                          logFirebaseEvent(
+                                              'Save_navigate_back');
+                                          context.safePop();
 
-                                        logFirebaseEvent('Save_navigate_back');
-                                        context.safePop();
-                                      },
-                                      text: widget.isNew ? 'Save' : 'Update',
-                                      options: FFButtonOptions(
-                                        width: double.infinity,
-                                        height: 40.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 0.0, 24.0, 0.0),
-                                        iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily: 'Montserrat',
-                                              color: Colors.white,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.0,
-                                            ),
-                                        elevation: 3.0,
-                                        borderSide: const BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1.0,
+                                          safeSetState(() {});
+                                        },
+                                        text: widget!.isNew ? 'Save' : 'Update',
+                                        options: FFButtonOptions(
+                                          width: double.infinity,
+                                          height: 40.0,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  24.0, 0.0, 24.0, 0.0),
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Montserrat',
+                                                    color: Colors.white,
+                                                    fontSize: 13.0,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          elevation: 3.0,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
                                       ),
                                     ),
                                   ),

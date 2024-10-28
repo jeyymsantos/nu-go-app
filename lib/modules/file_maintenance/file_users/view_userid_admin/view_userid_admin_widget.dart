@@ -2,10 +2,13 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'view_userid_admin_model.dart';
 export 'view_userid_admin_model.dart';
 
@@ -53,17 +56,17 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
         body: Stack(
           children: [
             Align(
-              alignment: const AlignmentDirectional(0.0, -1.0),
+              alignment: AlignmentDirectional(0.0, -1.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Align(
-                    alignment: const AlignmentDirectional(0.0, -1.0),
+                    alignment: AlignmentDirectional(0.0, -1.0),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
                       child: Container(
                         width: double.infinity,
                         height: 190.0,
@@ -75,26 +78,26 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                               'assets/images/Ads_2.png',
                             ).image,
                           ),
-                          borderRadius: const BorderRadius.only(
+                          borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(30.0),
                             bottomRight: Radius.circular(30.0),
                             topLeft: Radius.circular(0.0),
                             topRight: Radius.circular(0.0),
                           ),
                         ),
-                        child: SizedBox(
+                        child: Container(
                           height: 190.0,
                           child: Stack(
-                            alignment: const AlignmentDirectional(0.0, -1.0),
+                            alignment: AlignmentDirectional(0.0, -1.0),
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 20.0, 20.0, 20.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 30.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -129,7 +132,7 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                                                       .spaceBetween,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           25.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -153,11 +156,11 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                                                 ),
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           1.0, 0.0),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 5.0, 0.0),
                                                     child: ClipRRect(
@@ -180,9 +183,9 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                                     ),
                                     Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 25.0, 0.0, 0.0),
                                         child: Text(
                                           'Let\'s make it easy for you!',
@@ -202,7 +205,7 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                                     ),
                                     Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: Text(
                                         'Please take note that this is only a virtual ID and shall not be used as alternative to your school ID.',
                                         style: FlutterFlowTheme.of(context)
@@ -222,14 +225,14 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 1.25),
+                                alignment: AlignmentDirectional(0.0, 1.25),
                                 child: Container(
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context).primary,
                                     borderRadius: BorderRadius.circular(20.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         10.0, 5.0, 10.0, 5.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.min,
@@ -238,14 +241,14 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 5.0, 0.0),
                                           child: AuthUserStreamWidget(
                                             builder: (context) => Container(
                                               width: 25.0,
                                               height: 25.0,
                                               clipBehavior: Clip.antiAlias,
-                                              decoration: const BoxDecoration(
+                                              decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
                                               ),
                                               child: Image.network(
@@ -261,7 +264,7 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                                         Flexible(
                                           child: Text(
                                             valueOrDefault<String>(
-                                              'Your school ID, ${widget.userDoc?.name.firstName}',
+                                              'Your school ID, ${widget!.userDoc?.name?.firstName}',
                                               'Your school ID,  Brenley',
                                             ).maybeHandleOverflow(
                                               maxChars: 45,
@@ -293,7 +296,7 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                   Expanded(
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 90.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 90.0),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -304,7 +307,7 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                               direction: FlipDirection.HORIZONTAL,
                               speed: 400,
                               front: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(15.0),
                                   child: Container(
@@ -317,13 +320,13 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                                       ),
                                       borderRadius: BorderRadius.circular(15.0),
                                     ),
-                                    child: SizedBox(
+                                    child: Container(
                                       width: 238.0,
                                       height: 407.0,
                                       child: Stack(
                                         children: [
                                           Align(
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                 0.04, -0.42),
                                             child: Container(
                                               width: 140.0,
@@ -336,7 +339,7 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                                                   fit: BoxFit.cover,
                                                   image: Image.network(
                                                     valueOrDefault<String>(
-                                                      widget.userDoc?.photoUrl,
+                                                      widget!.userDoc?.photoUrl,
                                                       'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FUser.png?alt=media&token=0b494491-4f47-4153-8597-51ec282bd382',
                                                     ),
                                                   ).image,
@@ -351,10 +354,10 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                                             ),
                                           ),
                                           Align(
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                 0.04, 0.36),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 20.0, 0.0, 0.0),
                                               child: Column(
@@ -362,7 +365,7 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                                                 children: [
                                                   Text(
                                                     valueOrDefault<String>(
-                                                      widget.userDoc?.idNumber,
+                                                      widget!.userDoc?.idNumber,
                                                       '2021-160059',
                                                     ),
                                                     style: FlutterFlowTheme.of(
@@ -383,12 +386,12 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 15.0,
                                                                 0.0, 0.0),
                                                     child: Text(
                                                       functions.capitalization(
-                                                          widget.userDoc!.name
+                                                          widget!.userDoc!.name
                                                               .lastName),
                                                       style: FlutterFlowTheme
                                                               .of(context)
@@ -410,7 +413,7 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                                                   ),
                                                   Text(
                                                     functions.capitalization(
-                                                        widget.userDoc!.name
+                                                        widget!.userDoc!.name
                                                             .firstName),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -433,7 +436,7 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                                             ),
                                           ),
                                           Align(
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                 -0.02, 0.71),
                                             child: AuthUserStreamWidget(
                                               builder: (context) =>
@@ -464,7 +467,7 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                                                       snapshot.data!;
 
                                                   return Text(
-                                                    widget.userDoc?.role ==
+                                                    widget!.userDoc?.role ==
                                                             'Student'
                                                         ? textProgramsRecord
                                                             .programNickname
@@ -491,7 +494,7 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                                             ),
                                           ),
                                           Align(
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                 -0.58, 0.82),
                                             child: Text(
                                               '1ST TERM',
@@ -511,7 +514,7 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                                             ),
                                           ),
                                           Align(
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                 0.74, 0.82),
                                             child: Text(
                                               'AY 2024-2025',
@@ -537,14 +540,14 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                                 ),
                               ),
                               back: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(20.0),
                                   child: Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20.0),
                                     ),
-                                    child: SizedBox(
+                                    child: Container(
                                       width: 238.0,
                                       height: 407.0,
                                       child: Stack(
@@ -560,14 +563,14 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                                             ),
                                           ),
                                           Align(
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                 -0.08, -0.85),
                                             child: ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(8.0),
                                               child: Image.network(
                                                 valueOrDefault<String>(
-                                                  widget
+                                                  widget!
                                                       .userDoc?.nfcESignature,
                                                   'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FSignature.png?alt=media&token=2db6eb77-4d43-4b2a-a16d-d848549bb3f8',
                                                 ),
@@ -578,11 +581,11 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                                             ),
                                           ),
                                           Align(
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                 0.05, -0.55),
                                             child: Text(
                                               valueOrDefault<String>(
-                                                widget.userDoc?.idNumber,
+                                                widget!.userDoc?.idNumber,
                                                 '2021-160099',
                                               ),
                                               style: FlutterFlowTheme.of(
@@ -611,7 +614,7 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       20.0, 20.0, 20.0, 10.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -626,7 +629,7 @@ class _ViewUseridAdminWidgetState extends State<ViewUseridAdminWidget> {
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 10.0, 0.0),
                                               child: Icon(

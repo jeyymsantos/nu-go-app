@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/components/dialog_box/confirm_password_dialog/confirm_password_dialog_widget.dart';
@@ -6,10 +7,16 @@ import '/components/widgets/title_header_component/title_header_component_widget
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'admin_resources_model.dart';
@@ -110,22 +117,22 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TitleHeaderComponentWidget(
+                  child: TitleHeaderComponentWidget(
                     titleText: 'Admin Resource Upload',
                   ),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                  alignment: AlignmentDirectional(-1.0, 0.0),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -144,7 +151,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                         ),
                         Builder(
                           builder: (context) => Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -154,7 +161,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                               onTap: () async {
                                 logFirebaseEvent(
                                     'ADMIN_RESOURCES_PAGE_Row_qbvx4njx_ON_TAP');
-                                var shouldSetState = false;
+                                var _shouldSetState = false;
                                 logFirebaseEvent('Row_alert_dialog');
                                 await showDialog(
                                   context: context,
@@ -163,14 +170,14 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                       elevation: 0,
                                       insetPadding: EdgeInsets.zero,
                                       backgroundColor: Colors.transparent,
-                                      alignment: const AlignmentDirectional(0.0, 0.0)
+                                      alignment: AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
                                       child: WebViewAware(
                                         child: GestureDetector(
                                           onTap: () =>
                                               FocusScope.of(dialogContext)
                                                   .unfocus(),
-                                          child: const ConfirmPasswordDialogWidget(),
+                                          child: ConfirmPasswordDialogWidget(),
                                         ),
                                       ),
                                     );
@@ -178,7 +185,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                 ).then((value) => safeSetState(
                                     () => _model.confirmHandbook = value));
 
-                                shouldSetState = true;
+                                _shouldSetState = true;
                                 if (_model.confirmHandbook!) {
                                   logFirebaseEvent(
                                       'Row_upload_file_to_firebase');
@@ -258,7 +265,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
+                                            AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: WebViewAware(
@@ -266,7 +273,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                             onTap: () =>
                                                 FocusScope.of(dialogContext)
                                                     .unfocus(),
-                                            child: const InformationDialogBoxWidget(
+                                            child: InformationDialogBoxWidget(
                                               infoDialogTitle:
                                                   'Resource Updated',
                                               infoDialogMeesage:
@@ -278,7 +285,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                     },
                                   );
 
-                                  if (shouldSetState) safeSetState(() {});
+                                  if (_shouldSetState) safeSetState(() {});
                                   return;
                                 } else {
                                   logFirebaseEvent('Row_alert_dialog');
@@ -290,7 +297,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
+                                            AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: WebViewAware(
@@ -298,7 +305,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                             onTap: () =>
                                                 FocusScope.of(dialogContext)
                                                     .unfocus(),
-                                            child: const InformationDialogBoxWidget(
+                                            child: InformationDialogBoxWidget(
                                               infoDialogTitle:
                                                   'Action Cancelled',
                                               infoDialogMeesage:
@@ -312,11 +319,11 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
 
                                   logFirebaseEvent('Row_navigate_back');
                                   context.safePop();
-                                  if (shouldSetState) safeSetState(() {});
+                                  if (_shouldSetState) safeSetState(() {});
                                   return;
                                 }
 
-                                if (shouldSetState) safeSetState(() {});
+                                if (_shouldSetState) safeSetState(() {});
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -345,7 +352,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                         children: [
                                           Expanded(
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.min,
@@ -357,7 +364,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                                       Expanded(
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsets.all(
+                                                              EdgeInsets.all(
                                                                   5.0),
                                                           child: Image.asset(
                                                             'assets/images/Files.png',
@@ -404,7 +411,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               FFIcons.ksendSquare,
@@ -429,10 +436,10 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                   ),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                  alignment: AlignmentDirectional(-1.0, 0.0),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -451,7 +458,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                         ),
                         Builder(
                           builder: (context) => Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -461,7 +468,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                               onTap: () async {
                                 logFirebaseEvent(
                                     'ADMIN_RESOURCES_PAGE_Row_ywrttlv3_ON_TAP');
-                                var shouldSetState = false;
+                                var _shouldSetState = false;
                                 logFirebaseEvent('Row_alert_dialog');
                                 await showDialog(
                                   context: context,
@@ -470,14 +477,14 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                       elevation: 0,
                                       insetPadding: EdgeInsets.zero,
                                       backgroundColor: Colors.transparent,
-                                      alignment: const AlignmentDirectional(0.0, 0.0)
+                                      alignment: AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
                                       child: WebViewAware(
                                         child: GestureDetector(
                                           onTap: () =>
                                               FocusScope.of(dialogContext)
                                                   .unfocus(),
-                                          child: const ConfirmPasswordDialogWidget(),
+                                          child: ConfirmPasswordDialogWidget(),
                                         ),
                                       ),
                                     );
@@ -485,7 +492,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                 ).then((value) => safeSetState(
                                     () => _model.confirmScholarship = value));
 
-                                shouldSetState = true;
+                                _shouldSetState = true;
                                 if (_model.confirmScholarship!) {
                                   logFirebaseEvent(
                                       'Row_upload_file_to_firebase');
@@ -565,7 +572,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
+                                            AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: WebViewAware(
@@ -573,7 +580,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                             onTap: () =>
                                                 FocusScope.of(dialogContext)
                                                     .unfocus(),
-                                            child: const InformationDialogBoxWidget(
+                                            child: InformationDialogBoxWidget(
                                               infoDialogTitle:
                                                   'Resource Updated',
                                               infoDialogMeesage:
@@ -585,7 +592,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                     },
                                   );
 
-                                  if (shouldSetState) safeSetState(() {});
+                                  if (_shouldSetState) safeSetState(() {});
                                   return;
                                 } else {
                                   logFirebaseEvent('Row_alert_dialog');
@@ -597,7 +604,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
+                                            AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: WebViewAware(
@@ -605,7 +612,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                             onTap: () =>
                                                 FocusScope.of(dialogContext)
                                                     .unfocus(),
-                                            child: const InformationDialogBoxWidget(
+                                            child: InformationDialogBoxWidget(
                                               infoDialogTitle:
                                                   'Action Cancelled',
                                               infoDialogMeesage:
@@ -619,11 +626,11 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
 
                                   logFirebaseEvent('Row_navigate_back');
                                   context.safePop();
-                                  if (shouldSetState) safeSetState(() {});
+                                  if (_shouldSetState) safeSetState(() {});
                                   return;
                                 }
 
-                                if (shouldSetState) safeSetState(() {});
+                                if (_shouldSetState) safeSetState(() {});
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -652,7 +659,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                         children: [
                                           Expanded(
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.min,
@@ -664,7 +671,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                                       Expanded(
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsets.all(
+                                                              EdgeInsets.all(
                                                                   5.0),
                                                           child: Image.asset(
                                                             'assets/images/Files.png',
@@ -711,7 +718,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               FFIcons.ksendSquare,
@@ -736,10 +743,10 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                   ),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                  alignment: AlignmentDirectional(-1.0, 0.0),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -758,7 +765,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                         ),
                         Builder(
                           builder: (context) => Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -768,7 +775,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                               onTap: () async {
                                 logFirebaseEvent(
                                     'ADMIN_RESOURCES_PAGE_Row_1odp4tnf_ON_TAP');
-                                var shouldSetState = false;
+                                var _shouldSetState = false;
                                 logFirebaseEvent('Row_alert_dialog');
                                 await showDialog(
                                   context: context,
@@ -777,14 +784,14 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                       elevation: 0,
                                       insetPadding: EdgeInsets.zero,
                                       backgroundColor: Colors.transparent,
-                                      alignment: const AlignmentDirectional(0.0, 0.0)
+                                      alignment: AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
                                       child: WebViewAware(
                                         child: GestureDetector(
                                           onTap: () =>
                                               FocusScope.of(dialogContext)
                                                   .unfocus(),
-                                          child: const ConfirmPasswordDialogWidget(),
+                                          child: ConfirmPasswordDialogWidget(),
                                         ),
                                       ),
                                     );
@@ -792,7 +799,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                 ).then((value) => safeSetState(
                                     () => _model.confirmCSG = value));
 
-                                shouldSetState = true;
+                                _shouldSetState = true;
                                 if (_model.confirmCSG!) {
                                   logFirebaseEvent(
                                       'Row_upload_file_to_firebase');
@@ -871,7 +878,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
+                                            AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: WebViewAware(
@@ -879,7 +886,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                             onTap: () =>
                                                 FocusScope.of(dialogContext)
                                                     .unfocus(),
-                                            child: const InformationDialogBoxWidget(
+                                            child: InformationDialogBoxWidget(
                                               infoDialogTitle:
                                                   'Resource Updated',
                                               infoDialogMeesage:
@@ -891,7 +898,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                     },
                                   );
 
-                                  if (shouldSetState) safeSetState(() {});
+                                  if (_shouldSetState) safeSetState(() {});
                                   return;
                                 } else {
                                   logFirebaseEvent('Row_alert_dialog');
@@ -903,7 +910,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
+                                            AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: WebViewAware(
@@ -911,7 +918,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                             onTap: () =>
                                                 FocusScope.of(dialogContext)
                                                     .unfocus(),
-                                            child: const InformationDialogBoxWidget(
+                                            child: InformationDialogBoxWidget(
                                               infoDialogTitle:
                                                   'Action Cancelled',
                                               infoDialogMeesage:
@@ -925,11 +932,11 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
 
                                   logFirebaseEvent('Row_navigate_back');
                                   context.safePop();
-                                  if (shouldSetState) safeSetState(() {});
+                                  if (_shouldSetState) safeSetState(() {});
                                   return;
                                 }
 
-                                if (shouldSetState) safeSetState(() {});
+                                if (_shouldSetState) safeSetState(() {});
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -958,7 +965,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                         children: [
                                           Expanded(
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.min,
@@ -970,7 +977,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                                       Expanded(
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsets.all(
+                                                              EdgeInsets.all(
                                                                   5.0),
                                                           child: Image.asset(
                                                             'assets/images/Files.png',
@@ -1017,7 +1024,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               FFIcons.ksendSquare,
@@ -1042,10 +1049,10 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                   ),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                  alignment: AlignmentDirectional(-1.0, 0.0),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -1064,7 +1071,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                         ),
                         Builder(
                           builder: (context) => Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 0.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -1074,7 +1081,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                               onTap: () async {
                                 logFirebaseEvent(
                                     'ADMIN_RESOURCES_PAGE_Row_q04rtzvd_ON_TAP');
-                                var shouldSetState = false;
+                                var _shouldSetState = false;
                                 logFirebaseEvent('Row_alert_dialog');
                                 await showDialog(
                                   context: context,
@@ -1083,14 +1090,14 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                       elevation: 0,
                                       insetPadding: EdgeInsets.zero,
                                       backgroundColor: Colors.transparent,
-                                      alignment: const AlignmentDirectional(0.0, 0.0)
+                                      alignment: AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
                                       child: WebViewAware(
                                         child: GestureDetector(
                                           onTap: () =>
                                               FocusScope.of(dialogContext)
                                                   .unfocus(),
-                                          child: const ConfirmPasswordDialogWidget(),
+                                          child: ConfirmPasswordDialogWidget(),
                                         ),
                                       ),
                                     );
@@ -1098,7 +1105,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                 ).then((value) => safeSetState(
                                     () => _model.confirmCalendar = value));
 
-                                shouldSetState = true;
+                                _shouldSetState = true;
                                 if (_model.confirmCalendar!) {
                                   logFirebaseEvent(
                                       'Row_upload_file_to_firebase');
@@ -1178,7 +1185,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
+                                            AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: WebViewAware(
@@ -1186,7 +1193,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                             onTap: () =>
                                                 FocusScope.of(dialogContext)
                                                     .unfocus(),
-                                            child: const InformationDialogBoxWidget(
+                                            child: InformationDialogBoxWidget(
                                               infoDialogTitle:
                                                   'Resource Update',
                                               infoDialogMeesage:
@@ -1198,7 +1205,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                     },
                                   );
 
-                                  if (shouldSetState) safeSetState(() {});
+                                  if (_shouldSetState) safeSetState(() {});
                                   return;
                                 } else {
                                   logFirebaseEvent('Row_alert_dialog');
@@ -1210,7 +1217,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
+                                            AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: WebViewAware(
@@ -1218,7 +1225,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                             onTap: () =>
                                                 FocusScope.of(dialogContext)
                                                     .unfocus(),
-                                            child: const InformationDialogBoxWidget(
+                                            child: InformationDialogBoxWidget(
                                               infoDialogTitle:
                                                   'Action Cancelled',
                                               infoDialogMeesage:
@@ -1232,11 +1239,11 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
 
                                   logFirebaseEvent('Row_navigate_back');
                                   context.safePop();
-                                  if (shouldSetState) safeSetState(() {});
+                                  if (_shouldSetState) safeSetState(() {});
                                   return;
                                 }
 
-                                if (shouldSetState) safeSetState(() {});
+                                if (_shouldSetState) safeSetState(() {});
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -1265,7 +1272,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                         children: [
                                           Expanded(
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.min,
@@ -1277,7 +1284,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                                       Expanded(
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsets.all(
+                                                              EdgeInsets.all(
                                                                   5.0),
                                                           child: Image.asset(
                                                             'assets/images/Files.png',
@@ -1324,7 +1331,7 @@ class _AdminResourcesWidgetState extends State<AdminResourcesWidget>
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               FFIcons.ksendSquare,

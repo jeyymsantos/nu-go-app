@@ -2,7 +2,11 @@ import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_calendar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'fmo_calendar_version2_model.dart';
 export 'fmo_calendar_version2_model.dart';
 
@@ -59,7 +63,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                 child: Column(
                   children: [
                     Align(
-                      alignment: const Alignment(0.0, 0),
+                      alignment: Alignment(0.0, 0),
                       child: FlutterFlowButtonTabBar(
                         useToggleButtonStyle: true,
                         isScrollable: true,
@@ -68,7 +72,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                   fontFamily: 'Montserrat',
                                   letterSpacing: 0.0,
                                 ),
-                        unselectedLabelStyle: const TextStyle(),
+                        unselectedLabelStyle: TextStyle(),
                         labelColor: FlutterFlowTheme.of(context).primaryText,
                         unselectedLabelColor:
                             FlutterFlowTheme.of(context).primaryText,
@@ -80,11 +84,11 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                         borderWidth: 2.0,
                         borderRadius: 12.0,
                         elevation: 0.0,
-                        labelPadding: const EdgeInsetsDirectional.fromSTEB(
+                        labelPadding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             0.0, 12.0, 0.0, 12.0),
-                        tabs: const [
+                        tabs: [
                           Tab(
                             text: 'Month',
                           ),
@@ -119,7 +123,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      boxShadow: const [
+                                      boxShadow: [
                                         BoxShadow(
                                           blurRadius: 3.0,
                                           color: Color(0x33000000),
@@ -131,7 +135,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                       ],
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           20.0, 0.0, 20.0, 0.0),
                                       child: FlutterFlowCalendar(
                                         color: FlutterFlowTheme.of(context)
@@ -190,7 +194,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                         CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 12.0, 0.0, 0.0),
                                         child: Text(
                                           'Coming Up',
@@ -203,7 +207,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 12.0, 0.0, 0.0),
                                         child: ListView(
                                           padding: EdgeInsets.zero,
@@ -212,7 +216,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                           scrollDirection: Axis.vertical,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 0.0, 16.0, 12.0),
                                               child: Container(
@@ -221,7 +225,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryBackground,
-                                                  boxShadow: const [
+                                                  boxShadow: [
                                                     BoxShadow(
                                                       blurRadius: 3.0,
                                                       color: Color(0x33000000),
@@ -236,7 +240,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                           8.0),
                                                 ),
                                                 child: Padding(
-                                                  padding: const EdgeInsets.all(8.0),
+                                                  padding: EdgeInsets.all(8.0),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -256,7 +260,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         4.0,
                                                                         0.0,
@@ -277,7 +281,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         4.0,
@@ -289,7 +293,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                                       .max,
                                                               children: [
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -311,7 +315,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                                     ),
                                                                     child:
                                                                         Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           8.0,
                                                                           4.0,
                                                                           8.0,
@@ -369,7 +373,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                           ),
                                                         ),
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Icon(
                                                           Icons
@@ -389,7 +393,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 12.0, 0.0, 0.0),
                                         child: Text(
                                           'Past Due',
@@ -402,7 +406,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 12.0, 0.0, 24.0),
                                         child: ListView(
                                           padding: EdgeInsets.zero,
@@ -411,7 +415,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                           scrollDirection: Axis.vertical,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 0.0, 16.0, 12.0),
                                               child: Container(
@@ -420,7 +424,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryBackground,
-                                                  boxShadow: const [
+                                                  boxShadow: [
                                                     BoxShadow(
                                                       blurRadius: 3.0,
                                                       color: Color(0x33000000),
@@ -435,7 +439,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                           8.0),
                                                 ),
                                                 child: Padding(
-                                                  padding: const EdgeInsets.all(8.0),
+                                                  padding: EdgeInsets.all(8.0),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -455,7 +459,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         4.0,
                                                                         0.0,
@@ -481,7 +485,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -503,7 +507,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                                   ),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             4.0,
@@ -528,7 +532,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             4.0,
                                                                             0.0,
@@ -573,7 +577,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                           ),
                                                         ),
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Icon(
                                                           Icons
@@ -615,7 +619,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      boxShadow: const [
+                                      boxShadow: [
                                         BoxShadow(
                                           blurRadius: 3.0,
                                           color: Color(0x33000000),
@@ -682,7 +686,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                         CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 12.0, 0.0, 0.0),
                                         child: Text(
                                           'Coming Up',
@@ -695,7 +699,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 12.0, 0.0, 0.0),
                                         child: ListView(
                                           padding: EdgeInsets.zero,
@@ -704,7 +708,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                           scrollDirection: Axis.vertical,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 0.0, 16.0, 12.0),
                                               child: Container(
@@ -713,7 +717,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryBackground,
-                                                  boxShadow: const [
+                                                  boxShadow: [
                                                     BoxShadow(
                                                       blurRadius: 3.0,
                                                       color: Color(0x33000000),
@@ -728,7 +732,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                           8.0),
                                                 ),
                                                 child: Padding(
-                                                  padding: const EdgeInsets.all(8.0),
+                                                  padding: EdgeInsets.all(8.0),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -748,7 +752,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         4.0,
                                                                         0.0,
@@ -769,7 +773,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         4.0,
@@ -781,7 +785,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                                       .max,
                                                               children: [
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -803,7 +807,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                                     ),
                                                                     child:
                                                                         Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           8.0,
                                                                           4.0,
                                                                           8.0,
@@ -861,7 +865,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                           ),
                                                         ),
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Icon(
                                                           Icons
@@ -881,7 +885,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 12.0, 0.0, 0.0),
                                         child: Text(
                                           'Past Due',
@@ -894,7 +898,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 12.0, 0.0, 24.0),
                                         child: ListView(
                                           padding: EdgeInsets.zero,
@@ -903,7 +907,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                           scrollDirection: Axis.vertical,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 0.0, 16.0, 12.0),
                                               child: Container(
@@ -912,7 +916,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryBackground,
-                                                  boxShadow: const [
+                                                  boxShadow: [
                                                     BoxShadow(
                                                       blurRadius: 3.0,
                                                       color: Color(0x33000000),
@@ -927,7 +931,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                           8.0),
                                                 ),
                                                 child: Padding(
-                                                  padding: const EdgeInsets.all(8.0),
+                                                  padding: EdgeInsets.all(8.0),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -947,7 +951,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         4.0,
                                                                         0.0,
@@ -973,7 +977,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -995,7 +999,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                                   ),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             4.0,
@@ -1020,7 +1024,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             4.0,
                                                                             0.0,
@@ -1065,7 +1069,7 @@ class _FmoCalendarVersion2WidgetState extends State<FmoCalendarVersion2Widget>
                                                           ),
                                                         ),
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Icon(
                                                           Icons

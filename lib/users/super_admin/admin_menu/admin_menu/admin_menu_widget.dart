@@ -3,9 +3,12 @@ import '/backend/backend.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/users/super_admin/admin_menu/admin_menu_component/admin_menu_card/admin_menu_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'admin_menu_model.dart';
 export 'admin_menu_model.dart';
 
@@ -82,32 +85,32 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
               body: SafeArea(
                 top: true,
                 child: Align(
-                  alignment: const AlignmentDirectional(0.0, -1.0),
+                  alignment: AlignmentDirectional(0.0, -1.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         child: wrapWithModel(
                           model: _model.titleHeaderComponentModel,
                           updateCallback: () => safeSetState(() {}),
-                          child: const TitleHeaderComponentWidget(
+                          child: TitleHeaderComponentWidget(
                             titleText: 'Admin Menu',
                           ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 5.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -125,7 +128,7 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                           ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 0.0, 0.0),
                                       child: Text(
                                         'This control panel allows you to modify key aspects of the app.',
@@ -156,14 +159,14 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 20.0),
                           child: SingleChildScrollView(
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 if ((adminMenuRolesRecord?.roleAccess
-                                            .toApprovalManagement ==
+                                            ?.toApprovalManagement ==
                                         true) ||
                                     currentUserDocument!.settings.isSuperAdmin)
                                   InkWell(
@@ -183,7 +186,7 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     child: wrapWithModel(
                                       model: _model.approvalManagementModel,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: const AdminMenuCardWidget(
+                                      child: AdminMenuCardWidget(
                                         moduleName: 'Approval Management',
                                         moduleDescription:
                                             'Manage approval sets that can be used in certain modules.',
@@ -193,7 +196,7 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     ),
                                   ),
                                 if ((adminMenuRolesRecord
-                                            ?.roleAccess.toContentManagement ==
+                                            ?.roleAccess?.toContentManagement ==
                                         true) ||
                                     currentUserDocument!.settings.isSuperAdmin)
                                   InkWell(
@@ -212,7 +215,7 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     child: wrapWithModel(
                                       model: _model.contentManagementModel1,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: const AdminMenuCardWidget(
+                                      child: AdminMenuCardWidget(
                                         moduleName: 'Content Management',
                                         moduleDescription:
                                             'Manage and publish announcement, news and updates to all users.',
@@ -222,7 +225,7 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     ),
                                   ),
                                 if ((adminMenuRolesRecord?.roleAccess
-                                            .toFeedbackManagement ==
+                                            ?.toFeedbackManagement ==
                                         true) ||
                                     currentUserDocument!.settings.isSuperAdmin)
                                   InkWell(
@@ -241,7 +244,7 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     child: wrapWithModel(
                                       model: _model.contentManagementModel2,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: const AdminMenuCardWidget(
+                                      child: AdminMenuCardWidget(
                                         moduleName: 'Feedback Management',
                                         moduleDescription:
                                             'Manage all feedback received from users to improve the app experience.',
@@ -251,7 +254,7 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     ),
                                   ),
                                 if ((adminMenuRolesRecord
-                                            ?.roleAccess.toFileMaintenance ==
+                                            ?.roleAccess?.toFileMaintenance ==
                                         true) ||
                                     currentUserDocument!.settings.isSuperAdmin)
                                   InkWell(
@@ -271,7 +274,7 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     child: wrapWithModel(
                                       model: _model.fileMaintenanceModel,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: const AdminMenuCardWidget(
+                                      child: AdminMenuCardWidget(
                                         moduleName: 'File Maintenance',
                                         moduleDescription:
                                             'Modules involving management of internal usage of the application.',
@@ -281,7 +284,7 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     ),
                                   ),
                                 if ((adminMenuRolesRecord
-                                            ?.roleAccess.toLogsManagement ==
+                                            ?.roleAccess?.toLogsManagement ==
                                         true) ||
                                     currentUserDocument!.settings.isSuperAdmin)
                                   InkWell(
@@ -300,7 +303,7 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     child: wrapWithModel(
                                       model: _model.logsManagementModel,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: const AdminMenuCardWidget(
+                                      child: AdminMenuCardWidget(
                                         moduleName: 'Logs Management',
                                         moduleDescription:
                                             'View any changes and updates being made in the application.',
@@ -310,7 +313,7 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     ),
                                   ),
                                 if ((adminMenuRolesRecord?.roleAccess
-                                            .toMaintenanceManagement ==
+                                            ?.toMaintenanceManagement ==
                                         true) ||
                                     currentUserDocument!.settings.isSuperAdmin)
                                   InkWell(
@@ -329,7 +332,7 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     child: wrapWithModel(
                                       model: _model.maintenanceManagementModel,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: const AdminMenuCardWidget(
+                                      child: AdminMenuCardWidget(
                                         moduleName: 'Maintenance Management',
                                         moduleDescription:
                                             'Turn on maintenance mode to hold users from using the app.',
@@ -339,7 +342,7 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     ),
                                   ),
                                 if ((adminMenuRolesRecord?.roleAccess
-                                            .toOrganizationManagement ==
+                                            ?.toOrganizationManagement ==
                                         true) ||
                                     currentUserDocument!.settings.isSuperAdmin)
                                   InkWell(
@@ -358,7 +361,7 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     child: wrapWithModel(
                                       model: _model.organizationManagementModel,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: const AdminMenuCardWidget(
+                                      child: AdminMenuCardWidget(
                                         moduleName: 'Organization Management',
                                         moduleDescription:
                                             'Manage the Recognized Student Council & Organizations using the app.',
@@ -368,7 +371,7 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     ),
                                   ),
                                 if ((adminMenuRolesRecord?.roleAccess
-                                            .toPushNotificiationManamgement ==
+                                            ?.toPushNotificiationManamgement ==
                                         true) ||
                                     currentUserDocument!.settings.isSuperAdmin)
                                   InkWell(
@@ -388,7 +391,7 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                       model: _model
                                           .pushNotificationManagementModel,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: const AdminMenuCardWidget(
+                                      child: AdminMenuCardWidget(
                                         moduleName: 'Send Push Notification',
                                         moduleDescription:
                                             'Manage the push notifications being sent by the application to the users.',
@@ -397,8 +400,37 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                       ),
                                     ),
                                   ),
+                                if ((adminMenuRolesRecord
+                                            ?.roleAccess?.toReports ==
+                                        true) ||
+                                    currentUserDocument!.settings.isSuperAdmin)
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      logFirebaseEvent(
+                                          'ADMIN_MENU_ResourcesManagement_ON_TAP');
+                                      logFirebaseEvent(
+                                          'ResourcesManagement_navigate_to');
+
+                                      context.pushNamed('admin_org_report');
+                                    },
+                                    child: wrapWithModel(
+                                      model: _model.resourcesManagementModel1,
+                                      updateCallback: () => safeSetState(() {}),
+                                      child: AdminMenuCardWidget(
+                                        moduleName: 'Reports',
+                                        moduleDescription:
+                                            'Check out the top performing organizations and events.',
+                                        imagePath:
+                                            'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FIcons%2FResources%20Manangement.png?alt=media&token=da8e9a38-dec7-48df-bef6-8579647a813d',
+                                      ),
+                                    ),
+                                  ),
                                 if ((adminMenuRolesRecord?.roleAccess
-                                            .toResourcesManagement ==
+                                            ?.toResourcesManagement ==
                                         true) ||
                                     currentUserDocument!.settings.isSuperAdmin)
                                   InkWell(
@@ -415,9 +447,9 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                       context.pushNamed('admin_resources');
                                     },
                                     child: wrapWithModel(
-                                      model: _model.resourcesManagementModel,
+                                      model: _model.resourcesManagementModel2,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: const AdminMenuCardWidget(
+                                      child: AdminMenuCardWidget(
                                         moduleName: 'Resources Management',
                                         moduleDescription:
                                             'Modify any resources being access by the users.',
@@ -427,7 +459,7 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     ),
                                   ),
                                 if ((adminMenuRolesRecord
-                                            ?.roleAccess.toUserManagement ==
+                                            ?.roleAccess?.toUserManagement ==
                                         true) ||
                                     currentUserDocument!.settings.isSuperAdmin)
                                   InkWell(
@@ -446,7 +478,7 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     child: wrapWithModel(
                                       model: _model.userManagementModel,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: const AdminMenuCardWidget(
+                                      child: AdminMenuCardWidget(
                                         moduleName: 'User Management',
                                         moduleDescription:
                                             'Manage user accounts using the application.',
@@ -456,9 +488,9 @@ class _AdminMenuWidgetState extends State<AdminMenuWidget> {
                                     ),
                                   ),
                               ]
-                                  .divide(const SizedBox(height: 10.0))
-                                  .addToStart(const SizedBox(height: 5.0))
-                                  .addToEnd(const SizedBox(height: 5.0)),
+                                  .divide(SizedBox(height: 10.0))
+                                  .addToStart(SizedBox(height: 5.0))
+                                  .addToEnd(SizedBox(height: 5.0)),
                             ),
                           ),
                         ),

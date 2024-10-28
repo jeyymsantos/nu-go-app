@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/dialog_box/confirm_password_dialog/confirm_password_dialog_widget.dart';
 import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
@@ -10,9 +11,12 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'maintenance_equipment_model.dart';
 export 'maintenance_equipment_model.dart';
@@ -27,7 +31,7 @@ class MaintenanceEquipmentWidget extends StatefulWidget {
     this.equipmentRef,
     this.equipmentUnit,
     this.equipmentValue,
-  }) : isNew = isNew ?? false;
+  }) : this.isNew = isNew ?? false;
 
   final bool isNew;
   final String? equipmentName;
@@ -56,11 +60,11 @@ class _MaintenanceEquipmentWidgetState
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'maintenance_equipment'});
     _model.equipmentNameFieldTextController ??=
-        TextEditingController(text: widget.isNew ? '' : widget.equipmentName);
+        TextEditingController(text: widget!.isNew ? '' : widget!.equipmentName);
     _model.equipmentNameFieldFocusNode ??= FocusNode();
 
     _model.equipmentTagFieldTextController ??=
-        TextEditingController(text: widget.isNew ? '' : widget.equipmentTag);
+        TextEditingController(text: widget!.isNew ? '' : widget!.equipmentTag);
     _model.equipmentTagFieldFocusNode ??= FocusNode();
 
     _model.countControllerTextController ??=
@@ -87,7 +91,7 @@ class _MaintenanceEquipmentWidgetState
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,7 +99,7 @@ class _MaintenanceEquipmentWidgetState
                 wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TitleHeaderComponentWidget(
+                  child: TitleHeaderComponentWidget(
                     titleText: 'File Maintenance',
                   ),
                 ),
@@ -107,7 +111,7 @@ class _MaintenanceEquipmentWidgetState
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -125,7 +129,7 @@ class _MaintenanceEquipmentWidgetState
                                       ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 0.0, 0.0),
                                   child: Text(
                                     'Assets and materials that the campus owns',
@@ -158,12 +162,12 @@ class _MaintenanceEquipmentWidgetState
                 Flexible(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 30.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 30.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          SizedBox(
+                          Container(
                             width: double.infinity,
                             child: Form(
                               key: _model.formKey,
@@ -201,7 +205,7 @@ class _MaintenanceEquipmentWidgetState
                                                 .roomAssignedDropdownValueController ??=
                                             FormFieldController<String>(
                                           _model.roomAssignedDropdownValue ??=
-                                              widget.roomRef?.id,
+                                              widget!.roomRef?.id,
                                         ),
                                         options: List<String>.from(
                                             roomAssignedDropdownRoomsRecordList
@@ -258,7 +262,7 @@ class _MaintenanceEquipmentWidgetState
                                                 .textBoxBorder,
                                         borderWidth: 0.5,
                                         borderRadius: 8.0,
-                                        margin: const EdgeInsetsDirectional.fromSTEB(
+                                        margin: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 4.0, 16.0, 4.0),
                                         hidesUnderline: true,
                                         isOverButton: true,
@@ -268,7 +272,7 @@ class _MaintenanceEquipmentWidgetState
                                     },
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller: _model
@@ -341,7 +345,7 @@ class _MaintenanceEquipmentWidgetState
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller: _model
@@ -414,7 +418,7 @@ class _MaintenanceEquipmentWidgetState
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -503,10 +507,10 @@ class _MaintenanceEquipmentWidgetState
                                         ),
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 0.0, 0.0, 0.0),
                                             child: Container(
                                               width: 160.0,
@@ -563,9 +567,9 @@ class _MaintenanceEquipmentWidgetState
                                                 ),
                                                 count: _model
                                                         .countControllerValue ??=
-                                                    widget.equipmentValue !=
+                                                    widget!.equipmentValue !=
                                                             null
-                                                        ? widget
+                                                        ? widget!
                                                             .equipmentValue!
                                                         : 0,
                                                 updateCount: (count) =>
@@ -581,16 +585,16 @@ class _MaintenanceEquipmentWidgetState
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: FlutterFlowDropDown<String>(
                                       controller: _model
                                               .equipmentUnitValueController ??=
                                           FormFieldController<String>(
                                         _model.equipmentUnitValue ??=
-                                            widget.equipmentUnit,
+                                            widget!.equipmentUnit,
                                       ),
-                                      options: const [
+                                      options: [
                                         'pc',
                                         'set',
                                         'kit',
@@ -650,7 +654,7 @@ class _MaintenanceEquipmentWidgetState
                                           .textBoxBorder,
                                       borderWidth: 0.5,
                                       borderRadius: 8.0,
-                                      margin: const EdgeInsetsDirectional.fromSTEB(
+                                      margin: EdgeInsetsDirectional.fromSTEB(
                                           16.0, 4.0, 16.0, 4.0),
                                       hidesUnderline: true,
                                       isOverButton: true,
@@ -660,7 +664,7 @@ class _MaintenanceEquipmentWidgetState
                                   ),
                                   Builder(
                                     builder: (context) => Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 15.0, 0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
@@ -688,7 +692,7 @@ class _MaintenanceEquipmentWidgetState
                                                         .primaryText,
                                                   ),
                                                 ),
-                                                duration: const Duration(
+                                                duration: Duration(
                                                     milliseconds: 4000),
                                                 backgroundColor:
                                                     FlutterFlowTheme.of(context)
@@ -716,7 +720,7 @@ class _MaintenanceEquipmentWidgetState
                                                 insetPadding: EdgeInsets.zero,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
@@ -726,7 +730,7 @@ class _MaintenanceEquipmentWidgetState
                                                             dialogContext)
                                                         .unfocus(),
                                                     child:
-                                                        const ConfirmPasswordDialogWidget(),
+                                                        ConfirmPasswordDialogWidget(),
                                                   ),
                                                 ),
                                               );
@@ -736,7 +740,7 @@ class _MaintenanceEquipmentWidgetState
                                                   value));
 
                                           if (_model.maintenanceEquipment!) {
-                                            if (widget.isNew == true) {
+                                            if (widget!.isNew == true) {
                                               logFirebaseEvent(
                                                   'Save_backend_call');
 
@@ -772,7 +776,7 @@ class _MaintenanceEquipmentWidgetState
                                               logFirebaseEvent(
                                                   'Save_backend_call');
 
-                                              await widget.equipmentRef!.update(
+                                              await widget!.equipmentRef!.update(
                                                   createEquipmentsRecordData(
                                                 equipmentName: _model
                                                     .equipmentNameFieldTextController
@@ -811,7 +815,7 @@ class _MaintenanceEquipmentWidgetState
                                                   backgroundColor:
                                                       Colors.transparent,
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                               0.0, 0.0)
                                                           .resolve(
                                                               Directionality.of(
@@ -824,11 +828,11 @@ class _MaintenanceEquipmentWidgetState
                                                               .unfocus(),
                                                       child:
                                                           InformationDialogBoxWidget(
-                                                        infoDialogTitle: widget
+                                                        infoDialogTitle: widget!
                                                                 .isNew
                                                             ? 'New Equipment  Created'
                                                             : 'Existing Equipment Updated',
-                                                        infoDialogMeesage: widget
+                                                        infoDialogMeesage: widget!
                                                                 .isNew
                                                             ? 'You have successfully saved a new equipment!'
                                                             : 'You have successfully updated an existing equipment!',
@@ -850,7 +854,7 @@ class _MaintenanceEquipmentWidgetState
                                                   backgroundColor:
                                                       Colors.transparent,
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                               0.0, 0.0)
                                                           .resolve(
                                                               Directionality.of(
@@ -862,7 +866,7 @@ class _MaintenanceEquipmentWidgetState
                                                                   dialogContext)
                                                               .unfocus(),
                                                       child:
-                                                          const InformationDialogBoxWidget(
+                                                          InformationDialogBoxWidget(
                                                         infoDialogTitle:
                                                             'Action Cancelled',
                                                         infoDialogMeesage:
@@ -881,15 +885,15 @@ class _MaintenanceEquipmentWidgetState
 
                                           safeSetState(() {});
                                         },
-                                        text: widget.isNew ? 'Save' : 'Update',
+                                        text: widget!.isNew ? 'Save' : 'Update',
                                         options: FFButtonOptions(
                                           width: double.infinity,
                                           height: 40.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 0.0, 24.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -903,7 +907,7 @@ class _MaintenanceEquipmentWidgetState
                                                     letterSpacing: 0.0,
                                                   ),
                                           elevation: 3.0,
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
                                           ),

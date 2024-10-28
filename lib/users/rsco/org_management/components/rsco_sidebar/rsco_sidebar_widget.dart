@@ -5,9 +5,14 @@ import '/components/sidebar_tile_n_u_go_sub_content/sidebar_tile_n_u_go_sub_cont
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:math';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'rsco_sidebar_model.dart';
 export 'rsco_sidebar_model.dart';
 
@@ -54,8 +59,8 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(-400.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(-400.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -66,8 +71,8 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
             curve: Curves.easeInOut,
             delay: 400.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(-400.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(-400.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -78,8 +83,8 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
             curve: Curves.easeInOut,
             delay: 400.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(-400.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(-400.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -90,8 +95,8 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
             curve: Curves.easeInOut,
             delay: 700.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(-400.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(-400.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -133,7 +138,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
       height: double.infinity,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
-        borderRadius: const BorderRadius.only(
+        borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(20.0),
           topLeft: Radius.circular(0.0),
@@ -145,12 +150,12 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(25.0, 50.0, 25.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(25.0, 50.0, 25.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -158,12 +163,12 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                         width: 40.0,
                         height: 40.0,
                         clipBehavior: Clip.antiAlias,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           shape: BoxShape.circle,
                         ),
                         child: Image.network(
                           valueOrDefault<String>(
-                            widget.orgLogo,
+                            widget!.orgLogo,
                             'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/NU_shield.svg/1200px-NU_shield.svg.png',
                           ),
                           fit: BoxFit.cover,
@@ -171,18 +176,18 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                       ),
                       Flexible(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               10.0, 0.0, 0.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 2.0, 0.0, 0.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    widget.orgName,
+                                    widget!.orgName,
                                     'Org Name',
                                   ),
                                   textAlign: TextAlign.start,
@@ -197,11 +202,11 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    widget.orgType,
+                                    widget!.orgType,
                                     'Type',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -222,7 +227,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                       animationsMap['rowOnPageLoadAnimation1']!),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
                   child: Container(
                     width: double.infinity,
                     height: 1.0,
@@ -236,7 +241,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 25.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 25.0, 0.0),
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -244,13 +249,13 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 20.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 20.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 10.0, 0.0, 0.0, 10.0),
                             child: Text(
                               'MAIN',
@@ -272,7 +277,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                                   color: _model.expandedOption == 1
                                       ? FlutterFlowTheme.of(context)
                                           .pulsatingLine
-                                      : const Color(0x00000000),
+                                      : Color(0x00000000),
                                   borderRadius: BorderRadius.circular(12.0),
                                 ),
                                 child: InkWell(
@@ -297,7 +302,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                                       'rsco_dashboard',
                                       queryParameters: {
                                         'org': serializeParam(
-                                          widget.org?.reference,
+                                          widget!.org?.reference,
                                           ParamType.DocumentReference,
                                         ),
                                       }.withoutNulls,
@@ -311,7 +316,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                                   child: wrapWithModel(
                                     model: _model.sidebarTileNUGoModel1,
                                     updateCallback: () => safeSetState(() {}),
-                                    child: const SidebarTileNUGoWidget(
+                                    child: SidebarTileNUGoWidget(
                                       tileIcon: Icon(
                                         FFIcons.khome,
                                       ),
@@ -325,7 +330,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                                   color: _model.expandedOption == 2
                                       ? FlutterFlowTheme.of(context)
                                           .pulsatingLine
-                                      : const Color(0x00000000),
+                                      : Color(0x00000000),
                                   borderRadius: BorderRadius.circular(12.0),
                                 ),
                                 child: InkWell(
@@ -350,12 +355,12 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                                       'org_edit',
                                       queryParameters: {
                                         'orgdoc': serializeParam(
-                                          widget.org,
+                                          widget!.org,
                                           ParamType.Document,
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        'orgdoc': widget.org,
+                                        'orgdoc': widget!.org,
                                       },
                                     );
 
@@ -367,7 +372,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                                   child: wrapWithModel(
                                     model: _model.sidebarTileNUGoModel2,
                                     updateCallback: () => safeSetState(() {}),
-                                    child: const SidebarTileNUGoWidget(
+                                    child: SidebarTileNUGoWidget(
                                       tileIcon: Icon(
                                         FFIcons.kheartEdit4,
                                       ),
@@ -386,7 +391,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               10.0, 0.0, 0.0, 10.0),
                           child: Text(
                             'MANAGE',
@@ -407,7 +412,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                               decoration: BoxDecoration(
                                 color: _model.expandedOption == 3
                                     ? FlutterFlowTheme.of(context).pulsatingLine
-                                    : const Color(0x00000000),
+                                    : Color(0x00000000),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
                               child: InkWell(
@@ -428,12 +433,12 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                                     'org_members_pending',
                                     queryParameters: {
                                       'orgDoc': serializeParam(
-                                        widget.org,
+                                        widget!.org,
                                         ParamType.Document,
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
-                                      'orgDoc': widget.org,
+                                      'orgDoc': widget!.org,
                                     },
                                   );
 
@@ -453,7 +458,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                                     wrapWithModel(
                                       model: _model.sidebarTileNUGoModel3,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: const SidebarTileNUGoWidget(
+                                      child: SidebarTileNUGoWidget(
                                         tileIcon: Icon(
                                           FFIcons.kuser,
                                         ),
@@ -473,7 +478,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                               decoration: BoxDecoration(
                                 color: _model.expandedOption == 4
                                     ? FlutterFlowTheme.of(context).pulsatingLine
-                                    : const Color(0x00000000),
+                                    : Color(0x00000000),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
                               child: InkWell(
@@ -497,7 +502,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                                     'event_management',
                                     queryParameters: {
                                       'orgRef': serializeParam(
-                                        widget.org?.reference,
+                                        widget!.org?.reference,
                                         ParamType.DocumentReference,
                                       ),
                                     }.withoutNulls,
@@ -516,7 +521,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                                     wrapWithModel(
                                       model: _model.sidebarTileNUGoModel4,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: const SidebarTileNUGoWidget(
+                                      child: SidebarTileNUGoWidget(
                                         tileIcon: Icon(
                                           FFIcons.kranking,
                                         ),
@@ -539,7 +544,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                                   color: _model.expandedOption == 5
                                       ? FlutterFlowTheme.of(context)
                                           .pulsatingLine
-                                      : const Color(0x00000000),
+                                      : Color(0x00000000),
                                   borderRadius: BorderRadius.circular(12.0),
                                 ),
                                 child: InkWell(
@@ -564,7 +569,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                                         model: _model.sidebarTileNUGoModel5,
                                         updateCallback: () =>
                                             safeSetState(() {}),
-                                        child: const SidebarTileNUGoWidget(
+                                        child: SidebarTileNUGoWidget(
                                           tileIcon: Icon(
                                             FFIcons.kfolderOpen4,
                                           ),
@@ -572,7 +577,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 5.0, 0.0),
                                         child: Transform.rotate(
                                           angle: (_model.expandedOption == 5
@@ -593,9 +598,9 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                               ),
                               if (_model.expandedOption == 5)
                                 Align(
-                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         20.0, 0.0, 0.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -647,13 +652,13 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                                                   updateCallback: () =>
                                                       safeSetState(() {}),
                                                   child:
-                                                      const SidebarTileNUGoSubContentWidget(
+                                                      SidebarTileNUGoSubContentWidget(
                                                     tileName: 'Manage Forms',
                                                   ),
                                                 ),
                                               ),
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     -1.0, 0.0),
                                                 child: InkWell(
                                                   splashColor:
@@ -687,7 +692,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                                                     updateCallback: () =>
                                                         safeSetState(() {}),
                                                     child:
-                                                        const SidebarTileNUGoSubContentWidget(
+                                                        SidebarTileNUGoSubContentWidget(
                                                       tileName: 'Request Forms',
                                                     ),
                                                   ),
@@ -709,7 +714,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                               decoration: BoxDecoration(
                                 color: _model.expandedOption == 6
                                     ? FlutterFlowTheme.of(context).pulsatingLine
-                                    : const Color(0x00000000),
+                                    : Color(0x00000000),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
                               child: InkWell(
@@ -729,7 +734,18 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                                   Navigator.pop(context);
                                   logFirebaseEvent('Row_navigate_to');
 
-                                  context.pushNamed('org_reports');
+                                  context.pushNamed(
+                                    'org_reports',
+                                    queryParameters: {
+                                      'orgDoc': serializeParam(
+                                        widget!.org,
+                                        ParamType.Document,
+                                      ),
+                                    }.withoutNulls,
+                                    extra: <String, dynamic>{
+                                      'orgDoc': widget!.org,
+                                    },
+                                  );
 
                                   logFirebaseEvent(
                                       'Row_update_component_state');
@@ -744,7 +760,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                                     wrapWithModel(
                                       model: _model.sidebarTileNUGoModel6,
                                       updateCallback: () => safeSetState(() {}),
-                                      child: const SidebarTileNUGoWidget(
+                                      child: SidebarTileNUGoWidget(
                                         tileIcon: Icon(
                                           FFIcons.kchart214,
                                         ),
@@ -765,7 +781,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
             ),
           ),
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 25.0, 25.0),
+            padding: EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 25.0, 25.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
@@ -775,7 +791,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(1.0, 20.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(1.0, 20.0, 0.0, 0.0),
                       child: InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -807,7 +823,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Stack(
-                              alignment: const AlignmentDirectional(0.0, 0.0),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               children: [
                                 Icon(
                                   FFIcons.krefresh,
@@ -818,14 +834,14 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                                       'iconOnActionTriggerAnimation']!,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 2.0, 0.0, 0.0),
                                   child: AuthUserStreamWidget(
                                     builder: (context) => Container(
                                       width: 25.0,
                                       height: 25.0,
                                       clipBehavior: Clip.antiAlias,
-                                      decoration: const BoxDecoration(
+                                      decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                       ),
                                       child: Image.network(
@@ -841,7 +857,7 @@ class _RscoSidebarWidgetState extends State<RscoSidebarWidget>
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   10.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 'Switch to Profile',

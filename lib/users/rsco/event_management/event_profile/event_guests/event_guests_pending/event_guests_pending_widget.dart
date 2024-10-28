@@ -6,10 +6,14 @@ import '/components/dialog_box/congratulations_dialog_box/congratulations_dialog
 import '/components/widgets/empty_list/empty_list_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/users/rsco/event_management/event_profile/components/side_bar_event_profile/side_bar_event_profile_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'event_guests_pending_model.dart';
 export 'event_guests_pending_model.dart';
@@ -53,7 +57,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
   Widget build(BuildContext context) {
     return StreamBuilder<List<EventAttendeesRecord>>(
       stream: queryEventAttendeesRecord(
-        parent: widget.eventDoc?.reference,
+        parent: widget!.eventDoc?.reference,
         queryBuilder: (eventAttendeesRecord) => eventAttendeesRecord.where(
           'ticket_status',
           isEqualTo: 'Pending',
@@ -84,7 +88,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            drawer: SizedBox(
+            drawer: Container(
               width: 250.0,
               child: Drawer(
                 elevation: 16.0,
@@ -93,7 +97,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                     model: _model.sideBarEventProfileModel,
                     updateCallback: () => safeSetState(() {}),
                     child: SideBarEventProfileWidget(
-                      eventDoc: widget.eventDoc!,
+                      eventDoc: widget!.eventDoc!,
                     ),
                   ),
                 ),
@@ -105,32 +109,32 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Align(
-                      alignment: const AlignmentDirectional(0.0, -1.0),
+                      alignment: AlignmentDirectional(0.0, -1.0),
                       child: Container(
                         width: double.infinity,
                         height: 170.0,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primary,
-                          borderRadius: const BorderRadius.only(
+                          borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(30.0),
                             bottomRight: Radius.circular(30.0),
                             topLeft: Radius.circular(0.0),
                             topRight: Radius.circular(0.0),
                           ),
                         ),
-                        child: SizedBox(
+                        child: Container(
                           height: 190.0,
                           child: Stack(
-                            alignment: const AlignmentDirectional(0.0, -1.0),
+                            alignment: AlignmentDirectional(0.0, -1.0),
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 20.0, 20.0, 20.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 30.0, 0.0, 20.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -162,7 +166,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                     ),
                                     Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: Text(
                                         'Pending Guests',
                                         style: FlutterFlowTheme.of(context)
@@ -180,7 +184,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                     ),
                                     Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: Text(
                                         'Manage your Guests',
                                         style: FlutterFlowTheme.of(context)
@@ -200,9 +204,9 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 1.25),
+                                alignment: AlignmentDirectional(0.0, 1.25),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       30.0, 0.0, 30.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -224,12 +228,12 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                             'event_profile_insights',
                                             queryParameters: {
                                               'eventDoc': serializeParam(
-                                                widget.eventDoc,
+                                                widget!.eventDoc,
                                                 ParamType.Document,
                                               ),
                                             }.withoutNulls,
                                             extra: <String, dynamic>{
-                                              'eventDoc': widget.eventDoc,
+                                              'eventDoc': widget!.eventDoc,
                                             },
                                           );
                                         },
@@ -242,7 +246,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 5.0, 10.0, 5.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -250,7 +254,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 5.0, 0.0),
                                                   child: Icon(
@@ -295,24 +299,24 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                             'event_check_in_out',
                                             queryParameters: {
                                               'eventDoc': serializeParam(
-                                                widget.eventDoc,
+                                                widget!.eventDoc,
                                                 ParamType.Document,
                                               ),
                                             }.withoutNulls,
                                             extra: <String, dynamic>{
-                                              'eventDoc': widget.eventDoc,
+                                              'eventDoc': widget!.eventDoc,
                                             },
                                           );
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
-                                            color: const Color(0xFFF99F58),
+                                            color: Color(0xFFF99F58),
                                             borderRadius:
                                                 BorderRadius.circular(20.0),
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 5.0, 10.0, 5.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -320,7 +324,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 5.0, 0.0),
                                                   child: Icon(
@@ -365,24 +369,24 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                             'event_profile_dashboard',
                                             queryParameters: {
                                               'eventDoc': serializeParam(
-                                                widget.eventDoc,
+                                                widget!.eventDoc,
                                                 ParamType.Document,
                                               ),
                                             }.withoutNulls,
                                             extra: <String, dynamic>{
-                                              'eventDoc': widget.eventDoc,
+                                              'eventDoc': widget!.eventDoc,
                                             },
                                           );
                                         },
                                         child: Container(
                                           decoration: BoxDecoration(
-                                            color: const Color(0xFF599AFF),
+                                            color: Color(0xFF599AFF),
                                             borderRadius:
                                                 BorderRadius.circular(20.0),
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 5.0, 10.0, 5.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -390,7 +394,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 5.0, 0.0),
                                                   child: Icon(
@@ -432,20 +436,20 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                     Flexible(
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Flexible(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           20.0, 0.0, 20.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -456,7 +460,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     -1.0, 0.0),
                                                 child: Text(
                                                   'Guest List',
@@ -480,7 +484,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 30.0),
                                         child: SingleChildScrollView(
                                           child: Column(
@@ -496,7 +500,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                               desc: true)
                                                           .toList();
                                                   if (pendingGuests.isEmpty) {
-                                                    return const EmptyListWidget(
+                                                    return EmptyListWidget(
                                                       emptyWhat: 'guests',
                                                     );
                                                   }
@@ -510,7 +514,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                     itemCount:
                                                         pendingGuests.length,
                                                     separatorBuilder: (_, __) =>
-                                                        const SizedBox(height: 5.0),
+                                                        SizedBox(height: 5.0),
                                                     itemBuilder: (context,
                                                         pendingGuestsIndex) {
                                                       final pendingGuestsItem =
@@ -518,7 +522,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                               pendingGuestsIndex];
                                                       return Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     20.0,
                                                                     0.0,
@@ -573,7 +577,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                               ),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             5.0,
@@ -594,7 +598,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 5.0,
                                                                                 0.0,
                                                                                 0.0,
@@ -604,7 +608,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                                               width: 30.0,
                                                                               height: 30.0,
                                                                               clipBehavior: Clip.antiAlias,
-                                                                              decoration: const BoxDecoration(
+                                                                              decoration: BoxDecoration(
                                                                                 shape: BoxShape.circle,
                                                                               ),
                                                                               child: Image.network(
@@ -619,7 +623,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                                           Flexible(
                                                                             child:
                                                                                 Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                                                                               child: FutureBuilder<ProgramsRecord>(
                                                                                 future: ProgramsRecord.getDocumentOnce(containerUsersRecord.student.program!),
                                                                                 builder: (context, snapshot) {
@@ -676,7 +680,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                                               children: [
                                                                                 Builder(
                                                                                   builder: (context) => Padding(
-                                                                                    padding: const EdgeInsets.all(5.0),
+                                                                                    padding: EdgeInsets.all(5.0),
                                                                                     child: InkWell(
                                                                                       splashColor: Colors.transparent,
                                                                                       focusColor: Colors.transparent,
@@ -684,7 +688,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                                                       highlightColor: Colors.transparent,
                                                                                       onTap: () async {
                                                                                         logFirebaseEvent('EVENT_GUESTS_PENDING_Row_wrkf9nwp_ON_TAP');
-                                                                                        var shouldSetState = false;
+                                                                                        var _shouldSetState = false;
                                                                                         logFirebaseEvent('Row_alert_dialog');
                                                                                         await showDialog(
                                                                                           context: context,
@@ -693,11 +697,11 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                                                               elevation: 0,
                                                                                               insetPadding: EdgeInsets.zero,
                                                                                               backgroundColor: Colors.transparent,
-                                                                                              alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                                               child: WebViewAware(
                                                                                                 child: GestureDetector(
                                                                                                   onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                                  child: const ConfirmDialogBoxWidget(
+                                                                                                  child: ConfirmDialogBoxWidget(
                                                                                                     confirmDialogTitle: 'Approve Join Request',
                                                                                                     confirmDialogMeesage: 'Are you sure you want to approve this request?',
                                                                                                   ),
@@ -707,7 +711,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                                                           },
                                                                                         ).then((value) => safeSetState(() => _model.approveConfirmDialog = value));
 
-                                                                                        shouldSetState = true;
+                                                                                        _shouldSetState = true;
                                                                                         if (_model.approveConfirmDialog!) {
                                                                                           logFirebaseEvent('Row_backend_call');
 
@@ -727,7 +731,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                                                             context,
                                                                                             type: 'approved',
                                                                                             module: 'event',
-                                                                                            doneToName: 'the event join request for ${widget.eventDoc?.eventName}',
+                                                                                            doneToName: 'the event join request for ${widget!.eventDoc?.eventName}',
                                                                                             doneTo: containerUsersRecord.reference,
                                                                                           );
                                                                                           logFirebaseEvent('Row_action_block');
@@ -735,13 +739,13 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                                                             context,
                                                                                             type: 'user',
                                                                                             title: 'Event Join Request Approved',
-                                                                                            message: 'The organization has accepted your request to join ${widget.eventDoc?.eventName}. Check your ticket on My Tickets tab.',
+                                                                                            message: 'The organization has accepted your request to join ${widget!.eventDoc?.eventName}. Check your ticket on My Tickets tab.',
                                                                                             user: containerUsersRecord.reference,
                                                                                           );
                                                                                           logFirebaseEvent('Row_trigger_push_notification');
                                                                                           triggerPushNotification(
                                                                                             notificationTitle: 'You can now join the event!',
-                                                                                            notificationText: 'The organization has accepted your request to join ${widget.eventDoc?.eventName}.',
+                                                                                            notificationText: 'The organization has accepted your request to join ${widget!.eventDoc?.eventName}.',
                                                                                             notificationSound: 'default',
                                                                                             userRefs: [
                                                                                               containerUsersRecord.reference
@@ -757,11 +761,11 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                                                                 elevation: 0,
                                                                                                 insetPadding: EdgeInsets.zero,
                                                                                                 backgroundColor: Colors.transparent,
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                                                 child: WebViewAware(
                                                                                                   child: GestureDetector(
                                                                                                     onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                                    child: const CongratulationsDialogBoxWidget(
+                                                                                                    child: CongratulationsDialogBoxWidget(
                                                                                                       congratsDialogTitle: 'Request Approved',
                                                                                                       congratsDialogMeesage: 'The user has been notified for their ticket.',
                                                                                                     ),
@@ -771,14 +775,14 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                                                             },
                                                                                           );
 
-                                                                                          if (shouldSetState) safeSetState(() {});
+                                                                                          if (_shouldSetState) safeSetState(() {});
                                                                                           return;
                                                                                         } else {
-                                                                                          if (shouldSetState) safeSetState(() {});
+                                                                                          if (_shouldSetState) safeSetState(() {});
                                                                                           return;
                                                                                         }
 
-                                                                                        if (shouldSetState) safeSetState(() {});
+                                                                                        if (_shouldSetState) safeSetState(() {});
                                                                                       },
                                                                                       child: Row(
                                                                                         mainAxisSize: MainAxisSize.min,
@@ -805,7 +809,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                                                 ),
                                                                                 Builder(
                                                                                   builder: (context) => Padding(
-                                                                                    padding: const EdgeInsets.all(5.0),
+                                                                                    padding: EdgeInsets.all(5.0),
                                                                                     child: InkWell(
                                                                                       splashColor: Colors.transparent,
                                                                                       focusColor: Colors.transparent,
@@ -813,7 +817,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                                                       highlightColor: Colors.transparent,
                                                                                       onTap: () async {
                                                                                         logFirebaseEvent('EVENT_GUESTS_PENDING_Row_1v3nynkx_ON_TAP');
-                                                                                        var shouldSetState = false;
+                                                                                        var _shouldSetState = false;
                                                                                         logFirebaseEvent('Row_alert_dialog');
                                                                                         await showDialog(
                                                                                           context: context,
@@ -822,11 +826,11 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                                                               elevation: 0,
                                                                                               insetPadding: EdgeInsets.zero,
                                                                                               backgroundColor: Colors.transparent,
-                                                                                              alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                                               child: WebViewAware(
                                                                                                 child: GestureDetector(
                                                                                                   onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                                  child: const ConfirmDialogBoxWidget(
+                                                                                                  child: ConfirmDialogBoxWidget(
                                                                                                     confirmDialogTitle: 'Decline Request',
                                                                                                     confirmDialogMeesage: 'Are you sure you want to decline member from joining the event? They may still re-apply and still needs approval.',
                                                                                                   ),
@@ -836,20 +840,20 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                                                           },
                                                                                         ).then((value) => safeSetState(() => _model.declineConfirmDialogCopy = value));
 
-                                                                                        shouldSetState = true;
+                                                                                        _shouldSetState = true;
                                                                                         if (_model.declineConfirmDialogCopy!) {
                                                                                           logFirebaseEvent('Row_action_block');
                                                                                           await action_blocks.triggerAppNotification(
                                                                                             context,
                                                                                             type: 'user',
                                                                                             title: 'Event Join Request Declined',
-                                                                                            message: 'The organization has refused to accept your request to join ${widget.eventDoc?.eventName}. You may still try to re-apply by submitting a join event request again on the event\'s profile.',
+                                                                                            message: 'The organization has refused to accept your request to join ${widget!.eventDoc?.eventName}. You may still try to re-apply by submitting a join event request again on the event\'s profile.',
                                                                                             user: containerUsersRecord.reference,
                                                                                           );
                                                                                           logFirebaseEvent('Row_trigger_push_notification');
                                                                                           triggerPushNotification(
                                                                                             notificationTitle: 'Event Join Request Declined',
-                                                                                            notificationText: 'The organization has declined your request to join ${widget.eventDoc?.eventName}.',
+                                                                                            notificationText: 'The organization has declined your request to join ${widget!.eventDoc?.eventName}.',
                                                                                             notificationSound: 'default',
                                                                                             userRefs: [
                                                                                               containerUsersRecord.reference
@@ -862,7 +866,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                                                             context,
                                                                                             type: 'declined',
                                                                                             module: 'event',
-                                                                                            doneToName: 'the event join request for ${widget.eventDoc?.eventName}',
+                                                                                            doneToName: 'the event join request for ${widget!.eventDoc?.eventName}',
                                                                                             doneTo: containerUsersRecord.reference,
                                                                                           );
                                                                                           logFirebaseEvent('Row_backend_call');
@@ -875,11 +879,11 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                                                                 elevation: 0,
                                                                                                 insetPadding: EdgeInsets.zero,
                                                                                                 backgroundColor: Colors.transparent,
-                                                                                                alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                                                 child: WebViewAware(
                                                                                                   child: GestureDetector(
                                                                                                     onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                                    child: const CongratulationsDialogBoxWidget(
+                                                                                                    child: CongratulationsDialogBoxWidget(
                                                                                                       congratsDialogTitle: 'Event Join Request Declined',
                                                                                                       congratsDialogMeesage: 'The user has been declined and won\'t be able to join your event.',
                                                                                                     ),
@@ -889,14 +893,14 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                                                             },
                                                                                           );
 
-                                                                                          if (shouldSetState) safeSetState(() {});
+                                                                                          if (_shouldSetState) safeSetState(() {});
                                                                                           return;
                                                                                         } else {
-                                                                                          if (shouldSetState) safeSetState(() {});
+                                                                                          if (_shouldSetState) safeSetState(() {});
                                                                                           return;
                                                                                         }
 
-                                                                                        if (shouldSetState) safeSetState(() {});
+                                                                                        if (_shouldSetState) safeSetState(() {});
                                                                                       },
                                                                                       child: Row(
                                                                                         mainAxisSize: MainAxisSize.min,
@@ -934,7 +938,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 5.0,
@@ -946,7 +950,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                                                 borderRadius: BorderRadius.circular(5.0),
                                                                               ),
                                                                               child: Padding(
-                                                                                padding: const EdgeInsets.all(5.0),
+                                                                                padding: EdgeInsets.all(5.0),
                                                                                 child: Text(
                                                                                   'Going',
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -970,7 +974,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 0.0,
                                                                                 5.0,
@@ -982,7 +986,7 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                                                                                 borderRadius: BorderRadius.circular(5.0),
                                                                               ),
                                                                               child: Padding(
-                                                                                padding: const EdgeInsets.all(5.0),
+                                                                                padding: EdgeInsets.all(5.0),
                                                                                 child: Text(
                                                                                   'Cancelled',
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1025,9 +1029,9 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                   ],
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(1.0, 1.0),
+                  alignment: AlignmentDirectional(1.0, 1.0),
                   child: Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: EdgeInsets.all(20.0),
                     child: Container(
                       width: 50.0,
                       height: 50.0,
@@ -1049,12 +1053,12 @@ class _EventGuestsPendingWidgetState extends State<EventGuestsPendingWidget> {
                             'event_check_in_out',
                             queryParameters: {
                               'eventDoc': serializeParam(
-                                widget.eventDoc,
+                                widget!.eventDoc,
                                 ParamType.Document,
                               ),
                             }.withoutNulls,
                             extra: <String, dynamic>{
-                              'eventDoc': widget.eventDoc,
+                              'eventDoc': widget!.eventDoc,
                             },
                           );
                         },

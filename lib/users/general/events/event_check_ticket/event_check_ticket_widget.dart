@@ -10,7 +10,9 @@ import 'package:styled_divider/styled_divider.dart';
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'event_check_ticket_model.dart';
 export 'event_check_ticket_model.dart';
@@ -56,7 +58,7 @@ class _EventCheckTicketWidgetState extends State<EventCheckTicketWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: EdgeInsets.all(20.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -68,9 +70,9 @@ class _EventCheckTicketWidgetState extends State<EventCheckTicketWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Align(
-              alignment: const AlignmentDirectional(1.0, -1.0),
+              alignment: AlignmentDirectional(1.0, -1.0),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -93,7 +95,7 @@ class _EventCheckTicketWidgetState extends State<EventCheckTicketWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.0),
@@ -103,10 +105,10 @@ class _EventCheckTicketWidgetState extends State<EventCheckTicketWidget> {
                       ),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(5.0),
+                      padding: EdgeInsets.all(5.0),
                       child: BarcodeWidget(
                         data: valueOrDefault<String>(
-                          widget.attendeeDoc?.ticketCode,
+                          widget!.attendeeDoc?.ticketCode,
                           'SampleCode',
                         ),
                         barcode: Barcode.qrCode(),
@@ -114,7 +116,7 @@ class _EventCheckTicketWidgetState extends State<EventCheckTicketWidget> {
                         height: 200.0,
                         color: FlutterFlowTheme.of(context).primaryText,
                         backgroundColor: Colors.transparent,
-                        errorBuilder: (context, error) => const SizedBox(
+                        errorBuilder: (_context, _error) => SizedBox(
                           width: 200.0,
                           height: 200.0,
                         ),
@@ -124,13 +126,13 @@ class _EventCheckTicketWidgetState extends State<EventCheckTicketWidget> {
                   ),
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
                     child: Text(
                       valueOrDefault<String>(
-                        widget.eventDoc?.eventName,
+                        widget!.eventDoc?.eventName,
                         'FFDC Extended Manila: Build Next-Gen Apps with FlutterFlow 5.0',
                       ),
                       textAlign: TextAlign.center,
@@ -150,21 +152,21 @@ class _EventCheckTicketWidgetState extends State<EventCheckTicketWidget> {
                   lineStyle: DividerLineStyle.dashed,
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 2.5, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Text(
                                   'Name',
                                   textAlign: TextAlign.start,
@@ -181,7 +183,7 @@ class _EventCheckTicketWidgetState extends State<EventCheckTicketWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: AuthUserStreamWidget(
                                   builder: (context) => Text(
                                     currentUserDisplayName,
@@ -205,14 +207,14 @@ class _EventCheckTicketWidgetState extends State<EventCheckTicketWidget> {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               2.5, 0.0, 0.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Text(
                                   'Student ID',
                                   textAlign: TextAlign.start,
@@ -229,7 +231,7 @@ class _EventCheckTicketWidgetState extends State<EventCheckTicketWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: AuthUserStreamWidget(
                                   builder: (context) => Text(
                                     valueOrDefault(
@@ -261,15 +263,15 @@ class _EventCheckTicketWidgetState extends State<EventCheckTicketWidget> {
                   lineStyle: DividerLineStyle.dashed,
                 ),
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  alignment: AlignmentDirectional(0.0, 0.0),
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 10.0),
+                        EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 10.0),
                     child: RichText(
                       textScaler: MediaQuery.of(context).textScaler,
                       text: TextSpan(
                         children: [
-                          const TextSpan(
+                          TextSpan(
                             text:
                                 'No longer able to attend? Notify the host by ',
                             style: TextStyle(),
@@ -285,7 +287,7 @@ class _EventCheckTicketWidgetState extends State<EventCheckTicketWidget> {
                               ..onTap = () async {
                                 logFirebaseEvent(
                                     'EVENT_CHECK_TICKET_RichTextSpan_lw20ry8g');
-                                var shouldSetState = false;
+                                var _shouldSetState = false;
                                 logFirebaseEvent('RichTextSpan_alert_dialog');
                                 await showDialog(
                                   context: context,
@@ -294,9 +296,9 @@ class _EventCheckTicketWidgetState extends State<EventCheckTicketWidget> {
                                       elevation: 0,
                                       insetPadding: EdgeInsets.zero,
                                       backgroundColor: Colors.transparent,
-                                      alignment: const AlignmentDirectional(0.0, 0.0)
+                                      alignment: AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
-                                      child: const WebViewAware(
+                                      child: WebViewAware(
                                         child: ConfirmDialogBoxWidget(
                                           confirmDialogTitle:
                                               'Cancel Registration',
@@ -309,7 +311,7 @@ class _EventCheckTicketWidgetState extends State<EventCheckTicketWidget> {
                                 ).then((value) => safeSetState(
                                     () => _model.confirmDialog = value));
 
-                                shouldSetState = true;
+                                _shouldSetState = true;
                                 if (_model.confirmDialog!) {
                                   logFirebaseEvent('RichTextSpan_action_block');
                                   await action_blocks.triggerAppNotification(
@@ -317,8 +319,8 @@ class _EventCheckTicketWidgetState extends State<EventCheckTicketWidget> {
                                     type: 'user',
                                     title: 'Event Participation Cancelled',
                                     message:
-                                        'You have cancelled your event participation to ${widget.eventDoc?.eventName}. You may still try to re-join by submitting a join event request again on the event\'s profile.',
-                                    user: widget.attendeeDoc?.ticketUser,
+                                        'You have cancelled your event participation to ${widget!.eventDoc?.eventName}. You may still try to re-join by submitting a join event request again on the event\'s profile.',
+                                    user: widget!.attendeeDoc?.ticketUser,
                                   );
                                   logFirebaseEvent(
                                       'RichTextSpan_trigger_push_notification');
@@ -326,10 +328,10 @@ class _EventCheckTicketWidgetState extends State<EventCheckTicketWidget> {
                                     notificationTitle:
                                         'Event Participation Cancelled',
                                     notificationText:
-                                        'You have cancelled your event participation to ${widget.eventDoc?.eventName}.',
+                                        'You have cancelled your event participation to ${widget!.eventDoc?.eventName}.',
                                     notificationSound: 'default',
                                     userRefs: [
-                                      widget.attendeeDoc!.ticketUser!
+                                      widget!.attendeeDoc!.ticketUser!
                                     ],
                                     initialPageName: 'auth_redirect',
                                     parameterData: {},
@@ -340,11 +342,11 @@ class _EventCheckTicketWidgetState extends State<EventCheckTicketWidget> {
                                     type: 'cancelled',
                                     module: 'event',
                                     doneToName:
-                                        'the event participation for ${widget.eventDoc?.eventName}',
-                                    doneTo: widget.attendeeDoc?.ticketUser,
+                                        'the event participation for ${widget!.eventDoc?.eventName}',
+                                    doneTo: widget!.attendeeDoc?.ticketUser,
                                   );
                                   logFirebaseEvent('RichTextSpan_backend_call');
-                                  await widget.attendeeDoc!.reference.delete();
+                                  await widget!.attendeeDoc!.reference.delete();
                                   logFirebaseEvent('RichTextSpan_alert_dialog');
                                   await showDialog(
                                     context: context,
@@ -354,10 +356,10 @@ class _EventCheckTicketWidgetState extends State<EventCheckTicketWidget> {
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
+                                            AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                        child: const WebViewAware(
+                                        child: WebViewAware(
                                           child: CongratulationsDialogBoxWidget(
                                             congratsDialogTitle:
                                                 'Event Participation Cancelled',
@@ -372,14 +374,14 @@ class _EventCheckTicketWidgetState extends State<EventCheckTicketWidget> {
                                   logFirebaseEvent(
                                       'RichTextSpan_close_dialog_drawer_etc');
                                   Navigator.pop(context);
-                                  if (shouldSetState) safeSetState(() {});
+                                  if (_shouldSetState) safeSetState(() {});
                                   return;
                                 } else {
-                                  if (shouldSetState) safeSetState(() {});
+                                  if (_shouldSetState) safeSetState(() {});
                                   return;
                                 }
 
-                                if (shouldSetState) safeSetState(() {});
+                                if (_shouldSetState) safeSetState(() {});
                               },
                           )
                         ],

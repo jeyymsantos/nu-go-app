@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/dialog_box/confirm_dialog_box/confirm_dialog_box_widget.dart';
 import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
@@ -6,9 +7,13 @@ import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'admin_feedback_view_model.dart';
 export 'admin_feedback_view_model.dart';
@@ -55,7 +60,7 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<FeedbackRecord>(
-      stream: FeedbackRecord.getDocument(widget.feedbackRef!),
+      stream: FeedbackRecord.getDocument(widget!.feedbackRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -84,9 +89,9 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
             body: SafeArea(
               top: true,
               child: Align(
-                alignment: const AlignmentDirectional(0.0, -1.0),
+                alignment: AlignmentDirectional(0.0, -1.0),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -95,13 +100,13 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                       wrapWithModel(
                         model: _model.titleHeaderComponentModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: const TitleHeaderComponentWidget(
+                        child: TitleHeaderComponentWidget(
                           titleText: 'View Feedback',
                         ),
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 20.0, 0.0, 0.0),
                           child: SingleChildScrollView(
                             child: Column(
@@ -128,7 +133,7 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 5.0, 0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -140,7 +145,7 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                                               'ADMIN_FEEDBACK_VIEW_Icon_4hpwx8si_ON_TAP');
                                           logFirebaseEvent(
                                               'Icon_copy_to_clipboard');
-                                          await Clipboard.setData(const ClipboardData(
+                                          await Clipboard.setData(ClipboardData(
                                               text:
                                                   'Ticket number copied to clipboard!'));
                                         },
@@ -168,7 +173,7 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                                   ],
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 40.0, 0.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -194,14 +199,14 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                                                   FlutterFlowExpandedImageView(
                                                 image: Image.network(
                                                   valueOrDefault<String>(
-                                                    widget.photo,
+                                                    widget!.photo,
                                                     'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png',
                                                   ),
                                                   fit: BoxFit.contain,
                                                 ),
                                                 allowRotation: false,
                                                 tag: valueOrDefault<String>(
-                                                  widget.photo,
+                                                  widget!.photo,
                                                   'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png',
                                                 ),
                                                 useHeroAnimation: true,
@@ -211,7 +216,7 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                                         },
                                         child: Hero(
                                           tag: valueOrDefault<String>(
-                                            widget.photo,
+                                            widget!.photo,
                                             'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png',
                                           ),
                                           transitionOnUserGestures: true,
@@ -219,12 +224,12 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                                             width: 120.0,
                                             height: 120.0,
                                             clipBehavior: Clip.antiAlias,
-                                            decoration: const BoxDecoration(
+                                            decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                             ),
                                             child: Image.network(
                                               valueOrDefault<String>(
-                                                widget.photo,
+                                                widget!.photo,
                                                 'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png',
                                               ),
                                               fit: BoxFit.cover,
@@ -236,7 +241,7 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 30.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -246,7 +251,7 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                                     children: [
                                       Text(
                                         valueOrDefault<String>(
-                                          widget.user,
+                                          widget!.user,
                                           'Name',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -279,10 +284,10 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(-1.0, 0.0),
+                                            AlignmentDirectional(-1.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 20.0, 0.0, 0.0),
                                           child: Text(
                                             adminFeedbackViewFeedbackRecord
@@ -301,7 +306,7 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(-1.0, 0.0),
+                                            AlignmentDirectional(-1.0, 0.0),
                                         child: Text(
                                           adminFeedbackViewFeedbackRecord
                                               .feedback,
@@ -321,9 +326,12 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                                 ),
                                 if (adminFeedbackViewFeedbackRecord
                                             .screenshot !=
+                                        null &&
+                                    adminFeedbackViewFeedbackRecord
+                                            .screenshot !=
                                         '')
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 50.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -373,14 +381,14 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                                             Expanded(
                                               child: Container(
                                                 height: double.infinity,
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           -1.0, 0.0),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(10.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -407,12 +415,12 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                                               child: Container(
                                                 width: 40.0,
                                                 height: 100.0,
-                                                decoration: const BoxDecoration(),
-                                                alignment: const AlignmentDirectional(
+                                                decoration: BoxDecoration(),
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Icon(
                                                     Icons
@@ -437,9 +445,9 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                       ),
                       if (adminFeedbackViewFeedbackRecord.status != 'Resolved')
                         Align(
-                          alignment: const AlignmentDirectional(0.0, 1.0),
+                          alignment: AlignmentDirectional(0.0, 1.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 30.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
@@ -447,7 +455,7 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                               children: [
                                 Builder(
                                   builder: (context) => Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
@@ -464,7 +472,7 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
+                                                  AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
@@ -473,7 +481,7 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                                                   onTap: () => FocusScope.of(
                                                           dialogContext)
                                                       .unfocus(),
-                                                  child: const ConfirmDialogBoxWidget(
+                                                  child: ConfirmDialogBoxWidget(
                                                     confirmDialogTitle:
                                                         'Mark as Resolved?',
                                                     confirmDialogMeesage:
@@ -498,7 +506,7 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                                                 insetPadding: EdgeInsets.zero,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
@@ -508,7 +516,7 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                                                             dialogContext)
                                                         .unfocus(),
                                                     child:
-                                                        const InformationDialogBoxWidget(
+                                                        InformationDialogBoxWidget(
                                                       infoDialogTitle:
                                                           'Feedback Resolved',
                                                       infoDialogMeesage:
@@ -523,7 +531,7 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                                           logFirebaseEvent(
                                               'Button_backend_call');
 
-                                          await widget.feedbackRef!
+                                          await widget!.feedbackRef!
                                               .update(createFeedbackRecordData(
                                             status: 'Resolved',
                                             statusChangedWhen:
@@ -541,7 +549,7 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                                                 insetPadding: EdgeInsets.zero,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
@@ -551,7 +559,7 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                                                             dialogContext)
                                                         .unfocus(),
                                                     child:
-                                                        const InformationDialogBoxWidget(
+                                                        InformationDialogBoxWidget(
                                                       infoDialogTitle:
                                                           'Action Cancelled',
                                                       infoDialogMeesage:
@@ -570,10 +578,10 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                                       options: FFButtonOptions(
                                         width: double.infinity,
                                         height: 40.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             24.0, 0.0, 24.0, 0.0),
                                         iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
+                                            EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
@@ -586,7 +594,7 @@ class _AdminFeedbackViewWidgetState extends State<AdminFeedbackViewWidget> {
                                               letterSpacing: 0.0,
                                             ),
                                         elevation: 3.0,
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,
                                         ),

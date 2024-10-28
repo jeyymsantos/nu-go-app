@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/components/dialog_box/confirm_password_dialog/confirm_password_dialog_widget.dart';
@@ -11,8 +12,11 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'maintenance_organizations_model.dart';
 export 'maintenance_organizations_model.dart';
@@ -31,7 +35,7 @@ class MaintenanceOrganizationsWidget extends StatefulWidget {
     this.orgAdviser,
     this.orgRef,
     this.logo,
-  }) : isNew = isNew ?? false;
+  }) : this.isNew = isNew ?? false;
 
   final bool isNew;
   final String? orgCode;
@@ -64,11 +68,11 @@ class _MaintenanceOrganizationsWidgetState
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'maintenance_organizations'});
     _model.orgNameTextController ??=
-        TextEditingController(text: widget.isNew ? '' : widget.orgName);
+        TextEditingController(text: widget!.isNew ? '' : widget!.orgName);
     _model.orgNameFocusNode ??= FocusNode();
 
     _model.orgPurposeTextController ??=
-        TextEditingController(text: widget.isNew ? '' : widget.orgPurpose);
+        TextEditingController(text: widget!.isNew ? '' : widget!.orgPurpose);
     _model.orgPurposeFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -91,7 +95,7 @@ class _MaintenanceOrganizationsWidgetState
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,7 +103,7 @@ class _MaintenanceOrganizationsWidgetState
                 wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TitleHeaderComponentWidget(
+                  child: TitleHeaderComponentWidget(
                     titleText: 'File Maintenance',
                   ),
                 ),
@@ -111,7 +115,7 @@ class _MaintenanceOrganizationsWidgetState
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -129,7 +133,7 @@ class _MaintenanceOrganizationsWidgetState
                                       ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 0.0, 0.0),
                                   child: Text(
                                     'Group of individuals who are interested in the same wave length',
@@ -163,18 +167,18 @@ class _MaintenanceOrganizationsWidgetState
                 Flexible(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 30.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 30.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          SizedBox(
+                          Container(
                             width: double.infinity,
                             child: Form(
                               key: _model.formKey,
                               autovalidateMode: AutovalidateMode.disabled,
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 50.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -278,15 +282,18 @@ class _MaintenanceOrganizationsWidgetState
                                           width: 120.0,
                                           height: 120.0,
                                           clipBehavior: Clip.antiAlias,
-                                          decoration: const BoxDecoration(
+                                          decoration: BoxDecoration(
                                             shape: BoxShape.circle,
                                           ),
                                           child: Image.network(
                                             () {
-                                              if (widget.logo != null &&
-                                                  widget.logo != '') {
-                                                return widget.logo!;
-                                              } else if (_model.uploadedFileUrl ==
+                                              if (widget!.logo != null &&
+                                                  widget!.logo != '') {
+                                                return widget!.logo!;
+                                              } else if (_model
+                                                          .uploadedFileUrl ==
+                                                      null ||
+                                                  _model.uploadedFileUrl ==
                                                       '') {
                                                 return 'https://whatthelogo.com/storage/logos/logocomhr-214739.png';
                                               } else {
@@ -299,7 +306,7 @@ class _MaintenanceOrganizationsWidgetState
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 30.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller:
@@ -378,7 +385,7 @@ class _MaintenanceOrganizationsWidgetState
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 15.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller:
@@ -460,17 +467,17 @@ class _MaintenanceOrganizationsWidgetState
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: FlutterFlowDropDown<String>(
                                         controller:
                                             _model.orgTypeValueController ??=
                                                 FormFieldController<String>(
-                                          _model.orgTypeValue ??= widget.isNew
+                                          _model.orgTypeValue ??= widget!.isNew
                                               ? ''
-                                              : widget.orgType,
+                                              : widget!.orgType,
                                         ),
-                                        options: const [
+                                        options: [
                                           'Academic Organization',
                                           'Special Interest Organization',
                                           'Student Council',
@@ -518,7 +525,7 @@ class _MaintenanceOrganizationsWidgetState
                                                 .textBoxBorder,
                                         borderWidth: 0.5,
                                         borderRadius: 8.0,
-                                        margin: const EdgeInsetsDirectional.fromSTEB(
+                                        margin: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 4.0, 16.0, 4.0),
                                         hidesUnderline: true,
                                         isOverButton: true,
@@ -527,17 +534,17 @@ class _MaintenanceOrganizationsWidgetState
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 15.0, 0.0, 0.0),
                                       child: FlutterFlowDropDown<String>(
                                         controller:
                                             _model.orgSCOPEValueController ??=
                                                 FormFieldController<String>(
-                                          _model.orgSCOPEValue ??= widget.isNew
+                                          _model.orgSCOPEValue ??= widget!.isNew
                                               ? ''
-                                              : widget.orgScope,
+                                              : widget!.orgScope,
                                         ),
-                                        options: const [
+                                        options: [
                                           'Program-wide',
                                           'University-wide',
                                           'School-wide',
@@ -585,7 +592,7 @@ class _MaintenanceOrganizationsWidgetState
                                                 .textBoxBorder,
                                         borderWidth: 0.5,
                                         borderRadius: 8.0,
-                                        margin: const EdgeInsetsDirectional.fromSTEB(
+                                        margin: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 4.0, 16.0, 4.0),
                                         hidesUnderline: true,
                                         isOverButton: true,
@@ -594,7 +601,7 @@ class _MaintenanceOrganizationsWidgetState
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 15.0, 0.0, 0.0),
                                       child: StreamBuilder<List<UsersRecord>>(
                                         stream: queryUsersRecord(
@@ -626,10 +633,17 @@ class _MaintenanceOrganizationsWidgetState
                                             controller: _model
                                                     .orgAdviserValueController ??=
                                                 FormFieldController<String>(
-                                                    null),
-                                            options: orgAdviserUsersRecordList
-                                                .map((e) => e.displayName)
-                                                .toList(),
+                                              _model.orgAdviserValue ??=
+                                                  widget!.orgAdviser?.id,
+                                            ),
+                                            options: List<String>.from(
+                                                orgAdviserUsersRecordList
+                                                    .map((e) => e.reference.id)
+                                                    .toList()),
+                                            optionLabels:
+                                                orgAdviserUsersRecordList
+                                                    .map((e) => e.displayName)
+                                                    .toList(),
                                             onChanged: (val) => safeSetState(
                                                 () => _model.orgAdviserValue =
                                                     val),
@@ -678,7 +692,7 @@ class _MaintenanceOrganizationsWidgetState
                                             borderWidth: 0.5,
                                             borderRadius: 8.0,
                                             margin:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 4.0, 16.0, 4.0),
                                             hidesUnderline: true,
                                             isOverButton: true,
@@ -690,13 +704,13 @@ class _MaintenanceOrganizationsWidgetState
                                     ),
                                     Builder(
                                       builder: (context) => Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 15.0, 0.0, 0.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
                                             logFirebaseEvent(
                                                 'MAINTENANCE_ORGANIZATIONS_Save_ON_TAP');
-                                            var shouldSetState = false;
+                                            var _shouldSetState = false;
                                             logFirebaseEvent(
                                                 'Save_validate_form');
                                             if (_model.formKey.currentState ==
@@ -718,7 +732,7 @@ class _MaintenanceOrganizationsWidgetState
                                                               .primaryText,
                                                     ),
                                                   ),
-                                                  duration: const Duration(
+                                                  duration: Duration(
                                                       milliseconds: 4000),
                                                   backgroundColor:
                                                       FlutterFlowTheme.of(
@@ -741,7 +755,7 @@ class _MaintenanceOrganizationsWidgetState
                                                               .primaryText,
                                                     ),
                                                   ),
-                                                  duration: const Duration(
+                                                  duration: Duration(
                                                       milliseconds: 4000),
                                                   backgroundColor:
                                                       FlutterFlowTheme.of(
@@ -765,7 +779,7 @@ class _MaintenanceOrganizationsWidgetState
                                                               .primaryText,
                                                     ),
                                                   ),
-                                                  duration: const Duration(
+                                                  duration: Duration(
                                                       milliseconds: 4000),
                                                   backgroundColor:
                                                       FlutterFlowTheme.of(
@@ -781,7 +795,7 @@ class _MaintenanceOrganizationsWidgetState
                                                 await actions.getUserDocument(
                                               _model.orgAdviserValue!,
                                             );
-                                            shouldSetState = true;
+                                            _shouldSetState = true;
                                             logFirebaseEvent(
                                                 'Save_alert_dialog');
                                             await showDialog(
@@ -793,7 +807,7 @@ class _MaintenanceOrganizationsWidgetState
                                                   backgroundColor:
                                                       Colors.transparent,
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                               0.0, 0.0)
                                                           .resolve(
                                                               Directionality.of(
@@ -805,7 +819,7 @@ class _MaintenanceOrganizationsWidgetState
                                                                   dialogContext)
                                                               .unfocus(),
                                                       child:
-                                                          const ConfirmPasswordDialogWidget(),
+                                                          ConfirmPasswordDialogWidget(),
                                                     ),
                                                   ),
                                                 );
@@ -813,12 +827,12 @@ class _MaintenanceOrganizationsWidgetState
                                             ).then((value) => safeSetState(() =>
                                                 _model.confirmOrg = value));
 
-                                            shouldSetState = true;
+                                            _shouldSetState = true;
                                             if (_model.confirmOrg!) {
                                               logFirebaseEvent(
                                                   'Save_backend_call');
 
-                                              await widget.orgRef!.update(
+                                              await widget!.orgRef!.update(
                                                   createOrganizationsRecordData(
                                                 organizationName: _model
                                                     .orgNameTextController.text,
@@ -853,7 +867,7 @@ class _MaintenanceOrganizationsWidgetState
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
@@ -866,11 +880,11 @@ class _MaintenanceOrganizationsWidgetState
                                                                 .unfocus(),
                                                         child:
                                                             InformationDialogBoxWidget(
-                                                          infoDialogTitle: widget
+                                                          infoDialogTitle: widget!
                                                                   .isNew
                                                               ? 'New Organization Created'
                                                               : 'Existing Organization Updated',
-                                                          infoDialogMeesage: widget
+                                                          infoDialogMeesage: widget!
                                                                   .isNew
                                                               ? 'You have successfully saved a new organization!'
                                                               : 'You have successfully updated an existing organization!',
@@ -893,7 +907,7 @@ class _MaintenanceOrganizationsWidgetState
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
@@ -905,7 +919,7 @@ class _MaintenanceOrganizationsWidgetState
                                                                     dialogContext)
                                                                 .unfocus(),
                                                         child:
-                                                            const InformationDialogBoxWidget(
+                                                            InformationDialogBoxWidget(
                                                           infoDialogTitle:
                                                               'Action Cancelled',
                                                           infoDialogMeesage:
@@ -920,29 +934,27 @@ class _MaintenanceOrganizationsWidgetState
                                               logFirebaseEvent(
                                                   'Save_navigate_back');
                                               context.safePop();
-                                              if (shouldSetState) {
+                                              if (_shouldSetState)
                                                 safeSetState(() {});
-                                              }
                                               return;
                                             }
 
                                             logFirebaseEvent(
                                                 'Save_navigate_back');
                                             context.safePop();
-                                            if (shouldSetState) {
+                                            if (_shouldSetState)
                                               safeSetState(() {});
-                                            }
                                           },
                                           text:
-                                              widget.isNew ? 'Save' : 'Update',
+                                              widget!.isNew ? 'Save' : 'Update',
                                           options: FFButtonOptions(
                                             width: double.infinity,
                                             height: 40.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     24.0, 0.0, 24.0, 0.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
@@ -956,7 +968,7 @@ class _MaintenanceOrganizationsWidgetState
                                                       letterSpacing: 0.0,
                                                     ),
                                             elevation: 3.0,
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),

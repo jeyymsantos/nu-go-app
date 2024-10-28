@@ -3,7 +3,12 @@ import '/components/dialog_box/confirm_dialog_box/confirm_dialog_box_widget.dart
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'adding_of_office_approver_model.dart';
 export 'adding_of_office_approver_model.dart';
@@ -60,7 +65,7 @@ class _AddingOfOfficeApproverWidgetState
       height: 300.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).primaryBackground,
-        borderRadius: const BorderRadius.only(
+        borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0.0),
           bottomRight: Radius.circular(0.0),
           topLeft: Radius.circular(30.0),
@@ -71,13 +76,13 @@ class _AddingOfOfficeApproverWidgetState
         key: _model.formKey,
         autovalidateMode: AutovalidateMode.disabled,
         child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
+          padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 20.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 20.0),
                 child: Container(
                   width: 100.0,
                   height: 10.0,
@@ -106,13 +111,13 @@ class _AddingOfOfficeApproverWidgetState
                                 fontWeight: FontWeight.normal,
                               ),
                         ),
-                        const TextSpan(
+                        TextSpan(
                           text: ' - ',
                           style: TextStyle(),
                         ),
                         TextSpan(
                           text: valueOrDefault<String>(
-                            widget.officeName,
+                            widget!.officeName,
                             'Office Name',
                           ),
                           style:
@@ -132,7 +137,7 @@ class _AddingOfOfficeApproverWidgetState
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                     child: TextFormField(
                       controller: _model.approvalNoteTextController,
                       focusNode: _model.approvalNoteFocusNode,
@@ -156,7 +161,7 @@ class _AddingOfOfficeApproverWidgetState
                                   letterSpacing: 0.0,
                                 ),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
+                          borderSide: BorderSide(
                             color: Color(0x00000000),
                             width: 0.5,
                           ),
@@ -197,10 +202,10 @@ class _AddingOfOfficeApproverWidgetState
                     ),
                   ),
                   Align(
-                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    alignment: AlignmentDirectional(0.0, 0.0),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
                       child: Text(
                         'Ex. Noted by, Recommending Approval by, Approved by, etc.',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -218,16 +223,16 @@ class _AddingOfOfficeApproverWidgetState
                 children: [
                   Container(
                     width: double.infinity,
-                    decoration: const BoxDecoration(),
+                    decoration: BoxDecoration(),
                     child: Builder(
                       builder: (context) => Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                         child: FFButtonWidget(
                           onPressed: () async {
                             logFirebaseEvent(
                                 'ADDING_OF_OFFICE_APPROVER_ADD_APPROVER_B');
-                            var shouldSetState = false;
+                            var _shouldSetState = false;
                             logFirebaseEvent('Button_alert_dialog');
                             await showDialog(
                               context: context,
@@ -236,9 +241,9 @@ class _AddingOfOfficeApproverWidgetState
                                   elevation: 0,
                                   insetPadding: EdgeInsets.zero,
                                   backgroundColor: Colors.transparent,
-                                  alignment: const AlignmentDirectional(0.0, 0.0)
+                                  alignment: AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
-                                  child: const WebViewAware(
+                                  child: WebViewAware(
                                     child: ConfirmDialogBoxWidget(
                                       confirmDialogTitle:
                                           'Adding to Approval Set',
@@ -251,38 +256,38 @@ class _AddingOfOfficeApproverWidgetState
                             ).then((value) => safeSetState(
                                 () => _model.confirmDialog = value));
 
-                            shouldSetState = true;
+                            _shouldSetState = true;
                             if (_model.confirmDialog!) {
                               logFirebaseEvent('Button_update_app_state');
                               FFAppState()
                                   .addToSignatorySet(ApprovalSignatoryStruct(
                                 note: _model.approvalNoteTextController.text,
-                                approvalRole: widget.officeName,
-                                approvalUser: widget.officeHead,
-                                approvalOffice: widget.office,
+                                approvalRole: widget!.officeName,
+                                approvalUser: widget!.officeHead,
+                                approvalOffice: widget!.office,
                               ));
                               FFAppState()
-                                  .addToSignatoryChecker(widget.officeName!);
+                                  .addToSignatoryChecker(widget!.officeName!);
                               _model.updatePage(() {});
                               logFirebaseEvent('Button_bottom_sheet');
                               Navigator.pop(context);
-                              if (shouldSetState) safeSetState(() {});
+                              if (_shouldSetState) safeSetState(() {});
                               return;
                             } else {
                               logFirebaseEvent('Button_bottom_sheet');
                               Navigator.pop(context);
-                              if (shouldSetState) safeSetState(() {});
+                              if (_shouldSetState) safeSetState(() {});
                               return;
                             }
 
-                            if (shouldSetState) safeSetState(() {});
+                            if (_shouldSetState) safeSetState(() {});
                           },
                           text: 'Add Approver',
                           options: FFButtonOptions(
                             height: 50.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
@@ -294,7 +299,7 @@ class _AddingOfOfficeApproverWidgetState
                                   letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
-                            borderSide: const BorderSide(
+                            borderSide: BorderSide(
                               color: Colors.transparent,
                               width: 1.0,
                             ),

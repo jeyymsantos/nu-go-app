@@ -5,12 +5,15 @@ import '/components/widgets/title_header_component/title_header_component_widget
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
@@ -58,8 +61,8 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -70,8 +73,8 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -94,8 +97,8 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -106,8 +109,8 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -176,14 +179,14 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: const TitleHeaderComponentWidget(
+                      child: TitleHeaderComponentWidget(
                         titleText: 'File Maintenance',
                       ),
                     ),
@@ -195,7 +198,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 5.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -213,7 +216,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                           ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 0.0, 0.0),
                                       child: Text(
                                         'Uses that has set their access level.',
@@ -246,18 +249,21 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: TextFormField(
                                   controller: _model.searchFieldTextController,
                                   focusNode: _model.searchFieldFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.searchFieldTextController',
-                                    const Duration(milliseconds: 200),
+                                    Duration(milliseconds: 200),
                                     () async {
                                       logFirebaseEvent(
                                           'VIEW_USERS_FACULTY_search_field_ON_TEXTF');
                                       if (_model.searchFieldTextController
+                                                  .text !=
+                                              null &&
+                                          _model.searchFieldTextController
                                                   .text !=
                                               '') {
                                         logFirebaseEvent(
@@ -270,7 +276,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                   (record) =>
                                                       TextSearchItem.fromTerms(
                                                           record, [
-                                                    record.displayName
+                                                    record.displayName!
                                                   ]),
                                                 )
                                                 .toList(),
@@ -280,6 +286,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                       .text)
                                                   .map((r) => r.object)
                                                   .toList();
+                                          ;
                                         });
                                         logFirebaseEvent(
                                             'search_field_update_app_state');
@@ -354,6 +361,9 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                   'VIEW_USERS_FACULTY_search_field_ON_TEXTF');
                                               if (_model.searchFieldTextController
                                                           .text !=
+                                                      null &&
+                                                  _model.searchFieldTextController
+                                                          .text !=
                                                       '') {
                                                 logFirebaseEvent(
                                                     'search_field_simple_search');
@@ -366,7 +376,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                               TextSearchItem
                                                                   .fromTerms(
                                                                       record, [
-                                                            record.displayName
+                                                            record.displayName!
                                                           ]),
                                                         )
                                                         .toList(),
@@ -376,6 +386,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                               .text)
                                                           .map((r) => r.object)
                                                           .toList();
+                                                  ;
                                                 });
                                                 logFirebaseEvent(
                                                     'search_field_update_app_state');
@@ -392,7 +403,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
 
                                               safeSetState(() {});
                                             },
-                                            child: const Icon(
+                                            child: Icon(
                                               Icons.clear,
                                               size: 20.0,
                                             ),
@@ -418,7 +429,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                     Expanded(
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -430,7 +441,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                         viewUsersFacultyUsersRecordList
                                             .toList();
                                     if (userSearch.isEmpty) {
-                                      return const EmptyListWidget(
+                                      return EmptyListWidget(
                                         emptyWhat: 'users',
                                       );
                                     }
@@ -446,7 +457,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                             userSearch[userSearchIndex];
                                         return Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 10.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -527,7 +538,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                                         .center,
                                                                 children: [
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             10.0,
                                                                             0.0,
@@ -542,7 +553,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                                       clipBehavior:
                                                                           Clip.antiAlias,
                                                                       decoration:
-                                                                          const BoxDecoration(
+                                                                          BoxDecoration(
                                                                         shape: BoxShape
                                                                             .circle,
                                                                       ),
@@ -592,7 +603,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                                     Flexible(
                                                                       child:
                                                                           Text(
-                                                                        'Roles: ${userSearchItem.role != '' ? userSearchItem.role : ''}${(userSearchItem.role != '') && (userSearchItem.settings.isSuperAdmin == true) ? ', ' : ''}${userSearchItem.settings.isSuperAdmin == true ? 'Super Admin' : ''}${(userSearchItem.role == '') && (userSearchItem.settings.isSuperAdmin == false) ? 'N/A' : ''}',
+                                                                        'Roles: ${userSearchItem.role != null && userSearchItem.role != '' ? userSearchItem.role : ''}${(userSearchItem.role != null && userSearchItem.role != '') && (userSearchItem.settings.isSuperAdmin == true) ? ', ' : ''}${userSearchItem.settings.isSuperAdmin == true ? 'Super Admin' : ''}${(userSearchItem.role == null || userSearchItem.role == '') && (userSearchItem.settings.isSuperAdmin == false) ? 'N/A' : ''}',
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
@@ -629,11 +640,11 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                         children: [
                                                           Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     0.0, 0.0),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -703,11 +714,11 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                           ),
                                                           Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     0.0, 0.0),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -738,16 +749,16 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                                                 (alertDialogContext) {
                                                                               return WebViewAware(
                                                                                 child: AlertDialog(
-                                                                                  title: const Text('Delete User'),
-                                                                                  content: const Text('Are you sure you want to delete this user? This action cannot be undone.'),
+                                                                                  title: Text('Delete User'),
+                                                                                  content: Text('Are you sure you want to delete this user? This action cannot be undone.'),
                                                                                   actions: [
                                                                                     TextButton(
                                                                                       onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                      child: const Text('Cancel'),
+                                                                                      child: Text('Cancel'),
                                                                                     ),
                                                                                     TextButton(
                                                                                       onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                      child: const Text('Confirm'),
+                                                                                      child: Text('Confirm'),
                                                                                     ),
                                                                                   ],
                                                                                 ),
@@ -785,13 +796,13 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                                           child:
                                                                               AlertDialog(
                                                                             title:
-                                                                                const Text('Deleted User'),
+                                                                                Text('Deleted User'),
                                                                             content:
-                                                                                const Text('User has been successfully deleted.'),
+                                                                                Text('User has been successfully deleted.'),
                                                                             actions: [
                                                                               TextButton(
                                                                                 onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                child: const Text('Okay'),
+                                                                                child: Text('Okay'),
                                                                               ),
                                                                             ],
                                                                           ),
@@ -844,7 +855,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                 ),
                               if (FFAppState().searchActive)
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 30.0, 0.0, 0.0),
                                   child: Builder(
                                     builder: (context) {
@@ -869,7 +880,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                               userSearchy[userSearchyIndex];
                                           return Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -952,7 +963,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                                           .center,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           10.0,
                                                                           0.0,
                                                                           10.0,
@@ -966,7 +977,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                                         clipBehavior:
                                                                             Clip.antiAlias,
                                                                         decoration:
-                                                                            const BoxDecoration(
+                                                                            BoxDecoration(
                                                                           shape:
                                                                               BoxShape.circle,
                                                                         ),
@@ -1010,7 +1021,7 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                                       Flexible(
                                                                         child:
                                                                             Text(
-                                                                          'Roles: ${userSearchyItem.role != '' ? userSearchyItem.role : ''}${(userSearchyItem.role != '') && (userSearchyItem.settings.isSuperAdmin == true) ? ', ' : ''}${userSearchyItem.settings.isSuperAdmin == true ? 'Super Admin' : ''}${(userSearchyItem.role == '') && (userSearchyItem.settings.isSuperAdmin == false) ? 'N/A' : ''}',
+                                                                          'Roles: ${userSearchyItem.role != null && userSearchyItem.role != '' ? userSearchyItem.role : ''}${(userSearchyItem.role != null && userSearchyItem.role != '') && (userSearchyItem.settings.isSuperAdmin == true) ? ', ' : ''}${userSearchyItem.settings.isSuperAdmin == true ? 'Super Admin' : ''}${(userSearchyItem.role == null || userSearchyItem.role == '') && (userSearchyItem.settings.isSuperAdmin == false) ? 'N/A' : ''}',
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .override(
@@ -1047,11 +1058,11 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1123,11 +1134,11 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1156,16 +1167,16 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                                               builder: (alertDialogContext) {
                                                                                 return WebViewAware(
                                                                                   child: AlertDialog(
-                                                                                    title: const Text('Delete User'),
-                                                                                    content: const Text('Are you sure you want to delete this user? This action cannot be undone.'),
+                                                                                    title: Text('Delete User'),
+                                                                                    content: Text('Are you sure you want to delete this user? This action cannot be undone.'),
                                                                                     actions: [
                                                                                       TextButton(
                                                                                         onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                        child: const Text('Cancel'),
+                                                                                        child: Text('Cancel'),
                                                                                       ),
                                                                                       TextButton(
                                                                                         onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                        child: const Text('Confirm'),
+                                                                                        child: Text('Confirm'),
                                                                                       ),
                                                                                     ],
                                                                                   ),
@@ -1201,12 +1212,12 @@ class _ViewUsersFacultyWidgetState extends State<ViewUsersFacultyWidget>
                                                                           return WebViewAware(
                                                                             child:
                                                                                 AlertDialog(
-                                                                              title: const Text('Deleted User'),
-                                                                              content: const Text('User has been successfully deleted.'),
+                                                                              title: Text('Deleted User'),
+                                                                              content: Text('User has been successfully deleted.'),
                                                                               actions: [
                                                                                 TextButton(
                                                                                   onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: const Text('Okay'),
+                                                                                  child: Text('Okay'),
                                                                                 ),
                                                                               ],
                                                                             ),

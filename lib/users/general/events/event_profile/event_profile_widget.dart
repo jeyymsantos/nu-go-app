@@ -10,16 +10,23 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/users/general/events/event_check_ticket/event_check_ticket_widget.dart';
+import 'dart:math';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:styled_divider/styled_divider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'event_profile_model.dart';
 export 'event_profile_model.dart';
@@ -55,9 +62,9 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       logFirebaseEvent('EVENT_PROFILE_event_profile_ON_INIT_STAT');
       logFirebaseEvent('event_profile_backend_call');
-      _model.eventDoc = await EventsRecord.getDocumentOnce(widget.eventRef!);
-      if ((_model.eventDoc?.settings.isOnline == false) &&
-          (_model.eventDoc?.settings.isCampus == false)) {
+      _model.eventDoc = await EventsRecord.getDocumentOnce(widget!.eventRef!);
+      if ((_model.eventDoc?.settings?.isOnline == false) &&
+          (_model.eventDoc?.settings?.isCampus == false)) {
         logFirebaseEvent('event_profile_custom_action');
         _model.givenAddress = await actions.getAddressFromLatLng(
           _model.eventDoc!.otherDetails.outsideLocation!,
@@ -77,7 +84,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 1410.0.ms,
-            color: const Color(0xFF7B83BA),
+            color: Color(0xFF7B83BA),
             angle: 0.524,
           ),
         ],
@@ -90,7 +97,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 1410.0.ms,
-            color: const Color(0xFF7B83BA),
+            color: Color(0xFF7B83BA),
             angle: 0.524,
           ),
         ],
@@ -110,7 +117,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<EventsRecord>(
-      stream: EventsRecord.getDocument(widget.eventRef!),
+      stream: EventsRecord.getDocument(widget!.eventRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -146,20 +153,20 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                   Expanded(
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 10.0),
-                              child: SizedBox(
+                              child: Container(
                                 height: 353.0,
                                 child: Stack(
                                   children: [
                                     Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
                                         focusColor: Colors.transparent,
@@ -219,11 +226,11 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           10.0, 10.0, 0.0, 0.0),
                                       child: Stack(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         children: [
                                           ClipOval(
                                             child: BackdropFilter(
@@ -234,7 +241,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                               child: Container(
                                                 width: 35.0,
                                                 height: 35.0,
-                                                decoration: const BoxDecoration(
+                                                decoration: BoxDecoration(
                                                   gradient: LinearGradient(
                                                     colors: [
                                                       Color(0x38000000),
@@ -279,13 +286,13 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 10.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Align(
-                                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                     child: Text(
                                       eventProfileEventsRecord.eventName,
                                       textAlign: TextAlign.start,
@@ -308,7 +315,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       20.0, 0.0, 20.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
@@ -330,7 +337,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          kTransitionInfoKey: const TransitionInfo(
+                                          kTransitionInfoKey: TransitionInfo(
                                             hasTransition: true,
                                             transitionType:
                                                 PageTransitionType.fade,
@@ -351,7 +358,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(5.0),
+                                        padding: EdgeInsets.all(5.0),
                                         child:
                                             StreamBuilder<OrganizationsRecord>(
                                           stream:
@@ -387,7 +394,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                 Expanded(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 5.0, 0.0),
                                                     child: Row(
@@ -409,13 +416,13 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                             ),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsets
+                                                                  EdgeInsets
                                                                       .all(2.0),
                                                               child: ClipOval(
                                                                 child:
                                                                     Container(
                                                                   decoration:
-                                                                      const BoxDecoration(
+                                                                      BoxDecoration(
                                                                     shape: BoxShape
                                                                         .circle,
                                                                   ),
@@ -441,7 +448,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                         Flexible(
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         5.0,
                                                                         0.0,
@@ -521,7 +528,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       20.0, 10.0, 20.0, 10.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -601,7 +608,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                   ),
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Text(
                                                       dateTimeFormat(
@@ -642,7 +649,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           10.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -669,7 +676,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           10.0, 0.0, 0.0, 0.0),
                                                   child: RichText(
@@ -704,7 +711,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                         .normal,
                                                               ),
                                                         ),
-                                                        const TextSpan(
+                                                        TextSpan(
                                                           text: ' -  ',
                                                           style: TextStyle(),
                                                         ),
@@ -717,7 +724,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                     .of(context)
                                                                 .languageCode,
                                                           ),
-                                                          style: const TextStyle(),
+                                                          style: TextStyle(),
                                                         )
                                                       ],
                                                       style:
@@ -768,7 +775,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(3.0),
+                                                padding: EdgeInsets.all(3.0),
                                                 child: Icon(
                                                   FFIcons.klocation,
                                                   color: FlutterFlowTheme.of(
@@ -790,7 +797,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     10.0,
                                                                     0.0,
@@ -850,7 +857,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(10.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -903,7 +910,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(3.0),
+                                                padding: EdgeInsets.all(3.0),
                                                 child: Icon(
                                                   FFIcons.klocation,
                                                   color: FlutterFlowTheme.of(
@@ -950,7 +957,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       10.0,
                                                                       0.0,
@@ -980,7 +987,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   10.0,
                                                                   0.0,
@@ -1038,7 +1045,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                               ),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(3.0),
+                                              padding: EdgeInsets.all(3.0),
                                               child: Icon(
                                                 FFIcons.kticketStar4,
                                                 color:
@@ -1055,7 +1062,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           10.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -1075,7 +1082,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           10.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -1128,7 +1135,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(3.0),
+                                                padding: EdgeInsets.all(3.0),
                                                 child: Icon(
                                                   FFIcons.klocation,
                                                   color: FlutterFlowTheme.of(
@@ -1151,7 +1158,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                       Flexible(
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       10.0,
                                                                       0.0,
@@ -1184,7 +1191,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(10.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -1210,7 +1217,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 10.0,
                                                                 0.0, 0.0),
                                                     child: Column(
@@ -1237,7 +1244,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                           child: Builder(
                                                               builder:
                                                                   (context) {
-                                                            final googleMapMarker =
+                                                            final _googleMapMarker =
                                                                 eventProfileEventsRecord
                                                                     .otherDetails
                                                                     .outsideLocation;
@@ -1254,19 +1261,19 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                       .otherDetails
                                                                       .outsideLocation!,
                                                               markers: [
-                                                                if (googleMapMarker !=
+                                                                if (_googleMapMarker !=
                                                                     null)
                                                                   FlutterFlowMarker(
-                                                                    googleMapMarker
+                                                                    _googleMapMarker
                                                                         .serialize(),
-                                                                    googleMapMarker,
+                                                                    _googleMapMarker,
                                                                   ),
                                                               ],
                                                               markerColor:
                                                                   GoogleMarkerColor
                                                                       .violet,
                                                               markerImage:
-                                                                  const MarkerImage(
+                                                                  MarkerImage(
                                                                 imagePath:
                                                                     'assets/images/NU_GO_-_No_BG.png',
                                                                 isAssetImage:
@@ -1327,7 +1334,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                               ),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(3.0),
+                                              padding: EdgeInsets.all(3.0),
                                               child: Icon(
                                                 FFIcons.kuserTick,
                                                 color:
@@ -1344,7 +1351,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           10.0, 0.0, 0.0, 0.0),
                                                   child: RichText(
@@ -1358,7 +1365,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                               .otherDetails
                                                               .maxParticipants
                                                               .toString(),
-                                                          style: const TextStyle(),
+                                                          style: TextStyle(),
                                                         )
                                                       ],
                                                       style: FlutterFlowTheme
@@ -1376,7 +1383,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           10.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -1404,7 +1411,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                             child: FutureBuilder<int>(
                                               future:
                                                   queryEventAttendeesRecordCount(
-                                                parent: widget.eventRef,
+                                                parent: widget!.eventRef,
                                                 queryBuilder:
                                                     (eventAttendeesRecord) =>
                                                         eventAttendeesRecord
@@ -1441,7 +1448,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   10.0,
                                                                   0.0,
@@ -1466,7 +1473,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                 '0',
                                                               ),
                                                               style:
-                                                                  const TextStyle(),
+                                                                  TextStyle(),
                                                             )
                                                           ],
                                                           style: FlutterFlowTheme
@@ -1487,7 +1494,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   10.0,
                                                                   0.0,
@@ -1528,7 +1535,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                           StreamBuilder<
                                               List<EventAttendeesRecord>>(
                                             stream: queryEventAttendeesRecord(
-                                              parent: widget.eventRef,
+                                              parent: widget!.eventRef,
                                               queryBuilder:
                                                   (eventAttendeesRecord) =>
                                                       eventAttendeesRecord
@@ -1608,7 +1615,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                           width: 30.0,
                                                           height: 30.0,
                                                           decoration:
-                                                              const BoxDecoration(
+                                                              BoxDecoration(
                                                             shape:
                                                                 BoxShape.circle,
                                                           ),
@@ -1636,7 +1643,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         10.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -1662,7 +1669,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                           ),
                                         ],
                                       ),
-                                    ].divide(const SizedBox(height: 8.0)),
+                                    ].divide(SizedBox(height: 8.0)),
                                   ),
                                 ),
                                 StyledDivider(
@@ -1671,14 +1678,14 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                   lineStyle: DividerLineStyle.dashed,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       20.0, 15.0, 20.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(-1.0, 0.0),
+                                            AlignmentDirectional(-1.0, 0.0),
                                         child: Text(
                                           'About this event',
                                           style: FlutterFlowTheme.of(context)
@@ -1692,13 +1699,13 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 20.0, 0.0, 20.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   -1.0, -1.0),
                                               child: Text(
                                                 eventProfileEventsRecord
@@ -1716,10 +1723,10 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                               ),
                                             ),
                                             Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   -1.0, -1.0),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 0.0),
                                                 child: Text(
@@ -1788,11 +1795,11 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                             if ((eventProfileEventsRecord.participantType ==
                                     'University-wide') ||
                                 ((columnMembersRecord != null) &&
-                                    (columnMembersRecord.status ==
+                                    (columnMembersRecord?.status ==
                                         'Approved')))
                               StreamBuilder<List<EventAttendeesRecord>>(
                                 stream: queryEventAttendeesRecord(
-                                  parent: widget.eventRef,
+                                  parent: widget!.eventRef,
                                   queryBuilder: (eventAttendeesRecord) =>
                                       eventAttendeesRecord.where(
                                     'ticket_user',
@@ -1831,13 +1838,13 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                           'Approved')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 10.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets.all(5.0),
+                                                padding: EdgeInsets.all(5.0),
                                                 child: Container(
                                                   width: double.infinity,
                                                   decoration: BoxDecoration(
@@ -1857,7 +1864,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsets.all(10.0),
+                                                        EdgeInsets.all(10.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -1896,14 +1903,14 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                   child:
                                                                       Padding(
                                                                     padding:
-                                                                        const EdgeInsets.all(
+                                                                        EdgeInsets.all(
                                                                             2.0),
                                                                     child:
                                                                         ClipOval(
                                                                       child:
                                                                           Container(
                                                                         decoration:
-                                                                            const BoxDecoration(
+                                                                            BoxDecoration(
                                                                           shape:
                                                                               BoxShape.circle,
                                                                         ),
@@ -1930,7 +1937,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                               ),
                                                               Flexible(
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -1945,7 +1952,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                             .start,
                                                                     children: [
                                                                       Align(
-                                                                        alignment: const AlignmentDirectional(
+                                                                        alignment: AlignmentDirectional(
                                                                             -1.0,
                                                                             0.0),
                                                                         child:
@@ -1957,7 +1964,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                             children: [
                                                                               TextSpan(
                                                                                 text: valueOrDefault<String>(
-                                                                                  currentUserDocument?.name.firstName,
+                                                                                  currentUserDocument?.name?.firstName,
                                                                                   'Nichole',
                                                                                 ),
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1967,7 +1974,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                                       fontWeight: FontWeight.w600,
                                                                                     ),
                                                                               ),
-                                                                              const TextSpan(
+                                                                              TextSpan(
                                                                                 text: ', you are in!',
                                                                                 style: TextStyle(),
                                                                               )
@@ -1982,12 +1989,12 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                         ),
                                                                       ),
                                                                       Align(
-                                                                        alignment: const AlignmentDirectional(
+                                                                        alignment: AlignmentDirectional(
                                                                             -1.0,
                                                                             0.0),
                                                                         child:
                                                                             Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               5.0,
                                                                               0.0,
@@ -2051,7 +2058,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                     backgroundColor:
                                                                         Colors
                                                                             .transparent,
-                                                                    alignment: const AlignmentDirectional(
+                                                                    alignment: AlignmentDirectional(
                                                                             0.0,
                                                                             0.0)
                                                                         .resolve(
@@ -2079,14 +2086,14 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                             options:
                                                                 FFButtonOptions(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           16.0,
                                                                           0.0,
                                                                           16.0,
                                                                           0.0),
                                                               iconPadding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -2134,13 +2141,13 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                           'Pending')
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 10.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets.all(5.0),
+                                                padding: EdgeInsets.all(5.0),
                                                 child: Container(
                                                   width: double.infinity,
                                                   decoration: BoxDecoration(
@@ -2160,7 +2167,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsets.all(10.0),
+                                                        EdgeInsets.all(10.0),
                                                     child: Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
@@ -2179,7 +2186,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                             children: [
                                                               Flexible(
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -2194,7 +2201,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                             .start,
                                                                     children: [
                                                                       Align(
-                                                                        alignment: const AlignmentDirectional(
+                                                                        alignment: AlignmentDirectional(
                                                                             -1.0,
                                                                             0.0),
                                                                         child:
@@ -2206,7 +2213,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                             children: [
                                                                               TextSpan(
                                                                                 text: valueOrDefault<String>(
-                                                                                  currentUserDocument?.name.firstName,
+                                                                                  currentUserDocument?.name?.firstName,
                                                                                   'Nichole',
                                                                                 ),
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2216,7 +2223,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                                       fontWeight: FontWeight.w600,
                                                                                     ),
                                                                               ),
-                                                                              const TextSpan(
+                                                                              TextSpan(
                                                                                 text: ', your request is still being reviewed by the organization.',
                                                                                 style: TextStyle(),
                                                                               )
@@ -2231,12 +2238,12 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                         ),
                                                                       ),
                                                                       Align(
-                                                                        alignment: const AlignmentDirectional(
+                                                                        alignment: AlignmentDirectional(
                                                                             -1.0,
                                                                             0.0),
                                                                         child:
                                                                             Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               5.0,
                                                                               0.0,
@@ -2269,7 +2276,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                                     fontWeight: FontWeight.bold,
                                                                                   ),
                                                                                 ),
-                                                                                const TextSpan(
+                                                                                TextSpan(
                                                                                   text: '.',
                                                                                   style: TextStyle(),
                                                                                 )
@@ -2305,7 +2312,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                           ),
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         15.0,
                                                                         7.0,
@@ -2338,13 +2345,13 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                       if (!(columnEventAttendeesRecord != null))
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 10.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets.all(5.0),
+                                                padding: EdgeInsets.all(5.0),
                                                 child: Container(
                                                   width: double.infinity,
                                                   height: 49.0,
@@ -2365,7 +2372,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(10.0, 0.0,
                                                                 10.0, 0.0),
                                                     child: Row(
@@ -2378,7 +2385,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                         Expanded(
                                                           child: Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     -1.0, 0.0),
                                                             child: Text(
                                                               'Click the button to join the event.',
@@ -2403,13 +2410,13 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                 () async {
                                                               logFirebaseEvent(
                                                                   'EVENT_PROFILE_PAGE_JOIN_EVENT_BTN_ON_TAP');
-                                                              var shouldSetState =
+                                                              var _shouldSetState =
                                                                   false;
                                                               logFirebaseEvent(
                                                                   'Button_firestore_query');
                                                               _model.attendeesCount =
                                                                   await queryEventAttendeesRecordCount(
-                                                                parent: widget
+                                                                parent: widget!
                                                                     .eventRef,
                                                                 queryBuilder:
                                                                     (eventAttendeesRecord) =>
@@ -2420,7 +2427,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                       'Approved',
                                                                 ),
                                                               );
-                                                              shouldSetState =
+                                                              _shouldSetState =
                                                                   true;
                                                               if (_model
                                                                       .attendeesCount ==
@@ -2443,7 +2450,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                       backgroundColor:
                                                                           Colors
                                                                               .transparent,
-                                                                      alignment: const AlignmentDirectional(
+                                                                      alignment: AlignmentDirectional(
                                                                               0.0,
                                                                               0.0)
                                                                           .resolve(
@@ -2455,7 +2462,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                           onTap: () =>
                                                                               FocusScope.of(dialogContext).unfocus(),
                                                                           child:
-                                                                              const FailedDialogBoxWidget(
+                                                                              FailedDialogBoxWidget(
                                                                             failedDialogTitle:
                                                                                 'Slot Unavailable',
                                                                             failedDialogMeesage:
@@ -2467,10 +2474,9 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                   },
                                                                 );
 
-                                                                if (shouldSetState) {
+                                                                if (_shouldSetState)
                                                                   safeSetState(
                                                                       () {});
-                                                                }
                                                                 return;
                                                               } else {
                                                                 logFirebaseEvent(
@@ -2489,7 +2495,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                       backgroundColor:
                                                                           Colors
                                                                               .transparent,
-                                                                      alignment: const AlignmentDirectional(
+                                                                      alignment: AlignmentDirectional(
                                                                               0.0,
                                                                               0.0)
                                                                           .resolve(
@@ -2501,7 +2507,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                           onTap: () =>
                                                                               FocusScope.of(dialogContext).unfocus(),
                                                                           child:
-                                                                              const ConfirmDialogBoxWidget(
+                                                                              ConfirmDialogBoxWidget(
                                                                             confirmDialogTitle:
                                                                                 'Join Event',
                                                                             confirmDialogMeesage:
@@ -2516,7 +2522,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                         _model.confirmDialog =
                                                                             value));
 
-                                                                shouldSetState =
+                                                                _shouldSetState =
                                                                     true;
                                                                 if (_model
                                                                     .confirmDialog!) {
@@ -2524,7 +2530,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                       'Button_backend_call');
 
                                                                   await EventAttendeesRecord.createDoc(
-                                                                          widget
+                                                                          widget!
                                                                               .eventRef!)
                                                                       .set({
                                                                     ...createEventAttendeesRecordData(
@@ -2593,7 +2599,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                         backgroundColor:
                                                                             Colors.transparent,
                                                                         alignment:
-                                                                            const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                            AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                         child:
                                                                             WebViewAware(
                                                                           child:
@@ -2601,7 +2607,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                             onTap: () =>
                                                                                 FocusScope.of(dialogContext).unfocus(),
                                                                             child:
-                                                                                const InformationDialogBoxWidget(
+                                                                                InformationDialogBoxWidget(
                                                                               infoDialogTitle: 'Join Request Submitted',
                                                                               infoDialogMeesage: 'Your request has been submitted. Please wait for the organizer to accept your request.',
                                                                             ),
@@ -2611,37 +2617,34 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                                                     },
                                                                   );
 
-                                                                  if (shouldSetState) {
+                                                                  if (_shouldSetState)
                                                                     safeSetState(
                                                                         () {});
-                                                                  }
                                                                   return;
                                                                 } else {
-                                                                  if (shouldSetState) {
+                                                                  if (_shouldSetState)
                                                                     safeSetState(
                                                                         () {});
-                                                                  }
                                                                   return;
                                                                 }
                                                               }
 
-                                                              if (shouldSetState) {
+                                                              if (_shouldSetState)
                                                                 safeSetState(
                                                                     () {});
-                                                              }
                                                             },
                                                             text: 'Join Event',
                                                             options:
                                                                 FFButtonOptions(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           16.0,
                                                                           0.0,
                                                                           16.0,
                                                                           0.0),
                                                               iconPadding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -2695,13 +2698,13 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                 (eventProfileEventsRecord.participantType !=
                                     'University-wide'))
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 10.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.all(5.0),
+                                      padding: EdgeInsets.all(5.0),
                                       child: Container(
                                         width: double.infinity,
                                         height: 60.0,
@@ -2718,7 +2721,7 @@ class _EventProfileWidgetState extends State<EventProfileWidget>
                                         ),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 0.0, 10.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,

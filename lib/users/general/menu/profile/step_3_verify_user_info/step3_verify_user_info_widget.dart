@@ -17,12 +17,18 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'step3_verify_user_info_model.dart';
@@ -61,19 +67,19 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
     _model.idNumberFocusNode ??= FocusNode();
 
     _model.firstNameFieldTextController ??=
-        TextEditingController(text: currentUserDocument?.name.firstName);
+        TextEditingController(text: currentUserDocument?.name?.firstName);
     _model.firstNameFieldFocusNode ??= FocusNode();
 
     _model.middleNameFieldTextController ??=
-        TextEditingController(text: currentUserDocument?.name.middleName);
+        TextEditingController(text: currentUserDocument?.name?.middleName);
     _model.middleNameFieldFocusNode ??= FocusNode();
 
     _model.lastNameFieldTextController ??=
-        TextEditingController(text: currentUserDocument?.name.lastName);
+        TextEditingController(text: currentUserDocument?.name?.lastName);
     _model.lastNameFieldFocusNode ??= FocusNode();
 
     _model.suffixFieldTextController ??=
-        TextEditingController(text: currentUserDocument?.name.suffixName);
+        TextEditingController(text: currentUserDocument?.name?.suffixName);
     _model.suffixFieldFocusNode ??= FocusNode();
 
     _model.phoneNumberFieldTextController ??=
@@ -81,15 +87,15 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
     _model.phoneNumberFieldFocusNode ??= FocusNode();
 
     _model.numberAddressFieldTextController ??=
-        TextEditingController(text: currentUserDocument?.address.houseNumber);
+        TextEditingController(text: currentUserDocument?.address?.houseNumber);
     _model.numberAddressFieldFocusNode ??= FocusNode();
 
     _model.streetAddressFieldTextController ??=
-        TextEditingController(text: currentUserDocument?.address.street);
+        TextEditingController(text: currentUserDocument?.address?.street);
     _model.streetAddressFieldFocusNode ??= FocusNode();
 
     _model.sectionFieldTextController ??=
-        TextEditingController(text: currentUserDocument?.student.section);
+        TextEditingController(text: currentUserDocument?.student?.section);
     _model.sectionFieldFocusNode ??= FocusNode();
 
     animationsMap.addAll({
@@ -101,7 +107,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 1400.0.ms,
-            color: const Color(0xFF35408E),
+            color: Color(0xFF35408E),
             angle: 0.576,
           ),
         ],
@@ -130,30 +136,30 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
         body: SafeArea(
           top: true,
           child: Align(
-            alignment: const AlignmentDirectional(0.0, -1.0),
+            alignment: AlignmentDirectional(0.0, -1.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                   child: wrapWithModel(
                     model: _model.titleHeaderComponentModel,
                     updateCallback: () => safeSetState(() {}),
-                    child: const TitleHeaderComponentWidget(
+                    child: TitleHeaderComponentWidget(
                       titleText: 'Verify your account',
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 10.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -163,7 +169,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 10.0, 0.0),
                                     child: Text(
                                       'Step 3',
@@ -193,7 +199,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                 ],
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: Text(
                                   'Lastly, please review and verify all your information here to ensure everything is accurate.',
@@ -209,7 +215,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -230,7 +236,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 0.0, 0.0),
                                         child: Container(
                                           width: double.infinity,
@@ -246,7 +252,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 0.0, 0.0),
                                         child: Container(
                                           width: double.infinity,
@@ -283,34 +289,34 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                 Expanded(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
+                          Container(
                             width: double.infinity,
                             child: Form(
                               key: _model.formKey,
                               autovalidateMode: AutovalidateMode.disabled,
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 20.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 2.0, 0.0, 0.0),
                                       child: Container(
                                         width: 90.0,
                                         height: 87.0,
-                                        decoration: const BoxDecoration(),
+                                        decoration: BoxDecoration(),
                                         child: Stack(
                                           children: [
                                             Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: AuthUserStreamWidget(
                                                 builder: (context) => InkWell(
@@ -338,6 +344,8 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                             valueOrDefault<
                                                                 String>(
                                                               _model.uploadedFileUrl !=
+                                                                          null &&
+                                                                      _model.uploadedFileUrl !=
                                                                           ''
                                                                   ? _model
                                                                       .uploadedFileUrl
@@ -350,6 +358,8 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                           tag: valueOrDefault<
                                                               String>(
                                                             _model.uploadedFileUrl !=
+                                                                        null &&
+                                                                    _model.uploadedFileUrl !=
                                                                         ''
                                                                 ? _model
                                                                     .uploadedFileUrl
@@ -365,6 +375,8 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                   child: Hero(
                                                     tag: valueOrDefault<String>(
                                                       _model.uploadedFileUrl !=
+                                                                  null &&
+                                                              _model.uploadedFileUrl !=
                                                                   ''
                                                           ? _model
                                                               .uploadedFileUrl
@@ -378,12 +390,14 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                       height: 90.0,
                                                       clipBehavior:
                                                           Clip.antiAlias,
-                                                      decoration: const BoxDecoration(
+                                                      decoration: BoxDecoration(
                                                         shape: BoxShape.circle,
                                                       ),
                                                       child: Image.network(
                                                         valueOrDefault<String>(
                                                           _model.uploadedFileUrl !=
+                                                                      null &&
+                                                                  _model.uploadedFileUrl !=
                                                                       ''
                                                               ? _model
                                                                   .uploadedFileUrl
@@ -398,7 +412,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                               ),
                                             ),
                                             Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   1.0, 1.0),
                                               child: FlutterFlowIconButton(
                                                 borderColor: Colors.transparent,
@@ -499,6 +513,8 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                   }
 
                                                   if (_model.uploadedFileUrl !=
+                                                          null &&
+                                                      _model.uploadedFileUrl !=
                                                           '') {
                                                     logFirebaseEvent(
                                                         'IconButton_backend_call');
@@ -526,9 +542,9 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                           (alertDialogContext) {
                                                         return WebViewAware(
                                                           child: AlertDialog(
-                                                            title: const Text(
+                                                            title: Text(
                                                                 'Profile Picture'),
-                                                            content: const Text(
+                                                            content: Text(
                                                                 'Your profile picture has been updated!'),
                                                             actions: [
                                                               TextButton(
@@ -536,7 +552,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                                     Navigator.pop(
                                                                         alertDialogContext),
                                                                 child:
-                                                                    const Text('Ok'),
+                                                                    Text('Ok'),
                                                               ),
                                                             ],
                                                           ),
@@ -552,7 +568,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           10.0, 5.0, 0.0, 0.0),
                                       child: Text(
                                         'Once submitted, you cannot change your profile picture or any details declared below anymore. Make sure to use a photo that clearly shows yourself.',
@@ -571,7 +587,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 20.0, 0.0, 0.0),
                                       child: AuthUserStreamWidget(
                                         builder: (context) => TextFormField(
@@ -659,7 +675,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 20.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -679,7 +695,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: AuthUserStreamWidget(
                                         builder: (context) => TextFormField(
@@ -760,7 +776,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: AuthUserStreamWidget(
                                         builder: (context) => TextFormField(
@@ -841,7 +857,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: AuthUserStreamWidget(
                                         builder: (context) => TextFormField(
@@ -922,7 +938,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 15.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -1037,7 +1053,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                               ?.civilStatus,
                                                           ''),
                                                 ),
-                                                options: const [
+                                                options: [
                                                   'Single',
                                                   'Married',
                                                   'Widowed',
@@ -1094,7 +1110,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                         .textBoxBorder,
                                                 borderWidth: 0.5,
                                                 borderRadius: 8.0,
-                                                margin: const EdgeInsetsDirectional
+                                                margin: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         16.0, 4.0, 16.0, 4.0),
                                                 hidesUnderline: true,
@@ -1104,11 +1120,11 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                               ),
                                             ),
                                           ),
-                                        ].divide(const SizedBox(width: 10.0)),
+                                        ].divide(SizedBox(width: 10.0)),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 15.0, 0.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -1138,7 +1154,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   15.0,
                                                                   0.0,
@@ -1162,7 +1178,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                 ),
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: Row(
                                                     mainAxisSize:
@@ -1173,7 +1189,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1257,7 +1273,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 0.0),
                                             child: AuthUserStreamWidget(
                                               builder: (context) =>
@@ -1368,7 +1384,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                       ],
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 12.0, 0.0, 0.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
@@ -1380,7 +1396,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                               'STEP_3_VERIFY_USER_INFO_birthdate_picker');
                                           logFirebaseEvent(
                                               'birthdate_picker_date_time_picker');
-                                          final datePickedDate =
+                                          final _datePickedDate =
                                               await showDatePicker(
                                             context: context,
                                             initialDate: DateTime
@@ -1435,12 +1451,12 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                             },
                                           );
 
-                                          if (datePickedDate != null) {
+                                          if (_datePickedDate != null) {
                                             safeSetState(() {
                                               _model.datePicked = DateTime(
-                                                datePickedDate.year,
-                                                datePickedDate.month,
-                                                datePickedDate.day,
+                                                _datePickedDate.year,
+                                                _datePickedDate.month,
+                                                _datePickedDate.day,
                                               );
                                             });
                                           }
@@ -1469,7 +1485,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(10.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: AuthUserStreamWidget(
@@ -1503,7 +1519,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 10.0, 0.0),
                                                     child: Icon(
@@ -1528,7 +1544,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 0.0),
                                             child: AuthUserStreamWidget(
                                               builder: (context) =>
@@ -1630,7 +1646,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                         Expanded(
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 0.0),
                                             child: AuthUserStreamWidget(
                                               builder: (context) =>
@@ -1729,10 +1745,10 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                             ),
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 10.0)),
+                                      ].divide(SizedBox(width: 10.0)),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: FutureBuilder<ApiCallResponse>(
                                         future: AddressGroup.getProvincesCall
@@ -1825,7 +1841,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                             borderWidth: 0.5,
                                             borderRadius: 8.0,
                                             margin:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 4.0, 16.0, 4.0),
                                             hidesUnderline: true,
                                             isOverButton: true,
@@ -1838,7 +1854,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                     if (_model.provincesDropdownValue != null &&
                                         _model.provincesDropdownValue != '')
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 0.0),
                                         child: AuthUserStreamWidget(
                                           builder: (context) =>
@@ -1853,7 +1869,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                       ? _model
                                                           .provincesDropdownValue
                                                       : currentUserDocument
-                                                          ?.address.province,
+                                                          ?.address?.province,
                                             ),
                                             builder: (context, snapshot) {
                                               // Customize what your widget looks like when it's loading.
@@ -1947,7 +1963,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                         .textBoxBorder,
                                                 borderWidth: 0.5,
                                                 borderRadius: 8.0,
-                                                margin: const EdgeInsetsDirectional
+                                                margin: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         16.0, 4.0, 16.0, 4.0),
                                                 hidesUnderline: true,
@@ -1962,7 +1978,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                     if (_model.cityDropdownValue != null &&
                                         _model.cityDropdownValue != '')
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 0.0),
                                         child: AuthUserStreamWidget(
                                           builder: (context) =>
@@ -1976,7 +1992,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                           ''
                                                   ? _model.cityDropdownValue
                                                   : currentUserDocument
-                                                      ?.address.city,
+                                                      ?.address?.city,
                                             ),
                                             builder: (context, snapshot) {
                                               // Customize what your widget looks like when it's loading.
@@ -2070,7 +2086,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                         .textBoxBorder,
                                                 borderWidth: 0.5,
                                                 borderRadius: 8.0,
-                                                margin: const EdgeInsetsDirectional
+                                                margin: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         16.0, 4.0, 16.0, 4.0),
                                                 hidesUnderline: true,
@@ -2083,7 +2099,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                         ),
                                       ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 20.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -2116,7 +2132,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 10.0,
                                                                 0.0, 0.0),
                                                     child: StreamBuilder<
@@ -2253,7 +2269,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                           borderWidth: 0.5,
                                                           borderRadius: 8.0,
                                                           margin:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       16.0,
                                                                       4.0,
@@ -2273,7 +2289,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                           '')
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   10.0,
@@ -2423,7 +2439,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                             borderWidth: 0.5,
                                                             borderRadius: 8.0,
                                                             margin:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         16.0,
                                                                         4.0,
@@ -2441,7 +2457,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                     ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 10.0,
                                                                 0.0, 0.0),
                                                     child: TextFormField(
@@ -2553,7 +2569,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 0.0),
                                                 child: AuthUserStreamWidget(
@@ -2669,7 +2685,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                         borderWidth: 0.5,
                                                         borderRadius: 8.0,
                                                         margin:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     16.0,
                                                                     4.0,
@@ -2685,9 +2701,9 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                 ),
                                               ),
                                               Container(
-                                                decoration: const BoxDecoration(),
+                                                decoration: BoxDecoration(),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 0.0),
                                                   child: AuthUserStreamWidget(
@@ -2701,9 +2717,9 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                         _model.honorificsValue ??=
                                                             currentUserDocument
                                                                 ?.student
-                                                                .honorifics,
+                                                                ?.honorifics,
                                                       ),
-                                                      options: const [
+                                                      options: [
                                                         'Ar.',
                                                         'Atty.',
                                                         'Dr.',
@@ -2776,7 +2792,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                       borderWidth: 0.5,
                                                       borderRadius: 8.0,
                                                       margin:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   16.0,
                                                                   4.0,
@@ -2801,7 +2817,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     10.0,
@@ -2850,7 +2866,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                                 _model.empSchoolDropdownValue ??=
                                                                     currentUserDocument
                                                                         ?.student
-                                                                        .school
+                                                                        ?.school
                                                                         ?.id,
                                                               ),
                                                               options: List<
@@ -2947,7 +2963,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                               borderWidth: 0.5,
                                                               borderRadius: 8.0,
                                                               margin:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           16.0,
                                                                           4.0,
@@ -2973,7 +2989,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                               'Dean'))
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       10.0,
@@ -3126,7 +3142,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                                     0.5,
                                                                 borderRadius:
                                                                     8.0,
-                                                                margin: const EdgeInsetsDirectional
+                                                                margin: EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         16.0,
                                                                         4.0,
@@ -3154,7 +3170,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                     ),
                                     Builder(
                                       builder: (context) => Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 15.0, 0.0, 10.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
@@ -3183,7 +3199,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                               .primaryText,
                                                     ),
                                                   ),
-                                                  duration: const Duration(
+                                                  duration: Duration(
                                                       milliseconds: 4000),
                                                   backgroundColor:
                                                       FlutterFlowTheme.of(
@@ -3207,7 +3223,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                               .primaryText,
                                                     ),
                                                   ),
-                                                  duration: const Duration(
+                                                  duration: Duration(
                                                       milliseconds: 4000),
                                                   backgroundColor:
                                                       FlutterFlowTheme.of(
@@ -3228,7 +3244,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                   backgroundColor:
                                                       Colors.transparent,
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                               0.0, 0.0)
                                                           .resolve(
                                                               Directionality.of(
@@ -3240,7 +3256,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                                   dialogContext)
                                                               .unfocus(),
                                                       child:
-                                                          const ConfirmDialogBoxWidget(
+                                                          ConfirmDialogBoxWidget(
                                                         confirmDialogTitle:
                                                             'Update User',
                                                         confirmDialogMeesage:
@@ -3262,6 +3278,8 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                 photoUrl:
                                                     valueOrDefault<String>(
                                                   _model.uploadedFileUrl !=
+                                                              null &&
+                                                          _model.uploadedFileUrl !=
                                                               ''
                                                       ? _model.uploadedFileUrl
                                                       : currentUserPhoto,
@@ -3274,7 +3292,9 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                     .civilStatusDropdownValue,
                                                 sex: _model.sexRadioButtonValue,
                                                 birthDate:
-                                                    _model.datePicked ?? currentUserDocument
+                                                    _model.datePicked != null
+                                                        ? _model.datePicked
+                                                        : currentUserDocument
                                                             ?.birthDate,
                                                 address: createAddressStruct(
                                                   houseNumber: _model
@@ -3290,14 +3310,14 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                       ? _model
                                                           .barangayDropdownValue
                                                       : currentUserDocument
-                                                          ?.address.barangay,
+                                                          ?.address?.barangay,
                                                   city: _model.cityDropdownValue !=
                                                               null &&
                                                           _model.cityDropdownValue !=
                                                               ''
                                                       ? _model.cityDropdownValue
                                                       : currentUserDocument
-                                                          ?.address.city,
+                                                          ?.address?.city,
                                                   province: _model.provincesDropdownValue !=
                                                               null &&
                                                           _model.provincesDropdownValue !=
@@ -3305,7 +3325,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                       ? _model
                                                           .provincesDropdownValue
                                                       : currentUserDocument
-                                                          ?.address.province,
+                                                          ?.address?.province,
                                                   clearUnsetFields: false,
                                                 ),
                                                 displayName:
@@ -3341,7 +3361,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                               .honorificsValue
                                                           : currentUserDocument
                                                               ?.student
-                                                              .honorifics,
+                                                              ?.honorifics,
                                                   clearUnsetFields: false,
                                                 ),
                                                 role: _model.roleDropdownValue !=
@@ -3359,7 +3379,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                 nfcTag:
                                                     FFAppState().scannedNFCTag,
                                                 nfcESignature:
-                                                    widget.signaturePath,
+                                                    widget!.signaturePath,
                                                 settings:
                                                     createUserSettingsStruct(
                                                   isVerified: true,
@@ -3378,7 +3398,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
@@ -3390,7 +3410,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                                     dialogContext)
                                                                 .unfocus(),
                                                         child:
-                                                            const CongratulationsDialogBoxWidget(
+                                                            CongratulationsDialogBoxWidget(
                                                           congratsDialogTitle:
                                                               'User Verified',
                                                           congratsDialogMeesage:
@@ -3464,7 +3484,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                     backgroundColor:
                                                         Colors.transparent,
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                                 0.0, 0.0)
                                                             .resolve(
                                                                 Directionality.of(
@@ -3476,7 +3496,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                                     dialogContext)
                                                                 .unfocus(),
                                                         child:
-                                                            const InformationDialogBoxWidget(
+                                                            InformationDialogBoxWidget(
                                                           infoDialogTitle:
                                                               'Action Cancelled',
                                                           infoDialogMeesage:
@@ -3509,10 +3529,10 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                             width: double.infinity,
                                             height: 50.0,
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             iconPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
@@ -3528,7 +3548,7 @@ class _Step3VerifyUserInfoWidgetState extends State<Step3VerifyUserInfoWidget>
                                                           FontWeight.w500,
                                                     ),
                                             elevation: 3.0,
-                                            borderSide: const BorderSide(
+                                            borderSide: BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
                                             ),

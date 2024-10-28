@@ -1,13 +1,17 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/components/dialog_box/confirm_dialog_box/confirm_dialog_box_widget.dart';
 import '/components/widgets/user_header_component/user_header_component_widget.dart';
 import '/components/widgets/user_nav_bar_component/user_nav_bar_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'menu_model.dart';
@@ -74,9 +78,9 @@ class _MenuWidgetState extends State<MenuWidget> {
           child: Stack(
             children: [
               Align(
-                alignment: const AlignmentDirectional(0.0, -1.0),
+                alignment: AlignmentDirectional(0.0, -1.0),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 100.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 100.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -85,10 +89,10 @@ class _MenuWidgetState extends State<MenuWidget> {
                       wrapWithModel(
                         model: _model.userHeaderComponentModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: const UserHeaderComponentWidget(),
+                        child: UserHeaderComponentWidget(),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 10.0, 20.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
@@ -118,7 +122,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 20.0, 20.0, 0.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
@@ -132,7 +136,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                             context.pushNamed(
                               'profile',
                               extra: <String, dynamic>{
-                                kTransitionInfoKey: const TransitionInfo(
+                                kTransitionInfoKey: TransitionInfo(
                                   hasTransition: true,
                                   transitionType: PageTransitionType.fade,
                                   duration: Duration(milliseconds: 0),
@@ -162,12 +166,12 @@ class _MenuWidgetState extends State<MenuWidget> {
                                           ),
                                         ),
                                         child: Padding(
-                                          padding: const EdgeInsets.all(2.0),
+                                          padding: EdgeInsets.all(2.0),
                                           child: ClipOval(
                                             child: Container(
                                               width: 45.0,
                                               height: 45.0,
-                                              decoration: const BoxDecoration(
+                                              decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
                                               ),
                                               child: AuthUserStreamWidget(
@@ -189,7 +193,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                     ),
                                     Flexible(
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -202,7 +206,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                 Flexible(
                                                   child: AuthUserStreamWidget(
                                                     builder: (context) => Text(
-                                                      '${currentUserDocument?.student.honorifics != null && currentUserDocument?.student.honorifics != '' ? '${currentUserDocument?.student.honorifics} ' : ''}${currentUserDocument?.name.firstName} ${currentUserDocument?.name.lastName}',
+                                                      '${currentUserDocument?.student?.honorifics != null && currentUserDocument?.student?.honorifics != '' ? '${currentUserDocument?.student?.honorifics} ' : ''}${currentUserDocument?.name?.firstName} ${currentUserDocument?.name?.lastName}',
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium
@@ -219,12 +223,12 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                 ),
                                                 if (valueOrDefault<bool>(
                                                   currentUserDocument
-                                                      ?.settings.isVerified,
+                                                      ?.settings?.isVerified,
                                                   false,
                                                 ))
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(2.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: AuthUserStreamWidget(
@@ -279,7 +283,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 20.0, 0.0, 0.0),
                           child: SingleChildScrollView(
                             child: Column(
@@ -290,7 +294,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           20.0, 0.0, 20.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -310,13 +314,13 @@ class _MenuWidgetState extends State<MenuWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 5.0, 10.0, 0.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 10.0),
                                                   child: InkWell(
@@ -339,7 +343,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                         extra: <String,
                                                             dynamic>{
                                                           kTransitionInfoKey:
-                                                              const TransitionInfo(
+                                                              TransitionInfo(
                                                             hasTransition: true,
                                                             transitionType:
                                                                 PageTransitionType
@@ -364,7 +368,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -381,14 +385,14 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
                                                                           0.0,
                                                                           0.0),
                                                               child: Text(
-                                                                'My Organization',
+                                                                'Organizations',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -416,7 +420,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 10.0),
                                                   child: InkWell(
@@ -439,7 +443,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                         extra: <String,
                                                             dynamic>{
                                                           kTransitionInfoKey:
-                                                              const TransitionInfo(
+                                                              TransitionInfo(
                                                             hasTransition: true,
                                                             transitionType:
                                                                 PageTransitionType
@@ -464,15 +468,15 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           10.0,
                                                                           0.0),
                                                               child: Icon(
-                                                                FFIcons
-                                                                    .kfolderOpen,
+                                                                Icons
+                                                                    .file_open_outlined,
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .accent4,
@@ -481,7 +485,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -516,7 +520,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 10.0),
                                                   child: InkWell(
@@ -550,7 +554,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -566,7 +570,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -630,10 +634,12 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                         .toResourcesManagement ||
                                                     currentUserDocument!
                                                         .settings
-                                                        .toUserManagement)
+                                                        .toUserManagement ||
+                                                    currentUserDocument!
+                                                        .settings.toReports)
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 10.0,
                                                                 0.0, 10.0),
                                                     child: AuthUserStreamWidget(
@@ -658,7 +664,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                             extra: <String,
                                                                 dynamic>{
                                                               kTransitionInfoKey:
-                                                                  const TransitionInfo(
+                                                                  TransitionInfo(
                                                                 hasTransition:
                                                                     true,
                                                                 transitionType:
@@ -684,7 +690,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                                       .max,
                                                               children: [
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -700,7 +706,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                                   ),
                                                                 ),
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -743,7 +749,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           20.0, 15.0, 20.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -763,13 +769,13 @@ class _MenuWidgetState extends State<MenuWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 5.0, 10.0, 0.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 10.0),
                                                   child: InkWell(
@@ -792,7 +798,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                         extra: <String,
                                                             dynamic>{
                                                           kTransitionInfoKey:
-                                                              const TransitionInfo(
+                                                              TransitionInfo(
                                                             hasTransition: true,
                                                             transitionType:
                                                                 PageTransitionType
@@ -817,7 +823,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -834,7 +840,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -869,7 +875,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 10.0),
                                                   child: InkWell(
@@ -892,7 +898,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                         extra: <String,
                                                             dynamic>{
                                                           kTransitionInfoKey:
-                                                              const TransitionInfo(
+                                                              TransitionInfo(
                                                             hasTransition: true,
                                                             transitionType:
                                                                 PageTransitionType
@@ -917,7 +923,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -934,7 +940,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -969,7 +975,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 10.0),
                                                   child: InkWell(
@@ -992,7 +998,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                         extra: <String,
                                                             dynamic>{
                                                           kTransitionInfoKey:
-                                                              const TransitionInfo(
+                                                              TransitionInfo(
                                                             hasTransition: true,
                                                             transitionType:
                                                                 PageTransitionType
@@ -1017,7 +1023,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1034,7 +1040,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -1069,7 +1075,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 10.0),
                                                   child: InkWell(
@@ -1092,7 +1098,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                         extra: <String,
                                                             dynamic>{
                                                           kTransitionInfoKey:
-                                                              const TransitionInfo(
+                                                              TransitionInfo(
                                                             hasTransition: true,
                                                             transitionType:
                                                                 PageTransitionType
@@ -1117,7 +1123,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1134,7 +1140,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -1169,7 +1175,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 10.0),
                                                   child: InkWell(
@@ -1192,7 +1198,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                         extra: <String,
                                                             dynamic>{
                                                           kTransitionInfoKey:
-                                                              const TransitionInfo(
+                                                              TransitionInfo(
                                                             hasTransition: true,
                                                             transitionType:
                                                                 PageTransitionType
@@ -1217,7 +1223,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1234,7 +1240,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -1269,7 +1275,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 10.0),
                                                   child: InkWell(
@@ -1292,7 +1298,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                         extra: <String,
                                                             dynamic>{
                                                           kTransitionInfoKey:
-                                                              const TransitionInfo(
+                                                              TransitionInfo(
                                                             hasTransition: true,
                                                             transitionType:
                                                                 PageTransitionType
@@ -1317,7 +1323,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1334,7 +1340,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -1371,7 +1377,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                 Builder(
                                                   builder: (context) => Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 10.0,
                                                                 0.0, 10.0),
                                                     child: InkWell(
@@ -1386,7 +1392,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                       onTap: () async {
                                                         logFirebaseEvent(
                                                             'MENU_PAGE_Row_m2jp70rs_ON_TAP');
-                                                        var shouldSetState =
+                                                        var _shouldSetState =
                                                             false;
                                                         logFirebaseEvent(
                                                             'Row_alert_dialog');
@@ -1402,7 +1408,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                               backgroundColor:
                                                                   Colors
                                                                       .transparent,
-                                                              alignment: const AlignmentDirectional(
+                                                              alignment: AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
@@ -1416,7 +1422,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                                               dialogContext)
                                                                           .unfocus(),
                                                                   child:
-                                                                      const ConfirmDialogBoxWidget(
+                                                                      ConfirmDialogBoxWidget(
                                                                     confirmDialogTitle:
                                                                         'Logout',
                                                                     confirmDialogMeesage:
@@ -1431,7 +1437,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                                 _model.logoutConfirm =
                                                                     value));
 
-                                                        shouldSetState = true;
+                                                        _shouldSetState = true;
                                                         if (_model
                                                             .logoutConfirm!) {
                                                           logFirebaseEvent(
@@ -1460,20 +1466,17 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                               'auth_logout',
                                                               context.mounted);
 
-                                                          if (shouldSetState) {
+                                                          if (_shouldSetState)
                                                             safeSetState(() {});
-                                                          }
                                                           return;
                                                         } else {
-                                                          if (shouldSetState) {
+                                                          if (_shouldSetState)
                                                             safeSetState(() {});
-                                                          }
                                                           return;
                                                         }
 
-                                                        if (shouldSetState) {
+                                                        if (_shouldSetState)
                                                           safeSetState(() {});
-                                                        }
                                                       },
                                                       child: Row(
                                                         mainAxisSize:
@@ -1489,7 +1492,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1506,7 +1509,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             5.0,
                                                                             0.0,
@@ -1537,7 +1540,7 @@ class _MenuWidgetState extends State<MenuWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 20.0, 0.0, 0.0),
                                                   child: Text(
@@ -1571,11 +1574,11 @@ class _MenuWidgetState extends State<MenuWidget> {
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(0.0, 1.0),
+                alignment: AlignmentDirectional(0.0, 1.0),
                 child: wrapWithModel(
                   model: _model.userNavBarComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const UserNavBarComponentWidget(
+                  child: UserNavBarComponentWidget(
                     selectedPageIndex: 4,
                   ),
                 ),

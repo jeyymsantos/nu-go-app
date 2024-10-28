@@ -2,10 +2,12 @@ import '/backend/backend.dart';
 import '/components/widgets/empty_list/empty_list_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/users/rsco/event_management/event_profile/components/side_bar_event_profile/side_bar_event_profile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'event_checked_in_model.dart';
@@ -60,7 +62,7 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
 
     return StreamBuilder<List<EventAttendeesRecord>>(
       stream: queryEventAttendeesRecord(
-        parent: widget.eventDoc?.reference,
+        parent: widget!.eventDoc?.reference,
         queryBuilder: (eventAttendeesRecord) => eventAttendeesRecord
             .where(
               'ticket_status',
@@ -93,7 +95,7 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            drawer: SizedBox(
+            drawer: Container(
               width: 250.0,
               child: Drawer(
                 elevation: 16.0,
@@ -102,7 +104,7 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
                     model: _model.sideBarEventProfileModel,
                     updateCallback: () => safeSetState(() {}),
                     child: SideBarEventProfileWidget(
-                      eventDoc: widget.eventDoc!,
+                      eventDoc: widget!.eventDoc!,
                     ),
                   ),
                 ),
@@ -113,32 +115,32 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Align(
-                  alignment: const AlignmentDirectional(0.0, -1.0),
+                  alignment: AlignmentDirectional(0.0, -1.0),
                   child: Container(
                     width: double.infinity,
                     height: 170.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primary,
-                      borderRadius: const BorderRadius.only(
+                      borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(30.0),
                         bottomRight: Radius.circular(30.0),
                         topLeft: Radius.circular(0.0),
                         topRight: Radius.circular(0.0),
                       ),
                     ),
-                    child: SizedBox(
+                    child: Container(
                       height: 190.0,
                       child: Stack(
-                        alignment: const AlignmentDirectional(0.0, -1.0),
+                        alignment: AlignmentDirectional(0.0, -1.0),
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 20.0, 20.0, 20.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 30.0, 0.0, 20.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -168,7 +170,7 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
                                     'Checked In Guests',
                                     style: FlutterFlowTheme.of(context)
@@ -184,7 +186,7 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
                                     'View all checked in guests',
                                     style: FlutterFlowTheme.of(context)
@@ -203,9 +205,9 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.0, 1.25),
+                            alignment: AlignmentDirectional(0.0, 1.25),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   30.0, 0.0, 30.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -226,12 +228,12 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
                                         'event_profile_insights',
                                         queryParameters: {
                                           'eventDoc': serializeParam(
-                                            widget.eventDoc,
+                                            widget!.eventDoc,
                                             ParamType.Document,
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          'eventDoc': widget.eventDoc,
+                                          'eventDoc': widget!.eventDoc,
                                         },
                                       );
                                     },
@@ -243,7 +245,7 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
                                             BorderRadius.circular(20.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -251,7 +253,7 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Icon(
                                                 Icons.insights_sharp,
@@ -293,23 +295,23 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
                                         'event_profile_dashboard',
                                         queryParameters: {
                                           'eventDoc': serializeParam(
-                                            widget.eventDoc,
+                                            widget!.eventDoc,
                                             ParamType.Document,
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          'eventDoc': widget.eventDoc,
+                                          'eventDoc': widget!.eventDoc,
                                         },
                                       );
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0xFFF99F58),
+                                        color: Color(0xFFF99F58),
                                         borderRadius:
                                             BorderRadius.circular(20.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -317,7 +319,7 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Icon(
                                                 FFIcons.khome,
@@ -359,23 +361,23 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
                                         'event_guests_all',
                                         queryParameters: {
                                           'eventDoc': serializeParam(
-                                            widget.eventDoc,
+                                            widget!.eventDoc,
                                             ParamType.Document,
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          'eventDoc': widget.eventDoc,
+                                          'eventDoc': widget!.eventDoc,
                                         },
                                       );
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0xFF599AFF),
+                                        color: Color(0xFF599AFF),
                                         borderRadius:
                                             BorderRadius.circular(20.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -383,7 +385,7 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Icon(
                                                 FFIcons.kuserTag,
@@ -423,20 +425,20 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
                 Expanded(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 20.0, 20.0, 0.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Align(
-                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
                                     'Guest List',
                                     style: FlutterFlowTheme.of(context)
@@ -453,7 +455,7 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 30.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
@@ -471,7 +473,7 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
                                                 (e.ticketCheckOut == null))
                                             .toList();
                                     if (checkedInGuests.isEmpty) {
-                                      return const EmptyListWidget(
+                                      return EmptyListWidget(
                                         emptyWhat: 'check ins',
                                       );
                                     }
@@ -483,7 +485,7 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
                                       scrollDirection: Axis.vertical,
                                       itemCount: checkedInGuests.length,
                                       separatorBuilder: (_, __) =>
-                                          const SizedBox(height: 5.0),
+                                          SizedBox(height: 5.0),
                                       itemBuilder:
                                           (context, checkedInGuestsIndex) {
                                         final checkedInGuestsItem =
@@ -491,7 +493,7 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
                                                 checkedInGuestsIndex];
                                         return Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   20.0, 0.0, 20.0, 0.0),
                                           child: FutureBuilder<UsersRecord>(
                                             future: UsersRecord.getDocumentOnce(
@@ -534,7 +536,7 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
                                                   ),
                                                 ),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 5.0, 0.0, 5.0),
                                                   child: Row(
@@ -547,7 +549,7 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
                                                       Flexible(
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -560,7 +562,7 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             5.0,
                                                                             0.0,
@@ -573,7 +575,7 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
                                                                   clipBehavior:
                                                                       Clip.antiAlias,
                                                                   decoration:
-                                                                      const BoxDecoration(
+                                                                      BoxDecoration(
                                                                     shape: BoxShape
                                                                         .circle,
                                                                   ),
@@ -592,7 +594,7 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
                                                               ),
                                                               Flexible(
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -671,7 +673,7 @@ class _EventCheckedInWidgetState extends State<EventCheckedInWidget> {
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,

@@ -3,11 +3,17 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/modules/marketplace/user/component/item_card_marketplace/item_card_marketplace_widget.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'dashboard_marketplace_model.dart';
 export 'dashboard_marketplace_model.dart';
 
@@ -72,17 +78,17 @@ class _DashboardMarketplaceWidgetState extends State<DashboardMarketplaceWidget>
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
-                        child: SizedBox(
+                        child: Container(
                           width: 200.0,
                           child: TextFormField(
                             controller: _model.textController,
@@ -107,14 +113,14 @@ class _DashboardMarketplaceWidgetState extends State<DashboardMarketplaceWidget>
                                     letterSpacing: 0.0,
                                   ),
                               enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Color(0x00000000),
                                   width: 1.0,
                                 ),
                                 borderRadius: BorderRadius.circular(6.0),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Color(0x00000000),
                                   width: 1.0,
                                 ),
@@ -135,7 +141,7 @@ class _DashboardMarketplaceWidgetState extends State<DashboardMarketplaceWidget>
                                 borderRadius: BorderRadius.circular(6.0),
                               ),
                               filled: true,
-                              fillColor: const Color(0xFF13206F),
+                              fillColor: Color(0xFF13206F),
                               prefixIcon: Icon(
                                 Icons.search_rounded,
                                 color: FlutterFlowTheme.of(context).alternate,
@@ -158,7 +164,7 @@ class _DashboardMarketplaceWidgetState extends State<DashboardMarketplaceWidget>
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -191,7 +197,7 @@ class _DashboardMarketplaceWidgetState extends State<DashboardMarketplaceWidget>
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -228,9 +234,9 @@ class _DashboardMarketplaceWidgetState extends State<DashboardMarketplaceWidget>
                 Expanded(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                     child: ClipRRect(
-                      borderRadius: const BorderRadius.only(
+                      borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(0.0),
                         bottomRight: Radius.circular(0.0),
                         topLeft: Radius.circular(20.0),
@@ -240,7 +246,7 @@ class _DashboardMarketplaceWidgetState extends State<DashboardMarketplaceWidget>
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primaryBackground,
-                          borderRadius: const BorderRadius.only(
+                          borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(0.0),
                             bottomRight: Radius.circular(0.0),
                             topLeft: Radius.circular(20.0),
@@ -259,7 +265,7 @@ class _DashboardMarketplaceWidgetState extends State<DashboardMarketplaceWidget>
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         15.0, 10.0, 15.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -301,7 +307,7 @@ class _DashboardMarketplaceWidgetState extends State<DashboardMarketplaceWidget>
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   20.0, 0.0, 5.0, 0.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
@@ -348,7 +354,7 @@ class _DashboardMarketplaceWidgetState extends State<DashboardMarketplaceWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   5.0, 0.0, 5.0, 0.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
@@ -395,7 +401,7 @@ class _DashboardMarketplaceWidgetState extends State<DashboardMarketplaceWidget>
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   5.0, 0.0, 20.0, 0.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
@@ -449,7 +455,7 @@ class _DashboardMarketplaceWidgetState extends State<DashboardMarketplaceWidget>
                             ),
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 10.0, 10.0, 0.0),
                                 child: StreamBuilder<List<ProductsRecord>>(
                                   stream: queryProductsRecord(
@@ -477,7 +483,7 @@ class _DashboardMarketplaceWidgetState extends State<DashboardMarketplaceWidget>
 
                                     return MasonryGridView.builder(
                                       gridDelegate:
-                                          const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                          SliverSimpleGridDelegateWithFixedCrossAxisCount(
                                         crossAxisCount: 2,
                                       ),
                                       crossAxisSpacing: 20.0,

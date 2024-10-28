@@ -1,6 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/dialog_box/confirm_dialog_box/confirm_dialog_box_widget.dart';
 import '/components/dialog_box/congratulations_dialog_box/congratulations_dialog_box_widget.dart';
 import '/components/dialog_box/failed_dialog_box/failed_dialog_box_widget.dart';
@@ -14,14 +15,18 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/random_data_util.dart' as random_data;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'event_proposal_step3_model.dart';
@@ -40,8 +45,8 @@ class EventProposalStep3Widget extends StatefulWidget {
     this.room,
     this.outsideLocation,
     required this.orgRef,
-  })  : onlinePlatform = onlinePlatform ?? 'None',
-        onlineLink = onlineLink ?? 'None';
+  })  : this.onlinePlatform = onlinePlatform ?? 'None',
+        this.onlineLink = onlineLink ?? 'None';
 
   final bool? isOnline;
   final bool? isCampus;
@@ -124,7 +129,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 1400.0.ms,
-            color: const Color(0xFF35408E),
+            color: Color(0xFF35408E),
             angle: 0.576,
           ),
         ],
@@ -153,7 +158,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -161,18 +166,18 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                 wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TitleHeaderComponentWidget(
+                  child: TitleHeaderComponentWidget(
                     titleText: 'Create Proposal',
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 10.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -182,7 +187,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 10.0, 0.0),
                                     child: Text(
                                       'Step 3',
@@ -212,7 +217,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                 ],
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: Text(
                                   'Now that you\'ve selected you event as a paid version, let\'s move forward and setup your payment form to ensure that everything is in place.',
@@ -228,7 +233,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -249,7 +254,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 0.0, 0.0),
                                         child: Container(
                                           width: double.infinity,
@@ -265,7 +270,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 0.0, 0.0),
                                         child: Container(
                                           width: double.infinity,
@@ -302,7 +307,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                 Expanded(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                     child: FutureBuilder<DefaultsRecord>(
                       future: DefaultsRecord.getDocumentOnce(
                           FFAppState().defaultID!),
@@ -326,7 +331,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                         return Column(
                           children: [
                             Align(
-                              alignment: const Alignment(0.0, 0),
+                              alignment: Alignment(0.0, 0),
                               child: FlutterFlowButtonTabBar(
                                 useToggleButtonStyle: true,
                                 labelStyle: FlutterFlowTheme.of(context)
@@ -362,9 +367,9 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                 borderWidth: 1.0,
                                 borderRadius: 9.0,
                                 elevation: 0.0,
-                                buttonMargin: const EdgeInsetsDirectional.fromSTEB(
+                                buttonMargin: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
-                                tabs: const [
+                                tabs: [
                                   Tab(
                                     text: 'About',
                                   ),
@@ -399,7 +404,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                       autovalidateMode:
                                           AutovalidateMode.disabled,
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 0.0),
                                         child: SingleChildScrollView(
                                           primary: false,
@@ -415,7 +420,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -461,7 +466,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 15.0),
                                                     child: InkWell(
@@ -586,6 +591,8 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                           valueOrDefault<
                                                               String>(
                                                             _model.uploadedFileUrl !=
+                                                                        null &&
+                                                                    _model.uploadedFileUrl !=
                                                                         ''
                                                                 ? _model
                                                                     .uploadedFileUrl
@@ -603,7 +610,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                 ],
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 15.0),
                                                 child: Row(
@@ -622,7 +629,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -776,7 +783,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 15.0),
                                                 child: Column(
@@ -785,7 +792,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                   children: [
                                                     Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               -1.0, 0.0),
                                                       child: Text(
                                                         'Target Implementation',
@@ -813,7 +820,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       15.0,
                                                                       0.0,
@@ -833,7 +840,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                         .max,
                                                                 children: [
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             10.0,
@@ -857,7 +864,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                     ),
                                                                   ),
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             2.0,
                                                                             10.0,
@@ -917,12 +924,12 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                                 children: [
                                                                                   Flexible(
                                                                                     child: Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                       child: Text(
                                                                                         valueOrDefault<String>(
                                                                                           dateTimeFormat(
                                                                                             "MMMMEEEEd",
-                                                                                            widget.startDateTime,
+                                                                                            widget!.startDateTime,
                                                                                             locale: FFLocalizations.of(context).languageCode,
                                                                                           ),
                                                                                           'Select Start Date',
@@ -937,12 +944,12 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                                   ),
                                                                                   Flexible(
                                                                                     child: Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                       child: Text(
                                                                                         valueOrDefault<String>(
                                                                                           dateTimeFormat(
                                                                                             "jm",
-                                                                                            widget.startDateTime,
+                                                                                            widget!.startDateTime,
                                                                                             locale: FFLocalizations.of(context).languageCode,
                                                                                           ),
                                                                                           'Start Time',
@@ -956,7 +963,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                                     ),
                                                                                   ),
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                     child: Icon(
                                                                                       FFIcons.kcalendar,
                                                                                       color: FlutterFlowTheme.of(context).secondaryText,
@@ -979,7 +986,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                         .max,
                                                                 children: [
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             10.0,
@@ -1003,7 +1010,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                     ),
                                                                   ),
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             2.0,
                                                                             10.0,
@@ -1063,12 +1070,12 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                                 children: [
                                                                                   Flexible(
                                                                                     child: Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                       child: Text(
                                                                                         valueOrDefault<String>(
                                                                                           dateTimeFormat(
                                                                                             "MMMMEEEEd",
-                                                                                            widget.endDateTime,
+                                                                                            widget!.endDateTime,
                                                                                             locale: FFLocalizations.of(context).languageCode,
                                                                                           ),
                                                                                           'Select End Date',
@@ -1083,12 +1090,12 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                                   ),
                                                                                   Flexible(
                                                                                     child: Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                       child: Text(
                                                                                         valueOrDefault<String>(
                                                                                           dateTimeFormat(
                                                                                             "jm",
-                                                                                            widget.endDateTime,
+                                                                                            widget!.endDateTime,
                                                                                             locale: FFLocalizations.of(context).languageCode,
                                                                                           ),
                                                                                           'End Time',
@@ -1102,7 +1109,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                                     ),
                                                                                   ),
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                     child: Icon(
                                                                                       FFIcons.kcalendar,
                                                                                       color: FlutterFlowTheme.of(context).secondaryText,
@@ -1128,7 +1135,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 15.0),
                                                 child: Row(
@@ -1147,7 +1154,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1197,7 +1204,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                 FormFieldController<
                                                                         String>(
                                                                     null),
-                                                            options: const [
+                                                            options: [
                                                               'University-wide',
                                                               'Members-wide'
                                                             ],
@@ -1240,7 +1247,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                             borderWidth: 0.5,
                                                             borderRadius: 8.0,
                                                             margin:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         16.0,
                                                                         4.0,
@@ -1261,7 +1268,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                               ),
                                               Flexible(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 15.0),
                                                   child: Column(
@@ -1274,7 +1281,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -1431,7 +1438,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                               ),
                                               Flexible(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 15.0),
                                                   child: Column(
@@ -1444,7 +1451,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -1600,7 +1607,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 15.0),
                                                 child: Row(
@@ -1619,7 +1626,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1784,7 +1791,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                       autovalidateMode:
                                           AutovalidateMode.disabled,
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 20.0),
                                         child: SingleChildScrollView(
                                           primary: false,
@@ -1792,7 +1799,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 15.0),
                                                 child: Row(
@@ -1811,7 +1818,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1965,7 +1972,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 15.0),
                                                 child: Column(
@@ -1979,7 +1986,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                         Flexible(
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -1996,7 +2003,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                           .max,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -2151,7 +2158,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                         Flexible(
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         5.0,
                                                                         0.0,
@@ -2168,7 +2175,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                           .max,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -2344,7 +2351,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -2393,7 +2400,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                               .budgetShoulderValueController ??=
                                                           FormFieldController<
                                                               String>(null),
-                                                      options: const [
+                                                      options: [
                                                         'Organization',
                                                         'Sponsor',
                                                         'School',
@@ -2437,7 +2444,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                       borderWidth: 0.5,
                                                       borderRadius: 8.0,
                                                       margin:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   16.0,
                                                                   2.0,
@@ -2450,11 +2457,11 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                     ),
                                                     Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               1.0, 0.0),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     10.0,
@@ -2551,7 +2558,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                     ),
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   20.0,
@@ -2563,7 +2570,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                         children: [
                                                           Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     -1.0, 0.0),
                                                             child: Text(
                                                               'Total Requested Budget',
@@ -2583,7 +2590,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         5.0,
                                                                         0.0,
@@ -2597,7 +2604,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .backPanelText,
-                                                                boxShadow: const [
+                                                                boxShadow: [
                                                                   BoxShadow(
                                                                     blurRadius:
                                                                         2.0,
@@ -2625,7 +2632,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                 children: [
                                                                   Padding(
                                                                     padding:
-                                                                        const EdgeInsets.all(
+                                                                        EdgeInsets.all(
                                                                             10.0),
                                                                     child: Row(
                                                                       mainAxisSize:
@@ -2652,7 +2659,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                                 CrossAxisAlignment.start,
                                                                             children: [
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                 child: Text(
                                                                                   'Budget Request per Office',
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2664,7 +2671,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                                 ),
                                                                               ),
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                 child: Text(
                                                                                   'Overall pricing summary',
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2702,7 +2709,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 15.0,
                                                                                 5.0,
                                                                                 15.0,
@@ -2740,7 +2747,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 4.0,
                                                                                 0.0,
@@ -2768,7 +2775,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 15.0,
                                                                                 0.0,
                                                                                 15.0,
@@ -2806,7 +2813,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 4.0,
                                                                                 0.0,
@@ -2827,7 +2834,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 15.0,
                                                                                 0.0,
                                                                                 15.0,
@@ -2865,7 +2872,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 4.0,
                                                                                 0.0,
@@ -2886,7 +2893,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 15.0,
                                                                                 0.0,
                                                                                 15.0,
@@ -2924,7 +2931,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                             ),
                                                                           ),
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
                                                                                 4.0,
                                                                                 0.0,
@@ -2945,7 +2952,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 15.0,
                                                                                 5.0,
                                                                                 15.0,
@@ -2966,7 +2973,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                                 ),
                                                                                 Flexible(
                                                                                   child: Align(
-                                                                                    alignment: const AlignmentDirectional(1.0, 0.0),
+                                                                                    alignment: AlignmentDirectional(1.0, 0.0),
                                                                                     child: Text(
                                                                                       FFAppState().budgetList.isNotEmpty
                                                                                           ? formatNumber(
@@ -2995,10 +3002,10 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                         ],
                                                                       ),
                                                                     ]
-                                                                        .divide(const SizedBox(
+                                                                        .divide(SizedBox(
                                                                             height:
                                                                                 3.0))
-                                                                        .around(const SizedBox(
+                                                                        .around(SizedBox(
                                                                             height:
                                                                                 3.0)),
                                                                   ),
@@ -3006,7 +3013,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                               ),
                                                             ),
                                                           ),
-                                                        ].divide(const SizedBox(
+                                                        ].divide(SizedBox(
                                                             height: 10.0)),
                                                       ),
                                                     ),
@@ -3014,7 +3021,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 20.0, 0.0, 0.0),
                                                 child: SingleChildScrollView(
@@ -3025,11 +3032,11 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 -1.0, 0.0),
                                                         child: Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -3075,7 +3082,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                       budgetIndex];
                                                               return Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -3091,7 +3098,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                   ),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             5.0,
                                                                             5.0,
@@ -3112,7 +3119,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                               CrossAxisAlignment.start,
                                                                           children: [
                                                                             Align(
-                                                                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                              alignment: AlignmentDirectional(-1.0, 0.0),
                                                                               child: Text(
                                                                                 budgetItem.itemName,
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3123,7 +3130,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                               ),
                                                                             ),
                                                                             Align(
-                                                                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                              alignment: AlignmentDirectional(-1.0, 0.0),
                                                                               child: Text(
                                                                                 '${formatNumber(
                                                                                   budgetItem.price,
@@ -3148,7 +3155,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                               ),
                                                                             ),
                                                                             Align(
-                                                                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                              alignment: AlignmentDirectional(-1.0, 0.0),
                                                                               child: Text(
                                                                                 'Charged to: ${budgetItem.chargedTo}',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3160,7 +3167,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                           ],
                                                                         ),
                                                                         Align(
-                                                                          alignment: const AlignmentDirectional(
+                                                                          alignment: AlignmentDirectional(
                                                                               1.0,
                                                                               0.0),
                                                                           child:
@@ -3215,7 +3222,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                       autovalidateMode:
                                           AutovalidateMode.disabled,
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 10.0, 0.0, 0.0),
                                         child: SingleChildScrollView(
                                           primary: false,
@@ -3223,7 +3230,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 15.0),
                                                 child: Column(
@@ -3232,7 +3239,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   20.0,
@@ -3258,7 +3265,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                 Flexible(
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -3275,7 +3282,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                               MainAxisSize.max,
                                                                           children: [
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                               child: Text(
                                                                                 'Start Time',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3311,10 +3318,10 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                             logFirebaseEvent('EVENT_PROPOSAL_STEP_3_time_start_ON_TAP');
                                                                             logFirebaseEvent('time_start_date_time_picker');
 
-                                                                            final datePicked1Time =
+                                                                            final _datePicked1Time =
                                                                                 await showTimePicker(
                                                                               context: context,
-                                                                              initialTime: TimeOfDay.fromDateTime((widget.startDateTime ?? DateTime.now())),
+                                                                              initialTime: TimeOfDay.fromDateTime((widget!.startDateTime ?? DateTime.now())),
                                                                               builder: (context, child) {
                                                                                 return wrapInMaterialTimePickerTheme(
                                                                                   context,
@@ -3336,15 +3343,15 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                                 );
                                                                               },
                                                                             );
-                                                                            if (datePicked1Time !=
+                                                                            if (_datePicked1Time !=
                                                                                 null) {
                                                                               safeSetState(() {
                                                                                 _model.datePicked1 = DateTime(
-                                                                                  (widget.startDateTime ?? DateTime.now()).year,
-                                                                                  (widget.startDateTime ?? DateTime.now()).month,
-                                                                                  (widget.startDateTime ?? DateTime.now()).day,
-                                                                                  datePicked1Time.hour,
-                                                                                  datePicked1Time.minute,
+                                                                                  (widget!.startDateTime ?? DateTime.now()).year,
+                                                                                  (widget!.startDateTime ?? DateTime.now()).month,
+                                                                                  (widget!.startDateTime ?? DateTime.now()).day,
+                                                                                  _datePicked1Time.hour,
+                                                                                  _datePicked1Time.minute,
                                                                                 );
                                                                               });
                                                                             }
@@ -3371,9 +3378,18 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                                   children: [
                                                                                     Flexible(
                                                                                       child: Padding(
-                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                         child: Text(
                                                                                           valueOrDefault<String>(
+                                                                                                        dateTimeFormat(
+                                                                                                          "jm",
+                                                                                                          _model.datePicked1,
+                                                                                                          locale: FFLocalizations.of(context).languageCode,
+                                                                                                        ),
+                                                                                                        'StartTime',
+                                                                                                      ) !=
+                                                                                                      null &&
+                                                                                                  valueOrDefault<String>(
                                                                                                         dateTimeFormat(
                                                                                                           "jm",
                                                                                                           _model.datePicked1,
@@ -3400,7 +3416,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                                       ),
                                                                                     ),
                                                                                     Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                       child: Icon(
                                                                                         FFIcons.kclock,
                                                                                         color: FlutterFlowTheme.of(context).secondaryText,
@@ -3420,7 +3436,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                 Flexible(
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             5.0,
                                                                             0.0,
@@ -3437,7 +3453,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                               MainAxisSize.max,
                                                                           children: [
                                                                             Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                               child: Text(
                                                                                 'End Time',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3473,10 +3489,10 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                             logFirebaseEvent('EVENT_PROPOSAL_STEP_3_end_time_ON_TAP');
                                                                             logFirebaseEvent('end_time_date_time_picker');
 
-                                                                            final datePicked2Time =
+                                                                            final _datePicked2Time =
                                                                                 await showTimePicker(
                                                                               context: context,
-                                                                              initialTime: TimeOfDay.fromDateTime((widget.endDateTime ?? DateTime.now())),
+                                                                              initialTime: TimeOfDay.fromDateTime((widget!.endDateTime ?? DateTime.now())),
                                                                               builder: (context, child) {
                                                                                 return wrapInMaterialTimePickerTheme(
                                                                                   context,
@@ -3498,15 +3514,15 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                                 );
                                                                               },
                                                                             );
-                                                                            if (datePicked2Time !=
+                                                                            if (_datePicked2Time !=
                                                                                 null) {
                                                                               safeSetState(() {
                                                                                 _model.datePicked2 = DateTime(
-                                                                                  (widget.endDateTime ?? DateTime.now()).year,
-                                                                                  (widget.endDateTime ?? DateTime.now()).month,
-                                                                                  (widget.endDateTime ?? DateTime.now()).day,
-                                                                                  datePicked2Time.hour,
-                                                                                  datePicked2Time.minute,
+                                                                                  (widget!.endDateTime ?? DateTime.now()).year,
+                                                                                  (widget!.endDateTime ?? DateTime.now()).month,
+                                                                                  (widget!.endDateTime ?? DateTime.now()).day,
+                                                                                  _datePicked2Time.hour,
+                                                                                  _datePicked2Time.minute,
                                                                                 );
                                                                               });
                                                                             }
@@ -3533,9 +3549,15 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                                   children: [
                                                                                     Flexible(
                                                                                       child: Padding(
-                                                                                        padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                         child: Text(
                                                                                           dateTimeFormat(
+                                                                                                        "jm",
+                                                                                                        _model.datePicked2,
+                                                                                                        locale: FFLocalizations.of(context).languageCode,
+                                                                                                      ) !=
+                                                                                                      null &&
+                                                                                                  dateTimeFormat(
                                                                                                         "jm",
                                                                                                         _model.datePicked2,
                                                                                                         locale: FFLocalizations.of(context).languageCode,
@@ -3556,7 +3578,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                                       ),
                                                                                     ),
                                                                                     Padding(
-                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                                                                                       child: Icon(
                                                                                         FFIcons.kclock,
                                                                                         color: FlutterFlowTheme.of(context).secondaryText,
@@ -3577,7 +3599,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -3591,7 +3613,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                   Flexible(
                                                                     child:
                                                                         Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           10.0,
                                                                           0.0,
@@ -3606,7 +3628,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                                 MainAxisSize.max,
                                                                             children: [
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                                 child: Text(
                                                                                   'Activity Portion',
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -3694,7 +3716,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       1.0, 0.0),
                                                               child: InkWell(
                                                                 splashColor: Colors
@@ -3778,10 +3800,10 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                 ),
                                               ),
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     -1.0, 0.0),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 0.0, 10.0),
                                                   child: Text(
@@ -3817,7 +3839,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                           program[programIndex];
                                                       return Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -3833,7 +3855,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                           ),
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         5.0,
                                                                         5.0,
@@ -3857,7 +3879,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                   children: [
                                                                     Align(
                                                                       alignment:
-                                                                          const AlignmentDirectional(
+                                                                          AlignmentDirectional(
                                                                               -1.0,
                                                                               0.0),
                                                                       child:
@@ -3875,7 +3897,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                     ),
                                                                     Align(
                                                                       alignment:
-                                                                          const AlignmentDirectional(
+                                                                          AlignmentDirectional(
                                                                               -1.0,
                                                                               0.0),
                                                                       child:
@@ -3905,7 +3927,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                 ),
                                                                 Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           1.0,
                                                                           0.0),
                                                                   child: Column(
@@ -3966,7 +3988,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                   ),
                                   KeepAliveWidgetWrapper(
                                     builder: (context) => Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: SingleChildScrollView(
                                         primary: false,
@@ -3974,7 +3996,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 0.0, 15.0),
                                               child: Column(
@@ -3982,7 +4004,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                 children: [
                                                   Align(
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             -1.0, 0.0),
                                                     child: Text(
                                                       'Terms and Condition',
@@ -4003,7 +4025,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                               ),
                                             ),
                                             Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   -1.0, 0.0),
                                               child: Text(
                                                 'By submitting this event proposal, you agree and acknowledge to the following:',
@@ -4019,10 +4041,10 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                               ),
                                             ),
                                             Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   -1.0, 0.0),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         15.0, 10.0, 0.0, 0.0),
                                                 child: SelectionArea(
@@ -4043,7 +4065,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 20.0, 0.0, 0.0),
                                               child: Row(
@@ -4120,7 +4142,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                             ),
                                             Builder(
                                               builder: (context) => Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 20.0, 0.0, 0.0),
                                                 child: FFButtonWidget(
@@ -4130,20 +4152,29 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                           : () async {
                                                               logFirebaseEvent(
                                                                   'EVENT_PROPOSAL_STEP_3_SUBMIT_YOUR_PROPOS');
-                                                              var shouldSetState =
+                                                              var _shouldSetState =
                                                                   false;
-                                                              if ((_model.uploadedFileUrl == '') ||
+                                                              if ((_model.uploadedFileUrl == null || _model.uploadedFileUrl == '') ||
                                                                   (_model.eventNameTextController.text ==
+                                                                          null ||
+                                                                      _model.eventNameTextController.text ==
                                                                           '') ||
                                                                   (_model.rationaleTextController.text ==
+                                                                          null ||
+                                                                      _model.rationaleTextController.text ==
                                                                           '') ||
                                                                   (_model.objectivesTextController.text ==
+                                                                          null ||
+                                                                      _model.objectivesTextController.text ==
                                                                           '') ||
                                                                   (_model.targetParticipantsValue ==
                                                                           null ||
                                                                       _model.targetParticipantsValue ==
                                                                           '') ||
                                                                   (_model.targetOutputTextController
+                                                                              .text ==
+                                                                          null ||
+                                                                      _model.targetOutputTextController
                                                                               .text ==
                                                                           '')) {
                                                                 logFirebaseEvent(
@@ -4162,7 +4193,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                       backgroundColor:
                                                                           Colors
                                                                               .transparent,
-                                                                      alignment: const AlignmentDirectional(
+                                                                      alignment: AlignmentDirectional(
                                                                               0.0,
                                                                               0.0)
                                                                           .resolve(
@@ -4174,7 +4205,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                           onTap: () =>
                                                                               FocusScope.of(dialogContext).unfocus(),
                                                                           child:
-                                                                              const FailedDialogBoxWidget(
+                                                                              FailedDialogBoxWidget(
                                                                             failedDialogTitle:
                                                                                 'Missing Fields on About Tab',
                                                                             failedDialogMeesage:
@@ -4186,10 +4217,9 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                   },
                                                                 );
 
-                                                                if (shouldSetState) {
+                                                                if (_shouldSetState)
                                                                   safeSetState(
                                                                       () {});
-                                                                }
                                                                 return;
                                                               } else {
                                                                 if (!(FFAppState()
@@ -4210,7 +4240,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                         backgroundColor:
                                                                             Colors.transparent,
                                                                         alignment:
-                                                                            const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                            AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                         child:
                                                                             WebViewAware(
                                                                           child:
@@ -4218,7 +4248,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                             onTap: () =>
                                                                                 FocusScope.of(dialogContext).unfocus(),
                                                                             child:
-                                                                                const FailedDialogBoxWidget(
+                                                                                FailedDialogBoxWidget(
                                                                               failedDialogTitle: 'Budget Declaration Required',
                                                                               failedDialogMeesage: 'Make sure that you have your budget declaration set.',
                                                                             ),
@@ -4228,10 +4258,9 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                     },
                                                                   );
 
-                                                                  if (shouldSetState) {
+                                                                  if (_shouldSetState)
                                                                     safeSetState(
                                                                         () {});
-                                                                  }
                                                                   return;
                                                                 } else if (!(FFAppState()
                                                                     .eventProgramList
@@ -4251,7 +4280,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                         backgroundColor:
                                                                             Colors.transparent,
                                                                         alignment:
-                                                                            const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                            AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                         child:
                                                                             WebViewAware(
                                                                           child:
@@ -4259,7 +4288,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                             onTap: () =>
                                                                                 FocusScope.of(dialogContext).unfocus(),
                                                                             child:
-                                                                                const FailedDialogBoxWidget(
+                                                                                FailedDialogBoxWidget(
                                                                               failedDialogTitle: 'Program Flow Required',
                                                                               failedDialogMeesage: 'Make sure that you have your program flow set.',
                                                                             ),
@@ -4269,10 +4298,9 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                     },
                                                                   );
 
-                                                                  if (shouldSetState) {
+                                                                  if (_shouldSetState)
                                                                     safeSetState(
                                                                         () {});
-                                                                  }
                                                                   return;
                                                                 } else {
                                                                   logFirebaseEvent(
@@ -4290,7 +4318,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                         backgroundColor:
                                                                             Colors.transparent,
                                                                         alignment:
-                                                                            const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                            AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                         child:
                                                                             WebViewAware(
                                                                           child:
@@ -4298,7 +4326,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                             onTap: () =>
                                                                                 FocusScope.of(dialogContext).unfocus(),
                                                                             child:
-                                                                                const ConfirmDialogBoxWidget(
+                                                                                ConfirmDialogBoxWidget(
                                                                               confirmDialogTitle: 'Submit Event',
                                                                               confirmDialogMeesage: 'Are you sure you want to submit your event for approval?',
                                                                             ),
@@ -4311,7 +4339,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                           _model.confirmDialog =
                                                                               value));
 
-                                                                  shouldSetState =
+                                                                  _shouldSetState =
                                                                       true;
                                                                   if (_model
                                                                       .confirmDialog!) {
@@ -4333,15 +4361,15 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                         await ApprovalSetsRecord.getDocumentOnce(tabBarDefaultsRecord
                                                                             .approvalSets
                                                                             .event!);
-                                                                    shouldSetState =
+                                                                    _shouldSetState =
                                                                         true;
                                                                     // Get Org
                                                                     logFirebaseEvent(
                                                                         'Button_GetOrg');
                                                                     _model.orgOutput =
                                                                         await OrganizationsRecord.getDocumentOnce(
-                                                                            widget.orgRef!);
-                                                                    shouldSetState =
+                                                                            widget!.orgRef!);
+                                                                    _shouldSetState =
                                                                         true;
                                                                     // Get Adviser
                                                                     logFirebaseEvent(
@@ -4350,7 +4378,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                         await UsersRecord.getDocumentOnce(_model
                                                                             .orgOutput!
                                                                             .orgAdviser!);
-                                                                    shouldSetState =
+                                                                    _shouldSetState =
                                                                         true;
                                                                     logFirebaseEvent(
                                                                         'Button_action_block');
@@ -4387,9 +4415,9 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                         eventOrganizer:
                                                                             currentUserReference,
                                                                         startDate:
-                                                                            widget.startDateTime,
+                                                                            widget!.startDateTime,
                                                                         endTime:
-                                                                            widget.endDateTime,
+                                                                            widget!.endDateTime,
                                                                         rationale: _model
                                                                             .rationaleTextController
                                                                             .text,
@@ -4397,14 +4425,14 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                             .objectivesTextController
                                                                             .text,
                                                                         facility:
-                                                                            widget.room,
+                                                                            widget!.room,
                                                                         participantType:
                                                                             _model.targetParticipantsValue,
                                                                         targetOutput: _model
                                                                             .targetOutputTextController
                                                                             .text,
                                                                         orgReference:
-                                                                            widget.orgRef,
+                                                                            widget!.orgRef,
                                                                         application:
                                                                             createOrgApplicationStruct(
                                                                           applicationEventCode:
@@ -4431,9 +4459,9 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                         settings:
                                                                             createEventSettingsStruct(
                                                                           isOnline:
-                                                                              widget.isOnline,
+                                                                              widget!.isOnline,
                                                                           isCampus:
-                                                                              widget.isCampus,
+                                                                              widget!.isCampus,
                                                                           clearUnsetFields:
                                                                               false,
                                                                           create:
@@ -4442,13 +4470,13 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                         otherDetails:
                                                                             createEventDetailsStruct(
                                                                           maxParticipants:
-                                                                              widget.maxParticipants,
+                                                                              widget!.maxParticipants,
                                                                           onlinePlatform:
-                                                                              widget.onlinePlatform,
+                                                                              widget!.onlinePlatform,
                                                                           onlineLink:
-                                                                              widget.onlineLink,
-                                                                          outsideLocation: widget.outsideLocation != null
-                                                                              ? widget.outsideLocation!.latLng
+                                                                              widget!.onlineLink,
+                                                                          outsideLocation: widget!.outsideLocation != null
+                                                                              ? widget!.outsideLocation!.latLng
                                                                               : FFAppState().nuBaliwagLocation,
                                                                           clearUnsetFields:
                                                                               false,
@@ -4515,9 +4543,9 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                         eventOrganizer:
                                                                             currentUserReference,
                                                                         startDate:
-                                                                            widget.startDateTime,
+                                                                            widget!.startDateTime,
                                                                         endTime:
-                                                                            widget.endDateTime,
+                                                                            widget!.endDateTime,
                                                                         rationale: _model
                                                                             .rationaleTextController
                                                                             .text,
@@ -4525,14 +4553,14 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                             .objectivesTextController
                                                                             .text,
                                                                         facility:
-                                                                            widget.room,
+                                                                            widget!.room,
                                                                         participantType:
                                                                             _model.targetParticipantsValue,
                                                                         targetOutput: _model
                                                                             .targetOutputTextController
                                                                             .text,
                                                                         orgReference:
-                                                                            widget.orgRef,
+                                                                            widget!.orgRef,
                                                                         application:
                                                                             createOrgApplicationStruct(
                                                                           applicationEventCode:
@@ -4559,9 +4587,9 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                         settings:
                                                                             createEventSettingsStruct(
                                                                           isOnline:
-                                                                              widget.isOnline,
+                                                                              widget!.isOnline,
                                                                           isCampus:
-                                                                              widget.isCampus,
+                                                                              widget!.isCampus,
                                                                           clearUnsetFields:
                                                                               false,
                                                                           create:
@@ -4570,13 +4598,13 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                         otherDetails:
                                                                             createEventDetailsStruct(
                                                                           maxParticipants:
-                                                                              widget.maxParticipants,
+                                                                              widget!.maxParticipants,
                                                                           onlinePlatform:
-                                                                              widget.onlinePlatform,
+                                                                              widget!.onlinePlatform,
                                                                           onlineLink:
-                                                                              widget.onlineLink,
-                                                                          outsideLocation: widget.outsideLocation != null
-                                                                              ? widget.outsideLocation!.latLng
+                                                                              widget!.onlineLink,
+                                                                          outsideLocation: widget!.outsideLocation != null
+                                                                              ? widget!.outsideLocation!.latLng
                                                                               : FFAppState().nuBaliwagLocation,
                                                                           clearUnsetFields:
                                                                               false,
@@ -4631,7 +4659,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                         },
                                                                       ),
                                                                     }, eventsRecordReference);
-                                                                    shouldSetState =
+                                                                    _shouldSetState =
                                                                         true;
                                                                     logFirebaseEvent(
                                                                         'Button_alert_dialog');
@@ -4648,13 +4676,13 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                           backgroundColor:
                                                                               Colors.transparent,
                                                                           alignment:
-                                                                              const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                           child:
                                                                               WebViewAware(
                                                                             child:
                                                                                 GestureDetector(
                                                                               onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                              child: const CongratulationsDialogBoxWidget(
+                                                                              child: CongratulationsDialogBoxWidget(
                                                                                 congratsDialogTitle: 'Event Submitted',
                                                                                 congratsDialogMeesage: 'Your event proposal has been submitted. This is now pending for approval.',
                                                                               ),
@@ -4715,7 +4743,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                           {
                                                                         'org':
                                                                             serializeParam(
-                                                                          widget
+                                                                          widget!
                                                                               .orgRef,
                                                                           ParamType
                                                                               .DocumentReference,
@@ -4723,10 +4751,9 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                       }.withoutNulls,
                                                                     );
 
-                                                                    if (shouldSetState) {
+                                                                    if (_shouldSetState)
                                                                       safeSetState(
                                                                           () {});
-                                                                    }
                                                                     return;
                                                                   } else {
                                                                     logFirebaseEvent(
@@ -4744,13 +4771,13 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                           backgroundColor:
                                                                               Colors.transparent,
                                                                           alignment:
-                                                                              const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                           child:
                                                                               WebViewAware(
                                                                             child:
                                                                                 GestureDetector(
                                                                               onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                              child: const InformationDialogBoxWidget(
+                                                                              child: InformationDialogBoxWidget(
                                                                                 infoDialogTitle: 'Action Cancelled',
                                                                                 infoDialogMeesage: 'Action has been cancelled and no changes made.',
                                                                               ),
@@ -4777,22 +4804,20 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                                       }.withoutNulls,
                                                                     );
 
-                                                                    if (shouldSetState) {
+                                                                    if (_shouldSetState)
                                                                       safeSetState(
                                                                           () {});
-                                                                    }
                                                                     return;
                                                                   }
                                                                 }
                                                               }
 
-                                                              if (shouldSetState) {
+                                                              if (_shouldSetState)
                                                                 safeSetState(
                                                                     () {});
-                                                              }
                                                             },
                                                   text: 'Submit your Proposal',
-                                                  icon: const Icon(
+                                                  icon: Icon(
                                                     FFIcons.ksend24,
                                                     size: 20.0,
                                                   ),
@@ -4800,11 +4825,11 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                     width: double.infinity,
                                                     height: 40.0,
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(24.0, 0.0,
                                                                 24.0, 0.0),
                                                     iconPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
@@ -4821,7 +4846,7 @@ class _EventProposalStep3WidgetState extends State<EventProposalStep3Widget>
                                                           letterSpacing: 0.0,
                                                         ),
                                                     elevation: 3.0,
-                                                    borderSide: const BorderSide(
+                                                    borderSide: BorderSide(
                                                       color: Colors.transparent,
                                                       width: 1.0,
                                                     ),

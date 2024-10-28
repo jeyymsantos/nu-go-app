@@ -6,6 +6,8 @@ import '/components/widgets/title_header_component/title_header_component_widget
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -13,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
@@ -117,11 +120,11 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: const TitleHeaderComponentWidget(
+                      child: TitleHeaderComponentWidget(
                         titleText: 'Manage Contents',
                       ),
                     ),
@@ -130,12 +133,12 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         child: wrapWithModel(
                           model: _model.subtitleHeaderModel,
                           updateCallback: () => safeSetState(() {}),
-                          child: const SubtitleHeaderWidget(
+                          child: SubtitleHeaderWidget(
                             mainTitle: 'Content',
                             subText:
                                 'Manage and publish announcement, news and updates to all users.',
@@ -143,14 +146,14 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: TextFormField(
                                   controller:
@@ -158,11 +161,14 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
                                   focusNode: _model.contentSearchFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.contentSearchTextController',
-                                    const Duration(milliseconds: 200),
+                                    Duration(milliseconds: 200),
                                     () async {
                                       logFirebaseEvent(
                                           'ADMIN_CONTENT_VIEW_content_search_ON_TEX');
                                       if (_model.contentSearchTextController
+                                                  .text !=
+                                              null &&
+                                          _model.contentSearchTextController
                                                   .text !=
                                               '') {
                                         logFirebaseEvent(
@@ -175,9 +181,9 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
                                                   (record) =>
                                                       TextSearchItem.fromTerms(
                                                           record, [
-                                                    record.title,
-                                                    record.author,
-                                                    record.type
+                                                    record.title!,
+                                                    record.author!,
+                                                    record.type!
                                                   ]),
                                                 )
                                                 .toList(),
@@ -187,6 +193,7 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
                                                   .text)
                                               .map((r) => r.object)
                                               .toList();
+                                          ;
                                         });
                                         logFirebaseEvent(
                                             'content_search_update_app_state');
@@ -261,6 +268,9 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
                                                   'ADMIN_CONTENT_VIEW_content_search_ON_TEX');
                                               if (_model.contentSearchTextController
                                                           .text !=
+                                                      null &&
+                                                  _model.contentSearchTextController
+                                                          .text !=
                                                       '') {
                                                 logFirebaseEvent(
                                                     'content_search_simple_search');
@@ -273,9 +283,9 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
                                                               TextSearchItem
                                                                   .fromTerms(
                                                                       record, [
-                                                            record.title,
-                                                            record.author,
-                                                            record.type
+                                                            record.title!,
+                                                            record.author!,
+                                                            record.type!
                                                           ]),
                                                         )
                                                         .toList(),
@@ -285,6 +295,7 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
                                                               .text)
                                                           .map((r) => r.object)
                                                           .toList();
+                                                  ;
                                                 });
                                                 logFirebaseEvent(
                                                     'content_search_update_app_state');
@@ -301,7 +312,7 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
 
                                               safeSetState(() {});
                                             },
-                                            child: const Icon(
+                                            child: Icon(
                                               Icons.clear,
                                               size: 20.0,
                                             ),
@@ -328,7 +339,7 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
                   if (!FFAppState().searchActive)
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             0.0, 20.0, 0.0, 20.0),
                         child: Builder(
                           builder: (context) {
@@ -341,12 +352,12 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
                               scrollDirection: Axis.vertical,
                               itemCount: allContent.length,
                               separatorBuilder: (_, __) =>
-                                  const SizedBox(height: 15.0),
+                                  SizedBox(height: 15.0),
                               itemBuilder: (context, allContentIndex) {
                                 final allContentItem =
                                     allContent[allContentIndex];
                                 return Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       20.0, 0.0, 20.0, 0.0),
                                   child: Container(
                                     width: double.infinity,
@@ -378,7 +389,7 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
                                                   Expanded(
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsets.all(5.0),
+                                                          EdgeInsets.all(5.0),
                                                       child: ClipRRect(
                                                         borderRadius:
                                                             BorderRadius
@@ -401,7 +412,7 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
                                               ),
                                               Flexible(
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 10.0, 0.0),
                                                   child: Column(
@@ -465,10 +476,10 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 10.0, 0.0),
                                                 child: InkWell(
@@ -522,7 +533,7 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
                                                       }.withoutNulls,
                                                       extra: <String, dynamic>{
                                                         kTransitionInfoKey:
-                                                            const TransitionInfo(
+                                                            TransitionInfo(
                                                           hasTransition: true,
                                                           transitionType:
                                                               PageTransitionType
@@ -557,11 +568,11 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
                                               ),
                                             ),
                                             Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   0.0, 0.0),
                                               child: Builder(
                                                 builder: (context) => Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 10.0, 0.0),
                                                   child: InkWell(
@@ -589,7 +600,7 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
                                                             backgroundColor:
                                                                 Colors
                                                                     .transparent,
-                                                            alignment: const AlignmentDirectional(
+                                                            alignment: AlignmentDirectional(
                                                                     0.0, 0.0)
                                                                 .resolve(
                                                                     Directionality.of(
@@ -602,7 +613,7 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
                                                                             dialogContext)
                                                                         .unfocus(),
                                                                 child:
-                                                                    const ConfirmPasswordDialogWidget(),
+                                                                    ConfirmPasswordDialogWidget(),
                                                               ),
                                                             ),
                                                           );
@@ -644,7 +655,7 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
                                                               backgroundColor:
                                                                   Colors
                                                                       .transparent,
-                                                              alignment: const AlignmentDirectional(
+                                                              alignment: AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
@@ -658,7 +669,7 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
                                                                               dialogContext)
                                                                           .unfocus(),
                                                                   child:
-                                                                      const InformationDialogBoxWidget(
+                                                                      InformationDialogBoxWidget(
                                                                     infoDialogTitle:
                                                                         'Deleted Succesfully',
                                                                     infoDialogMeesage:
@@ -684,7 +695,7 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
                                                               backgroundColor:
                                                                   Colors
                                                                       .transparent,
-                                                              alignment: const AlignmentDirectional(
+                                                              alignment: AlignmentDirectional(
                                                                       0.0, 0.0)
                                                                   .resolve(
                                                                       Directionality.of(
@@ -698,7 +709,7 @@ class _AdminContentViewWidgetState extends State<AdminContentViewWidget>
                                                                               dialogContext)
                                                                           .unfocus(),
                                                                   child:
-                                                                      const InformationDialogBoxWidget(
+                                                                      InformationDialogBoxWidget(
                                                                     infoDialogTitle:
                                                                         'Action Cancelled',
                                                                     infoDialogMeesage:

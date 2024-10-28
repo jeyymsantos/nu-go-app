@@ -1,8 +1,15 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/users/super_admin/admin_menu/admin_menu_component/admin_menu_card/admin_menu_card_widget.dart';
 import 'admin_menu_widget.dart' show AdminMenuWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class AdminMenuModel extends FlutterFlowModel<AdminMenuWidget> {
   ///  State fields for stateful widgets in this page.
@@ -26,7 +33,9 @@ class AdminMenuModel extends FlutterFlowModel<AdminMenuWidget> {
   // Model for PushNotificationManagement.
   late AdminMenuCardModel pushNotificationManagementModel;
   // Model for ResourcesManagement.
-  late AdminMenuCardModel resourcesManagementModel;
+  late AdminMenuCardModel resourcesManagementModel1;
+  // Model for ResourcesManagement.
+  late AdminMenuCardModel resourcesManagementModel2;
   // Model for UserManagement.
   late AdminMenuCardModel userManagementModel;
 
@@ -45,7 +54,10 @@ class AdminMenuModel extends FlutterFlowModel<AdminMenuWidget> {
         createModel(context, () => AdminMenuCardModel());
     pushNotificationManagementModel =
         createModel(context, () => AdminMenuCardModel());
-    resourcesManagementModel = createModel(context, () => AdminMenuCardModel());
+    resourcesManagementModel1 =
+        createModel(context, () => AdminMenuCardModel());
+    resourcesManagementModel2 =
+        createModel(context, () => AdminMenuCardModel());
     userManagementModel = createModel(context, () => AdminMenuCardModel());
   }
 
@@ -60,7 +72,8 @@ class AdminMenuModel extends FlutterFlowModel<AdminMenuWidget> {
     maintenanceManagementModel.dispose();
     organizationManagementModel.dispose();
     pushNotificationManagementModel.dispose();
-    resourcesManagementModel.dispose();
+    resourcesManagementModel1.dispose();
+    resourcesManagementModel2.dispose();
     userManagementModel.dispose();
   }
 }

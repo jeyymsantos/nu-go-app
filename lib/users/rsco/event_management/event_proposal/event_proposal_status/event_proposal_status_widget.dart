@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
@@ -8,10 +9,14 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'event_proposal_status_model.dart';
 export 'event_proposal_status_model.dart';
@@ -60,7 +65,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<EventsRecord>(
-      stream: EventsRecord.getDocument(widget.eventRef!),
+      stream: EventsRecord.getDocument(widget!.eventRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -95,11 +100,11 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: const TitleHeaderComponentWidget(
+                      child: TitleHeaderComponentWidget(
                         titleText: 'Proposal Status',
                       ),
                     ),
@@ -107,7 +112,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                   if (eventProposalStatusEventsRecord.status == 'Revision')
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                       child: Container(
                         width: double.infinity,
                         decoration: BoxDecoration(
@@ -115,7 +120,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: EdgeInsets.all(10.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,7 +132,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                               ),
                               Flexible(
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       20.0, 0.0, 20.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -163,7 +168,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                             ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 20.0, 0.0, 0.0),
                                         child: InkWell(
                                           splashColor: Colors.transparent,
@@ -188,7 +193,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                 'eventDoc':
                                                     eventProposalStatusEventsRecord,
                                                 kTransitionInfoKey:
-                                                    const TransitionInfo(
+                                                    TransitionInfo(
                                                   hasTransition: true,
                                                   transitionType:
                                                       PageTransitionType.fade,
@@ -224,13 +229,13 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                     ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -248,7 +253,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                       ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 0.0, 0.0),
                                   child: Text(
                                     'Monitor your proposal status on this page.',
@@ -281,21 +286,21 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                     child: Stack(
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 70.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Flexible(
                                 child: Container(
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         20.0, 0.0, 20.0, 0.0),
                                     child: Column(
                                       children: [
                                         Align(
-                                          alignment: const Alignment(0.0, 0),
+                                          alignment: Alignment(0.0, 0),
                                           child: FlutterFlowButtonTabBar(
                                             useToggleButtonStyle: true,
                                             labelStyle:
@@ -338,9 +343,9 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                             borderRadius: 9.0,
                                             elevation: 0.0,
                                             buttonMargin:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     8.0, 0.0, 8.0, 0.0),
-                                            tabs: const [
+                                            tabs: [
                                               Tab(
                                                 text: 'About',
                                               ),
@@ -367,7 +372,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                             children: [
                                               KeepAliveWidgetWrapper(
                                                 builder: (context) => Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 30.0),
                                                   child: SingleChildScrollView(
@@ -377,7 +382,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       5.0,
                                                                       0.0,
@@ -473,7 +478,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       5.0,
                                                                       15.0,
@@ -520,7 +525,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       5.0,
                                                                       15.0,
@@ -533,7 +538,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                             children: [
                                                               Expanded(
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -542,7 +547,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                   child:
                                                                       Container(
                                                                     decoration:
-                                                                        const BoxDecoration(),
+                                                                        BoxDecoration(),
                                                                     child:
                                                                         Column(
                                                                       mainAxisSize:
@@ -600,7 +605,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                               ),
                                                               Expanded(
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           10.0,
                                                                           0.0,
@@ -609,7 +614,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                   child:
                                                                       Container(
                                                                     decoration:
-                                                                        const BoxDecoration(),
+                                                                        BoxDecoration(),
                                                                     child:
                                                                         Column(
                                                                       mainAxisSize:
@@ -658,7 +663,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       5.0,
                                                                       15.0,
@@ -674,7 +679,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                             children: [
                                                               Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         -1.0,
                                                                         0.0),
                                                                 child: Text(
@@ -694,7 +699,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                               ),
                                                               Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         -1.0,
                                                                         0.0),
                                                                 child: Text(
@@ -720,7 +725,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       5.0,
                                                                       15.0,
@@ -736,7 +741,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                             children: [
                                                               Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         -1.0,
                                                                         0.0),
                                                                 child: Text(
@@ -756,11 +761,11 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                               ),
                                                               Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         -1.0,
                                                                         0.0),
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           5.0,
@@ -796,7 +801,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       5.0,
                                                                       15.0,
@@ -812,7 +817,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                             children: [
                                                               Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         -1.0,
                                                                         0.0),
                                                                 child: Text(
@@ -832,11 +837,11 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                               ),
                                                               Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         -1.0,
                                                                         0.0),
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           5.0,
@@ -865,7 +870,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       5.0,
                                                                       15.0,
@@ -881,7 +886,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                             children: [
                                                               Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         -1.0,
                                                                         0.0),
                                                                 child: Text(
@@ -901,11 +906,11 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                               ),
                                                               Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         -1.0,
                                                                         0.0),
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           5.0,
@@ -934,7 +939,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       5.0,
                                                                       15.0,
@@ -950,7 +955,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                             children: [
                                                               Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         -1.0,
                                                                         0.0),
                                                                 child: Text(
@@ -970,11 +975,11 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                               ),
                                                               Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         -1.0,
                                                                         0.0),
                                                                 child: Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           5.0,
@@ -1005,7 +1010,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                             .settings.isCampus)
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         5.0,
                                                                         15.0,
@@ -1021,7 +1026,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                               children: [
                                                                 Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           -1.0,
                                                                           0.0),
                                                                   child: Text(
@@ -1041,12 +1046,12 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                 ),
                                                                 Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           -1.0,
                                                                           0.0),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             5.0,
@@ -1102,7 +1107,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                             .settings.isOnline)
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         5.0,
                                                                         15.0,
@@ -1118,7 +1123,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                               children: [
                                                                 Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           -1.0,
                                                                           0.0),
                                                                   child: Text(
@@ -1138,12 +1143,12 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                 ),
                                                                 Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           -1.0,
                                                                           0.0),
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             5.0,
@@ -1170,7 +1175,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                 ),
                                                                 Align(
                                                                   alignment:
-                                                                      const AlignmentDirectional(
+                                                                      AlignmentDirectional(
                                                                           -1.0,
                                                                           0.0),
                                                                   child:
@@ -1235,7 +1240,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                 .isOnline)
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         5.0,
                                                                         15.0,
@@ -1259,7 +1264,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                   children: [
                                                                     Align(
                                                                       alignment:
-                                                                          const AlignmentDirectional(
+                                                                          AlignmentDirectional(
                                                                               -1.0,
                                                                               0.0),
                                                                       child:
@@ -1292,7 +1297,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                   child: Builder(
                                                                       builder:
                                                                           (context) {
-                                                                    final googleMapMarker =
+                                                                    final _googleMapMarker =
                                                                         eventProposalStatusEventsRecord
                                                                             .otherDetails
                                                                             .outsideLocation;
@@ -1309,18 +1314,18 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                               .otherDetails
                                                                               .outsideLocation!,
                                                                       markers: [
-                                                                        if (googleMapMarker !=
+                                                                        if (_googleMapMarker !=
                                                                             null)
                                                                           FlutterFlowMarker(
-                                                                            googleMapMarker.serialize(),
-                                                                            googleMapMarker,
+                                                                            _googleMapMarker.serialize(),
+                                                                            _googleMapMarker,
                                                                           ),
                                                                       ],
                                                                       markerColor:
                                                                           GoogleMarkerColor
                                                                               .violet,
                                                                       markerImage:
-                                                                          const MarkerImage(
+                                                                          MarkerImage(
                                                                         imagePath:
                                                                             'assets/images/NU_GO_-_No_BG.png',
                                                                         isAssetImage:
@@ -1364,7 +1369,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                               ),
                                               KeepAliveWidgetWrapper(
                                                 builder: (context) => Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 35.0),
                                                   child: SingleChildScrollView(
@@ -1382,7 +1387,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                             children: [
                                                               Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
                                                                 child: Text(
@@ -1405,7 +1410,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             10.0,
@@ -1437,7 +1442,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                         final budgetItem =
                                                                             budget[budgetIndex];
                                                                         return Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               0.0,
@@ -1450,7 +1455,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                             ),
                                                                             child:
                                                                                 Padding(
-                                                                              padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 5.0),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 5.0),
                                                                               child: Row(
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1460,7 +1465,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                                                     children: [
                                                                                       Align(
-                                                                                        alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                        alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                         child: Text(
                                                                                           budgetItem.itemName,
                                                                                           style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1471,7 +1476,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                                         ),
                                                                                       ),
                                                                                       Align(
-                                                                                        alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                        alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                         child: Text(
                                                                                           '${formatNumber(
                                                                                             budgetItem.price,
@@ -1491,7 +1496,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                                         ),
                                                                                       ),
                                                                                       Align(
-                                                                                        alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                        alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                         child: Text(
                                                                                           'Charged to: ${budgetItem.chargedTo}',
                                                                                           style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1517,7 +1522,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       20.0,
@@ -1530,7 +1535,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                             children: [
                                                               Align(
                                                                 alignment:
-                                                                    const AlignmentDirectional(
+                                                                    AlignmentDirectional(
                                                                         -1.0,
                                                                         0.0),
                                                                 child: Text(
@@ -1550,7 +1555,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             5.0,
                                                                             0.0,
@@ -1565,7 +1570,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
                                                                         .backPanelText,
-                                                                    boxShadow: const [
+                                                                    boxShadow: [
                                                                       BoxShadow(
                                                                         blurRadius:
                                                                             2.0,
@@ -1592,7 +1597,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                     children: [
                                                                       Padding(
                                                                         padding:
-                                                                            const EdgeInsets.all(10.0),
+                                                                            EdgeInsets.all(10.0),
                                                                         child:
                                                                             Row(
                                                                           mainAxisSize:
@@ -1611,7 +1616,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                                                 children: [
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                     child: Text(
                                                                                       'Budget Request per Office',
                                                                                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1623,7 +1628,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                                     ),
                                                                                   ),
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                     child: Text(
                                                                                       'Overall pricing summary',
                                                                                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1660,7 +1665,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                                 MainAxisSize.max,
                                                                             children: [
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(15.0, 5.0, 15.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(15.0, 5.0, 15.0, 0.0),
                                                                                 child: Row(
                                                                                   mainAxisSize: MainAxisSize.max,
                                                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1693,7 +1698,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                                 ),
                                                                               ),
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                                                                                 child: Container(
                                                                                   width: double.infinity,
                                                                                   height: 1.0,
@@ -1716,7 +1721,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                                 MainAxisSize.max,
                                                                             children: [
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
                                                                                 child: Row(
                                                                                   mainAxisSize: MainAxisSize.max,
                                                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1749,7 +1754,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                                 ),
                                                                               ),
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                                                                                 child: Container(
                                                                                   width: double.infinity,
                                                                                   height: 1.0,
@@ -1765,7 +1770,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                                 MainAxisSize.max,
                                                                             children: [
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
                                                                                 child: Row(
                                                                                   mainAxisSize: MainAxisSize.max,
                                                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1798,7 +1803,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                                 ),
                                                                               ),
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                                                                                 child: Container(
                                                                                   width: double.infinity,
                                                                                   height: 1.0,
@@ -1814,7 +1819,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                                 MainAxisSize.max,
                                                                             children: [
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
                                                                                 child: Row(
                                                                                   mainAxisSize: MainAxisSize.max,
                                                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1847,7 +1852,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                                 ),
                                                                               ),
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                                                                                 child: Container(
                                                                                   width: double.infinity,
                                                                                   height: 1.0,
@@ -1863,7 +1868,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                                 MainAxisSize.max,
                                                                             children: [
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(15.0, 5.0, 15.0, 5.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(15.0, 5.0, 15.0, 5.0),
                                                                                 child: Row(
                                                                                   mainAxisSize: MainAxisSize.max,
                                                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1879,7 +1884,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                                     ),
                                                                                     Flexible(
                                                                                       child: Align(
-                                                                                        alignment: const AlignmentDirectional(1.0, 0.0),
+                                                                                        alignment: AlignmentDirectional(1.0, 0.0),
                                                                                         child: Text(
                                                                                           eventProposalStatusEventsRecord.budgetRequest.isNotEmpty
                                                                                               ? formatNumber(
@@ -1907,13 +1912,13 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                               ),
                                                                             ],
                                                                           ),
-                                                                        ].divide(const SizedBox(height: 3.0)).around(const SizedBox(height: 3.0)),
+                                                                        ].divide(SizedBox(height: 3.0)).around(SizedBox(height: 3.0)),
                                                                       ),
                                                                     ],
                                                                   ),
                                                                 ),
                                                               ),
-                                                            ].divide(const SizedBox(
+                                                            ].divide(SizedBox(
                                                                 height: 10.0)),
                                                           ),
                                                         ),
@@ -1924,7 +1929,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                               ),
                                               KeepAliveWidgetWrapper(
                                                 builder: (context) => Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 35.0),
                                                   child: SingleChildScrollView(
@@ -1935,7 +1940,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                       children: [
                                                         Align(
                                                           alignment:
-                                                              const AlignmentDirectional(
+                                                              AlignmentDirectional(
                                                                   0.0, 0.0),
                                                           child: Text(
                                                             'Program Flow',
@@ -1957,7 +1962,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                         ),
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       10.0,
@@ -1989,7 +1994,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                       program[
                                                                           programIndex];
                                                                   return Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -2004,7 +2009,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                       ),
                                                                       child:
                                                                           Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             5.0,
                                                                             5.0,
                                                                             5.0,
@@ -2021,7 +2026,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                                               children: [
                                                                                 Align(
-                                                                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                   child: Text(
                                                                                     programItem.activity,
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -2032,7 +2037,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                                   ),
                                                                                 ),
                                                                                 Align(
-                                                                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                                                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                   child: Text(
                                                                                     '${dateTimeFormat(
                                                                                       "jm",
@@ -2078,15 +2083,15 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                           ),
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(0.0, 1.0),
+                          alignment: AlignmentDirectional(0.0, 1.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 0.0, 20.0, 10.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 1.0),
+                                  alignment: AlignmentDirectional(0.0, 1.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
                                       logFirebaseEvent(
@@ -2097,24 +2102,24 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                         'event_proposal_detailed_status',
                                         queryParameters: {
                                           'eventRef': serializeParam(
-                                            widget.eventRef,
+                                            widget!.eventRef,
                                             ParamType.DocumentReference,
                                           ),
                                         }.withoutNulls,
                                       );
                                     },
                                     text: 'Track Proposal Status',
-                                    icon: const Icon(
+                                    icon: Icon(
                                       FFIcons.kstatusUp,
                                       size: 15.0,
                                     ),
                                     options: FFButtonOptions(
                                       width: double.infinity,
                                       height: 40.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           24.0, 0.0, 24.0, 0.0),
                                       iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color:
                                           FlutterFlowTheme.of(context).primary,
@@ -2127,7 +2132,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                             letterSpacing: 0.0,
                                           ),
                                       elevation: 3.0,
-                                      borderSide: const BorderSide(
+                                      borderSide: BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,
                                       ),
@@ -2150,9 +2155,9 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                 builder: (alertDialogContext) {
                                                   return WebViewAware(
                                                     child: AlertDialog(
-                                                      title: const Text(
+                                                      title: Text(
                                                           'Cancel Proposal'),
-                                                      content: const Text(
+                                                      content: Text(
                                                           'Are you sure you want to cancel your org\'s proposal?'),
                                                       actions: [
                                                         TextButton(
@@ -2160,7 +2165,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                               Navigator.pop(
                                                                   alertDialogContext,
                                                                   false),
-                                                          child: const Text('Cancel'),
+                                                          child: Text('Cancel'),
                                                         ),
                                                         TextButton(
                                                           onPressed: () =>
@@ -2168,7 +2173,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                                                   alertDialogContext,
                                                                   true),
                                                           child:
-                                                              const Text('Confirm'),
+                                                              Text('Confirm'),
                                                         ),
                                                       ],
                                                     ),
@@ -2179,7 +2184,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                       if (confirmDialogResponse) {
                                         logFirebaseEvent('Button_backend_call');
 
-                                        await widget.eventRef!.update({
+                                        await widget!.eventRef!.update({
                                           ...createEventsRecordData(
                                             status: 'Cancelled',
                                           ),
@@ -2193,7 +2198,7 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                         logFirebaseEvent('Button_backend_call');
 
                                         await EventApplicationRecord.createDoc(
-                                                widget.eventRef!)
+                                                widget!.eventRef!)
                                             .set({
                                           ...createEventApplicationRecordData(
                                             message:
@@ -2215,15 +2220,15 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                             return WebViewAware(
                                               child: AlertDialog(
                                                 title:
-                                                    const Text('Proposal Cancelled'),
-                                                content: const Text(
+                                                    Text('Proposal Cancelled'),
+                                                content: Text(
                                                     'Your proposal has been cancelled.'),
                                                 actions: [
                                                   TextButton(
                                                     onPressed: () =>
                                                         Navigator.pop(
                                                             alertDialogContext),
-                                                    child: const Text('Ok'),
+                                                    child: Text('Ok'),
                                                   ),
                                                 ],
                                               ),
@@ -2236,10 +2241,10 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                     options: FFButtonOptions(
                                       width: double.infinity,
                                       height: 40.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           24.0, 0.0, 24.0, 0.0),
                                       iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color: FlutterFlowTheme.of(context).error,
                                       textStyle: FlutterFlowTheme.of(context)
@@ -2251,14 +2256,14 @@ class _EventProposalStatusWidgetState extends State<EventProposalStatusWidget>
                                             letterSpacing: 0.0,
                                           ),
                                       elevation: 3.0,
-                                      borderSide: const BorderSide(
+                                      borderSide: BorderSide(
                                         color: Colors.transparent,
                                         width: 1.0,
                                       ),
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                   ),
-                              ].divide(const SizedBox(height: 5.0)),
+                              ].divide(SizedBox(height: 5.0)),
                             ),
                           ),
                         ),

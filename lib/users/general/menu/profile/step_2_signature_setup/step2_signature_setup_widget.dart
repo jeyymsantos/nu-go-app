@@ -8,9 +8,15 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:math';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:signature/signature.dart';
 import 'step2_signature_setup_model.dart';
 export 'step2_signature_setup_model.dart';
@@ -47,7 +53,7 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 1400.0.ms,
-            color: const Color(0xFF35408E),
+            color: Color(0xFF35408E),
             angle: 0.576,
           ),
         ],
@@ -78,24 +84,24 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TitleHeaderComponentWidget(
+                  child: TitleHeaderComponentWidget(
                     titleText: 'Verify your account',
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,7 +110,7 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 10.0, 0.0),
                                   child: Text(
                                     'Step 2',
@@ -134,7 +140,7 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 5.0, 0.0, 0.0),
                               child: Text(
                                 'Let\'s set up your e-signature! Please carefully draw it on the signature pad below now.',
@@ -150,7 +156,7 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -171,7 +177,7 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           5.0, 0.0, 0.0, 0.0),
                                       child: Container(
                                         width: double.infinity,
@@ -188,7 +194,7 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           5.0, 0.0, 0.0, 0.0),
                                       child: Container(
                                         width: double.infinity,
@@ -223,7 +229,7 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                   child: SingleChildScrollView(
                     primary: false,
                     child: Column(
@@ -234,11 +240,11 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                         Container(
                           width: 90.0,
                           height: 87.0,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Stack(
                             children: [
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: AuthUserStreamWidget(
                                   builder: (context) => InkWell(
                                     splashColor: Colors.transparent,
@@ -282,7 +288,7 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                                         width: 90.0,
                                         height: 90.0,
                                         clipBehavior: Clip.antiAlias,
-                                        decoration: const BoxDecoration(
+                                        decoration: BoxDecoration(
                                           shape: BoxShape.circle,
                                         ),
                                         child: Image.network(
@@ -305,7 +311,7 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 5.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
@@ -318,7 +324,7 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                                       AuthUserStreamWidget(
                                         builder: (context) => Text(
                                           valueOrDefault<String>(
-                                            '${currentUserDocument?.student.honorifics != null && currentUserDocument?.student.honorifics != '' ? '${currentUserDocument?.student.honorifics} ' : ''}${currentUserDocument?.name.firstName} ${currentUserDocument?.name.middleName} ${currentUserDocument?.name.lastName} ${currentUserDocument?.name.suffixName}',
+                                            '${currentUserDocument?.student?.honorifics != null && currentUserDocument?.student?.honorifics != '' ? '${currentUserDocument?.student?.honorifics} ' : ''}${currentUserDocument?.name?.firstName} ${currentUserDocument?.name?.middleName} ${currentUserDocument?.name?.lastName} ${currentUserDocument?.name?.suffixName}',
                                             'User Name',
                                           ),
                                           textAlign: TextAlign.center,
@@ -335,7 +341,7 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                                       Flexible(
                                         child: AlignedTooltip(
                                           content: Padding(
-                                            padding: const EdgeInsets.all(4.0),
+                                            padding: EdgeInsets.all(4.0),
                                             child: Text(
                                               'Profile Details have been already verified.',
                                               style:
@@ -360,18 +366,18 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                                           tailBaseWidth: 24.0,
                                           tailLength: 12.0,
                                           waitDuration:
-                                              const Duration(milliseconds: 100),
+                                              Duration(milliseconds: 100),
                                           showDuration:
-                                              const Duration(milliseconds: 1500),
+                                              Duration(milliseconds: 1500),
                                           triggerMode: TooltipTriggerMode.tap,
                                           child: Visibility(
                                             visible: valueOrDefault<bool>(
                                               currentUserDocument
-                                                  ?.settings.isVerified,
+                                                  ?.settings?.isVerified,
                                               false,
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(2.0, 0.0, 0.0, 0.0),
                                               child: AuthUserStreamWidget(
                                                 builder: (context) => Icon(
@@ -411,7 +417,7 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                           ],
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 10.0, 20.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -419,9 +425,9 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 10.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -460,9 +466,9 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 10.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -503,7 +509,7 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                                           ),
                                           AlignedTooltip(
                                             content: Padding(
-                                              padding: const EdgeInsets.all(4.0),
+                                              padding: EdgeInsets.all(4.0),
                                               child: Text(
                                                 'Your School ID has been setup.',
                                                 style:
@@ -528,9 +534,9 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                                             tailBaseWidth: 24.0,
                                             tailLength: 12.0,
                                             waitDuration:
-                                                const Duration(milliseconds: 100),
+                                                Duration(milliseconds: 100),
                                             showDuration:
-                                                const Duration(milliseconds: 1500),
+                                                Duration(milliseconds: 1500),
                                             triggerMode: TooltipTriggerMode.tap,
                                             child: Visibility(
                                               visible: valueOrDefault<bool>(
@@ -538,11 +544,16 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                                                             currentUserDocument
                                                                 ?.nfcTag,
                                                             '') !=
+                                                        null &&
+                                                    valueOrDefault(
+                                                            currentUserDocument
+                                                                ?.nfcTag,
+                                                            '') !=
                                                         '',
                                                 false,
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         5.0, 0.0, 0.0, 0.0),
                                                 child: AuthUserStreamWidget(
@@ -564,9 +575,9 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 10.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -596,7 +607,7 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                                           builder: (context, snapshot) {
                                             // Customize what your widget looks like when it's loading.
                                             if (!snapshot.hasData) {
-                                              return const Center(
+                                              return Center(
                                                 child: SizedBox(
                                                   width: 16.0,
                                                   height: 16.0,
@@ -636,7 +647,7 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 10.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
@@ -656,7 +667,7 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                                     ),
                                     Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: AuthUserStreamWidget(
                                         builder: (context) =>
                                             FutureBuilder<SchoolsRecord>(
@@ -666,7 +677,7 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                                           builder: (context, snapshot) {
                                             // Customize what your widget looks like when it's loading.
                                             if (!snapshot.hasData) {
-                                              return const Center(
+                                              return Center(
                                                 child: SizedBox(
                                                   width: 16.0,
                                                   height: 16.0,
@@ -706,9 +717,9 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: Text(
                                     'Draw your signature here',
@@ -726,7 +737,7 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 0.0),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10.0),
@@ -745,7 +756,7 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                                     borderRadius: BorderRadius.circular(15.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(2.0),
+                                    padding: EdgeInsets.all(2.0),
                                     child: ClipRect(
                                       child: Signature(
                                         controller:
@@ -755,7 +766,7 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                                           penColor: FlutterFlowTheme.of(context)
                                               .primary,
                                           exportBackgroundColor:
-                                              const Color(0x00000000),
+                                              Color(0x00000000),
                                         ),
                                         backgroundColor:
                                             FlutterFlowTheme.of(context)
@@ -770,7 +781,7 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 10.0, 0.0, 0.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -796,9 +807,9 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                                   size: 19.0,
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         5.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       'Clear Signature',
@@ -821,9 +832,9 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                         ),
                         Flexible(
                           child: Container(
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 20.0, 20.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
@@ -882,9 +893,9 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                                 options: FFButtonOptions(
                                   width: double.infinity,
                                   height: 50.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: FlutterFlowTheme.of(context).primary,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -897,7 +908,7 @@ class _Step2SignatureSetupWidgetState extends State<Step2SignatureSetupWidget>
                                         fontWeight: FontWeight.w500,
                                       ),
                                   elevation: 3.0,
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),

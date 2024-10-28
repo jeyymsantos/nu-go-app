@@ -10,6 +10,8 @@ import '/custom_code/actions/index.dart' as actions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'change_password_model.dart';
@@ -85,19 +87,19 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TitleHeaderComponentWidget(
+                  child: TitleHeaderComponentWidget(
                     titleText: 'Change Password',
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                   child: Text(
                     'To change your password, enter your current password below then your new password. Once confirmed, you may now login using your new password.',
                     textAlign: TextAlign.justify,
@@ -115,7 +117,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController1,
                           focusNode: _model.textFieldFocusNode1,
@@ -160,7 +162,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                               borderRadius: BorderRadius.circular(14.0),
                             ),
                             filled: true,
-                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 25.0, 0.0, 25.0),
                             prefixIcon: Icon(
                               Icons.lock_outline_sharp,
@@ -194,13 +196,13 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                       ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController2,
                           focusNode: _model.textFieldFocusNode2,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController2',
-                            const Duration(milliseconds: 2000),
+                            Duration(milliseconds: 2000),
                             () async {
                               logFirebaseEvent(
                                   'CHANGE_PASSWORD_TextField_b0fhemlr_ON_TE');
@@ -259,7 +261,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                               borderRadius: BorderRadius.circular(14.0),
                             ),
                             filled: true,
-                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 25.0, 0.0, 25.0),
                             prefixIcon: Icon(
                               Icons.lock_outline_sharp,
@@ -291,16 +293,17 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                               .asValidator(context),
                         ),
                       ),
-                      if (_model.textController2.text != '')
+                      if (_model.textController2.text != null &&
+                          _model.textController2.text != '')
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               5.0, 5.0, 0.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: Text(
                                   'Atleast one (1) uppercase letter',
@@ -319,7 +322,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: Text(
                                   'Atleast one (1) lowercase letter',
@@ -338,7 +341,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: Text(
                                   'Atleast one (1) number',
@@ -357,7 +360,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: Text(
                                   'Atleast one (1) special character',
@@ -376,7 +379,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: Text(
                                   'Atleast eight (8) characters',
@@ -399,7 +402,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                         ),
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController3,
                           focusNode: _model.textFieldFocusNode3,
@@ -444,7 +447,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                               borderRadius: BorderRadius.circular(14.0),
                             ),
                             filled: true,
-                            contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                            contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 25.0, 0.0, 25.0),
                             prefixIcon: Icon(
                               Icons.lock_outline_sharp,
@@ -478,7 +481,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                       ),
                       Builder(
                         builder: (context) => Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 15.0, 0.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: ((FFAppState().hasUppercase == false) ||
@@ -487,13 +490,15 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                     (FFAppState().hasSpecialCharacter ==
                                         false) ||
                                     (FFAppState().hasMinimumLength == false) ||
-                                    (_model.textController1.text == '') ||
-                                    (_model.textController3.text == ''))
+                                    (_model.textController1.text == null ||
+                                        _model.textController1.text == '') ||
+                                    (_model.textController3.text == null ||
+                                        _model.textController3.text == ''))
                                 ? null
                                 : () async {
                                     logFirebaseEvent(
                                         'CHANGE_PASSWORD_CHANGE_PASSWORD_BTN_ON_T');
-                                    var shouldSetState = false;
+                                    var _shouldSetState = false;
                                     logFirebaseEvent('Button_validate_form');
                                     if (_model.formKey.currentState == null ||
                                         !_model.formKey.currentState!
@@ -511,7 +516,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                         _model.textController3.text,
                                         currentUserEmail,
                                       );
-                                      shouldSetState = true;
+                                      _shouldSetState = true;
                                       logFirebaseEvent('Button_action_block');
                                       await action_blocks.logs(
                                         context,
@@ -527,7 +532,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                             elevation: 0,
                                             insetPadding: EdgeInsets.zero,
                                             backgroundColor: Colors.transparent,
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                     0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
@@ -557,7 +562,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                             elevation: 0,
                                             insetPadding: EdgeInsets.zero,
                                             backgroundColor: Colors.transparent,
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                     0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
@@ -566,7 +571,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                                 onTap: () =>
                                                     FocusScope.of(dialogContext)
                                                         .unfocus(),
-                                                child: const FailedDialogBoxWidget(
+                                                child: FailedDialogBoxWidget(
                                                   failedDialogTitle:
                                                       'Passwords Mismatch',
                                                   failedDialogMeesage:
@@ -578,21 +583,21 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                         },
                                       );
 
-                                      if (shouldSetState) safeSetState(() {});
+                                      if (_shouldSetState) safeSetState(() {});
                                       return;
                                     }
 
                                     logFirebaseEvent('Button_navigate_back');
                                     context.safePop();
-                                    if (shouldSetState) safeSetState(() {});
+                                    if (_shouldSetState) safeSetState(() {});
                                   },
                             text: 'Change Password',
                             options: FFButtonOptions(
                               width: double.infinity,
                               height: 50.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -604,7 +609,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),

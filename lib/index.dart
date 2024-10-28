@@ -108,8 +108,8 @@ export '/users/school_admins/approval_event/admin_manage_event/admin_manage_even
     show AdminManageEventWidget;
 export '/users/rsco/event_management/event_proposal_revision/event_proposal_revision_widget.dart'
     show EventProposalRevisionWidget;
-export '/drafts/calendar_trial/calendar_trial_widget.dart'
-    show CalendarTrialWidget;
+export '/users/rsco/event_management/event_calendar/event_calendar_widget.dart'
+    show EventCalendarWidget;
 export '/modules/authentication/verifications/auth_verify_role/auth_verify_role_widget.dart'
     show AuthVerifyRoleWidget;
 export '/users/school_admins/fmo/fmo_calendar_version1/fmo_calendar_version1_widget.dart'
@@ -304,3 +304,8 @@ export '/modules/marketplace/admin/order_view_admin/order_view_admin_widget.dart
     show OrderViewAdminWidget;
 export '/modules/file_maintenance/file_users/view_userid_admin/view_userid_admin_widget.dart'
     show ViewUseridAdminWidget;
+export '/users/rsco/org_management/org_reports_copy/org_reports_copy_widget.dart'
+    show OrgReportsCopyWidget;
+export '/users/general/calendar/calendar_widget.dart' show CalendarWidget;
+export '/drafts/admin_org_report/admin_org_report_widget.dart'
+    show AdminOrgReportWidget;

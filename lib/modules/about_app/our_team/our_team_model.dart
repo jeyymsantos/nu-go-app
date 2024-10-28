@@ -1,8 +1,13 @@
 import '/components/widgets/card/card_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'our_team_widget.dart' show OurTeamWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class OurTeamModel extends FlutterFlowModel<OurTeamWidget> {
   ///  State fields for stateful widgets in this page.

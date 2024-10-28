@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
@@ -18,10 +19,15 @@ import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'maintenance_users_model.dart';
 export 'maintenance_users_model.dart';
@@ -51,51 +57,51 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'maintenance_users'});
     _model.descriptionFieldTextController ??=
-        TextEditingController(text: widget.userDoc?.bioNote);
+        TextEditingController(text: widget!.userDoc?.bioNote);
     _model.descriptionFieldFocusNode ??= FocusNode();
 
     _model.idNumberTextController ??=
-        TextEditingController(text: widget.userDoc?.idNumber);
+        TextEditingController(text: widget!.userDoc?.idNumber);
     _model.idNumberFocusNode ??= FocusNode();
 
     _model.firstNameFieldTextController ??=
-        TextEditingController(text: widget.userDoc?.name.firstName);
+        TextEditingController(text: widget!.userDoc?.name?.firstName);
     _model.firstNameFieldFocusNode ??= FocusNode();
 
     _model.middleNameFieldTextController ??=
-        TextEditingController(text: widget.userDoc?.name.middleName);
+        TextEditingController(text: widget!.userDoc?.name?.middleName);
     _model.middleNameFieldFocusNode ??= FocusNode();
 
     _model.lastNameFieldTextController ??=
-        TextEditingController(text: widget.userDoc?.name.lastName);
+        TextEditingController(text: widget!.userDoc?.name?.lastName);
     _model.lastNameFieldFocusNode ??= FocusNode();
 
     _model.suffixFieldTextController ??=
-        TextEditingController(text: widget.userDoc?.name.suffixName);
+        TextEditingController(text: widget!.userDoc?.name?.suffixName);
     _model.suffixFieldFocusNode ??= FocusNode();
 
     _model.phoneNumberFieldTextController ??=
-        TextEditingController(text: widget.userDoc?.phoneNumber);
+        TextEditingController(text: widget!.userDoc?.phoneNumber);
     _model.phoneNumberFieldFocusNode ??= FocusNode();
 
     _model.numberAddressFieldTextController ??=
-        TextEditingController(text: widget.userDoc?.address.houseNumber);
+        TextEditingController(text: widget!.userDoc?.address?.houseNumber);
     _model.numberAddressFieldFocusNode ??= FocusNode();
 
     _model.streetAddressFieldTextController ??=
-        TextEditingController(text: widget.userDoc?.address.street);
+        TextEditingController(text: widget!.userDoc?.address?.street);
     _model.streetAddressFieldFocusNode ??= FocusNode();
 
     _model.sectionFieldTextController ??=
-        TextEditingController(text: widget.userDoc?.student.section);
+        TextEditingController(text: widget!.userDoc?.student?.section);
     _model.sectionFieldFocusNode ??= FocusNode();
 
     _model.verifiedSwitchValue1 =
-        widget.userDoc?.settings.isVerified == true ? true : false;
+        widget!.userDoc?.settings?.isVerified == true ? true : false;
     _model.verifiedSwitchValue2 =
-        widget.userDoc?.settings.isDeactivated == true ? true : false;
+        widget!.userDoc?.settings?.isDeactivated == true ? true : false;
     _model.adminSwitchValue =
-        widget.userDoc?.settings.isSuperAdmin == true ? true : false;
+        widget!.userDoc?.settings?.isSuperAdmin == true ? true : false;
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -116,30 +122,30 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
         body: SafeArea(
           top: true,
           child: Align(
-            alignment: const AlignmentDirectional(0.0, -1.0),
+            alignment: AlignmentDirectional(0.0, -1.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                   child: wrapWithModel(
                     model: _model.titleHeaderComponentModel,
                     updateCallback: () => safeSetState(() {}),
-                    child: const TitleHeaderComponentWidget(
+                    child: TitleHeaderComponentWidget(
                       titleText: 'Edit User',
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 5.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -157,7 +163,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                     ),
                               ),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: Text(
                                   'Edit and update user information, ensuring that all details are up-to-date based on the user\'s preferences.',
@@ -193,13 +199,13 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
+                        Container(
                           width: double.infinity,
                           child: Form(
                             key: _model.formKey,
                             autovalidateMode: AutovalidateMode.disabled,
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 0.0, 20.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -207,12 +213,12 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                   Container(
                                     width: 90.0,
                                     height: 90.0,
-                                    decoration: const BoxDecoration(),
+                                    decoration: BoxDecoration(),
                                     child: Stack(
                                       children: [
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: ClipOval(
                                             child: Container(
                                               decoration: BoxDecoration(
@@ -224,10 +230,10 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(4.0),
+                                                padding: EdgeInsets.all(4.0),
                                                 child: ClipOval(
                                                   child: Container(
-                                                    decoration: const BoxDecoration(
+                                                    decoration: BoxDecoration(
                                                       shape: BoxShape.circle,
                                                     ),
                                                     child: InkWell(
@@ -257,10 +263,12 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                                 valueOrDefault<
                                                                     String>(
                                                                   _model.uploadedFileUrl !=
+                                                                              null &&
+                                                                          _model.uploadedFileUrl !=
                                                                               ''
                                                                       ? _model
                                                                           .uploadedFileUrl
-                                                                      : widget
+                                                                      : widget!
                                                                           .userDoc
                                                                           ?.photoUrl,
                                                                   'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
@@ -274,10 +282,12 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                                   valueOrDefault<
                                                                       String>(
                                                                 _model.uploadedFileUrl !=
+                                                                            null &&
+                                                                        _model.uploadedFileUrl !=
                                                                             ''
                                                                     ? _model
                                                                         .uploadedFileUrl
-                                                                    : widget
+                                                                    : widget!
                                                                         .userDoc
                                                                         ?.photoUrl,
                                                                 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
@@ -292,10 +302,12 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                         tag: valueOrDefault<
                                                             String>(
                                                           _model.uploadedFileUrl !=
+                                                                      null &&
+                                                                  _model.uploadedFileUrl !=
                                                                       ''
                                                               ? _model
                                                                   .uploadedFileUrl
-                                                              : widget.userDoc
+                                                              : widget!.userDoc
                                                                   ?.photoUrl,
                                                           'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
                                                         ),
@@ -305,10 +317,12 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                           valueOrDefault<
                                                               String>(
                                                             _model.uploadedFileUrl !=
+                                                                        null &&
+                                                                    _model.uploadedFileUrl !=
                                                                         ''
                                                                 ? _model
                                                                     .uploadedFileUrl
-                                                                : widget
+                                                                : widget!
                                                                     .userDoc
                                                                     ?.photoUrl,
                                                             'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
@@ -329,7 +343,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                         ),
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(1.0, 1.0),
+                                              AlignmentDirectional(1.0, 1.0),
                                           child: FlutterFlowIconButton(
                                             borderColor: Colors.transparent,
                                             borderRadius: 7.0,
@@ -423,11 +437,13 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                               }
 
                                               if (_model.uploadedFileUrl !=
+                                                      null &&
+                                                  _model.uploadedFileUrl !=
                                                       '') {
                                                 logFirebaseEvent(
                                                     'IconButton_backend_call');
 
-                                                await widget.userDoc!.reference
+                                                await widget!.userDoc!.reference
                                                     .update(
                                                         createUsersRecordData(
                                                   photoUrl:
@@ -449,16 +465,16 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                       (alertDialogContext) {
                                                     return WebViewAware(
                                                       child: AlertDialog(
-                                                        title: const Text(
+                                                        title: Text(
                                                             'Profile Picture'),
-                                                        content: const Text(
+                                                        content: Text(
                                                             'Profile picture has been updated!'),
                                                         actions: [
                                                           TextButton(
                                                             onPressed: () =>
                                                                 Navigator.pop(
                                                                     alertDialogContext),
-                                                            child: const Text('Ok'),
+                                                            child: Text('Ok'),
                                                           ),
                                                         ],
                                                       ),
@@ -473,14 +489,14 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 10.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         AlignedTooltip(
                                           content: Padding(
-                                            padding: const EdgeInsets.all(4.0),
+                                            padding: EdgeInsets.all(4.0),
                                             child: Text(
                                               'Make sure that you have your ID with you.',
                                               style:
@@ -505,15 +521,15 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                           tailBaseWidth: 24.0,
                                           tailLength: 12.0,
                                           waitDuration:
-                                              const Duration(milliseconds: 100),
+                                              Duration(milliseconds: 100),
                                           showDuration:
-                                              const Duration(milliseconds: 1500),
+                                              Duration(milliseconds: 1500),
                                           triggerMode:
                                               TooltipTriggerMode.longPress,
                                           child: Visibility(
                                             visible: valueOrDefault<bool>(
-                                              widget.userDoc?.nfcTag == null ||
-                                                  widget.userDoc?.nfcTag == '',
+                                              widget!.userDoc?.nfcTag == null ||
+                                                  widget!.userDoc?.nfcTag == '',
                                               true,
                                             ),
                                             child: InkWell(
@@ -532,12 +548,12 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                   'admin_nfc_setup',
                                                   queryParameters: {
                                                     'userDoc': serializeParam(
-                                                      widget.userDoc,
+                                                      widget!.userDoc,
                                                       ParamType.Document,
                                                     ),
                                                   }.withoutNulls,
                                                   extra: <String, dynamic>{
-                                                    'userDoc': widget.userDoc,
+                                                    'userDoc': widget!.userDoc,
                                                   },
                                                 );
                                               },
@@ -551,7 +567,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                           24.0),
                                                 ),
                                                 child: Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           10.0, 5.0, 10.0, 5.0),
                                                   child: Row(
@@ -563,7 +579,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -606,11 +622,11 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 0.0, 0.0, 0.0),
                                           child: AlignedTooltip(
                                             content: Padding(
-                                              padding: const EdgeInsets.all(4.0),
+                                              padding: EdgeInsets.all(4.0),
                                               child: Text(
                                                 'Make sure that you have your ID with you.',
                                                 style:
@@ -635,16 +651,16 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                             tailBaseWidth: 24.0,
                                             tailLength: 12.0,
                                             waitDuration:
-                                                const Duration(milliseconds: 100),
+                                                Duration(milliseconds: 100),
                                             showDuration:
-                                                const Duration(milliseconds: 1500),
+                                                Duration(milliseconds: 1500),
                                             triggerMode:
                                                 TooltipTriggerMode.longPress,
                                             child: Visibility(
-                                              visible: widget
+                                              visible: widget!
                                                           .userDoc?.nfcTag !=
                                                       null &&
-                                                  widget.userDoc?.nfcTag != '',
+                                                  widget!.userDoc?.nfcTag != '',
                                               child: InkWell(
                                                 splashColor: Colors.transparent,
                                                 focusColor: Colors.transparent,
@@ -664,15 +680,15 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                     'view_userid_admin',
                                                     queryParameters: {
                                                       'userDoc': serializeParam(
-                                                        widget.userDoc,
+                                                        widget!.userDoc,
                                                         ParamType.Document,
                                                       ),
                                                     }.withoutNulls,
                                                     extra: <String, dynamic>{
                                                       'userDoc':
-                                                          widget.userDoc,
+                                                          widget!.userDoc,
                                                       kTransitionInfoKey:
-                                                          const TransitionInfo(
+                                                          TransitionInfo(
                                                         hasTransition: true,
                                                         transitionType:
                                                             PageTransitionType
@@ -694,7 +710,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(10.0, 5.0,
                                                                 10.0, 5.0),
                                                     child: Row(
@@ -706,7 +722,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -751,11 +767,11 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 0.0, 0.0, 0.0),
                                           child: AlignedTooltip(
                                             content: Padding(
-                                              padding: const EdgeInsets.all(4.0),
+                                              padding: EdgeInsets.all(4.0),
                                               child: Text(
                                                 'Make sure that you have your ID with you.',
                                                 style:
@@ -780,16 +796,16 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                             tailBaseWidth: 24.0,
                                             tailLength: 12.0,
                                             waitDuration:
-                                                const Duration(milliseconds: 100),
+                                                Duration(milliseconds: 100),
                                             showDuration:
-                                                const Duration(milliseconds: 1500),
+                                                Duration(milliseconds: 1500),
                                             triggerMode:
                                                 TooltipTriggerMode.longPress,
                                             child: Visibility(
-                                              visible: widget
+                                              visible: widget!
                                                           .userDoc?.nfcTag !=
                                                       null &&
-                                                  widget.userDoc?.nfcTag != '',
+                                                  widget!.userDoc?.nfcTag != '',
                                               child: Builder(
                                                 builder: (context) => InkWell(
                                                   splashColor:
@@ -803,7 +819,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                   onTap: () async {
                                                     logFirebaseEvent(
                                                         'MAINTENANCE_USERS_Container_1dvw6ldz_ON_');
-                                                    var shouldSetState = false;
+                                                    var _shouldSetState = false;
                                                     logFirebaseEvent(
                                                         'Container_alert_dialog');
                                                     await showDialog(
@@ -816,7 +832,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                           backgroundColor:
                                                               Colors
                                                                   .transparent,
-                                                          alignment: const AlignmentDirectional(
+                                                          alignment: AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
@@ -829,7 +845,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                                           dialogContext)
                                                                       .unfocus(),
                                                               child:
-                                                                  const ConfirmPasswordDialogWidget(),
+                                                                  ConfirmPasswordDialogWidget(),
                                                             ),
                                                           ),
                                                         );
@@ -839,12 +855,12 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                                 .confirmAction =
                                                             value));
 
-                                                    shouldSetState = true;
+                                                    _shouldSetState = true;
                                                     if (_model.confirmAction!) {
                                                       logFirebaseEvent(
                                                           'Container_backend_call');
 
-                                                      await widget
+                                                      await widget!
                                                           .userDoc!.reference
                                                           .update(
                                                               createUsersRecordData(
@@ -863,7 +879,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                             backgroundColor:
                                                                 Colors
                                                                     .transparent,
-                                                            alignment: const AlignmentDirectional(
+                                                            alignment: AlignmentDirectional(
                                                                     0.0, 0.0)
                                                                 .resolve(
                                                                     Directionality.of(
@@ -876,7 +892,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                                             dialogContext)
                                                                         .unfocus(),
                                                                 child:
-                                                                    const CongratulationsDialogBoxWidget(
+                                                                    CongratulationsDialogBoxWidget(
                                                                   congratsDialogTitle:
                                                                       'NFC Reset Successful!',
                                                                   congratsDialogMeesage:
@@ -891,20 +907,17 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                       logFirebaseEvent(
                                                           'Container_navigate_back');
                                                       context.safePop();
-                                                      if (shouldSetState) {
+                                                      if (_shouldSetState)
                                                         safeSetState(() {});
-                                                      }
                                                       return;
                                                     } else {
-                                                      if (shouldSetState) {
+                                                      if (_shouldSetState)
                                                         safeSetState(() {});
-                                                      }
                                                       return;
                                                     }
 
-                                                    if (shouldSetState) {
+                                                    if (_shouldSetState)
                                                       safeSetState(() {});
-                                                    }
                                                   },
                                                   child: Container(
                                                     decoration: BoxDecoration(
@@ -918,7 +931,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                     ),
                                                     child: Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   10.0,
                                                                   5.0,
@@ -933,7 +946,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -980,7 +993,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller:
@@ -1068,7 +1081,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller: _model.idNumberTextController,
@@ -1146,7 +1159,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -1166,7 +1179,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller:
@@ -1237,7 +1250,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller:
@@ -1309,7 +1322,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller:
@@ -1380,7 +1393,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -1470,9 +1483,9 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                     .civilStatusDropdownValueController ??=
                                                 FormFieldController<String>(
                                               _model.civilStatusDropdownValue ??=
-                                                  widget.userDoc?.civilStatus,
+                                                  widget!.userDoc?.civilStatus,
                                             ),
-                                            options: const [
+                                            options: [
                                               'Single',
                                               'Married',
                                               'Widowed',
@@ -1526,7 +1539,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                             borderWidth: 0.5,
                                             borderRadius: 8.0,
                                             margin:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 4.0, 16.0, 4.0),
                                             hidesUnderline: true,
                                             isOverButton: true,
@@ -1534,11 +1547,11 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                             isMultiSelect: false,
                                           ),
                                         ),
-                                      ].divide(const SizedBox(width: 10.0)),
+                                      ].divide(SizedBox(width: 10.0)),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -1566,7 +1579,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(15.0, 0.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -1584,7 +1597,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                 ],
                                               ),
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: Row(
                                                   mainAxisSize:
@@ -1594,7 +1607,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -1614,7 +1627,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                                     String>(
                                                                 valueOrDefault<
                                                                     String>(
-                                                          widget.userDoc?.sex,
+                                                          widget!.userDoc?.sex,
                                                           'Female',
                                                         )),
                                                         optionHeight: 32.0,
@@ -1674,7 +1687,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 10.0, 0.0, 0.0),
                                           child: TextFormField(
                                             controller: _model
@@ -1766,7 +1779,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                     ],
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 12.0, 0.0, 0.0),
                                     child: InkWell(
                                       splashColor: Colors.transparent,
@@ -1778,7 +1791,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                             'MAINTENANCE_USERS_birthdate_picker_ON_TA');
                                         logFirebaseEvent(
                                             'birthdate_picker_date_time_picker');
-                                        final datePickedDate =
+                                        final _datePickedDate =
                                             await showDatePicker(
                                           context: context,
                                           initialDate: DateTime
@@ -1833,12 +1846,12 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                           },
                                         );
 
-                                        if (datePickedDate != null) {
+                                        if (_datePickedDate != null) {
                                           safeSetState(() {
                                             _model.datePicked = DateTime(
-                                              datePickedDate.year,
-                                              datePickedDate.month,
-                                              datePickedDate.day,
+                                              _datePickedDate.year,
+                                              _datePickedDate.month,
+                                              _datePickedDate.day,
                                             );
                                           });
                                         }
@@ -1866,7 +1879,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                       .spaceBetween,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           10.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -1882,7 +1895,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                         'Birthday',
                                                       ) : dateTimeFormat(
                                                         "yMMMd",
-                                                        widget
+                                                        widget!
                                                             .userDoc?.birthDate,
                                                         locale:
                                                             FFLocalizations.of(
@@ -1903,7 +1916,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 10.0, 0.0),
                                                   child: Icon(
@@ -1927,7 +1940,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 10.0, 0.0, 0.0),
                                           child: TextFormField(
                                             controller: _model
@@ -2011,7 +2024,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                       Expanded(
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 10.0, 0.0, 0.0),
                                           child: TextFormField(
                                             controller: _model
@@ -2092,10 +2105,10 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                           ),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(width: 10.0)),
+                                    ].divide(SizedBox(width: 10.0)),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: FutureBuilder<ApiCallResponse>(
                                       future:
@@ -2185,7 +2198,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                           borderWidth: 0.5,
                                           borderRadius: 8.0,
                                           margin:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 4.0, 16.0, 4.0),
                                           hidesUnderline: true,
                                           isOverButton: true,
@@ -2198,7 +2211,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                   if (_model.provincesDropdownValue != null &&
                                       _model.provincesDropdownValue != '')
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: FutureBuilder<ApiCallResponse>(
                                         future: AddressGroup.getCityCall.call(
@@ -2208,8 +2221,8 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                   _model.provincesDropdownValue !=
                                                       ''
                                               ? _model.provincesDropdownValue
-                                              : widget
-                                                  .userDoc?.address.province,
+                                              : widget!
+                                                  .userDoc?.address?.province,
                                         ),
                                         builder: (context, snapshot) {
                                           // Customize what your widget looks like when it's loading.
@@ -2295,7 +2308,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                             borderWidth: 0.5,
                                             borderRadius: 8.0,
                                             margin:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 4.0, 16.0, 4.0),
                                             hidesUnderline: true,
                                             isOverButton: true,
@@ -2308,7 +2321,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                   if (_model.cityDropdownValue != null &&
                                       _model.cityDropdownValue != '')
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: FutureBuilder<ApiCallResponse>(
                                         future: AddressGroup.barangayCall.call(
@@ -2317,7 +2330,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                       null &&
                                                   _model.cityDropdownValue != ''
                                               ? _model.cityDropdownValue
-                                              : widget.userDoc?.address.city,
+                                              : widget!.userDoc?.address?.city,
                                         ),
                                         builder: (context, snapshot) {
                                           // Customize what your widget looks like when it's loading.
@@ -2405,7 +2418,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                             borderWidth: 0.5,
                                             borderRadius: 8.0,
                                             margin:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 4.0, 16.0, 4.0),
                                             hidesUnderline: true,
                                             isOverButton: true,
@@ -2416,7 +2429,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                       ),
                                     ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 30.0, 0.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -2437,7 +2450,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                   ),
                                   Builder(
                                     builder: (context) {
-                                      if (widget.userDoc?.role == 'Student') {
+                                      if (widget!.userDoc?.role == 'Student') {
                                         return Column(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
@@ -2445,7 +2458,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 0.0),
                                                   child: StreamBuilder<
@@ -2580,7 +2593,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                         borderWidth: 0.5,
                                                         borderRadius: 8.0,
                                                         margin:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     16.0,
                                                                     4.0,
@@ -2600,7 +2613,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                         '')
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 10.0,
                                                                 0.0, 0.0),
                                                     child: StreamBuilder<
@@ -2744,7 +2757,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                           borderWidth: 0.5,
                                                           borderRadius: 8.0,
                                                           margin:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       16.0,
                                                                       4.0,
@@ -2759,7 +2772,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                     ),
                                                   ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 10.0, 0.0, 0.0),
                                                   child: TextFormField(
@@ -2862,7 +2875,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 10.0, 0.0, 0.0),
                                               child: StreamBuilder<
@@ -2900,7 +2913,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                         FormFieldController<
                                                             String>(
                                                       _model.roleDropdownValue ??=
-                                                          widget.userDoc?.role,
+                                                          widget!.userDoc?.role,
                                                     ),
                                                     options:
                                                         roleDropdownRolesRecordList
@@ -2970,7 +2983,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                     borderWidth: 0.5,
                                                     borderRadius: 8.0,
                                                     margin:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(16.0, 4.0,
                                                                 16.0, 4.0),
                                                     hidesUnderline: true,
@@ -2982,9 +2995,9 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                               ),
                                             ),
                                             Container(
-                                              decoration: const BoxDecoration(),
+                                              decoration: BoxDecoration(),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 10.0, 0.0, 0.0),
                                                 child:
@@ -2994,10 +3007,10 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                       FormFieldController<
                                                           String>(
                                                     _model.honorificsValue ??=
-                                                        widget.userDoc?.student
-                                                            .honorifics,
+                                                        widget!.userDoc?.student
+                                                            ?.honorifics,
                                                   ),
-                                                  options: const [
+                                                  options: [
                                                     'Ar.',
                                                     'Atty.',
                                                     'Dr.',
@@ -3064,7 +3077,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                           .textBoxBorder,
                                                   borderWidth: 0.5,
                                                   borderRadius: 8.0,
-                                                  margin: const EdgeInsetsDirectional
+                                                  margin: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           16.0, 4.0, 16.0, 4.0),
                                                   hidesUnderline: true,
@@ -3074,14 +3087,14 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                 ),
                                               ),
                                             ),
-                                            if (widget.userDoc?.role !=
+                                            if (widget!.userDoc?.role !=
                                                 'Student')
                                               Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 10.0,
                                                                 0.0, 0.0),
                                                     child: StreamBuilder<
@@ -3218,7 +3231,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                           borderWidth: 0.5,
                                                           borderRadius: 8.0,
                                                           margin:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       16.0,
                                                                       4.0,
@@ -3240,7 +3253,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                           'Dean'))
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   10.0,
@@ -3390,7 +3403,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                             borderWidth: 0.5,
                                                             borderRadius: 8.0,
                                                             margin:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         16.0,
                                                                         4.0,
@@ -3414,12 +3427,12 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                     },
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 30.0, 0.0, 0.0),
                                     child: Container(
-                                      decoration: const BoxDecoration(),
+                                      decoration: BoxDecoration(),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 5.0, 0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -3458,7 +3471,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                   onChanged: (newValue) async {
                                                     safeSetState(() => _model
                                                             .verifiedSwitchValue1 =
-                                                        newValue);
+                                                        newValue!);
                                                   },
                                                   activeColor:
                                                       FlutterFlowTheme.of(
@@ -3499,7 +3512,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                   onChanged: (newValue) async {
                                                     safeSetState(() => _model
                                                             .verifiedSwitchValue2 =
-                                                        newValue);
+                                                        newValue!);
                                                   },
                                                   activeColor:
                                                       FlutterFlowTheme.of(
@@ -3540,7 +3553,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                   onChanged: (newValue) async {
                                                     safeSetState(() => _model
                                                             .adminSwitchValue =
-                                                        newValue);
+                                                        newValue!);
                                                   },
                                                   activeColor:
                                                       FlutterFlowTheme.of(
@@ -3568,7 +3581,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                   ),
                                   Builder(
                                     builder: (context) => Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 15.0, 0.0, 40.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
@@ -3595,7 +3608,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                         .primaryText,
                                                   ),
                                                 ),
-                                                duration: const Duration(
+                                                duration: Duration(
                                                     milliseconds: 4000),
                                                 backgroundColor:
                                                     FlutterFlowTheme.of(context)
@@ -3617,7 +3630,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                         .primaryText,
                                                   ),
                                                 ),
-                                                duration: const Duration(
+                                                duration: Duration(
                                                     milliseconds: 4000),
                                                 backgroundColor:
                                                     FlutterFlowTheme.of(context)
@@ -3636,7 +3649,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                 insetPadding: EdgeInsets.zero,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
@@ -3646,7 +3659,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                             dialogContext)
                                                         .unfocus(),
                                                     child:
-                                                        const ConfirmPasswordDialogWidget(),
+                                                        ConfirmPasswordDialogWidget(),
                                                   ),
                                                 ),
                                               );
@@ -3659,13 +3672,15 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                             logFirebaseEvent(
                                                 'onboard_one_button_backend_call');
 
-                                            await widget.userDoc!.reference
+                                            await widget!.userDoc!.reference
                                                 .update(createUsersRecordData(
                                               photoUrl: valueOrDefault<String>(
                                                 _model.uploadedFileUrl !=
+                                                            null &&
+                                                        _model.uploadedFileUrl !=
                                                             ''
                                                     ? _model.uploadedFileUrl
-                                                    : widget.userDoc?.photoUrl,
+                                                    : widget!.userDoc?.photoUrl,
                                                 'https://www.svgrepo.com/show/384670/account-avatar-profile-user.svg',
                                               ),
                                               phoneNumber: _model
@@ -3674,7 +3689,10 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                               civilStatus: _model
                                                   .civilStatusDropdownValue,
                                               sex: _model.sexRadioButtonValue,
-                                              birthDate: _model.datePicked ?? widget.userDoc?.birthDate,
+                                              birthDate: _model.datePicked !=
+                                                      null
+                                                  ? _model.datePicked
+                                                  : widget!.userDoc?.birthDate,
                                               address: createAddressStruct(
                                                 houseNumber: _model
                                                     .numberAddressFieldTextController
@@ -3688,23 +3706,23 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                             ''
                                                     ? _model
                                                         .barangayDropdownValue
-                                                    : widget.userDoc?.address
-                                                        .barangay,
+                                                    : widget!.userDoc?.address
+                                                        ?.barangay,
                                                 city: _model.cityDropdownValue !=
                                                             null &&
                                                         _model.cityDropdownValue !=
                                                             ''
                                                     ? _model.cityDropdownValue
-                                                    : widget
-                                                        .userDoc?.address.city,
+                                                    : widget!
+                                                        .userDoc?.address?.city,
                                                 province: _model.provincesDropdownValue !=
                                                             null &&
                                                         _model.provincesDropdownValue !=
                                                             ''
                                                     ? _model
                                                         .provincesDropdownValue
-                                                    : widget.userDoc?.address
-                                                        .province,
+                                                    : widget!.userDoc?.address
+                                                        ?.province,
                                                 clearUnsetFields: false,
                                               ),
                                               displayName:
@@ -3737,8 +3755,8 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                         _model.honorificsValue !=
                                                             ''
                                                     ? _model.honorificsValue
-                                                    : widget.userDoc?.student
-                                                        .honorifics,
+                                                    : widget!.userDoc?.student
+                                                        ?.honorifics,
                                                 clearUnsetFields: false,
                                               ),
                                               settings:
@@ -3754,7 +3772,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                       _model.roleDropdownValue !=
                                                           ''
                                                   ? _model.roleDropdownValue
-                                                  : widget.userDoc?.role,
+                                                  : widget!.userDoc?.role,
                                               idNumber: _model
                                                   .idNumberTextController.text,
                                               bioNote: _model
@@ -3772,7 +3790,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                   backgroundColor:
                                                       Colors.transparent,
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                               0.0, 0.0)
                                                           .resolve(
                                                               Directionality.of(
@@ -3784,7 +3802,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                                   dialogContext)
                                                               .unfocus(),
                                                       child:
-                                                          const CongratulationsDialogBoxWidget(
+                                                          CongratulationsDialogBoxWidget(
                                                         congratsDialogTitle:
                                                             'User Updated',
                                                         congratsDialogMeesage:
@@ -3806,7 +3824,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                   'Your Information has been updated',
                                               message:
                                                   'An admin has updated your information. Check your profile to view your updated information.',
-                                              user: widget.userDoc?.reference,
+                                              user: widget!.userDoc?.reference,
                                             );
                                             logFirebaseEvent(
                                                 'onboard_one_button_trigger_push_notifica');
@@ -3817,7 +3835,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                   'An admin has updated your information. Check your profile to view your updated information.',
                                               notificationSound: 'default',
                                               userRefs: [
-                                                widget.userDoc!.reference
+                                                widget!.userDoc!.reference
                                               ],
                                               initialPageName: 'auth_redirect',
                                               parameterData: {},
@@ -3831,7 +3849,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                               doneToName:
                                                   'the user information of ${_model.firstNameFieldTextController.text} ${_model.lastNameFieldTextController.text}',
                                               doneTo:
-                                                  widget.userDoc?.reference,
+                                                  widget!.userDoc?.reference,
                                             );
                                             logFirebaseEvent(
                                                 'onboard_one_button_navigate_back');
@@ -3848,7 +3866,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                   backgroundColor:
                                                       Colors.transparent,
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                               0.0, 0.0)
                                                           .resolve(
                                                               Directionality.of(
@@ -3860,7 +3878,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                                   dialogContext)
                                                               .unfocus(),
                                                       child:
-                                                          const InformationDialogBoxWidget(
+                                                          InformationDialogBoxWidget(
                                                         infoDialogTitle:
                                                             'Action Cancelled',
                                                         infoDialogMeesage:
@@ -3884,10 +3902,10 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                           width: double.infinity,
                                           height: 50.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -3901,7 +3919,7 @@ class _MaintenanceUsersWidgetState extends State<MaintenanceUsersWidget> {
                                                     letterSpacing: 0.0,
                                                   ),
                                           elevation: 3.0,
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
                                           ),

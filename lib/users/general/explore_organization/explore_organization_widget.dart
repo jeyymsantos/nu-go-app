@@ -7,12 +7,15 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'explore_organization_model.dart';
@@ -91,7 +94,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
           child: Stack(
             children: [
               Align(
-                alignment: const AlignmentDirectional(0.0, -1.0),
+                alignment: AlignmentDirectional(0.0, -1.0),
                 child: StreamBuilder<List<OrganizationsRecord>>(
                   stream: FFAppState().orgsExplore(
                     requestFn: () => queryOrganizationsRecord(
@@ -121,9 +124,9 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                         snapshot.data!;
 
                     return Container(
-                      decoration: const BoxDecoration(),
+                      decoration: BoxDecoration(),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 60.0, 20.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -131,7 +134,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 10.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -165,7 +168,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                   onChanged: (_) =>
                                                       EasyDebounce.debounce(
                                                     '_model.textController',
-                                                    const Duration(
+                                                    Duration(
                                                         milliseconds: 2000),
                                                     () async {
                                                       logFirebaseEvent(
@@ -183,13 +186,13 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                                             record,
                                                                             [
                                                                       record
-                                                                          .organizationNickname,
+                                                                          .organizationNickname!,
                                                                       record
-                                                                          .type,
+                                                                          .type!,
                                                                       record
-                                                                          .organizationName,
+                                                                          .organizationName!,
                                                                       record
-                                                                          .scope
+                                                                          .scope!
                                                                     ]),
                                                               )
                                                               .toList(),
@@ -200,6 +203,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                                 .map((r) =>
                                                                     r.object)
                                                                 .toList();
+                                                        ;
                                                       });
                                                       logFirebaseEvent(
                                                           'TextField_update_app_state');
@@ -236,7 +240,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                     focusedErrorBorder:
                                                         InputBorder.none,
                                                     contentPadding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 25.0,
                                                                 0.0, 25.0),
                                                     prefixIcon: Icon(
@@ -300,7 +304,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                             ),
                             if (_model.filter == true)
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 10.0),
                                 child: SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
@@ -328,13 +332,14 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                   .map(
                                                     (record) => TextSearchItem
                                                         .fromTerms(record,
-                                                            [record.scope]),
+                                                            [record.scope!]),
                                                   )
                                                   .toList(),
                                             )
                                                     .search('University-wide')
                                                     .map((r) => r.object)
                                                     .toList();
+                                            ;
                                           });
                                           logFirebaseEvent(
                                               'Container_update_app_state');
@@ -344,7 +349,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                         child: Container(
                                           decoration: BoxDecoration(
                                             color: _model.eventType == 1
-                                                ? const Color(0xFFE1E1E1)
+                                                ? Color(0xFFE1E1E1)
                                                 : FlutterFlowTheme.of(context)
                                                     .tabBarUnselected,
                                             borderRadius:
@@ -352,7 +357,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 5.0, 10.0, 5.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.min,
@@ -360,7 +365,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 5.0, 0.0),
                                                   child: ClipRRect(
@@ -413,13 +418,14 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                   .map(
                                                     (record) => TextSearchItem
                                                         .fromTerms(record,
-                                                            [record.type]),
+                                                            [record.type!]),
                                                   )
                                                   .toList(),
                                             )
                                                     .search('Student Council')
                                                     .map((r) => r.object)
                                                     .toList();
+                                            ;
                                           });
                                           logFirebaseEvent(
                                               'Container_update_app_state');
@@ -429,7 +435,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                         child: Container(
                                           decoration: BoxDecoration(
                                             color: _model.eventType == 2
-                                                ? const Color(0xFFE1E1E1)
+                                                ? Color(0xFFE1E1E1)
                                                 : FlutterFlowTheme.of(context)
                                                     .tabBarUnselected,
                                             borderRadius:
@@ -437,7 +443,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 5.0, 10.0, 5.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.min,
@@ -445,7 +451,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 5.0, 0.0),
                                                   child: ClipRRect(
@@ -498,7 +504,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                   .map(
                                                     (record) => TextSearchItem
                                                         .fromTerms(record,
-                                                            [record.type]),
+                                                            [record.type!]),
                                                   )
                                                   .toList(),
                                             )
@@ -506,6 +512,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                         'Academic Organization')
                                                     .map((r) => r.object)
                                                     .toList();
+                                            ;
                                           });
                                           logFirebaseEvent(
                                               'Container_update_app_state');
@@ -515,7 +522,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                         child: Container(
                                           decoration: BoxDecoration(
                                             color: _model.eventType == 3
-                                                ? const Color(0xFFE1E1E1)
+                                                ? Color(0xFFE1E1E1)
                                                 : FlutterFlowTheme.of(context)
                                                     .tabBarUnselected,
                                             borderRadius:
@@ -523,7 +530,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 5.0, 10.0, 5.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.min,
@@ -531,7 +538,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 5.0, 0.0),
                                                   child: ClipRRect(
@@ -584,7 +591,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                   .map(
                                                     (record) => TextSearchItem
                                                         .fromTerms(record,
-                                                            [record.type]),
+                                                            [record.type!]),
                                                   )
                                                   .toList(),
                                             )
@@ -592,6 +599,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                         'Special Interest Organization')
                                                     .map((r) => r.object)
                                                     .toList();
+                                            ;
                                           });
                                           logFirebaseEvent(
                                               'Container_update_app_state');
@@ -601,7 +609,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                         child: Container(
                                           decoration: BoxDecoration(
                                             color: _model.eventType == 4
-                                                ? const Color(0xFFE1E1E1)
+                                                ? Color(0xFFE1E1E1)
                                                 : FlutterFlowTheme.of(context)
                                                     .secondaryBackground,
                                             borderRadius:
@@ -609,7 +617,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 5.0, 10.0, 5.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.min,
@@ -617,7 +625,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 5.0, 0.0),
                                                   child: ClipRRect(
@@ -649,13 +657,13 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                           ),
                                         ),
                                       ),
-                                    ].divide(const SizedBox(width: 10.0)),
+                                    ].divide(SizedBox(width: 10.0)),
                                   ),
                                 ),
                               ),
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -665,10 +673,10 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                       Expanded(
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 80.0),
                                             child: Builder(
                                               builder: (context) {
@@ -676,7 +684,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                     containerOrganizationsRecordList
                                                         .toList();
                                                 if (allOrgs.isEmpty) {
-                                                  return const EmptyListWidget(
+                                                  return EmptyListWidget(
                                                     emptyWhat: 'organizations',
                                                   );
                                                 }
@@ -696,7 +704,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                   child: GridView.builder(
                                                     padding: EdgeInsets.zero,
                                                     gridDelegate:
-                                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                                        SliverGridDelegateWithFixedCrossAxisCount(
                                                       crossAxisCount: 2,
                                                       crossAxisSpacing: 10.0,
                                                       childAspectRatio: 0.55,
@@ -710,7 +718,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                           allOrgs[allOrgsIndex];
                                                       return Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 -1.0, -1.0),
                                                         child: InkWell(
                                                           splashColor: Colors
@@ -741,7 +749,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                               extra: <String,
                                                                   dynamic>{
                                                                 kTransitionInfoKey:
-                                                                    const TransitionInfo(
+                                                                    TransitionInfo(
                                                                   hasTransition:
                                                                       true,
                                                                   transitionType:
@@ -809,7 +817,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                                         ),
                                                                       ),
                                                                       Padding(
-                                                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             10.0,
                                                                             5.0,
                                                                             10.0,
@@ -839,7 +847,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                                     ],
                                                                   ),
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             10.0,
                                                                             0.0,
@@ -858,7 +866,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                                               .start,
                                                                       children: [
                                                                         Padding(
-                                                                          padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
                                                                               0.0,
                                                                               0.0,
@@ -877,7 +885,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 children: [
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                                                                                     child: Icon(
                                                                                       FFIcons.klikeShapes5,
                                                                                       color: FlutterFlowTheme.of(context).primary,
@@ -905,7 +913,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                                                 mainAxisAlignment: MainAxisAlignment.end,
                                                                                 children: [
                                                                                   Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                                                                                     child: Icon(
                                                                                       FFIcons.kcategory25,
                                                                                       color: FlutterFlowTheme.of(context).primary,
@@ -928,7 +936,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                                                   ),
                                                                                 ],
                                                                               ),
-                                                                            ].divide(const SizedBox(height: 5.0)),
+                                                                            ].divide(SizedBox(height: 5.0)),
                                                                           ),
                                                                         ),
                                                                       ],
@@ -952,10 +960,10 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                       Expanded(
                                         child: Align(
                                           alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                              AlignmentDirectional(0.0, 0.0),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 80.0),
                                             child: Builder(
                                               builder: (context) {
@@ -995,7 +1003,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                 return GridView.builder(
                                                   padding: EdgeInsets.zero,
                                                   gridDelegate:
-                                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                                      SliverGridDelegateWithFixedCrossAxisCount(
                                                     crossAxisCount: 2,
                                                     crossAxisSpacing: 10.0,
                                                     childAspectRatio: 0.55,
@@ -1011,7 +1019,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                             searchedOrgsIndex];
                                                     return Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               -1.0, -1.0),
                                                       child: InkWell(
                                                         splashColor:
@@ -1042,7 +1050,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                             extra: <String,
                                                                 dynamic>{
                                                               kTransitionInfoKey:
-                                                                  const TransitionInfo(
+                                                                  TransitionInfo(
                                                                 hasTransition:
                                                                     true,
                                                                 transitionType:
@@ -1088,7 +1096,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                                 children: [
                                                                   ClipRRect(
                                                                     borderRadius:
-                                                                        const BorderRadius
+                                                                        BorderRadius
                                                                             .only(
                                                                       bottomLeft:
                                                                           Radius.circular(
@@ -1120,7 +1128,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                                     ),
                                                                   ),
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             10.0,
                                                                             5.0,
@@ -1156,7 +1164,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                                 ],
                                                               ),
                                                               Padding(
-                                                                padding: const EdgeInsetsDirectional
+                                                                padding: EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         10.0,
                                                                         0.0,
@@ -1174,7 +1182,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                                           .start,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           0.0,
                                                                           0.0,
@@ -1194,7 +1202,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                                                 MainAxisSize.max,
                                                                             children: [
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                                                                                 child: Icon(
                                                                                   FFIcons.klikeShapes5,
                                                                                   color: FlutterFlowTheme.of(context).primary,
@@ -1224,7 +1232,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                                                 MainAxisAlignment.end,
                                                                             children: [
                                                                               Padding(
-                                                                                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                                                                                 child: Icon(
                                                                                   FFIcons.kcategory25,
                                                                                   color: FlutterFlowTheme.of(context).primary,
@@ -1247,7 +1255,7 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                                                                               ),
                                                                             ],
                                                                           ),
-                                                                        ].divide(const SizedBox(height: 5.0)),
+                                                                        ].divide(SizedBox(height: 5.0)),
                                                                       ),
                                                                     ),
                                                                   ],
@@ -1278,21 +1286,21 @@ class _ExploreOrganizationWidgetState extends State<ExploreOrganizationWidget>
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(0.0, 1.0),
+                alignment: AlignmentDirectional(0.0, 1.0),
                 child: wrapWithModel(
                   model: _model.userNavBarComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const UserNavBarComponentWidget(
+                  child: UserNavBarComponentWidget(
                     selectedPageIndex: 2,
                   ),
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(0.0, -1.0),
+                alignment: AlignmentDirectional(0.0, -1.0),
                 child: wrapWithModel(
                   model: _model.userHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const UserHeaderComponentWidget(),
+                  child: UserHeaderComponentWidget(),
                 ),
               ),
             ],

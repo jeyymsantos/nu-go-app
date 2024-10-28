@@ -1,6 +1,9 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'event_type_choice_model.dart';
 export 'event_type_choice_model.dart';
 
@@ -56,19 +59,19 @@ class _EventTypeChoiceWidgetState extends State<EventTypeChoiceWidget> {
             child: Container(
               decoration: BoxDecoration(
                 color: _model.eventType == 1
-                    ? const Color(0xFFE1E1E1)
+                    ? Color(0xFFE1E1E1)
                     : FlutterFlowTheme.of(context).tabBarUnselected,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+                padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: Image.asset(
@@ -105,19 +108,19 @@ class _EventTypeChoiceWidgetState extends State<EventTypeChoiceWidget> {
             child: Container(
               decoration: BoxDecoration(
                 color: _model.eventType == 2
-                    ? const Color(0xFFE1E1E1)
+                    ? Color(0xFFE1E1E1)
                     : FlutterFlowTheme.of(context).tabBarUnselected,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+                padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: Image.asset(
@@ -154,19 +157,19 @@ class _EventTypeChoiceWidgetState extends State<EventTypeChoiceWidget> {
             child: Container(
               decoration: BoxDecoration(
                 color: _model.eventType == 3
-                    ? const Color(0xFFE1E1E1)
+                    ? Color(0xFFE1E1E1)
                     : FlutterFlowTheme.of(context).tabBarUnselected,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+                padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: Image.asset(
@@ -203,19 +206,19 @@ class _EventTypeChoiceWidgetState extends State<EventTypeChoiceWidget> {
             child: Container(
               decoration: BoxDecoration(
                 color: _model.eventType == 4
-                    ? const Color(0xFFE1E1E1)
+                    ? Color(0xFFE1E1E1)
                     : FlutterFlowTheme.of(context).secondaryBackground,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+                padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: Image.asset(
@@ -252,19 +255,19 @@ class _EventTypeChoiceWidgetState extends State<EventTypeChoiceWidget> {
             child: Container(
               decoration: BoxDecoration(
                 color: _model.eventType == 5
-                    ? const Color(0xFFE1E1E1)
+                    ? Color(0xFFE1E1E1)
                     : FlutterFlowTheme.of(context).secondaryBackground,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+                padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: Image.asset(
@@ -301,19 +304,19 @@ class _EventTypeChoiceWidgetState extends State<EventTypeChoiceWidget> {
             child: Container(
               decoration: BoxDecoration(
                 color: _model.eventType == 6
-                    ? const Color(0xFFE1E1E1)
+                    ? Color(0xFFE1E1E1)
                     : FlutterFlowTheme.of(context).secondaryBackground,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+                padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: Image.asset(
@@ -350,19 +353,19 @@ class _EventTypeChoiceWidgetState extends State<EventTypeChoiceWidget> {
             child: Container(
               decoration: BoxDecoration(
                 color: _model.eventType == 7
-                    ? const Color(0xFFE1E1E1)
+                    ? Color(0xFFE1E1E1)
                     : FlutterFlowTheme.of(context).secondaryBackground,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+                padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: Image.asset(
@@ -385,7 +388,7 @@ class _EventTypeChoiceWidgetState extends State<EventTypeChoiceWidget> {
               ),
             ),
           ),
-        ].divide(const SizedBox(width: 10.0)),
+        ].divide(SizedBox(width: 10.0)),
       ),
     );
   }

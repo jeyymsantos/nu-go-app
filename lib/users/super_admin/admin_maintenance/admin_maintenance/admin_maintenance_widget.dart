@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/dialog_box/confirm_password_dialog/confirm_password_dialog_widget.dart';
 import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
@@ -6,10 +7,14 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'admin_maintenance_model.dart';
@@ -90,7 +95,7 @@ class _AdminMaintenanceWidgetState extends State<AdminMaintenanceWidget>
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,7 +106,7 @@ class _AdminMaintenanceWidgetState extends State<AdminMaintenanceWidget>
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: const TitleHeaderComponentWidget(
+                      child: TitleHeaderComponentWidget(
                         titleText: 'Admin Maintenance',
                       ),
                     ),
@@ -113,7 +118,7 @@ class _AdminMaintenanceWidgetState extends State<AdminMaintenanceWidget>
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          SizedBox(
+                          Container(
                             width: double.infinity,
                             child: Form(
                               key: _model.formKey,
@@ -145,9 +150,9 @@ class _AdminMaintenanceWidgetState extends State<AdminMaintenanceWidget>
                                           ),
                                     ),
                                   Align(
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 20.0, 0.0, 20.0),
                                       child: Switch.adaptive(
                                         value:
@@ -155,7 +160,7 @@ class _AdminMaintenanceWidgetState extends State<AdminMaintenanceWidget>
                                         onChanged: (newValue) async {
                                           safeSetState(() =>
                                               _model.adminMaintenanceMdoeValue =
-                                                  newValue);
+                                                  newValue!);
                                         },
                                         activeColor:
                                             FlutterFlowTheme.of(context)
@@ -177,7 +182,7 @@ class _AdminMaintenanceWidgetState extends State<AdminMaintenanceWidget>
                                       onPressed: () async {
                                         logFirebaseEvent(
                                             'ADMIN_MAINTENANCE_PAGE_Save_ON_TAP');
-                                        var shouldSetState = false;
+                                        var _shouldSetState = false;
                                         logFirebaseEvent('Save_alert_dialog');
                                         await showDialog(
                                           context: context,
@@ -188,7 +193,7 @@ class _AdminMaintenanceWidgetState extends State<AdminMaintenanceWidget>
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
+                                                  AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
@@ -198,7 +203,7 @@ class _AdminMaintenanceWidgetState extends State<AdminMaintenanceWidget>
                                                           dialogContext)
                                                       .unfocus(),
                                                   child:
-                                                      const ConfirmPasswordDialogWidget(),
+                                                      ConfirmPasswordDialogWidget(),
                                                 ),
                                               ),
                                             );
@@ -206,7 +211,7 @@ class _AdminMaintenanceWidgetState extends State<AdminMaintenanceWidget>
                                         ).then((value) => safeSetState(() =>
                                             _model.confirmMaintenance = value));
 
-                                        shouldSetState = true;
+                                        _shouldSetState = true;
                                         if (_model.confirmMaintenance!) {
                                           logFirebaseEvent('Save_backend_call');
 
@@ -232,7 +237,7 @@ class _AdminMaintenanceWidgetState extends State<AdminMaintenanceWidget>
                                                 insetPadding: EdgeInsets.zero,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
@@ -242,7 +247,7 @@ class _AdminMaintenanceWidgetState extends State<AdminMaintenanceWidget>
                                                             dialogContext)
                                                         .unfocus(),
                                                     child:
-                                                        const InformationDialogBoxWidget(
+                                                        InformationDialogBoxWidget(
                                                       infoDialogTitle:
                                                           'Maintenance Mode Updated',
                                                       infoDialogMeesage:
@@ -257,9 +262,8 @@ class _AdminMaintenanceWidgetState extends State<AdminMaintenanceWidget>
                                           logFirebaseEvent(
                                               'Save_navigate_back');
                                           context.safePop();
-                                          if (shouldSetState) {
+                                          if (_shouldSetState)
                                             safeSetState(() {});
-                                          }
                                           return;
                                         } else {
                                           logFirebaseEvent('Save_alert_dialog');
@@ -271,7 +275,7 @@ class _AdminMaintenanceWidgetState extends State<AdminMaintenanceWidget>
                                                 insetPadding: EdgeInsets.zero,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
@@ -281,7 +285,7 @@ class _AdminMaintenanceWidgetState extends State<AdminMaintenanceWidget>
                                                             dialogContext)
                                                         .unfocus(),
                                                     child:
-                                                        const InformationDialogBoxWidget(
+                                                        InformationDialogBoxWidget(
                                                       infoDialogTitle:
                                                           'Action Cancelled',
                                                       infoDialogMeesage:
@@ -296,24 +300,22 @@ class _AdminMaintenanceWidgetState extends State<AdminMaintenanceWidget>
                                           logFirebaseEvent(
                                               'Save_navigate_back');
                                           context.safePop();
-                                          if (shouldSetState) {
+                                          if (_shouldSetState)
                                             safeSetState(() {});
-                                          }
                                           return;
                                         }
 
-                                        if (shouldSetState) {
+                                        if (_shouldSetState)
                                           safeSetState(() {});
-                                        }
                                       },
                                       text: 'Save',
                                       options: FFButtonOptions(
                                         width: double.infinity,
                                         height: 50.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 0.0),
                                         iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
+                                            EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
@@ -326,7 +328,7 @@ class _AdminMaintenanceWidgetState extends State<AdminMaintenanceWidget>
                                               letterSpacing: 0.0,
                                             ),
                                         elevation: 3.0,
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,
                                         ),

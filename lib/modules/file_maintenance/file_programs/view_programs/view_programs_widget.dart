@@ -1,10 +1,14 @@
 import '/backend/backend.dart';
+import '/components/dialog_box/confirm_password_dialog/confirm_password_dialog_widget.dart';
+import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
 import '/components/widgets/empty_list/empty_list_widget.dart';
 import '/components/widgets/search_not_found_list/search_not_found_list_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -12,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
@@ -148,14 +153,14 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: const TitleHeaderComponentWidget(
+                      child: TitleHeaderComponentWidget(
                         titleText: 'File Maintenance',
                       ),
                     ),
@@ -167,7 +172,7 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 5.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -185,7 +190,7 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                                           ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 0.0, 0.0),
                                       child: Text(
                                         'The cources offered, and the main ground of academic organizations.',
@@ -218,7 +223,7 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 10.0, 0.0),
                                 child: TextFormField(
                                   controller:
@@ -226,11 +231,14 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                                   focusNode: _model.programSearchFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.programSearchTextController',
-                                    const Duration(milliseconds: 200),
+                                    Duration(milliseconds: 200),
                                     () async {
                                       logFirebaseEvent(
                                           'VIEW_PROGRAMS_program_search_ON_TEXTFIEL');
                                       if (_model.programSearchTextController
+                                                  .text !=
+                                              null &&
+                                          _model.programSearchTextController
                                                   .text !=
                                               '') {
                                         logFirebaseEvent(
@@ -243,7 +251,7 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                                                   (record) =>
                                                       TextSearchItem.fromTerms(
                                                           record, [
-                                                    record.programName
+                                                    record.programName!
                                                   ]),
                                                 )
                                                 .toList(),
@@ -253,6 +261,7 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                                                   .text)
                                               .map((r) => r.object)
                                               .toList();
+                                          ;
                                         });
                                         logFirebaseEvent(
                                             'program_search_update_app_state');
@@ -327,6 +336,9 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                                                   'VIEW_PROGRAMS_program_search_ON_TEXTFIEL');
                                               if (_model.programSearchTextController
                                                           .text !=
+                                                      null &&
+                                                  _model.programSearchTextController
+                                                          .text !=
                                                       '') {
                                                 logFirebaseEvent(
                                                     'program_search_simple_search');
@@ -339,7 +351,7 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                                                               TextSearchItem
                                                                   .fromTerms(
                                                                       record, [
-                                                            record.programName
+                                                            record.programName!
                                                           ]),
                                                         )
                                                         .toList(),
@@ -349,6 +361,7 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                                                               .text)
                                                           .map((r) => r.object)
                                                           .toList();
+                                                  ;
                                                 });
                                                 logFirebaseEvent(
                                                     'program_search_update_app_state');
@@ -365,7 +378,7 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
 
                                               safeSetState(() {});
                                             },
-                                            child: const Icon(
+                                            child: Icon(
                                               Icons.clear,
                                               size: 20.0,
                                             ),
@@ -408,7 +421,7 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                                 width: 50.0,
                                 height: 50.0,
                                 clipBehavior: Clip.antiAlias,
-                                decoration: const BoxDecoration(
+                                decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                 ),
                                 child: Image.asset(
@@ -424,14 +437,14 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                     Expanded(
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               if (!FFAppState().searchActive)
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 50.0),
                                   child: Builder(
                                     builder: (context) {
@@ -439,7 +452,7 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                                           viewProgramsProgramsRecordList
                                               .toList();
                                       if (programSearch.isEmpty) {
-                                        return const EmptyListWidget(
+                                        return EmptyListWidget(
                                           emptyWhat: 'programs',
                                         );
                                       }
@@ -456,7 +469,7 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                                               programSearch[programSearchIndex];
                                           return Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -505,7 +518,7 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                                                                     child:
                                                                         Padding(
                                                                       padding:
-                                                                          const EdgeInsets.all(
+                                                                          EdgeInsets.all(
                                                                               5.0),
                                                                       child: Image
                                                                           .asset(
@@ -568,11 +581,11 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -653,7 +666,7 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                                                                       extra: <String,
                                                                           dynamic>{
                                                                         kTransitionInfoKey:
-                                                                            const TransitionInfo(
+                                                                            TransitionInfo(
                                                                           hasTransition:
                                                                               true,
                                                                           transitionType:
@@ -693,120 +706,163 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
-                                                              child: Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            10.0,
-                                                                            0.0),
-                                                                child: InkWell(
-                                                                  splashColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  focusColor: Colors
-                                                                      .transparent,
-                                                                  hoverColor: Colors
-                                                                      .transparent,
-                                                                  highlightColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  onTap:
-                                                                      () async {
-                                                                    logFirebaseEvent(
-                                                                        'VIEW_PROGRAMS_PAGE_Icon_3o6td0lo_ON_TAP');
-                                                                    logFirebaseEvent(
-                                                                        'Icon_alert_dialog');
-                                                                    var confirmDialogResponse =
-                                                                        await showDialog<bool>(
-                                                                              context: context,
-                                                                              builder: (alertDialogContext) {
-                                                                                return WebViewAware(
-                                                                                  child: AlertDialog(
-                                                                                    title: const Text('Delete Program'),
-                                                                                    content: const Text('Are you sure you want to delete this program?'),
-                                                                                    actions: [
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                        child: const Text('Cancel'),
-                                                                                      ),
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                        child: const Text('Confirm'),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
-                                                                                );
-                                                                              },
-                                                                            ) ??
-                                                                            false;
-                                                                    if (confirmDialogResponse) {
+                                                              child: Builder(
+                                                                builder:
+                                                                    (context) =>
+                                                                        Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      InkWell(
+                                                                    splashColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    focusColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    hoverColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    highlightColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    onTap:
+                                                                        () async {
                                                                       logFirebaseEvent(
-                                                                          'Icon_backend_call');
-                                                                      await programSearchItem
-                                                                          .reference
-                                                                          .delete();
-                                                                      logFirebaseEvent(
-                                                                          'Icon_action_block');
-                                                                      await action_blocks
-                                                                          .logs(
-                                                                        context,
-                                                                        type:
-                                                                            'deleted',
-                                                                        module:
-                                                                            'programs',
-                                                                        doneToName:
-                                                                            programSearchItem.programName,
-                                                                      );
+                                                                          'VIEW_PROGRAMS_PAGE_Icon_3o6td0lo_ON_TAP');
                                                                       logFirebaseEvent(
                                                                           'Icon_alert_dialog');
                                                                       await showDialog(
                                                                         context:
                                                                             context,
                                                                         builder:
-                                                                            (alertDialogContext) {
-                                                                          return WebViewAware(
+                                                                            (dialogContext) {
+                                                                          return Dialog(
+                                                                            elevation:
+                                                                                0,
+                                                                            insetPadding:
+                                                                                EdgeInsets.zero,
+                                                                            backgroundColor:
+                                                                                Colors.transparent,
+                                                                            alignment:
+                                                                                AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
-                                                                                AlertDialog(
-                                                                              title: const Text('Deleted Program'),
-                                                                              content: const Text('Program has been successfully deleted.'),
-                                                                              actions: [
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: const Text('Okay'),
-                                                                                ),
-                                                                              ],
+                                                                                WebViewAware(
+                                                                              child: GestureDetector(
+                                                                                onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                child: ConfirmPasswordDialogWidget(),
+                                                                              ),
                                                                             ),
                                                                           );
                                                                         },
-                                                                      );
-                                                                    }
-                                                                    logFirebaseEvent(
-                                                                        'Icon_reset_form_fields');
-                                                                    safeSetState(
-                                                                        () {
-                                                                      _model
-                                                                          .programSearchTextController
-                                                                          ?.clear();
-                                                                    });
-                                                                    logFirebaseEvent(
-                                                                        'Icon_update_app_state');
-                                                                    FFAppState()
-                                                                            .searchActive =
-                                                                        false;
-                                                                    safeSetState(
-                                                                        () {});
-                                                                  },
-                                                                  child: Icon(
-                                                                    FFIcons
-                                                                        .ktrash,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .error,
-                                                                    size: 24.0,
+                                                                      ).then((value) =>
+                                                                          safeSetState(() =>
+                                                                              _model.confirmDeleteProgram1 = value));
+
+                                                                      if (_model
+                                                                          .confirmDeleteProgram1!) {
+                                                                        logFirebaseEvent(
+                                                                            'Icon_backend_call');
+                                                                        await programSearchItem
+                                                                            .reference
+                                                                            .delete();
+                                                                        logFirebaseEvent(
+                                                                            'Icon_action_block');
+                                                                        await action_blocks
+                                                                            .logs(
+                                                                          context,
+                                                                          type:
+                                                                              'deleted',
+                                                                          module:
+                                                                              'programs',
+                                                                          doneToName:
+                                                                              programSearchItem.programName,
+                                                                        );
+                                                                        logFirebaseEvent(
+                                                                            'Icon_alert_dialog');
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: WebViewAware(
+                                                                                child: GestureDetector(
+                                                                                  onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                  child: InformationDialogBoxWidget(
+                                                                                    infoDialogTitle: 'Program Deleted',
+                                                                                    infoDialogMeesage: 'Program has been successfully deleted.',
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                      } else {
+                                                                        logFirebaseEvent(
+                                                                            'Icon_alert_dialog');
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: WebViewAware(
+                                                                                child: GestureDetector(
+                                                                                  onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                  child: InformationDialogBoxWidget(
+                                                                                    infoDialogTitle: 'Action Cancelled',
+                                                                                    infoDialogMeesage: 'This action has been cancelled. ',
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                      }
+
+                                                                      logFirebaseEvent(
+                                                                          'Icon_reset_form_fields');
+                                                                      safeSetState(
+                                                                          () {
+                                                                        _model
+                                                                            .programSearchTextController
+                                                                            ?.clear();
+                                                                      });
+                                                                      logFirebaseEvent(
+                                                                          'Icon_update_app_state');
+                                                                      FFAppState()
+                                                                              .searchActive =
+                                                                          false;
+                                                                      safeSetState(
+                                                                          () {});
+
+                                                                      safeSetState(
+                                                                          () {});
+                                                                    },
+                                                                    child: Icon(
+                                                                      FFIcons
+                                                                          .ktrash,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      size:
+                                                                          24.0,
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
@@ -829,7 +885,7 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                                 ),
                               if (FFAppState().searchActive)
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 50.0),
                                   child: Builder(
                                     builder: (context) {
@@ -854,7 +910,7 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                                               programSearch[programSearchIndex];
                                           return Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -903,7 +959,7 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                                                                     child:
                                                                         Padding(
                                                                       padding:
-                                                                          const EdgeInsets.all(
+                                                                          EdgeInsets.all(
                                                                               5.0),
                                                                       child: Image
                                                                           .asset(
@@ -966,11 +1022,11 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1051,7 +1107,7 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                                                                       extra: <String,
                                                                           dynamic>{
                                                                         kTransitionInfoKey:
-                                                                            const TransitionInfo(
+                                                                            TransitionInfo(
                                                                           hasTransition:
                                                                               true,
                                                                           transitionType:
@@ -1091,120 +1147,163 @@ class _ViewProgramsWidgetState extends State<ViewProgramsWidget>
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
-                                                              child: Padding(
-                                                                padding:
-                                                                    const EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            10.0,
-                                                                            0.0),
-                                                                child: InkWell(
-                                                                  splashColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  focusColor: Colors
-                                                                      .transparent,
-                                                                  hoverColor: Colors
-                                                                      .transparent,
-                                                                  highlightColor:
-                                                                      Colors
-                                                                          .transparent,
-                                                                  onTap:
-                                                                      () async {
-                                                                    logFirebaseEvent(
-                                                                        'VIEW_PROGRAMS_PAGE_Icon_qt03su9d_ON_TAP');
-                                                                    logFirebaseEvent(
-                                                                        'Icon_alert_dialog');
-                                                                    var confirmDialogResponse =
-                                                                        await showDialog<bool>(
-                                                                              context: context,
-                                                                              builder: (alertDialogContext) {
-                                                                                return WebViewAware(
-                                                                                  child: AlertDialog(
-                                                                                    title: const Text('Delete Program'),
-                                                                                    content: const Text('Are you sure you want to delete this program?'),
-                                                                                    actions: [
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                        child: const Text('Cancel'),
-                                                                                      ),
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                        child: const Text('Confirm'),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
-                                                                                );
-                                                                              },
-                                                                            ) ??
-                                                                            false;
-                                                                    if (confirmDialogResponse) {
+                                                              child: Builder(
+                                                                builder:
+                                                                    (context) =>
+                                                                        Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      InkWell(
+                                                                    splashColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    focusColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    hoverColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    highlightColor:
+                                                                        Colors
+                                                                            .transparent,
+                                                                    onTap:
+                                                                        () async {
                                                                       logFirebaseEvent(
-                                                                          'Icon_backend_call');
-                                                                      await programSearchItem
-                                                                          .reference
-                                                                          .delete();
-                                                                      logFirebaseEvent(
-                                                                          'Icon_action_block');
-                                                                      await action_blocks
-                                                                          .logs(
-                                                                        context,
-                                                                        type:
-                                                                            'deleted',
-                                                                        module:
-                                                                            'programs',
-                                                                        doneToName:
-                                                                            programSearchItem.programName,
-                                                                      );
+                                                                          'VIEW_PROGRAMS_PAGE_Icon_qt03su9d_ON_TAP');
                                                                       logFirebaseEvent(
                                                                           'Icon_alert_dialog');
                                                                       await showDialog(
                                                                         context:
                                                                             context,
                                                                         builder:
-                                                                            (alertDialogContext) {
-                                                                          return WebViewAware(
+                                                                            (dialogContext) {
+                                                                          return Dialog(
+                                                                            elevation:
+                                                                                0,
+                                                                            insetPadding:
+                                                                                EdgeInsets.zero,
+                                                                            backgroundColor:
+                                                                                Colors.transparent,
+                                                                            alignment:
+                                                                                AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
-                                                                                AlertDialog(
-                                                                              title: const Text('Deleted Program'),
-                                                                              content: const Text('Program has been successfully deleted.'),
-                                                                              actions: [
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: const Text('Okay'),
-                                                                                ),
-                                                                              ],
+                                                                                WebViewAware(
+                                                                              child: GestureDetector(
+                                                                                onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                child: ConfirmPasswordDialogWidget(),
+                                                                              ),
                                                                             ),
                                                                           );
                                                                         },
-                                                                      );
-                                                                    }
-                                                                    logFirebaseEvent(
-                                                                        'Icon_reset_form_fields');
-                                                                    safeSetState(
-                                                                        () {
-                                                                      _model
-                                                                          .programSearchTextController
-                                                                          ?.clear();
-                                                                    });
-                                                                    logFirebaseEvent(
-                                                                        'Icon_update_app_state');
-                                                                    FFAppState()
-                                                                            .searchActive =
-                                                                        false;
-                                                                    safeSetState(
-                                                                        () {});
-                                                                  },
-                                                                  child: Icon(
-                                                                    FFIcons
-                                                                        .ktrash,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .error,
-                                                                    size: 24.0,
+                                                                      ).then((value) =>
+                                                                          safeSetState(() =>
+                                                                              _model.confirmDeleteProgram2 = value));
+
+                                                                      if (_model
+                                                                          .confirmDeleteProgram2!) {
+                                                                        logFirebaseEvent(
+                                                                            'Icon_backend_call');
+                                                                        await programSearchItem
+                                                                            .reference
+                                                                            .delete();
+                                                                        logFirebaseEvent(
+                                                                            'Icon_action_block');
+                                                                        await action_blocks
+                                                                            .logs(
+                                                                          context,
+                                                                          type:
+                                                                              'deleted',
+                                                                          module:
+                                                                              'programs',
+                                                                          doneToName:
+                                                                              programSearchItem.programName,
+                                                                        );
+                                                                        logFirebaseEvent(
+                                                                            'Icon_alert_dialog');
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: WebViewAware(
+                                                                                child: GestureDetector(
+                                                                                  onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                  child: InformationDialogBoxWidget(
+                                                                                    infoDialogTitle: 'Program Deleted',
+                                                                                    infoDialogMeesage: 'Program has been successfully deleted.',
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                      } else {
+                                                                        logFirebaseEvent(
+                                                                            'Icon_alert_dialog');
+                                                                        await showDialog(
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (dialogContext) {
+                                                                            return Dialog(
+                                                                              elevation: 0,
+                                                                              insetPadding: EdgeInsets.zero,
+                                                                              backgroundColor: Colors.transparent,
+                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              child: WebViewAware(
+                                                                                child: GestureDetector(
+                                                                                  onTap: () => FocusScope.of(dialogContext).unfocus(),
+                                                                                  child: InformationDialogBoxWidget(
+                                                                                    infoDialogTitle: 'Action Cancelled',
+                                                                                    infoDialogMeesage: 'This action has been cancelled. ',
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        );
+                                                                      }
+
+                                                                      logFirebaseEvent(
+                                                                          'Icon_reset_form_fields');
+                                                                      safeSetState(
+                                                                          () {
+                                                                        _model
+                                                                            .programSearchTextController
+                                                                            ?.clear();
+                                                                      });
+                                                                      logFirebaseEvent(
+                                                                          'Icon_update_app_state');
+                                                                      FFAppState()
+                                                                              .searchActive =
+                                                                          false;
+                                                                      safeSetState(
+                                                                          () {});
+
+                                                                      safeSetState(
+                                                                          () {});
+                                                                    },
+                                                                    child: Icon(
+                                                                      FFIcons
+                                                                          .ktrash,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      size:
+                                                                          24.0,
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),

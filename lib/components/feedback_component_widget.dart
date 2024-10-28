@@ -3,6 +3,9 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'feedback_component_model.dart';
 export 'feedback_component_model.dart';
 
@@ -60,7 +63,7 @@ class _FeedbackComponentWidgetState extends State<FeedbackComponentWidget> {
         mainAxisSize: MainAxisSize.max,
         children: [
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: EdgeInsets.all(10.0),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -73,11 +76,11 @@ class _FeedbackComponentWidgetState extends State<FeedbackComponentWidget> {
                       width: 30.0,
                       height: 30.0,
                       clipBehavior: Clip.antiAlias,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         shape: BoxShape.circle,
                       ),
                       child: Image.network(
-                        widget.user!.photoUrl,
+                        widget!.user!.photoUrl,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -85,20 +88,20 @@ class _FeedbackComponentWidgetState extends State<FeedbackComponentWidget> {
                 ),
                 Expanded(
                   child: Align(
-                    alignment: const AlignmentDirectional(-1.0, 0.0),
+                    alignment: AlignmentDirectional(-1.0, 0.0),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(9.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(9.0, 0.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Align(
-                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Text(
                               valueOrDefault<String>(
-                                widget.user?.displayName,
+                                widget!.user?.displayName,
                                 'Display Name',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -119,7 +122,7 @@ class _FeedbackComponentWidgetState extends State<FeedbackComponentWidget> {
                             ),
                             direction: Axis.horizontal,
                             initialRating: _model.ratingBarValue ??=
-                                widget.ticket!.ticketFeedbackRating,
+                                widget!.ticket!.ticketFeedbackRating,
                             unratedColor:
                                 FlutterFlowTheme.of(context).secondaryText,
                             itemCount: 5,
@@ -135,7 +138,7 @@ class _FeedbackComponentWidgetState extends State<FeedbackComponentWidget> {
                   valueOrDefault<String>(
                     dateTimeFormat(
                       "relative",
-                      widget.ticket?.ticketFeedbackTimestamp,
+                      widget!.ticket?.ticketFeedbackTimestamp,
                       locale: FFLocalizations.of(context).languageCode,
                     ),
                     'a moment ago',
@@ -152,12 +155,12 @@ class _FeedbackComponentWidgetState extends State<FeedbackComponentWidget> {
             ),
           ),
           Align(
-            alignment: const AlignmentDirectional(-1.0, 0.0),
+            alignment: AlignmentDirectional(-1.0, 0.0),
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 10.0),
+              padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 10.0),
               child: Text(
                 valueOrDefault<String>(
-                  widget.ticket?.ticketFeedback,
+                  widget!.ticket?.ticketFeedback,
                   'It was a great event, looking forward to more activities with this organizations. There is so much to learn.',
                 ),
                 textAlign: TextAlign.justify,

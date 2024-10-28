@@ -2,10 +2,13 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'user_i_d_model.dart';
 export 'user_i_d_model.dart';
 
@@ -52,17 +55,17 @@ class _UserIDWidgetState extends State<UserIDWidget> {
         body: Stack(
           children: [
             Align(
-              alignment: const AlignmentDirectional(0.0, -1.0),
+              alignment: AlignmentDirectional(0.0, -1.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Align(
-                    alignment: const AlignmentDirectional(0.0, -1.0),
+                    alignment: AlignmentDirectional(0.0, -1.0),
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
                       child: Container(
                         width: double.infinity,
                         height: 190.0,
@@ -74,26 +77,26 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                               'assets/images/Ads_2.png',
                             ).image,
                           ),
-                          borderRadius: const BorderRadius.only(
+                          borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(30.0),
                             bottomRight: Radius.circular(30.0),
                             topLeft: Radius.circular(0.0),
                             topRight: Radius.circular(0.0),
                           ),
                         ),
-                        child: SizedBox(
+                        child: Container(
                           height: 190.0,
                           child: Stack(
-                            alignment: const AlignmentDirectional(0.0, -1.0),
+                            alignment: AlignmentDirectional(0.0, -1.0),
                             children: [
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 20.0, 20.0, 20.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 30.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -128,7 +131,7 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                                                       .spaceBetween,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           25.0, 0.0, 0.0, 0.0),
                                                   child: Text(
@@ -152,11 +155,11 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                                                 ),
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           1.0, 0.0),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 5.0, 0.0),
                                                     child: ClipRRect(
@@ -179,9 +182,9 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                                     ),
                                     Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 25.0, 0.0, 0.0),
                                         child: Text(
                                           'Let\'s make it easy for you!',
@@ -201,7 +204,7 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                                     ),
                                     Align(
                                       alignment:
-                                          const AlignmentDirectional(-1.0, 0.0),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: Text(
                                         'Please take note that this is only a virtual ID and shall not be used as alternative to your school ID.',
                                         style: FlutterFlowTheme.of(context)
@@ -221,14 +224,14 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 1.25),
+                                alignment: AlignmentDirectional(0.0, 1.25),
                                 child: Container(
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context).primary,
                                     borderRadius: BorderRadius.circular(20.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         10.0, 5.0, 10.0, 5.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.min,
@@ -237,14 +240,14 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 5.0, 0.0),
                                           child: AuthUserStreamWidget(
                                             builder: (context) => Container(
                                               width: 25.0,
                                               height: 25.0,
                                               clipBehavior: Clip.antiAlias,
-                                              decoration: const BoxDecoration(
+                                              decoration: BoxDecoration(
                                                 shape: BoxShape.circle,
                                               ),
                                               child: Image.network(
@@ -263,7 +266,7 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                                               valueOrDefault<String>(
                                                 'Your school ID, ${valueOrDefault<String>(
                                                   currentUserDocument
-                                                      ?.name.firstName,
+                                                      ?.name?.firstName,
                                                   'User',
                                                 )}',
                                                 'Your school ID,  Brenley',
@@ -299,7 +302,7 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                   Expanded(
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 90.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 90.0),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -310,7 +313,7 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                               direction: FlipDirection.HORIZONTAL,
                               speed: 400,
                               front: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(15.0),
                                   child: Container(
@@ -323,13 +326,13 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                                       ),
                                       borderRadius: BorderRadius.circular(15.0),
                                     ),
-                                    child: SizedBox(
+                                    child: Container(
                                       width: 238.0,
                                       height: 407.0,
                                       child: Stack(
                                         children: [
                                           Align(
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                 0.04, -0.42),
                                             child: AuthUserStreamWidget(
                                               builder: (context) => Container(
@@ -359,10 +362,10 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                                             ),
                                           ),
                                           Align(
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                 0.04, 0.36),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 20.0, 0.0, 0.0),
                                               child: Column(
@@ -394,7 +397,7 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 15.0,
                                                                 0.0, 0.0),
                                                     child: AuthUserStreamWidget(
@@ -405,7 +408,7 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                                                                 valueOrDefault<
                                                                     String>(
                                                           currentUserDocument
-                                                              ?.name.lastName,
+                                                              ?.name?.lastName,
                                                           'ROBLES',
                                                         )),
                                                         style:
@@ -437,7 +440,7 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                                                           valueOrDefault<
                                                               String>(
                                                         currentUserDocument
-                                                            ?.name.firstName,
+                                                            ?.name?.firstName,
                                                         'BRENLEY IAN',
                                                       )),
                                                       style: FlutterFlowTheme
@@ -463,7 +466,7 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                                             ),
                                           ),
                                           Align(
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                 -0.02, 0.71),
                                             child: AuthUserStreamWidget(
                                               builder: (context) =>
@@ -524,7 +527,7 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                                             ),
                                           ),
                                           Align(
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                 -0.58, 0.82),
                                             child: Text(
                                               '1ST TERM',
@@ -544,7 +547,7 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                                             ),
                                           ),
                                           Align(
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                 0.74, 0.82),
                                             child: Text(
                                               'AY 2024-2025',
@@ -570,14 +573,14 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                                 ),
                               ),
                               back: Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(20.0),
                                   child: Container(
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20.0),
                                     ),
-                                    child: SizedBox(
+                                    child: Container(
                                       width: 238.0,
                                       height: 407.0,
                                       child: Stack(
@@ -593,7 +596,7 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                                             ),
                                           ),
                                           Align(
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                 -0.08, -0.85),
                                             child: AuthUserStreamWidget(
                                               builder: (context) => ClipRRect(
@@ -615,7 +618,7 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                                             ),
                                           ),
                                           Align(
-                                            alignment: const AlignmentDirectional(
+                                            alignment: AlignmentDirectional(
                                                 0.05, -0.55),
                                             child: AuthUserStreamWidget(
                                               builder: (context) => Text(
@@ -652,7 +655,7 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       20.0, 20.0, 20.0, 10.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -667,7 +670,7 @@ class _UserIDWidgetState extends State<UserIDWidget> {
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 0.0, 10.0, 0.0),
                                               child: Icon(

@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/components/dialog_box/confirm_dialog_box/confirm_dialog_box_widget.dart';
@@ -11,8 +12,12 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:signature/signature.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
@@ -79,18 +84,18 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TitleHeaderComponentWidget(
+                  child: TitleHeaderComponentWidget(
                     titleText: 'Setup E-Signature',
                   ),
                 ),
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 20.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 20.0),
                   child: SingleChildScrollView(
                     primary: false,
                     child: Column(
@@ -101,11 +106,11 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                         Container(
                           width: 90.0,
                           height: 87.0,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: Stack(
                             children: [
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,
@@ -123,14 +128,14 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                         child: FlutterFlowExpandedImageView(
                                           image: Image.network(
                                             valueOrDefault<String>(
-                                              widget.userDoc?.photoUrl,
+                                              widget!.userDoc?.photoUrl,
                                               'https://cdn-icons-png.flaticon.com/512/6858/6858504.png',
                                             ),
                                             fit: BoxFit.contain,
                                           ),
                                           allowRotation: false,
                                           tag: valueOrDefault<String>(
-                                            widget.userDoc?.photoUrl,
+                                            widget!.userDoc?.photoUrl,
                                             'https://cdn-icons-png.flaticon.com/512/6858/6858504.png',
                                           ),
                                           useHeroAnimation: true,
@@ -140,7 +145,7 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                   },
                                   child: Hero(
                                     tag: valueOrDefault<String>(
-                                      widget.userDoc?.photoUrl,
+                                      widget!.userDoc?.photoUrl,
                                       'https://cdn-icons-png.flaticon.com/512/6858/6858504.png',
                                     ),
                                     transitionOnUserGestures: true,
@@ -148,12 +153,12 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                       width: 90.0,
                                       height: 90.0,
                                       clipBehavior: Clip.antiAlias,
-                                      decoration: const BoxDecoration(
+                                      decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                       ),
                                       child: Image.network(
                                         valueOrDefault<String>(
-                                          widget.userDoc?.photoUrl,
+                                          widget!.userDoc?.photoUrl,
                                           'https://cdn-icons-png.flaticon.com/512/6858/6858504.png',
                                         ),
                                         fit: BoxFit.contain,
@@ -170,7 +175,7 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 5.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
@@ -182,7 +187,7 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                     children: [
                                       Text(
                                         valueOrDefault<String>(
-                                          '${widget.userDoc?.name.firstName} ${widget.userDoc?.name.middleName} ${widget.userDoc?.name.lastName} ${widget.userDoc?.name.suffixName}',
+                                          '${widget!.userDoc?.name?.firstName} ${widget!.userDoc?.name?.middleName} ${widget!.userDoc?.name?.lastName} ${widget!.userDoc?.name?.suffixName}',
                                           'User Name',
                                         ),
                                         textAlign: TextAlign.center,
@@ -198,7 +203,7 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                       Flexible(
                                         child: AlignedTooltip(
                                           content: Padding(
-                                            padding: const EdgeInsets.all(4.0),
+                                            padding: EdgeInsets.all(4.0),
                                             child: Text(
                                               'Profile Details have been already verified.',
                                               style:
@@ -223,18 +228,18 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                           tailBaseWidth: 24.0,
                                           tailLength: 12.0,
                                           waitDuration:
-                                              const Duration(milliseconds: 100),
+                                              Duration(milliseconds: 100),
                                           showDuration:
-                                              const Duration(milliseconds: 1500),
+                                              Duration(milliseconds: 1500),
                                           triggerMode: TooltipTriggerMode.tap,
                                           child: Visibility(
                                             visible: valueOrDefault<bool>(
-                                              widget.userDoc?.settings
-                                                  .isVerified,
+                                              widget!.userDoc?.settings
+                                                  ?.isVerified,
                                               false,
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(2.0, 0.0, 0.0, 0.0),
                                               child: Icon(
                                                 FFIcons.kverify5,
@@ -251,7 +256,7 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                   ),
                                   Text(
                                     valueOrDefault<String>(
-                                      widget.userDoc?.email,
+                                      widget!.userDoc?.email,
                                       'email@emai.com',
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -272,7 +277,7 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                           ],
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 10.0, 20.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -280,9 +285,9 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 15.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -304,7 +309,7 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                       ),
                                       Text(
                                         valueOrDefault<String>(
-                                          widget.userDoc?.role,
+                                          widget!.userDoc?.role,
                                           'Role',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -321,9 +326,9 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(-1.0, 0.0),
+                                alignment: AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 15.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -348,7 +353,7 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                         children: [
                                           Text(
                                             valueOrDefault<String>(
-                                              widget.userDoc?.idNumber,
+                                              widget!.userDoc?.idNumber,
                                               'ID Number',
                                             ),
                                             style: FlutterFlowTheme.of(context)
@@ -362,7 +367,7 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                           ),
                                           AlignedTooltip(
                                             content: Padding(
-                                              padding: const EdgeInsets.all(4.0),
+                                              padding: EdgeInsets.all(4.0),
                                               child: Text(
                                                 'Your School ID has been setup.',
                                                 style:
@@ -387,20 +392,20 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                             tailBaseWidth: 24.0,
                                             tailLength: 12.0,
                                             waitDuration:
-                                                const Duration(milliseconds: 100),
+                                                Duration(milliseconds: 100),
                                             showDuration:
-                                                const Duration(milliseconds: 1500),
+                                                Duration(milliseconds: 1500),
                                             triggerMode: TooltipTriggerMode.tap,
                                             child: Visibility(
                                               visible: valueOrDefault<bool>(
-                                                widget.userDoc?.nfcTag !=
+                                                widget!.userDoc?.nfcTag !=
                                                         null &&
-                                                    widget.userDoc?.nfcTag !=
+                                                    widget!.userDoc?.nfcTag !=
                                                         '',
                                                 false,
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         5.0, 0.0, 0.0, 0.0),
                                                 child: Icon(
@@ -419,15 +424,15 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                   ),
                                 ),
                               ),
-                              if ((widget.userDoc?.role == 'Full-Time Faculty') ||
-                                  (widget.userDoc?.role ==
+                              if ((widget!.userDoc?.role == 'Full-Time Faculty') ||
+                                  (widget!.userDoc?.role ==
                                       'Part-Time Faculty') ||
-                                  (widget.userDoc?.role == 'Student') ||
-                                  (widget.userDoc?.role == 'Program Chair'))
+                                  (widget!.userDoc?.role == 'Student') ||
+                                  (widget!.userDoc?.role == 'Program Chair'))
                                 Align(
-                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 15.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -450,12 +455,12 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                         FutureBuilder<ProgramsRecord>(
                                           future:
                                               ProgramsRecord.getDocumentOnce(
-                                                  widget.userDoc!.student
+                                                  widget!.userDoc!.student
                                                       .program!),
                                           builder: (context, snapshot) {
                                             // Customize what your widget looks like when it's loading.
                                             if (!snapshot.hasData) {
-                                              return const Center(
+                                              return Center(
                                                 child: SizedBox(
                                                   width: 16.0,
                                                   height: 16.0,
@@ -493,14 +498,14 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                     ),
                                   ),
                                 ),
-                              if ((widget.userDoc?.role == 'Full-Time Faculty') ||
-                                  (widget.userDoc?.role ==
+                              if ((widget!.userDoc?.role == 'Full-Time Faculty') ||
+                                  (widget!.userDoc?.role ==
                                       'Part-Time Faculty') ||
-                                  (widget.userDoc?.role == 'Student') ||
-                                  (widget.userDoc?.role == 'Program Chair') ||
-                                  (widget.userDoc?.role == 'Dean'))
+                                  (widget!.userDoc?.role == 'Student') ||
+                                  (widget!.userDoc?.role == 'Program Chair') ||
+                                  (widget!.userDoc?.role == 'Dean'))
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 10.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -522,14 +527,14 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                       ),
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(-1.0, 0.0),
+                                            AlignmentDirectional(-1.0, 0.0),
                                         child: FutureBuilder<SchoolsRecord>(
                                           future: SchoolsRecord.getDocumentOnce(
-                                              widget.userDoc!.student.school!),
+                                              widget!.userDoc!.student.school!),
                                           builder: (context, snapshot) {
                                             // Customize what your widget looks like when it's loading.
                                             if (!snapshot.hasData) {
-                                              return const Center(
+                                              return Center(
                                                 child: SizedBox(
                                                   width: 16.0,
                                                   height: 16.0,
@@ -568,9 +573,9 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                   ),
                                 ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 20.0, 0.0, 5.0),
                                   child: Text(
                                     'Draw your signature here',
@@ -588,7 +593,7 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 0.0, 20.0, 0.0),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10.0),
@@ -607,7 +612,7 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                     borderRadius: BorderRadius.circular(15.0),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(2.0),
+                                    padding: EdgeInsets.all(2.0),
                                     child: ClipRect(
                                       child: Signature(
                                         controller:
@@ -617,7 +622,7 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                           penColor: FlutterFlowTheme.of(context)
                                               .primary,
                                           exportBackgroundColor:
-                                              const Color(0x00000000),
+                                              Color(0x00000000),
                                         ),
                                         backgroundColor:
                                             FlutterFlowTheme.of(context)
@@ -632,7 +637,7 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 10.0, 0.0, 0.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
@@ -658,9 +663,9 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                   size: 19.0,
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         5.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       'Clear Signature',
@@ -683,13 +688,13 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                         ),
                         Builder(
                           builder: (context) => Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 15.0, 20.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
                                 logFirebaseEvent(
                                     'ADMIN_SIGNATURE_SETUP_COMPLETE_SETUP_BTN');
-                                var shouldSetState = false;
+                                var _shouldSetState = false;
                                 logFirebaseEvent('Button_alert_dialog');
                                 await showDialog(
                                   context: context,
@@ -698,14 +703,14 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                       elevation: 0,
                                       insetPadding: EdgeInsets.zero,
                                       backgroundColor: Colors.transparent,
-                                      alignment: const AlignmentDirectional(0.0, 0.0)
+                                      alignment: AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
                                       child: WebViewAware(
                                         child: GestureDetector(
                                           onTap: () =>
                                               FocusScope.of(dialogContext)
                                                   .unfocus(),
-                                          child: const ConfirmDialogBoxWidget(
+                                          child: ConfirmDialogBoxWidget(
                                             confirmDialogTitle:
                                                 'Save School ID',
                                             confirmDialogMeesage:
@@ -718,7 +723,7 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                 ).then((value) => safeSetState(
                                     () => _model.confirmDialog = value));
 
-                                shouldSetState = true;
+                                _shouldSetState = true;
                                 if (_model.confirmDialog!) {
                                   logFirebaseEvent('Button_upload_signature');
                                   final signatureImage = await _model
@@ -759,7 +764,7 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
 
                                   logFirebaseEvent('Button_backend_call');
 
-                                  await widget.userDoc!.reference
+                                  await widget!.userDoc!.reference
                                       .update(createUsersRecordData(
                                     nfcTag: FFAppState().scannedNFCTag,
                                     nfcESignature: _model.uploadedSignatureUrl,
@@ -773,7 +778,7 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
+                                            AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: WebViewAware(
@@ -782,7 +787,7 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                                 FocusScope.of(dialogContext)
                                                     .unfocus(),
                                             child:
-                                                const CongratulationsDialogBoxWidget(
+                                                CongratulationsDialogBoxWidget(
                                               congratsDialogTitle:
                                                   'School ID Saved!',
                                               congratsDialogMeesage:
@@ -800,11 +805,11 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                     type: 'added',
                                     module: 'user',
                                     doneToName: 'school ID NFC tag',
-                                    doneTo: widget.userDoc?.reference,
+                                    doneTo: widget!.userDoc?.reference,
                                   );
                                   logFirebaseEvent('Button_navigate_back');
                                   context.safePop();
-                                  if (shouldSetState) safeSetState(() {});
+                                  if (_shouldSetState) safeSetState(() {});
                                   return;
                                 } else {
                                   logFirebaseEvent('Button_alert_dialog');
@@ -816,7 +821,7 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
+                                            AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
                                         child: WebViewAware(
@@ -824,7 +829,7 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                             onTap: () =>
                                                 FocusScope.of(dialogContext)
                                                     .unfocus(),
-                                            child: const InformationDialogBoxWidget(
+                                            child: InformationDialogBoxWidget(
                                               infoDialogTitle:
                                                   'Action has been cancelled',
                                               infoDialogMeesage:
@@ -838,19 +843,19 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
 
                                   logFirebaseEvent('Button_navigate_back');
                                   context.safePop();
-                                  if (shouldSetState) safeSetState(() {});
+                                  if (_shouldSetState) safeSetState(() {});
                                   return;
                                 }
 
-                                if (shouldSetState) safeSetState(() {});
+                                if (_shouldSetState) safeSetState(() {});
                               },
                               text: 'Complete Setup',
                               options: FFButtonOptions(
                                 width: double.infinity,
                                 height: 50.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -862,7 +867,7 @@ class _AdminSignatureSetupWidgetState extends State<AdminSignatureSetupWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),

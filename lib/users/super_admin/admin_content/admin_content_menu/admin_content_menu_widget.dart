@@ -4,8 +4,10 @@ import '/components/widgets/subtitle_header/subtitle_header_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'admin_content_menu_model.dart';
 export 'admin_content_menu_model.dart';
@@ -73,9 +75,9 @@ class _AdminContentMenuWidgetState extends State<AdminContentMenuWidget> {
             body: SafeArea(
               top: true,
               child: Align(
-                alignment: const AlignmentDirectional(0.0, -1.0),
+                alignment: AlignmentDirectional(0.0, -1.0),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,7 +89,7 @@ class _AdminContentMenuWidgetState extends State<AdminContentMenuWidget> {
                           wrapWithModel(
                             model: _model.titleHeaderComponentModel,
                             updateCallback: () => safeSetState(() {}),
-                            child: const TitleHeaderComponentWidget(
+                            child: TitleHeaderComponentWidget(
                               titleText: 'Content Menu',
                             ),
                           ),
@@ -99,7 +101,7 @@ class _AdminContentMenuWidgetState extends State<AdminContentMenuWidget> {
                                 wrapWithModel(
                                   model: _model.subtitleHeaderModel,
                                   updateCallback: () => safeSetState(() {}),
-                                  child: const SubtitleHeaderWidget(
+                                  child: SubtitleHeaderWidget(
                                     mainTitle: 'Content',
                                     subText:
                                         'Manage and publish announcements, news and updates to all users.',
@@ -123,7 +125,7 @@ class _AdminContentMenuWidgetState extends State<AdminContentMenuWidget> {
                                         context.pushNamed(
                                           'admin_content_create',
                                           extra: <String, dynamic>{
-                                            kTransitionInfoKey: const TransitionInfo(
+                                            kTransitionInfoKey: TransitionInfo(
                                               hasTransition: true,
                                               transitionType:
                                                   PageTransitionType.fade,
@@ -137,7 +139,7 @@ class _AdminContentMenuWidgetState extends State<AdminContentMenuWidget> {
                                         model: _model.cardWithDescriptionModel1,
                                         updateCallback: () =>
                                             safeSetState(() {}),
-                                        child: const CardWithDescriptionWidget(
+                                        child: CardWithDescriptionWidget(
                                           title: 'Create Content',
                                           description:
                                               'Publish new content to be displayed on the feed of the users.',
@@ -161,14 +163,14 @@ class _AdminContentMenuWidgetState extends State<AdminContentMenuWidget> {
                                         model: _model.cardWithDescriptionModel2,
                                         updateCallback: () =>
                                             safeSetState(() {}),
-                                        child: const CardWithDescriptionWidget(
+                                        child: CardWithDescriptionWidget(
                                           title: 'Manage Content',
                                           description:
                                               'View, update, or delete any published content on the app.',
                                         ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(height: 10.0)),
+                                  ].divide(SizedBox(height: 10.0)),
                                 ),
                               ],
                             ),

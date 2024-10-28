@@ -9,9 +9,13 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/random_data_util.dart' as random_data;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'bottom_sheetadd_to_cart_model.dart';
 export 'bottom_sheetadd_to_cart_model.dart';
@@ -65,7 +69,7 @@ class _BottomSheetaddToCartWidgetState
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
-          borderRadius: const BorderRadius.only(
+          borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(20.0),
@@ -76,7 +80,7 @@ class _BottomSheetaddToCartWidgetState
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
               child: Container(
                 width: 80.0,
                 height: 10.0,
@@ -87,17 +91,17 @@ class _BottomSheetaddToCartWidgetState
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 12.0),
+              padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 12.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 1.0, 1.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 1.0, 1.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12.0),
                       child: Image.network(
                         valueOrDefault<String>(
-                          widget.product?.image,
+                          widget!.product?.image,
                           'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FNUGo%20Logo.png?alt=media&token=c16de93e-c20d-4bd1-90f0-e3d2c07fe740',
                         ),
                         width: 70.0,
@@ -110,7 +114,7 @@ class _BottomSheetaddToCartWidgetState
                     flex: 3,
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 4.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 4.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -118,7 +122,7 @@ class _BottomSheetaddToCartWidgetState
                         children: [
                           Text(
                             valueOrDefault<String>(
-                              widget.product?.name,
+                              widget!.product?.name,
                               'NU Bag',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -132,7 +136,7 @@ class _BottomSheetaddToCartWidgetState
                           Text(
                             valueOrDefault<String>(
                               formatNumber(
-                                widget.product?.price,
+                                widget!.product?.price,
                                 formatType: FormatType.decimal,
                                 decimalType: DecimalType.periodDecimal,
                                 currency: '₱',
@@ -157,7 +161,7 @@ class _BottomSheetaddToCartWidgetState
               ),
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
+              padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -166,7 +170,7 @@ class _BottomSheetaddToCartWidgetState
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                         child: Text(
                           'Quantity',
                           style:
@@ -260,7 +264,7 @@ class _BottomSheetaddToCartWidgetState
                               ],
                             ),
                           ),
-                        ].divide(const SizedBox(width: 16.0)),
+                        ].divide(SizedBox(width: 16.0)),
                       ),
                     ],
                   ),
@@ -269,12 +273,12 @@ class _BottomSheetaddToCartWidgetState
             ),
             Builder(
               builder: (context) => Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 10.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     logFirebaseEvent(
                         'BOTTOM_SHEETADD_TO_CART_ADD_TO_CART_BTN_');
-                    var shouldSetState = false;
+                    var _shouldSetState = false;
                     logFirebaseEvent('Button_validate_form');
                     if (_model.formKey.currentState == null ||
                         !_model.formKey.currentState!.validate()) {
@@ -282,7 +286,7 @@ class _BottomSheetaddToCartWidgetState
                     }
                     if (functions.convertToDouble(
                             _model.quantityTextController.text) >
-                        widget.product!.stock.toDouble()) {
+                        widget!.product!.stock.toDouble()) {
                       logFirebaseEvent('Button_alert_dialog');
                       await showDialog(
                         context: context,
@@ -291,9 +295,9 @@ class _BottomSheetaddToCartWidgetState
                             elevation: 0,
                             insetPadding: EdgeInsets.zero,
                             backgroundColor: Colors.transparent,
-                            alignment: const AlignmentDirectional(0.0, 0.0)
+                            alignment: AlignmentDirectional(0.0, 0.0)
                                 .resolve(Directionality.of(context)),
-                            child: const WebViewAware(
+                            child: WebViewAware(
                               child: FailedDialogBoxWidget(
                                 failedDialogTitle: 'Quantity Exceeded',
                                 failedDialogMeesage:
@@ -304,7 +308,7 @@ class _BottomSheetaddToCartWidgetState
                         },
                       );
 
-                      if (shouldSetState) safeSetState(() {});
+                      if (_shouldSetState) safeSetState(() {});
                       return;
                     } else if (functions.convertToDouble(
                             _model.quantityTextController.text) <=
@@ -317,9 +321,9 @@ class _BottomSheetaddToCartWidgetState
                             elevation: 0,
                             insetPadding: EdgeInsets.zero,
                             backgroundColor: Colors.transparent,
-                            alignment: const AlignmentDirectional(0.0, 0.0)
+                            alignment: AlignmentDirectional(0.0, 0.0)
                                 .resolve(Directionality.of(context)),
-                            child: const WebViewAware(
+                            child: WebViewAware(
                               child: FailedDialogBoxWidget(
                                 failedDialogTitle: 'Invalid Quantity',
                                 failedDialogMeesage:
@@ -330,7 +334,7 @@ class _BottomSheetaddToCartWidgetState
                         },
                       );
 
-                      if (shouldSetState) safeSetState(() {});
+                      if (_shouldSetState) safeSetState(() {});
                       return;
                     } else {
                       logFirebaseEvent('Button_alert_dialog');
@@ -341,9 +345,9 @@ class _BottomSheetaddToCartWidgetState
                             elevation: 0,
                             insetPadding: EdgeInsets.zero,
                             backgroundColor: Colors.transparent,
-                            alignment: const AlignmentDirectional(0.0, 0.0)
+                            alignment: AlignmentDirectional(0.0, 0.0)
                                 .resolve(Directionality.of(context)),
-                            child: const WebViewAware(
+                            child: WebViewAware(
                               child: ConfirmDialogBoxWidget(
                                 confirmDialogTitle: 'Add to Cart',
                                 confirmDialogMeesage:
@@ -355,7 +359,7 @@ class _BottomSheetaddToCartWidgetState
                       ).then((value) =>
                           safeSetState(() => _model.confirmDialog = value));
 
-                      shouldSetState = true;
+                      _shouldSetState = true;
                       if (_model.confirmDialog!) {
                         logFirebaseEvent('Button_firestore_query');
                         _model.getOrder = await queryOrdersRecordOnce(
@@ -370,7 +374,7 @@ class _BottomSheetaddToCartWidgetState
                               ),
                           singleRecord: true,
                         ).then((s) => s.firstOrNull);
-                        shouldSetState = true;
+                        _shouldSetState = true;
                         if (_model.getOrder == null) {
                           logFirebaseEvent('Button_backend_call');
 
@@ -385,7 +389,7 @@ class _BottomSheetaddToCartWidgetState
                               ),
                               customerRef: currentUserReference,
                               status: 'Pending',
-                              totalPrice: widget.product!.price *
+                              totalPrice: widget!.product!.price *
                                   double.parse(
                                       _model.quantityTextController.text),
                             ),
@@ -394,10 +398,10 @@ class _BottomSheetaddToCartWidgetState
                                 'products': [
                                   getOrdersFirestoreData(
                                     createOrdersStruct(
-                                      product: widget.product?.reference,
+                                      product: widget!.product?.reference,
                                       quantity: int.tryParse(
                                           _model.quantityTextController.text),
-                                      subTotal: widget.product!.price *
+                                      subTotal: widget!.product!.price *
                                           double.parse(_model
                                               .quantityTextController.text),
                                       timestamp: getCurrentTimestamp,
@@ -420,9 +424,9 @@ class _BottomSheetaddToCartWidgetState
                                 elevation: 0,
                                 insetPadding: EdgeInsets.zero,
                                 backgroundColor: Colors.transparent,
-                                alignment: const AlignmentDirectional(0.0, 0.0)
+                                alignment: AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
-                                child: const WebViewAware(
+                                child: WebViewAware(
                                   child: CongratulationsDialogBoxWidget(
                                     congratsDialogTitle: 'Added to Cart',
                                     congratsDialogMeesage:
@@ -435,12 +439,12 @@ class _BottomSheetaddToCartWidgetState
 
                           logFirebaseEvent('Button_navigate_back');
                           context.safePop();
-                          if (shouldSetState) safeSetState(() {});
+                          if (_shouldSetState) safeSetState(() {});
                           return;
                         } else {
                           if (_model.getOrder!.products
                               .where((e) =>
-                                  e.product == widget.product?.reference)
+                                  e.product == widget!.product?.reference)
                               .toList()
                               .isNotEmpty) {
                             logFirebaseEvent('Button_alert_dialog');
@@ -451,9 +455,9 @@ class _BottomSheetaddToCartWidgetState
                                   elevation: 0,
                                   insetPadding: EdgeInsets.zero,
                                   backgroundColor: Colors.transparent,
-                                  alignment: const AlignmentDirectional(0.0, 0.0)
+                                  alignment: AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
-                                  child: const WebViewAware(
+                                  child: WebViewAware(
                                     child: FailedDialogBoxWidget(
                                       failedDialogTitle: 'Item Existing',
                                       failedDialogMeesage:
@@ -466,7 +470,7 @@ class _BottomSheetaddToCartWidgetState
 
                             logFirebaseEvent('Button_navigate_back');
                             context.safePop();
-                            if (shouldSetState) safeSetState(() {});
+                            if (_shouldSetState) safeSetState(() {});
                             return;
                           } else {
                             logFirebaseEvent('Button_backend_call');
@@ -477,10 +481,10 @@ class _BottomSheetaddToCartWidgetState
                                   'products': FieldValue.arrayUnion([
                                     getOrdersFirestoreData(
                                       createOrdersStruct(
-                                        product: widget.product?.reference,
+                                        product: widget!.product?.reference,
                                         quantity: int.tryParse(
                                             _model.quantityTextController.text),
-                                        subTotal: widget.product!.price *
+                                        subTotal: widget!.product!.price *
                                             double.parse(_model
                                                 .quantityTextController.text),
                                         timestamp: getCurrentTimestamp,
@@ -489,7 +493,7 @@ class _BottomSheetaddToCartWidgetState
                                       true,
                                     )
                                   ]),
-                                  'total_price': FieldValue.increment(widget
+                                  'total_price': FieldValue.increment(widget!
                                           .product!.price *
                                       double.parse(
                                           _model.quantityTextController.text)),
@@ -505,9 +509,9 @@ class _BottomSheetaddToCartWidgetState
                                   elevation: 0,
                                   insetPadding: EdgeInsets.zero,
                                   backgroundColor: Colors.transparent,
-                                  alignment: const AlignmentDirectional(0.0, 0.0)
+                                  alignment: AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
-                                  child: const WebViewAware(
+                                  child: WebViewAware(
                                     child: CongratulationsDialogBoxWidget(
                                       congratsDialogTitle: 'Added to Cart',
                                       congratsDialogMeesage:
@@ -520,7 +524,7 @@ class _BottomSheetaddToCartWidgetState
 
                             logFirebaseEvent('Button_navigate_back');
                             context.safePop();
-                            if (shouldSetState) safeSetState(() {});
+                            if (_shouldSetState) safeSetState(() {});
                             return;
                           }
                         }
@@ -533,9 +537,9 @@ class _BottomSheetaddToCartWidgetState
                               elevation: 0,
                               insetPadding: EdgeInsets.zero,
                               backgroundColor: Colors.transparent,
-                              alignment: const AlignmentDirectional(0.0, 0.0)
+                              alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
-                              child: const WebViewAware(
+                              child: WebViewAware(
                                 child: InformationDialogBoxWidget(
                                   infoDialogTitle: 'Action Cancelled',
                                   infoDialogMeesage:
@@ -548,15 +552,15 @@ class _BottomSheetaddToCartWidgetState
 
                         logFirebaseEvent('Button_navigate_back');
                         context.safePop();
-                        if (shouldSetState) safeSetState(() {});
+                        if (_shouldSetState) safeSetState(() {});
                         return;
                       }
                     }
 
-                    if (shouldSetState) safeSetState(() {});
+                    if (_shouldSetState) safeSetState(() {});
                   },
                   text: 'Add to Cart',
-                  icon: const Icon(
+                  icon: Icon(
                     FFIcons.kbag,
                     size: 15.0,
                   ),
@@ -564,9 +568,9 @@ class _BottomSheetaddToCartWidgetState
                     width: double.infinity,
                     height: 40.0,
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Montserrat',
@@ -575,7 +579,7 @@ class _BottomSheetaddToCartWidgetState
                           letterSpacing: 0.0,
                         ),
                     elevation: 3.0,
-                    borderSide: const BorderSide(
+                    borderSide: BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),

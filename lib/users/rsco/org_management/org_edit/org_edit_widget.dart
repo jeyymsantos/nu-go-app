@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/components/dialog_box/confirm_dialog_box/confirm_dialog_box_widget.dart';
@@ -9,9 +10,12 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'org_edit_model.dart';
 export 'org_edit_model.dart';
@@ -40,11 +44,11 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
 
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'org_edit'});
     _model.purposeTextController ??=
-        TextEditingController(text: widget.orgdoc?.purpose);
+        TextEditingController(text: widget!.orgdoc?.purpose);
     _model.purposeFocusNode ??= FocusNode();
 
     _model.descriptionTextController ??=
-        TextEditingController(text: widget.orgdoc?.orgDescription);
+        TextEditingController(text: widget!.orgdoc?.orgDescription);
     _model.descriptionFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -101,7 +105,7 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,13 +113,13 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
                           wrapWithModel(
                             model: _model.titleHeaderComponentModel,
                             updateCallback: () => safeSetState(() {}),
-                            child: const TitleHeaderComponentWidget(
+                            child: TitleHeaderComponentWidget(
                               titleText: 'Update Organization',
                             ),
                           ),
                           Expanded(
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 30.0),
                               child: SingleChildScrollView(
                                 child: Column(
@@ -128,21 +132,23 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
                                       children: [
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 10.0, 0.0, 0.0),
                                           child: Container(
                                             width: 90.0,
                                             height: 90.0,
                                             clipBehavior: Clip.antiAlias,
-                                            decoration: const BoxDecoration(
+                                            decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                             ),
                                             child: Image.network(
                                               valueOrDefault<String>(
                                                 _model.uploadedFileUrl1 !=
+                                                            null &&
+                                                        _model.uploadedFileUrl1 !=
                                                             ''
                                                     ? _model.uploadedFileUrl1
-                                                    : widget.orgdoc?.logo,
+                                                    : widget!.orgdoc?.logo,
                                                 'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FCircle_Upload_Photo.png?alt=media&token=2bbb83dc-ed45-4fc3-9a0f-05c6318f22d0',
                                               ),
                                               fit: BoxFit.contain,
@@ -155,7 +161,7 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 10.0, 0.0, 20.0),
                                               child: FFButtonWidget(
@@ -244,11 +250,11 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
                                                 },
                                                 text: 'Upload Logo',
                                                 options: FFButtonOptions(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           24.0, 0.0, 24.0, 0.0),
                                                   iconPadding:
-                                                      const EdgeInsetsDirectional
+                                                      EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
@@ -268,7 +274,7 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
                                                             letterSpacing: 0.0,
                                                           ),
                                                   elevation: 3.0,
-                                                  borderSide: const BorderSide(
+                                                  borderSide: BorderSide(
                                                     color: Colors.transparent,
                                                     width: 1.0,
                                                   ),
@@ -289,7 +295,7 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 5.0),
                                               child: Text(
                                                 'Update here the cover photo of your organization.',
@@ -324,7 +330,7 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 15.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
@@ -427,9 +433,11 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
                                               child: Image.network(
                                                 valueOrDefault<String>(
                                                   _model.uploadedFileUrl2 !=
+                                                              null &&
+                                                          _model.uploadedFileUrl2 !=
                                                               ''
                                                       ? _model.uploadedFileUrl2
-                                                      : widget
+                                                      : widget!
                                                           .orgdoc?.coverPhoto,
                                                   'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/n-u-go-application-yjlz84/assets/acr6c7ygcw4g/Image_Handler.png',
                                                 ),
@@ -443,14 +451,14 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
                                       ],
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 50.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 15.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -461,7 +469,7 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -504,7 +512,7 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
                                                 ),
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: TextFormField(
                                                     controller: _model
@@ -614,7 +622,7 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 15.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
@@ -625,7 +633,7 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
                                                   children: [
                                                     Padding(
                                                       padding:
-                                                          const EdgeInsetsDirectional
+                                                          EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -668,7 +676,7 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
                                                 ),
                                                 Align(
                                                   alignment:
-                                                      const AlignmentDirectional(
+                                                      AlignmentDirectional(
                                                           0.0, 0.0),
                                                   child: TextFormField(
                                                     controller: _model
@@ -788,16 +796,16 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
                       ),
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(0.0, 1.0),
+                      alignment: AlignmentDirectional(0.0, 1.0),
                       child: Builder(
                         builder: (context) => Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 10.0, 20.0, 30.0),
                           child: FFButtonWidget(
                             onPressed: () async {
                               logFirebaseEvent(
                                   'ORG_EDIT_UPDATE_ORGANIZATION_BTN_ON_TAP');
-                              var shouldSetState = false;
+                              var _shouldSetState = false;
                               logFirebaseEvent('Button_alert_dialog');
                               await showDialog(
                                 context: context,
@@ -806,14 +814,14 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
                                     elevation: 0,
                                     insetPadding: EdgeInsets.zero,
                                     backgroundColor: Colors.transparent,
-                                    alignment: const AlignmentDirectional(0.0, 0.0)
+                                    alignment: AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
                                     child: WebViewAware(
                                       child: GestureDetector(
                                         onTap: () =>
                                             FocusScope.of(dialogContext)
                                                 .unfocus(),
-                                        child: const ConfirmDialogBoxWidget(
+                                        child: ConfirmDialogBoxWidget(
                                           confirmDialogTitle:
                                               'Update Organization',
                                           confirmDialogMeesage:
@@ -826,18 +834,20 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
                               ).then((value) => safeSetState(
                                   () => _model.confirmDialog = value));
 
-                              shouldSetState = true;
+                              _shouldSetState = true;
                               if (_model.confirmDialog!) {
                                 logFirebaseEvent('Button_backend_call');
 
-                                await widget.orgdoc!.reference
+                                await widget!.orgdoc!.reference
                                     .update(createOrganizationsRecordData(
-                                  logo: _model.uploadedFileUrl1 != ''
+                                  logo: _model.uploadedFileUrl1 != null &&
+                                          _model.uploadedFileUrl1 != ''
                                       ? _model.uploadedFileUrl1
-                                      : widget.orgdoc?.logo,
-                                  coverPhoto: _model.uploadedFileUrl2 != ''
+                                      : widget!.orgdoc?.logo,
+                                  coverPhoto: _model.uploadedFileUrl2 != null &&
+                                          _model.uploadedFileUrl2 != ''
                                       ? _model.uploadedFileUrl2
-                                      : widget.orgdoc?.coverPhoto,
+                                      : widget!.orgdoc?.coverPhoto,
                                   purpose: _model.purposeTextController.text,
                                   orgDescription:
                                       _model.descriptionTextController.text,
@@ -847,7 +857,7 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
                                   context,
                                   type: 'updated',
                                   module: 'organization',
-                                  doneToName: widget.orgdoc?.organizationName,
+                                  doneToName: widget!.orgdoc?.organizationName,
                                 );
                                 logFirebaseEvent('Button_alert_dialog');
                                 await showDialog(
@@ -857,14 +867,14 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
                                       elevation: 0,
                                       insetPadding: EdgeInsets.zero,
                                       backgroundColor: Colors.transparent,
-                                      alignment: const AlignmentDirectional(0.0, 0.0)
+                                      alignment: AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
                                       child: WebViewAware(
                                         child: GestureDetector(
                                           onTap: () =>
                                               FocusScope.of(dialogContext)
                                                   .unfocus(),
-                                          child: const CongratulationsDialogBoxWidget(
+                                          child: CongratulationsDialogBoxWidget(
                                             congratsDialogTitle:
                                                 'Organization Updated',
                                             congratsDialogMeesage:
@@ -878,7 +888,7 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
 
                                 logFirebaseEvent('Button_navigate_back');
                                 context.safePop();
-                                if (shouldSetState) safeSetState(() {});
+                                if (_shouldSetState) safeSetState(() {});
                                 return;
                               } else {
                                 logFirebaseEvent('Button_alert_dialog');
@@ -889,14 +899,14 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
                                       elevation: 0,
                                       insetPadding: EdgeInsets.zero,
                                       backgroundColor: Colors.transparent,
-                                      alignment: const AlignmentDirectional(0.0, 0.0)
+                                      alignment: AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
                                       child: WebViewAware(
                                         child: GestureDetector(
                                           onTap: () =>
                                               FocusScope.of(dialogContext)
                                                   .unfocus(),
-                                          child: const InformationDialogBoxWidget(
+                                          child: InformationDialogBoxWidget(
                                             infoDialogTitle: 'Action Cancelled',
                                             infoDialogMeesage:
                                                 'The action has been cancelled and no changes made.',
@@ -909,19 +919,19 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
 
                                 logFirebaseEvent('Button_navigate_back');
                                 context.safePop();
-                                if (shouldSetState) safeSetState(() {});
+                                if (_shouldSetState) safeSetState(() {});
                                 return;
                               }
 
-                              if (shouldSetState) safeSetState(() {});
+                              if (_shouldSetState) safeSetState(() {});
                             },
                             text: 'Update Organization',
                             options: FFButtonOptions(
                               width: double.infinity,
                               height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -933,7 +943,7 @@ class _OrgEditWidgetState extends State<OrgEditWidget> {
                                     letterSpacing: 0.0,
                                   ),
                               elevation: 3.0,
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),

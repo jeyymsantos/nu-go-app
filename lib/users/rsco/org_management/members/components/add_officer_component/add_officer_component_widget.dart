@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/push_notifications/push_notifications_util.dart';
 import '/components/dialog_box/confirm_dialog_box/confirm_dialog_box_widget.dart';
@@ -7,9 +8,13 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'add_officer_component_model.dart';
 export 'add_officer_component_model.dart';
@@ -64,13 +69,13 @@ class _AddOfficerComponentWidgetState extends State<AddOfficerComponentWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
       child: Container(
         width: double.infinity,
         height: 500.0,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
-          borderRadius: const BorderRadius.only(
+          borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(0.0),
             bottomRight: Radius.circular(0.0),
             topLeft: Radius.circular(30.0),
@@ -78,7 +83,7 @@ class _AddOfficerComponentWidgetState extends State<AddOfficerComponentWidget> {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
           child: Form(
             key: _model.formKey,
             autovalidateMode: AutovalidateMode.disabled,
@@ -87,7 +92,7 @@ class _AddOfficerComponentWidgetState extends State<AddOfficerComponentWidget> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: Container(
                     width: 100.0,
                     height: 10.0,
@@ -98,7 +103,7 @@ class _AddOfficerComponentWidgetState extends State<AddOfficerComponentWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 15.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 15.0),
                   child: Text(
                     'Add Officer',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -112,9 +117,9 @@ class _AddOfficerComponentWidgetState extends State<AddOfficerComponentWidget> {
                 Flexible(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: FutureBuilder<UsersRecord>(
-                      future: UsersRecord.getDocumentOnce(widget.userDoc!),
+                      future: UsersRecord.getDocumentOnce(widget!.userDoc!),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
                         if (!snapshot.hasData) {
@@ -200,23 +205,23 @@ class _AddOfficerComponentWidgetState extends State<AddOfficerComponentWidget> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Container(
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                       ),
                       Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Container(
                             width: double.infinity,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
-                              child: SizedBox(
+                              child: Container(
                                 width: 200.0,
                                 child: TextFormField(
                                   controller: _model.positionTextController,
@@ -242,7 +247,7 @@ class _AddOfficerComponentWidgetState extends State<AddOfficerComponentWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                     enabledBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
+                                      borderSide: BorderSide(
                                         color: Color(0x00000000),
                                         width: 0.5,
                                       ),
@@ -291,9 +296,9 @@ class _AddOfficerComponentWidgetState extends State<AddOfficerComponentWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   5.0, 5.0, 5.0, 0.0),
                               child: Text(
                                 'Ex. President, Vice President - Internal, Vice President for External Affairs, Public Relations Officer, etc.',
@@ -317,11 +322,11 @@ class _AddOfficerComponentWidgetState extends State<AddOfficerComponentWidget> {
                         children: [
                           Container(
                             width: double.infinity,
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
-                              child: SizedBox(
+                              child: Container(
                                 width: 200.0,
                                 child: TextFormField(
                                   controller: _model.positionRankTextController,
@@ -347,7 +352,7 @@ class _AddOfficerComponentWidgetState extends State<AddOfficerComponentWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                     enabledBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
+                                      borderSide: BorderSide(
                                         color: Color(0x00000000),
                                         width: 0.5,
                                       ),
@@ -405,9 +410,9 @@ class _AddOfficerComponentWidgetState extends State<AddOfficerComponentWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(-1.0, 0.0),
+                            alignment: AlignmentDirectional(-1.0, 0.0),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   5.0, 5.0, 5.0, 0.0),
                               child: Text(
                                 'This signifies the order of your position. For example, a President might be \'1\' on the order of the position in an organization. A VP for Events & Management, should be \'2\', and so on. This differs on each organization.',
@@ -428,10 +433,10 @@ class _AddOfficerComponentWidgetState extends State<AddOfficerComponentWidget> {
                       ),
                       Container(
                         width: double.infinity,
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Builder(
                           builder: (context) => Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 30.0, 0.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
@@ -445,9 +450,9 @@ class _AddOfficerComponentWidgetState extends State<AddOfficerComponentWidget> {
                                       elevation: 0,
                                       insetPadding: EdgeInsets.zero,
                                       backgroundColor: Colors.transparent,
-                                      alignment: const AlignmentDirectional(0.0, 0.0)
+                                      alignment: AlignmentDirectional(0.0, 0.0)
                                           .resolve(Directionality.of(context)),
-                                      child: const WebViewAware(
+                                      child: WebViewAware(
                                         child: ConfirmDialogBoxWidget(
                                           confirmDialogTitle: 'Save Officer',
                                           confirmDialogMeesage:
@@ -462,7 +467,7 @@ class _AddOfficerComponentWidgetState extends State<AddOfficerComponentWidget> {
                                 if (_model.officerConfirmDialog!) {
                                   logFirebaseEvent('Button_backend_call');
 
-                                  await widget.membersRef!
+                                  await widget!.membersRef!
                                       .update(createMembersRecordData(
                                     isOfficer: true,
                                     officerRole:
@@ -476,7 +481,7 @@ class _AddOfficerComponentWidgetState extends State<AddOfficerComponentWidget> {
                                     type: 'added',
                                     module: 'organizations',
                                     doneToName: 'an officer',
-                                    doneTo: widget.userDoc,
+                                    doneTo: widget!.userDoc,
                                   );
                                   logFirebaseEvent('Button_action_block');
                                   await action_blocks.triggerAppNotification(
@@ -484,8 +489,8 @@ class _AddOfficerComponentWidgetState extends State<AddOfficerComponentWidget> {
                                     type: 'user',
                                     title: 'You are added as an Officer',
                                     message:
-                                        'An admin from ${widget.orgDoc?.organizationName} has added you as an admin. Check on your Organizations to manage.',
-                                    user: widget.userDoc,
+                                        'An admin from ${widget!.orgDoc?.organizationName} has added you as an admin. Check on your Organizations to manage.',
+                                    user: widget!.userDoc,
                                   );
                                   logFirebaseEvent(
                                       'Button_trigger_push_notification');
@@ -493,9 +498,9 @@ class _AddOfficerComponentWidgetState extends State<AddOfficerComponentWidget> {
                                     notificationTitle:
                                         'You have been added as an officer!',
                                     notificationText:
-                                        'An admin from ${widget.orgDoc?.organizationName} has added you as an admin.',
+                                        'An admin from ${widget!.orgDoc?.organizationName} has added you as an admin.',
                                     notificationSound: 'default',
-                                    userRefs: [widget.userDoc!],
+                                    userRefs: [widget!.userDoc!],
                                     initialPageName: 'auth_redirect',
                                     parameterData: {},
                                   );
@@ -508,10 +513,10 @@ class _AddOfficerComponentWidgetState extends State<AddOfficerComponentWidget> {
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
+                                            AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                        child: const WebViewAware(
+                                        child: WebViewAware(
                                           child: CongratulationsDialogBoxWidget(
                                             congratsDialogTitle:
                                                 'Officer Saved',
@@ -535,10 +540,10 @@ class _AddOfficerComponentWidgetState extends State<AddOfficerComponentWidget> {
                                         insetPadding: EdgeInsets.zero,
                                         backgroundColor: Colors.transparent,
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0)
+                                            AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                        child: const WebViewAware(
+                                        child: WebViewAware(
                                           child: InformationDialogBoxWidget(
                                             infoDialogTitle: 'Action Cancelled',
                                             infoDialogMeesage:
@@ -558,9 +563,9 @@ class _AddOfficerComponentWidgetState extends State<AddOfficerComponentWidget> {
                               text: 'Save Officer',
                               options: FFButtonOptions(
                                 height: 50.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -572,7 +577,7 @@ class _AddOfficerComponentWidgetState extends State<AddOfficerComponentWidget> {
                                       letterSpacing: 0.0,
                                     ),
                                 elevation: 3.0,
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),

@@ -4,7 +4,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'confirm_password_dialog_model.dart';
 export 'confirm_password_dialog_model.dart';
@@ -48,7 +51,7 @@ class _ConfirmPasswordDialogWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: EdgeInsets.all(20.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -59,7 +62,7 @@ class _ConfirmPasswordDialogWidgetState
           key: _model.formKey,
           autovalidateMode: AutovalidateMode.disabled,
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -71,7 +74,7 @@ class _ConfirmPasswordDialogWidgetState
                   animate: true,
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: Text(
                     'Confirm Password to Proceed',
                     textAlign: TextAlign.center,
@@ -85,7 +88,7 @@ class _ConfirmPasswordDialogWidgetState
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: Text(
                     'To proceed with the administrative command, please confirm by typing your password.',
                     textAlign: TextAlign.center,
@@ -99,8 +102,8 @@ class _ConfirmPasswordDialogWidgetState
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                  child: SizedBox(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  child: Container(
                     width: double.infinity,
                     child: TextFormField(
                       controller: _model.textController,
@@ -173,12 +176,12 @@ class _ConfirmPasswordDialogWidgetState
                 Builder(
                   builder: (context) => Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         logFirebaseEvent(
                             'CONFIRM_PASSWORD_DIALOG_CONFIRM_ACTION_B');
-                        var shouldSetState = false;
+                        var _shouldSetState = false;
                         logFirebaseEvent('Button_validate_form');
                         if (_model.formKey.currentState == null ||
                             !_model.formKey.currentState!.validate()) {
@@ -188,11 +191,11 @@ class _ConfirmPasswordDialogWidgetState
                         _model.checkPassword = await actions.checkUserPassword(
                           _model.textController.text,
                         );
-                        shouldSetState = true;
+                        _shouldSetState = true;
                         if (_model.checkPassword!) {
                           logFirebaseEvent('Button_dismiss_dialog');
                           Navigator.pop(context, true);
-                          if (shouldSetState) safeSetState(() {});
+                          if (_shouldSetState) safeSetState(() {});
                           return;
                         } else {
                           logFirebaseEvent('Button_alert_dialog');
@@ -203,9 +206,9 @@ class _ConfirmPasswordDialogWidgetState
                                 elevation: 0,
                                 insetPadding: EdgeInsets.zero,
                                 backgroundColor: Colors.transparent,
-                                alignment: const AlignmentDirectional(0.0, 0.0)
+                                alignment: AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
-                                child: const WebViewAware(
+                                child: WebViewAware(
                                   child: FailedDialogBoxWidget(
                                     failedDialogTitle: 'Password Incorrect',
                                     failedDialogMeesage:
@@ -216,21 +219,21 @@ class _ConfirmPasswordDialogWidgetState
                             },
                           );
 
-                          if (shouldSetState) safeSetState(() {});
+                          if (_shouldSetState) safeSetState(() {});
                           return;
                         }
 
-                        if (shouldSetState) safeSetState(() {});
+                        if (_shouldSetState) safeSetState(() {});
                       },
                       text: 'Confirm Action',
                       options: FFButtonOptions(
                         width: double.infinity,
                         height: 40.0,
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
                         iconPadding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: const Color(0xFFF3B041),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: Color(0xFFF3B041),
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   fontFamily: 'Montserrat',
@@ -245,7 +248,7 @@ class _ConfirmPasswordDialogWidgetState
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       logFirebaseEvent(
@@ -258,18 +261,18 @@ class _ConfirmPasswordDialogWidgetState
                       width: double.infinity,
                       height: 40.0,
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primaryBackground,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Montserrat',
-                                color: const Color(0xFFF3B041),
+                                color: Color(0xFFF3B041),
                                 letterSpacing: 0.0,
                               ),
                       elevation: 0.0,
-                      borderSide: const BorderSide(
+                      borderSide: BorderSide(
                         color: Color(0xFFF3B041),
                       ),
                       borderRadius: BorderRadius.circular(22.0),

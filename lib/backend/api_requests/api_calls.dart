@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:typed_data';
+import '../schema/structs/index.dart';
 
 import 'package:flutter/foundation.dart';
 
@@ -30,7 +32,7 @@ class GetProvincesCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'Get Provinces',
-      apiUrl: '$baseUrl/provinces',
+      apiUrl: '${baseUrl}/provinces',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -73,7 +75,7 @@ class GetCityCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'Get City',
-      apiUrl: '$baseUrl/provinces/$provinceCode/cities-municipalities',
+      apiUrl: '${baseUrl}/provinces/${provinceCode}/cities-municipalities',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -115,7 +117,7 @@ class BarangayCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Barangay',
       apiUrl:
-          '$baseUrl/cities-municipalities/$cityOrMunicipalityCode/barangays/',
+          '${baseUrl}/cities-municipalities/${cityOrMunicipalityCode}/barangays/',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -156,7 +158,7 @@ class GetSpecificProvinceCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'Get Specific Province',
-      apiUrl: '$baseUrl/provinces/$provinceCode',
+      apiUrl: '${baseUrl}/provinces/${provinceCode}',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -187,7 +189,7 @@ class GetSpecificCityCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'Get Specific City',
-      apiUrl: '$baseUrl/cities-municipalities/$cityCode',
+      apiUrl: '${baseUrl}/cities-municipalities/${cityCode}',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -218,7 +220,7 @@ class GetSpecificBarangayCall {
 
     return ApiManager.instance.makeApiCall(
       callName: 'Get Specific Barangay',
-      apiUrl: '$baseUrl/barangays/$barangayCode',
+      apiUrl: '${baseUrl}/barangays/${barangayCode}',
       callType: ApiCallType.GET,
       headers: {},
       params: {},

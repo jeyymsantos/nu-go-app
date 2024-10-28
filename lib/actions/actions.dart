@@ -1,10 +1,14 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/api_requests/api_manager.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 Future logs(
@@ -21,7 +25,7 @@ Future logs(
       ...createActivityLogsRecordData(
         type: type,
         description:
-            '${currentUserDisplayName != '' ? currentUserDisplayName : 'A user'} has $type $doneToName on $module module.',
+            '${currentUserDisplayName != null && currentUserDisplayName != '' ? currentUserDisplayName : 'A user'} has ${type} ${doneToName} on ${module} module.',
         module: module,
         doneByRole: valueOrDefault(currentUserDocument?.role, ''),
         doneTo: doneTo,
@@ -40,7 +44,7 @@ Future logs(
       ...createActivityLogsRecordData(
         type: type,
         description:
-            '${currentUserDisplayName != '' ? currentUserDisplayName : 'A user'} has $type $doneToName on $module module.',
+            '${currentUserDisplayName != null && currentUserDisplayName != '' ? currentUserDisplayName : 'A user'} has ${type} ${doneToName} on ${module} module.',
         module: module,
         doneBy: currentUserReference,
         doneByRole: valueOrDefault(currentUserDocument?.role, ''),
@@ -74,7 +78,7 @@ Future adminSignatorySet(
       await ApprovalSetsRecord.getDocumentOnce(approvalSet!.reference);
   logFirebaseEvent('adminSignatorySet_update_app_state');
   FFAppState().signatorySet =
-      approvalSet.signatories.toList().cast<ApprovalSignatoryStruct>();
+      approvalSet!.signatories.toList().cast<ApprovalSignatoryStruct>();
   FFAppState().index = 0;
   while (FFAppState().index < FFAppState().signatorySet.length) {
     if (FFAppState().signatorySet[FFAppState().index].approvalRole ==
@@ -114,7 +118,7 @@ Future adminSignatorySet(
     } else {
       logFirebaseEvent('adminSignatorySet_backend_call');
       officeRef = await OfficeRecord.getDocumentOnce(
-          approvalSetDoc.signatories[FFAppState().index].approvalOffice!);
+          approvalSetDoc!.signatories[FFAppState().index].approvalOffice!);
       logFirebaseEvent('adminSignatorySet_update_app_state');
       FFAppState().updateSignatorySetAtIndex(
         FFAppState().index,
@@ -127,7 +131,7 @@ Future adminSignatorySet(
     logFirebaseEvent('adminSignatorySet_update_app_state');
     FFAppState().updateSignatorySetAtIndex(
       FFAppState().index,
-      (e) => e..approvalStatus = '$status',
+      (e) => e..approvalStatus = '${status}',
     );
     // End of Signatory List Set Up
     logFirebaseEvent('adminSignatorySet_EndofSignatoryListSetU');
@@ -142,29 +146,29 @@ Future addressLoader(BuildContext context) async {
 
   logFirebaseEvent('addressLoader_backend_call');
   provinceOutput = await AddressGroup.getSpecificProvinceCall.call(
-    provinceCode: currentUserDocument?.address.province,
+    provinceCode: currentUserDocument?.address?.province,
   );
 
   logFirebaseEvent('addressLoader_backend_call');
   barangayOutput = await AddressGroup.getSpecificBarangayCall.call(
-    barangayCode: currentUserDocument?.address.barangay,
+    barangayCode: currentUserDocument?.address?.barangay,
   );
 
   logFirebaseEvent('addressLoader_backend_call');
   cityOutput = await AddressGroup.getSpecificCityCall.call(
-    cityCode: currentUserDocument?.address.city,
+    cityCode: currentUserDocument?.address?.city,
   );
 
   logFirebaseEvent('addressLoader_update_app_state');
   FFAppState().address = AddressStruct(
     barangay: AddressGroup.getSpecificBarangayCall.name(
-      (barangayOutput.jsonBody ?? ''),
+      (barangayOutput?.jsonBody ?? ''),
     ),
     city: AddressGroup.getSpecificCityCall.name(
-      (cityOutput.jsonBody ?? ''),
+      (cityOutput?.jsonBody ?? ''),
     ),
     province: AddressGroup.getSpecificProvinceCall.name(
-      (provinceOutput.jsonBody ?? ''),
+      (provinceOutput?.jsonBody ?? ''),
     ),
   );
 }
@@ -187,7 +191,7 @@ Future orgSignatorySet(
       await ApprovalSetsRecord.getDocumentOnce(approvalSet!.reference);
   logFirebaseEvent('orgSignatorySet_update_app_state');
   FFAppState().signatorySet =
-      approvalSet.signatories.toList().cast<ApprovalSignatoryStruct>();
+      approvalSet!.signatories.toList().cast<ApprovalSignatoryStruct>();
   FFAppState().index = 0;
   while (FFAppState().index < FFAppState().signatorySet.length) {
     if (FFAppState().signatorySet[FFAppState().index].approvalRole ==
@@ -275,9 +279,9 @@ Future dynamicApprove(
   if (approveOrgRef != null) {
     logFirebaseEvent('dynamicApprove_backend_call');
 
-    await approveOrgRef.update({
+    await approveOrgRef!.update({
       ...createOrganizationsRecordData(
-        status: functions.decrementByOne(approvalList.length) == approvalStep
+        status: functions.decrementByOne(approvalList!.length) == approvalStep
             ? 'Approved'
             : 'Pending',
       ),
@@ -293,10 +297,10 @@ Future dynamicApprove(
     });
     logFirebaseEvent('dynamicApprove_backend_call');
 
-    await ApplicationRecord.createDoc(approveOrgRef).set({
+    await ApplicationRecord.createDoc(approveOrgRef!).set({
       ...createApplicationRecordData(
         message:
-            'The request has been processed by ${FFAppState().signatorySet[approvalStep].approvalRole == 'Full-Time Faculty' ? 'adviser' : FFAppState().signatorySet[approvalStep].approvalRole}.',
+            'The request has been processed by ${FFAppState().signatorySet[approvalStep!].approvalRole == 'Full-Time Faculty' ? 'adviser' : FFAppState().signatorySet[approvalStep!].approvalRole}.',
         status: 'Approved',
         schoolAdmin: currentUserReference,
       ),
@@ -309,9 +313,9 @@ Future dynamicApprove(
   } else if (approveEventRef != null) {
     logFirebaseEvent('dynamicApprove_backend_call');
 
-    await approveEventRef.update({
+    await approveEventRef!.update({
       ...createEventsRecordData(
-        status: functions.decrementByOne(approvalList.length) == approvalStep
+        status: functions.decrementByOne(approvalList!.length) == approvalStep
             ? 'Approved'
             : 'Pending',
       ),
@@ -327,10 +331,10 @@ Future dynamicApprove(
     });
     logFirebaseEvent('dynamicApprove_backend_call');
 
-    await EventApplicationRecord.createDoc(approveEventRef).set({
+    await EventApplicationRecord.createDoc(approveEventRef!).set({
       ...createEventApplicationRecordData(
         message:
-            'The request has been processed by ${FFAppState().signatorySet[approvalStep].approvalRole == 'Full-Time Faculty' ? 'adviser' : FFAppState().signatorySet[approvalStep].approvalRole}.',
+            'The request has been processed by ${FFAppState().signatorySet[approvalStep!].approvalRole == 'Full-Time Faculty' ? 'adviser' : FFAppState().signatorySet[approvalStep!].approvalRole}.',
         status: 'Approved',
         schoolAdmin: currentUserReference,
       ),
@@ -357,7 +361,7 @@ Future dynamicApprove(
     type: 'user',
     title: 'Request Approved',
     message:
-        'An admin has approved the request for $approveName. Please check your $approveWhat profile for more information.',
+        'An admin has approved the request for ${approveName}. Please check your ${approveWhat} profile for more information.',
     user: approveWho,
   );
   logFirebaseEvent('dynamicApprove_action_block');
@@ -366,9 +370,9 @@ Future dynamicApprove(
     type: 'multiple_users',
     title: 'Request Approved',
     message:
-        'An admin has approved $approveName. Please check the $approveWhat profile for more information.',
+        'An admin has approved ${approveName}. Please check the ${approveWhat} profile for more information.',
     multipleUsers:
-        approvalList.map((e) => e.approvalUser).withoutNulls.toList(),
+        approvalList?.map((e) => e.approvalUser).withoutNulls.toList(),
   );
 }
 
@@ -397,7 +401,7 @@ Future dynamicDecline(
   if (declineOrgRef != null) {
     logFirebaseEvent('dynamicDecline_backend_call');
 
-    await declineOrgRef.update({
+    await declineOrgRef!.update({
       ...createOrganizationsRecordData(
         status: 'Declined',
         currentApprovalStep: approvalStep,
@@ -413,10 +417,10 @@ Future dynamicDecline(
     });
     logFirebaseEvent('dynamicDecline_backend_call');
 
-    await ApplicationRecord.createDoc(declineOrgRef).set({
+    await ApplicationRecord.createDoc(declineOrgRef!).set({
       ...createApplicationRecordData(
         message:
-            'The request has been declined by ${FFAppState().signatorySet[approvalStep].approvalRole == 'Full-Time Faculty' ? 'adviser' : FFAppState().signatorySet[approvalStep].approvalRole}.',
+            'The request has been declined by ${FFAppState().signatorySet[approvalStep!].approvalRole == 'Full-Time Faculty' ? 'adviser' : FFAppState().signatorySet[approvalStep!].approvalRole}.',
         status: 'Declined',
         schoolAdmin: currentUserReference,
         feedback: declineFeedback,
@@ -430,7 +434,7 @@ Future dynamicDecline(
   } else if (declineEventRef != null) {
     logFirebaseEvent('dynamicDecline_backend_call');
 
-    await declineEventRef.update({
+    await declineEventRef!.update({
       ...createEventsRecordData(
         status: 'Declined',
         currentApprovalStep: approvalStep,
@@ -446,10 +450,10 @@ Future dynamicDecline(
     });
     logFirebaseEvent('dynamicDecline_backend_call');
 
-    await EventApplicationRecord.createDoc(declineEventRef).set({
+    await EventApplicationRecord.createDoc(declineEventRef!).set({
       ...createEventApplicationRecordData(
         message:
-            'The request has been declined by ${FFAppState().signatorySet[approvalStep].approvalRole == 'Full-Time Faculty' ? 'adviser' : FFAppState().signatorySet[approvalStep].approvalRole}.',
+            'The request has been declined by ${FFAppState().signatorySet[approvalStep!].approvalRole == 'Full-Time Faculty' ? 'adviser' : FFAppState().signatorySet[approvalStep!].approvalRole}.',
         status: 'Declined',
         schoolAdmin: currentUserReference,
         feedback: declineFeedback,
@@ -477,7 +481,7 @@ Future dynamicDecline(
     type: 'user',
     title: 'Org Declined',
     message:
-        'An admin has declined the application for  $declineName. Please check your $declineWhat profile for more information.',
+        'An admin has declined the application for  ${declineName}. Please check your ${declineWhat} profile for more information.',
     user: declineToWho,
   );
   logFirebaseEvent('dynamicDecline_action_block');
@@ -486,9 +490,9 @@ Future dynamicDecline(
     type: 'multiple_users',
     title: 'Org Declined',
     message:
-        'An admin has declined the application for $declineName. Please check the $declineWhat profile for more information.',
+        'An admin has declined the application for ${declineName}. Please check the ${declineWhat} profile for more information.',
     multipleUsers:
-        approvalList.map((e) => e.approvalUser).withoutNulls.toList(),
+        approvalList?.map((e) => e.approvalUser).withoutNulls.toList(),
   );
 }
 
@@ -517,7 +521,7 @@ Future dynamicRevision(
   if (reviseOrgRef != null) {
     logFirebaseEvent('dynamicRevision_backend_call');
 
-    await reviseOrgRef.update({
+    await reviseOrgRef!.update({
       ...createOrganizationsRecordData(
         status: 'Revision',
         currentApprovalStep: approvalStep,
@@ -533,10 +537,10 @@ Future dynamicRevision(
     });
     logFirebaseEvent('dynamicRevision_backend_call');
 
-    await ApplicationRecord.createDoc(reviseOrgRef).set({
+    await ApplicationRecord.createDoc(reviseOrgRef!).set({
       ...createApplicationRecordData(
         message:
-            '${FFAppState().signatorySet[approvalStep].approvalRole == 'Full-Time Faculty' ? 'Adviser' : FFAppState().signatorySet[approvalStep].approvalRole} has given feedback for revisions.',
+            '${FFAppState().signatorySet[approvalStep!].approvalRole == 'Full-Time Faculty' ? 'Adviser' : FFAppState().signatorySet[approvalStep!].approvalRole} has given feedback for revisions.',
         status: 'Revision',
         schoolAdmin: currentUserReference,
         feedback: reviseFeedback,
@@ -550,7 +554,7 @@ Future dynamicRevision(
   } else if (reviseEventRef != null) {
     logFirebaseEvent('dynamicRevision_backend_call');
 
-    await reviseEventRef.update({
+    await reviseEventRef!.update({
       ...createEventsRecordData(
         status: 'Revision',
         currentApprovalStep: approvalStep,
@@ -566,10 +570,10 @@ Future dynamicRevision(
     });
     logFirebaseEvent('dynamicRevision_backend_call');
 
-    await EventApplicationRecord.createDoc(reviseEventRef).set({
+    await EventApplicationRecord.createDoc(reviseEventRef!).set({
       ...createEventApplicationRecordData(
         message:
-            '${FFAppState().signatorySet[approvalStep].approvalRole == 'Full-Time Faculty' ? 'Adviser' : FFAppState().signatorySet[approvalStep].approvalRole} has given feedback for revisions.',
+            '${FFAppState().signatorySet[approvalStep!].approvalRole == 'Full-Time Faculty' ? 'Adviser' : FFAppState().signatorySet[approvalStep!].approvalRole} has given feedback for revisions.',
         status: 'Revision',
         schoolAdmin: currentUserReference,
         feedback: reviseFeedback,
@@ -597,7 +601,7 @@ Future dynamicRevision(
     type: 'user',
     title: 'Revision Needed',
     message:
-        'An admin has given some feedback for revision to $reviseName. Please check your $reviseWhat profile for more information.',
+        'An admin has given some feedback for revision to ${reviseName}. Please check your ${reviseWhat} profile for more information.',
     user: reviseToWho,
   );
   logFirebaseEvent('dynamicRevision_action_block');
@@ -606,9 +610,9 @@ Future dynamicRevision(
     type: 'multiple_users',
     title: 'Revision Needed',
     message:
-        'An admin has given some feedback for revision to $reviseName. Please check the $reviseWhat profile for more information.',
+        'An admin has given some feedback for revision to ${reviseName}. Please check the ${reviseWhat} profile for more information.',
     multipleUsers:
-        approvalList.map((e) => e.approvalUser).withoutNulls.toList(),
+        approvalList?.map((e) => e.approvalUser).withoutNulls.toList(),
   );
 }
 
@@ -649,7 +653,7 @@ Future resetRevisionStatus(
   FFAppState().signatorySet =
       signatorySet!.toList().cast<ApprovalSignatoryStruct>();
   FFAppState().index = 0;
-  while (FFAppState().index < signatorySet.length) {
+  while (FFAppState().index < signatorySet!.length) {
     logFirebaseEvent('resetRevisionStatus_update_app_state');
     FFAppState().updateSignatorySetAtIndex(
       FFAppState().index,

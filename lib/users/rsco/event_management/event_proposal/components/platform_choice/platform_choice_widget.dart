@@ -1,6 +1,8 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'platform_choice_model.dart';
 export 'platform_choice_model.dart';
@@ -45,7 +47,7 @@ class _PlatformChoiceWidgetState extends State<PlatformChoiceWidget> {
       children: [
         if (FFAppState().platformChoice != 'Other')
           Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -78,7 +80,7 @@ class _PlatformChoiceWidgetState extends State<PlatformChoiceWidget> {
                     if (FFAppState().platformChoice == 'Microsoft Teams')
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                         child: Container(
                           width: 50.0,
                           height: 5.0,
@@ -118,7 +120,7 @@ class _PlatformChoiceWidgetState extends State<PlatformChoiceWidget> {
                     if (FFAppState().platformChoice == 'Zoom')
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                         child: Container(
                           width: 50.0,
                           height: 5.0,
@@ -158,7 +160,7 @@ class _PlatformChoiceWidgetState extends State<PlatformChoiceWidget> {
                     if (FFAppState().platformChoice == 'Discord')
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                         child: Container(
                           width: 50.0,
                           height: 5.0,
@@ -198,7 +200,7 @@ class _PlatformChoiceWidgetState extends State<PlatformChoiceWidget> {
                     if (FFAppState().platformChoice == 'Skype')
                       Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                         child: Container(
                           width: 50.0,
                           height: 5.0,
@@ -210,7 +212,7 @@ class _PlatformChoiceWidgetState extends State<PlatformChoiceWidget> {
                       ),
                   ],
                 ),
-              ].divide(const SizedBox(width: 10.0)),
+              ].divide(SizedBox(width: 10.0)),
             ),
           ),
       ],

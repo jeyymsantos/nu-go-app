@@ -1,4 +1,6 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/dialog_box/confirm_password_dialog/confirm_password_dialog_widget.dart';
 import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
@@ -9,9 +11,11 @@ import '/users/super_admin/admin_approval/components/editing_of_office_approver/
 import '/users/super_admin/admin_approval/components/list_of_office_approver/list_of_office_approver_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'admin_approval_offices_update_static_model.dart';
@@ -53,8 +57,8 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
       logFirebaseEvent('ADMIN_APPROVAL_OFFICES_UPDATE_STATIC_adm');
       logFirebaseEvent('admin_approval_offices_update_static_upd');
       FFAppState().signatorySet =
-          widget.signatorySet!.toList().cast<ApprovalSignatoryStruct>();
-      FFAppState().signatoryChecker = widget.signatorySet!
+          widget!.signatorySet!.toList().cast<ApprovalSignatoryStruct>();
+      FFAppState().signatoryChecker = widget!.signatorySet!
           .map((e) => e.approvalRole)
           .toList()
           .toList()
@@ -143,7 +147,7 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -151,7 +155,7 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: const TitleHeaderComponentWidget(
+                      child: TitleHeaderComponentWidget(
                         titleText: 'Update Approval Set',
                       ),
                     ),
@@ -161,18 +165,18 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                         autovalidateMode: AutovalidateMode.disabled,
                         child: Container(
                           height: MediaQuery.sizeOf(context).height * 1.0,
-                          decoration: const BoxDecoration(),
+                          decoration: BoxDecoration(),
                           child: SingleChildScrollView(
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 5.0),
                                   child: Text(
                                     valueOrDefault<String>(
-                                      widget.name,
+                                      widget!.name,
                                       'Organizations',
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -191,13 +195,13 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                       .secondaryBackground,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 20.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 5.0),
                                         child: Text(
                                           'Approvers',
@@ -212,7 +216,7 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 5.0),
                                         child: Text(
                                           'To rearrange the order of the set approvers, simply hold and drag the panel to your desired position.',
@@ -233,7 +237,7 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                           false)
                                         Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 20.0, 0.0, 0.0),
                                           child: Text(
                                             'No approvers added yet.',
@@ -251,7 +255,7 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                           ),
                                         ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 20.0, 0.0, 0.0),
                                         child: Builder(
                                           builder: (context) {
@@ -272,12 +276,13 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                                         listOfApproversIndex];
                                                 return Container(
                                                   key: ValueKey(
-                                                      "ListView_zpopz54r" '_' +
+                                                      "ListView_zpopz54r" +
+                                                          '_' +
                                                           listOfApproversIndex
                                                               .toString()),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsetsDirectional
+                                                        EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 5.0),
                                                     child: Container(
@@ -296,7 +301,7 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                                         ),
                                                       ),
                                                       child: Padding(
-                                                        padding: const EdgeInsets.all(
+                                                        padding: EdgeInsets.all(
                                                             10.0),
                                                         child: Row(
                                                           mainAxisSize:
@@ -308,7 +313,7 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                                             Flexible(
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             5.0,
                                                                             0.0,
@@ -366,7 +371,7 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                                                       .max,
                                                               children: [
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -513,13 +518,13 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                         Builder(
                                           builder: (context) => Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 15.0, 0.0, 50.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
                                                 logFirebaseEvent(
                                                     'ADMIN_APPROVAL_OFFICES_UPDATE_STATIC_Sav');
-                                                var shouldSetState = false;
+                                                var _shouldSetState = false;
                                                 logFirebaseEvent(
                                                     'Save_alert_dialog');
                                                 await showDialog(
@@ -532,7 +537,7 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                                       backgroundColor:
                                                           Colors.transparent,
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
@@ -544,7 +549,7 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                                                       dialogContext)
                                                                   .unfocus(),
                                                           child:
-                                                              const ConfirmPasswordDialogWidget(),
+                                                              ConfirmPasswordDialogWidget(),
                                                         ),
                                                       ),
                                                     );
@@ -554,7 +559,7 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                                         _model.confirmPassword =
                                                             value));
 
-                                                shouldSetState = true;
+                                                _shouldSetState = true;
                                                 if (_model.confirmPassword!) {
                                                   if ((FFAppState()
                                                           .signatorySet
@@ -563,7 +568,7 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                                     logFirebaseEvent(
                                                         'Save_backend_call');
 
-                                                    await widget
+                                                    await widget!
                                                         .approvalSetReference!
                                                         .update({
                                                       ...mapToFirestore(
@@ -582,7 +587,7 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                                       context,
                                                       type: 'updated',
                                                       module: 'approval',
-                                                      doneToName: widget.name,
+                                                      doneToName: widget!.name,
                                                     );
                                                     logFirebaseEvent(
                                                         'Save_alert_dialog');
@@ -596,7 +601,7 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                                           backgroundColor:
                                                               Colors
                                                                   .transparent,
-                                                          alignment: const AlignmentDirectional(
+                                                          alignment: AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
@@ -609,7 +614,7 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                                                           dialogContext)
                                                                       .unfocus(),
                                                               child:
-                                                                  const InformationDialogBoxWidget(
+                                                                  InformationDialogBoxWidget(
                                                                 infoDialogMeesage:
                                                                     'Your approval set has been updated. You may now assign it to your preferred module or form.',
                                                                 infoDialogTitle:
@@ -624,9 +629,8 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                                     logFirebaseEvent(
                                                         'Save_navigate_back');
                                                     context.safePop();
-                                                    if (shouldSetState) {
+                                                    if (_shouldSetState)
                                                       safeSetState(() {});
-                                                    }
                                                     return;
                                                   } else {
                                                     logFirebaseEvent(
@@ -641,7 +645,7 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                                           backgroundColor:
                                                               Colors
                                                                   .transparent,
-                                                          alignment: const AlignmentDirectional(
+                                                          alignment: AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
@@ -654,7 +658,7 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                                                           dialogContext)
                                                                       .unfocus(),
                                                               child:
-                                                                  const InformationDialogBoxWidget(
+                                                                  InformationDialogBoxWidget(
                                                                 infoDialogTitle:
                                                                     'Approval List Needed',
                                                                 infoDialogMeesage:
@@ -666,9 +670,8 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                                       },
                                                     );
 
-                                                    if (shouldSetState) {
+                                                    if (_shouldSetState)
                                                       safeSetState(() {});
-                                                    }
                                                     return;
                                                   }
                                                 } else {
@@ -684,7 +687,7 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                                         backgroundColor:
                                                             Colors.transparent,
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                     0.0, 0.0)
                                                                 .resolve(
                                                                     Directionality.of(
@@ -697,7 +700,7 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                                                         dialogContext)
                                                                     .unfocus(),
                                                             child:
-                                                                const InformationDialogBoxWidget(
+                                                                InformationDialogBoxWidget(
                                                               infoDialogTitle:
                                                                   'Approval Set Cancelled',
                                                               infoDialogMeesage:
@@ -712,25 +715,23 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                                   logFirebaseEvent(
                                                       'Save_navigate_back');
                                                   context.safePop();
-                                                  if (shouldSetState) {
+                                                  if (_shouldSetState)
                                                     safeSetState(() {});
-                                                  }
                                                   return;
                                                 }
 
-                                                if (shouldSetState) {
+                                                if (_shouldSetState)
                                                   safeSetState(() {});
-                                                }
                                               },
                                               text: 'Update',
                                               options: FFButtonOptions(
                                                 width: double.infinity,
                                                 height: 40.0,
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 0.0, 24.0, 0.0),
                                                 iconPadding:
-                                                    const EdgeInsetsDirectional
+                                                    EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
@@ -747,7 +748,7 @@ class _AdminApprovalOfficesUpdateStaticWidgetState
                                                           letterSpacing: 0.0,
                                                         ),
                                                 elevation: 3.0,
-                                                borderSide: const BorderSide(
+                                                borderSide: BorderSide(
                                                   color: Colors.transparent,
                                                   width: 1.0,
                                                 ),

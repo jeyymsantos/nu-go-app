@@ -1,4 +1,7 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/dialog_box/confirm_password_dialog/confirm_password_dialog_widget.dart';
+import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -7,8 +10,11 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'maintenance_programs_model.dart';
 export 'maintenance_programs_model.dart';
@@ -23,7 +29,7 @@ class MaintenanceProgramsWidget extends StatefulWidget {
     this.programDescription,
     this.programRef,
     this.schoolUnder,
-  }) : isNew = isNew ?? false;
+  }) : this.isNew = isNew ?? false;
 
   final bool isNew;
   final String? programName;
@@ -51,15 +57,15 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
     logFirebaseEvent('screen_view',
         parameters: {'screen_name': 'maintenance_programs'});
     _model.programNameFieldTextController ??=
-        TextEditingController(text: widget.programName);
+        TextEditingController(text: widget!.programName);
     _model.programNameFieldFocusNode ??= FocusNode();
 
     _model.programNicknameFieldTextController ??=
-        TextEditingController(text: widget.programNickname);
+        TextEditingController(text: widget!.programNickname);
     _model.programNicknameFieldFocusNode ??= FocusNode();
 
     _model.schoolDescriptionTextController ??=
-        TextEditingController(text: widget.programDescription);
+        TextEditingController(text: widget!.programDescription);
     _model.schoolDescriptionFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -82,7 +88,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,7 +96,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                 wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TitleHeaderComponentWidget(
+                  child: TitleHeaderComponentWidget(
                     titleText: 'File Maintenance',
                   ),
                 ),
@@ -102,7 +108,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -120,7 +126,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                       ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 0.0, 0.0),
                                   child: Text(
                                     'The cources offered, and the main ground of academic organizations.',
@@ -153,12 +159,12 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                 Flexible(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 30.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 30.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          SizedBox(
+                          Container(
                             width: double.infinity,
                             child: Form(
                               key: _model.formKey,
@@ -196,7 +202,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                                 .schoolAssignedDropdownValueController ??=
                                             FormFieldController<String>(
                                           _model.schoolAssignedDropdownValue ??=
-                                              widget.schoolUnder?.id,
+                                              widget!.schoolUnder?.id,
                                         ),
                                         options: List<String>.from(
                                             schoolAssignedDropdownSchoolsRecordList
@@ -249,7 +255,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                                 .textBoxBorder,
                                         borderWidth: 0.5,
                                         borderRadius: 8.0,
-                                        margin: const EdgeInsetsDirectional.fromSTEB(
+                                        margin: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 4.0, 16.0, 4.0),
                                         hidesUnderline: true,
                                         isOverButton: true,
@@ -259,7 +265,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                     },
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller:
@@ -332,7 +338,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller: _model
@@ -405,7 +411,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 15.0, 0.0, 0.0),
                                     child: StreamBuilder<List<UsersRecord>>(
                                       stream: queryUsersRecord(
@@ -442,7 +448,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                                   .programChairDropdownValueController ??=
                                               FormFieldController<String>(
                                             _model.programChairDropdownValue ??=
-                                                widget.programChair?.id,
+                                                widget!.programChair?.id,
                                           ),
                                           options: List<String>.from(
                                               programChairDropdownUsersRecordList
@@ -499,7 +505,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                           borderWidth: 0.5,
                                           borderRadius: 8.0,
                                           margin:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 4.0, 16.0, 4.0),
                                           hidesUnderline: true,
                                           isOverButton: true,
@@ -510,7 +516,7 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: TextFormField(
                                       controller: _model
@@ -583,263 +589,282 @@ class _MaintenanceProgramsWidgetState extends State<MaintenanceProgramsWidget> {
                                           .asValidator(context),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 15.0, 0.0, 0.0),
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        logFirebaseEvent(
-                                            'MAINTENANCE_PROGRAMS_PAGE_Save_ON_TAP');
-                                        logFirebaseEvent('Save_validate_form');
-                                        if (_model.formKey.currentState ==
-                                                null ||
-                                            !_model.formKey.currentState!
-                                                .validate()) {
-                                          return;
-                                        }
-                                        if (_model
-                                                .schoolAssignedDropdownValue ==
-                                            null) {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                'School Assigned field is required',
-                                                style: TextStyle(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
+                                  Builder(
+                                    builder: (context) => Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 15.0, 0.0, 0.0),
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                          logFirebaseEvent(
+                                              'MAINTENANCE_PROGRAMS_PAGE_Save_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Save_validate_form');
+                                          if (_model.formKey.currentState ==
+                                                  null ||
+                                              !_model.formKey.currentState!
+                                                  .validate()) {
+                                            return;
+                                          }
+                                          if (_model
+                                                  .schoolAssignedDropdownValue ==
+                                              null) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'School Assigned field is required',
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
                                                 ),
+                                                duration: Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
                                               ),
-                                              duration:
-                                                  const Duration(milliseconds: 4000),
-                                              backgroundColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                            ),
-                                          );
-                                          return;
-                                        }
-                                        if (_model.programChairDropdownValue ==
-                                            null) {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                'Program chair field is requied',
-                                                style: TextStyle(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
+                                            );
+                                            return;
+                                          }
+                                          if (_model
+                                                  .programChairDropdownValue ==
+                                              null) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'Program chair field is requied',
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
                                                 ),
+                                                duration: Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
                                               ),
-                                              duration:
-                                                  const Duration(milliseconds: 4000),
-                                              backgroundColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .error,
-                                            ),
+                                            );
+                                            return;
+                                          }
+                                          logFirebaseEvent(
+                                              'Save_custom_action');
+                                          _model.userOutput =
+                                              await actions.getUserDocument(
+                                            _model.programChairDropdownValue!,
                                           );
-                                          return;
-                                        }
-                                        logFirebaseEvent('Save_custom_action');
-                                        _model.userOutput =
-                                            await actions.getUserDocument(
-                                          _model.programChairDropdownValue!,
-                                        );
-                                        logFirebaseEvent('Save_custom_action');
-                                        _model.schoolOutput =
-                                            await actions.getSchoolDocument(
-                                          _model.schoolAssignedDropdownValue!,
-                                        );
-                                        logFirebaseEvent('Save_alert_dialog');
-                                        var confirmDialogResponse =
-                                            await showDialog<bool>(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return WebViewAware(
-                                                      child: AlertDialog(
-                                                        title: Text(widget
-                                                                    .isNew ==
-                                                                true
-                                                            ? 'Save Program'
-                                                            : 'Update Program'),
-                                                        content: Text(widget
-                                                                    .isNew ==
-                                                                true
-                                                            ? 'Are you sure you want to save a new program?'
-                                                            : 'Are you sure you want to update this existing program?'),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext,
-                                                                    false),
-                                                            child:
-                                                                const Text('Cancel'),
-                                                          ),
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext,
-                                                                    true),
-                                                            child: Text(
-                                                                widget.isNew ==
-                                                                        true
-                                                                    ? 'Save'
-                                                                    : 'Update'),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    );
-                                                  },
-                                                ) ??
-                                                false;
-                                        if (confirmDialogResponse) {
-                                          if (widget.isNew == true) {
-                                            logFirebaseEvent(
-                                                'Save_backend_call');
+                                          logFirebaseEvent(
+                                              'Save_custom_action');
+                                          _model.schoolOutput =
+                                              await actions.getSchoolDocument(
+                                            _model.schoolAssignedDropdownValue!,
+                                          );
+                                          logFirebaseEvent('Save_alert_dialog');
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => FocusScope.of(
+                                                            dialogContext)
+                                                        .unfocus(),
+                                                    child:
+                                                        ConfirmPasswordDialogWidget(),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ).then((value) => safeSetState(() =>
+                                              _model.confirmProgram = value));
 
-                                            await ProgramsRecord.collection
-                                                .doc()
-                                                .set(createProgramsRecordData(
-                                                  programName: _model
-                                                      .programNameFieldTextController
-                                                      .text,
-                                                  programNickname: _model
-                                                      .programNicknameFieldTextController
-                                                      .text,
-                                                  programChair: _model
-                                                      .userOutput?.reference,
-                                                  programDescription: _model
-                                                      .schoolDescriptionTextController
-                                                      .text,
-                                                  schoolUnder: _model
-                                                      .schoolOutput?.reference,
-                                                ));
+                                          if (_model.confirmProgram!) {
+                                            if (widget!.isNew == true) {
+                                              logFirebaseEvent(
+                                                  'Save_backend_call');
+
+                                              await ProgramsRecord.collection
+                                                  .doc()
+                                                  .set(createProgramsRecordData(
+                                                    programName: _model
+                                                        .programNameFieldTextController
+                                                        .text,
+                                                    programNickname: _model
+                                                        .programNicknameFieldTextController
+                                                        .text,
+                                                    programChair: _model
+                                                        .userOutput?.reference,
+                                                    programDescription: _model
+                                                        .schoolDescriptionTextController
+                                                        .text,
+                                                    schoolUnder: _model
+                                                        .schoolOutput
+                                                        ?.reference,
+                                                  ));
+                                              logFirebaseEvent(
+                                                  'Save_action_block');
+                                              await action_blocks.logs(
+                                                context,
+                                                type: 'added',
+                                                module: 'programs',
+                                                doneToName: _model
+                                                    .programNameFieldTextController
+                                                    .text,
+                                              );
+                                            } else {
+                                              logFirebaseEvent(
+                                                  'Save_backend_call');
+
+                                              await widget!.programRef!.update(
+                                                  createProgramsRecordData(
+                                                programName: _model
+                                                    .programNameFieldTextController
+                                                    .text,
+                                                programNickname: _model
+                                                    .programNicknameFieldTextController
+                                                    .text,
+                                                programChair: _model
+                                                    .userOutput?.reference,
+                                                programDescription: _model
+                                                    .schoolDescriptionTextController
+                                                    .text,
+                                                schoolUnder: _model
+                                                    .schoolOutput?.reference,
+                                              ));
+                                              logFirebaseEvent(
+                                                  'Save_action_block');
+                                              await action_blocks.logs(
+                                                context,
+                                                type: 'updated',
+                                                module: 'programs',
+                                                doneToName: _model
+                                                    .programNameFieldTextController
+                                                    .text,
+                                              );
+                                            }
+
                                             logFirebaseEvent(
-                                                'Save_action_block');
-                                            await action_blocks.logs(
-                                              context,
-                                              type: 'added',
-                                              module: 'programs',
-                                              doneToName: _model
-                                                  .programNameFieldTextController
-                                                  .text,
+                                                'Save_alert_dialog');
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: WebViewAware(
+                                                    child: GestureDetector(
+                                                      onTap: () =>
+                                                          FocusScope.of(
+                                                                  dialogContext)
+                                                              .unfocus(),
+                                                      child:
+                                                          InformationDialogBoxWidget(
+                                                        infoDialogTitle: widget!
+                                                                .isNew
+                                                            ? 'New Program Created'
+                                                            : 'Existing Program Updated',
+                                                        infoDialogMeesage: widget!
+                                                                .isNew
+                                                            ? 'You have successfully saved a new program!'
+                                                            : 'You have successfully updated an existing program!',
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
                                             );
                                           } else {
                                             logFirebaseEvent(
-                                                'Save_backend_call');
-
-                                            await widget.programRef!.update(
-                                                createProgramsRecordData(
-                                              programName: _model
-                                                  .programNameFieldTextController
-                                                  .text,
-                                              programNickname: _model
-                                                  .programNicknameFieldTextController
-                                                  .text,
-                                              programChair:
-                                                  _model.userOutput?.reference,
-                                              programDescription: _model
-                                                  .schoolDescriptionTextController
-                                                  .text,
-                                              schoolUnder: _model
-                                                  .schoolOutput?.reference,
-                                            ));
-                                            logFirebaseEvent(
-                                                'Save_action_block');
-                                            await action_blocks.logs(
-                                              context,
-                                              type: 'updated',
-                                              module: 'programs',
-                                              doneToName: _model
-                                                  .programNameFieldTextController
-                                                  .text,
+                                                'Save_alert_dialog');
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: WebViewAware(
+                                                    child: GestureDetector(
+                                                      onTap: () =>
+                                                          FocusScope.of(
+                                                                  dialogContext)
+                                                              .unfocus(),
+                                                      child:
+                                                          InformationDialogBoxWidget(
+                                                        infoDialogTitle:
+                                                            'Action Cancelled',
+                                                        infoDialogMeesage:
+                                                            'This action has been cancelled. ',
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
                                             );
                                           }
 
-                                          logFirebaseEvent('Save_alert_dialog');
-                                          await showDialog(
-                                            context: context,
-                                            builder: (alertDialogContext) {
-                                              return WebViewAware(
-                                                child: AlertDialog(
-                                                  title: Text(widget.isNew
-                                                      ? 'New Program Created'
-                                                      : 'Existing Program Updated'),
-                                                  content: Text(widget.isNew
-                                                      ? 'You have successfully saved a new program!'
-                                                      : 'You have successfully updated an existing program!'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: const Text('Okay'),
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                          );
-                                        } else {
-                                          logFirebaseEvent('Save_alert_dialog');
-                                          await showDialog(
-                                            context: context,
-                                            builder: (alertDialogContext) {
-                                              return WebViewAware(
-                                                child: AlertDialog(
-                                                  title:
-                                                      const Text('Action Cancelled'),
-                                                  content: const Text(
-                                                      'This action has been cancelled.'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: const Text('Ok'),
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                          );
-                                        }
+                                          logFirebaseEvent(
+                                              'Save_navigate_back');
+                                          context.safePop();
 
-                                        logFirebaseEvent('Save_navigate_back');
-                                        context.safePop();
-
-                                        safeSetState(() {});
-                                      },
-                                      text: widget.isNew ? 'Save' : 'Update',
-                                      options: FFButtonOptions(
-                                        width: double.infinity,
-                                        height: 40.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 0.0, 24.0, 0.0),
-                                        iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .override(
-                                              fontFamily: 'Montserrat',
-                                              color: Colors.white,
-                                              fontSize: 13.0,
-                                              letterSpacing: 0.0,
-                                            ),
-                                        elevation: 3.0,
-                                        borderSide: const BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1.0,
+                                          safeSetState(() {});
+                                        },
+                                        text: widget!.isNew ? 'Save' : 'Update',
+                                        options: FFButtonOptions(
+                                          width: double.infinity,
+                                          height: 40.0,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  24.0, 0.0, 24.0, 0.0),
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Montserrat',
+                                                    color: Colors.white,
+                                                    fontSize: 13.0,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                          elevation: 3.0,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
                                       ),
                                     ),
                                   ),

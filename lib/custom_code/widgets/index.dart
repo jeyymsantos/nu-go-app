@@ -4,4 +4,3 @@ export 'grayscale_color_filtered.dart' show GrayscaleColorFiltered;
 export 'doughnut_chart.dart' show DoughnutChart;
 export 'pie_chart.dart' show PieChart;
 export 'circular_bar.dart' show CircularBar;
-export 'spline_chart.dart' show SplineChart;

@@ -1,6 +1,9 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'admin_menu_card_model.dart';
 export 'admin_menu_card_model.dart';
 
@@ -47,7 +50,7 @@ class _AdminMenuCardWidgetState extends State<AdminMenuCardWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
       child: Container(
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
@@ -58,7 +61,7 @@ class _AdminMenuCardWidgetState extends State<AdminMenuCardWidget> {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(10.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -70,7 +73,7 @@ class _AdminMenuCardWidgetState extends State<AdminMenuCardWidget> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
                     child: Image.network(
-                      widget.imagePath!,
+                      widget!.imagePath!,
                       width: 40.0,
                       height: 40.0,
                       fit: BoxFit.cover,
@@ -79,14 +82,14 @@ class _AdminMenuCardWidgetState extends State<AdminMenuCardWidget> {
                   Expanded(
                     child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             valueOrDefault<String>(
-                              widget.moduleName,
+                              widget!.moduleName,
                               'Approval Management',
                             ),
                             textAlign: TextAlign.start,
@@ -103,7 +106,7 @@ class _AdminMenuCardWidgetState extends State<AdminMenuCardWidget> {
                           ),
                           Text(
                             valueOrDefault<String>(
-                              widget.moduleDescription,
+                              widget!.moduleDescription,
                               'Manage approval sets that can be used in certain modules.',
                             ),
                             textAlign: TextAlign.start,

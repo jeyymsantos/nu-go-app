@@ -9,10 +9,17 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'org_members_pending_model.dart';
 export 'org_members_pending_model.dart';
@@ -98,7 +105,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
   Widget build(BuildContext context) {
     return StreamBuilder<List<MembersRecord>>(
       stream: queryMembersRecord(
-        parent: widget.orgDoc?.reference,
+        parent: widget!.orgDoc?.reference,
         queryBuilder: (membersRecord) =>
             membersRecord.orderBy('application_date', descending: true),
       ),
@@ -133,11 +140,11 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                 children: [
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: const TitleHeaderComponentWidget(
+                      child: TitleHeaderComponentWidget(
                         titleText: 'Members',
                       ),
                     ),
@@ -148,7 +155,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 20.0, 20.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -162,18 +169,18 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                         CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 10.0, 0.0),
                                         child: Container(
                                           width: 40.0,
                                           height: 40.0,
                                           clipBehavior: Clip.antiAlias,
-                                          decoration: const BoxDecoration(
+                                          decoration: BoxDecoration(
                                             shape: BoxShape.circle,
                                           ),
                                           child: Image.network(
                                             valueOrDefault<String>(
-                                              widget.orgDoc?.logo,
+                                              widget!.orgDoc?.logo,
                                               'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2Fnub_logo.jpg?alt=media&token=2bf8d1ce-43ca-411c-819d-41d6b0d36b81',
                                             ),
                                             fit: BoxFit.cover,
@@ -190,7 +197,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                       children: [
                                         Text(
                                           valueOrDefault<String>(
-                                            widget.orgDoc?.organizationName,
+                                            widget!.orgDoc?.organizationName,
                                             'Org Name',
                                           ),
                                           style: FlutterFlowTheme.of(context)
@@ -204,10 +211,10 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                         ),
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(-1.0, 0.0),
+                                              AlignmentDirectional(-1.0, 0.0),
                                           child: Text(
                                             valueOrDefault<String>(
-                                              widget.orgDoc?.type,
+                                              widget!.orgDoc?.type,
                                               'Academic Organization',
                                             ),
                                             style: FlutterFlowTheme.of(context)
@@ -227,7 +234,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                               ).animateOnPageLoad(
                                   animationsMap['rowOnPageLoadAnimation1']!),
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 20.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -255,14 +262,14 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                 isList: true,
                                               ),
                                               'orgDoc': serializeParam(
-                                                widget.orgDoc,
+                                                widget!.orgDoc,
                                                 ParamType.Document,
                                               ),
                                             }.withoutNulls,
                                             extra: <String, dynamic>{
                                               'membersDoc':
                                                   orgMembersPendingMembersRecordList,
-                                              'orgDoc': widget.orgDoc,
+                                              'orgDoc': widget!.orgDoc,
                                             },
                                           );
                                         },
@@ -275,7 +282,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 10.0, 10.0, 10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.min,
@@ -283,7 +290,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 7.0, 0.0),
                                                   child: Icon(
@@ -353,7 +360,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                         ),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 10.0, 10.0, 10.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
@@ -361,7 +368,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                 MainAxisAlignment.center,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 7.0, 0.0),
                                                 child: Icon(
@@ -440,14 +447,14 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                 isList: true,
                                               ),
                                               'orgDoc': serializeParam(
-                                                widget.orgDoc,
+                                                widget!.orgDoc,
                                                 ParamType.Document,
                                               ),
                                             }.withoutNulls,
                                             extra: <String, dynamic>{
                                               'membersDoc':
                                                   orgMembersPendingMembersRecordList,
-                                              'orgDoc': widget.orgDoc,
+                                              'orgDoc': widget!.orgDoc,
                                             },
                                           );
                                         },
@@ -460,7 +467,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                           ),
                                           child: Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 10.0, 10.0, 10.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.min,
@@ -468,7 +475,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                   MainAxisAlignment.center,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
+                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 7.0, 0.0),
                                                   child: Icon(
@@ -532,7 +539,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                         ),
                                       ),
                                     ),
-                                  ].divide(const SizedBox(width: 10.0)),
+                                  ].divide(SizedBox(width: 10.0)),
                                 ).animateOnPageLoad(
                                     animationsMap['rowOnPageLoadAnimation2']!),
                               ),
@@ -541,14 +548,14 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                         ),
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 20.0, 0.0, 30.0),
                             child: SingleChildScrollView(
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         20.0, 0.0, 20.0, 10.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -557,7 +564,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                       children: [
                                         Align(
                                           alignment:
-                                              const AlignmentDirectional(-1.0, 0.0),
+                                              AlignmentDirectional(-1.0, 0.0),
                                           child: Text(
                                             'Pending for Approval',
                                             style: FlutterFlowTheme.of(context)
@@ -575,7 +582,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                   ),
                                   StreamBuilder<List<MembersRecord>>(
                                     stream: queryMembersRecord(
-                                      parent: widget.orgDoc?.reference,
+                                      parent: widget!.orgDoc?.reference,
                                       queryBuilder: (membersRecord) =>
                                           membersRecord
                                               .where(
@@ -605,7 +612,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                           listViewMembersRecordList =
                                           snapshot.data!;
                                       if (listViewMembersRecordList.isEmpty) {
-                                        return const EmptyListWidget(
+                                        return EmptyListWidget(
                                           emptyWhat: 'pending request',
                                         );
                                       }
@@ -618,14 +625,14 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                         itemCount:
                                             listViewMembersRecordList.length,
                                         separatorBuilder: (_, __) =>
-                                            const SizedBox(height: 10.0),
+                                            SizedBox(height: 10.0),
                                         itemBuilder: (context, listViewIndex) {
                                           final listViewMembersRecord =
                                               listViewMembersRecordList[
                                                   listViewIndex];
                                           return Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     20.0, 0.0, 20.0, 0.0),
                                             child: FutureBuilder<UsersRecord>(
                                               future:
@@ -710,7 +717,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                       .max,
                                                               children: [
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -757,7 +764,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                             tag:
                                                                                 valueOrDefault<String>(
                                                                               memberBarDetailsUsersRecord.photoUrl,
-                                                                              'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png' '$listViewIndex',
+                                                                              'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png' + '$listViewIndex',
                                                                             ),
                                                                             useHeroAnimation:
                                                                                 true,
@@ -770,7 +777,8 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                           String>(
                                                                         memberBarDetailsUsersRecord
                                                                             .photoUrl,
-                                                                        'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png' '$listViewIndex',
+                                                                        'https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png' +
+                                                                            '$listViewIndex',
                                                                       ),
                                                                       transitionOnUserGestures:
                                                                           true,
@@ -783,7 +791,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                         clipBehavior:
                                                                             Clip.antiAlias,
                                                                         decoration:
-                                                                            const BoxDecoration(
+                                                                            BoxDecoration(
                                                                           shape:
                                                                               BoxShape.circle,
                                                                         ),
@@ -804,7 +812,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                 Flexible(
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             5.0,
                                                                             0.0,
@@ -862,7 +870,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                     (context) =>
                                                                         Padding(
                                                                   padding:
-                                                                      const EdgeInsets
+                                                                      EdgeInsets
                                                                           .all(
                                                                               5.0),
                                                                   child:
@@ -883,7 +891,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                         () async {
                                                                       logFirebaseEvent(
                                                                           'ORG_MEMBERS_PENDING_Row_ykmoy4w3_ON_TAP');
-                                                                      var shouldSetState =
+                                                                      var _shouldSetState =
                                                                           false;
                                                                       logFirebaseEvent(
                                                                           'Row_alert_dialog');
@@ -900,12 +908,12 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                             backgroundColor:
                                                                                 Colors.transparent,
                                                                             alignment:
-                                                                                const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
                                                                                 WebViewAware(
                                                                               child: GestureDetector(
                                                                                 onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                child: const ConfirmDialogBoxWidget(
+                                                                                child: ConfirmDialogBoxWidget(
                                                                                   confirmDialogTitle: 'Approve Request',
                                                                                   confirmDialogMeesage: 'Are you sure you want to approve membership request? By approving this request, the member will now be able to join your events and other activities.',
                                                                                 ),
@@ -917,7 +925,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                           safeSetState(() =>
                                                                               _model.approveConfirmDialog = value));
 
-                                                                      shouldSetState =
+                                                                      _shouldSetState =
                                                                           true;
                                                                       if (_model
                                                                           .approveConfirmDialog!) {
@@ -949,7 +957,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                           module:
                                                                               'organization',
                                                                           doneToName:
-                                                                              'the membership request for ${widget.orgDoc?.organizationName}',
+                                                                              'the membership request for ${widget!.orgDoc?.organizationName}',
                                                                           doneTo:
                                                                               listViewMembersRecord.userReference,
                                                                         );
@@ -963,7 +971,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                           title:
                                                                               'Membership Approved',
                                                                           message:
-                                                                              'The organization has accepted your request to join ${widget.orgDoc?.organizationName}. You may now join their events and activities.',
+                                                                              'The organization has accepted your request to join ${widget!.orgDoc?.organizationName}. You may now join their events and activities.',
                                                                           user:
                                                                               listViewMembersRecord.userReference,
                                                                         );
@@ -973,7 +981,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                           notificationTitle:
                                                                               'Membership Approved',
                                                                           notificationText:
-                                                                              'The organization has accepted your request to join ${widget.orgDoc?.organizationName}.',
+                                                                              'The organization has accepted your request to join ${widget!.orgDoc?.organizationName}.',
                                                                           notificationSound:
                                                                               'default',
                                                                           userRefs: [
@@ -994,11 +1002,11 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                               elevation: 0,
                                                                               insetPadding: EdgeInsets.zero,
                                                                               backgroundColor: Colors.transparent,
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                               child: WebViewAware(
                                                                                 child: GestureDetector(
                                                                                   onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                  child: const CongratulationsDialogBoxWidget(
+                                                                                  child: CongratulationsDialogBoxWidget(
                                                                                     congratsDialogTitle: 'Membership Approved',
                                                                                     congratsDialogMeesage: 'The user is now an official member of the organization. Thank you for approving this request.',
                                                                                   ),
@@ -1008,23 +1016,20 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                           },
                                                                         );
 
-                                                                        if (shouldSetState) {
+                                                                        if (_shouldSetState)
                                                                           safeSetState(
                                                                               () {});
-                                                                        }
                                                                         return;
                                                                       } else {
-                                                                        if (shouldSetState) {
+                                                                        if (_shouldSetState)
                                                                           safeSetState(
                                                                               () {});
-                                                                        }
                                                                         return;
                                                                       }
 
-                                                                      if (shouldSetState) {
+                                                                      if (_shouldSetState)
                                                                         safeSetState(
                                                                             () {});
-                                                                      }
                                                                     },
                                                                     child: Row(
                                                                       mainAxisSize:
@@ -1063,7 +1068,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                     (context) =>
                                                                         Padding(
                                                                   padding:
-                                                                      const EdgeInsets
+                                                                      EdgeInsets
                                                                           .all(
                                                                               5.0),
                                                                   child:
@@ -1084,7 +1089,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                         () async {
                                                                       logFirebaseEvent(
                                                                           'ORG_MEMBERS_PENDING_Row_o4yquadd_ON_TAP');
-                                                                      var shouldSetState =
+                                                                      var _shouldSetState =
                                                                           false;
                                                                       logFirebaseEvent(
                                                                           'Row_alert_dialog');
@@ -1101,12 +1106,12 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                             backgroundColor:
                                                                                 Colors.transparent,
                                                                             alignment:
-                                                                                const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                                AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
                                                                                 WebViewAware(
                                                                               child: GestureDetector(
                                                                                 onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                child: const ConfirmDialogBoxWidget(
+                                                                                child: ConfirmDialogBoxWidget(
                                                                                   confirmDialogTitle: 'Decline Request',
                                                                                   confirmDialogMeesage: 'Are you sure you want to decline membership request? User won\'t be able to see your events but may still apply again for re-approval.',
                                                                                 ),
@@ -1118,7 +1123,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                           safeSetState(() =>
                                                                               _model.declineConfirmDialogCopy = value));
 
-                                                                      shouldSetState =
+                                                                      _shouldSetState =
                                                                           true;
                                                                       if (_model
                                                                           .declineConfirmDialogCopy!) {
@@ -1132,7 +1137,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                           title:
                                                                               'Membership Declined',
                                                                           message:
-                                                                              'The organization has refused to accept your request to join ${widget.orgDoc?.organizationName}. You may still try to re-apply by submitting a join request again on the organization\'s profile.',
+                                                                              'The organization has refused to accept your request to join ${widget!.orgDoc?.organizationName}. You may still try to re-apply by submitting a join request again on the organization\'s profile.',
                                                                           user:
                                                                               listViewMembersRecord.userReference,
                                                                         );
@@ -1142,7 +1147,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                           notificationTitle:
                                                                               'Membership Declined',
                                                                           notificationText:
-                                                                              'The organization has declined your request to join ${widget.orgDoc?.organizationName}.',
+                                                                              'The organization has declined your request to join ${widget!.orgDoc?.organizationName}.',
                                                                           notificationSound:
                                                                               'default',
                                                                           userRefs: [
@@ -1162,7 +1167,7 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                           module:
                                                                               'organization',
                                                                           doneToName:
-                                                                              'the membership request for ${widget.orgDoc?.organizationName}',
+                                                                              'the membership request for ${widget!.orgDoc?.organizationName}',
                                                                           doneTo:
                                                                               listViewMembersRecord.userReference,
                                                                         );
@@ -1182,11 +1187,11 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                               elevation: 0,
                                                                               insetPadding: EdgeInsets.zero,
                                                                               backgroundColor: Colors.transparent,
-                                                                              alignment: const AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
+                                                                              alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                               child: WebViewAware(
                                                                                 child: GestureDetector(
                                                                                   onTap: () => FocusScope.of(dialogContext).unfocus(),
-                                                                                  child: const CongratulationsDialogBoxWidget(
+                                                                                  child: CongratulationsDialogBoxWidget(
                                                                                     congratsDialogTitle: 'Membership Declined',
                                                                                     congratsDialogMeesage: 'The user has been declined and won\'t be able to join your events.',
                                                                                   ),
@@ -1196,23 +1201,20 @@ class _OrgMembersPendingWidgetState extends State<OrgMembersPendingWidget>
                                                                           },
                                                                         );
 
-                                                                        if (shouldSetState) {
+                                                                        if (_shouldSetState)
                                                                           safeSetState(
                                                                               () {});
-                                                                        }
                                                                         return;
                                                                       } else {
-                                                                        if (shouldSetState) {
+                                                                        if (_shouldSetState)
                                                                           safeSetState(
                                                                               () {});
-                                                                        }
                                                                         return;
                                                                       }
 
-                                                                      if (shouldSetState) {
+                                                                      if (_shouldSetState)
                                                                         safeSetState(
                                                                             () {});
-                                                                      }
                                                                     },
                                                                     child: Row(
                                                                       mainAxisSize:

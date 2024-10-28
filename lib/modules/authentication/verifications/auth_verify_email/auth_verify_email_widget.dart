@@ -5,6 +5,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'auth_verify_email_model.dart';
@@ -55,7 +57,7 @@ class _AuthVerifyEmailWidgetState extends State<AuthVerifyEmailWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,7 +65,7 @@ class _AuthVerifyEmailWidgetState extends State<AuthVerifyEmailWidget> {
                     wrapWithModel(
                       model: _model.titleOnlyHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: const TitleOnlyHeaderComponentWidget(
+                      child: TitleOnlyHeaderComponentWidget(
                         titleText: 'Email Verification',
                       ),
                     ),
@@ -79,7 +81,7 @@ class _AuthVerifyEmailWidgetState extends State<AuthVerifyEmailWidget> {
                                 size: 300.0,
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Text(
                                   'School Account Verified',
                                   style: FlutterFlowTheme.of(context)
@@ -93,9 +95,9 @@ class _AuthVerifyEmailWidgetState extends State<AuthVerifyEmailWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 5.0, 5.0, 0.0),
                                   child: Text(
                                     'You have successfully verified your email account. Let us start your NU GO experience! 🥳',
@@ -111,9 +113,9 @@ class _AuthVerifyEmailWidgetState extends State<AuthVerifyEmailWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                alignment: AlignmentDirectional(0.0, 1.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 20.0, 0.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
@@ -126,10 +128,10 @@ class _AuthVerifyEmailWidgetState extends State<AuthVerifyEmailWidget> {
                                     text: 'Get Started',
                                     options: FFButtonOptions(
                                       height: 40.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           16.0, 0.0, 16.0, 0.0),
                                       iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
+                                          EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
                                       color:
                                           FlutterFlowTheme.of(context).primary,
@@ -153,9 +155,9 @@ class _AuthVerifyEmailWidgetState extends State<AuthVerifyEmailWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 20.0, 0.0, 0.0),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
@@ -169,9 +171,9 @@ class _AuthVerifyEmailWidgetState extends State<AuthVerifyEmailWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 30.0, 0.0, 0.0),
                                   child: Text(
                                     'Check your inbox for an email',
@@ -187,9 +189,9 @@ class _AuthVerifyEmailWidgetState extends State<AuthVerifyEmailWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 5.0, 5.0, 0.0),
                                   child: Text(
                                     'A verification link has been sent to your email account. Please check your inbox and click the link to verify your account.',
@@ -205,16 +207,16 @@ class _AuthVerifyEmailWidgetState extends State<AuthVerifyEmailWidget> {
                                 ),
                               ),
                               Align(
-                                alignment: const AlignmentDirectional(0.0, 1.0),
+                                alignment: AlignmentDirectional(0.0, 1.0),
                                 child: Builder(
                                   builder: (context) => Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 20.0, 0.0, 0.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
                                         logFirebaseEvent(
                                             'AUTH_VERIFY_EMAIL_LOG_OUT_BTN_ON_TAP');
-                                        var shouldSetState = false;
+                                        var _shouldSetState = false;
                                         logFirebaseEvent('Button_alert_dialog');
                                         await showDialog(
                                           context: context,
@@ -225,7 +227,7 @@ class _AuthVerifyEmailWidgetState extends State<AuthVerifyEmailWidget> {
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
+                                                  AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
@@ -234,7 +236,7 @@ class _AuthVerifyEmailWidgetState extends State<AuthVerifyEmailWidget> {
                                                   onTap: () => FocusScope.of(
                                                           dialogContext)
                                                       .unfocus(),
-                                                  child: const ConfirmDialogBoxWidget(
+                                                  child: ConfirmDialogBoxWidget(
                                                     confirmDialogTitle:
                                                         'Log Out',
                                                     confirmDialogMeesage:
@@ -247,7 +249,7 @@ class _AuthVerifyEmailWidgetState extends State<AuthVerifyEmailWidget> {
                                         ).then((value) => safeSetState(() =>
                                             _model.confirmDialog = value));
 
-                                        shouldSetState = true;
+                                        _shouldSetState = true;
                                         if (_model.confirmDialog!) {
                                           logFirebaseEvent('Button_auth');
                                           GoRouter.of(context)
@@ -262,28 +264,25 @@ class _AuthVerifyEmailWidgetState extends State<AuthVerifyEmailWidget> {
                                           context.pushNamedAuth(
                                               'auth_logout', context.mounted);
 
-                                          if (shouldSetState) {
+                                          if (_shouldSetState)
                                             safeSetState(() {});
-                                          }
                                           return;
                                         } else {
-                                          if (shouldSetState) {
+                                          if (_shouldSetState)
                                             safeSetState(() {});
-                                          }
                                           return;
                                         }
 
-                                        if (shouldSetState) {
+                                        if (_shouldSetState)
                                           safeSetState(() {});
-                                        }
                                       },
                                       text: 'Log out',
                                       options: FFButtonOptions(
                                         height: 40.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             16.0, 0.0, 16.0, 0.0),
                                         iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
+                                            EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .primary,

@@ -295,6 +295,20 @@
           "order": "ASCENDING"
         }
       ]
+    },
+    {
+      "collectionGroup": "events",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "budget_amount.grand_total",
+          "order": "DESCENDING"
+        }
+      ]
     }
   ],
   "fieldOverrides": [

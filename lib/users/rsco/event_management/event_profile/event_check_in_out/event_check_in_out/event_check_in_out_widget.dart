@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/push_notifications/push_notifications_util.dart';
 import '/components/dialog_box/congratulations_dialog_box/congratulations_dialog_box_widget.dart';
@@ -10,11 +11,13 @@ import '/users/rsco/event_management/event_profile/components/side_bar_event_pro
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'event_check_in_out_model.dart';
@@ -69,7 +72,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
 
     return StreamBuilder<List<EventAttendeesRecord>>(
       stream: queryEventAttendeesRecord(
-        parent: widget.eventDoc?.reference,
+        parent: widget!.eventDoc?.reference,
         queryBuilder: (eventAttendeesRecord) => eventAttendeesRecord
             .where(
               'ticket_status',
@@ -102,7 +105,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            drawer: SizedBox(
+            drawer: Container(
               width: 250.0,
               child: Drawer(
                 elevation: 16.0,
@@ -111,7 +114,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                     model: _model.sideBarEventProfileModel,
                     updateCallback: () => safeSetState(() {}),
                     child: SideBarEventProfileWidget(
-                      eventDoc: widget.eventDoc!,
+                      eventDoc: widget!.eventDoc!,
                     ),
                   ),
                 ),
@@ -122,32 +125,32 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Align(
-                  alignment: const AlignmentDirectional(0.0, -1.0),
+                  alignment: AlignmentDirectional(0.0, -1.0),
                   child: Container(
                     width: double.infinity,
                     height: 170.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primary,
-                      borderRadius: const BorderRadius.only(
+                      borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(30.0),
                         bottomRight: Radius.circular(30.0),
                         topLeft: Radius.circular(0.0),
                         topRight: Radius.circular(0.0),
                       ),
                     ),
-                    child: SizedBox(
+                    child: Container(
                       height: 190.0,
                       child: Stack(
-                        alignment: const AlignmentDirectional(0.0, -1.0),
+                        alignment: AlignmentDirectional(0.0, -1.0),
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 20.0, 20.0, 20.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 30.0, 0.0, 20.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -177,7 +180,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
                                     'Check In & Out',
                                     style: FlutterFlowTheme.of(context)
@@ -193,7 +196,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                   ),
                                 ),
                                 Align(
-                                  alignment: const AlignmentDirectional(-1.0, 0.0),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Text(
                                     'Scan Ticket or Tap School ID',
                                     style: FlutterFlowTheme.of(context)
@@ -212,9 +215,9 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                             ),
                           ),
                           Align(
-                            alignment: const AlignmentDirectional(0.0, 1.25),
+                            alignment: AlignmentDirectional(0.0, 1.25),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   30.0, 0.0, 30.0, 0.0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -235,12 +238,12 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                         'event_profile_insights',
                                         queryParameters: {
                                           'eventDoc': serializeParam(
-                                            widget.eventDoc,
+                                            widget!.eventDoc,
                                             ParamType.Document,
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          'eventDoc': widget.eventDoc,
+                                          'eventDoc': widget!.eventDoc,
                                         },
                                       );
                                     },
@@ -252,7 +255,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                             BorderRadius.circular(20.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -260,7 +263,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Icon(
                                                 Icons.insights_sharp,
@@ -302,23 +305,23 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                         'event_profile_dashboard',
                                         queryParameters: {
                                           'eventDoc': serializeParam(
-                                            widget.eventDoc,
+                                            widget!.eventDoc,
                                             ParamType.Document,
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          'eventDoc': widget.eventDoc,
+                                          'eventDoc': widget!.eventDoc,
                                         },
                                       );
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0xFFF99F58),
+                                        color: Color(0xFFF99F58),
                                         borderRadius:
                                             BorderRadius.circular(20.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -326,7 +329,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Icon(
                                                 FFIcons.khome,
@@ -368,23 +371,23 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                         'event_guests_all',
                                         queryParameters: {
                                           'eventDoc': serializeParam(
-                                            widget.eventDoc,
+                                            widget!.eventDoc,
                                             ParamType.Document,
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
-                                          'eventDoc': widget.eventDoc,
+                                          'eventDoc': widget!.eventDoc,
                                         },
                                       );
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0xFF599AFF),
+                                        color: Color(0xFF599AFF),
                                         borderRadius:
                                             BorderRadius.circular(20.0),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 5.0, 10.0, 5.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -392,7 +395,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Icon(
                                                 FFIcons.kuserTag,
@@ -435,7 +438,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 30.0, 20.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
@@ -456,12 +459,12 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                       'event_guests_going',
                                       queryParameters: {
                                         'eventDoc': serializeParam(
-                                          widget.eventDoc,
+                                          widget!.eventDoc,
                                           ParamType.Document,
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        'eventDoc': widget.eventDoc,
+                                        'eventDoc': widget!.eventDoc,
                                       },
                                     );
                                   },
@@ -472,7 +475,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                       borderRadius: BorderRadius.circular(6.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(5.0),
+                                      padding: EdgeInsets.all(5.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment:
@@ -480,7 +483,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               FFIcons.kpet,
@@ -553,12 +556,12 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                       'event_checked_in',
                                       queryParameters: {
                                         'eventDoc': serializeParam(
-                                          widget.eventDoc,
+                                          widget!.eventDoc,
                                           ParamType.Document,
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        'eventDoc': widget.eventDoc,
+                                        'eventDoc': widget!.eventDoc,
                                       },
                                     );
                                   },
@@ -569,7 +572,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                       borderRadius: BorderRadius.circular(6.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(5.0),
+                                      padding: EdgeInsets.all(5.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment:
@@ -577,7 +580,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               FFIcons.kmagicStar4,
@@ -650,12 +653,12 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                       'event_checked_out',
                                       queryParameters: {
                                         'eventDoc': serializeParam(
-                                          widget.eventDoc,
+                                          widget!.eventDoc,
                                           ParamType.Document,
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        'eventDoc': widget.eventDoc,
+                                        'eventDoc': widget!.eventDoc,
                                       },
                                     );
                                   },
@@ -666,7 +669,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                       borderRadius: BorderRadius.circular(6.0),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(5.0),
+                                      padding: EdgeInsets.all(5.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment:
@@ -674,7 +677,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: Icon(
                                               Icons.exit_to_app,
@@ -732,16 +735,16 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                   ),
                                 ),
                               ),
-                            ].divide(const SizedBox(width: 10.0)),
+                            ].divide(SizedBox(width: 10.0)),
                           ),
                         ),
                         if (functions.checkEventStatus(
-                                widget.eventDoc!.startDate!,
-                                widget.eventDoc!.endTime!,
+                                widget!.eventDoc!.startDate!,
+                                widget!.eventDoc!.endTime!,
                                 getCurrentTimestamp) !=
                             'concluded')
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 20.0, 0.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -760,7 +763,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       20.0, 10.0, 20.0, 0.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -771,7 +774,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                             onPressed: () async {
                                               logFirebaseEvent(
                                                   'EVENT_CHECK_IN_OUT_SCAN_TICKET_BTN_ON_TA');
-                                              var shouldSetState = false;
+                                              var _shouldSetState = false;
                                               logFirebaseEvent(
                                                   'Button_update_app_state');
                                               FFAppState().scannedNFCTag = ' ';
@@ -789,18 +792,18 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                 ScanMode.QR,
                                               );
 
-                                              shouldSetState = true;
+                                              _shouldSetState = true;
                                               logFirebaseEvent(
                                                   'Button_update_page_state');
                                               _model.scannedQRcode =
-                                                  _model.scannedQR;
+                                                  _model.scannedQR!;
                                               safeSetState(() {});
                                               logFirebaseEvent(
                                                   'Button_firestore_query');
                                               _model.qrOutput =
                                                   await queryEventAttendeesRecordOnce(
                                                 parent:
-                                                    widget.eventDoc?.reference,
+                                                    widget!.eventDoc?.reference,
                                                 queryBuilder:
                                                     (eventAttendeesRecord) =>
                                                         eventAttendeesRecord
@@ -811,7 +814,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                 ),
                                                 singleRecord: true,
                                               ).then((s) => s.firstOrNull);
-                                              shouldSetState = true;
+                                              _shouldSetState = true;
                                               if (_model.qrOutput?.ticketCode !=
                                                       null &&
                                                   _model.qrOutput?.ticketCode !=
@@ -834,7 +837,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                         backgroundColor:
                                                             Colors.transparent,
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                     0.0, 0.0)
                                                                 .resolve(
                                                                     Directionality.of(
@@ -847,7 +850,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                                         dialogContext)
                                                                     .unfocus(),
                                                             child:
-                                                                const FailedDialogBoxWidget(
+                                                                FailedDialogBoxWidget(
                                                               failedDialogTitle:
                                                                   'Already Checked Out',
                                                               failedDialogMeesage:
@@ -859,9 +862,8 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                     },
                                                   );
 
-                                                  if (shouldSetState) {
+                                                  if (_shouldSetState)
                                                     safeSetState(() {});
-                                                  }
                                                   return;
                                                 } else if (_model.qrOutput
                                                         ?.ticketCheckIn ==
@@ -891,7 +893,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                     type: 'user',
                                                     title: 'Event Check In',
                                                     message:
-                                                        'You are now checked in for ${widget.eventDoc?.eventName}.',
+                                                        'You are now checked in for ${widget!.eventDoc?.eventName}.',
                                                     user: _model
                                                         .qrOutput?.ticketUser,
                                                   );
@@ -901,7 +903,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                     notificationTitle:
                                                         'Event Check In',
                                                     notificationText:
-                                                        'You are now checked in for ${widget.eventDoc?.eventName}.',
+                                                        'You are now checked in for ${widget!.eventDoc?.eventName}.',
                                                     notificationSound:
                                                         'default',
                                                     userRefs: [
@@ -919,7 +921,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                     type: 'check in',
                                                     module: 'event',
                                                     doneToName:
-                                                        'the event \"${widget.eventDoc?.eventName}\".',
+                                                        'the event \"${widget!.eventDoc?.eventName}\".',
                                                     doneTo: _model
                                                         .qrOutput?.ticketUser,
                                                   );
@@ -935,7 +937,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                         backgroundColor:
                                                             Colors.transparent,
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                     0.0, 0.0)
                                                                 .resolve(
                                                                     Directionality.of(
@@ -948,7 +950,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                                         dialogContext)
                                                                     .unfocus(),
                                                             child:
-                                                                const CongratulationsDialogBoxWidget(
+                                                                CongratulationsDialogBoxWidget(
                                                               congratsDialogTitle:
                                                                   'Check In Successful',
                                                               congratsDialogMeesage:
@@ -960,9 +962,8 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                     },
                                                   );
 
-                                                  if (shouldSetState) {
+                                                  if (_shouldSetState)
                                                     safeSetState(() {});
-                                                  }
                                                   return;
                                                 } else if (_model.qrOutput
                                                         ?.ticketCheckOut ==
@@ -992,7 +993,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                     type: 'user',
                                                     title: 'Event Check Out',
                                                     message:
-                                                        'You have checked out for ${widget.eventDoc?.eventName}.',
+                                                        'You have checked out for ${widget!.eventDoc?.eventName}.',
                                                     user: _model
                                                         .qrOutput?.ticketUser,
                                                   );
@@ -1002,7 +1003,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                     notificationTitle:
                                                         'Event Check Out',
                                                     notificationText:
-                                                        'You have checked out for ${widget.eventDoc?.eventName}.',
+                                                        'You have checked out for ${widget!.eventDoc?.eventName}.',
                                                     notificationSound:
                                                         'default',
                                                     userRefs: [
@@ -1020,7 +1021,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                     type: 'check out',
                                                     module: 'event',
                                                     doneToName:
-                                                        'the event \"${widget.eventDoc?.eventName}\".',
+                                                        'the event \"${widget!.eventDoc?.eventName}\".',
                                                     doneTo: _model
                                                         .qrOutput?.ticketUser,
                                                   );
@@ -1036,7 +1037,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                         backgroundColor:
                                                             Colors.transparent,
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                     0.0, 0.0)
                                                                 .resolve(
                                                                     Directionality.of(
@@ -1049,7 +1050,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                                         dialogContext)
                                                                     .unfocus(),
                                                             child:
-                                                                const CongratulationsDialogBoxWidget(
+                                                                CongratulationsDialogBoxWidget(
                                                               congratsDialogTitle:
                                                                   'Check Out Successful',
                                                               congratsDialogMeesage:
@@ -1061,9 +1062,8 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                     },
                                                   );
 
-                                                  if (shouldSetState) {
+                                                  if (_shouldSetState)
                                                     safeSetState(() {});
-                                                  }
                                                   return;
                                                 } else {
                                                   logFirebaseEvent(
@@ -1078,7 +1078,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                         backgroundColor:
                                                             Colors.transparent,
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                     0.0, 0.0)
                                                                 .resolve(
                                                                     Directionality.of(
@@ -1091,7 +1091,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                                         dialogContext)
                                                                     .unfocus(),
                                                             child:
-                                                                const FailedDialogBoxWidget(
+                                                                FailedDialogBoxWidget(
                                                               failedDialogTitle:
                                                                   'Error Occurred',
                                                               failedDialogMeesage:
@@ -1103,9 +1103,8 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                     },
                                                   );
 
-                                                  if (shouldSetState) {
+                                                  if (_shouldSetState)
                                                     safeSetState(() {});
-                                                  }
                                                   return;
                                                 }
                                               } else {
@@ -1121,7 +1120,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                       backgroundColor:
                                                           Colors.transparent,
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
@@ -1133,7 +1132,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                                       dialogContext)
                                                                   .unfocus(),
                                                           child:
-                                                              const FailedDialogBoxWidget(
+                                                              FailedDialogBoxWidget(
                                                             failedDialogTitle:
                                                                 'Invalid Ticket',
                                                             failedDialogMeesage:
@@ -1145,27 +1144,25 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                   },
                                                 );
 
-                                                if (shouldSetState) {
+                                                if (_shouldSetState)
                                                   safeSetState(() {});
-                                                }
                                                 return;
                                               }
 
-                                              if (shouldSetState) {
+                                              if (_shouldSetState)
                                                 safeSetState(() {});
-                                              }
                                             },
                                             text: 'Scan Ticket',
-                                            icon: const Icon(
+                                            icon: Icon(
                                               FFIcons.kticket,
                                               size: 15.0,
                                             ),
                                             options: FFButtonOptions(
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 0.0, 16.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -1193,7 +1190,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                             onPressed: () async {
                                               logFirebaseEvent(
                                                   'EVENT_CHECK_IN_OUT_TAP_SCHOOL_I_D_BTN_ON');
-                                              var shouldSetState = false;
+                                              var _shouldSetState = false;
                                               logFirebaseEvent(
                                                   'Button_update_app_state');
                                               FFAppState().scannedNFCTag = ' ';
@@ -1222,7 +1219,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                   ),
                                                   singleRecord: true,
                                                 ).then((s) => s.firstOrNull);
-                                                shouldSetState = true;
+                                                _shouldSetState = true;
                                                 if (_model.userOutput?.email !=
                                                         null &&
                                                     _model.userOutput?.email !=
@@ -1231,7 +1228,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                       'Button_firestore_query');
                                                   _model.attendeeOutput =
                                                       await queryEventAttendeesRecordOnce(
-                                                    parent: widget
+                                                    parent: widget!
                                                         .eventDoc?.reference,
                                                     queryBuilder:
                                                         (eventAttendeesRecord) =>
@@ -1244,7 +1241,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                     ),
                                                     singleRecord: true,
                                                   ).then((s) => s.firstOrNull);
-                                                  shouldSetState = true;
+                                                  _shouldSetState = true;
                                                   if (_model.attendeeOutput
                                                               ?.ticketCode !=
                                                           null &&
@@ -1270,7 +1267,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                             backgroundColor:
                                                                 Colors
                                                                     .transparent,
-                                                            alignment: const AlignmentDirectional(
+                                                            alignment: AlignmentDirectional(
                                                                     0.0, 0.0)
                                                                 .resolve(
                                                                     Directionality.of(
@@ -1283,7 +1280,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                                             dialogContext)
                                                                         .unfocus(),
                                                                 child:
-                                                                    const FailedDialogBoxWidget(
+                                                                    FailedDialogBoxWidget(
                                                                   failedDialogTitle:
                                                                       'Already Checked Out',
                                                                   failedDialogMeesage:
@@ -1295,9 +1292,8 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                         },
                                                       );
 
-                                                      if (shouldSetState) {
+                                                      if (_shouldSetState)
                                                         safeSetState(() {});
-                                                      }
                                                       return;
                                                     } else if (_model
                                                             .attendeeOutput
@@ -1329,7 +1325,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                         type: 'user',
                                                         title: 'Event Check In',
                                                         message:
-                                                            'You are now checked in for ${widget.eventDoc?.eventName}.',
+                                                            'You are now checked in for ${widget!.eventDoc?.eventName}.',
                                                         user: _model
                                                             .attendeeOutput
                                                             ?.ticketUser,
@@ -1340,7 +1336,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                         notificationTitle:
                                                             'Event Check In',
                                                         notificationText:
-                                                            'You are now checked in for ${widget.eventDoc?.eventName}.',
+                                                            'You are now checked in for ${widget!.eventDoc?.eventName}.',
                                                         notificationSound:
                                                             'default',
                                                         userRefs: [
@@ -1358,7 +1354,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                         type: 'check in',
                                                         module: 'event',
                                                         doneToName:
-                                                            'the event \"${widget.eventDoc?.eventName}\".',
+                                                            'the event \"${widget!.eventDoc?.eventName}\".',
                                                         doneTo: _model
                                                             .attendeeOutput
                                                             ?.ticketUser,
@@ -1376,7 +1372,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                             backgroundColor:
                                                                 Colors
                                                                     .transparent,
-                                                            alignment: const AlignmentDirectional(
+                                                            alignment: AlignmentDirectional(
                                                                     0.0, 0.0)
                                                                 .resolve(
                                                                     Directionality.of(
@@ -1389,7 +1385,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                                             dialogContext)
                                                                         .unfocus(),
                                                                 child:
-                                                                    const CongratulationsDialogBoxWidget(
+                                                                    CongratulationsDialogBoxWidget(
                                                                   congratsDialogTitle:
                                                                       'Check In Successful',
                                                                   congratsDialogMeesage:
@@ -1401,9 +1397,8 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                         },
                                                       );
 
-                                                      if (shouldSetState) {
+                                                      if (_shouldSetState)
                                                         safeSetState(() {});
-                                                      }
                                                       return;
                                                     } else if (_model
                                                             .attendeeOutput
@@ -1436,7 +1431,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                         title:
                                                             'Event Check Out',
                                                         message:
-                                                            'You have checked out for ${widget.eventDoc?.eventName}.',
+                                                            'You have checked out for ${widget!.eventDoc?.eventName}.',
                                                         user: _model
                                                             .attendeeOutput
                                                             ?.ticketUser,
@@ -1447,7 +1442,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                         notificationTitle:
                                                             'Event Check Out',
                                                         notificationText:
-                                                            'You have checked out for ${widget.eventDoc?.eventName}.',
+                                                            'You have checked out for ${widget!.eventDoc?.eventName}.',
                                                         notificationSound:
                                                             'default',
                                                         userRefs: [
@@ -1465,7 +1460,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                         type: 'check out',
                                                         module: 'event',
                                                         doneToName:
-                                                            'the event \"${widget.eventDoc?.eventName}\".',
+                                                            'the event \"${widget!.eventDoc?.eventName}\".',
                                                         doneTo: _model
                                                             .attendeeOutput
                                                             ?.ticketUser,
@@ -1483,7 +1478,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                             backgroundColor:
                                                                 Colors
                                                                     .transparent,
-                                                            alignment: const AlignmentDirectional(
+                                                            alignment: AlignmentDirectional(
                                                                     0.0, 0.0)
                                                                 .resolve(
                                                                     Directionality.of(
@@ -1496,7 +1491,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                                             dialogContext)
                                                                         .unfocus(),
                                                                 child:
-                                                                    const CongratulationsDialogBoxWidget(
+                                                                    CongratulationsDialogBoxWidget(
                                                                   congratsDialogTitle:
                                                                       'Check Out Successful',
                                                                   congratsDialogMeesage:
@@ -1508,9 +1503,8 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                         },
                                                       );
 
-                                                      if (shouldSetState) {
+                                                      if (_shouldSetState)
                                                         safeSetState(() {});
-                                                      }
                                                       return;
                                                     } else {
                                                       logFirebaseEvent(
@@ -1526,7 +1520,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                             backgroundColor:
                                                                 Colors
                                                                     .transparent,
-                                                            alignment: const AlignmentDirectional(
+                                                            alignment: AlignmentDirectional(
                                                                     0.0, 0.0)
                                                                 .resolve(
                                                                     Directionality.of(
@@ -1539,7 +1533,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                                             dialogContext)
                                                                         .unfocus(),
                                                                 child:
-                                                                    const FailedDialogBoxWidget(
+                                                                    FailedDialogBoxWidget(
                                                                   failedDialogTitle:
                                                                       'Error Occurred',
                                                                   failedDialogMeesage:
@@ -1551,9 +1545,8 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                         },
                                                       );
 
-                                                      if (shouldSetState) {
+                                                      if (_shouldSetState)
                                                         safeSetState(() {});
-                                                      }
                                                       return;
                                                     }
                                                   } else {
@@ -1569,7 +1562,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                           backgroundColor:
                                                               Colors
                                                                   .transparent,
-                                                          alignment: const AlignmentDirectional(
+                                                          alignment: AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
@@ -1582,7 +1575,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                                           dialogContext)
                                                                       .unfocus(),
                                                               child:
-                                                                  const FailedDialogBoxWidget(
+                                                                  FailedDialogBoxWidget(
                                                                 failedDialogTitle:
                                                                     'User Not Registered',
                                                                 failedDialogMeesage:
@@ -1594,9 +1587,8 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                       },
                                                     );
 
-                                                    if (shouldSetState) {
+                                                    if (_shouldSetState)
                                                       safeSetState(() {});
-                                                    }
                                                     return;
                                                   }
                                                 } else {
@@ -1612,7 +1604,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                         backgroundColor:
                                                             Colors.transparent,
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                     0.0, 0.0)
                                                                 .resolve(
                                                                     Directionality.of(
@@ -1625,7 +1617,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                                         dialogContext)
                                                                     .unfocus(),
                                                             child:
-                                                                const FailedDialogBoxWidget(
+                                                                FailedDialogBoxWidget(
                                                               failedDialogTitle:
                                                                   'User Not Found',
                                                               failedDialogMeesage:
@@ -1637,9 +1629,8 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                     },
                                                   );
 
-                                                  if (shouldSetState) {
+                                                  if (_shouldSetState)
                                                     safeSetState(() {});
-                                                  }
                                                   return;
                                                 }
                                               } else {
@@ -1655,7 +1646,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                       backgroundColor:
                                                           Colors.transparent,
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                                   0.0, 0.0)
                                                               .resolve(
                                                                   Directionality.of(
@@ -1680,27 +1671,25 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                   },
                                                 );
 
-                                                if (shouldSetState) {
+                                                if (_shouldSetState)
                                                   safeSetState(() {});
-                                                }
                                                 return;
                                               }
 
-                                              if (shouldSetState) {
+                                              if (_shouldSetState)
                                                 safeSetState(() {});
-                                              }
                                             },
                                             text: 'Tap School ID',
-                                            icon: const Icon(
+                                            icon: Icon(
                                               FFIcons.kscan,
                                               size: 15.0,
                                             ),
                                             options: FFButtonOptions(
                                               height: 40.0,
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       16.0, 0.0, 16.0, 0.0),
-                                              iconPadding: const EdgeInsetsDirectional
+                                              iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -1723,20 +1712,20 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                         ),
                                       ),
                                     ]
-                                        .divide(const SizedBox(width: 5.0))
-                                        .around(const SizedBox(width: 5.0)),
+                                        .divide(SizedBox(width: 5.0))
+                                        .around(SizedBox(width: 5.0)),
                                   ),
                                 ),
                               ],
                             ),
                           ),
                         if (functions.checkEventStatus(
-                                widget.eventDoc!.startDate!,
-                                widget.eventDoc!.endTime!,
+                                widget!.eventDoc!.startDate!,
+                                widget!.eventDoc!.endTime!,
                                 getCurrentTimestamp) ==
                             'concluded')
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 20.0, 20.0, 20.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -1755,7 +1744,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                             ),
                           ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 15.0, 0.0, 30.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -1772,7 +1761,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                           .take(5)
                                           .toList();
                                   if (allGuests.isEmpty) {
-                                    return const EmptyListWidget(
+                                    return EmptyListWidget(
                                       emptyWhat: 'check ins',
                                     );
                                   }
@@ -1784,12 +1773,12 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                     scrollDirection: Axis.vertical,
                                     itemCount: allGuests.length,
                                     separatorBuilder: (_, __) =>
-                                        const SizedBox(height: 10.0),
+                                        SizedBox(height: 10.0),
                                     itemBuilder: (context, allGuestsIndex) {
                                       final allGuestsItem =
                                           allGuests[allGuestsIndex];
                                       return Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             20.0, 0.0, 20.0, 0.0),
                                         child: FutureBuilder<UsersRecord>(
                                           future: UsersRecord.getDocumentOnce(
@@ -1829,7 +1818,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 5.0, 0.0, 5.0),
                                                 child: Row(
@@ -1842,7 +1831,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                     Flexible(
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1854,7 +1843,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           5.0,
                                                                           0.0,
@@ -1866,7 +1855,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                                 clipBehavior: Clip
                                                                     .antiAlias,
                                                                 decoration:
-                                                                    const BoxDecoration(
+                                                                    BoxDecoration(
                                                                   shape: BoxShape
                                                                       .circle,
                                                                 ),
@@ -1886,7 +1875,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                             Flexible(
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             5.0,
                                                                             0.0,
@@ -1980,7 +1969,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -1999,7 +1988,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                               ),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsets
+                                                                    EdgeInsets
                                                                         .all(
                                                                             5.0),
                                                                 child: Text(
@@ -2037,7 +2026,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -2056,7 +2045,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                               ),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsets
+                                                                    EdgeInsets
                                                                         .all(
                                                                             5.0),
                                                                 child: Text(
@@ -2088,7 +2077,7 @@ class _EventCheckInOutWidgetState extends State<EventCheckInOutWidget> {
                                                       children: [
                                                         Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,

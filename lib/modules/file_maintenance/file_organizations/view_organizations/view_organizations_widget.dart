@@ -5,12 +5,15 @@ import '/components/widgets/title_header_component/title_header_component_widget
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
@@ -125,14 +128,14 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     wrapWithModel(
                       model: _model.titleHeaderComponentModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: const TitleHeaderComponentWidget(
+                      child: TitleHeaderComponentWidget(
                         titleText: 'File Maintenance',
                       ),
                     ),
@@ -144,7 +147,7 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 5.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -162,7 +165,7 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                           ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 5.0, 0.0, 0.0),
                                       child: Text(
                                         'These are accredited and recognized student council and organizations.',
@@ -196,18 +199,19 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 0.0, 0.0),
                                 child: TextFormField(
                                   controller: _model.textController,
                                   focusNode: _model.textFieldFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.textController',
-                                    const Duration(milliseconds: 200),
+                                    Duration(milliseconds: 200),
                                     () async {
                                       logFirebaseEvent(
                                           'VIEW_ORGANIZATIONS_TextField_hk26nl51_ON');
-                                      if (_model.textController.text != '') {
+                                      if (_model.textController.text != null &&
+                                          _model.textController.text != '') {
                                         logFirebaseEvent(
                                             'TextField_simple_search');
                                         safeSetState(() {
@@ -218,7 +222,7 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                                   (record) =>
                                                       TextSearchItem.fromTerms(
                                                           record, [
-                                                    record.organizationName
+                                                    record.organizationName!
                                                   ]),
                                                 )
                                                 .toList(),
@@ -227,6 +231,7 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                                   _model.textController.text)
                                               .map((r) => r.object)
                                               .toList();
+                                          ;
                                         });
                                         logFirebaseEvent(
                                             'TextField_update_app_state');
@@ -297,6 +302,8 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                               logFirebaseEvent(
                                                   'VIEW_ORGANIZATIONS_TextField_hk26nl51_ON');
                                               if (_model.textController.text !=
+                                                      null &&
+                                                  _model.textController.text !=
                                                       '') {
                                                 logFirebaseEvent(
                                                     'TextField_simple_search');
@@ -310,7 +317,7 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                                                   .fromTerms(
                                                                       record, [
                                                             record
-                                                                .organizationName
+                                                                .organizationName!
                                                           ]),
                                                         )
                                                         .toList(),
@@ -320,6 +327,7 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                                               .text)
                                                           .map((r) => r.object)
                                                           .toList();
+                                                  ;
                                                 });
                                                 logFirebaseEvent(
                                                     'TextField_update_app_state');
@@ -336,7 +344,7 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
 
                                               safeSetState(() {});
                                             },
-                                            child: const Icon(
+                                            child: Icon(
                                               Icons.clear,
                                               size: 20.0,
                                             ),
@@ -361,14 +369,14 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                     Expanded(
                       child: Padding(
                         padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               if (!FFAppState().searchActive)
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 50.0),
                                   child: Builder(
                                     builder: (context) {
@@ -376,7 +384,7 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                           viewOrganizationsOrganizationsRecordList
                                               .toList();
                                       if (orgSearch.isEmpty) {
-                                        return const EmptyListWidget(
+                                        return EmptyListWidget(
                                           emptyWhat: 'organizations',
                                         );
                                       }
@@ -392,7 +400,7 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                               orgSearch[orgSearchIndex];
                                           return Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
@@ -441,7 +449,7 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                                                         .center,
                                                                 children: [
                                                                   Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             10.0,
                                                                             0.0,
@@ -456,7 +464,7 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                                                       clipBehavior:
                                                                           Clip.antiAlias,
                                                                       decoration:
-                                                                          const BoxDecoration(
+                                                                          BoxDecoration(
                                                                         shape: BoxShape
                                                                             .circle,
                                                                       ),
@@ -544,11 +552,11 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                                           children: [
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -650,7 +658,7 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                                                       extra: <String,
                                                                           dynamic>{
                                                                         kTransitionInfoKey:
-                                                                            const TransitionInfo(
+                                                                            TransitionInfo(
                                                                           hasTransition:
                                                                               true,
                                                                           transitionType:
@@ -690,11 +698,11 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -723,16 +731,16 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                                                               builder: (alertDialogContext) {
                                                                                 return WebViewAware(
                                                                                   child: AlertDialog(
-                                                                                    title: const Text('Delete Organization'),
-                                                                                    content: const Text('Are you sure you want to delete this organization?'),
+                                                                                    title: Text('Delete Organization'),
+                                                                                    content: Text('Are you sure you want to delete this organization?'),
                                                                                     actions: [
                                                                                       TextButton(
                                                                                         onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                        child: const Text('Cancel'),
+                                                                                        child: Text('Cancel'),
                                                                                       ),
                                                                                       TextButton(
                                                                                         onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                        child: const Text('Confirm'),
+                                                                                        child: Text('Confirm'),
                                                                                       ),
                                                                                     ],
                                                                                   ),
@@ -768,12 +776,12 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                                                           return WebViewAware(
                                                                             child:
                                                                                 AlertDialog(
-                                                                              title: const Text('Deleted Organization'),
-                                                                              content: const Text('Organization has been successfully deleted.'),
+                                                                              title: Text('Deleted Organization'),
+                                                                              content: Text('Organization has been successfully deleted.'),
                                                                               actions: [
                                                                                 TextButton(
                                                                                   onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: const Text('Okay'),
+                                                                                  child: Text('Okay'),
                                                                                 ),
                                                                               ],
                                                                             ),
@@ -846,7 +854,7 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                             orgzSearch[orgzSearchIndex];
                                         return Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 10.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
@@ -894,7 +902,7 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                                                       .center,
                                                               children: [
                                                                 Padding(
-                                                                  padding: const EdgeInsetsDirectional
+                                                                  padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           10.0,
                                                                           0.0,
@@ -908,7 +916,7 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                                                     clipBehavior:
                                                                         Clip.antiAlias,
                                                                     decoration:
-                                                                        const BoxDecoration(
+                                                                        BoxDecoration(
                                                                       shape: BoxShape
                                                                           .circle,
                                                                     ),
@@ -997,11 +1005,11 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                                         children: [
                                                           Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     0.0, 0.0),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1108,7 +1116,7 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                                                     extra: <String,
                                                                         dynamic>{
                                                                       kTransitionInfoKey:
-                                                                          const TransitionInfo(
+                                                                          TransitionInfo(
                                                                         hasTransition:
                                                                             true,
                                                                         transitionType:
@@ -1147,11 +1155,11 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                                           ),
                                                           Align(
                                                             alignment:
-                                                                const AlignmentDirectional(
+                                                                AlignmentDirectional(
                                                                     0.0, 0.0),
                                                             child: Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1182,16 +1190,16 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                                                                 (alertDialogContext) {
                                                                               return WebViewAware(
                                                                                 child: AlertDialog(
-                                                                                  title: const Text('Delete Organization'),
-                                                                                  content: const Text('Are you sure you want to delete this organization?'),
+                                                                                  title: Text('Delete Organization'),
+                                                                                  content: Text('Are you sure you want to delete this organization?'),
                                                                                   actions: [
                                                                                     TextButton(
                                                                                       onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                      child: const Text('Cancel'),
+                                                                                      child: Text('Cancel'),
                                                                                     ),
                                                                                     TextButton(
                                                                                       onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                      child: const Text('Confirm'),
+                                                                                      child: Text('Confirm'),
                                                                                     ),
                                                                                   ],
                                                                                 ),
@@ -1229,13 +1237,13 @@ class _ViewOrganizationsWidgetState extends State<ViewOrganizationsWidget>
                                                                           child:
                                                                               AlertDialog(
                                                                             title:
-                                                                                const Text('Deleted Organization'),
+                                                                                Text('Deleted Organization'),
                                                                             content:
-                                                                                const Text('Organization has been successfully deleted.'),
+                                                                                Text('Organization has been successfully deleted.'),
                                                                             actions: [
                                                                               TextButton(
                                                                                 onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                child: const Text('Okay'),
+                                                                                child: Text('Okay'),
                                                                               ),
                                                                             ],
                                                                           ),

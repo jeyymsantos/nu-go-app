@@ -3,6 +3,7 @@ import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/backend/push_notifications/push_notifications_util.dart';
 import '/components/dialog_box/failed_dialog_box/failed_dialog_box_widget.dart';
+import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -12,8 +13,13 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/random_data_util.dart' as random_data;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'feedback_model.dart';
 export 'feedback_model.dart';
@@ -63,11 +69,11 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TitleHeaderComponentWidget(
+                  child: TitleHeaderComponentWidget(
                     titleText: 'Submit a Feedback',
                   ),
                 ),
@@ -80,7 +86,7 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                       Container(
                         width: 162.0,
                         height: 165.0,
-                        decoration: const BoxDecoration(),
+                        decoration: BoxDecoration(),
                         child: Transform.scale(
                           scaleX: 2.2,
                           scaleY: 2.2,
@@ -106,7 +112,7 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 15.0, 20.0, 15.0),
                         child: Text(
                           'To further improve the application, you may submit a feedback using the fields below. The developers will use your feedbacks to enhance features & services or fix any encountered bugs.',
@@ -119,9 +125,9 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
-                        child: SizedBox(
+                        child: Container(
                           width: double.infinity,
                           child: Form(
                             key: _model.formKey,
@@ -131,12 +137,12 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                               children: [
                                 Container(
                                   width: double.infinity,
-                                  decoration: const BoxDecoration(),
+                                  decoration: BoxDecoration(),
                                   child: FlutterFlowDropDown<String>(
                                     controller:
                                         _model.feedbackTypeValueController ??=
                                             FormFieldController<String>(null),
-                                    options: const [
+                                    options: [
                                       'I found a bug/problem',
                                       'I have a suggestion',
                                       'I want to report a content',
@@ -164,7 +170,7 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                     borderColor: Colors.transparent,
                                     borderWidth: 0.5,
                                     borderRadius: 14.0,
-                                    margin: const EdgeInsetsDirectional.fromSTEB(
+                                    margin: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
                                     hidesUnderline: true,
                                     isOverButton: true,
@@ -173,7 +179,7 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: TextFormField(
                                     controller:
@@ -200,7 +206,7 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                       enabledBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Color(0x00000000),
                                           width: 0.5,
                                         ),
@@ -254,7 +260,7 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 0.0, 15.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -268,7 +274,7 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 5.0),
                                             child: Text(
                                               'Upload Screenshot/Photo',
@@ -325,14 +331,14 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                                 Expanded(
                                                   child: Container(
                                                     height: double.infinity,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     child: Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               -1.0, 0.0),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     10.0,
                                                                     0.0,
@@ -340,6 +346,8 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                                                     0.0),
                                                         child: Text(
                                                           _model.uploadedFileUrl !=
+                                                                      null &&
+                                                                  _model.uploadedFileUrl !=
                                                                       ''
                                                               ? 'View Photo'
                                                               : 'Upload Photo',
@@ -361,6 +369,8 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                                   ),
                                                 ),
                                                 if (_model.uploadedFileUrl !=
+                                                        null &&
+                                                    _model.uploadedFileUrl !=
                                                         '')
                                                   InkWell(
                                                     splashColor:
@@ -398,13 +408,13 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                                       width: 40.0,
                                                       height: 100.0,
                                                       decoration:
-                                                          const BoxDecoration(),
+                                                          BoxDecoration(),
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Align(
                                                         alignment:
-                                                            const AlignmentDirectional(
+                                                            AlignmentDirectional(
                                                                 0.0, 0.0),
                                                         child: Icon(
                                                           Icons
@@ -528,18 +538,21 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                                   child: Container(
                                                     width: 40.0,
                                                     height: 100.0,
-                                                    decoration: const BoxDecoration(),
+                                                    decoration: BoxDecoration(),
                                                     alignment:
-                                                        const AlignmentDirectional(
+                                                        AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Icon(
                                                         Icons
                                                             .file_upload_outlined,
-                                                        color: _model.uploadedFileUrl !=
+                                                        color: _model
+                                                                        .uploadedFileUrl !=
+                                                                    null &&
+                                                                _model.uploadedFileUrl !=
                                                                     ''
                                                             ? FlutterFlowTheme
                                                                     .of(context)
@@ -560,20 +573,128 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                     ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 15.0, 0.0, 0.0),
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      logFirebaseEvent(
-                                          'FEEDBACK_PAGE_Save_ON_TAP');
-                                      logFirebaseEvent('Save_validate_form');
-                                      if (_model.formKey.currentState == null ||
-                                          !_model.formKey.currentState!
-                                              .validate()) {
-                                        return;
-                                      }
-                                      if (_model.feedbackTypeValue == null) {
+                                Builder(
+                                  builder: (context) => Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 15.0, 0.0, 0.0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        logFirebaseEvent(
+                                            'FEEDBACK_PAGE_Save_ON_TAP');
+                                        logFirebaseEvent('Save_validate_form');
+                                        if (_model.formKey.currentState ==
+                                                null ||
+                                            !_model.formKey.currentState!
+                                                .validate()) {
+                                          return;
+                                        }
+                                        if (_model.feedbackTypeValue == null) {
+                                          await showDialog(
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: WebViewAware(
+                                                  child: GestureDetector(
+                                                    onTap: () => FocusScope.of(
+                                                            dialogContext)
+                                                        .unfocus(),
+                                                    child:
+                                                        FailedDialogBoxWidget(
+                                                      failedDialogTitle:
+                                                          'Feedback Type Required',
+                                                      failedDialogMeesage:
+                                                          'You need to specify what type your feedback is.',
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          );
+
+                                          return;
+                                        }
+                                        logFirebaseEvent('Save_backend_call');
+
+                                        await FeedbackRecord.collection
+                                            .doc()
+                                            .set({
+                                          ...createFeedbackRecordData(
+                                            type: _model.feedbackTypeValue,
+                                            feedback: _model
+                                                .feedbackTextTextController
+                                                .text,
+                                            submittedBy: currentUserReference,
+                                            screenshot: _model.uploadedFileUrl,
+                                            status: 'Pending',
+                                            id: random_data.randomString(
+                                              8,
+                                              8,
+                                              false,
+                                              true,
+                                              true,
+                                            ),
+                                          ),
+                                          ...mapToFirestore(
+                                            {
+                                              'submitted_on':
+                                                  FieldValue.serverTimestamp(),
+                                              'status_changed_when':
+                                                  FieldValue.serverTimestamp(),
+                                            },
+                                          ),
+                                        });
+                                        logFirebaseEvent('Save_action_block');
+                                        await action_blocks.logs(
+                                          context,
+                                          type: 'submitted',
+                                          module: 'feedback',
+                                          doneToName: _model.feedbackTypeValue,
+                                        );
+                                        logFirebaseEvent(
+                                            'Save_firestore_query');
+                                        _model.allSuperAdmin =
+                                            await queryUsersRecordOnce(
+                                          queryBuilder: (usersRecord) =>
+                                              usersRecord.where(
+                                            'settings.isSuperAdmin',
+                                            isEqualTo: true,
+                                          ),
+                                        );
+                                        logFirebaseEvent(
+                                            'Save_trigger_push_notification');
+                                        triggerPushNotification(
+                                          notificationTitle:
+                                              'Feedback Received',
+                                          notificationText:
+                                              'You have received a feedback from ${currentUserDisplayName}.',
+                                          notificationSound: 'default',
+                                          userRefs: _model.allSuperAdmin!
+                                              .map((e) => e.reference)
+                                              .toList(),
+                                          initialPageName: 'admin_feedback',
+                                          parameterData: {},
+                                        );
+                                        logFirebaseEvent('Save_action_block');
+                                        await action_blocks
+                                            .triggerAppNotification(
+                                          context,
+                                          type: 'multiple_users',
+                                          title: 'Feedback Received',
+                                          message:
+                                              'You have received a feedback from ${currentUserDisplayName}.',
+                                          multipleUsers: _model.allSuperAdmin
+                                              ?.map((e) => e.reference)
+                                              .toList(),
+                                        );
+                                        logFirebaseEvent('Save_alert_dialog');
                                         await showDialog(
                                           context: context,
                                           builder: (dialogContext) {
@@ -583,7 +704,7 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                               backgroundColor:
                                                   Colors.transparent,
                                               alignment:
-                                                  const AlignmentDirectional(0.0, 0.0)
+                                                  AlignmentDirectional(0.0, 0.0)
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
@@ -592,11 +713,12 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                                   onTap: () => FocusScope.of(
                                                           dialogContext)
                                                       .unfocus(),
-                                                  child: const FailedDialogBoxWidget(
-                                                    failedDialogTitle:
-                                                        'Feedback Type Required',
-                                                    failedDialogMeesage:
-                                                        'You need to specify what type your feedback is.',
+                                                  child:
+                                                      InformationDialogBoxWidget(
+                                                    infoDialogTitle:
+                                                        'Feedback Sent',
+                                                    infoDialogMeesage:
+                                                        'Your feedback has been successfully submitted.',
                                                   ),
                                                 ),
                                               ),
@@ -604,129 +726,38 @@ class _FeedbackWidgetState extends State<FeedbackWidget> {
                                           },
                                         );
 
-                                        return;
-                                      }
-                                      logFirebaseEvent('Save_backend_call');
+                                        logFirebaseEvent('Save_navigate_back');
+                                        context.safePop();
 
-                                      await FeedbackRecord.collection
-                                          .doc()
-                                          .set({
-                                        ...createFeedbackRecordData(
-                                          type: _model.feedbackTypeValue,
-                                          feedback: _model
-                                              .feedbackTextTextController.text,
-                                          submittedBy: currentUserReference,
-                                          screenshot: _model.uploadedFileUrl,
-                                          status: 'Pending',
-                                          id: random_data.randomString(
-                                            8,
-                                            8,
-                                            false,
-                                            true,
-                                            true,
-                                          ),
-                                        ),
-                                        ...mapToFirestore(
-                                          {
-                                            'submitted_on':
-                                                FieldValue.serverTimestamp(),
-                                            'status_changed_when':
-                                                FieldValue.serverTimestamp(),
-                                          },
-                                        ),
-                                      });
-                                      logFirebaseEvent('Save_action_block');
-                                      await action_blocks.logs(
-                                        context,
-                                        type: 'submitted',
-                                        module: 'feedback',
-                                        doneToName: _model.feedbackTypeValue,
-                                      );
-                                      logFirebaseEvent('Save_firestore_query');
-                                      _model.allSuperAdmin =
-                                          await queryUsersRecordOnce(
-                                        queryBuilder: (usersRecord) =>
-                                            usersRecord.where(
-                                          'settings.isSuperAdmin',
-                                          isEqualTo: true,
-                                        ),
-                                      );
-                                      logFirebaseEvent(
-                                          'Save_trigger_push_notification');
-                                      triggerPushNotification(
-                                        notificationTitle: 'Feedback Received',
-                                        notificationText:
-                                            'You have received a feedback from $currentUserDisplayName.',
-                                        notificationSound: 'default',
-                                        userRefs: _model.allSuperAdmin!
-                                            .map((e) => e.reference)
-                                            .toList(),
-                                        initialPageName: 'admin_feedback',
-                                        parameterData: {},
-                                      );
-                                      logFirebaseEvent('Save_action_block');
-                                      await action_blocks
-                                          .triggerAppNotification(
-                                        context,
-                                        type: 'multiple_users',
-                                        title: 'Feedback Received',
-                                        message:
-                                            'You have received a feedback from $currentUserDisplayName.',
-                                        multipleUsers: _model.allSuperAdmin
-                                            ?.map((e) => e.reference)
-                                            .toList(),
-                                      );
-                                      logFirebaseEvent('Save_alert_dialog');
-                                      await showDialog(
-                                        context: context,
-                                        builder: (alertDialogContext) {
-                                          return WebViewAware(
-                                            child: AlertDialog(
-                                              title: const Text('Feedback Sent'),
-                                              content: const Text(
-                                                  'Your feedback has been successfully submitted.'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext),
-                                                  child: const Text('Ok'),
-                                                ),
-                                              ],
+                                        safeSetState(() {});
+                                      },
+                                      text: 'Submit',
+                                      options: FFButtonOptions(
+                                        width: double.infinity,
+                                        height: 50.0,
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 0.0),
+                                        iconPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .titleSmall
+                                            .override(
+                                              fontFamily: 'Montserrat',
+                                              color: Colors.white,
+                                              fontSize: 14.0,
+                                              letterSpacing: 0.0,
                                             ),
-                                          );
-                                        },
-                                      );
-                                      logFirebaseEvent('Save_navigate_back');
-                                      context.safePop();
-
-                                      safeSetState(() {});
-                                    },
-                                    text: 'Submit',
-                                    options: FFButtonOptions(
-                                      width: double.infinity,
-                                      height: 50.0,
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 0.0),
-                                      iconPadding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily: 'Montserrat',
-                                            color: Colors.white,
-                                            fontSize: 14.0,
-                                            letterSpacing: 0.0,
-                                          ),
-                                      elevation: 3.0,
-                                      borderSide: const BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
+                                        elevation: 3.0,
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(14.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(14.0),
                                     ),
                                   ),
                                 ),

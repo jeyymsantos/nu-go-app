@@ -3,13 +3,17 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'auth_sign_up_model.dart';
 export 'auth_sign_up_model.dart';
@@ -100,20 +104,20 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
           child: Stack(
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -143,9 +147,9 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                         ),
                                   ),
                                   Align(
-                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    alignment: AlignmentDirectional(0.0, 0.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 30.0, 0.0, 0.0),
                                       child: ClipRRect(
                                         borderRadius:
@@ -166,23 +170,23 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                               key: _model.formKey,
                               autovalidateMode: AutovalidateMode.disabled,
                               child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 20.0, 0.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 15.0, 0.0, 0.0),
-                                      child: SizedBox(
+                                      child: Container(
                                         width: double.infinity,
                                         child: TextFormField(
                                           controller:
                                               _model.emailFieldTextController,
                                           focusNode: _model.emailFieldFocusNode,
                                           autofocus: false,
-                                          autofillHints: const [AutofillHints.email],
+                                          autofillHints: [AutofillHints.email],
                                           textInputAction: TextInputAction.next,
                                           obscureText: false,
                                           decoration: InputDecoration(
@@ -237,7 +241,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                             ),
                                             filled: true,
                                             contentPadding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 25.0, 0.0, 25.0),
                                             prefixIcon: Icon(
                                               Icons.alternate_email,
@@ -263,7 +267,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 15.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller:
@@ -272,7 +276,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                             _model.passwordFieldFocusNode,
                                         onChanged: (_) => EasyDebounce.debounce(
                                           '_model.passwordFieldTextController',
-                                          const Duration(milliseconds: 2000),
+                                          Duration(milliseconds: 2000),
                                           () async {
                                             logFirebaseEvent(
                                                 'AUTH_SIGN_UP_password_field_ON_TEXTFIELD');
@@ -295,7 +299,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                           );
                                         },
                                         autofocus: false,
-                                        autofillHints: const [AutofillHints.password],
+                                        autofillHints: [AutofillHints.password],
                                         textInputAction: TextInputAction.next,
                                         obscureText:
                                             !_model.passwordFieldVisibility,
@@ -351,7 +355,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                           ),
                                           filled: true,
                                           contentPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 25.0, 0.0, 25.0),
                                           prefixIcon: Icon(
                                             Icons.lock_outline_sharp,
@@ -391,9 +395,12 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                     ),
                                     if (_model.passwordFieldTextController
                                                 .text !=
+                                            null &&
+                                        _model.passwordFieldTextController
+                                                .text !=
                                             '')
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 5.0, 0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -401,7 +408,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                               CrossAxisAlignment.stretch,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 5.0, 0.0, 0.0),
                                               child: Text(
                                                 'Atleast one (1) uppercase letter',
@@ -424,7 +431,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 5.0, 0.0, 0.0),
                                               child: Text(
                                                 'Atleast one (1) lowercase letter',
@@ -447,7 +454,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 5.0, 0.0, 0.0),
                                               child: Text(
                                                 'Atleast one (1) number',
@@ -470,7 +477,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 5.0, 0.0, 0.0),
                                               child: Text(
                                                 'Atleast one (1) special character',
@@ -493,7 +500,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 5.0, 0.0, 0.0),
                                               child: Text(
                                                 'Atleast eight (8) characters',
@@ -519,7 +526,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                         ),
                                       ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 15.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller: _model
@@ -527,7 +534,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                         focusNode: _model
                                             .confirmPasswordFieldFocusNode,
                                         autofocus: false,
-                                        autofillHints: const [AutofillHints.password],
+                                        autofillHints: [AutofillHints.password],
                                         textInputAction: TextInputAction.done,
                                         obscureText: !_model
                                             .confirmPasswordFieldVisibility,
@@ -583,7 +590,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                           ),
                                           filled: true,
                                           contentPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 25.0, 0.0, 25.0),
                                           prefixIcon: Icon(
                                             Icons.lock_outline_sharp,
@@ -622,7 +629,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 20.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -720,7 +727,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                                                 'privacy_statement');
                                                           },
                                                   ),
-                                                  const TextSpan(
+                                                  TextSpan(
                                                     text: ' and ',
                                                     style: TextStyle(
                                                       fontSize: 12.0,
@@ -757,7 +764,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                                                 'terms');
                                                           },
                                                   ),
-                                                  const TextSpan(
+                                                  TextSpan(
                                                     text:
                                                         ' consent to the use of your personal data.',
                                                     style: TextStyle(
@@ -782,7 +789,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 15.0, 0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: ((_model
@@ -835,7 +842,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                                         .text) {
                                                   ScaffoldMessenger.of(context)
                                                       .showSnackBar(
-                                                    const SnackBar(
+                                                    SnackBar(
                                                       content: Text(
                                                         'Passwords don\'t match!',
                                                       ),
@@ -923,7 +930,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                                   context.mounted,
                                                   extra: <String, dynamic>{
                                                     kTransitionInfoKey:
-                                                        const TransitionInfo(
+                                                        TransitionInfo(
                                                       hasTransition: true,
                                                       transitionType:
                                                           PageTransitionType
@@ -941,10 +948,10 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                           width: double.infinity,
                                           height: 50.0,
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
@@ -959,7 +966,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                                     fontWeight: FontWeight.w600,
                                                   ),
                                           elevation: 3.0,
-                                          borderSide: const BorderSide(
+                                          borderSide: BorderSide(
                                             color: Colors.transparent,
                                             width: 1.0,
                                           ),
@@ -987,7 +994,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                       false,
                                     ))
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 20.0, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -995,7 +1002,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                               MainAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsetsDirectional
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 5.0, 0.0),
                                               child: Text(
                                                 'Already have an account?',
@@ -1061,10 +1068,10 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                     ))
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 1.0),
+                                            AlignmentDirectional(0.0, 1.0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 50.0, 0.0, 20.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.min,
@@ -1072,7 +1079,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                                 MainAxisAlignment.end,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 6.0),
                                                 child: Text(
@@ -1091,7 +1098,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                                 ),
                                               ),
                                               Align(
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                     0.0, 0.0),
                                                 child: InkWell(
                                                   splashColor:
@@ -1121,7 +1128,7 @@ class _AuthSignUpWidgetState extends State<AuthSignUpWidget> {
                                                       height: 30.0,
                                                       fit: BoxFit.contain,
                                                       alignment:
-                                                          const Alignment(0.0, 0.0),
+                                                          Alignment(0.0, 0.0),
                                                     ),
                                                   ),
                                                 ),

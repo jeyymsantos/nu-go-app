@@ -1,5 +1,7 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/push_notifications/push_notifications_util.dart';
+import '/components/dialog_box/confirm_dialog_box/confirm_dialog_box_widget.dart';
 import '/components/dialog_box/congratulations_dialog_box/congratulations_dialog_box_widget.dart';
 import '/components/dialog_box/information_dialog_box/information_dialog_box_widget.dart';
 import '/components/widgets/title_header_component/title_header_component_widget.dart';
@@ -9,10 +11,16 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:styled_divider/styled_divider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'event_feeback_model.dart';
 export 'event_feeback_model.dart';
@@ -66,9 +74,9 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
         body: SafeArea(
           top: true,
           child: Align(
-            alignment: const AlignmentDirectional(0.0, -1.0),
+            alignment: AlignmentDirectional(0.0, -1.0),
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -77,7 +85,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                   wrapWithModel(
                     model: _model.titleHeaderComponentModel,
                     updateCallback: () => safeSetState(() {}),
-                    child: const TitleHeaderComponentWidget(
+                    child: TitleHeaderComponentWidget(
                       titleText: 'Event Feedback',
                     ),
                   ),
@@ -97,10 +105,10 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                     children: [
                                       Align(
                                         alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
+                                            AlignmentDirectional(0.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
+                                              EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 10.0),
                                           child: InkWell(
                                             splashColor: Colors.transparent,
@@ -120,7 +128,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                       FlutterFlowExpandedImageView(
                                                     image: Image.network(
                                                       valueOrDefault<String>(
-                                                        widget
+                                                        widget!
                                                             .event?.coverPhoto,
                                                         'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FSampleEventImage.jpg?alt=media&token=02d5aa73-8018-4282-95f6-1a3a3480f703',
                                                       ),
@@ -128,7 +136,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                     ),
                                                     allowRotation: false,
                                                     tag: valueOrDefault<String>(
-                                                      widget.event?.coverPhoto,
+                                                      widget!.event?.coverPhoto,
                                                       'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FSampleEventImage.jpg?alt=media&token=02d5aa73-8018-4282-95f6-1a3a3480f703',
                                                     ),
                                                     useHeroAnimation: true,
@@ -138,7 +146,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                             },
                                             child: Hero(
                                               tag: valueOrDefault<String>(
-                                                widget.event?.coverPhoto,
+                                                widget!.event?.coverPhoto,
                                                 'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FSampleEventImage.jpg?alt=media&token=02d5aa73-8018-4282-95f6-1a3a3480f703',
                                               ),
                                               transitionOnUserGestures: true,
@@ -147,7 +155,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                     BorderRadius.circular(8.0),
                                                 child: Image.network(
                                                   valueOrDefault<String>(
-                                                    widget.event?.coverPhoto,
+                                                    widget!.event?.coverPhoto,
                                                     'https://firebasestorage.googleapis.com/v0/b/nu-go-4239c.appspot.com/o/defaults%2FSampleEventImage.jpg?alt=media&token=02d5aa73-8018-4282-95f6-1a3a3480f703',
                                                   ),
                                                   width: double.infinity,
@@ -160,17 +168,17 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 10.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             Align(
-                                              alignment: const AlignmentDirectional(
+                                              alignment: AlignmentDirectional(
                                                   -1.0, 0.0),
                                               child: Text(
                                                 valueOrDefault<String>(
-                                                  widget.event?.eventName,
+                                                  widget!.event?.eventName,
                                                   'FFDC Extended Manila: Build Next-Gen Applications with FlutterFlow 5.0',
                                                 ),
                                                 textAlign: TextAlign.start,
@@ -212,13 +220,13 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                 queryParameters: {
                                                   'orgReference':
                                                       serializeParam(
-                                                    widget.event?.orgReference,
+                                                    widget!.event?.orgReference,
                                                     ParamType.DocumentReference,
                                                   ),
                                                 }.withoutNulls,
                                                 extra: <String, dynamic>{
                                                   kTransitionInfoKey:
-                                                      const TransitionInfo(
+                                                      TransitionInfo(
                                                     hasTransition: true,
                                                     transitionType:
                                                         PageTransitionType.fade,
@@ -241,11 +249,11 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(5.0),
+                                                padding: EdgeInsets.all(5.0),
                                                 child: StreamBuilder<
                                                     OrganizationsRecord>(
                                                   stream: OrganizationsRecord
-                                                      .getDocument(widget
+                                                      .getDocument(widget!
                                                           .event!
                                                           .orgReference!),
                                                   builder: (context, snapshot) {
@@ -279,7 +287,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                         Expanded(
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -307,14 +315,14 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                                     child:
                                                                         Padding(
                                                                       padding:
-                                                                          const EdgeInsets.all(
+                                                                          EdgeInsets.all(
                                                                               2.0),
                                                                       child:
                                                                           ClipOval(
                                                                         child:
                                                                             Container(
                                                                           decoration:
-                                                                              const BoxDecoration(
+                                                                              BoxDecoration(
                                                                             shape:
                                                                                 BoxShape.circle,
                                                                           ),
@@ -339,7 +347,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                                 Flexible(
                                                                   child:
                                                                       Padding(
-                                                                    padding: const EdgeInsetsDirectional
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             5.0,
                                                                             0.0,
@@ -409,7 +417,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
+                                                EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 10.0, 0.0, 10.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.min,
@@ -470,7 +478,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                               child: Text(
                                                                 dateTimeFormat(
                                                                   "MMM",
-                                                                  widget.event!
+                                                                  widget!.event!
                                                                       .startDate!,
                                                                   locale: FFLocalizations.of(
                                                                           context)
@@ -500,14 +508,14 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  const AlignmentDirectional(
+                                                                  AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Text(
                                                                 valueOrDefault<
                                                                     String>(
                                                                   dateTimeFormat(
                                                                     "dd",
-                                                                    widget
+                                                                    widget!
                                                                         .event
                                                                         ?.startDate,
                                                                     locale: FFLocalizations.of(
@@ -552,7 +560,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         10.0,
                                                                         0.0,
@@ -563,7 +571,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                                   String>(
                                                                 dateTimeFormat(
                                                                   "MMMMEEEEd",
-                                                                  widget.event
+                                                                  widget!.event
                                                                       ?.startDate,
                                                                   locale: FFLocalizations.of(
                                                                           context)
@@ -589,7 +597,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         10.0,
                                                                         0.0,
@@ -607,7 +615,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                                         String>(
                                                                       dateTimeFormat(
                                                                         "jm",
-                                                                        widget
+                                                                        widget!
                                                                             .event
                                                                             ?.startDate,
                                                                         locale:
@@ -631,7 +639,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                                               FontWeight.normal,
                                                                         ),
                                                                   ),
-                                                                  const TextSpan(
+                                                                  TextSpan(
                                                                     text:
                                                                         ' -  ',
                                                                     style:
@@ -640,14 +648,14 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                                   TextSpan(
                                                                     text: valueOrDefault<
                                                                         String>(
-                                                                      widget
+                                                                      widget!
                                                                           .event
                                                                           ?.endTime
                                                                           ?.toString(),
                                                                       '6:00AM',
                                                                     ),
                                                                     style:
-                                                                        const TextStyle(),
+                                                                        TextStyle(),
                                                                   )
                                                                 ],
                                                                 style: FlutterFlowTheme.of(
@@ -699,7 +707,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(3.0),
+                                                            EdgeInsets.all(3.0),
                                                         child: Icon(
                                                           FFIcons.klocation,
                                                           color: FlutterFlowTheme
@@ -724,7 +732,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                             children: [
                                                               Padding(
                                                                 padding:
-                                                                    const EdgeInsetsDirectional
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             10.0,
                                                                             0.0,
@@ -733,7 +741,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                                 child: FutureBuilder<
                                                                     RoomsRecord>(
                                                                   future: RoomsRecord
-                                                                      .getDocumentOnce(widget
+                                                                      .getDocumentOnce(widget!
                                                                           .event!
                                                                           .facility!),
                                                                   builder: (context,
@@ -787,7 +795,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         10.0,
                                                                         0.0,
@@ -843,7 +851,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                       ),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(3.0),
+                                                            EdgeInsets.all(3.0),
                                                         child: Icon(
                                                           FFIcons.kticketStar4,
                                                           color: FlutterFlowTheme
@@ -863,7 +871,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         10.0,
                                                                         0.0,
@@ -872,7 +880,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                             child: Text(
                                                               valueOrDefault<
                                                                   String>(
-                                                                widget.event
+                                                                widget!.event
                                                                     ?.participantType,
                                                                 'University-Wide',
                                                               ),
@@ -894,7 +902,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsetsDirectional
+                                                                EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         10.0,
                                                                         0.0,
@@ -926,7 +934,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                     ),
                                                   ],
                                                 ),
-                                              ].divide(const SizedBox(height: 8.0)),
+                                              ].divide(SizedBox(height: 8.0)),
                                             ),
                                           ),
                                           StyledDivider(
@@ -943,7 +951,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                               ),
                               Container(
                                 width: double.infinity,
-                                decoration: const BoxDecoration(),
+                                decoration: BoxDecoration(),
                               ),
                               Form(
                                 key: _model.formKey,
@@ -952,7 +960,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         'We\'d love to hear your thoughts',
                                         style: FlutterFlowTheme.of(context)
@@ -966,7 +974,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                       ),
                                     ),
                                     Align(
-                                      alignment: const AlignmentDirectional(0.0, 0.0),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: Text(
                                         'to help us improve your overall experience.',
                                         textAlign: TextAlign.center,
@@ -981,7 +989,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 20.0, 0.0, 0.0),
                                       child: RatingBar.builder(
                                         onRatingUpdate: (newValue) =>
@@ -1005,7 +1013,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 20.0, 0.0, 70.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
@@ -1014,7 +1022,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsetsDirectional
+                                                padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 5.0),
                                                 child: Text(
@@ -1145,22 +1153,22 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                           ),
                         ),
                         Align(
-                          alignment: const AlignmentDirectional(0.0, 1.0),
+                          alignment: AlignmentDirectional(0.0, 1.0),
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 10.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 1.0),
+                                  alignment: AlignmentDirectional(0.0, 1.0),
                                   child: Builder(
                                     builder: (context) => FFButtonWidget(
                                       onPressed: () async {
                                         logFirebaseEvent(
                                             'EVENT_FEEBACK_SUBMIT_FEEDBACK_BTN_ON_TAP');
-                                        var shouldSetState = false;
+                                        var _shouldSetState = false;
                                         logFirebaseEvent(
                                             'Button_validate_form');
                                         if (_model.formKey.currentState ==
@@ -1180,7 +1188,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                 insetPadding: EdgeInsets.zero,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
@@ -1190,7 +1198,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                             dialogContext)
                                                         .unfocus(),
                                                     child:
-                                                        const InformationDialogBoxWidget(
+                                                        InformationDialogBoxWidget(
                                                       infoDialogTitle:
                                                           'Select Rating',
                                                       infoDialogMeesage:
@@ -1202,9 +1210,8 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                             },
                                           );
 
-                                          if (shouldSetState) {
+                                          if (_shouldSetState)
                                             safeSetState(() {});
-                                          }
                                           return;
                                         } else {
                                           logFirebaseEvent(
@@ -1217,7 +1224,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                 insetPadding: EdgeInsets.zero,
                                                 backgroundColor:
                                                     Colors.transparent,
-                                                alignment: const AlignmentDirectional(
+                                                alignment: AlignmentDirectional(
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
@@ -1227,112 +1234,155 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                                             dialogContext)
                                                         .unfocus(),
                                                     child:
-                                                        const CongratulationsDialogBoxWidget(
-                                                      congratsDialogTitle:
-                                                          'Feedback Received',
-                                                      congratsDialogMeesage:
-                                                          'Your feedback has been submitted and received by the organizers. Thank you!',
+                                                        ConfirmDialogBoxWidget(
+                                                      confirmDialogTitle:
+                                                          'Submit Feedback',
+                                                      confirmDialogMeesage:
+                                                          'Are you sure you want to submit this feedback?',
                                                     ),
                                                   ),
                                                 ),
                                               );
                                             },
-                                          );
+                                          ).then((value) => safeSetState(() =>
+                                              _model.submitFeedback = value));
 
-                                          logFirebaseEvent(
-                                              'Button_backend_call');
-
-                                          await widget.eventAttendee!.reference
-                                              .update({
-                                            ...createEventAttendeesRecordData(
-                                              ticketFeedback: _model
-                                                  .eventFeedbackTextController
-                                                  .text,
-                                              ticketFeedbackRating:
-                                                  _model.ratingBarValue,
-                                            ),
-                                            ...mapToFirestore(
-                                              {
-                                                'ticket_feedback_timestamp':
-                                                    FieldValue
-                                                        .serverTimestamp(),
+                                          _shouldSetState = true;
+                                          if (_model.submitFeedback!) {
+                                            logFirebaseEvent(
+                                                'Button_alert_dialog');
+                                            await showDialog(
+                                              context: context,
+                                              builder: (dialogContext) {
+                                                return Dialog(
+                                                  elevation: 0,
+                                                  insetPadding: EdgeInsets.zero,
+                                                  backgroundColor:
+                                                      Colors.transparent,
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                              0.0, 0.0)
+                                                          .resolve(
+                                                              Directionality.of(
+                                                                  context)),
+                                                  child: WebViewAware(
+                                                    child: GestureDetector(
+                                                      onTap: () =>
+                                                          FocusScope.of(
+                                                                  dialogContext)
+                                                              .unfocus(),
+                                                      child:
+                                                          CongratulationsDialogBoxWidget(
+                                                        congratsDialogTitle:
+                                                            'Feedback Received',
+                                                        congratsDialogMeesage:
+                                                            'Your feedback has been submitted and received by the organizers. Thank you!',
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
                                               },
-                                            ),
-                                          });
-                                          logFirebaseEvent(
-                                              'Button_firestore_query');
-                                          _model.officersList =
-                                              await queryMembersRecordOnce(
-                                            parent: widget.event?.orgReference,
-                                            queryBuilder: (membersRecord) =>
-                                                membersRecord.where(
-                                              'isOfficer',
-                                              isEqualTo: true,
-                                            ),
-                                          );
-                                          shouldSetState = true;
-                                          logFirebaseEvent(
-                                              'Button_action_block');
-                                          await action_blocks
-                                              .triggerAppNotification(
-                                            context,
-                                            type: 'multiple_users',
-                                            title: 'Feedback Received',
-                                            message:
-                                                'An attendee from your ${widget.event?.eventName} event has submitted a feedback. Go to your organization\'s event to view feedback.',
-                                            multipleUsers: _model.officersList
-                                                ?.map((e) => e.userReference)
-                                                .withoutNulls
-                                                .toList(),
-                                          );
-                                          logFirebaseEvent(
-                                              'Button_trigger_push_notification');
-                                          triggerPushNotification(
-                                            notificationTitle:
-                                                'Feedback Received',
-                                            notificationText:
-                                                'You have received a new feedback for your event.',
-                                            notificationSound: 'default',
-                                            userRefs: _model.officersList!
-                                                .map((e) => e.userReference)
-                                                .withoutNulls
-                                                .toList(),
-                                            initialPageName: 'event_profile',
-                                            parameterData: {
-                                              'eventRef':
-                                                  widget.event?.reference,
-                                            },
-                                          );
-                                          logFirebaseEvent(
-                                              'Button_action_block');
-                                          await action_blocks.logs(
-                                            context,
-                                            type: 'submitted',
-                                            module: 'event feedback',
-                                            doneToName:
-                                                widget.event?.eventName,
-                                          );
-                                          logFirebaseEvent(
-                                              'Button_navigate_back');
-                                          context.safePop();
-                                          if (shouldSetState) {
-                                            safeSetState(() {});
+                                            );
+
+                                            logFirebaseEvent(
+                                                'Button_backend_call');
+
+                                            await widget!
+                                                .eventAttendee!.reference
+                                                .update({
+                                              ...createEventAttendeesRecordData(
+                                                ticketFeedback: _model
+                                                    .eventFeedbackTextController
+                                                    .text,
+                                                ticketFeedbackRating:
+                                                    _model.ratingBarValue,
+                                              ),
+                                              ...mapToFirestore(
+                                                {
+                                                  'ticket_feedback_timestamp':
+                                                      FieldValue
+                                                          .serverTimestamp(),
+                                                },
+                                              ),
+                                            });
+                                            logFirebaseEvent(
+                                                'Button_firestore_query');
+                                            _model.officersList =
+                                                await queryMembersRecordOnce(
+                                              parent:
+                                                  widget!.event?.orgReference,
+                                              queryBuilder: (membersRecord) =>
+                                                  membersRecord.where(
+                                                'isOfficer',
+                                                isEqualTo: true,
+                                              ),
+                                            );
+                                            _shouldSetState = true;
+                                            logFirebaseEvent(
+                                                'Button_action_block');
+                                            await action_blocks
+                                                .triggerAppNotification(
+                                              context,
+                                              type: 'multiple_users',
+                                              title: 'Feedback Received',
+                                              message:
+                                                  'An attendee from your ${widget!.event?.eventName} event has submitted a feedback. Go to your organization\'s event to view feedback.',
+                                              multipleUsers: _model.officersList
+                                                  ?.map((e) => e.userReference)
+                                                  .withoutNulls
+                                                  .toList(),
+                                            );
+                                            logFirebaseEvent(
+                                                'Button_trigger_push_notification');
+                                            triggerPushNotification(
+                                              notificationTitle:
+                                                  'Feedback Received',
+                                              notificationText:
+                                                  'You have received a new feedback for your event.',
+                                              notificationSound: 'default',
+                                              userRefs: _model.officersList!
+                                                  .map((e) => e.userReference)
+                                                  .withoutNulls
+                                                  .toList(),
+                                              initialPageName: 'event_profile',
+                                              parameterData: {
+                                                'eventRef':
+                                                    widget!.event?.reference,
+                                              },
+                                            );
+                                            logFirebaseEvent(
+                                                'Button_action_block');
+                                            await action_blocks.logs(
+                                              context,
+                                              type: 'submitted',
+                                              module: 'event feedback',
+                                              doneToName:
+                                                  widget!.event?.eventName,
+                                            );
+                                            logFirebaseEvent(
+                                                'Button_navigate_back');
+                                            context.safePop();
+                                            if (_shouldSetState)
+                                              safeSetState(() {});
+                                            return;
+                                          } else {
+                                            if (_shouldSetState)
+                                              safeSetState(() {});
+                                            return;
                                           }
-                                          return;
                                         }
 
-                                        if (shouldSetState) {
+                                        if (_shouldSetState)
                                           safeSetState(() {});
-                                        }
                                       },
                                       text: 'Submit Feedback',
                                       options: FFButtonOptions(
                                         width: double.infinity,
                                         height: 40.0,
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
                                             24.0, 0.0, 24.0, 0.0),
                                         iconPadding:
-                                            const EdgeInsetsDirectional.fromSTEB(
+                                            EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
@@ -1345,7 +1395,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                               letterSpacing: 0.0,
                                             ),
                                         elevation: 3.0,
-                                        borderSide: const BorderSide(
+                                        borderSide: BorderSide(
                                           color: Colors.transparent,
                                           width: 1.0,
                                         ),
@@ -1355,7 +1405,7 @@ class _EventFeebackWidgetState extends State<EventFeebackWidget> {
                                     ),
                                   ),
                                 ),
-                              ].divide(const SizedBox(height: 5.0)),
+                              ].divide(SizedBox(height: 5.0)),
                             ),
                           ),
                         ),

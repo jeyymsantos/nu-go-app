@@ -8,12 +8,17 @@ import '/components/widgets/title_header_component/title_header_component_widget
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
@@ -54,7 +59,8 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
     _model.searchFieldFocusNode!.addListener(
       () async {
         logFirebaseEvent('VIEW_USERS_search_field_ON_FOCUS_CHANGE');
-        if (_model.searchFieldTextController.text == '') {
+        if (_model.searchFieldTextController.text == null ||
+            _model.searchFieldTextController.text == '') {
           logFirebaseEvent('search_field_update_app_state');
           FFAppState().searchActive = false;
           safeSetState(() {});
@@ -72,8 +78,8 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -84,8 +90,8 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -108,8 +114,8 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -120,8 +126,8 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: const Offset(0.0, 0.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 0.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -161,14 +167,14 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
                 wrapWithModel(
                   model: _model.titleHeaderComponentModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: const TitleHeaderComponentWidget(
+                  child: TitleHeaderComponentWidget(
                     titleText: 'File Maintenance',
                   ),
                 ),
@@ -180,7 +186,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 5.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -198,7 +204,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                       ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 0.0, 0.0),
                                   child: Text(
                                     'To view a user, you may search by name, email address, or id number.',
@@ -236,11 +242,13 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                             focusNode: _model.searchFieldFocusNode,
                             onChanged: (_) => EasyDebounce.debounce(
                               '_model.searchFieldTextController',
-                              const Duration(milliseconds: 200),
+                              Duration(milliseconds: 200),
                               () async {
                                 logFirebaseEvent(
                                     'VIEW_USERS_search_field_ON_TEXTFIELD_CHA');
                                 if (_model.searchFieldTextController.text ==
+                                        null ||
+                                    _model.searchFieldTextController.text ==
                                         '') {
                                   logFirebaseEvent(
                                       'search_field_update_app_state');
@@ -255,7 +263,9 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                             onFieldSubmitted: (_) async {
                               logFirebaseEvent(
                                   'VIEW_USERS_search_field_ON_TEXTFIELD_SUB');
-                              if (_model.searchFieldTextController.text == '') {
+                              if (_model.searchFieldTextController.text ==
+                                      null ||
+                                  _model.searchFieldTextController.text == '') {
                                 logFirebaseEvent(
                                     'search_field_update_app_state');
                                 FFAppState().searchActive = false;
@@ -321,6 +331,9 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                             'VIEW_USERS_search_field_ON_TEXTFIELD_CHA');
                                         if (_model.searchFieldTextController
                                                     .text ==
+                                                null ||
+                                            _model.searchFieldTextController
+                                                    .text ==
                                                 '') {
                                           logFirebaseEvent(
                                               'search_field_update_app_state');
@@ -333,7 +346,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
 
                                         safeSetState(() {});
                                       },
-                                      child: const Icon(
+                                      child: Icon(
                                         Icons.clear,
                                         size: 20.0,
                                       ),
@@ -365,7 +378,8 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                 isEqualTo: true,
                               ),
                             );
-                            if (_model.searchFieldTextController.text != '') {
+                            if (_model.searchFieldTextController.text != null &&
+                                _model.searchFieldTextController.text != '') {
                               logFirebaseEvent('Container_simple_search');
                               safeSetState(() {
                                 _model.simpleSearchResults = TextSearch(
@@ -373,9 +387,9 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                       .map(
                                         (record) => TextSearchItem.fromTerms(
                                             record, [
-                                          record.email,
-                                          record.idNumber,
-                                          record.displayName
+                                          record.email!,
+                                          record.idNumber!,
+                                          record.displayName!
                                         ]),
                                       )
                                       .toList(),
@@ -384,6 +398,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                         _model.searchFieldTextController.text)
                                     .map((r) => r.object)
                                     .toList();
+                                ;
                               });
                               logFirebaseEvent('Container_update_app_state');
                               FFAppState().searchActive = true;
@@ -397,9 +412,9 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                             safeSetState(() {});
                           },
                           child: Container(
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
+                              padding: EdgeInsetsDirectional.fromSTEB(
                                   15.0, 15.0, 15.0, 15.0),
                               child: Icon(
                                 Icons.search_sharp,
@@ -416,14 +431,14 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                 Expanded(
                   child: Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           if (!FFAppState().searchActive)
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Text(
                                 'Recent Users',
                                 style: FlutterFlowTheme.of(context)
@@ -463,13 +478,13 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                 List<UsersRecord> listViewUsersRecordList =
                                     snapshot.data!;
                                 if (listViewUsersRecordList.isEmpty) {
-                                  return const EmptyListWidget(
+                                  return EmptyListWidget(
                                     emptyWhat: 'users',
                                   );
                                 }
 
                                 return ListView.separated(
-                                  padding: const EdgeInsets.fromLTRB(
+                                  padding: EdgeInsets.fromLTRB(
                                     0,
                                     10.0,
                                     0,
@@ -480,7 +495,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                   scrollDirection: Axis.vertical,
                                   itemCount: listViewUsersRecordList.length,
                                   separatorBuilder: (_, __) =>
-                                      const SizedBox(height: 10.0),
+                                      SizedBox(height: 10.0),
                                   itemBuilder: (context, listViewIndex) {
                                     final listViewUsersRecord =
                                         listViewUsersRecordList[listViewIndex];
@@ -557,7 +572,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           10.0,
                                                                           0.0,
@@ -569,7 +584,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                 clipBehavior: Clip
                                                                     .antiAlias,
                                                                 decoration:
-                                                                    const BoxDecoration(
+                                                                    BoxDecoration(
                                                                   shape: BoxShape
                                                                       .circle,
                                                                 ),
@@ -604,7 +619,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                 builder:
                                                                     (context) =>
                                                                         Text(
-                                                                  '${listViewUsersRecord.student.honorifics != '' ? '${currentUserDocument?.student.honorifics} ' : ''}${listViewUsersRecord.name.firstName} ${listViewUsersRecord.name.lastName}',
+                                                                  '${listViewUsersRecord.student.honorifics != null && listViewUsersRecord.student.honorifics != '' ? '${currentUserDocument?.student?.honorifics} ' : ''}${listViewUsersRecord.name.firstName} ${listViewUsersRecord.name.lastName}',
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
@@ -672,11 +687,11 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                   children: [
                                                     Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -740,13 +755,13 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                     ),
                                                     Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Builder(
                                                         builder: (context) =>
                                                             Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -765,7 +780,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                             onTap: () async {
                                                               logFirebaseEvent(
                                                                   'VIEW_USERS_PAGE_Icon_ttct2obo_ON_TAP');
-                                                              var shouldSetState =
+                                                              var _shouldSetState =
                                                                   false;
                                                               logFirebaseEvent(
                                                                   'Icon_alert_dialog');
@@ -783,7 +798,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                     backgroundColor:
                                                                         Colors
                                                                             .transparent,
-                                                                    alignment: const AlignmentDirectional(
+                                                                    alignment: AlignmentDirectional(
                                                                             0.0,
                                                                             0.0)
                                                                         .resolve(
@@ -795,7 +810,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                         onTap: () =>
                                                                             FocusScope.of(dialogContext).unfocus(),
                                                                         child:
-                                                                            const ConfirmPasswordDialogWidget(),
+                                                                            ConfirmPasswordDialogWidget(),
                                                                       ),
                                                                     ),
                                                                   );
@@ -805,7 +820,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                       _model.confirmDeleteUser =
                                                                           value));
 
-                                                              shouldSetState =
+                                                              _shouldSetState =
                                                                   true;
                                                               if (_model
                                                                   .confirmDeleteUser!) {
@@ -844,7 +859,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                       backgroundColor:
                                                                           Colors
                                                                               .transparent,
-                                                                      alignment: const AlignmentDirectional(
+                                                                      alignment: AlignmentDirectional(
                                                                               0.0,
                                                                               0.0)
                                                                           .resolve(
@@ -856,7 +871,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                           onTap: () =>
                                                                               FocusScope.of(dialogContext).unfocus(),
                                                                           child:
-                                                                              const InformationDialogBoxWidget(
+                                                                              InformationDialogBoxWidget(
                                                                             infoDialogTitle:
                                                                                 'User Deleted',
                                                                             infoDialogMeesage:
@@ -883,10 +898,9 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                     false;
                                                                 safeSetState(
                                                                     () {});
-                                                                if (shouldSetState) {
+                                                                if (_shouldSetState)
                                                                   safeSetState(
                                                                       () {});
-                                                                }
                                                                 return;
                                                               } else {
                                                                 logFirebaseEvent(
@@ -905,7 +919,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                       backgroundColor:
                                                                           Colors
                                                                               .transparent,
-                                                                      alignment: const AlignmentDirectional(
+                                                                      alignment: AlignmentDirectional(
                                                                               0.0,
                                                                               0.0)
                                                                           .resolve(
@@ -917,7 +931,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                           onTap: () =>
                                                                               FocusScope.of(dialogContext).unfocus(),
                                                                           child:
-                                                                              const InformationDialogBoxWidget(
+                                                                              InformationDialogBoxWidget(
                                                                             infoDialogTitle:
                                                                                 'Action Cancelled',
                                                                             infoDialogMeesage:
@@ -933,17 +947,15 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                     'Icon_navigate_back');
                                                                 context
                                                                     .safePop();
-                                                                if (shouldSetState) {
+                                                                if (_shouldSetState)
                                                                   safeSetState(
                                                                       () {});
-                                                                }
                                                                 return;
                                                               }
 
-                                                              if (shouldSetState) {
+                                                              if (_shouldSetState)
                                                                 safeSetState(
                                                                     () {});
-                                                              }
                                                             },
                                                             child: Icon(
                                                               FFIcons.ktrash,
@@ -973,7 +985,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                             ),
                           if (FFAppState().searchActive)
                             Align(
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Text(
                                 'Search Result',
                                 style: FlutterFlowTheme.of(context)
@@ -997,7 +1009,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                 }
 
                                 return ListView.separated(
-                                  padding: const EdgeInsets.fromLTRB(
+                                  padding: EdgeInsets.fromLTRB(
                                     0,
                                     10.0,
                                     0,
@@ -1008,7 +1020,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                   scrollDirection: Axis.vertical,
                                   itemCount: userSearchy.length,
                                   separatorBuilder: (_, __) =>
-                                      const SizedBox(height: 10.0),
+                                      SizedBox(height: 10.0),
                                   itemBuilder: (context, userSearchyIndex) {
                                     final userSearchyItem =
                                         userSearchy[userSearchyIndex];
@@ -1085,7 +1097,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                           children: [
                                                             Padding(
                                                               padding:
-                                                                  const EdgeInsetsDirectional
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           10.0,
                                                                           0.0,
@@ -1097,7 +1109,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                 clipBehavior: Clip
                                                                     .antiAlias,
                                                                 decoration:
-                                                                    const BoxDecoration(
+                                                                    BoxDecoration(
                                                                   shape: BoxShape
                                                                       .circle,
                                                                 ),
@@ -1147,7 +1159,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                               ),
                                                               Flexible(
                                                                 child: Text(
-                                                                  'Roles: ${userSearchyItem.role != '' ? userSearchyItem.role : ''}${(userSearchyItem.role != '') && (userSearchyItem.settings.isSuperAdmin == true) ? ', ' : ''}${userSearchyItem.settings.isSuperAdmin == true ? 'Super Admin' : ''}${(userSearchyItem.role == '') && (userSearchyItem.settings.isSuperAdmin == false) ? 'N/A' : ''}',
+                                                                  'Roles: ${userSearchyItem.role != null && userSearchyItem.role != '' ? userSearchyItem.role : ''}${(userSearchyItem.role != null && userSearchyItem.role != '') && (userSearchyItem.settings.isSuperAdmin == true) ? ', ' : ''}${userSearchyItem.settings.isSuperAdmin == true ? 'Super Admin' : ''}${(userSearchyItem.role == null || userSearchyItem.role == '') && (userSearchyItem.settings.isSuperAdmin == false) ? 'N/A' : ''}',
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
@@ -1174,11 +1186,11 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                   children: [
                                                     Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsetsDirectional
+                                                            EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -1242,13 +1254,13 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                     ),
                                                     Align(
                                                       alignment:
-                                                          const AlignmentDirectional(
+                                                          AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Builder(
                                                         builder: (context) =>
                                                             Padding(
                                                           padding:
-                                                              const EdgeInsetsDirectional
+                                                              EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -1267,7 +1279,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                             onTap: () async {
                                                               logFirebaseEvent(
                                                                   'VIEW_USERS_PAGE_Icon_h22racil_ON_TAP');
-                                                              var shouldSetState =
+                                                              var _shouldSetState =
                                                                   false;
                                                               logFirebaseEvent(
                                                                   'Icon_alert_dialog');
@@ -1285,7 +1297,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                     backgroundColor:
                                                                         Colors
                                                                             .transparent,
-                                                                    alignment: const AlignmentDirectional(
+                                                                    alignment: AlignmentDirectional(
                                                                             0.0,
                                                                             0.0)
                                                                         .resolve(
@@ -1297,7 +1309,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                         onTap: () =>
                                                                             FocusScope.of(dialogContext).unfocus(),
                                                                         child:
-                                                                            const ConfirmPasswordDialogWidget(),
+                                                                            ConfirmPasswordDialogWidget(),
                                                                       ),
                                                                     ),
                                                                   );
@@ -1307,7 +1319,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                       _model.confirmDeleteUserSearched =
                                                                           value));
 
-                                                              shouldSetState =
+                                                              _shouldSetState =
                                                                   true;
                                                               if (_model
                                                                   .confirmDeleteUserSearched!) {
@@ -1345,7 +1357,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                       backgroundColor:
                                                                           Colors
                                                                               .transparent,
-                                                                      alignment: const AlignmentDirectional(
+                                                                      alignment: AlignmentDirectional(
                                                                               0.0,
                                                                               0.0)
                                                                           .resolve(
@@ -1357,7 +1369,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                           onTap: () =>
                                                                               FocusScope.of(dialogContext).unfocus(),
                                                                           child:
-                                                                              const InformationDialogBoxWidget(
+                                                                              InformationDialogBoxWidget(
                                                                             infoDialogTitle:
                                                                                 'User Deleted',
                                                                             infoDialogMeesage:
@@ -1384,10 +1396,9 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                     false;
                                                                 safeSetState(
                                                                     () {});
-                                                                if (shouldSetState) {
+                                                                if (_shouldSetState)
                                                                   safeSetState(
                                                                       () {});
-                                                                }
                                                                 return;
                                                               } else {
                                                                 logFirebaseEvent(
@@ -1406,7 +1417,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                       backgroundColor:
                                                                           Colors
                                                                               .transparent,
-                                                                      alignment: const AlignmentDirectional(
+                                                                      alignment: AlignmentDirectional(
                                                                               0.0,
                                                                               0.0)
                                                                           .resolve(
@@ -1418,7 +1429,7 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                           onTap: () =>
                                                                               FocusScope.of(dialogContext).unfocus(),
                                                                           child:
-                                                                              const InformationDialogBoxWidget(
+                                                                              InformationDialogBoxWidget(
                                                                             infoDialogTitle:
                                                                                 'Action Cancelled',
                                                                             infoDialogMeesage:
@@ -1434,17 +1445,15 @@ class _ViewUsersWidgetState extends State<ViewUsersWidget>
                                                                     'Icon_navigate_back');
                                                                 context
                                                                     .safePop();
-                                                                if (shouldSetState) {
+                                                                if (_shouldSetState)
                                                                   safeSetState(
                                                                       () {});
-                                                                }
                                                                 return;
                                                               }
 
-                                                              if (shouldSetState) {
+                                                              if (_shouldSetState)
                                                                 safeSetState(
                                                                     () {});
-                                                              }
                                                             },
                                                             child: Icon(
                                                               FFIcons.ktrash,
